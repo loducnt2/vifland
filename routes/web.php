@@ -13,13 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function(){
-	return view('welcome');
-});
+
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/layouts', function(){
+	return view('/layouts/master');
+});
+/*Route::get('/home', 'HomeController@index')->name('home');
+*/
 Route::get('/demopusher', function () {
     return view('showNotification');
 });
@@ -58,6 +59,6 @@ Route::get('/test/cate/home','CategoryController@index');
 
 
 
-Route::get('/new/{cate}','ProductExtendController@create');
+Route::get('/new/{cate}','ProductExtendController@create')->name('new');
 Route::post('/dang-tin/store','ProductExtendController@store')->name('dang-tin');
 

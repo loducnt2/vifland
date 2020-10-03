@@ -10,6 +10,7 @@ class Product extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
     	'product_cate',
+        'filter_price'
     	'address',
     	'facades',
     	'depth',
