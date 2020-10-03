@@ -26,7 +26,7 @@
 							<li class="list-item"> <a href="">Dự án </a></li>
 							<li class="list-item"> <a href="">Thư viện </a></li>
 							<li class="list-item"> <a href="">Tuyển dụng </a></li>
-							<li class="list-item"> <a href="">Liên hệ</a></li>
+							<li class="list-item"> <a href="/contact">Liên hệ</a></li>
 							<li class="list-item"> <a href="">Nơi khởi nguồn hạnh phúc</a></li>
 						</ul>
 					</div>

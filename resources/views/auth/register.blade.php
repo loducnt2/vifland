@@ -1,77 +1,54 @@
 @extends('layouts.app')
-
+@section('title','Đăng ký')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+<main>
+    <section class="dangky login">
+        <form action="">
+            <div class="login-wrap">
+                <div class="logo"><img src="./assets/logo/logo_orther_pages.png" alt=""></div>
+                <div class="box-login">
+                    <div class="title">
+                        <a href="{{route('login')}}"><span class="material-icons">keyboard_backspace</span></a>
+                        <p> Đăng ký</p>
+                    </div>
+                    <div class="form-group-input"> 
+                        <div class="box-left-se"><span class="material-icons">person</span></div>
+                        <div class="box-mid-se">
+                            <input type="text" placeholder="Tên Đăng Nhập">
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    </div>
+                    <div class="form-group-input"> 
+                        <div class="box-left-se"><span class="material-icons">lock</span></div>
+                        <div class="box-mid-se">
+                            <input type="password" placeholder="Mật khẩu">
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="box-right-se"><span class="material-icons mk-icons">visibility</span></div>
+                    </div>
+                    <div class="form-group-input"> 
+                        <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
+                        <div class="box-mid-se">
+                            <input type="password" placeholder="Email hoặc số điện thoại">
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                    </div>
+                    <div class="form-group-input"> 
+                        <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
+                        <div class="box-mid-se">
+                            <input type="password" placeholder="Chứng minh thư hoặc mã số thuế">
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                    <p class="dieukhoan">Bằng việc đăng ký tài khoản bạn đồng ý với <a href="">điều khoản dịch vụ</a></p>
+                    <div class="button-submit">
+                        <input type="submit" value="Đăng Ký">
+                    </div>
+                    <p class="logindef">Hoặc đăng ký bằng</p>
+                    <div class="button-loginSocial"><a href=""><img src="./assets/icon/gmail.svg" alt="">
+                            <p>Đăng ký bằng Gmail</p></a></div>
+                    <div class="button-loginSocial"><a href=""><img src="./assets/icon/facebook.svg" alt="">
+                            <p>Đăng ký bằng Facebook</p></a></div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </form>
+    </section>
+    <div class="index-page" id="js-page-verify" hidden></div>
+</main>
 @endsection

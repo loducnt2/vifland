@@ -15,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get('/logout','Auth\LoginController@logout');
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/layouts', function(){
-	return view('/layouts/master');
+Route::get('home','HomeController@index');
+Route::get('/compares',function(){
+	return view('pages/compare');}
+);
+Route::get('/contact',function(){
+	return view('pages/contact');
+});
+Route::get('/favorites',function(){
+	return view('pages/favorite');
 });
 /*Route::get('/home', 'HomeController@index')->name('home');
 */

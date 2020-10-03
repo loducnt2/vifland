@@ -10,27 +10,27 @@
 		<link rel="stylesheet" href="./css/main.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 		<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+		@yield('headerStyles')
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	</head>
 	<body>
-		<form action="">
-			<div class="ov-h" id="wrapper">
-				@include('layouts.topbar')
-				@yield('content')
-				@include('layouts.footer')
-			</div>
-			<div id="searchfancybox" style="display: none;">
-				<div class="container">
-					<div class="content">
-						<div class="form-group">
-							<input class="form-control" type="text" placeholder="Tìm sản phẩm...">
-							<button class="searchbutton btn btn__search"><em class="material-icons">search</em></button>
-						</div>
+		<div class="ov-h" id="wrapper">
+			@include('layouts.topbar')
+			@yield('content')
+			@include('layouts.footer')
+		</div>
+		<div id="searchfancybox" style="display: none;">
+			<div class="container">
+				<div class="content">
+					<div class="form-group">
+						<input class="form-control" type="text" placeholder="Tìm sản phẩm...">
+						<button class="searchbutton btn btn__search"><em class="material-icons">search</em></button>
 					</div>
 				</div>
 			</div>
-		</form>
+		</div>
 		<script type="text/javascript" src="./js/core.min.js"></script>
 		<script type="text/javascript" src="./js/main.min.js"></script>
+		@yield('footerScripts')
 	</body>
 </html>

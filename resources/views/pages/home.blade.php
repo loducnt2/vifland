@@ -1,4 +1,8 @@
 @extends('layouts.master')
+@section('title','Trang chủ')
+@section('headerStyles')
+<!-- Thêm styles cho trang này ở đây-->
+ @stop
 @section('content')
 <main>
 	<section class="index-s1" id="home">
@@ -737,3 +741,6 @@
 	<div class="index-page" id="js-page-verify" hidden></div>
 </main>
 @stop
+@section('footerScripts')
+<!-- Thêm script cho trang này ở đây -->
+@endsection
