@@ -23,6 +23,7 @@ class User extends Authenticatable
         'user_type',
         'first_name',
         'last_name',
+        'card_id',
         'birthday',
         'last_login',
         'img',
