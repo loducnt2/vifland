@@ -36,7 +36,7 @@
                             </div>
                             <div class="qmk-f">
                                 @if (Route::has('password.request'))
-                                    <a class="qmk" href="{{ route('password.request') }}">Quên mật khẩu?</a>
+                                    <a class="qmk" href="/forgot-password">Quên mật khẩu?</a>
                                 @endif
                                 <a class="dktk" href="{{route('register')}}">Đăng ký tài khoản mới</a>
                             </div>

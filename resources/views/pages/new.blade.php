@@ -23,11 +23,11 @@
 							<div class="mdm-1">
 								<div class="checked">
 									<input id="luachonsearch1" type="radio" value="muaban" name="canmuaban">
-									<label for="luachonsearch1">Cần mua</label>
+									<label for="luachonsearch1">{{$cate_2[0]->name}}</label>
 								</div>
 								<div class="checked">
 									<input id="luachonsearch2" type="radio" value="muaban" name="canmuaban">
-									<label for="luachonsearch2">Cần bán</label>
+									<label for="luachonsearch2">{{$cate_2[1]->name}}</label>
 								</div>
 							</div>
 							<div class="mdm-2"> 
@@ -41,22 +41,25 @@
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Tỉnh/Thành phố</label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
+												@foreach($provinces as $province)
+												<option value="{{$province->id}}">{{$province->name}}</option>
+												@endforeach
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Quận/Huyện</label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
+												<!-- @foreach($districts as $district)
+												<option value="{{$district->id}}">{{$district->name}}</option>
+												@endforeach -->
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Phường/Xã</label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
+												<!-- @foreach($wards as $ward)
+												<option value="{{$ward->id}}">{{$ward->name}}</option>
+												@endforeach -->
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
@@ -300,4 +303,7 @@
 @stop
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
+<script>
+	
+</script>
 @endsection

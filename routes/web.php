@@ -13,33 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// danh mục, new-detail, new-list, quảng lý tin đăng, quên mật khẩu, sản phẩm, thay đổi thông tin
 
-// đăng bài viết
-Route::get('/dangbaiviet',function(){
-	return view('pages/dangbaiviet');
-});
-Route::get('/danh-muc',function(){
-	return view('pages/danh-muc');}
-);
-Route::get('/new-detail',function(){
-	return view('pages/new-detail');}
-);
-Route::get('/new-list',function(){
-	return view('pages/new-list');}
-);
-Route::get('/quanlytindang',function(){
-	return view('pages/quanlytindang');}
-);
-Route::get('/quenmk',function(){
-	return view('pages/quenmk');}
-);
-Route::get('/san-pham',function(){
-	return view('pages/san-pham');}
-);
-Route::get('/thaydoithongtin',function(){
-	return view('pages/thaydoithongtin');}
-);
 
 
 
@@ -56,6 +30,36 @@ Route::get('/contact',function(){
 Route::get('/favorites',function(){
 	return view('pages/favorite');
 });
+
+// danh mục, new-detail, new-list, quảng lý tin đăng, quên mật khẩu, sản phẩm, thay đổi thông tin
+
+// đăng bài viết
+Route::get('/new/{cate}','ProductExtendController@create')->name('new');
+/*Route::get('/new/{cate}','ProductExtendController@create')->name('new');*/
+Route::get('/danh-muc',function(){
+	return view('pages/danh-muc');}
+);
+Route::get('/new-detail',function(){
+	return view('pages/new-detail');}
+);
+Route::get('/new-list',function(){
+	return view('pages/new-list');}
+);
+Route::get('/quanlytindang',function(){
+	return view('pages/quanlytindang');}
+);
+Route::get('/forgot-password',function(){
+	return view('auth/quenmk');}
+);
+Route::get('/san-pham',function(){
+	return view('pages/san-pham');}
+);
+Route::get('/thaydoithongtin',function(){
+	return view('pages/thaydoithongtin');}
+);
+
+
+
 
 
 /*Route::get('/home', 'HomeController@index')->name('home');
@@ -98,6 +102,5 @@ Route::get('/test/cate/home','CategoryController@index');
 
 
 
-Route::get('/new/{cate}','ProductExtendController@create')->name('new');
 Route::post('/dang-tin/store','ProductExtendController@store')->name('dang-tin');
 
