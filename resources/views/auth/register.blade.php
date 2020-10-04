@@ -3,7 +3,7 @@
 @section('content')
 <main>
     <section class="dangky login">
-        <form action="">
+        <form action="{{ route('dangki') }}">
             <div class="login-wrap">
                 <div class="logo"><img src="./assets/logo/logo_orther_pages.png" alt=""></div>
                 <div class="box-login">
@@ -11,26 +11,26 @@
                         <a href="{{route('login')}}"><span class="material-icons">keyboard_backspace</span></a>
                         <p> Đăng ký</p>
                     </div>
-                    <div class="form-group-input"> 
+                    <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">person</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Tên Đăng Nhập">
+                            <input type="text" placeholder="Tên Đăng Nhập" name="username">
                         </div>
                     </div>
-                    <div class="form-group-input"> 
+                    <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">lock</span></div>
                         <div class="box-mid-se">
-                            <input type="password" placeholder="Mật khẩu">
+                            <input type="password" placeholder="Mật khẩu" name="password" id="password">
                         </div>
-                        <div class="box-right-se"><span class="material-icons mk-icons">visibility</span></div>
+                        <div class="box-right-se"><span class="material-icons mk-icons" onclick="showpass();">visibility</span></div>
                     </div>
-                    <div class="form-group-input"> 
+                    <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
                         <div class="box-mid-se">
-                            <input type="password" placeholder="Email hoặc số điện thoại">
+                            <input type="email" placeholder="email hoặc số điện thoại" name="email">
                         </div>
                     </div>
-                    <div class="form-group-input"> 
+                    <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
                             <input type="password" placeholder="Chứng minh thư hoặc mã số thuế">
@@ -52,3 +52,16 @@
     <div class="index-page" id="js-page-verify" hidden></div>
 </main>
 @endsection
+{{-- hiện password --}}
+<script>
+    function showpass(){
+       var password  = document.getElementById('password');
+       if(password.type == "password")
+        {
+            password.type="text"
+        }
+        else{
+            password.type="password";
+        }
+    }
+</script>

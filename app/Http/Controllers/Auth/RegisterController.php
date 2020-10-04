@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Symfony\Component\HttpFoundation\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 
 class RegisterController extends Controller
 {
@@ -62,12 +64,23 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(request $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+
+         User::create([
+            'username' => $data['username'],
+
             'password' => Hash::make($data['password']),
+            'email' => $data['email'],
+            'user_type' => '1',
+            'active'=> '1',
+            'remember_token' => Str::random(50),
+
         ]);
+        return redirect('/login')->with('status','Đăng kí thành công!');
+
+
+
     }
+
 }

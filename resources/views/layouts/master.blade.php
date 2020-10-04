@@ -6,8 +6,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<link rel="stylesheet" href="./css/core.min.css">
-		<link rel="stylesheet" href="./css/main.min.css">
+		<link rel="stylesheet" href="../css/core.min.css">
+		<link rel="stylesheet" href="../css/main.min.css">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 		<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 		@yield('headerStyles')

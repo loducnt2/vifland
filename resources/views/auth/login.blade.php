@@ -3,6 +3,11 @@
 @section('content')
     <div class="ov-h" id="wrapper">
         <main>
+            @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
             <section class="login">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -10,7 +15,7 @@
                         <div class="logo"><a href="{{route('home')}}"><img src="./assets/logo/logo-footer-300.png" alt=""></a></div>
                         <div class="box-login">
                             <div class="title">Đăng nhập</div>
-                            <div class="form-group-input"> 
+                            <div class="form-group-input">
                                 <div class="box-left-se"><span class="material-icons">person</span></div>
                                 <div class="box-mid-se">
                                     <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Tên đăng nhập">
@@ -21,7 +26,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group-input"> 
+                            <div class="form-group-input">
                                 <div class="box-left-se"><span class="material-icons">lock</span></div>
                                 <div class="box-mid-se">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Mật khẩu">

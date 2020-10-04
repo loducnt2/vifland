@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -41,11 +41,17 @@ class LoginController extends Controller
     {
         return 'username';
     }
-    public function authenticated(Request $request)
+    public function authenticated(Request $request, $user)
     {
         $user = Auth::user();
         $user->update([
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
         ]);
+        if ($user->user_type == 1) {
+            return redirect('/admin');
+        }
+        if ($user->user_type == 0 ) {
+            return redirect('/home');
+        }
     }
 }
