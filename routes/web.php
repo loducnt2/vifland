@@ -18,24 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-Route::get('/logout','Auth\LoginController@logout');
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('home','HomeController@index');
-Route::get('/compares',function(){
-	return view('pages/compare');}
-);
-Route::get('/contact',function(){
-	return view('pages/contact');
-});
-Route::get('/favorites',function(){
-	return view('pages/favorite');
-});
+Route::get('/logout','Auth\LoginController@logout');						
+Route::get('/', 'HomeController@index')->name('home');					// Trang chủ
+Route::get('home','HomeController@index');								// Trang chủ
+Route::get('/compares',function(){return view('pages/compare');});		// So sánh
+Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
+Route::get('/favorites',function(){return view('pages/favorite');});	// Yêu thích
 
 // danh mục, new-detail, new-list, quảng lý tin đăng, quên mật khẩu, sản phẩm, thay đổi thông tin
 
-// đăng bài viết
-Route::get('/new/{cate}','ProductExtendController@create')->name('new');
-/*Route::get('/new/{cate}','ProductExtendController@create')->name('new');*/
+Route::get('/new/{cate}','ProductExtendController@create')->name('new'); // Đăng bài viết
 Route::get('/danh-muc',function(){
 	return view('pages/danh-muc');}
 );
@@ -62,21 +54,17 @@ Route::get('/thaydoithongtin',function(){
 
 
 
-/*Route::get('/home', 'HomeController@index')->name('home');
-*/
+//  test
 Route::get('/demopusher', function () {
     return view('showNotification');
 });
-
 Route::get('getPusher', function (){
    return view('form_pusher');
 });
-
 Route::get('/pusher', function(Illuminate\Http\Request $request) {
     event(new App\Events\HelloPusherEvent($request));
     return redirect('getPusher');
 });
-
 Route::get('/test',function(){return view('test/home');});
 
 
