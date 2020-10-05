@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -92,3 +93,12 @@ Route::get('/test/cate/home','CategoryController@index');
 
 Route::post('/dang-tin/store','ProductExtendController@store')->name('dang-tin');
 
+// chức năng đăng kí
+Route::get('/dangki','Auth\RegisterController@create')->name('dangki');
+
+// login admin
+Route::get('/admin',function(){
+    return view('admin/index');
+});
+// hồ sơ
+Route::get('profile/{id}','UserController@profile')->name('');

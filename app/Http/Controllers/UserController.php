@@ -1,9 +1,11 @@
 <?php
-
+use App\User;
+// use App\Http\Controllers\User;
 namespace App\Http\Controllers;
-
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\Builder;
 class UserController extends Controller
 {
     /**
@@ -14,8 +16,13 @@ class UserController extends Controller
     public function index()
     {
         //
-    }
 
+    }
+    public function profile($id){
+        $profile = DB::table('user')->find($id);
+        // $profile = User::findOrFail($id);
+        return view('pages/hoso')->with('profile',$profile);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -81,4 +88,8 @@ class UserController extends Controller
     {
         //
     }
-}
+    // profile-detail
+
+
+    }
+
