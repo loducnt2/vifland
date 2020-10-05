@@ -1,11 +1,50 @@
 <header>
+	<div class="user-login d-none d-lg-block">
+		<div class="wrap-1"> 
+			<div class="title">Tài khoản</div><i class="ri-close-line close-button-3"></i>
+		</div>
+		<div class="wrap-2 user-admin"> 
+			@if(auth()->check())
+				<div class="bl-1"><img src="./assets/avatar/avatar-girl.png" alt="">
+					<div class="content"> <b>{{auth()->user()->username}}</b>
+						<p>Khách</p>
+					</div>
+				</div>
+				<div class="bl-3"> 
+					<div class="title-bl3"> <span class="material-icons">portrait</span>
+						<p>Quản lý tài khoản cá nhân</p>
+					</div>
+					<ul> 
+						<li> <a class="active" href="">Trang thay đổi thông tin cá nhân </a></li>
+						<li> <a href="">Thay đổi mật khẩu</a></li>
+						<li> <a href="">Số dư tài khoản </a></li>
+						<li> <a href="">Nạp tiền</a></li>
+					</ul>
+					<div class="title-bl3"> <span class="material-icons">list_alt</span>
+						<p>Quản lý tin đăng</p>
+					</div>
+					<ul> 
+						<li> <a href="">Tin đã đăng</a></li>
+						<li> <a href="">Tin chờ đăng</a></li>
+						<li> <a href="">Chờ xác nhận </a></li>
+					</ul>
+			
+			</div>
+			<div class="bl-4"> <span class="material-icons">exit_to_app</span>
+				<a href="/logout">
+					<p>Thoát tài khoản</p> 
+				</a>
+			</div>
+			@endif
+		</div>
+	</div>
 	<div class="max-width-container container-mb">
 		<nav>
 			<div class="nav-desktop">
 				<div class="logo"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-s.png')}}" alt=""></a></div>
 				<div class="main-nav">
 					<ul class="nav-list">
-						<a href="/favorites">
+						<a href="/favourites">
 							<li class="nav-item"><i class="ri-heart-fill icon"></i>
 								<p class="text">Yêu thích</p>
 							</li>
@@ -27,11 +66,11 @@
 						<li class="nav-item d-none user-logined"><img class="avatar-login" src="{{asset('assets/avatar/avatar-girl.png')}}" alt=""></li>
 						<li class="nav-item">
 							@if(auth()->check())
-							<span>{{auth()->user()->username}}</span>
+								<div class="avatar-user"><img src="./assets/avatar/avatar.png" alt=""></div> 
 							@else
-							<a href="/login" class="btn btn__header" style="line-height:36px">Đăng Nhập</a>
+								<a href="/login" class="btn btn__header" style="line-height:36px">Đăng Nhập</a>
 							@endif
-						</li>
+						</li> 
 						<li class="nav-item change-lang"><span class="button-change-lang"><img src="{{asset('assets/icon/icon-vn.png')}}" alt=""><i class="ri-arrow-down-s-fill"></i>
 								<div class="list-change-lang">
 									<div class="list-change-lang-row"><img src="{{asset('assets/icon/icon-vn.png')}}" alt="">
@@ -58,8 +97,12 @@
 					<div class="toggle-menu"><i class="ri-grid-fill"></i></div>
 					<div class="search-menu">
 						<input type="text" placeholder="Bạn tìm gì hôm nay?">
-					</div>
-					<div class="user user-menu"><i class="ri-map-pin-user-fill"></i></div>
+					</div> 
+					@if(auth()->check())
+						<div class="user user-menu"><i class="ri-map-pin-user-fill"></i></div>  
+						@else 
+						<div class="user"><a href="/login"><i class="ri-map-pin-user-fill"></i></a></div>  
+					@endif
 				</div>
 			</div>
 			<div class="menu-mobile">
@@ -68,7 +111,7 @@
 				</div>
 				<div class="wrap-2">
 					<div class="change-lang">
-						<div class="left"><img src="{{asset('assets/icon/vn.svg')}}" alt="">
+						<div class="left"><img src="{{asset('assets/icon/icon-vn.png')}}" alt="">
 							<p>Tiếng việt</p>
 						</div>
 						<div class="right"><i class="ri-arrow-down-s-fill"></i></div>
@@ -133,8 +176,9 @@
 					<div class="title">Tài khoản</div><i class="ri-close-line close-button-2"></i>
 				</div>
 				<div class="wrap-2 user-admin">
+					@if(auth()->check())
 					<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
-						<p>Xibachao</p>
+						<p>{{auth()->user()->username}}</p>
 					</div>
 					<div class="bl-2">
 						<div class="row"> 
@@ -163,8 +207,9 @@
 						</ul>
 					</div>
 					<div class="bl-4"> <span class="material-icons">exit_to_app</span>
-						<p>Thoát tài khoản</p>
+						<a href="/logout"><p>Thoát tài khoản</p></a>
 					</div>
+					@endif
 				</div>
 			</div>
 			<div class="bg-menu"></div>
