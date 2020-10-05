@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Models\Contact;
 
@@ -92,6 +93,7 @@ class RegisterController extends Controller
             ]);
             $contact->save();
         }
+        Auth::login($user);
         return redirect('/')->with('status','Đăng kí thành công!');
     }
 
