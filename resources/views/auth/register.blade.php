@@ -3,7 +3,8 @@
 @section('content')
 <main>
     <section class="dangky login">
-        <form action="{{ route('dangki') }}">
+        <form action="{{ route('createUser') }}" method="POST">
+            @csrf
             <div class="login-wrap">
                 <div class="logo"><img src="./assets/logo/logo_orther_pages.png" alt=""></div>
                 <div class="box-login">
@@ -27,13 +28,13 @@
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
                         <div class="box-mid-se">
-                            <input type="email" placeholder="email hoặc số điện thoại" name="email">
+                            <input type="text" placeholder="Email hoặc Số điện thoại" name="email">
                         </div>
                     </div>
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
-                            <input type="password" placeholder="Chứng minh thư hoặc mã số thuế">
+                            <input type="password" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id">
                         </div>
                     </div>
                     <p class="dieukhoan">Bằng việc đăng ký tài khoản bạn đồng ý với <a href="">điều khoản dịch vụ</a></p>

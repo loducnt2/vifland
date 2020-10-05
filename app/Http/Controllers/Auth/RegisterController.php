@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Auth;
 use Symfony\Component\HttpFoundation\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
+use App\User;
+use App\Models\Contact;
 
 class RegisterController extends Controller
 {
@@ -66,21 +67,32 @@ class RegisterController extends Controller
      */
     protected function create(request $data)
     {
-
-         User::create([
-            'username' => $data['username'],
-
-            'password' => Hash::make($data['password']),
-            'email' => $data['email'],
-            'user_type' => '1',
-            'active'=> '1',
-            'remember_token' => Str::random(50),
-
+        $user = new User([
+            'username'  => $data->username,
+            'password'  => Hash::make($data->password),
+            'user_type' => '0',
+            'status'    => '1',
+            'card_id'   => $data->card_id,
+            'img'       => 'user.png',
         ]);
-        return redirect('/login')->with('status','Đăng kí thành công!');
+        $user->save();
 
-
-
+        // Thêm email or SĐT vào bảng contact
+        $email = $data->email;
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $contact = new Contact([
+                'user_id' => $user->id,
+                'email'   => $email,
+            ]);
+            $contact->save();
+        } else {
+            $contact = new Contact([
+                'user_id' => $user->id,
+                'phone'   => $email,
+            ]);
+            $contact->save();
+        }
+        return redirect('/')->with('status','Đăng kí thành công!');
     }
 
 }

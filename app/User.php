@@ -21,7 +21,6 @@ class User extends Authenticatable
 
         'username',
         'email',
-        'cmnd',
         'password',
         'gender',
         'user_type',

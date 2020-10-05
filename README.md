@@ -13,6 +13,7 @@
 + git add .
 + git commit -m 'comment'
 + git git pull
-## Đăng nhập
-username:  admin
-pass:      1
+
+## Trang admin : /admin-marvel
+username : admin
+pass 	 : 1

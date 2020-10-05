@@ -94,11 +94,11 @@ Route::get('/test/cate/home','CategoryController@index');
 Route::post('/dang-tin/store','ProductExtendController@store')->name('dang-tin');
 
 // chức năng đăng kí
-Route::get('/dangki','Auth\RegisterController@create')->name('dangki');
+Route::post('/create-user','Auth\RegisterController@create')->name('createUser');
 
 // login admin
-Route::get('/admin',function(){
+Route::get('/admin-marvel',function(){
     return view('admin/index');
-});
+}); // Trang admin
 // hồ sơ
 Route::get('profile/{id}','UserController@profile')->name('');
