@@ -24,7 +24,7 @@ Route::get('/', 'HomeController@index')->name('home');					// Trang chủ
 Route::get('home','HomeController@index');								// Trang chủ
 Route::get('/compares',function(){return view('pages/compare');});		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
-Route::get('/favorites',function(){return view('pages/favorite');});	// Yêu thích
+Route::get('/favourites',function(){return view('pages/favourites');});	// Yêu thích
 
 // danh mục, new-detail, new-list, quảng lý tin đăng, quên mật khẩu, sản phẩm, thay đổi thông tin
 
@@ -50,6 +50,9 @@ Route::get('/san-pham',function(){
 Route::get('/thaydoithongtin',function(){
 	return view('pages/thaydoithongtin');}
 );
+Route::get('/yeuthich',function(){
+	return view('pages/favourites');}
+);
 
 //API
 Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
@@ -61,7 +64,7 @@ Route::get('/demopusher', function () {
     return view('showNotification');
 });
 Route::get('getPusher', function (){
-   return view('form_pusher');
+	return view('form_pusher');
 });
 Route::get('/pusher', function(Illuminate\Http\Request $request) {
     event(new App\Events\HelloPusherEvent($request));
