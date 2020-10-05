@@ -5,7 +5,7 @@
 		</div>
 		<div class="wrap-2 user-admin"> 
 			@if(auth()->check())
-				<div class="bl-1"><img src="./assets/avatar/avatar-girl.png" alt="">
+				<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
 					<div class="content"> <b>{{auth()->user()->username}}</b>
 						<p>Khách</p>
 					</div>
@@ -15,16 +15,17 @@
 						<p>Quản lý tài khoản cá nhân</p>
 					</div>
 					<ul> 
-						<li> <a class="active" href="">Trang thay đổi thông tin cá nhân </a></li>
+						<li> <a class="active" href="/user/profile">Trang thay đổi thông tin cá nhân </a></li>
 						<li> <a href="">Thay đổi mật khẩu</a></li>
 						<li> <a href="">Số dư tài khoản </a></li>
 						<li> <a href="">Nạp tiền</a></li>
 					</ul>
-					<div class="title-bl3"> <span class="material-icons">list_alt</span>
-						<p>Quản lý tin đăng</p>
+					<div class="title-bl3">
+						<span class="material-icons">list_alt</span>
+						<a href="/user/my-article"><p>Quản lý tin đăng</p></a>
 					</div>
 					<ul> 
-						<li> <a href="">Tin đã đăng</a></li>
+						<li> <a href="">Tin đã đăng </a></li>
 						<li> <a href="">Tin chờ đăng</a></li>
 						<li> <a href="">Chờ xác nhận </a></li>
 					</ul>
@@ -66,7 +67,7 @@
 						<li class="nav-item d-none user-logined"><img class="avatar-login" src="{{asset('assets/avatar/avatar-girl.png')}}" alt=""></li>
 						<li class="nav-item">
 							@if(auth()->check())
-								<div class="avatar-user"><img src="./assets/avatar/avatar.png" alt=""></div> 
+								<div class="avatar-user"><img src="{{asset('assets/avatar/avatar.png')}}" alt=""></div> 
 							@else
 								<a href="/login" class="btn btn__header" style="line-height:36px">Đăng Nhập</a>
 							@endif

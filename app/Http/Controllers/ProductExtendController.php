@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
+use App\Models\ProductExtend;
 use App\Models\ProductUnit;
 use App\Models\ProductCate;
 
@@ -40,6 +41,7 @@ class ProductExtendController extends Controller
         }else{
             $units   = ProductUnit::where('type',1)->get();//Lấy đơn vị theo category cha
         }
+        
         return view('/pages/new',compact('cate_2','units','provinces','districts','wards','product_cate'));
     }
 
@@ -97,5 +99,32 @@ class ProductExtendController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getByCateSlug1(){
+        $cate           = Category::where('slug','mua-ban-nha-dat')->first();
+        $cate_id        = $cate->id;
+        $cate_child     = Category::where('parent_id',$cate_id)->get();
+        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+
+        return view('pages/danh-muc',compact('cate_child','product_extend'));
+    }
+
+    public function getByCateSlug2(){
+        $cate           = Category::where('slug','cho-thue-nha-dat')->first();
+        $cate_id        = $cate->id;
+        $cate_child     = Category::where('parent_id',$cate_id)->get();
+        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+
+        return view('pages/danh-muc',compact('cate_child','product_extend'));
+    }
+
+    public function getByCateSlug3(){
+        $cate           = Category::where('slug','sang-nhuong-nha-dat')->first();
+        $cate_id        = $cate->id;
+        $cate_child     = Category::where('parent_id',$cate_id)->get();
+        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+
+        return view('pages/danh-muc',compact('cate_child','product_extend'));
     }
 }

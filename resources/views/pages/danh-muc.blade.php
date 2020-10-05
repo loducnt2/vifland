@@ -63,11 +63,11 @@
 							<div class="mdm-1">
 								<div class="checked">
 									<input id="luachonsearch1" type="radio" value="muaban" name="canmuaban">
-									<label for="luachonsearch1">Cần mua</label>
+									<label for="luachonsearch1">{{$cate_child[0]->name}}</label>
 								</div>
 								<div class="checked">
 									<input id="luachonsearch2" type="radio" value="muaban" name="canmuaban">
-									<label for="luachonsearch2">Cần bán</label>
+									<label for="luachonsearch2">{{$cate_child[1]->name}}</label>
 								</div>
 							</div>
 							<div class="mdm-2"> 

@@ -26,30 +26,34 @@ Route::get('/compares',function(){return view('pages/compare');});		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 Route::get('/favourites',function(){return view('pages/favourites');});	// Yêu thích
 
-// danh mục, new-detail, new-list, quảng lý tin đăng, quên mật khẩu, sản phẩm, thay đổi thông tin
+//Danh mục
+Route::get('/article/new/{cate}','ProductExtendController@create')->name('new'); // Đăng bài viết
+Route::get('/mua-ban-nha-dat','ProductExtendController@getByCateSlug1');
+Route::get('/cho-thue-nha-dat','ProductExtendController@getByCateSlug2');
+Route::get('/sang-nhuong-nha-dat','ProductExtendController@getByCateSlug3');
 
-Route::get('/new/{cate}','ProductExtendController@create')->name('new'); // Đăng bài viết
-Route::get('/danh-muc',function(){
-	return view('pages/danh-muc');}
+//User
+Route::get('/user/my-article',function(){
+	return view('pages/quanlytindang');}
 );
+Route::get('/user/profile',function(){
+	return view('pages/thaydoithongtin');}
+);
+//
 Route::get('/new-detail',function(){
 	return view('pages/new-detail');}
 );
 Route::get('/new-list',function(){
 	return view('pages/new-list');}
 );
-Route::get('/quanlytindang',function(){
-	return view('pages/quanlytindang');}
-);
+
 Route::get('/forgot-password',function(){
 	return view('auth/quenmk');}
 );
 Route::get('/san-pham',function(){
 	return view('pages/san-pham');}
 );
-Route::get('/thaydoithongtin',function(){
-	return view('pages/thaydoithongtin');}
-);
+
 Route::get('/yeuthich',function(){
 	return view('pages/favourites');}
 );
