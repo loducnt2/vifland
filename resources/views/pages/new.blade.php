@@ -40,7 +40,8 @@
 									<div class="tab-pane fade show active" id="vitri" role="tabpanel" aria-labelledby="vitri-tab">
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Tỉnh/Thành phố</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
+											<select class="select1" name="loainhadat"  id="province">
+												<option value="">Chọn</option>
 												@foreach($provinces as $province)
 												<option value="{{$province->id}}">{{$province->name}}</option>
 												@endforeach
@@ -48,23 +49,19 @@
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Quận/Huyện</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<!-- @foreach($districts as $district)
-												<option value="{{$district->id}}">{{$district->name}}</option>
-												@endforeach -->
+											<select class="select1" name="loainhadat"  id="district">
+												<option value="">Chọn</option>
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Phường/Xã</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<!-- @foreach($wards as $ward)
-												<option value="{{$ward->id}}">{{$ward->name}}</option>
-												@endforeach -->
+											<select class="select1" name="loainhadat"  id="ward">
+												<option value="">Chọn</option>
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đường, Phố</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
+											<select class="select1" name="loainhadat[]" multiple="multiple" >
 												<option value="AL">Alabama</option>
 												<option value="WY">Wyoming</option>
 											</select>
@@ -81,8 +78,9 @@
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Loại hình</label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
+												@foreach($product_cate as $prodcate)
+												<option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
+												@endforeach
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
@@ -304,6 +302,23 @@
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
 <script>
+	$(document).ready(function(){
+		$('#province').change(function(){
+			var province = $(this).val();
+			var url = '/get-district/'+ province;
+			$('#district').load(url,function(){
+				var district = $(this).val();
+				var url1 = '/get-ward/'+ district;
+				$('#ward').load(url1);
+			});
+		});
+		$('#district').change(function(){
+			var district = $(this).val();
+			var url1 = '/get-ward/'+ district;
+			$('#ward').load(url1);
+		});
+
+	});
 	
 </script>
 @endsection

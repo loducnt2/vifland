@@ -19,13 +19,13 @@
 						<div class="swiper-container">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
-									<div class="img-banner"><img src="./assets/bg/banner1.png" alt=""></div>
+									<div class="img-banner"><img src="{{asset('assets/bg/banner1.png')}}" alt=""></div>
 								</div>
 								<div class="swiper-slide">
-									<div class="img-banner"><img src="./assets/bg/banner2.png" alt=""></div>
+									<div class="img-banner"><img src="{{asset('assets/bg/banner2.png')}}" alt=""></div>
 								</div>
 								<div class="swiper-slide">
-									<div class="img-banner"><img src="./assets/bg/banner3.png" alt=""></div>
+									<div class="img-banner"><img src="{{asset('assets/bg/banner3.png')}}" alt=""></div>
 								</div>
 							</div>
 						</div>
@@ -126,6 +126,7 @@
 				<div class="row">
 					<div class="col-4">
 						<div class="box-cate">
+							<a href="/danh-muc">
 							<div class="img"><img src="./assets/index/mua-ban-nha-dat.png" alt=""></div>
 							<div class="title-box">{{$categories[0]->name}}</div>
 							<div class="end-box">
@@ -138,10 +139,12 @@
 									</a>
 								</div>
 							</div>
+							</a>
 						</div>
 					</div>
 					<div class="col-4">
 						<div class="box-cate">
+							<a href="/danh-muc">
 							<div class="img"><img src="./assets/index/cho-thue-nha-dat.png" alt=""></div>
 							<div class="title-box">{{$categories[1]->name}}</div>
 							<div class="end-box">
@@ -153,10 +156,12 @@
 									</a>
 								</div>
 							</div>
+							</a>
 						</div>
 					</div>
 					<div class="col-4">
 						<div class="box-cate">
+							<a href="/danh-muc">
 							<div class="img"><img src="./assets/index/sang-nhuong-nha-dat.png" alt=""></div>
 							<div class="title-box">{{$categories[2]->name}}</div>
 							<div class="end-box">
@@ -168,6 +173,7 @@
 									</a>
 								</div>
 							</div>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -178,7 +184,7 @@
 		<div class="max-width-container">
 			<div class="text-title">
 				<div class="text-left"><a class="text-desktop" href="">
-						<h3>Mua/ Bán</h3></a></div>
+						<h3>{{$categories[0]->name}}</h3></a></div>
 				<div class="text-right"><a class="text-desktop" href=""><i class="ri-equalizer-line"></i>
 						<p>Xem tất cả &nbsp;<span>(1.430.498 Tin đăng)</span></p></a></div>
 			</div>
@@ -366,7 +372,7 @@
 		<div class="max-width-container">
 			<div class="text-title">
 				<div class="text-left"><a class="text-desktop" href="">
-						<h3>Mua/ Bán</h3></a></div>
+						<h3>{{$categories[0]->name}}</h3></a></div>
 				<div class="text-right"><a class="text-desktop" href=""><i class="ri-equalizer-line"></i>
 						<p>Xem tất cả &nbsp;<span>(1.430.498 Tin đăng)</span></p></a></div>
 			</div>
@@ -554,7 +560,7 @@
 		<div class="max-width-container">
 			<div class="text-title">
 				<div class="text-left"><a class="text-desktop" href="">
-						<h3>Mua/ Bán</h3></a></div>
+						<h3>{{$categories[0]->name}}</h3></a></div>
 				<div class="text-right"><a class="text-desktop" href=""><i class="ri-equalizer-line"></i>
 						<p>Xem tất cả &nbsp;<span>(1.430.498 Tin đăng)</span></p></a></div>
 			</div>

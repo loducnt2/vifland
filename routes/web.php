@@ -51,8 +51,9 @@ Route::get('/thaydoithongtin',function(){
 	return view('pages/thaydoithongtin');}
 );
 
-
-
+//API
+Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
+Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
 
 
 //  test
