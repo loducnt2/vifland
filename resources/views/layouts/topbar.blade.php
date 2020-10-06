@@ -1,21 +1,21 @@
 <header>
 	<div class="user-login d-none d-lg-block">
-		<div class="wrap-1"> 
+		<div class="wrap-1">
 			<div class="title">Tài khoản</div><i class="ri-close-line close-button-3"></i>
 		</div>
-		<div class="wrap-2 user-admin"> 
+		<div class="wrap-2 user-admin">
 			@if(auth()->check())
 				<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
 					<div class="content"> <b>{{auth()->user()->username}}</b>
 						<p>Khách</p>
 					</div>
 				</div>
-				<div class="bl-3"> 
+				<div class="bl-3">
 					<div class="title-bl3"> <span class="material-icons">portrait</span>
 						<p>Quản lý tài khoản cá nhân</p>
 					</div>
-					<ul> 
-						<li> <a class="active" href="/user/profile">Trang thay đổi thông tin cá nhân </a></li>
+					<ul>
+						<li> <a class="active" href="/user/profile/{{auth()->user()->id}}/">Trang thay đổi thông tin cá nhân </a></li>
 						<li> <a href="">Thay đổi mật khẩu</a></li>
 						<li> <a href="">Số dư tài khoản </a></li>
 						<li> <a href="">Nạp tiền</a></li>
@@ -24,16 +24,16 @@
 						<span class="material-icons">list_alt</span>
 						<a href="/user/my-article"><p>Quản lý tin đăng</p></a>
 					</div>
-					<ul> 
+					<ul>
 						<li> <a href="">Tin đã đăng </a></li>
 						<li> <a href="">Tin chờ đăng</a></li>
 						<li> <a href="">Chờ xác nhận </a></li>
 					</ul>
-			
+
 			</div>
 			<div class="bl-4"> <span class="material-icons">exit_to_app</span>
 				<a href="/logout">
-					<p>Thoát tài khoản</p> 
+					<p>Thoát tài khoản</p>
 				</a>
 			</div>
 			@endif
@@ -67,11 +67,11 @@
 						<li class="nav-item d-none user-logined"><img class="avatar-login" src="{{asset('assets/avatar/avatar-girl.png')}}" alt=""></li>
 						<li class="nav-item">
 							@if(auth()->check())
-								<div class="avatar-user"><img src="{{asset('assets/avatar/avatar.png')}}" alt=""></div> 
+								<div class="avatar-user"><img src="{{asset('assets/avatar/avatar.png')}}" alt=""></div>
 							@else
 								<a href="/login" class="btn btn__header" style="line-height:36px">Đăng Nhập</a>
 							@endif
-						</li> 
+						</li>
 						<li class="nav-item change-lang"><span class="button-change-lang"><img src="{{asset('assets/icon/icon-vn.png')}}" alt=""><i class="ri-arrow-down-s-fill"></i>
 								<div class="list-change-lang">
 									<div class="list-change-lang-row"><img src="{{asset('assets/icon/icon-vn.png')}}" alt="">
@@ -98,11 +98,11 @@
 					<div class="toggle-menu"><i class="ri-grid-fill"></i></div>
 					<div class="search-menu">
 						<input type="text" placeholder="Bạn tìm gì hôm nay?">
-					</div> 
+					</div>
 					@if(auth()->check())
-						<div class="user user-menu"><i class="ri-map-pin-user-fill"></i></div>  
-						@else 
-						<div class="user"><a href="/login"><i class="ri-map-pin-user-fill"></i></a></div>  
+						<div class="user user-menu"><i class="ri-map-pin-user-fill"></i></div>
+						@else
+						<div class="user"><a href="/login"><i class="ri-map-pin-user-fill"></i></a></div>
 					@endif
 				</div>
 			</div>

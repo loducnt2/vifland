@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-Route::get('/logout','Auth\LoginController@logout');						
+Route::get('/logout','Auth\LoginController@logout');
 Route::get('/', 'HomeController@index')->name('home');					// Trang chủ
 Route::get('home','HomeController@index');								// Trang chủ
 Route::get('/compares',function(){return view('pages/compare');});		// So sánh
@@ -36,9 +36,9 @@ Route::get('/sang-nhuong-nha-dat','ProductExtendController@getByCateSlug3');
 Route::get('/user/my-article',function(){
 	return view('pages/quanlytindang');}
 );
-Route::get('/user/profile',function(){
-	return view('pages/thaydoithongtin');}
-);
+// Route::get('/user/profile',function(){
+// 	return view('pages/thaydoithongtin');}
+// );
 //
 Route::get('/new-detail',function(){
 	return view('pages/new-detail');}
@@ -108,5 +108,8 @@ Route::post('/create-user','Auth\RegisterController@create')->name('createUser')
 Route::get('/admin-marvel',function(){
     return view('admin/index');
 }); // Trang admin
+// ================= hồ sơ ==================
 // hồ sơ
-Route::get('profile/{id}','UserController@profile')->name('');
+Route::get('/user/profile/{id}','UserController@profile')->name('');
+// update thông tin hồ sơ cá nhân
+Route::get('/update/{id}','UserController@update')->name('');
