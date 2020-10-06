@@ -48,7 +48,7 @@
 			<div class="nav-mobile">
 				<div class="nav-mobile-1">
 					<div class="img"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-res-white.png')}}" alt=""></a></div>
-					<div class="button-mobile-post"> 
+					<div class="button-mobile-post">
 						<button class="button-mbp"><i class="ri-chat-new-fill icon"></i><span>Đăng bài</span></button>
 						<div class="sosanh"><a href="/compares"><i class="ri-equalizer-line icon"></i></a></div>
 						<div class="yeuthich"><a href="/favorites"><i class="ri-heart-fill icon"></i></a></div>
@@ -73,7 +73,7 @@
 						</div>
 						<div class="right"><i class="ri-arrow-down-s-fill"></i></div>
 					</div>
-					<ul class="list-items"> 
+					<ul class="list-items">
 						<li class="list-item">
 							<a href="/favorites">
 								<i class="ri-heart-fill icon"></i>
@@ -93,7 +93,7 @@
 				<div class="wrap-3">
 					<div class="title">
 						 Công ty <i class="ri-arrow-down-s-fill"></i></div>
-					<ul> 
+					<ul>
 						<li><a href="">Tuyển dụng</a></li>
 						<li><a href="">Quy chế hoạt động</a></li>
 						<li><a href="">Về Vifland</a></li>
@@ -102,7 +102,7 @@
 					</ul>
 					<div class="title">
 						 Hỗ trợ<i class="ri-arrow-down-s-fill"></i></div>
-					<ul> 
+					<ul>
 						<li><a href="">Tuyển dụng</a></li>
 						<li><a href="">Quy chế hoạt động</a></li>
 						<li><a href="">Về Vifland</a></li>
@@ -110,9 +110,9 @@
 						<li><a href="">Tin tức cổ đông</a></li>
 					</ul>
 				</div>
-				<div class="wrap-4"> 
+				<div class="wrap-4">
 					<div class="title">Công ty Cổ phần Tập đoàn Meey Land</div>
-					<ul> 
+					<ul>
 						<li><span class="material-icons">location_on</span>
 							<p>Tầng 5 Tòa nhà 97 - 99 Láng Hạ, Phường Láng Hạ, Quận Đống Đa, Thành phố Hà Nội</p>
 						</li>
@@ -129,7 +129,7 @@
 				</div>
 			</div>
 			<div class="user-mobile">
-				<div class="wrap-1"> 
+				<div class="wrap-1">
 					<div class="title">Tài khoản</div><i class="ri-close-line close-button-2"></i>
 				</div>
 				<div class="wrap-2 user-admin">
@@ -137,17 +137,17 @@
 						<p>Xibachao</p>
 					</div>
 					<div class="bl-2">
-						<div class="row"> 
+						<div class="row">
 							<div class="col-6"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}" alt="">VifPay</span></div>
 							<div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span class="material-icons">keyboard_arrow_right</span></a></span></div>
 							<div class="col-12"><span class="lkvi"><img src="{{asset('assets/icon/warning.png')}}" alt="">Chưa liên kết ví</span><span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn nhé</span></div>
 						</div>
 					</div>
-					<div class="bl-3"> 
+					<div class="bl-3">
 						<div class="title-bl3"> <span class="material-icons">portrait</span>
 							<p>Quản lý tài khoản cá nhân</p>
 						</div>
-						<ul> 
+						<ul>
 							<li> <a class="active" href="">Trang thay đổi thông tin cá nhân </a></li>
 							<li> <a href="">Thay đổi mật khẩu</a></li>
 							<li> <a href="">Số dư tài khoản </a></li>
@@ -156,7 +156,7 @@
 						<div class="title-bl3"> <span class="material-icons">list_alt</span>
 							<p>Quản lý tin đăng</p>
 						</div>
-						<ul> 
+						<ul>
 							<li> <a href="">Tin đã đăng</a></li>
 							<li> <a href="">Tin chờ đăng</a></li>
 							<li> <a href="">Chờ xác nhận </a></li>

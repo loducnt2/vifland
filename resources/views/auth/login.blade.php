@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title','Đăng nhập')
 @section('content')
+
     <div class="ov-h" id="wrapper">
         <main>
             @if (session('status'))
@@ -9,6 +10,14 @@
     </div>
 @endif
             <section class="login">
+                @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="login-wrap">
@@ -18,7 +27,7 @@
                             <div class="form-group-input">
                                 <div class="box-left-se"><span class="material-icons">person</span></div>
                                 <div class="box-mid-se">
-                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Tên đăng nhập">
+                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  autocomplete="username" autofocus placeholder="Tên đăng nhập">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -29,7 +38,7 @@
                             <div class="form-group-input">
                                 <div class="box-left-se"><span class="material-icons">lock</span></div>
                                 <div class="box-mid-se">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Mật khẩu">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Mật khẩu">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
