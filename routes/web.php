@@ -27,10 +27,10 @@ Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 Route::get('/favourites',function(){return view('pages/favourites');});	// Yêu thích
 
 //Danh mục
-Route::get('/article/new/{cate}','ProductExtendController@create')->name('new'); // Đăng bài viết
-Route::get('/mua-ban-nha-dat','ProductExtendController@getByCateSlug1');
-Route::get('/cho-thue-nha-dat','ProductExtendController@getByCateSlug2');
-Route::get('/sang-nhuong-nha-dat','ProductExtendController@getByCateSlug3');
+Route::get('/article/new/{cate}','ProductController@create')->name('new'); // Đăng bài viết
+Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1');
+Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2');
+Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3');
 
 //User
 Route::get('/user/my-article',function(){
@@ -99,7 +99,7 @@ Route::get('/test/cate/home','CategoryController@index');
 
 
 
-Route::post('/dang-tin/store','ProductExtendController@store')->name('dang-tin');
+Route::post('/dang-tin/store','ProductController@store')->name('dang-tin');
 
 // chức năng đăng kí
 Route::post('/create-user','Auth\RegisterController@create')->name('createUser');
@@ -110,6 +110,6 @@ Route::get('/admin-marvel',function(){
 }); // Trang admin
 // ================= hồ sơ ==================
 // hồ sơ
-Route::get('/user/profile/{id}','UserController@profile')->name('');
+Route::get('/user/profile/{id}','UserController@edit')->name('');
 // update thông tin hồ sơ cá nhân
-Route::get('/update/{id}','UserController@update')->name('');
+Route::post('/user/update/{id}','UserController@update')->name('user-update');

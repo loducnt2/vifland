@@ -26,14 +26,14 @@
                         <div class="row">
                             <div class="col-md-12 col-lg-3">
                                 <div class="box-left-admin">
-                                    <div class="bl-1"><img src="./assets/avatar/avatar-girl.png" alt="">
+                                    <div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
                                         <p>{{$profile->username}}</p>
                                     </div>
                                     <div class="bl-2">
                                         <div class="row">
-                                            <div class="col-6"><span class="vifPay"> <img src="./assets/icon/card.png" alt="">VifPay</span></div>
+                                            <div class="col-6"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}" alt="">VifPay</span></div>
                                             <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span class="material-icons">keyboard_arrow_right</span></a></span></div>
-                                            <div class="col-12"><span class="lkvi"><img src="./assets/icon/warning.png" alt="">Chưa liên kết ví</span><span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn nhé</span></div>
+                                            <div class="col-12"><span class="lkvi"><img src="{{asset('assets/icon/warning.png')}}" alt="">Chưa liên kết ví</span><span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn nhé</span></div>
                                         </div>
                                     </div>
                                     <div class="bl-3">
@@ -66,15 +66,17 @@
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist"><a class="active nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Thay đổi thông tin cá nhân</a><a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Thay đổi mật khẩu</a></div>
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                            <form action="/update/{{$profile->id}}">
+                                                <form action="{{route('user-update',$profile->id)}}" method="post" >
+                                                    @csrf
                                                     <div class="row form-wrap anhdaidien">
                                                         <div class="col-md-12 col-lg-2 form-group">
                                                             <p class="text-f">Ảnh đại diện</p>
                                                         </div>
-                                                        <div class="col-md-12 col-lg-10 form-group hinhdd"><img class="img" src="./assets/avatar/avatar-girl.png" alt="">
+                                                        <div class="col-md-12 col-lg-10 form-group hinhdd">
+                                                            <img class="img" src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
                                                             <div class="text">
                                                                 {{-- cập nhật họ tên --}}
-                                                            <p>{{$profile->first_name}} {{$profile->last_name}}</p><span>Nhà môi giới</span>
+                                                            <p>{{$profile->full_name}}</p><span>Nhà môi giới</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,7 +135,7 @@
                                                         <div class="col-md-12 col-lg-10 form-group">
                                                             <div class="row last-form">
                                                                 <div class="col-sm-12 col-md-6 form-group">
-                                                                    <input class="user" type="text" placeholder="Họ và tên" name="username" value="{{$profile->gender}}">
+                                                                    <input class="user" type="text" placeholder="Họ và tên" name="fullname" value="{{$profile->full_name}}">
                                                                 </div>
                                                                 <div class="col-sm-12 col-md-6 form-group">
                                                                     <input class="business" type="text" placeholder="Công ty">
@@ -159,7 +161,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="button-save">
-                                                        <button class="button-huy" type="submit">Hủy bỏ	</button>
+                                                        <button class="button-huy" type="">Hủy bỏ	</button>
                                                         <button class="button-luu" type="submit">Lưu thay đổi</button>
                                                     </div>
                                                 </form>
@@ -228,6 +230,6 @@
  {{-- Footer --}}
 @section('footerScripts')
 
-<script type="text/javascript" src="../js/core.min.js"></script>
-		<script type="text/javascript" src="../js/main.min.js"></script>
+<script type="text/javascript" src="{{asset('js/core.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/main.min.js')}}"></script>
 @endsection

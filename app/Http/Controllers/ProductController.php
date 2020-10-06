@@ -10,8 +10,9 @@ use App\Models\Ward;
 use App\Models\ProductExtend;
 use App\Models\ProductUnit;
 use App\Models\ProductCate;
+use App\Models\Product;
 
-class ProductExtendController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -105,7 +106,7 @@ class ProductExtendController extends Controller
         $cate           = Category::where('slug','mua-ban-nha-dat')->first();
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
-        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+        $product_extend = Product::where('cate_id',$cate_id)->get();
 
         return view('pages/danh-muc',compact('cate_child','product_extend'));
     }
@@ -114,7 +115,7 @@ class ProductExtendController extends Controller
         $cate           = Category::where('slug','cho-thue-nha-dat')->first();
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
-        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+        $product_extend = Product::where('cate_id',$cate_id)->get();
 
         return view('pages/danh-muc',compact('cate_child','product_extend'));
     }
@@ -123,7 +124,7 @@ class ProductExtendController extends Controller
         $cate           = Category::where('slug','sang-nhuong-nha-dat')->first();
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
-        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+        $product_extend = Product::where('cate_id',$cate_id)->get();
 
         return view('pages/danh-muc',compact('cate_child','product_extend'));
     }

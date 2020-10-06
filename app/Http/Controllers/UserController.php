@@ -1,11 +1,10 @@
 <?php
-use App\User;
-// use App\Http\Controllers\User;
+
 namespace App\Http\Controllers;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
+use App\User;
 class UserController extends Controller
 {
     /**
@@ -17,11 +16,6 @@ class UserController extends Controller
     {
         //
 
-    }
-    public function profile($id){
-        $profile = DB::table('user')->find($id);
-        // $profile = User::findOrFail($id);
-        return view('pages/hoso')->with('profile',$profile);
     }
     /**
      * Show the form for creating a new resource.
@@ -61,9 +55,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request ,$id )
+    public function edit($id )
     {
-
+        $profile = DB::table('user')->find($id);
+        // $profile = User::findOrFail($id);
+        return view('pages/hoso')->with('profile',$profile);
     }
 
     /**
@@ -76,10 +72,10 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //update hồ sơ cá nhân theo id
-        $user = User::where('id',$id)->get();
-        $user->username = $request->input('username');
+        $user = User::find($id);
+        $user->full_name = $request->fullname;
         $user -> save();
-        return redirect('/');
+        return redirect()->back();
     }
 
     /**
