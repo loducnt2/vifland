@@ -25,14 +25,14 @@
 				<div class="row">
 					<div class="col-md-12 col-lg-3">
 						<div class="box-left-admin">
-							<div class="bl-1"><img src="./assets/avatar/avatar-girl.png" alt="">
+							<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
 								<p>Xibachao</p>
 							</div>
 							<div class="bl-2">
 								<div class="row"> 
-									<div class="col-6"><span class="vifPay"> <img src="./assets/icon/card.png" alt="">VifPay</span></div>
+									<div class="col-6"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}" alt="">VifPay</span></div>
 									<div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span class="material-icons">keyboard_arrow_right</span></a></span></div>
-									<div class="col-12"><span class="lkvi"><img src="./assets/icon/warning.png" alt="">Chưa liên kết ví</span><span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn nhé</span></div>
+									<div class="col-12"><span class="lkvi"><img src="{{asset('assets/icon/warning.png')}}" alt="">Chưa liên kết ví</span><span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn nhé</span></div>
 								</div>
 							</div>
 							<div class="bl-3"> 
@@ -40,13 +40,13 @@
 									<p>Quản lý tài khoản cá nhân</p>
 								</div>
 								<ul> 
-									<li> <a class="active" href="">Trang thay đổi thông tin cá nhân </a></li>
+									<li> <a class="active" href="/user/profile">Trang thay đổi thông tin cá nhân </a></li>
 									<li> <a href="">Thay đổi mật khẩu</a></li>
 									<li> <a href="">Số dư tài khoản </a></li>
 									<li> <a href="">Nạp tiền</a></li>
 								</ul>
 								<div class="title-bl3"> <span class="material-icons">list_alt</span>
-									<p>Quản lý tin đăng</p>
+									<a href="/user/my-article"><p>Quản lý tin đăng</p></a>
 								</div>
 								<ul> 
 									<li> <a href="">Tin đã đăng</a></li>
@@ -70,7 +70,7 @@
 												<div class="col-md-12 col-lg-2 form-group">
 													<p class="text-f">Ảnh đại diện</p>
 												</div>
-												<div class="col-md-12 col-lg-10 form-group hinhdd"><img class="img" src="./assets/avatar/avatar-girl.png" alt="">
+												<div class="col-md-12 col-lg-10 form-group hinhdd"><img class="img" src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
 													<div class="text">
 														<p>Lê Quang Nguyên</p><span>Nhà môi giới</span>
 													</div>

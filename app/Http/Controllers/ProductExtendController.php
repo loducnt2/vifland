@@ -7,7 +7,10 @@ use App\Models\Category;
 use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
+use App\Models\ProductExtend;
 use App\Models\ProductUnit;
+use App\Models\ProductCate;
+
 class ProductExtendController extends Controller
 {
     /**
@@ -27,17 +30,19 @@ class ProductExtendController extends Controller
      */
     public function create($cate)
     {
-        $wards     = Ward::orderBy('name','asc')->get(); 
-        $districts = District::orderBy('name','asc')->get();
-        $provinces = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
-        $cate_1   = Category::where('slug',$cate)->first(); //Lấy id category thông qua slug
-        $cate_2   = Category::where('parent_id',$cate_1->id)->get();//Lấy category con
+        $product_cate = ProductCate::all(); 
+        $wards        = Ward::orderBy('name','asc')->get(); 
+        $districts    = District::orderBy('name','asc')->get();
+        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
+        $cate_1       = Category::where('slug',$cate)->first(); //Lấy id category thông qua slug
+        $cate_2       = Category::where('parent_id',$cate_1->id)->get();//Lấy category con
         if($cate == "cho-thue-nha-dat"){
             $units   = ProductUnit::where('type',2)->get();//Lấy đơn vị theo category cha
         }else{
             $units   = ProductUnit::where('type',1)->get();//Lấy đơn vị theo category cha
         }
-        return view('/pages/new',compact('cate_2','units','provinces','districts','wards'));
+        
+        return view('/pages/new',compact('cate_2','units','provinces','districts','wards','product_cate'));
     }
 
     /**
@@ -94,5 +99,32 @@ class ProductExtendController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getByCateSlug1(){
+        $cate           = Category::where('slug','mua-ban-nha-dat')->first();
+        $cate_id        = $cate->id;
+        $cate_child     = Category::where('parent_id',$cate_id)->get();
+        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+
+        return view('pages/danh-muc',compact('cate_child','product_extend'));
+    }
+
+    public function getByCateSlug2(){
+        $cate           = Category::where('slug','cho-thue-nha-dat')->first();
+        $cate_id        = $cate->id;
+        $cate_child     = Category::where('parent_id',$cate_id)->get();
+        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+
+        return view('pages/danh-muc',compact('cate_child','product_extend'));
+    }
+
+    public function getByCateSlug3(){
+        $cate           = Category::where('slug','sang-nhuong-nha-dat')->first();
+        $cate_id        = $cate->id;
+        $cate_child     = Category::where('parent_id',$cate_id)->get();
+        $product_extend = ProductExtend::where('cate_id',$cate_id)->get();
+
+        return view('pages/danh-muc',compact('cate_child','product_extend'));
     }
 }

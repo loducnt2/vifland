@@ -25,14 +25,14 @@
 				<div class="row"> 
 					<div class="col-3">
 						<div class="box-left-admin">
-							<div class="bl-1"><img src="./assets/avatar/avatar-girl.png" alt="">
+							<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
 								<p>Xibachao</p>
 							</div>
 							<div class="bl-2">
 								<div class="row"> 
-									<div class="col-6"><span class="vifPay"> <img src="./assets/icon/card.png" alt="">VifPay</span></div>
+									<div class="col-6"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}" alt="">VifPay</span></div>
 									<div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span class="material-icons">keyboard_arrow_right</span></a></span></div>
-									<div class="col-12"><span class="lkvi"><img src="./assets/icon/warning.png" alt="">Chưa liên kết ví</span><span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn nhé</span></div>
+									<div class="col-12"><span class="lkvi"><img src="{{asset('assets/icon/warning.png')}}" alt="">Chưa liên kết ví</span><span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn nhé</span></div>
 								</div>
 							</div>
 							<div class="bl-3"> 
@@ -40,7 +40,7 @@
 									<p>Quản lý tài khoản cá nhân</p>
 								</div>
 								<ul> 
-									<li> <a class="active" href="">Trang thay đổi thông tin cá nhân </a></li>
+									<li> <a class="active" href="/user/profile">Trang thay đổi thông tin cá nhân </a></li>
 									<li> <a href="">Thay đổi mật khẩu</a></li>
 									<li> <a href="">Số dư tài khoản </a></li>
 									<li> <a href="">Nạp tiền</a></li>
@@ -62,7 +62,11 @@
 					<div class="col-9"> 
 						<div class="box-right">
 							<nav>
-								<div class="nav nav-tabs" id="nav-tab" role="tablist"><a class="active nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Tin đã đăng</a><a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Tin chờ đăng</a><a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tin chờ xác nhận</a></div>
+								<div class="nav nav-tabs" id="nav-tab" role="tablist">
+									<a class="active nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Tin đã đăng</a>
+									<a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Tin chờ đăng</a>
+									<a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tin chờ xác nhận</a>
+								</div>
 								<div class="tab-content" id="nav-tabContent">
 									<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> 
 										<div class="box-search">
@@ -104,7 +108,7 @@
 														<td>
 															<div class="row">
 																<div class="col-3">
-																	<div class="img"><img src="./assets/product/sanpham1.webp" alt=""><img class="iconVip" src="./assets/tinvip/subscription-normal.svg" alt="">
+																	<div class="img"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""><img class="iconVip" src="{{asset('assets/tinvip/subscription-normal.svg')}}" alt="">
 																		<div class="tag">Thương lượng</div>
 																	</div>
 																</div>
@@ -173,7 +177,7 @@
 														<td>
 															<div class="row">
 																<div class="col-3">
-																	<div class="img"><img src="./assets/product/sanpham1.webp" alt=""><img class="iconVip" src="./assets/tinvip/subscription-normal.svg" alt="">
+																	<div class="img"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""><img class="iconVip" src="{{asset('assets/tinvip/subscription-normal.svg')}}" alt="">
 																		<div class="tag">Thương lượng</div>
 																	</div>
 																</div>
@@ -233,7 +237,7 @@
 														<td>
 															<div class="row">
 																<div class="col-3">
-																	<div class="img"><img src="./assets/product/sanpham1.webp" alt=""><img class="iconVip" src="./assets/tinvip/subscription-normal.svg" alt="">
+																	<div class="img"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""><img class="iconVip" src="{{asset('assets/tinvip/subscription-normal.svg')}}" alt="">
 																		<div class="tag">Thương lượng</div>
 																	</div>
 																</div>
