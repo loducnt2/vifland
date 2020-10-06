@@ -46,7 +46,7 @@
 									<li> <a href="">Nạp tiền</a></li>
 								</ul>
 								<div class="title-bl3"> <span class="material-icons">list_alt</span>
-									<a href="/user/my-article"><p>Quản lý tin đăng</p></a>
+									<a href="/user/my-article"><p>Quản lý tin đăng</p>+</a>
 								</div>
 								<ul> 
 									<li> <a href="">Tin đã đăng</a></li>
