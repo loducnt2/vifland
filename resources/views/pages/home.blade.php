@@ -120,7 +120,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="index-sc3"> 
+	<section class="index-sc3">
 		<div class="max-width-container border-bottom">
 			<div class="category-container">
 				<div class="row">
@@ -194,7 +194,7 @@
 		<div class="max-width-container">
 			<div class="swiper-container slideSpHome">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -218,7 +218,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -228,7 +228,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -252,7 +252,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -262,7 +262,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -286,7 +286,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -296,7 +296,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -320,7 +320,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -330,7 +330,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -354,7 +354,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -382,7 +382,7 @@
 		<div class="max-width-container">
 			<div class="swiper-container slideSpHome">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -406,7 +406,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -416,7 +416,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -440,7 +440,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -450,7 +450,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -474,7 +474,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -484,7 +484,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -508,7 +508,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -518,7 +518,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -542,7 +542,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -570,7 +570,7 @@
 		<div class="max-width-container">
 			<div class="swiper-container slideSpHome">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -594,7 +594,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -604,7 +604,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -628,7 +628,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -638,7 +638,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -662,7 +662,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -672,7 +672,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -696,7 +696,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
@@ -706,7 +706,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide"> 
+					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
@@ -730,7 +730,7 @@
 										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
 									</div>
 								</div>
-								<div class="end-mota"> 
+								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>

@@ -33,6 +33,8 @@ class LoginController extends Controller
      *
      * @return void
      */
+    // public function
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -43,6 +45,11 @@ class LoginController extends Controller
     }
     public function authenticated(Request $request, $user)
     {
+        $this->validate($request,[
+            'username'=>['required','min:1','max:10'],
+            'password'=>['required','min:1','max:10'],
+        ]);
+
         $user = Auth::user();
         $user->update([
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
@@ -54,4 +61,5 @@ class LoginController extends Controller
             return redirect('/');
         }
     }
+
 }

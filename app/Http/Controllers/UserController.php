@@ -61,9 +61,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request ,$id )
     {
-        //
+
     }
 
     /**
@@ -75,7 +75,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //update hồ sơ cá nhân theo id
+        $user = User::where('id',$id)->get();
+        $user->username = $request->input('username');
+        $user -> save();
+        return redirect('/');
     }
 
     /**
