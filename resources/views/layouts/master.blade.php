@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="overflow-hidden" lang="en">
 	<head>
 		@section('title','Trang chủ')
 		<title>@yield('title')</title>
@@ -13,7 +13,8 @@
 		@yield('headerStyles')
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	</head>
-	<body>
+	<body> 
+		@include('layouts.logo_animation')
 		<div class="ov-h" id="wrapper">
 			@include('layouts.topbar')
 			@yield('content')
