@@ -4,6 +4,7 @@
 <!-- Thêm styles cho trang này ở đây-->
  @stop
 @section('content')
+
 <main>
 	<section class="index-s1" id="home">
 		<div class="max-width-container">
