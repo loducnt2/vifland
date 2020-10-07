@@ -9,8 +9,9 @@ class ProductExtend extends Model
     protected $table = 'product_extend';
     protected $primaryKey = 'id';
     protected $fillable = [
+        'product_id',
     	'product_cate',
-        'filter_price'
+        'filter_price',
     	'address',
     	'facades',
     	'depth',

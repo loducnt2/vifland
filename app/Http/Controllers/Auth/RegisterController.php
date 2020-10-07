@@ -68,30 +68,32 @@ class RegisterController extends Controller
      */
     protected function create(request $data)
     {
-        $user = new User([
-            'username'  => $data->username,
-            'password'  => Hash::make($data->password),
-            'user_type' => '0',
-            'status'    => '1',
-            'card_id'   => $data->card_id,
-            'img'       => 'user.png',
-        ]);
-        $user->save();
+
 
         // Thêm email or SĐT vào bảng contact
         $email = $data->email;
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $contact = new Contact([
-                'user_id' => $user->id,
-                'email'   => $email,
+            $user = new User([
+                'username'  => $data->username,
+                'password'  => Hash::make($data->password),
+                'user_type' => '0',
+                'email'     => $email,
+                'status'    => '1',
+                'card_id'   => $data->card_id,
+                'img'       => 'user.png',
             ]);
-            $contact->save();
+            $user->save();
         } else {
-            $contact = new Contact([
-                'user_id' => $user->id,
-                'phone'   => $email,
+            $user = new User([
+                'username'  => $data->username,
+                'password'  => Hash::make($data->password),
+                'user_type' => '0',
+                'phone'     => $email,
+                'status'    => '1',
+                'card_id'   => $data->card_id,
+                'img'       => 'user.png',
             ]);
-            $contact->save();
+            $user->save();
         }
         Auth::login($user);
         return redirect('/')->with('status','Đăng kí thành công!');

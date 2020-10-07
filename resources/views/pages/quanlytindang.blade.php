@@ -26,7 +26,7 @@
 					<div class="col-3">
 						<div class="box-left-admin">
 							<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
-								<p>Xibachao</p>
+								<p>{{auth()->user()->full_name}}</p>
 							</div>
 							<div class="bl-2">
 								<div class="row"> 
@@ -40,7 +40,7 @@
 									<p>Quản lý tài khoản cá nhân</p>
 								</div>
 								<ul> 
-									<li> <a class="active" href="/user/profile">Trang thay đổi thông tin cá nhân </a></li>
+									<li> <a class="active" href="/user/profile/{{auth()->user()->id}}">Trang thay đổi thông tin cá nhân </a></li>
 									<li> <a href="">Thay đổi mật khẩu</a></li>
 									<li> <a href="">Số dư tài khoản </a></li>
 									<li> <a href="">Nạp tiền</a></li>

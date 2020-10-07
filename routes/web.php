@@ -32,10 +32,11 @@ Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1');
 Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2');
 Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3');
 
+//Product
+Route::post('/article/new/store','ProductController@store')->name('article-store');
+
 //User
-Route::get('/user/my-article',function(){
-	return view('pages/quanlytindang');}
-);
+Route::get('/user/my-article',function(){return view('pages/quanlytindang');})->name('user-article');
 // Route::get('/user/profile',function(){
 // 	return view('pages/thaydoithongtin');}
 // );

@@ -27,7 +27,7 @@
                             <div class="col-md-12 col-lg-3">
                                 <div class="box-left-admin">
                                     <div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
-                                        <p>{{$profile->username}}</p>
+                                        <p>{{$profile->full_name}}</p>
                                     </div>
                                     <div class="bl-2">
                                         <div class="row">
@@ -47,7 +47,7 @@
                                             <li> <a href="">Nạp tiền</a></li>
                                         </ul>
                                         <div class="title-bl3"> <span class="material-icons">list_alt</span>
-                                            <p>Quản lý tin đăng</p>
+                                            <a href="/user/my-article"><p>Quản lý tin đăng</p></a>
                                         </div>
                                         <ul>
                                             <li> <a href="">Tin đã đăng</a></li>
@@ -230,6 +230,4 @@
  {{-- Footer --}}
 @section('footerScripts')
 
-<script type="text/javascript" src="{{asset('js/core.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/main.min.js')}}"></script>
 @endsection

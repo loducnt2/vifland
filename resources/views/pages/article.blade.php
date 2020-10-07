@@ -15,18 +15,21 @@
 		</div>
 	</div>
 	<section class="dangbaiviet">
+		<form action="{{route('article-store')}}" method="post">
+			@csrf
 		<div class="max-width-container">
 			<div class="row"> 
 				<div class="col-3">
 					<div class="box-left-form-muaban">
-						<form action="">
+						
+							
 							<div class="mdm-1">
 								<div class="checked">
-									<input id="luachonsearch1" type="radio" value="muaban" name="canmuaban">
+									<input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id" checked="">
 									<label for="luachonsearch1">{{$cate_2[0]->name}}</label>
 								</div>
 								<div class="checked">
-									<input id="luachonsearch2" type="radio" value="muaban" name="canmuaban">
+									<input id="luachonsearch2" type="radio" value="{{$cate_2[1]->id}}" name="cate_id">
 									<label for="luachonsearch2">{{$cate_2[1]->name}}</label>
 								</div>
 							</div>
@@ -40,7 +43,7 @@
 									<div class="tab-pane fade show active" id="vitri" role="tabpanel" aria-labelledby="vitri-tab">
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Tỉnh/Thành phố</label>
-											<select class="select1" name="loainhadat"  id="province">
+											<select class="select1" name="province_id"  id="province">
 												<option value="">Chọn</option>
 												@foreach($provinces as $province)
 												<option value="{{$province->id}}">{{$province->name}}</option>
@@ -49,17 +52,17 @@
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Quận/Huyện</label>
-											<select class="select1" name="loainhadat"  id="district">
+											<select class="select1" name="district_id"  id="district">
 												<option value="">Chọn</option>
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Phường/Xã</label>
-											<select class="select1" name="loainhadat"  id="ward">
+											<select class="select1" name="ward_id"  id="ward">
 												<option value="">Chọn</option>
 											</select>
 										</div>
-										<div class="form-group-sl1 sl-1 select-many">
+										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đường, Phố</label>
 											<select class="select1" name="loainhadat[]" multiple="multiple" >
 												<option value="AL">Alabama</option>
@@ -72,12 +75,12 @@
 												<option value="AL">Alabama</option>
 												<option value="WY">Wyoming</option>
 											</select>
-										</div>
+										</div> -->
 									</div>
 									<div class="tab-pane fade" id="thongtin" role="tabpanel" aria-labelledby="thongtin-tab">
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Loại hình</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
+											<select class="select1" name="product_cate[]" multiple="multiple">
 												@foreach($product_cate as $prodcate)
 												<option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
 												@endforeach
@@ -85,21 +88,30 @@
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Mặt tiền</label>
-											<input type="number" min="0">
+											<input type="number" min="0" name="facades">
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Chiều sâu</label>
-											<input type="number" min="0">
+											<input type="number" min="0" name="depth">
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Diện tích</label>
-											<input type="number" min="0">
+											<input type="number" min="0" name="acreage">
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đơn giá </label>
-											<input type="number" min="0"><em class="notedongia">Mặc định 0 là thương lượng</em>
+											<input type="number" min="0" name="price"><em class="notedongia">Mặc định 0 là thương lượng</em>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
+											<label for="thanhpho">Đơn vị </label>
+											<select class="select1" name="unit_id"  id="unit">
+												<option value="">Chọn</option>
+												@foreach($units as $unit)
+												<option value="{{$unit->id}}">{{$unit->name}}</option>
+												@endforeach
+											</select>
+										</div>
+										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đường rộng</label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">
 												<option value="AL">Alabama</option>
@@ -112,25 +124,25 @@
 												<option value="AL">Alabama</option>
 												<option value="WY">Wyoming</option>
 											</select>
-										</div>
+										</div> -->
 									</div>
 									<div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab"> 
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Số tầng</label>
-											<input type="number" min="0">
+											<input type="number" min="0" name="floors">
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Số phòng ngủ </label>
-											<input type="number" min="0">
+											<input type="number" min="0" name="bedroom">
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Giấy tờ pháp lý</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
+											<select name="legal" class="select1" name="loainhadat[]" multiple="multiple">
 												<option value="AL">Alabama</option>
 												<option value="WY">Wyoming</option>
 											</select>
 										</div>
-										<div class="form-group-sl1 sl-1 select-many">
+										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Mức độ giao dịch </label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">
 												<option value="AL">Alabama</option>
@@ -154,23 +166,22 @@
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Tiền hoa hồng</label>
 											<input type="number" min="0">
-										</div>
+										</div> -->
 									</div>
 									<div class="note-wrap"><em class="note">* Hãy cập nhật các thông số đầy đủ và chi tiết để khách hàng tìm thấy tin đăng của bạn dễ dàng</em>
 										<p class="note"> <b>Cảnh báo: &nbsp;</b>Nếu thông tin không được chọn đầy đủ thì tin đăng sẽ không thể tìm kiếm.</p>
 									</div>
 								</div>
 							</div>
-						</form>
 					</div>
 				</div>
 				<div class="col-9">
 					<div class="row">
 						<div class="col-12 form-group">
-							<input class="input-100" type="text" placeholder="Tiêu đề bài viết">
+							<input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
 						</div>
 						<div class="col-12 form-group">
-							<input class="input-100-s" type="text" placeholder="Add tags">
+							<input class="input-100-s" type="text" placeholder="Add tags" name="tags">
 						</div>
 					</div>
 					<div class="row thongtinlh">
@@ -179,25 +190,25 @@
 							<p>Hãy điền thông tin liên hệ đầy đủ để khách hàng có thể liên lạc khi có nhu cầu </p>
 						</div>
 						<div class="col-4 form-group"><span class="material-icons">person</span>
-							<input type="text" placeholder="Tên liên lạc">
+							<input type="text" placeholder="Tên liên lạc" name="name_contact">
 						</div>
 						<div class="col-4 form-group"><span class="material-icons">business</span>
-							<input type="text" placeholder="Tên Công ty">
+							<input type="text" placeholder="Tên Công ty" name="company_name">
 						</div>
 						<div class="col-4 form-group"><span class="material-icons">phone</span>
-							<input type="text" placeholder="Điện thoại cá nhân">
+							<input type="text" placeholder="Điện thoại cá nhân" name="phone_contact">
 						</div>
 						<div class="col-4 form-group"><i class="ri-facebook-circle-fill"></i>
-							<input type="text" placeholder="Facebook cá nhân">
+							<input type="text" placeholder="Facebook cá nhân" name="facebook">
 						</div>
 						<div class="col-4 form-group"><span class="material-icons">location_on</span>
-							<input type="text" placeholder="Địa chỉ">
+							<input type="text" placeholder="Địa chỉ" name="address_contact">
 						</div>
 						<div class="col-4 form-group"><span class="material-icons">public</span>
-							<input type="text" placeholder="Trang web">
+							<input type="text" placeholder="Trang web" name="website">
 						</div>
 						<div class="col-4 form-group"><span class="material-icons">email</span>
-							<input type="text" placeholder="Hộp thư điện tử">
+							<input type="text" placeholder="Hộp thư điện tử" name="email">
 						</div>
 					</div>
 					<div class="row loaitindang">
@@ -209,19 +220,19 @@
 						<div class="col-12"> 
 							<div class="wrap-vip">
 								<div class="checked">
-									<input id="tinthuong" type="radio" value="1" name="vip">
+									<input id="tinthuong" type="radio" value="1" name="type" checked="">
 									<label for="tinthuong">Tin Thường</label>
 								</div>
 								<div class="checked">
-									<input id="vip1" type="radio" value="2" name="vip">
+									<input id="vip1" type="radio" value="2" name="type">
 									<label class="vip1" for="vip1">Tin VIP 1</label>
 								</div>
 								<div class="checked">
-									<input id="vip2" type="radio" value="2" name="vip">
+									<input id="vip2" type="radio" value="3" name="type">
 									<label class="vip2" for="vip2">Tin VIP 2</label>
 								</div>
 								<div class="checked">
-									<input id="vip3" type="radio" value="2" name="vip">
+									<input id="vip3" type="radio" value="4" name="type">
 									<label class="vip3" for="vip3">Tin VIP 3</label>
 								</div>
 							</div>
@@ -260,17 +271,17 @@
 							</div>
 							<div class="col-12">
 								<div class="row wrap-lich">
-									<div class="col-4 form-group">
+									<!-- <div class="col-4 form-group">
 										<label for="songayvip">Số ngày</label>
 										<input id="songayvip" type="number" min="0">
-									</div>
-									<div class="col-4 form-group">
+									</div> -->
+									<div class="col-6 form-group">
 										<label for="songayvip">Ngày đăng bài</label>
-										<input class="calendar" id="ngaybdvip" type="text">
+										<input class="calendar" id="ngaybdvip" type="text" name="datetime_start">
 									</div>
-									<div class="col-4 form-group"> 
+									<div class="col-6 form-group"> 
 										<label for="songayvip">Ngày kết thúc</label>
-										<input class="calendar" id="ngayktvip" type="text">
+										<input class="calendar" id="ngayktvip" type="text" name="datetime_end">
 									</div>
 								</div>
 							</div>
@@ -290,11 +301,18 @@
 									</div>
 								</div>
 							</div>
+							<div class="col-12">
+								<div class="row">
+								        <!-- <button class="button-huy" type="submit">Hủy</button> -->
+								        <button class="button-luu" type="submit">Lưu thay đổi</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</form>
 	</section>
 	<div class="index-page" id="js-page-verify" hidden></div>
 </main>

@@ -11,7 +11,10 @@ use App\Models\ProductExtend;
 use App\Models\ProductUnit;
 use App\Models\ProductCate;
 use App\Models\Product;
-
+use App\Models\ProductImg;
+use App\Models\PostHistory;
+use App\Models\FilterPrice;
+use Str;
 class ProductController extends Controller
 {
     /**
@@ -39,11 +42,13 @@ class ProductController extends Controller
         $cate_2       = Category::where('parent_id',$cate_1->id)->get();//Lấy category con
         if($cate == "cho-thue-nha-dat"){
             $units   = ProductUnit::where('type',2)->get();//Lấy đơn vị theo category cha
-        }else{
+        }elseif($cate == "mua-ban-nha-dat"){
             $units   = ProductUnit::where('type',1)->get();//Lấy đơn vị theo category cha
+        }else{
+            $units   = ProductUnit::all();
         }
         
-        return view('/pages/new',compact('cate_2','units','provinces','districts','wards','product_cate'));
+        return view('/pages/article',compact('cate_2','units','provinces','districts','wards','product_cate'));
     }
 
     /**
@@ -54,6 +59,66 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $filter_price = FilterPrice::where('min','<=',$request->price)->where('max','>=',$request->price)->get();
+        $product = new Product([
+            'cate_id'        => $request->cate_id,
+            'title'          => $request->title,
+            'slug'           => Str::slug($request->title),
+            'view'           => NULL,
+            'tags'           => $request->tags,
+            'datetime_start' => $request->datetime_start,
+            'datetime_end'   => $request->datetime_end,
+            'content'        => $request->content,
+            'name_contact'   => $request->name_contact,
+            'phone_contact'     => $request->phone,
+            'address_contact'   => $request->address_user,
+            'company_name'   => $request->company_name,
+            'email'          => $request->email,
+            'website'        => $request->website,
+            'facebook'       => $request->facebook,
+            'status'         => 0,
+            'type'           => $request->type,
+            'orders'         => NULL,
+            'province_id'    => $request->province_id,
+            'district_id'    => $request->district_id,
+            'ward_id'        => $request->ward_id,
+            'soft_delete'    => 0,
+        ]);
+        $product->save();
+        
+        $productex = new ProductExtend([
+            'product_id'   => $product->id,
+            'product_cate' => json_encode($request->product_cate),
+            'filter_price' => $filter_price,
+            'address'      => $request->address_product,
+            'facedes'      => $request->facedes,
+            'depth'        => $request->depth,
+            'acreage'      => $request->acreage,
+            'floors'       => $request->floors,
+            'bedroom'      => $request->bedroom,
+            'price'        => $request->price,
+            'unit_id'      => $request->unit_id,
+            'legal'        => $request->legal,
+        ]);
+        $productex->save();
+
+        $productimg = new ProductImg([
+            'product_extend_id' => $productex->id,
+            'name'              => $request->nameimg,
+            'orders'            => NULL,
+        ]);
+        $productimg->save();
+
+        
+
+        $post_history = new PostHistory([
+            'user_id'        => auth()->user()->id,
+            'product_id'     => $product->id,
+            'status'         => 0,
+            'datetime'       => date('Y-m-d H:i:s',strtotime('now')),
+        ]);
+        $post_history->save();
+        return redirect()->route('user-article');
 
     }
 

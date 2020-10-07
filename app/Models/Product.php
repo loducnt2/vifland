@@ -9,7 +9,6 @@ class Product extends Model
     protected $table = 'product';
     protected $primaryKey = 'id';
     protected $fillable = [
-    	'product_id',
     	'cate_id',
     	'title',
     	'slug',
@@ -18,8 +17,16 @@ class Product extends Model
     	'price_id',
     	'datetime_start',
     	'datetime_end',
-    	'contact_id',
+        'content',
+        'name_contact',
+        'phone_contact',
+        'address_contact',
+        'company_name',
+        'website',
+        'facebook',
+        'email',
     	'status',
+        'type',
     	'requirement',
     	'province_id',
     	'district_id',

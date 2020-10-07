@@ -127,34 +127,57 @@
 					<div class="col-4">
 						<div class="box-cate">
 							<a href="/mua-ban-nha-dat">
-							<div class="img"><img src="./assets/index/mua-ban-nha-dat.png" alt=""></div>
-							<div class="title-box">{{$categories[0]->name}}</div>
-							<div class="end-box">
-								<div class="box-left"><span class="material-icons">list</span>
-									<p>1.453.786 Tin đăng</p>
-								</div>
-								<div class="box-right"><span class="material-icons">playlist_add</span>
-									<a href="{{route('new',$categories[0]->slug)}}">
-										<p>Đăng bài</p>
-									</a>
-								</div>
-							</div>
+								<div class="img"><img src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt=""></div>
+								<div class="title-box">{{$categories[0]->name}}</div>
 							</a>
+							<div class="end-box">
+								<a href="/mua-ban-nha-dat">
+									<div class="box-left"><span class="material-icons">list</span>
+										<p>1.453.786 Tin đăng</p>
+									</div>
+								</a>
+								@if(auth()->check())
+								<a href="{{route('new',$categories[0]->slug)}}">
+									<div class="box-right"><span class="material-icons">playlist_add</span>
+											<p>Đăng bài</p>
+									</div>
+								</a>
+								@else
+								<a href="#check1">
+									<div class="box-right"><span class="material-icons">playlist_add</span>
+											<p >Đăng bài</p>
+									</div>
+								</a>
+								@endif
+							</div>
+							
 						</div>
 					</div>
 					<div class="col-4">
 						<div class="box-cate">
 							<a href="/cho-thue-nha-dat">
-							<div class="img"><img src="./assets/index/cho-thue-nha-dat.png" alt=""></div>
-							<div class="title-box">{{$categories[1]->name}}</div>
+								<div class="img"><img src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt=""></div>
+								<div class="title-box">{{$categories[1]->name}}</div>
+							</a>
 							<div class="end-box">
-								<div class="box-left"><span class="material-icons">list</span><a href="">
-										<p>1.453.786 Tin đăng</p></a></div>
-								<div class="box-right"><span class="material-icons">playlist_add</span>
-									<a href="{{route('new',$categories[1]->slug)}}">
+								<a href="/cho-thue-nha-dat">
+									<div class="box-left"><span class="material-icons">list</span>
+										<p>1.453.786 Tin đăng</p>
+									</div>
+								</a>
+								@if(auth()->check())
+								<a href="{{route('new',$categories[1]->slug)}}">
+									<div class="box-right"><span class="material-icons">playlist_add</span>
 										<p>Đăng bài</p>
-									</a>
-								</div>
+									</div>
+								</a>
+								@else
+								<a href="#check1">
+									<div class="box-right"><span class="material-icons">playlist_add</span>
+										<p>Đăng bài</p>
+									</div>
+								</a>
+								@endif
 							</div>
 							</a>
 						</div>
@@ -162,18 +185,29 @@
 					<div class="col-4">
 						<div class="box-cate">
 							<a href="/sang-nhuong-nha-dat">
-							<div class="img"><img src="./assets/index/sang-nhuong-nha-dat.png" alt=""></div>
-							<div class="title-box">{{$categories[2]->name}}</div>
-							<div class="end-box">
-								<div class="box-left"><span class="material-icons">list</span><a href="">
-										<p>1.453.786 Tin đăng</p></a></div>
-								<div class="box-right"><span class="material-icons">playlist_add</span>
-									<a href="{{route('new',$categories[2]->slug)}}">
-										<p>Đăng bài</p>
-									</a>
-								</div>
-							</div>
+								<div class="img"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt=""></div>
+								<div class="title-box">{{$categories[2]->name}}</div>
 							</a>
+							<div class="end-box">
+								<a href="/sang-nhuong-nha-dat">
+									<div class="box-left"><span class="material-icons">list</span>
+										<p>1.453.786 Tin đăng</p>
+									</div>
+								</a>
+								@if(auth()->check())
+								<a href="{{route('new',$categories[2]->slug)}}">
+									<div class="box-right"><span class="material-icons">playlist_add</span>
+										<p>Đăng bài</p>
+									</div>
+								</a>
+								@else
+								<a href="#check1">
+									<div class="box-right"><span class="material-icons">playlist_add</span>
+										<p>Đăng bài</p>
+									</div>
+								</a>
+								@endif
+							</div>
 						</div>
 					</div>
 				</div>

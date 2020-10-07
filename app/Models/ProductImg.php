@@ -9,7 +9,7 @@ class ProductImg extends Model
     protected $table = 'product_image';
     protected $primaryKey = 'id';
     protected $fillable = [
-    	'product_id',
+    	'product_extend_id',
     	'name',
     ];
 }

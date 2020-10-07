@@ -11,7 +11,7 @@ class PostHistory extends Model
     protected $fillable = [
     	'price_id',
     	'user_id',
-    	'product_extend_id',
+    	'product_id',
     	'datetime',
     	'status',
     ];
