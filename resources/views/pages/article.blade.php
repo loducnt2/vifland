@@ -99,10 +99,6 @@
 											<input type="number" min="0" name="acreage">
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Đơn giá </label>
-											<input type="number" min="0" name="price"><em class="notedongia">Mặc định 0 là thương lượng</em>
-										</div>
-										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đơn vị </label>
 											<select class="select1" name="unit_id"  id="unit">
 												<option value="">Chọn</option>
@@ -111,6 +107,11 @@
 												@endforeach
 											</select>
 										</div>
+										<div class="form-group-sl1 sl-1 select-many">
+											<label for="thanhpho">Đơn giá </label>
+											<input type="number" min="0" name="price"><em class="notedongia">Mặc định 0 là thương lượng</em>
+										</div>
+										
 										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đường rộng</label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">

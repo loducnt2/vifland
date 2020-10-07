@@ -41,9 +41,9 @@ class ProductController extends Controller
         $cate_1       = Category::where('slug',$cate)->first(); //Lấy id category thông qua slug
         $cate_2       = Category::where('parent_id',$cate_1->id)->get();//Lấy category con
         if($cate == "cho-thue-nha-dat"){
-            $units   = ProductUnit::where('type',2)->get();//Lấy đơn vị theo category cha
+            $units   = ProductUnit::where('type',2)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
         }elseif($cate == "mua-ban-nha-dat"){
-            $units   = ProductUnit::where('type',1)->get();//Lấy đơn vị theo category cha
+            $units   = ProductUnit::where('type',1)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
         }else{
             $units   = ProductUnit::all();
         }
@@ -59,7 +59,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $filter_price = FilterPrice::where('min','<=',$request->price)->where('max','>=',$request->price)->get();
+        $unit = ProductUnit::where('id',$request->unit_id)->value('description');
+        $price = $request->price.$unit;
+        $filter_price = FilterPrice::where('min','<=',$price)->where('max','>=',$price)->get();
         $product = new Product([
             'cate_id'        => $request->cate_id,
             'title'          => $request->title,
