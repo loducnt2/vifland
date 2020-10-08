@@ -24,6 +24,5 @@ class ProductExtend extends Model
     	'price',
     	'unit_id',
     	'legal',
-    	'description',
     ];
 }

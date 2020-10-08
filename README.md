@@ -9,6 +9,8 @@
 + mở file .env đổi tên database tại dòng DB_DATABASE=
 + chạy lệnh php artisan key:generate
 ##
+php artisan migrate
+##
 -- Trước khi push code lên github:
 + git add .
 + git commit -m 'comment'

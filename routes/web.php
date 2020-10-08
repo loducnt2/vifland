@@ -36,11 +36,10 @@ Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3');
 Route::post('/article/new/store','ProductController@store')->name('article-store');
 
 //User
-Route::get('/user/my-article',function(){return view('pages/quanlytindang');})->name('user-article');
-// Route::get('/user/profile',function(){
-// 	return view('pages/thaydoithongtin');}
-// );
-//
+Route::get('/user/my-article','ProductController@showByUser')->name('user-article');  //Quản lý tin của user
+
+
+
 Route::get('/new-detail',function(){
 	return view('pages/new-detail');}
 );

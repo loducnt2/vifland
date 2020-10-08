@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<section class="dangbaiviet">
-		<form action="{{route('article-store')}}" method="post">
+		<form action="{{route('article-store')}}" method="post" enctype="multipart/form-data">
 			@csrf
 		<div class="max-width-container">
 			<div class="row"> 
@@ -61,6 +61,10 @@
 											<select class="select1" name="ward_id"  id="ward">
 												<option value="">Chọn</option>
 											</select>
+										</div>
+										<div class="form-group-sl1 sl-1 select-many">
+											<label for="diachi">Địa chỉ</label>
+											<input type="text" min="0" name="address" id="diachi">
 										</div>
 										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đường, Phố</label>
@@ -109,7 +113,7 @@
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đơn giá </label>
-											<input type="number" min="0" name="price"><em class="notedongia">Mặc định 0 là thương lượng</em>
+											<input type="text" min="0" name="price"><em class="notedongia">Mặc định 0 là thương lượng</em>
 										</div>
 										
 										<!-- <div class="form-group-sl1 sl-1 select-many">
@@ -137,11 +141,13 @@
 											<input type="number" min="0" name="bedroom">
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Giấy tờ pháp lý</label>
-											<select name="legal" class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
+											<label for="legal">Giấy tờ pháp lý</label>
+											<select name="legal[]" class="select1"  multiple="multiple" id="legal">
+												@foreach($product_cate as $prodcate)
+												<option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
+												@endforeach
 											</select>
+
 										</div>
 										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Mức độ giao dịch </label>
@@ -180,6 +186,12 @@
 					<div class="row">
 						<div class="col-12 form-group">
 							<input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
+						</div>
+						<div class="col-12 form-group">
+							<textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
+						</div>
+						<div class="col-12 form-group">
+							<input type="file" name="img[]" multiple>
 						</div>
 						<div class="col-12 form-group">
 							<input class="input-100-s" type="text" placeholder="Add tags" name="tags">
@@ -305,7 +317,7 @@
 							<div class="col-12">
 								<div class="row">
 								        <!-- <button class="button-huy" type="submit">Hủy</button> -->
-								        <button class="button-luu" type="submit">Lưu thay đổi</button>
+								        <button class="button-luu" type="submit">Đăng bài</button>
 								</div>
 							</div>
 						</div>
@@ -320,7 +332,9 @@
 @stop
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script>
+	CKEDITOR.replace( 'summary-ckeditor' );
 	$(document).ready(function(){
 		$('#province').change(function(){
 			var province = $(this).val();

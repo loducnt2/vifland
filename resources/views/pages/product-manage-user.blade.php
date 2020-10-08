@@ -26,7 +26,7 @@
 					<div class="col-3">
 						<div class="box-left-admin">
 							<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
-								<p>{{auth()->user()->full_name}}</p>
+								<p>{{auth()->user()->full_name}} </p>
 							</div>
 							<div class="bl-2">
 								<div class="row"> 
@@ -63,13 +63,13 @@
 						<div class="box-right">
 							<nav>
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
-									<a class="active nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Tin đã đăng</a>
-									<a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Tin chờ đăng</a>
-									<a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tin chờ xác nhận</a>
+									<a class="active nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Tin chờ xác nhận</a>
+									<a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Tin đã đăng</a>
+									<a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tin chờ đăng</a>
 								</div>
 								<div class="tab-content" id="nav-tabContent">
 									<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"> 
-										<div class="box-search">
+										<!-- <div class="box-search">
 											<div class="row box-search-wrap">
 												<div class="col-4 form-group-sl1 sl-1 select-many">
 													<select class="select1 sltrangthai" name="loainhadat[]" multiple="multiple">
@@ -90,20 +90,21 @@
 													<input class="input-search" type="text" placeholder="Nhập tìm kiếm...">
 												</div>
 											</div>
-										</div>
+										</div> -->
+										@if(count($product_wait1) >0 )
 										<div class="box-content">
 											<table>
 												<thead>
 													<tr>
 														<th></th>
-														<th>Diện Tích (m²)	</th>
-														<th>Đường rộng</th>
-														<th>Mặt tiền</th>
-														<th>Hướng </th>
+														<th>Đơn giá	</th>
+														<th>Mặt tiền (m)</th>
+														<th>Chiều sâu (m)</th>
 														<th>Đối tượng</th>
 													</tr>
 												</thead>
 												<tbody>
+													@foreach( $product_wait1 as $product)
 													<tr> 
 														<td>
 															<div class="row">
@@ -114,37 +115,41 @@
 																</div>
 																<div class="col-9">
 																	<div class="text">
-																		<p class="t-1">Bệnh viện từ dũ</p>
+																		<p class="t-1">{{$product->title}}</p>
 																		<div class="t-2"><span class="material-icons">location_on</span>
 																			<p>Quận gò vấp, Thành phố hồ chí minh</p>
 																		</div>
 																		<div class="t-3">
-																			<p> <strong>Mã tin đăng:</strong>gEw8T10JD</p>
-																			<p> <strong>Ngày đăng tin:</strong>29/09/2020</p>
+																			<p> <strong>Ngày đăng tin:</strong>{{date('d-m-Y',strtotime($product->datetime_start) )}}</p>
 																		</div>
 																		<div class="t-3">
-																			<p> <strong>Mã tin đăng:</strong>gEw8T10JD</p>
-																			<p> <strong>Ngày đăng tin:</strong>29/09/2020</p>
+																			<p> <strong>Ngày hết hạn:</strong>{{date('d-m-Y',strtotime($product->datetime_end) )}}</p>
 																		</div>
 																		<div class="t-4"><span class="material-icons">visibility</span>
-																			<p>2 lượt xem</p>
+																			<p>{{$product->view}} lượt xem</p>
 																		</div>
 																	</div>
 																</div>
 															</div>
 														</td>
-														<td>--</td>
-														<td>--</td>
-														<td>--</td>
-														<td>--</td>
+														<td>{{ $product->price}} {{$product->name}}</td>
+														<td>{{$product->facades}}</td>
+														<td>{{$product->depth}}</td>
 														<td>NMG</td>
 													</tr>
+													@endforeach
 												</tbody>
 											</table>
 										</div>
+										@else
+										Không có bài đăng nào
+										@endif
 									</div>
+									
+										
+									
 									<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-										<div class="box-search">
+										<!-- <div class="box-search">
 											<div class="row box-search-wrap">
 												<div class="col-2 form-group-sl1 sl-1 select-many">
 													<select class="select1 slloaitin2" name="loainhadat[]" multiple="multiple" placeholder="Loại tin">
@@ -159,20 +164,21 @@
 													<input class="input-search" type="text" placeholder="Nhập tìm kiếm...">
 												</div>
 											</div>
-										</div>
+										</div> -->
+										@if(count($product_posted) >0 )
 										<div class="box-content">
 											<table>
 												<thead>
 													<tr>
 														<th></th>
-														<th>Diện Tích (m²)	</th>
-														<th>Đường rộng</th>
-														<th>Mặt tiền</th>
-														<th>Hướng </th>
+														<th>Đơn giá	</th>
+														<th>Mặt tiền (m)</th>
+														<th>Chiều sâu (m)</th>
 														<th>Đối tượng</th>
 													</tr>
 												</thead>
 												<tbody>
+													@foreach( $product_posted as $product)
 													<tr> 
 														<td>
 															<div class="row">
@@ -183,56 +189,58 @@
 																</div>
 																<div class="col-9">
 																	<div class="text">
-																		<p class="t-1">Bệnh viện từ dũ</p>
+																		<p class="t-1">{{$product->title}}</p>
 																		<div class="t-2"><span class="material-icons">location_on</span>
 																			<p>Quận gò vấp, Thành phố hồ chí minh</p>
 																		</div>
 																		<div class="t-3">
-																			<p> <strong>Mã tin đăng:</strong>gEw8T10JD</p>
-																			<p> <strong>Ngày đăng tin:</strong>29/09/2020</p>
+																			<p> <strong>Ngày đăng tin:</strong>{{date('d-m-Y',strtotime($product->datetime_start) )}}</p>
 																		</div>
 																		<div class="t-3">
-																			<p> <strong>Mã tin đăng:</strong>gEw8T10JD</p>
-																			<p> <strong>Ngày đăng tin:</strong>29/09/2020</p>
+																			<p> <strong>Ngày hết hạn:</strong>{{date('d-m-Y',strtotime($product->datetime_end) )}}</p>
 																		</div>
 																		<div class="t-4"><span class="material-icons">visibility</span>
-																			<p>2 lượt xem</p>
+																			<p>{{$product->view}} lượt xem</p>
 																		</div>
 																	</div>
 																</div>
 															</div>
 														</td>
-														<td>--</td>
-														<td>--</td>
-														<td>--</td>
-														<td>--</td>
+														<td>{{ $product->price}} {{$product->name}}</td>
+														<td>{{$product->facades}}</td>
+														<td>{{$product->depth}}</td>
 														<td>NMG</td>
 													</tr>
+													@endforeach
 												</tbody>
 											</table>
 										</div>
+										@else
+										Không có bài đăng nào
+										@endif
 									</div>
 									<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-										<div class="box-search">
+										<!-- <div class="box-search">
 											<div class="row box-search-wrap">
 												<div class="col-4">
 													<input class="input-search" type="text" placeholder="Nhập tìm kiếm...">
 												</div>
 											</div>
-										</div>
+										</div> -->
+										@if(count($product_wait2) >0 )
 										<div class="box-content">
 											<table>
 												<thead>
 													<tr>
 														<th></th>
-														<th>Diện Tích (m²)	</th>
-														<th>Đường rộng</th>
-														<th>Mặt tiền</th>
-														<th>Hướng </th>
+														<th>Đơn giá	</th>
+														<th>Mặt tiền (m)</th>
+														<th>Chiều sâu (m)</th>
 														<th>Đối tượng</th>
 													</tr>
 												</thead>
 												<tbody>
+													@foreach( $product_wait2 as $product)
 													<tr> 
 														<td>
 															<div class="row">
@@ -243,34 +251,35 @@
 																</div>
 																<div class="col-9">
 																	<div class="text">
-																		<p class="t-1">Bệnh viện từ dũ</p>
+																		<p class="t-1">{{$product->title}}</p>
 																		<div class="t-2"><span class="material-icons">location_on</span>
 																			<p>Quận gò vấp, Thành phố hồ chí minh</p>
 																		</div>
 																		<div class="t-3">
-																			<p> <strong>Mã tin đăng:</strong>gEw8T10JD</p>
-																			<p> <strong>Ngày đăng tin:</strong>29/09/2020</p>
+																			<p> <strong>Ngày đăng tin:</strong>{{date('d-m-Y',strtotime($product->datetime_start) )}}</p>
 																		</div>
 																		<div class="t-3">
-																			<p> <strong>Mã tin đăng:</strong>gEw8T10JD</p>
-																			<p> <strong>Ngày đăng tin:</strong>29/09/2020</p>
+																			<p> <strong>Ngày hết hạn:</strong>{{date('d-m-Y',strtotime($product->datetime_end) )}}</p>
 																		</div>
 																		<div class="t-4"><span class="material-icons">visibility</span>
-																			<p>2 lượt xem</p>
+																			<p>{{$product->view}} lượt xem</p>
 																		</div>
 																	</div>
 																</div>
 															</div>
 														</td>
-														<td>--</td>
-														<td>--</td>
-														<td>--</td>
-														<td>--</td>
+														<td>{{ $product->price}} {{$product->name}}</td>
+														<td>{{$product->facades}}</td>
+														<td>{{$product->depth}}</td>
 														<td>NMG</td>
 													</tr>
+													@endforeach
 												</tbody>
 											</table>
 										</div>
+										@else
+										Không có bài đăng nào
+										@endif
 									</div>
 								</div>
 							</nav>
