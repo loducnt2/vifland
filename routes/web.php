@@ -24,19 +24,35 @@ Route::get('/', 'HomeController@index')->name('home');					// Trang chủ
 Route::get('home','HomeController@index');								// Trang chủ
 Route::get('/compares',function(){return view('pages/compare');});		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
-Route::get('/favourites',function(){return view('pages/favourites');});	// Yêu thích
 
 //Danh mục
-Route::get('/article/new/{cate}','ProductController@create')->name('new'); // Đăng bài viết
+
 Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1');
 Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2');
 Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3');
 
-//Product
-Route::post('/article/new/store','ProductController@store')->name('article-store');
+Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
+Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
+Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');
 
-//User
-Route::get('/user/my-article','ProductController@showByUser')->name('user-article');  //Quản lý tin của user
+Route::group(['middleware'=>'auth'],function(){
+
+	Route::get('/favourites',function(){return view('pages/favourites');});				  // Yêu thích
+
+	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
+	Route::post('/article/new/store','ProductController@store')->name('article-store');   // Đăng tin
+	Route::get('/user/my-article','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
+	
+	//Profile
+	Route::get('/user/profile/{id}','UserController@edit')->name('');
+	//Update profile
+	Route::post('/user/update/{id}','UserController@update')->name('user-update');
+
+
+});
+
+// Đăng kí
+Route::post('/create-user','Auth\RegisterController@create')->name('createUser');
 
 
 
@@ -54,9 +70,7 @@ Route::get('/san-pham',function(){
 	return view('pages/san-pham');}
 );
 
-Route::get('/yeuthich',function(){
-	return view('pages/favourites');}
-);
+
 
 //API
 Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
@@ -101,15 +115,12 @@ Route::get('/test/cate/home','CategoryController@index');
 
 Route::post('/dang-tin/store','ProductController@store')->name('dang-tin');
 
-// chức năng đăng kí
-Route::post('/create-user','Auth\RegisterController@create')->name('createUser');
+
 
 // login admin
 Route::get('/admin-marvel',function(){
     return view('admin/index');
 }); // Trang admin
 // ================= hồ sơ ==================
-// hồ sơ
-Route::get('/user/profile/{id}','UserController@edit')->name('');
+
 // update thông tin hồ sơ cá nhân
-Route::post('/user/update/{id}','UserController@update')->name('user-update');

@@ -4,7 +4,6 @@
 
     @section('content')
     {{-- trước khi đăng nhập --}}
-    @if(auth()->check()){
         <main>
             <div class="global-breadcrumb">
                 <div class="max-width-container">
@@ -212,14 +211,7 @@
             </section>
             <div class="index-page" id="js-page-verify" hidden></div>
         </main>
-    }
-    @else{
-        <main>
-                <h1>Vui lòng đăng nhập để xem hồ sơ cá nhân</h1>
-    }
-        </main>
-    @endif
-    {{-- sau khi đăng nhập --}}
+   
 
 
 		</form>
