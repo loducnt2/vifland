@@ -185,7 +185,7 @@
 				<div class="col-9">
 					<div class="row">
 						<div class="col-12 form-group">
-							<input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
+							<input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title" required="">
 						</div>
 						<div class="col-12 form-group">
 							<textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
@@ -290,11 +290,11 @@
 									</div> -->
 									<div class="col-6 form-group">
 										<label for="songayvip">Ngày đăng bài</label>
-										<input class="calendar" id="ngaybdvip" type="text" name="datetime_start">
+										<input class="calendar" id="ngaybdvip" type="datetime" name="datetime_start">
 									</div>
 									<div class="col-6 form-group"> 
 										<label for="songayvip">Ngày kết thúc</label>
-										<input class="calendar" id="ngayktvip" type="text" name="datetime_end">
+										<input class="calendar" id="ngayktvip" type="datetime" name="datetime_end">
 									</div>
 								</div>
 							</div>

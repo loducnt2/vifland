@@ -134,22 +134,14 @@
 							<div class="end-box">
 								<a href="/mua-ban-nha-dat">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>1.453.786 Tin đăng</p>
+										<p>{{count($product_by_cate1)}} Tin đăng</p>
 									</div>
 								</a>
-								@if(auth()->check())
 								<a href="{{route('new',$categories[0]->slug)}}">
 									<div class="box-right"><span class="material-icons">playlist_add</span>
 											<p>Đăng bài</p>
 									</div>
 								</a>
-								@else
-								<a href="#check1">
-									<div class="box-right"><span class="material-icons">playlist_add</span>
-											<p >Đăng bài</p>
-									</div>
-								</a>
-								@endif
 							</div>
 							
 						</div>
@@ -163,22 +155,14 @@
 							<div class="end-box">
 								<a href="/cho-thue-nha-dat">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>1.453.786 Tin đăng</p>
+										<p>{{count($product_by_cate2)}} Tin đăng</p>
 									</div>
 								</a>
-								@if(auth()->check())
 								<a href="{{route('new',$categories[1]->slug)}}">
 									<div class="box-right"><span class="material-icons">playlist_add</span>
 										<p>Đăng bài</p>
 									</div>
 								</a>
-								@else
-								<a href="#check1">
-									<div class="box-right"><span class="material-icons">playlist_add</span>
-										<p>Đăng bài</p>
-									</div>
-								</a>
-								@endif
 							</div>
 							</a>
 						</div>
@@ -192,22 +176,14 @@
 							<div class="end-box">
 								<a href="/sang-nhuong-nha-dat">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>1.453.786 Tin đăng</p>
+										<p>{{count($product_by_cate3)}} Tin đăng</p>
 									</div>
 								</a>
-								@if(auth()->check())
 								<a href="{{route('new',$categories[2]->slug)}}">
 									<div class="box-right"><span class="material-icons">playlist_add</span>
 										<p>Đăng bài</p>
 									</div>
 								</a>
-								@else
-								<a href="#check1">
-									<div class="box-right"><span class="material-icons">playlist_add</span>
-										<p>Đăng bài</p>
-									</div>
-								</a>
-								@endif
 							</div>
 						</div>
 					</div>
@@ -221,7 +197,7 @@
 				<div class="text-left"><a class="text-desktop" href="/mua-ban-nha-dat">
 						<h3>{{$categories[0]->name}}</h3></a></div>
 				<div class="text-right"><a class="text-desktop" href="/mua-ban-nha-dat"><i class="ri-equalizer-line"></i>
-						<p>Xem tất cả &nbsp;<span>(1.430.498 Tin đăng)</span></p></a></div>
+						<p>Xem tất cả &nbsp;<span>({{count($product_by_cate1)}} Tin đăng)</span></p></a></div>
 			</div>
 		</div>
 	</section>
@@ -229,175 +205,50 @@
 		<div class="max-width-container">
 			<div class="swiper-container slideSpHome">
 				<div class="swiper-wrapper">
+					@if(count($product_by_cate1)>0)
+					@foreach($product_by_cate1 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+							<div class="box-sp-img"><a href="{{route('article-detail-1',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
 								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
+							<div class="box-sp-text"> 
+								<a href="{{route('article-detail-1',$product->slug)}}">
+									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+								</a>
 								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
+									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
 								</div>
 								<div class="mota-place">
 									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }} m²</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
 									</div>
-									<div class="mota-place-1">
+									<!-- <div class="mota-place-1">
 										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
 										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
+										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{$product->depth*$product->facades}} m²</span></div>
+									</div> -->
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
+										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
+					@endforeach
+					@else
+					<div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+						<p>Không có bài đăng nào</p>
 					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
+					@endif
 					</div>
 				</div>
 			</div>
@@ -409,7 +260,7 @@
 				<div class="text-left"><a class="text-desktop" href="/cho-thue-nha-dat">
 						<h3>{{$categories[1]->name}}</h3></a></div>
 				<div class="text-right"><a class="text-desktop" href="/cho-thue-nha-dat"><i class="ri-equalizer-line"></i>
-						<p>Xem tất cả &nbsp;<span>(1.430.498 Tin đăng)</span></p></a></div>
+						<p>Xem tất cả &nbsp;<span>({{count($product_by_cate2)}} Tin đăng)</span></p></a></div>
 			</div>
 		</div>
 	</section>
@@ -417,175 +268,50 @@
 		<div class="max-width-container">
 			<div class="swiper-container slideSpHome">
 				<div class="swiper-wrapper">
+					@if(count($product_by_cate2)>0)
+					@foreach($product_by_cate2 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+							<div class="box-sp-img"><a href="{{route('article-detail-2',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
 								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
+							<div class="box-sp-text">
+								<a href="{{route('article-detail-2',$product->slug)}}">
+									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+								</a>
 								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
+									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
 								</div>
 								<div class="mota-place">
 									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }} m²</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
 									</div>
-									<div class="mota-place-1">
+									<!-- <div class="mota-place-1">
 										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
 										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
+										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{$product->depth*$product->facades}} m²</span></div>
+									</div> -->
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
+										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
+					@endforeach
+					@else
+					<div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+						<p>Không có bài đăng nào</p>
 					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
+					@endif
 					</div>
 				</div>
 			</div>
@@ -597,7 +323,7 @@
 				<div class="text-left"><a class="text-desktop" href="/sang-nhuong-nha-dat">
 						<h3>{{$categories[2]->name}}</h3></a></div>
 				<div class="text-right"><a class="text-desktop" href="/sang-nhuong-nha-dat"><i class="ri-equalizer-line"></i>
-						<p>Xem tất cả &nbsp;<span>(1.430.498 Tin đăng)</span></p></a></div>
+						<p>Xem tất cả &nbsp;<span>({{count($product_by_cate3)}} Tin đăng)</span></p></a></div>
 			</div>
 		</div>
 	</section>
@@ -605,6 +331,8 @@
 		<div class="max-width-container">
 			<div class="swiper-container slideSpHome">
 				<div class="swiper-wrapper">
+					@if(count($product_by_cate3)>0)
+					@foreach($product_by_cate3 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
@@ -613,167 +341,38 @@
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
+									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
 								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
+									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
 								</div>
 								<div class="mota-place">
 									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
+										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }} m²</span></div>
 										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
+										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
 									</div>
-									<div class="mota-place-1">
+									<!-- <div class="mota-place-1">
 										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
 										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
+										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{$product->depth*$product->facades}} m²</span></div>
+									</div> -->
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
+										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
+					@endforeach
+					@else
+					<div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+						<p>Không có bài đăng nào</p>
 					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="swiper-slide">
-						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
-								<div class="overlay"></div>
-							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
-								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
-								</div>
-								<div class="mota-place">
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
-									</div>
-									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-									</div>
-								</div>
-								<div class="end-mota">
-									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>320</span></div>
-										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-									</div>
-								</div>
-							</div>
-						</div>
+					@endif
 					</div>
 				</div>
 			</div>

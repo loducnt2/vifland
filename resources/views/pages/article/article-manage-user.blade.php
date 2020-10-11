@@ -110,7 +110,7 @@
 															<div class="row">
 																<div class="col-3">
 																	<div class="img"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""><img class="iconVip" src="{{asset('assets/tinvip/subscription-normal.svg')}}" alt="">
-																		<div class="tag">Thương lượng</div>
+																		<!-- <div class="tag">Thương lượng</div> -->
 																	</div>
 																</div>
 																<div class="col-9">
@@ -142,7 +142,9 @@
 											</table>
 										</div>
 										@else
-										Không có bài đăng nào
+										<div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+											<p>Không có bài đăng nào</p>
+										</div>
 										@endif
 									</div>
 									
@@ -184,7 +186,7 @@
 															<div class="row">
 																<div class="col-3">
 																	<div class="img"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""><img class="iconVip" src="{{asset('assets/tinvip/subscription-normal.svg')}}" alt="">
-																		<div class="tag">Thương lượng</div>
+																		<!-- <div class="tag">Thương lượng</div> -->
 																	</div>
 																</div>
 																<div class="col-9">
@@ -216,7 +218,9 @@
 											</table>
 										</div>
 										@else
-										Không có bài đăng nào
+										<div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+											<p>Không có bài đăng nào</p>
+										</div>
 										@endif
 									</div>
 									<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
@@ -246,7 +250,7 @@
 															<div class="row">
 																<div class="col-3">
 																	<div class="img"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""><img class="iconVip" src="{{asset('assets/tinvip/subscription-normal.svg')}}" alt="">
-																		<div class="tag">Thương lượng</div>
+																		<!-- <div class="tag">Thương lượng</div> -->
 																	</div>
 																</div>
 																<div class="col-9">
@@ -278,7 +282,9 @@
 											</table>
 										</div>
 										@else
-										Không có bài đăng nào
+										<div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+											<p>Không có bài đăng nào</p>
+										</div>
 										@endif
 									</div>
 								</div>

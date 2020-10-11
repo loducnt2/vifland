@@ -49,7 +49,7 @@ class ProductController extends Controller
             $units   = ProductUnit::all();
         }
         
-        return view('/pages/article',compact('cate_2','units','provinces','districts','wards','product_cate'));
+        return view('/pages/article/article-form',compact('cate_2','units','provinces','districts','wards','product_cate'));
     }
 
     /**
@@ -61,16 +61,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-
-        
-        
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         $price = doubleval($request->price)*intval($unit);
         $filter_price = FilterPrice::where('min','<=',$price)->where('max','>=',$price)->value('id');
         $product = new Product([
             'cate_id'        => $request->cate_id,
             'title'          => $request->title,
-            'slug'           => Str::slug($request->title),
+            'slug'           => NULL,
             'view'           => 1,
             'tags'           => $request->tags,
             'datetime_start' => date('Y-m-d H:i:s',strtotime($request->datetime_start)),
@@ -92,6 +89,10 @@ class ProductController extends Controller
             'soft_delete'    => 0,
         ]);
         $product->save();
+        $productup = Product::find($product->id)->update([
+            'slug' => Str::slug($request->title)
+            .'-'.date('Ymd',strtotime($request->datetime_start)).str_pad($product->id,5,rand(10000,99999),STR_PAD_LEFT)
+        ]);
         
         $productex = new ProductExtend([
             'product_id'   => $product->id,
@@ -140,13 +141,6 @@ class ProductController extends Controller
             ]);
             $product_cate->save();
         }
-        
-            
-
-
-        
-
-        
 
         $post_history = new PostHistory([
             'user_id'        => auth()->user()->id,
@@ -210,7 +204,7 @@ class ProductController extends Controller
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
 
-        return view('pages/danh-muc',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend'));
     }
 
     public function getByCateSlug2(){
@@ -219,7 +213,7 @@ class ProductController extends Controller
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
 
-        return view('pages/danh-muc',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend'));
     }
 
     public function getByCateSlug3(){
@@ -228,10 +222,27 @@ class ProductController extends Controller
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
 
-        return view('pages/danh-muc',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend'));
     }
 
-    public function showByUser(){
+    public function getDetailByCate1($slug){
+        $product = Product::where('slug',$slug)->first();
+        return $product;
+    }
+    public function getDetailByCate2($slug){
+        $product = Product::where('slug',$slug)->first();
+        return $product;
+    }
+    public function getDetailByCate3($slug){
+        $product = Product::where('slug',$slug)->first();
+        return $product;
+    }
+
+
+
+
+
+    public function getByUser(){
         $user_id = auth()->user()->id;
 
         //các tin chờ xác nhận
@@ -261,6 +272,6 @@ class ProductController extends Controller
 
         //return $product_wait;
 
-        return view('pages/product-manage-user',compact('product_wait1','product_posted','product_wait2'));
+        return view('pages/article/article-manage-user',compact('product_wait1','product_posted','product_wait2'));
     }
 }
