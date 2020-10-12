@@ -17,7 +17,7 @@
 	<section class="danhmuc">
 		<div class="max-width-container">
 			<div class="row bo-loc-1">
-				<div class="col-sm-12 col-md-2">
+				<div class="col-sm-12 col-md-3">
 					<div class="search"> 
 						<form action="">
 							<input type="text" placeholder="Bạn cần tìm hôm nay?">
@@ -52,7 +52,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-2">
+				<div class="col-sm-12 col-md-1">
 					<button><span>Xóa bộ lọc</span></button>
 				</div>
 			</div>
