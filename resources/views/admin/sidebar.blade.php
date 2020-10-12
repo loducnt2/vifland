@@ -1,12 +1,10 @@
-<<<<<<< HEAD
+
 {{-- <link rel="stylesheet" href="{{asset('../css/admin-styles.css') }}"> --}}
     <link href="../css/admin_styles.css" rel="stylesheet" />
-
-=======
 <link rel="stylesheet" href="{{asset('css/styles.css') }}">
     <link href="css/admin_styles.css" rel="stylesheet" />
     <link href="css/update-admin.css" rel="stylesheet" />
->>>>>>> 74cf5dd77d84dc5248bf29a989db046a18a590a8
+
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     @yield('title')
