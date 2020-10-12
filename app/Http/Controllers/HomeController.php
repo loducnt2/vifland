@@ -43,6 +43,8 @@ class HomeController extends Controller
         ->leftJoin('district','product.district_id','district.id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
+        ->where('datetime_start','<',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->select(
             'product.id as product_id',
             'product.slug as slug',
@@ -72,6 +74,8 @@ class HomeController extends Controller
         ->leftJoin('district','product.district_id','district.id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
+        ->where('datetime_start','<',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->select(
             'product.id as product_id',
             'product.slug as slug',
@@ -101,6 +105,8 @@ class HomeController extends Controller
         ->leftJoin('district','product.district_id','district.id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
+        ->where('datetime_start','<',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->select(
             'product.id as product_id',
             'product.slug as slug',

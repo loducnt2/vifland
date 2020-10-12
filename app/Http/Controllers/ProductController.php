@@ -203,8 +203,9 @@ class ProductController extends Controller
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
+        $title          = 'Mua Bán Nhà Đất';
 
-        return view('pages/category',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend','title'));
     }
 
     public function getByCateSlug2(){
@@ -212,8 +213,9 @@ class ProductController extends Controller
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
+        $title          = 'Cho Thuê Nhà Đất';
 
-        return view('pages/category',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend','title'));
     }
 
     public function getByCateSlug3(){
@@ -221,21 +223,39 @@ class ProductController extends Controller
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
+        $title          = 'Sang Nhượng Nhà Đất';
 
-        return view('pages/category',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend','title'));
     }
 
     public function getDetailByCate1($slug){
-        $product = Product::where('slug',$slug)->first();
-        return $product;
+        $product = Product::where('slug',$slug)
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.product_unit','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->leftJoin('ward','product.ward_id','ward.id')
+        ->select(
+            'product_extend.*',
+            'province.name as province',
+            'district.name as district',
+            'ward.name as ward',
+            'product_unit.name as unit'
+        )
+        ->first();
+        $acreage = intval($product->depth)*intval($product->facades);
+        $product->update(['view'=> $product->view + 1 ]);
+        return view('pages/article/article',compact('product','acreage'));
     }
     public function getDetailByCate2($slug){
         $product = Product::where('slug',$slug)->first();
-        return $product;
+        $product->update(['view'=> $product->view + 1 ]);
+        return view('pages/article/article',compact('product'));
     }
     public function getDetailByCate3($slug){
         $product = Product::where('slug',$slug)->first();
-        return $product;
+        $product->update(['view'=> $product->view + 1 ]);
+        return view('pages/article/article',compact('product'));
     }
 
 

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Sản phẩm')
+@section('title',$product->title)
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
  @stop
@@ -26,7 +26,7 @@
 					<section class="sanpham-s1">
 						<div class="sec-1">
 							<div class="sec-1-box">
-								<div class="avatar"> <img src="./assets/icon/avatar.png" alt=""></div>
+								<div class="avatar"> <img src="{{asset('assets/icon/avatar.png')}}" alt=""></div>
 								<div class="content"> 
 									<div class="content-1">
 										<div class="name"> 
@@ -63,19 +63,19 @@
 									<div class="line-text">
 										<p class="section-content">Tỉnh/Thành Phố</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active">Cần bán</p>
+										<p class="section-content active">{{$product->province}}</p>
 									</div>
 									<div class="line-text">
 										<p class="section-content">Quận/Huyện</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active">Cần bán</p>
+										<p class="section-content active">{{$product->district}}</p>
 									</div>
 									<div class="line-text">
 										<p class="section-content">Phường/Xã</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active">Cần bán</p>
+										<p class="section-content active">{{$product->ward}}</p>
 									</div>
-									<div class="line-text">
+									<!-- <div class="line-text">
 										<p class="section-content">Đường, Phố </p>
 										<div class="dashed-line"> </div>
 										<p class="section-content active">Cần bán</p>
@@ -84,7 +84,7 @@
 										<p class="section-content">Dự Án</p>
 										<div class="dashed-line"> </div>
 										<p class="section-content active">Cần bán</p>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -100,17 +100,17 @@
 									<div class="line-text">
 										<p class="section-content">Mặt Tiền</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active"> </p>
+										<p class="section-content active">{{$product->facades}} m</p>
 									</div>
 									<div class="line-text">
 										<p class="section-content">Chiều Sâu</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active"> </p>
+										<p class="section-content active">{{$product->depth}} m</p>
 									</div>
 									<div class="line-text">
 										<p class="section-content">Diện Tích </p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active"> </p>
+										<p class="section-content active">{{$acreage}} m²</p>
 									</div>
 									<div class="line-text">
 										<p class="section-content">Tổng Giá</p>
@@ -135,7 +135,7 @@
 									<div class="line-text">
 										<p class="section-content">Đơn Giá</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active">Cần bán</p>
+										<p class="section-content active">{{$produc->unit}}</p>
 									</div>
 								</div>
 							</div>
@@ -186,22 +186,22 @@
 								<div class="tag-thuongluong">Thương lượng</div>
 								<div class="swiper-wrapper">
 									<div class="swiper-slide"> 
-										<div class="img-box"><img src="./assets/san_pham/slide.png" alt=""></div>
+										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
 									</div>
 									<div class="swiper-slide"> 
-										<div class="img-box"><img src="./assets/san_pham/slide.png" alt=""></div>
+										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
 									</div>
 									<div class="swiper-slide"> 
-										<div class="img-box"><img src="./assets/san_pham/slide.png" alt=""></div>
+										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
 									</div>
 									<div class="swiper-slide"> 
-										<div class="img-box"><img src="./assets/san_pham/slide.png" alt=""></div>
+										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
 									</div>
 									<div class="swiper-slide"> 
-										<div class="img-box"><img src="./assets/san_pham/slide.png" alt=""></div>
+										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
 									</div>
 									<div class="swiper-slide"> 
-										<div class="img-box"><img src="./assets/san_pham/slide.png" alt=""></div>
+										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
 									</div>
 								</div>
 								<div class="swiper-pagination"></div>
@@ -212,13 +212,13 @@
 							</div>
 						</div>
 						<div class="content">
-							<h1 class="section-under-title text-uppercase">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 </h1>
+							<h1 class="section-under-title text-uppercase">{{$product->title}}</h1>
 							<div class="info"> 
 								<div class="cover"> <span class="material-icons">calendar_today </span>
-									<p>29/09/2020 </p>
+									<p>{{date('d-m-Y',strtotime($product->datetime_start))}}</p>
 								</div>
 								<div class="cover"> <span class="material-icons">visibility </span>
-									<p>999</p>
+									<p>{{$product->view}}</p>
 								</div>
 								<div class="cover"> <span class="material-icons">loyalty </span>
 									<p>Nhà môi giới</p>
@@ -228,19 +228,7 @@
 								<div class="title">
 									<h2>mô tả</h2>
 								</div>
-								<p>Tên phân khu: River Park 1 </p>
-								<p>Vị trí: Long Hưng, Biên Hòa, Đồng Nai </p>
-								<p>Nhà phát triển dự án: Novaland.</p>
-								<p>Diện tích phân khu: 27 ha </p>
-								<p>Cơ sở pháp lý: Sở hữu lâu dài </p><br>
-								<p>Loại hình và sản phẩm: Shophouse, Nhà phố, Biệt thự view sông</p>
-								<p>- Nhà phố sinh thái chỉ 6-7 tỷ/căn</p>
-								<p>- Biệt thự song lập chỉ 9-12 tỷ/căn</p>
-								<p>- Villas đơn lập chỉ 13-18 tỷ/căn</p>
-								<p>- Shophouse từ 10,8 tỷ/căn</p><br>
-								<p>PHÒNG KINH DOANH CHỦ ĐẦU TƯ</p>
-								<p>0902.788.185 </p>
-								<p>danghung.grandmanhattan@gmail.com</p>
+								{{$product->content}}
 							</div>
 							<div class="share"> 
 								<button class="btn btn-share"> 
@@ -275,14 +263,14 @@
 			</div>
 			<section class="sanpham-s-3" id="contact">
 				<h2 class="section-under-title text-uppercase">các bài đăng liên quan 
-					<div class="article-none"> <img src="./assets/san_pham/no-documents.png" alt="">
+					<!-- <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
 						<p>Không có bài đăng nào.</p>
-					</div>
+					</div> -->
 					<div class="article-wrapper swiper-container"> 
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
 								<div class="box-sp">
-									<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 										<div class="tag-thuongluong">Thương lượng</div>
 										<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 										<div class="overlay"></div>
@@ -294,9 +282,9 @@
 										</div>
 										<div class="mota-place">
 											<div class="mota-place-1">
-												<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-												<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-												<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
 											</div>
 										</div>
 										<div class="end-mota"> 
@@ -311,7 +299,7 @@
 							</div>
 							<div class="swiper-slide">
 								<div class="box-sp">
-									<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 										<div class="tag-thuongluong">Thương lượng</div>
 										<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 										<div class="overlay"></div>
@@ -323,9 +311,9 @@
 										</div>
 										<div class="mota-place">
 											<div class="mota-place-1">
-												<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-												<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-												<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
 											</div>
 										</div>
 										<div class="end-mota"> 
@@ -340,7 +328,7 @@
 							</div>
 							<div class="swiper-slide">
 								<div class="box-sp">
-									<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 										<div class="tag-thuongluong">Thương lượng</div>
 										<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 										<div class="overlay"></div>
@@ -352,9 +340,9 @@
 										</div>
 										<div class="mota-place">
 											<div class="mota-place-1">
-												<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-												<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-												<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
 											</div>
 										</div>
 										<div class="end-mota"> 
@@ -369,7 +357,7 @@
 							</div>
 							<div class="swiper-slide">
 								<div class="box-sp">
-									<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 										<div class="tag-thuongluong">Thương lượng</div>
 										<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 										<div class="overlay"></div>
@@ -381,9 +369,9 @@
 										</div>
 										<div class="mota-place">
 											<div class="mota-place-1">
-												<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
-												<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-												<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">27 m²</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+												<div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">10 m</span></div>
 											</div>
 										</div>
 										<div class="end-mota"> 
