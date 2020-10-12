@@ -17,14 +17,14 @@
 	<section class="danhmuc">
 		<div class="max-width-container">
 			<div class="row bo-loc-1">
-				<div class="col-sm-12 col-md-3">
+				<div class="col-sm-12 col-md-2">
 					<div class="search"> 
 						<form action="">
 							<input type="text" placeholder="Bạn cần tìm hôm nay?">
 						</form>
 					</div>
 				</div>
-				<div class="col-md-8 col-sm-12">
+				<div class="col-lg-8 col-sm-12 col-md-12">
 					<div class="row">
 						<div class="col-md-4 col-sm-12">
 							<div class="form-group-sl1 sl-1 select-many">
@@ -52,7 +52,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 col-md-1">
+				<div class="col-sm-12 col-md-12 col-lg-2">
 					<button><span>Xóa bộ lọc</span></button>
 				</div>
 			</div>

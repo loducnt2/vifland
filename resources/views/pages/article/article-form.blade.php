@@ -249,6 +249,7 @@
 									<label class="vip3" for="vip3">Tin VIP 3</label>
 								</div>
 							</div>
+							<div class="wrap-vip-mobile"></div>
 						</div>
 						<div class="col-12">
 							<div class="wrap-moTaVip">
