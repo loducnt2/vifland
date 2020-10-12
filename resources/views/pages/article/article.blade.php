@@ -113,10 +113,15 @@
 										<p class="section-content active">{{$acreage}} m²</p>
 									</div>
 									<div class="line-text">
+										<p class="section-content">Đơn Giá</p>
+										<div class="dashed-line"> </div>
+										<p class="section-content active">{{$product->price}} {{$product->unit}}</p>
+									</div>
+									<!-- <div class="line-text">
 										<p class="section-content">Tổng Giá</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active">Thương lượng</p>
-									</div>
+										<p class="section-content active"></p>
+									</div> -->
 									<div class="line-text">
 										<p class="section-content">Hướng</p>
 										<div class="dashed-line"> </div>
@@ -132,11 +137,7 @@
 										<div class="dashed-line"> </div>
 										<p class="section-content active">Nhà liền kề - Song lập - Đơn lập, Biệt thự - Song lập - Đơn lập, Đất - Đất nền - Nhà như đất</p>
 									</div>
-									<div class="line-text">
-										<p class="section-content">Đơn Giá</p>
-										<div class="dashed-line"> </div>
-										<p class="section-content active">{{$produc->unit}}</p>
-									</div>
+									
 								</div>
 							</div>
 						</div>

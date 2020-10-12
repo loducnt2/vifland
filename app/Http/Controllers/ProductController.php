@@ -231,7 +231,7 @@ class ProductController extends Controller
     public function getDetailByCate1($slug){
         $product = Product::where('slug',$slug)
         ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('product_unit','product_extend.product_unit','product_unit.id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->leftJoin('ward','product.ward_id','ward.id')
@@ -244,8 +244,10 @@ class ProductController extends Controller
         )
         ->first();
         $acreage = intval($product->depth)*intval($product->facades);
+        $total   = intval($product->price)*$acreage; 
         $product->update(['view'=> $product->view + 1 ]);
-        return view('pages/article/article',compact('product','acreage'));
+        //return $total;
+        return view('pages/article/article',compact('product','acreage','total'));
     }
     public function getDetailByCate2($slug){
         $product = Product::where('slug',$slug)->first();
