@@ -16,7 +16,7 @@ class CategoryController extends Controller
     {
         $cate_level1 = Category::orderBy('id','asc')->where('parent_id',NULL)->get();
         $cates = Category::orderBy('id','asc')->get();
-        return view('/test/cate/home',compact('cates','cate_level1'));
+        return view('/admin/danhmuc/danhsachdanhmuc',compact('cates','cate_level1'));
     }
 
     /**
@@ -46,7 +46,7 @@ class CategoryController extends Controller
             'parent_id' => $req->parent_id,
         ]);
         $cate->save();
-        return redirect('/test/cate/home'); 
+        return redirect('/admin/danhmuc/danhsachdanhmuc'); 
     }
 
     /**
@@ -90,7 +90,7 @@ class CategoryController extends Controller
         $cate->orders    = $req->orders;
         $cate->parent_id = $req->parent_id;
         $cate->update();
-        return redirect('/test/cate/home');
+        return redirect('/admin/danhmuc/danhsachdanhmuc');
     }
 
     /**
@@ -103,6 +103,6 @@ class CategoryController extends Controller
     {
         $cate = Category::find($id);
         $cate->delete();
-        return redirect('/test/cate/home');
+        return redirect('/admin/danhmuc/danhsachdanhmuc');
     }
 }
