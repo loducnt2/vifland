@@ -42,7 +42,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
 	Route::post('/article/new/store','ProductController@store')->name('article-store');   // Đăng tin
 	Route::get('/user/my-article','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
-	
+
 	//Profile
 	Route::get('/user/profile/{id}','UserController@edit')->name('');
 	//Update profile
@@ -118,9 +118,15 @@ Route::post('/dang-tin/store','ProductController@store')->name('dang-tin');
 
 
 // login admin
-Route::get('/admin-marvel',function(){
+Route::get('/admin',function(){
     return view('admin/index');
 }); // Trang admin
 // ================= hồ sơ ==================
 
 // update thông tin hồ sơ cá nhân
+// Route admin - user
+Route::get('admin/list-user','UserController@index');
+// route admin- sản phẩm
+Route::get('/admin/list-product',function(){
+    return view('admin/sanpham/danhsachsanpham');
+});

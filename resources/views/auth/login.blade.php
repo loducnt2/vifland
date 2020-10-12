@@ -38,7 +38,7 @@
                             <div class="form-group-input">
                                 <div class="box-left-se"><span class="material-icons">lock</span></div>
                                 <div class="box-mid-se">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Mật khẩu">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Mật khẩu" >
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="box-right-se"><span class="material-icons">visibility</span></div>
+                                <div class="box-right-se"><span class="material-icons" onclick="showpass();">visibility</span></div>
                             </div>
                             <div class="qmk-f">
                                 @if (Route::has('password.request'))
@@ -59,9 +59,9 @@
                             </div>
                             <p class="logindef">Hoặc đăng nhập bằng</p>
                             <div class="button-loginSocial"><a href=""><img src="./assets/icon/gmail.svg" alt="">
-                                    <p>Đăng nhập bằng Gmail</p></a></div>
+                                    <p class="m-0">Đăng nhập bằng Gmail</p></a></div>
                             <div class="button-loginSocial"><a href=""><img src="./assets/icon/facebook.svg" alt="">
-                                    <p>Đăng nhập bằng Facebook</p></a></div>
+                                    <p class="m-0">Đăng nhập bằng Facebook</p></a></div>
                         </div>
                     </div>
                 </form>

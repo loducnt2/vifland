@@ -1,3 +1,12 @@
 .danhmuc .search form {
     width: 100%;
 }
+.article-none {
+    width: 100%;
+}
+.user-mobile {
+    right: -120%;
+}
+.menu-mobile {
+    left: -120%;
+}
