@@ -21,7 +21,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	</head>
 	<body> 
-		<!-- @include('layouts.logo_animation') -->
+		@include('layouts.logo_animation')
 		<div class="ov-h" id="wrapper">
 			@include('layouts.topbar')
 			@yield('content')
