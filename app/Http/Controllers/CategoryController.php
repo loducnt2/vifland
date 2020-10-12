@@ -70,7 +70,7 @@ class CategoryController extends Controller
     {
         $cate = Category::find($id);
         $cate_level1 = Category::orderBy('id','asc')->where('parent_id',NULL)->get();
-        return view('/test/cate/edit',compact('cate','cate_level1'));
+        return view('/admin/danhmuc/danhsachdanhmuc',compact('cate','cate_level1'));
     }
 
     /**

@@ -1,9 +1,6 @@
-
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
-    {{-- <link href="{{asset('../css/admin_styles.css')}}" rel="stylesheet" /> --}}
-{{-- <link rel="stylesheet" href="../../css/profile.css"> --}}
-<link rel="stylesheet" href="{{asset('css/profile.css') }}">
-
+<link rel="stylesheet" href="{{asset('css/styles.css') }}">
+    <link href="css/update-admin.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     @yield('title')
@@ -85,8 +82,8 @@
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-                                    <a class="nav-link" href="{{ url('admin/danh-muc/cap-nhat-danh-muc') }}">Cập nhật danh mục</a>
-                                    <a class="nav-link" href="{{ url('admin/danh-muc/danh-sach-danh-muc') }}">Danh sách danh mục</a>
+                                    <a class="nav-link" href="{{ url('admin/cap-nhat-danh-muc') }}">Cập nhật danh mục</a>
+                                    <a class="nav-link" href="{{ url('admin/danh-sach-danh-muc') }}">Danh sách danh mục</a>
 
                                       </nav>
                             </div>

@@ -105,11 +105,11 @@ Route::get('/test/product-cate/delete/{id}','ProductCateController@destroy')->na
 Route::get('/test/product-cate/edit/{id}','ProductCateController@edit')->name('edit-product-cate');
 Route::get('/test/product-cate/home','ProductCateController@index');
 
-Route::post('/test/category/create','CategoryController@store')->name('create-cate');
-Route::post('/test/category/update/{id}','CategoryController@update')->name('update-cate');
-Route::get('/test/category/delete/{id}','CategoryController@destroy')->name('delete-cate');
-Route::get('/test/cate/edit/{id}','CategoryController@edit')->name('edit-cate');
-Route::get('/test/cate/home','CategoryController@index');
+Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
+Route::post('/admin/danh-sach-danh-muc/update/{id}','CategoryController@update')->name('update-cate');
+Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');
+Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');
+Route::get('/admin/danh-sach-danh-muc','CategoryController@index');
 
 
 
