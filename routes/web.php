@@ -126,6 +126,7 @@ Route::get('/admin',function(){
 // update thông tin hồ sơ cá nhân
 // Route admin - user
 Route::get('admin/list-user','UserController@index');
+Route::get('admin/user-profile/{id}','UserController@profileDetail');
 // route admin- sản phẩm
 Route::get('/admin/list-product',function(){
     return view('admin/sanpham/danhsachsanpham');
