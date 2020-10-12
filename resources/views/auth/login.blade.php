@@ -38,7 +38,7 @@
                             <div class="form-group-input">
                                 <div class="box-left-se"><span class="material-icons">lock</span></div>
                                 <div class="box-mid-se">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Mật khẩu">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder="Mật khẩu" >
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="box-right-se"><span class="material-icons">visibility</span></div>
+                                <div class="box-right-se"><span class="material-icons" onclick="showpass();">visibility</span></div>
                             </div>
                             <div class="qmk-f">
                                 @if (Route::has('password.request'))

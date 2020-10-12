@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Danh sách người dùng</title>
+    <title>Cập nhật danh mục</title>
 </head>
 <body>
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
     @section('content')
-Danh sách người dùng
+    Cập nhật danh mục
     @endsection
 </body>
 </html>

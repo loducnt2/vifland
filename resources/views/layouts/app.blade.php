@@ -29,4 +29,19 @@
         <script type="text/javascript" src="./js/core.min.js"></script>
         <script type="text/javascript" src="./js/main.min.js"></script>
     </body>
-</html>
+    <script>
+        function showpass(){
+           var password  = document.getElementById('password');
+           if(password.type == "password")
+            {
+                password.type="text"
+            }
+            else{
+                password.type="password";
+            }
+        }
+    </script>
+
+
+    </html>
+

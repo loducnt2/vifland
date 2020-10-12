@@ -43,19 +43,19 @@ class LoginController extends Controller
     {
         return 'username';
     }
+    // login authenication
+
+    // end login
     public function authenticated(Request $request, $user)
     {
-        $this->validate($request,[
-            'username'=>['required','min:1','max:10'],
-            'password'=>['required','min:1','max:10'],
-        ]);
+
 
         $user = Auth::user();
         $user->update([
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
         ]);
         if ($user->user_type == 1) {
-            return redirect('/admin-marvel');
+            return redirect('/admin');
         }
         if ($user->user_type == 0 ) {
             return redirect('/');

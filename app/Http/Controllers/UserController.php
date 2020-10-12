@@ -14,8 +14,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-
+        //get list all user
+        // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
+        $users =User::get();
+        return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
     /**
      * Show the form for creating a new resource.
