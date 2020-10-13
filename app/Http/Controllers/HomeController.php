@@ -29,6 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        //Product::where( 'datetime_end','<', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
         $filter_price = FilterPrice::orderBy('id','asc')->get();
         $product_cate = ProductCate::orderBy('id','desc')->get();
         $province = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
@@ -43,7 +44,7 @@ class HomeController extends Controller
         ->leftJoin('district','product.district_id','district.id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
-        ->where('datetime_start','<',date('Y-m-d',strtotime('now')))
+        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->select(
             'product.id as product_id',
@@ -51,6 +52,8 @@ class HomeController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
             'product_extend.address',
             'product_extend.price',
             'product_extend.product_cate',
@@ -74,7 +77,7 @@ class HomeController extends Controller
         ->leftJoin('district','product.district_id','district.id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
-        ->where('datetime_start','<',date('Y-m-d',strtotime('now')))
+        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->select(
             'product.id as product_id',
@@ -82,6 +85,8 @@ class HomeController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
             'product_extend.address',
             'product_extend.price',
             'product_extend.product_cate',
@@ -105,7 +110,7 @@ class HomeController extends Controller
         ->leftJoin('district','product.district_id','district.id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
-        ->where('datetime_start','<',date('Y-m-d',strtotime('now')))
+        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->select(
             'product.id as product_id',
@@ -113,6 +118,8 @@ class HomeController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
             'product_extend.address',
             'product_extend.price',
             'product_extend.product_cate',
@@ -127,7 +134,9 @@ class HomeController extends Controller
         ->limit(5)
         ->get();
 
-        //return $product_by_cate1;
+        Product::where( 'datetime_end','<', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
+        
+        //return $product_by_cate1->datetime_end;
 
         return view('/pages/home',compact(
             'categories',

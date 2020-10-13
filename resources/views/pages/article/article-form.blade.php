@@ -98,10 +98,10 @@
 											<label for="thanhpho">Chiều sâu</label>
 											<input type="number" min="0" name="depth">
 										</div>
-										<div class="form-group-sl1 sl-1 select-many">
+										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Diện tích</label>
 											<input type="number" min="0" name="acreage">
-										</div>
+										</div> -->
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đơn vị </label>
 											<select class="select1" name="unit_id"  id="unit">

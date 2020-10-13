@@ -186,7 +186,9 @@
 															<div class="row">
 																<div class="col-3">
 																	<div class="img"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""><img class="iconVip" src="{{asset('assets/tinvip/subscription-normal.svg')}}" alt="">
-																		<!-- <div class="tag">Thương lượng</div> -->
+																		@if($product->datetime_end < date('Y-m-d',strtotime('now')) )
+																		<div style="background-color:rgb(231,13,13,0.8)" class="tag">Hết hạn</div>
+																		@endif
 																	</div>
 																</div>
 																<div class="col-9">

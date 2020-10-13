@@ -237,27 +237,77 @@ class ProductController extends Controller
         ->leftJoin('ward','product.ward_id','ward.id')
         ->select(
             'product_extend.*',
+            'product.*',
+            'product_extend.id as productex_id',
             'province.name as province',
             'district.name as district',
             'ward.name as ward',
             'product_unit.name as unit'
         )
         ->first();
+
+        $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
+        ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
+
         $acreage = intval($product->depth)*intval($product->facades);
         $total   = intval($product->price)*$acreage; 
         $product->update(['view'=> $product->view + 1 ]);
+        $cate    = Category::where('id',$product->cate_id)->value('name');
         //return $total;
-        return view('pages/article/article',compact('product','acreage','total'));
+        return view('pages/article/article',compact('product','acreage','total','product_cate','category','cate'));
     }
     public function getDetailByCate2($slug){
-        $product = Product::where('slug',$slug)->first();
+        $product = Product::where('slug',$slug)
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->leftJoin('ward','product.ward_id','ward.id')
+        ->select(
+            'product_extend.*',
+            'product.*',
+            'product_extend.id as productex_id',
+            'province.name as province',
+            'district.name as district',
+            'ward.name as ward',
+            'product_unit.name as unit'
+        )
+        ->first();
+        $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
+        ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
+
+        $acreage = intval($product->depth)*intval($product->facades);
+        $total   = intval($product->price)*$acreage; 
         $product->update(['view'=> $product->view + 1 ]);
-        return view('pages/article/article',compact('product'));
+        $cate    = Category::where('id',$product->cate_id)->value('name');
+        return view('pages/article/article',compact('product','acreage','total','product_cate','cate'));
     }
     public function getDetailByCate3($slug){
-        $product = Product::where('slug',$slug)->first();
+        $product = Product::where('slug',$slug)
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->leftJoin('ward','product.ward_id','ward.id')
+        ->select(
+            'product_extend.*',
+            'product.*',
+            'product_extend.id as productex_id',
+            'province.name as province',
+            'district.name as district',
+            'ward.name as ward',
+            'product_unit.name as unit'
+        )
+        ->first();
+
+        $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
+        ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
+
+        $acreage = intval($product->depth)*intval($product->facades);
+        $total   = intval($product->price)*$acreage; 
         $product->update(['view'=> $product->view + 1 ]);
-        return view('pages/article/article',compact('product'));
+        $cate    = Category::where('id',$product->cate_id)->value('name');
+        return view('pages/article/article',compact('product','acreage','total','product_cate','cate'));
     }
 
 
@@ -273,6 +323,7 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->orderBy('datetime_start','desc')
         ->get();
 
         //Tin đã đăng
@@ -281,6 +332,7 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->orderBy('datetime_start','desc')
         ->get();
 
         //Tin chờ xác nhận
@@ -289,6 +341,7 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->orderBy('datetime_start','desc')
         ->get();
 
 

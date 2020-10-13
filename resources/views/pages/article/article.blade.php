@@ -30,7 +30,7 @@
 								<div class="content"> 
 									<div class="content-1">
 										<div class="name"> 
-											<p class="section-content">Thị Nở </p>
+											<p class="section-content">{{$product->name_contact}}</p>
 										</div>
 										<div class="host"> 
 											<p class="section-content">Nhà môi giới</p>
@@ -40,7 +40,7 @@
 										<div class="vertical-line"></div>
 									</div>
 									<div class="content-3">
-										<p> <span class="material-icons">call </span>0969999999</p>
+										<p> <span class="material-icons">call </span>{{$product->phone_contact}}</p>
 										<p> <span class="material-icons">chat </span>Gửi tin nhắn	</p>
 									</div>
 								</div>
@@ -52,7 +52,7 @@
 								<div class="sec-2-content"> 
 									<p class="section-content">Nhu Cầu </p>
 									<div class="dashed-line"> </div>
-									<p class="section-content active">Cần bán</p>
+									<p class="section-content active">{{$cate}}</p>
 								</div>
 							</div>
 						</div>
@@ -92,11 +92,11 @@
 							<div class="sec-3-box"> 
 								<h2 class="section-content text-uppercase">THÔNG TIN BĐS</h2>
 								<div class="sec-3-content"> 
-									<div class="line-text">
+									<!-- <div class="line-text">
 										<p class="section-content">Loại hình</p>
 										<div class="dashed-line"> </div>
 										<p class="section-content active">Dự án bất động sản</p>
-									</div>
+									</div> -->
 									<div class="line-text">
 										<p class="section-content">Mặt Tiền</p>
 										<div class="dashed-line"> </div>
@@ -122,7 +122,7 @@
 										<div class="dashed-line"> </div>
 										<p class="section-content active"></p>
 									</div> -->
-									<div class="line-text">
+									<!-- <div class="line-text">
 										<p class="section-content">Hướng</p>
 										<div class="dashed-line"> </div>
 										<p class="section-content active"> </p>
@@ -131,11 +131,15 @@
 										<p class="section-content">Đường Rộng</p>
 										<div class="dashed-line"> </div>
 										<p class="section-content active"> </p>
-									</div>
+									</div> -->	
 									<div class="line-text">
 										<p class="section-content">Loại Nhà Đất</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active">Nhà liền kề - Song lập - Đơn lập, Biệt thự - Song lập - Đơn lập, Đất - Đất nền - Nhà như đất</p>
+										<p class="section-content active">
+										@foreach($product_cate as $cate)
+											{{$cate->name}},
+										@endforeach
+										</p>
 									</div>
 									
 								</div>
@@ -148,19 +152,19 @@
 									<div class="line-text">
 										<p class="section-content">Số Tầng</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active"> 04</p>
+										<p class="section-content active">{{$product->floor}}</p>
 									</div>
 									<div class="line-text">
 										<p class="section-content">Số Phòng Ngủ</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active"> </p>
+										<p class="section-content active">{{$product->bedroom}}</p>
 									</div>
 									<div class="line-text">
 										<p class="section-content">Giấy Tờ Pháp Lý</p>
 										<div class="dashed-line"> </div>
-										<p class="section-content active"> Giấy CN QSDĐ - Sổ đỏ - Sổ hồng</p>
+										<p class="section-content active">{{$product->legal}}</p>
 									</div>
-									<div class="line-text">
+									<!-- <div class="line-text">
 										<p class="section-content">Mức Độ Giao Dịch</p>
 										<div class="dashed-line"> </div>
 										<p class="section-content active"> </p>
@@ -174,7 +178,7 @@
 										<p class="section-content">Tiền Hoa Hồng</p>
 										<div class="dashed-line"> </div>
 										<p class="section-content active"> </p>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -245,16 +249,16 @@
 								</div>
 								<div class="row">
 									<div class="col-sm-6 content"><span class="material-icons">account_circle </span>
-										<p>Đăng Hưng </p>
+										<p>{{$product->name_contact}}</p>
 									</div>
 									<div class="col-sm-6 content"><span class="material-icons">call</span>
-										<p>0902788185</p>
+										<p>{{$product->phone_contact}}</p>
 									</div>
 									<div class="col-sm-6 content"><span class="material-icons">room</span>
-										<p>Long Hưng, Biên Hòa, Đồng Nai</p>
+										<p>{{$product->address_contact}}</p>
 									</div>
 									<div class="col-sm-6 content"><span class="material-icons">email</span>
-										<p>danghung.grandmanhattan@gmail.com </p>
+										<p>{{$product->email}}</p>
 									</div>
 								</div>
 							</div>
