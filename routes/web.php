@@ -37,7 +37,8 @@ Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->
 
 Route::group(['middleware'=>'auth'],function(){
 
-	Route::get('/favourites',function(){return view('pages/favourites');});				  // Yêu thích
+	Route::get('/favourites','ProductController@productUserFavorite');				  // Yêu thích
+	Route::get('/history','ProductController@productUserHistory');					  // Lịch sử xem tin
 
 	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
 	Route::post('/article/new/store','ProductController@store')->name('article-store');   // Đăng tin
@@ -50,6 +51,7 @@ Route::group(['middleware'=>'auth'],function(){
 
 
 });
+Route::post('add-favorited','ProductController@addFavorite')->name('add-favorite');
 
 // Đăng kí
 Route::post('/create-user','Auth\RegisterController@create')->name('createUser');

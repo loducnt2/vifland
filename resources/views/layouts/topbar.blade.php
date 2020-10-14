@@ -55,9 +55,11 @@
 								<p class="text">So sánh</p>
 							</li>
 						</a>
-						<li class="nav-item"><i class="ri-time-line icon"></i>
-							<p class="text">Lịch sử</p>
-						</li>
+						<a href="/history">
+							<li class="nav-item"><i class="ri-time-line icon"></i>
+								<p class="text">Lịch sử</p>
+							</li>	
+						</a>
 						<li class="nav-item"><i class="fas fa-bell icon"></i>
 							<p class="text">Thông báo</p>
 						</li>

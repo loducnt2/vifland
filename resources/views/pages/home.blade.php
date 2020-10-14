@@ -209,13 +209,13 @@
 					@foreach($product_by_cate1 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
-							<div class="box-sp-img"><a href="{{route('article-detail-1',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-1',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text"> 
-								<a href="{{route('article-detail-1',$product->slug)}}">
+								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-1',$product->slug)}}">
 									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
 								</a>
 								<div class="location"> <span class="material-icons">location_on</span>
@@ -272,13 +272,13 @@
 					@foreach($product_by_cate2 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
-							<div class="box-sp-img"><a href="{{route('article-detail-2',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-2',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text">
-								<a href="{{route('article-detail-2',$product->slug)}}">
+								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-2',$product->slug)}}">
 									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
 								</a>
 								<div class="location"> <span class="material-icons">location_on</span>
@@ -335,21 +335,21 @@
 					@foreach($product_by_cate3 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
-							<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-3',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
-							<div class="box-sp-text"> <a href="">
+							<div class="box-sp-text"> <a  class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-3',$product->slug)}}">
 									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
 								<div class="location"> <span class="material-icons">location_on</span>
 									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
 								</div>
 								<div class="mota-place">
 									<div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }} m²</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }} m²</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+										<div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
 									</div>
 									<!-- <div class="mota-place-1">
 										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
@@ -383,4 +383,43 @@
 @stop
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
+<script>
+	$(document).ready(function(){
+		$('.fav').each(function(){
+			$(this).click(function(){
+				var productid = $(this).attr('productid');
+				/*alert(productid);
+				$(this).css('background-color','red');*/
+				$.ajax({
+					url : '{{ route("add-favorite") }}',
+
+					type: 'POST',
+					data: { 
+						productId : productid,
+						_token: "{{ csrf_token() }}"
+					},
+					success: function(data,status){
+						console.log(data)
+						console.log(status);
+						//Chưa đăng nhập
+						if(data == 0){
+							alert('Vui lòng đăng nhập để sử dụng tính năng này');
+						}
+						
+						if(data == 1){
+							//Thích sản phẩm, icon đỏ
+						}
+						
+						if(data == 2){
+							//Bỏ thích sản phẩm, icon bình thường lại
+						}
+					}
+				})
+				return false;
+			})
+		})
+		
+		 
+	})
+</script>
 @endsection

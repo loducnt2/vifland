@@ -15,6 +15,7 @@ use App\Models\ProductImg;
 use App\Models\PostHistory;
 use App\Models\FilterPrice;
 use App\Models\TypeProduct;
+use App\Models\Favorited;
 use Str;
 class ProductController extends Controller
 {
@@ -238,6 +239,7 @@ class ProductController extends Controller
         ->select(
             'product_extend.*',
             'product.*',
+            'product.id as product_id',
             'product_extend.id as productex_id',
             'province.name as province',
             'district.name as district',
@@ -253,7 +255,16 @@ class ProductController extends Controller
         $total   = intval($product->price)*$acreage; 
         $product->update(['view'=> $product->view + 1 ]);
         $cate    = Category::where('id',$product->cate_id)->value('name');
-        //return $total;
+
+        $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
+        if( count($histories) == 0 ){
+            $history = Favorited::create([
+                'user_id'       => auth()->user()->id,
+                'product_extend_id' => $product->product_id,
+                'type'       => 1,
+            ]);
+        }
+
         return view('pages/article/article',compact('product','acreage','total','product_cate','category','cate'));
     }
     public function getDetailByCate2($slug){
@@ -280,6 +291,17 @@ class ProductController extends Controller
         $total   = intval($product->price)*$acreage; 
         $product->update(['view'=> $product->view + 1 ]);
         $cate    = Category::where('id',$product->cate_id)->value('name');
+
+        $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
+        if( count($histories) == 0 ){
+            $history = Favorited::create([
+                'user_id'       => auth()->user()->id,
+                'product_extend_id' => $product->product_id,
+                'type'       => 1,
+            ]);
+        }
+       
+
         return view('pages/article/article',compact('product','acreage','total','product_cate','cate'));
     }
     public function getDetailByCate3($slug){
@@ -307,6 +329,17 @@ class ProductController extends Controller
         $total   = intval($product->price)*$acreage; 
         $product->update(['view'=> $product->view + 1 ]);
         $cate    = Category::where('id',$product->cate_id)->value('name');
+
+        $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
+        if( count($histories) == 0 ){
+            $history = Favorited::create([
+                'user_id'       => auth()->user()->id,
+                'product_extend_id' => $product->product_id,
+                'type'       => 1,
+            ]);
+        }
+        
+
         return view('pages/article/article',compact('product','acreage','total','product_cate','cate'));
     }
 
@@ -348,5 +381,71 @@ class ProductController extends Controller
         //return $product_wait;
 
         return view('pages/article/article-manage-user',compact('product_wait1','product_posted','product_wait2'));
+    }
+
+    public function productUserHistory(){
+        $products = Favorited::where('favorited.type',1)
+        ->where('user_id',auth()->user()->id)
+        ->leftJoin('product','favorited.product_extend_id','product.id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->where('product.datetime_end','>',date('Y-m-d H:i:s',strtotime('now')))
+        ->select(
+            'product.*',
+            'product_unit.name as unit',
+            'product.title as title',
+            'product_extend.price as price',
+            'product_extend.facades as facades',
+            'product_extend.depth as depth'
+        )
+        ->get();
+
+        return view('pages/history',compact('products'));
+    }
+
+    public function productUserFavorite(){
+        $products = Favorited::where('favorited.type',2)
+        ->where('user_id',auth()->user()->id)
+        ->leftJoin('product','favorited.product_extend_id','product.id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->where('product.datetime_end','>',date('Y-m-d H:i:s',strtotime('now')))
+        ->select(
+            'product.*',
+            'product_unit.name as unit',
+            'product.title as title',
+            'product_extend.price as price',
+            'product_extend.facades as facades',
+            'product_extend.depth as depth'
+        )
+        ->get();
+
+        return view('pages/favourites',compact('products'));
+    }
+
+    public function addFavorite(Request $request){
+        if( auth()->check() ){
+            $product = Favorited::where('favorited.type',2)
+            ->where('favorited.user_id',auth()->user()->id)
+            ->where('product_extend_id',$request->productId)
+            ->first();
+            if( $product == NULL ){
+                $favorite = Favorited::create([
+                    'user_id'           => auth()->user()->id,
+                    'product_extend_id' => $request->productId,
+                    'type'              => 2,
+                ]);
+                return 1;
+            }else{
+                $favorite = Favorited::where('favorited.user_id',auth()->user()->id)
+                ->where('product_extend_id',$request->productId)
+                ->where('favorited.type',2)
+                ->delete();
+                return 2; 
+            }
+        }else{
+            return 0;
+        }
+        
     }
 }

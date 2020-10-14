@@ -13,12 +13,13 @@
 		<link rel="shortcut icon" type="image/png" href="{{asset('assets/favicon.ico')}}"/>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 		<link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		  <link rel="stylesheet" href="/resources/demos/style.css">
+		@yield('headerStyles')
+		
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		@yield('headerStyles')
+		
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	</head>
 	<body> 

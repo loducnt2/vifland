@@ -12,5 +12,6 @@ class Favorited extends Model
     	'user_id',
     	'product_extend_id',
     	'status',
+    	'type',
     ];
 }
