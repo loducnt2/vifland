@@ -18,10 +18,17 @@
                 </ul>
             @endif
 
+
                 <form method="POST" action="{{ route('login') }}">
+
+                    {{-- hiện session thông tin nếu --}}
                     @csrf
                     <div class="login-wrap">
                         <div class="logo"><a href="{{route('home')}}"><img src="./assets/logo/logo-footer-300.png" alt=""></a></div>
+                        @if(Session::has('msg'))
+                        <p class="alert alert-danger">{{ Session::get('msg') }}</p>
+                        @endif
+
                         <div class="box-login">
                             <div class="title">Đăng nhập</div>
                             <div class="form-group-input">

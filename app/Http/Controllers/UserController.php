@@ -25,8 +25,13 @@ class UserController extends Controller
         $profile = DB::table('user')->find($id);
         // $profile = User::find($id);
         // $profile = User::findOrFail($id);
-        // lấy danh sách các post có cùng id trong posts
-        $posts = PostHistory::where('user_id',$profile->id)->get();
+        // lấy danh sách các post có cùng id trong posts và tiêu đề bài viết
+        # Lấy Id người dùng trong bảng PostHistory và join vói id bảng prooduct
+
+        $posts = PostHistory::where('user_id',$profile->id)
+        ->join('product', 'product.id', '=', 'product_id')
+
+        ->get();
         // dd($posts);
         return view('admin/nguoidung/profile')->with(
         [
@@ -94,6 +99,10 @@ class UserController extends Controller
         //update hồ sơ cá nhân theo id
         $user = User::find($id);
         $user->full_name = $request->fullname;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->website = $request->website;
+        $user->facebook =$request->facebook;
         $user -> save();
         return redirect()->back();
     }
