@@ -97,51 +97,20 @@
 
                             </div>
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Experience</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Hourly Rate</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>10$/hr</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                        Các bài viết được đăng theo id {{$profile->id}} <br>
-                                        @foreach ($posts as $posts2)
 
-                                            {{$posts2->datetime}}
+                                        Các bài viết được đăng theo id {{$profile->id}} <br>
+                                        <ul class="timeline">
+                                        @foreach ($posts as $posts2)
+                                            {{-- {{$posts2->title}}
+                                            {{$posts2->datetime}} --}}
+                                            <li>
+                                            <a target="_blank" href="#">{{$posts2->title}}</a>
+                                                <a href="#" class="float-right">{{$posts2->datetime}}</a>
+                                                <p>{{$profile->username}} đã đăng bài viết <a href="">{{$posts2->title}}</a> lên trang chủ</p>
+                                            </li>
+                                            <li>
                                         @endforeach
+                                    </ul>
                             </div>
                         </div>
                     </div>
