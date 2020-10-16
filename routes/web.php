@@ -104,12 +104,18 @@ Route::post('/test/product-cate/update/{id}','ProductCateController@update')->na
 Route::get('/test/product-cate/delete/{id}','ProductCateController@destroy')->name('delete-product-cate');
 Route::get('/test/product-cate/edit/{id}','ProductCateController@edit')->name('edit-product-cate');
 Route::get('/test/product-cate/home','ProductCateController@index');
-
+//CRUD danh mục
 Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
 Route::post('/admin/danh-sach-danh-muc/update/{id}','CategoryController@update')->name('update-cate');
 Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');
 Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');
 Route::get('/admin/danh-sach-danh-muc','CategoryController@index');
+//duyệt tin
+Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
+Route::post('/admin/quan-li-tin-tuc/update/{id}','NewsController@update')->name('update-new');
+Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');
+Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');
+Route::get('/admin/quan-li-tin-tuc','NewsController@index');
 
 
 
