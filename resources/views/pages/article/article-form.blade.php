@@ -233,26 +233,37 @@
 						<div class="col-12"> 
 							<div class="wrap-vip">
 								<div class="checked">
-									<input id="tinthuong" type="radio" value="1" name="type" checked="">
+									<input id="tinthuong" type="radio" value="0" name="type" checked>
 									<label for="tinthuong">Tin Thường</label>
 								</div>
 								<div class="checked">
-									<input id="vip1" type="radio" value="2" name="type">
+									<input id="vip1" type="radio" value="1" name="type">
 									<label class="vip1" for="vip1">Tin VIP 1</label>
 								</div>
 								<div class="checked">
-									<input id="vip2" type="radio" value="3" name="type">
+									<input id="vip2" type="radio" value="2" name="type">
 									<label class="vip2" for="vip2">Tin VIP 2</label>
 								</div>
 								<div class="checked">
-									<input id="vip3" type="radio" value="4" name="type">
+									<input id="vip3" type="radio" value="3" name="type">
 									<label class="vip3" for="vip3">Tin VIP 3</label>
 								</div>
 							</div>
-							<div class="wrap-vip-mobile"></div>
+							<div class="wrap-vip-mobile">
+								<div class="form-group-sl1 sl-1 select-many">
+									<select class="select1" name="loainhadat">
+										<option value="tinthuong"> <strong>Tin thường&nbsp;</strong>(Miễn phí)</option>
+										<option class="vip1" value="vip1">
+											<p>TIN VIP 1&nbsp;</p>(15.000 ₫ tin/ngày)
+										</option>
+										<option class="vip2" value="vip2"> <span>TIN VIP 2&nbsp;</span>(25.000 ₫ tin/ngày)</option>
+										<option class="vip3" value="vip3"> <span>TIN VIP 3&nbsp;</span>(35.000 ₫ tin/ngày)</option>
+									</select>
+								</div>
+							</div>
 						</div>
 						<div class="col-12">
-							<div class="wrap-moTaVip">
+							<div class="wrap-moTaVip active">
 								<div class="row">
 									<div class="col-6">
 										<table>
