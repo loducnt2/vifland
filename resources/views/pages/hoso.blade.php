@@ -137,24 +137,25 @@
                                                                     <input class="user" type="text" placeholder="Họ và tên" name="fullname" value="{{$profile->full_name}}">
                                                                 </div>
                                                                 <div class="col-sm-12 col-md-6 form-group">
-                                                                    <input class="business" type="text" placeholder="Công ty">
+                                                                <input class="business" type="text" placeholder="Chứng minh nhân dân" value="{{$profile->card_id}}">
                                                                 </div>
                                                                 <div class="col-sm-12 col-md-6 form-group">
-                                                                    <input class="phone" type="text" placeholder="Số điện thoại">
+                                                                <input class="phone" type="text" placeholder="Số điện thoại" name="phone" value="{{$profile->phone}}">
                                                                 </div>
                                                                 <div class="col-sm-12 col-md-6 form-group">
-                                                                    <input class="add" type="text" placeholder="Địa chỉ">
+                                                                <input class="add" type="text" name="address" placeholder="Địa chỉ" value="{{$profile->address}}">
                                                                 </div>
                                                             </div>
                                                             <div class="row last-form mt-20">
                                                                 <div class="col-sm-12 col-md-6 form-group">
-                                                                    <input class="web" type="text" placeholder="Website">
+                                                                    <input class="web" type="text" placeholder="Website" name="website" value="{{$profile->website}}">
                                                                 </div>
                                                                 <div class="col-sm-12 col-md-6 form-group">
-                                                                    <input class="email" type="text" placeholder="Email">
+
+                                                                <input class="email" type="text" placeholder="{{$profile->email}}"  readonly>
                                                                 </div>
                                                                 <div class="col-sm-12 col-md-6 form-group">
-                                                                    <input class="facebook" type="text" placeholder="Facebook">
+                                                                <input class="facebook" type="text" placeholder="Facebook" value="{{$profile->facebook}}" name="facebook">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -211,7 +212,7 @@
             </section>
             <div class="index-page" id="js-page-verify" hidden></div>
         </main>
-   
+
 
 
 		</form>

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Product;
+use App\Models\PostHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
@@ -18,6 +20,24 @@ class UserController extends Controller
         // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
         $users =User::get();
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
+    }
+    public function profileDetail($id){
+        $profile = DB::table('user')->find($id);
+        // $profile = User::find($id);
+        // $profile = User::findOrFail($id);
+        // lấy danh sách các post có cùng id trong posts và tiêu đề bài viết
+        # Lấy Id người dùng trong bảng PostHistory và join vói id bảng prooduct
+
+        $posts = PostHistory::where('user_id',$profile->id)
+        ->join('product', 'product.id', '=', 'product_id')
+
+        ->get();
+        // dd($posts);
+        return view('admin/nguoidung/profile')->with(
+        [
+            'profile'=>$profile,
+            'posts'=>$posts
+        ]);
     }
     /**
      * Show the form for creating a new resource.
@@ -59,7 +79,10 @@ class UserController extends Controller
      */
     public function edit($id )
     {
+
         $profile = DB::table('user')->find($id);
+        // lịch sử bài đăng
+
         // $profile = User::findOrFail($id);
         return view('pages/hoso')->with('profile',$profile);
     }
@@ -76,6 +99,10 @@ class UserController extends Controller
         //update hồ sơ cá nhân theo id
         $user = User::find($id);
         $user->full_name = $request->fullname;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->website = $request->website;
+        $user->facebook =$request->facebook;
         $user -> save();
         return redirect()->back();
     }

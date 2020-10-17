@@ -51,6 +51,10 @@ class LoginController extends Controller
 
 
         $user = Auth::user();
+        // tài khoản bị ban
+        if ($user->status == 0 ) {
+            return redirect ('/login')->with(Auth::logout())->with('msg','Tài khoản đã bị ban ! ');
+        }
         $user->update([
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
         ]);
@@ -60,6 +64,8 @@ class LoginController extends Controller
         if ($user->user_type == 0 ) {
             return redirect('/');
         }
+
+
     }
 
 }

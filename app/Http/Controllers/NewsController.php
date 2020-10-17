@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\News;
 
 class NewsController extends Controller
 {
@@ -13,7 +14,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $news = News::orderBy('id','asc')->get();
+        return view('/admin/tintuc/quanlytintuc',compact('news'));
     }
 
     /**
@@ -66,9 +68,11 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
-        //
+        $cate = News::find($id);
+        $cate->status = 1;
+        return redirect('/admin/quan-li-tin-tuc');
     }
 
     /**

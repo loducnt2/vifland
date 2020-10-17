@@ -10,7 +10,7 @@
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
     @section('content')
-    Trang quản lí sản phẩm
+   <main>
     @endsection
 </body>
 </html>
