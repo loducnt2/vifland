@@ -113,9 +113,9 @@ Route::get('/admin/danh-sach-danh-muc','CategoryController@index');
 //duyệt tin
 Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
 Route::post('/admin/quan-li-tin-tuc/update/{id}','NewsController@update')->name('update-new');
-Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');
-Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');
-Route::get('/admin/quan-li-tin-tuc','NewsController@index');
+Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-new');
+Route::get('/admin/cap-nhat-danh-muc/edit/{id}','CategoryController@edit')->name('edit-new');
+Route::get('/admin/danh-sach-tin-tuc','NewsController@index');
 
 
 

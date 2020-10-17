@@ -15,6 +15,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::orderBy('id','asc')->get();
+        // $newsHidden = News::select('select * from news where id = 1')->get();
         return view('/admin/tintuc/quanlytintuc',compact('news'));
     }
 
@@ -58,7 +59,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $new = News::find($id);
+        return view('/admin/danhmuc/capnhatdanhmuc',compact('new'));
+    }
     }
 
     /**
@@ -72,7 +75,7 @@ class NewsController extends Controller
     {
         $cate = News::find($id);
         $cate->status = 1;
-        return redirect('/admin/quan-li-tin-tuc');
+        return redirect('/admin/danh-sach-tin-tuc');
     }
 
     /**
@@ -83,6 +86,8 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $new = News::find($id);
+        $new->delete();
+        return redirect('/admin/danh-sach-tin-tuc');
     }
 }
