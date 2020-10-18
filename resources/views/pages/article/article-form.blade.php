@@ -24,8 +24,6 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
                         <div class="box-left-form-muaban">
-
-
                             <div class="mdm-1">
                                 <div class="checked">
                                     <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id"
@@ -91,47 +89,46 @@
 												<option value="WY">Wyoming</option>
 											</select>
 										</div> -->
-                                        <<<<<<< HEAD </div>
-                                            <div class="tab-pane fade" id="thongtin" role="tabpanel"
-                                                aria-labelledby="thongtin-tab">
-                                                <div class="form-group-sl1 sl-1 select-many">
-                                                    <label for="thanhpho">Loại hình</label>
-                                                    <select class="select1" name="product_cate[]" multiple="multiple">
-                                                        @foreach($product_cate as $prodcate)
-                                                        <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group-sl1 sl-1 select-many">
-                                                    <label for="thanhpho">Mặt tiền</label>
-                                                    <input type="number" min="0" name="facades">
-                                                </div>
-                                                <div class="form-group-sl1 sl-1 select-many">
-                                                    <label for="thanhpho">Chiều sâu</label>
-                                                    <input type="number" min="0" name="depth">
-                                                </div>
-                                                <div class="form-group-sl1 sl-1 select-many">
-                                                    <label for="thanhpho">Diện tích</label>
-                                                    <input type="number" min="0" name="acreage">
-                                                </div>
-                                                <div class="form-group-sl1 sl-1 select-many">
-                                                    <label for="thanhpho">Đơn vị </label>
-                                                    <select class="select1" name="unit_id" id="unit">
-                                                        <option value="">Chọn</option>
-                                                        @foreach($units as $unit)
-                                                        <option value="{{$unit->id}}">{{$unit->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group-sl1 sl-1 select-many">
-                                                    <label for="thanhpho">Đơn giá </label>
-                                                    <input type="text" min="0" name="price"><em class="notedongia">Mặc
-                                                        định 0 là
-                                                        thương lượng</em>
-                                                </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="thongtin" role="tabpanel"
+                                        aria-labelledby="thongtin-tab">
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Loại hình</label>
+                                            <select class="select1" name="product_cate[]" multiple="multiple">
+                                                @foreach($product_cate as $prodcate)
+                                                <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Mặt tiền</label>
+                                            <input type="number" min="0" name="facades">
+                                        </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Chiều sâu</label>
+                                            <input type="number" min="0" name="depth">
+                                        </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Diện tích</label>
+                                            <input type="number" min="0" name="acreage">
+                                        </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Đơn vị </label>
+                                            <select class="select1" name="unit_id" id="unit">
+                                                <option value="">Chọn</option>
+                                                @foreach($units as $unit)
+                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Đơn giá </label>
+                                            <input type="text" min="0" name="price"><em class="notedongia">Mặc
+                                                định 0 là
+                                                thương lượng</em>
+                                        </div>
 
-                                                <!-- <div class="form-group-sl1 sl-1 select-many">
-=======
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
 									</div>
 									<div class="tab-pane fade" id="thongtin" role="tabpanel" aria-labelledby="thongtin-tab">
 										<div class="form-group-sl1 sl-1 select-many">
@@ -154,23 +151,22 @@
 											<label for="thanhpho">Diện tích</label>
 											<input type="number" min="0" name="acreage">
 										</div> -->
-                                                <div class="form-group-sl1 sl-1 select-many">
-                                                    <label for="thanhpho">Đơn vị </label>
-                                                    <select class="select1" name="unit_id" id="unit">
-                                                        <option value="">Chọn</option>
-                                                        @foreach($units as $unit)
-                                                        <option value="{{$unit->id}}">{{$unit->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group-sl1 sl-1 select-many">
-                                                    <label for="thanhpho">Đơn giá </label>
-                                                    <input type="text" min="0" name="price"><em class="notedongia">Mặc
-                                                        định 0 là thương lượng</em>
-                                                </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Đơn vị </label>
+                                            <select class="select1" name="unit_id" id="unit">
+                                                <option value="">Chọn</option>
+                                                @foreach($units as $unit)
+                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Đơn giá </label>
+                                            <input type="text" min="0" name="price"><em class="notedongia">Mặc
+                                                định 0 là thương lượng</em>
+                                        </div>
 
-                                                <!-- <div class="form-group-sl1 sl-1 select-many">
->>>>>>> 5c37e6449c6199eee9610ab0f5f59c86434c326d
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đường rộng</label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">
 												<option value="AL">Alabama</option>
@@ -184,61 +180,38 @@
 												<option value="WY">Wyoming</option>
 											</select>
 										</div> -->
-                                                <<<<<<< HEAD </div>
-                                                    <div class="tab-pane fade" id="khac" role="tabpanel"
-                                                        aria-labelledby="khac-tab">
-                                                        <div class="form-group-sl1 sl-1 select-many">
-                                                            <label for="thanhpho">Số tầng</label>
-                                                            <input type="number" min="0" name="floors">
-                                                        </div>
-                                                        <div class="form-group-sl1 sl-1 select-many">
-                                                            <label for="thanhpho">Số phòng ngủ </label>
-                                                            <input type="number" min="0" name="bedroom">
-                                                        </div>
-                                                        <div class="form-group-sl1 sl-1 select-many">
-                                                            <label for="legal">Giấy tờ pháp lý</label>
-                                                            <select name="legal[]" class="select1" multiple="multiple"
-                                                                id="legal">
-                                                                @foreach($product_cate as $prodcate)
-                                                                <option value="{{$prodcate->id}}">{{$prodcate->name}}
-                                                                </option>
-                                                                @endforeach
-                                                            </select>
-                                                            =======
-                                                        </div>
-                                                        <div class="tab-pane fade" id="khac" role="tabpanel"
-                                                            aria-labelledby="khac-tab">
-                                                            <div class="form-group-sl1 sl-1 select-many">
-                                                                <label for="thanhpho">Số tầng</label>
-                                                                <input type="number" min="0" name="floors">
-                                                            </div>
-                                                            <div class="form-group-sl1 sl-1 select-many">
-                                                                <label for="thanhpho">Số phòng ngủ </label>
-                                                                <input type="number" min="0" name="bedroom">
-                                                            </div>
-                                                            <div class="form-group-sl1 sl-1 select-many">
-                                                                <label for="legal">Giấy tờ pháp lý</label>
-                                                                <select name="legal" class="select1" id="legal">
-                                                                    <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
-                                                                        CN QSDĐ - Sổ đỏ - Sổ hồng</option>}
-                                                                    <option value="Hợp đồng mua bán">Hợp đồng mua bán
-                                                                    </option>
-                                                                    <option value="Hợp đồng góp vốn">Hợp đồng góp vốn
-                                                                    </option>
-                                                                    <option value="Hợp đồng góp vốn">Hợp đồng góp vốn
-                                                                    </option>
-                                                                    <option value="Đất giao - Đất phân">Đất giao - Đất
-                                                                        phân</option>
-                                                                    <option value="Đang làm giấy CN QSDĐ">Đang làm giấy
-                                                                        CN QSDĐ</option>
-                                                                    <option value="Đã có giấy hẹn lấy số">Đã có giấy hẹn
-                                                                        lấy số</option>}
-                                                                </select>
-                                                                <!-- <input type="text" name="legal" id="legal"> -->
-                                                                >>>>>>> 5c37e6449c6199eee9610ab0f5f59c86434c326d
+                                    </div>
+                                    <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
 
-                                                            </div>
-                                                            <!-- <div class="form-group-sl1 sl-1 select-many">
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Số tầng</label>
+                                            <input type="number" min="0" name="floors">
+                                        </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="thanhpho">Số phòng ngủ </label>
+                                            <input type="number" min="0" name="bedroom">
+                                        </div>
+                                        <div class="form-group-sl1 sl-1 select-many">
+                                            <label for="legal">Giấy tờ pháp lý</label>
+                                            <select name="legal" class="select1" id="legal">
+                                                <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
+                                                    CN QSDĐ - Sổ đỏ - Sổ hồng</option>
+                                                <option value="Hợp đồng mua bán">Hợp đồng mua bán
+                                                </option>
+                                                <option value="Hợp đồng góp vốn">Hợp đồng góp vốn
+                                                </option>
+                                                <option value="Hợp đồng góp vốn">Hợp đồng góp vốn
+                                                </option>
+                                                <option value="Đất giao - Đất phân">Đất giao - Đất
+                                                    phân</option>
+                                                <option value="Đang làm giấy CN QSDĐ">Đang làm giấy
+                                                    CN QSDĐ</option>
+                                                <option value="Đã có giấy hẹn lấy số">Đã có giấy hẹn
+                                                    lấy số</option>
+                                            </select>
+                                            <!-- <input type="text" name="legal" id="legal"> -->
+                                        </div>
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Mức độ giao dịch </label>
 											<select class="select1" name="loainhadat[]" multiple="multiple">
 												<option value="AL">Alabama</option>
@@ -263,283 +236,272 @@
 											<label for="thanhpho">Tiền hoa hồng</label>
 											<input type="number" min="0">
 										</div> -->
-                                                            <<<<<<< HEAD </div>
-                                                                <div class="note-wrap"><em class="note">* Hãy cập nhật
-                                                                        các thông số đầy đủ và chi
-                                                                        tiết để khách hàng tìm thấy tin đăng của bạn dễ
-                                                                        dàng</em>
-                                                                    <p class="note"> <b>Cảnh báo: &nbsp;</b>Nếu thông
-                                                                        tin không được chọn đầy đủ thì
-                                                                        tin đăng sẽ không thể tìm kiếm.</p>
-                                                                </div>
-                                                        </div>
-                                                    </div>
-                                            </div>
+                                        <div class="note-wrap"><em class="note">* Hãy cập nhật
+                                                các thông số đầy đủ và chi
+                                                tiết để khách hàng tìm thấy tin đăng của bạn dễ
+                                                dàng</em>
+                                            <p class="note"> <b>Cảnh báo: &nbsp;</b>Nếu thông
+                                                tin không được chọn đầy đủ thì
+                                                tin đăng sẽ không thể tìm kiếm.</p>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-9 col-md-12">
-                                        <div class="row">
-                                            <div class="col-12 form-group">
-                                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết"
-                                                    name="title" required="">
-                                            </div>
-                                            <div class="col-12 form-group">
-                                                <textarea class="form-control" id="summary-ckeditor"
-                                                    name="content"></textarea>
-                                            </div>
-                                            <div class="col-12 form-group">
-                                                <input type="file" name="img[]" multiple>
-                                            </div>
-                                            <div class="col-12 form-group">
-                                                <input class="input-100-s" type="text" placeholder="Add tags"
-                                                    name="tags">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-12">
+                        <div class="row">
+                            <div class="col-12 form-group">
+                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title"
+                                    required="">
+                            </div>
+                            <div class="col-12 form-group">
+                                <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
+                            </div>
+                            <div class="col-12 form-group">
+                                <input type="file" name="img[]" multiple>
+                            </div>
+                            <div class="col-12 form-group">
+                                <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
+                            </div>
+                        </div>
+                        <div class="row thongtinlh">
+                            <div class="col-12 wrap-title">
+                                <h4 class="tt-line"> <span>Thông Tin Liên Hệ</span></h4>
+                                <p>Hãy điền thông tin liên hệ đầy đủ để khách hàng có thể liên lạc khi
+                                    có nhu cầu </p>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
+                                    class="material-icons">person</span>
+                                <input type="text" placeholder="Tên liên lạc" name="name_contact">
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
+                                    class="material-icons">business</span>
+                                <input type="text" placeholder="Tên Công ty" name="company_name">
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
+                                    class="material-icons">phone</span>
+                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact">
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
+                                <input type="text" placeholder="Facebook cá nhân" name="facebook">
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
+                                    class="material-icons">location_on</span>
+                                <input type="text" placeholder="Địa chỉ" name="address_contact">
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
+                                    class="material-icons">public</span>
+                                <input type="text" placeholder="Trang web" name="website">
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
+                                    class="material-icons">email</span>
+                                <input type="text" placeholder="Hộp thư điện tử" name="email">
+                            </div>
+                        </div>
+                        <div class="row loaitindang">
+                            <div class="col-12">
+                                <div class="title">
+                                    <h5>Loại tin đăng</h5><a href="" data-toggle="modal" data-target="#cacgoitin">So
+                                        sánh các gói tin </a>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="wrap-vip">
+                                    <div class="checked">
+                                        <input id="tinthuong" type="radio" value="0" name="type" checked>
+                                        <label for="tinthuong">Tin Thường</label>
+                                    </div>
+                                    <div class="checked">
+                                        <input id="vip1" type="radio" value="1" name="type">
+                                        <label class="vip1" for="vip1">Tin VIP 1</label>
+                                    </div>
+                                    <div class="checked">
+                                        <input id="vip2" type="radio" value="2" name="type">
+                                        <label class="vip2" for="vip2">Tin VIP 2</label>
+                                    </div>
+                                    <div class="checked">
+                                        <input id="vip3" type="radio" value="3" name="type">
+                                        <label class="vip3" for="vip3">Tin VIP 3</label>
+                                    </div>
+                                </div>
+                                <div class="wrap-vip-mobile">
+                                    <div class="form-group-sl1 sl-1 select-many">
+                                        <select class="select1" name="loainhadat">
+                                            <option value="tinthuong"> <strong>Tin
+                                                    thường&nbsp;</strong>(Miễn phí)
+                                            </option>
+                                            <option class="vip1" value="vip1">
+                                                <p>TIN VIP 1&nbsp;</p>(15.000 ₫ tin/ngày)
+                                            </option>
+                                            <option class="vip2" value="vip2"> <span>TIN VIP
+                                                    2&nbsp;</span>(25.000 ₫
+                                                tin/ngày)</option>
+                                            <option class="vip3" value="vip3"> <span>TIN VIP
+                                                    3&nbsp;</span>(35.000 ₫
+                                                tin/ngày)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="wrap-moTaVip active" id="tinthuong-ct">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <table>
+                                                <tr>
+                                                    <td class="mb-30">Giá: </td>
+                                                    <td class="mb-30"> <strong>Miễn Phí</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="img"> <a href="{{asset('assets/icon/vips1.jpg')}}"
+                                                    data-fancybox="images"> <img
+                                                        src="{{asset('assets/icon/vips1.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
-                                        <div class="row thongtinlh">
-                                            <div class="col-12 wrap-title">
-                                                <h4 class="tt-line"> <span>Thông Tin Liên Hệ</span></h4>
-                                                <p>Hãy điền thông tin liên hệ đầy đủ để khách hàng có thể liên lạc khi
-                                                    có nhu cầu </p>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                                    class="material-icons">person</span>
-                                                <input type="text" placeholder="Tên liên lạc" name="name_contact">
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                                    class="material-icons">business</span>
-                                                <input type="text" placeholder="Tên Công ty" name="company_name">
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                                    class="material-icons">phone</span>
-                                                <input type="text" placeholder="Điện thoại cá nhân"
-                                                    name="phone_contact">
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i
-                                                    class="ri-facebook-circle-fill"></i>
-                                                <input type="text" placeholder="Facebook cá nhân" name="facebook">
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                                    class="material-icons">location_on</span>
-                                                <input type="text" placeholder="Địa chỉ" name="address_contact">
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                                    class="material-icons">public</span>
-                                                <input type="text" placeholder="Trang web" name="website">
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                                    class="material-icons">email</span>
-                                                <input type="text" placeholder="Hộp thư điện tử" name="email">
+                                    </div>
+                                </div>
+                                <!-- END -->
+                                <div class="wrap-moTaVip" id="vip1-ct">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <table>
+                                                <tr>
+                                                    <td class="mb-30">Giá: </td>
+                                                    <td class="mb-30"> <strong>40.000 ₫
+                                                            tin/ngày</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Đứng đầu danh sách các tin đăng</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Có tiêu đề <em style="color:#993393">CHỮ
+                                                                IN HOA MÀU
+                                                                TÍM</em></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="img"><a href="{{asset('assets/icon/vips2.jpg')}}"
+                                                    data-fancybox="images"> <img
+                                                        src="{{asset('assets/icon/vips2.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
-                                        <div class="row loaitindang">
-                                            <div class="col-12">
-                                                <div class="title">
-                                                    <h5>Loại tin đăng</h5><a href="" data-toggle="modal"
-                                                        data-target="#cacgoitin">So
-                                                        sánh các gói tin </a>
-                                                </div>
+                                    </div>
+                                </div>
+                                <div class="wrap-moTaVip" id="vip2-ct">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <table>
+                                                <tr>
+                                                    <td class="mb-30">Giá: </td>
+                                                    <td class="mb-30"> <strong>25.000 ₫
+                                                            tin/ngày</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Hiển thị dưới tin VIP 1, trên tin VIP 3
+                                                            và tin
+                                                            thường</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Có tiêu đề <em style="color: #dd8c43">CHỮ
+                                                                IN HOA MÀU
+                                                                CAM</em></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Được chèn link video vào trong tin
+                                                            đăng</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Được đăng tối đa 30 ảnh</span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="img"><a href="{{asset('assets/icon/vips3.jpg')}}"
+                                                    data-fancybox="images"> <img
+                                                        src="{{asset('assets/icon/vips3.jpg')}}" alt=""></a>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="wrap-vip">
-                                                    <div class="checked">
-                                                        <input id="tinthuong" type="radio" value="0" name="type"
-                                                            checked>
-                                                        <label for="tinthuong">Tin Thường</label>
-                                                    </div>
-                                                    <div class="checked">
-                                                        <input id="vip1" type="radio" value="1" name="type">
-                                                        <label class="vip1" for="vip1">Tin VIP 1</label>
-                                                    </div>
-                                                    <div class="checked">
-                                                        <input id="vip2" type="radio" value="2" name="type">
-                                                        <label class="vip2" for="vip2">Tin VIP 2</label>
-                                                    </div>
-                                                    <div class="checked">
-                                                        <input id="vip3" type="radio" value="3" name="type">
-                                                        <label class="vip3" for="vip3">Tin VIP 3</label>
-                                                    </div>
-                                                </div>
-                                                <div class="wrap-vip-mobile">
-                                                    <div class="form-group-sl1 sl-1 select-many">
-                                                        <select class="select1" name="loainhadat">
-                                                            <option value="tinthuong"> <strong>Tin
-                                                                    thường&nbsp;</strong>(Miễn phí)
-                                                            </option>
-                                                            <option class="vip1" value="vip1">
-                                                                <p>TIN VIP 1&nbsp;</p>(15.000 ₫ tin/ngày)
-                                                            </option>
-                                                            <option class="vip2" value="vip2"> <span>TIN VIP
-                                                                    2&nbsp;</span>(25.000 ₫
-                                                                tin/ngày)</option>
-                                                            <option class="vip3" value="vip3"> <span>TIN VIP
-                                                                    3&nbsp;</span>(35.000 ₫
-                                                                tin/ngày)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wrap-moTaVip" id="vip3-ct">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <table>
+                                                <tr>
+                                                    <td class="mb-30">Giá: </td>
+                                                    <td class="mb-30"> <strong>15.000 ₫
+                                                            tin/ngày</strong></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Hiển thị dưới tin VIP1, VIP2 và trên tin
+                                                            thường</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Có tiêu đề <em style="color: #b18734">Chữ
+                                                                thường màu vàng
+                                                                đồng</em></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Được chèn link video vào trong tin
+                                                            đăng</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td> <span class="material-icons">done</span></td>
+                                                    <td> <span>Được đăng tối đa 30 ảnh</span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="img"><a href="{{asset('assets/icon/vips4.jpg')}}"
+                                                    data-fancybox="images"> <img
+                                                        src="{{asset('assets/icon/vips4.jpg')}}" alt=""></a>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="wrap-moTaVip active" id="tinthuong-ct">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <table>
-                                                                <tr>
-                                                                    <td class="mb-30">Giá: </td>
-                                                                    <td class="mb-30"> <strong>Miễn Phí</strong></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="img"> <a
-                                                                    href="{{asset('assets/icon/vips1.jpg')}}"
-                                                                    data-fancybox="images"> <img
-                                                                        src="{{asset('assets/icon/vips1.jpg')}}"
-                                                                        alt=""></a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END -->
-                                                <div class="wrap-moTaVip" id="vip1-ct">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <table>
-                                                                <tr>
-                                                                    <td class="mb-30">Giá: </td>
-                                                                    <td class="mb-30"> <strong>40.000 ₫
-                                                                            tin/ngày</strong></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Đứng đầu danh sách các tin đăng</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Có tiêu đề <em style="color:#993393">CHỮ
-                                                                                IN HOA MÀU
-                                                                                TÍM</em></span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="img"><a
-                                                                    href="{{asset('assets/icon/vips2.jpg')}}"
-                                                                    data-fancybox="images"> <img
-                                                                        src="{{asset('assets/icon/vips2.jpg')}}"
-                                                                        alt=""></a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="wrap-moTaVip" id="vip2-ct">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <table>
-                                                                <tr>
-                                                                    <td class="mb-30">Giá: </td>
-                                                                    <td class="mb-30"> <strong>25.000 ₫
-                                                                            tin/ngày</strong></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Hiển thị dưới tin VIP 1, trên tin VIP 3
-                                                                            và tin
-                                                                            thường</span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Có tiêu đề <em style="color: #dd8c43">CHỮ
-                                                                                IN HOA MÀU
-                                                                                CAM</em></span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Được chèn link video vào trong tin
-                                                                            đăng</span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Được đăng tối đa 30 ảnh</span></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="img"><a
-                                                                    href="{{asset('assets/icon/vips3.jpg')}}"
-                                                                    data-fancybox="images"> <img
-                                                                        src="{{asset('assets/icon/vips3.jpg')}}"
-                                                                        alt=""></a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="wrap-moTaVip" id="vip3-ct">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <table>
-                                                                <tr>
-                                                                    <td class="mb-30">Giá: </td>
-                                                                    <td class="mb-30"> <strong>15.000 ₫
-                                                                            tin/ngày</strong></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Hiển thị dưới tin VIP1, VIP2 và trên tin
-                                                                            thường</span>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Có tiêu đề <em style="color: #b18734">Chữ
-                                                                                thường màu vàng
-                                                                                đồng</em></span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Được chèn link video vào trong tin
-                                                                            đăng</span></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td> <span class="material-icons">done</span></td>
-                                                                    <td> <span>Được đăng tối đa 30 ảnh</span></td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="img"><a
-                                                                    href="{{asset('assets/icon/vips4.jpg')}}"
-                                                                    data-fancybox="images"> <img
-                                                                        src="{{asset('assets/icon/vips4.jpg')}}"
-                                                                        alt=""></a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END -->
-                                                <div class="col-12">
-                                                    <div class="row wrap-lich">
-                                                        <!-- <div class="col-4 form-group">
-=======
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END -->
+                                <div class="col-12">
+                                    <div class="row wrap-lich">
+                                        <!-- <div class="col-4 form-group">
 									</div>
 									<div class="note-wrap"><em class="note">* Hãy cập nhật các thông số đầy đủ và chi tiết để khách hàng tìm thấy tin đăng của bạn dễ dàng</em>
 										<p class="note"> <b>Cảnh báo: &nbsp;</b>Nếu thông tin không được chọn đầy đủ thì tin đăng sẽ không thể tìm kiếm.</p>
@@ -667,97 +629,93 @@
 										<label for="songayvip">Số ngày</label>
 										<input id="songayvip" type="number" min="0">
 									</div> -->
-                                                        <div class="col-6 form-group">
-                                                            <label for="songayvip">Ngày đăng bài</label>
-                                                            <input class="calendar" id="ngaybdvip" type="datetime"
-                                                                name="datetime_start">
-                                                        </div>
-                                                        <div class="col-6 form-group">
-                                                            <label for="songayvip">Ngày kết thúc</label>
-                                                            <input class="calendar" id="ngayktvip" type="datetime"
-                                                                name="datetime_end">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="wrap-des-vip" id="sub-vip1">
-                                                    <div class="wrap-left"><img src="{{asset('assets/icon/vip1.svg')}}"
-                                                            alt="">
-                                                        <div class="wrap-text">
-                                                            <p style="color:#993393">Tin VIP 1 - Gói 7 ngày</p><small>Từ
-                                                                ngày
-                                                                12/10/2020</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="wrap-right">
-                                                        <div class="wrap-text"><strong>266.000 ₫</strong><span>
-                                                                <del>280.000đ</del>
-                                                                <p>(-5%)</p>
-                                                            </span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="wrap-des-vip" id="sub-vip2">
-                                                    <div class="wrap-left"><img src="{{asset('assets/icon/vip2.svg')}}"
-                                                            alt="">
-                                                        <div class="wrap-text">
-                                                            <p style="color:#dd8c43">Tin VIP 2 - Gói 7 ngày</p><small>Từ
-                                                                ngày
-                                                                12/10/2020</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="wrap-right">
-                                                        <div class="wrap-text"><strong>166.250 ₫</strong><span>
-                                                                <del>280.000đ</del>
-                                                                <p>(-5%)</p>
-                                                            </span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="wrap-des-vip" id="sub-vip3">
-                                                    <div class="wrap-left"><img src="{{asset('assets/icon/vip3.svg')}}"
-                                                            alt="">
-                                                        <div class="wrap-text">
-                                                            <p style="color:#b18734">Tin VIP 3 - Gói 7 ngày</p><small>Từ
-                                                                ngày
-                                                                12/10/2020</small>
-                                                        </div>
-                                                    </div>
-                                                    <div class="wrap-right">
-                                                        <div class="wrap-text"><strong>266.000 ₫</strong><span>
-                                                                <del>280.000đ</del>
-                                                                <p>(-5%)</p>
-                                                            </span></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="row wrap-tongthanhtoan">
-                                                        <div class="tongThanhToan-box">
-                                                            <div class="ttt-1">
-                                                                <p>Thành tiền (Gồm VAT)</p>
-                                                                <p>0 ₫</p>
-                                                            </div>
-                                                            <div class="ttt-2">
-                                                                <p>Khuyến mại</p>
-                                                                <p>0 ₫</p>
-                                                            </div>
-                                                            <hr>
-                                                            <div class="ttt-3"><strong>Thanh toán</strong><strong>0
-                                                                    ₫</strong></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END -->
-
-                                                <!-- END -->
-                                                <div class="col-12 wrap-button-dbv">
-                                                    <div class="row">
-                                                        <button class="button-huy" type="submit">Hủy bỏ</button>
-                                                        <button class="button-luu" type="submit">Đăng bài</button>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col-6 form-group">
+                                            <label for="songayvip">Ngày đăng bài</label>
+                                            <input class="calendar" id="ngaybdvip" type="datetime"
+                                                name="datetime_start">
+                                        </div>
+                                        <div class="col-6 form-group">
+                                            <label for="songayvip">Ngày kết thúc</label>
+                                            <input class="calendar" id="ngayktvip" type="datetime" name="datetime_end">
                                         </div>
                                     </div>
                                 </div>
+                                <div class="wrap-des-vip" id="sub-vip1">
+                                    <div class="wrap-left"><img src="{{asset('assets/icon/vip1.svg')}}" alt="">
+                                        <div class="wrap-text">
+                                            <p style="color:#993393">Tin VIP 1 - Gói 7 ngày</p><small>Từ
+                                                ngày
+                                                12/10/2020</small>
+                                        </div>
+                                    </div>
+                                    <div class="wrap-right">
+                                        <div class="wrap-text"><strong>266.000 ₫</strong><span>
+                                                <del>280.000đ</del>
+                                                <p>(-5%)</p>
+                                            </span></div>
+                                    </div>
+                                </div>
+                                <div class="wrap-des-vip" id="sub-vip2">
+                                    <div class="wrap-left"><img src="{{asset('assets/icon/vip2.svg')}}" alt="">
+                                        <div class="wrap-text">
+                                            <p style="color:#dd8c43">Tin VIP 2 - Gói 7 ngày</p><small>Từ
+                                                ngày
+                                                12/10/2020</small>
+                                        </div>
+                                    </div>
+                                    <div class="wrap-right">
+                                        <div class="wrap-text"><strong>166.250 ₫</strong><span>
+                                                <del>280.000đ</del>
+                                                <p>(-5%)</p>
+                                            </span></div>
+                                    </div>
+                                </div>
+                                <div class="wrap-des-vip" id="sub-vip3">
+                                    <div class="wrap-left"><img src="{{asset('assets/icon/vip3.svg')}}" alt="">
+                                        <div class="wrap-text">
+                                            <p style="color:#b18734">Tin VIP 3 - Gói 7 ngày</p><small>Từ
+                                                ngày
+                                                12/10/2020</small>
+                                        </div>
+                                    </div>
+                                    <div class="wrap-right">
+                                        <div class="wrap-text"><strong>266.000 ₫</strong><span>
+                                                <del>280.000đ</del>
+                                                <p>(-5%)</p>
+                                            </span></div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row wrap-tongthanhtoan">
+                                        <div class="tongThanhToan-box">
+                                            <div class="ttt-1">
+                                                <p>Thành tiền (Gồm VAT)</p>
+                                                <p>0 ₫</p>
+                                            </div>
+                                            <div class="ttt-2">
+                                                <p>Khuyến mại</p>
+                                                <p>0 ₫</p>
+                                            </div>
+                                            <hr>
+                                            <div class="ttt-3"><strong>Thanh toán</strong><strong>0
+                                                    ₫</strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END -->
+
+                                <!-- END -->
+                                <div class="col-12 wrap-button-dbv">
+                                    <div class="row">
+                                        <button class="button-huy" type="submit">Hủy bỏ</button>
+                                        <button class="button-luu" type="submit">Đăng bài</button>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
         <div class="modal fade" id="cacgoitin" tabindex="-1" role="dialog" aria-labelledby="cacgoitin"
             aria-hidden="true">
