@@ -96,8 +96,8 @@
                             <div class="collapse" id="collapsePages3" aria-labelledby="headingFour" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
-                                    <a class="nav-link" href="layout-sidenav-light.html">Cập nhật tin tức</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Danh sách tin tức</a>
+                                    <a class="nav-link" href="{{ url('admin/cap-nhat-tin-tuc') }}">Cập nhật tin tức</a>
+                                    <a class="nav-link" href="{{ url('admin/danh-sach-tin-tuc') }}">Danh sách tin tức</a>
 
                                       </nav>
                             </div>

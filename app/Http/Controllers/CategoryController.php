@@ -39,14 +39,13 @@ class CategoryController extends Controller
     {
        
         $cate = new Category([
-            'name'      => $req->name ,
-            'language'  => $req->lang ,
-            'status'    => 1,
-            'slug'      => Str::slug($req->name,'-'),
-            'parent_id' => $req->parent_id,
+            'name'      => $req->get("name") ,
+            'language'  => $req->get("lang"),
+            'status'    => $req->get("status"),
+            'parent_id' => $req->get("parent"),
         ]);
         $cate->save();
-        return redirect('/admin/danhmuc/danhsachdanhmuc'); 
+        return redirect('/admin/danh-sach-danh-muc'); 
     }
 
     /**
@@ -70,7 +69,7 @@ class CategoryController extends Controller
     {
         $cate = Category::find($id);
         $cate_level1 = Category::orderBy('id','asc')->where('parent_id',NULL)->get();
-        return view('/admin/danhmuc/danhsachdanhmuc',compact('cate','cate_level1'));
+        return view('/admin/danhmuc/capnhatdanhmuc',compact('cate','cate_level1'));
     }
 
     /**
@@ -83,14 +82,14 @@ class CategoryController extends Controller
     public function update(Request $req, $id)
     {
         $cate = Category::find($id);
-        $cate->name      = $req->name;
-        $cate->language  = $req->lang;
-        $cate->slug      = Str::slug($req->name,'-');
-        $cate->status    = $req->status;
-        $cate->orders    = $req->orders;
-        $cate->parent_id = $req->parent_id;
-        $cate->update();
-        return redirect('/admin/danhmuc/danhsachdanhmuc');
+        $cate->name      = $req->get('name');
+        $cate->language  = $req->get('lang');
+        // $cate->slug      = Str::slug($req->name,'-');
+        $cate->status    = $req->get('status');
+        $cate->orders    = $req->get('orders');
+        $cate->parent_id = $req->get('parent_id');
+        $cate->save();
+        return redirect('/admin/danh-sach-danh-muc');
     }
 
     /**
@@ -103,6 +102,6 @@ class CategoryController extends Controller
     {
         $cate = Category::find($id);
         $cate->delete();
-        return redirect('/admin/danhmuc/danhsachdanhmuc');
+        return redirect('/admin/danh-sach-danh-muc');
     }
 }
