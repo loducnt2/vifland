@@ -38,11 +38,11 @@
 						<tr>
 							<td> 
 								<div class="box-sp m-0">
-									<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 										<div class="tag-thuongluong d-none d-xl-block">Thương lượng</div>
-										<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+										<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 									</div>
-									<div class="box-sp-text"> <a href="">
+									<div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
 											<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
 										<div class="location"> <span class="material-icons">location_on</span>
 											<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>

@@ -43,7 +43,7 @@
 									<div class="tab-pane fade show active" id="vitri" role="tabpanel" aria-labelledby="vitri-tab">
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Tỉnh/Thành phố</label>
-											<select class="select1" name="province_id"  id="province">
+											<select class="select1" name="province_id"  id="province" >
 												<option value="">Chọn</option>
 												@foreach($provinces as $province)
 												<option value="{{$province->id}}">{{$province->name}}</option>
@@ -52,19 +52,19 @@
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Quận/Huyện</label>
-											<select class="select1" name="district_id"  id="district">
+											<select class="select1" name="district_id"  id="district" >
 												<option value="">Chọn</option>
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Phường/Xã</label>
-											<select class="select1" name="ward_id"  id="ward">
+											<select class="select1" name="ward_id"  id="ward" >
 												<option value="">Chọn</option>
 											</select>
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="diachi">Địa chỉ</label>
-											<input type="text" min="0" name="address" id="diachi">
+											<input type="text" min="0" name="address" id="diachi" >
 										</div>
 										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đường, Phố</label>
@@ -84,7 +84,7 @@
 									<div class="tab-pane fade" id="thongtin" role="tabpanel" aria-labelledby="thongtin-tab">
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Loại hình</label>
-											<select class="select1" name="product_cate[]" multiple="multiple">
+											<select class="select1" name="product_cate[]" multiple="multiple" >
 												@foreach($product_cate as $prodcate)
 												<option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
 												@endforeach
@@ -92,11 +92,11 @@
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Mặt tiền</label>
-											<input type="number" min="0" name="facades">
+											<input type="number" min="0" name="facades" >
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Chiều sâu</label>
-											<input type="number" min="0" name="depth">
+											<input type="number" min="0" name="depth" >
 										</div>
 										<!-- <div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Diện tích</label>
@@ -104,7 +104,7 @@
 										</div> -->
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đơn vị </label>
-											<select class="select1" name="unit_id"  id="unit">
+											<select class="select1" name="unit_id"  id="unit" >
 												<option value="">Chọn</option>
 												@foreach($units as $unit)
 												<option value="{{$unit->id}}">{{$unit->name}}</option>
@@ -113,7 +113,7 @@
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Đơn giá </label>
-											<input type="text" min="0" name="price"><em class="notedongia">Mặc định 0 là thương lượng</em>
+											<input type="text" min="0" name="price" ><em class="notedongia">Mặc định 0 là thương lượng</em>
 										</div>
 										
 										<!-- <div class="form-group-sl1 sl-1 select-many">
@@ -138,15 +138,20 @@
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="thanhpho">Số phòng ngủ </label>
-											<input type="number" min="0" name="bedroom">
+											<input type="number" min="0" name="bedroom" >
 										</div>
 										<div class="form-group-sl1 sl-1 select-many">
 											<label for="legal">Giấy tờ pháp lý</label>
-											<select name="legal[]" class="select1"  multiple="multiple" id="legal">
-												@foreach($product_cate as $prodcate)
-												<option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
-												@endforeach
+											<select name="legal" class="select1"   id="legal">
+												<option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy CN QSDĐ - Sổ đỏ - Sổ hồng</option>}
+												<option value="Hợp đồng mua bán">Hợp đồng mua bán</option>
+												<option value="Hợp đồng góp vốn">Hợp đồng góp vốn</option>
+												<option value="Hợp đồng góp vốn">Hợp đồng góp vốn</option>
+												<option value="Đất giao - Đất phân">Đất giao - Đất phân</option>
+												<option value="Đang làm giấy CN QSDĐ">Đang làm giấy CN QSDĐ</option>
+												<option value="Đã có giấy hẹn lấy số">Đã có giấy hẹn lấy số</option>}
 											</select>
+											<!-- <input type="text" name="legal" id="legal"> -->
 
 										</div>
 										<!-- <div class="form-group-sl1 sl-1 select-many">
@@ -185,10 +190,10 @@
 				<div class="col-9">
 					<div class="row">
 						<div class="col-12 form-group">
-							<input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title" required="">
+							<input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title" >
 						</div>
 						<div class="col-12 form-group">
-							<textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
+							<textarea class="form-control" id="summary-ckeditor" name="content" ></textarea>
 						</div>
 						<div class="col-12 form-group">
 							<input type="file" name="img[]" multiple>

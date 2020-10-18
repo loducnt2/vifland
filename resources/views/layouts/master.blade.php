@@ -41,6 +41,43 @@
 		</div>
 		<script type="text/javascript" src="{{asset('js/core.min.js')}}"></script>
 		<script type="text/javascript" src="{{asset('js/main.min.js')}}"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('.fav').each(function(){
+					$(this).click(function(){
+						var productid = $(this).attr('productid');
+						/*alert(productid);
+						$(this).css('background-color','red');*/
+						$.ajax({
+							url : '{{ route("add-favorite") }}',
+
+							type: 'POST',
+							data: { 
+								productId : productid,
+								_token: "{{ csrf_token() }}"
+							},
+							success: function(data,status){
+								console.log(data)
+								console.log(status);
+								//Chưa đăng nhập
+								if(data == 0){
+									alert('Vui lòng đăng nhập để sử dụng tính năng này');
+								}
+								
+								if(data == 1){
+									//Thích sản phẩm, icon đỏ
+								}
+								
+								if(data == 2){
+									//Bỏ thích sản phẩm, icon bình thường lại
+								}
+							}
+						})
+						return false;
+					})
+				})
+			})
+		</script>
 		@yield('footerScripts')
 	</body>
 </html>

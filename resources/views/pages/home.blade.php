@@ -6,6 +6,7 @@
 @section('content')
 <!-- @include('layouts.logo_animation') -->
 <main>
+
 	<section class="index-s1" id="home">
 		<div class="max-width-container">
 			<div class="row pd-banner">
@@ -35,6 +36,7 @@
 			</div>
 		</div>
 	</section>
+
 	<section class="index-s2">
 		<div class="max-width-container">
 			<div class="box-menu-mobile">
@@ -134,7 +136,7 @@
 							<div class="end-box">
 								<a href="/mua-ban-nha-dat">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>{{count($product_by_cate1)}} Tin đăng</p>
+										<p>{{$count_cate1}} Tin đăng</p>
 									</div>
 								</a>
 								<a href="{{route('new',$categories[0]->slug)}}">
@@ -155,7 +157,7 @@
 							<div class="end-box">
 								<a href="/cho-thue-nha-dat">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>{{count($product_by_cate2)}} Tin đăng</p>
+										<p>{{$count_cate2}} Tin đăng</p>
 									</div>
 								</a>
 								<a href="{{route('new',$categories[1]->slug)}}">
@@ -176,7 +178,7 @@
 							<div class="end-box">
 								<a href="/sang-nhuong-nha-dat">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>{{count($product_by_cate3)}} Tin đăng</p>
+										<p>{{$count_cate3}} Tin đăng</p>
 									</div>
 								</a>
 								<a href="{{route('new',$categories[2]->slug)}}">
@@ -209,13 +211,13 @@
 					@foreach($product_by_cate1 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
-							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-1',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line icons"></i></a><a href="" class="comp" productid="{{$product->product_id}}"><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text"> 
-								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-1',$product->slug)}}">
+								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
 									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
 								</a>
 								<div class="location"> <span class="material-icons">location_on</span>
@@ -235,7 +237,7 @@
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
+										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
 									</div>
@@ -272,13 +274,13 @@
 					@foreach($product_by_cate2 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
-							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-2',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href="" class="comp" productid="{{$product->product_id}}"><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text">
-								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-2',$product->slug)}}">
+								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
 									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
 								</a>
 								<div class="location"> <span class="material-icons">location_on</span>
@@ -298,7 +300,7 @@
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
+										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
 									</div>
@@ -335,12 +337,12 @@
 					@foreach($product_by_cate3 as $product)
 					<div class="swiper-slide">
 						<div class="box-sp">
-							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-3',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
-								<div class="tag-thuongluong">Thương lượng</div>
-								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href="" class="comp" productid="{{$product->product_id}}"><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
-							<div class="box-sp-text"> <a  class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail-3',$product->slug)}}">
+							<div class="box-sp-text"> <a  class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
 									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
 								<div class="location"> <span class="material-icons">location_on</span>
 									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
@@ -359,7 +361,7 @@
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span></div>
+										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
 									</div>
@@ -377,21 +379,24 @@
 				</div>
 			</div>
 		</div>
+
 	</section>
 	<div class="index-page" id="js-page-verify" hidden></div>
 </main>
 @stop
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>
 	$(document).ready(function(){
-		$('.fav').each(function(){
+		
+		var listcomp = [] ;
+		$('.comp').each(function(){
 			$(this).click(function(){
 				var productid = $(this).attr('productid');
-				/*alert(productid);
-				$(this).css('background-color','red');*/
-				$.ajax({
-					url : '{{ route("add-favorite") }}',
+				listcomp.push(productid); 
+				/*$.ajax({
+					url : '{{ route("add-compare") }}',
 
 					type: 'POST',
 					data: { 
@@ -414,10 +419,14 @@
 							//Bỏ thích sản phẩm, icon bình thường lại
 						}
 					}
-				})
+				})*/
+				console.log(listcomp);
+				$.cookie('compare',listcomp.join());
 				return false;
 			})
 		})
+
+		
 		
 		 
 	})

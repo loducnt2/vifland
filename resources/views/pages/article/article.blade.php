@@ -188,9 +188,14 @@
 					<section class="sanpham-s-2" id="mota">
 						<div class="sanpham-wrapper">
 							<div class="swiper-container sanpham-slider"> 
-								<div class="tag-thuongluong">Thương lượng</div>
+								<!-- <div class="tag-thuongluong">Thương lượng</div> -->
 								<div class="swiper-wrapper">
+									@foreach($image as $img)
 									<div class="swiper-slide"> 
+										<div class="img-box"><img src="{{asset('assets/product')}}/{{$img->name}}" alt=""></div>
+									</div>
+									@endforeach
+									<!-- <div class="swiper-slide"> 
 										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
 									</div>
 									<div class="swiper-slide"> 
@@ -204,10 +209,7 @@
 									</div>
 									<div class="swiper-slide"> 
 										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
-									</div>
-									<div class="swiper-slide"> 
-										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
-									</div>
+									</div> -->
 								</div>
 								<div class="swiper-pagination"></div>
 							</div>
@@ -233,7 +235,8 @@
 								<div class="title">
 									<h2>mô tả</h2>
 								</div>
-								{{$product->content}}
+
+								<?php echo $product->content ; ?>								
 							</div>
 							<div class="share"> 
 								<button class="btn btn-share"> 

@@ -42,11 +42,14 @@ class HomeController extends Controller
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
+        //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
         ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('soft_delete',0)
         ->select(
+            //'product_image.name as img',
             'product.id as product_id',
             'product.slug as slug',
             'product.view',
@@ -75,11 +78,14 @@ class HomeController extends Controller
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
+        //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
         ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('soft_delete',0)
         ->select(
+            //'product_image.name as img',
             'product.id as product_id',
             'product.slug as slug',
             'product.view',
@@ -108,11 +114,14 @@ class HomeController extends Controller
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
+        //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
         ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('soft_delete',0)
         ->select(
+            //'product_image.name as img',
             'product.id as product_id',
             'product.slug as slug',
             'product.view',
@@ -134,10 +143,16 @@ class HomeController extends Controller
         ->limit(5)
         ->get();
 
-        Product::where( 'datetime_end','<', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
-        
-        //return $product_by_cate1->datetime_end;
-
+        Product::where( 'datetime_end','<=', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
+        $count_cate1 = Product::join('category','product.cate_id','category.id')
+        ->where('category.parent_id',1)
+        ->count();
+        $count_cate2 = Product::join('category','product.cate_id','category.id')
+        ->where('category.parent_id',2)
+        ->count();
+        $count_cate3 = Product::join('category','product.cate_id','category.id')
+        ->where('category.parent_id',3)
+        ->count();
         return view('/pages/home',compact(
             'categories',
             'province',
@@ -145,7 +160,10 @@ class HomeController extends Controller
             'filter_price',
             'product_by_cate1',
             'product_by_cate2',
-            'product_by_cate3'
+            'product_by_cate3',
+            'count_cate1',
+            'count_cate2',
+            'count_cate3'
         ));
     }
 }

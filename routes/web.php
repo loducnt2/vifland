@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/logout','Auth\LoginController@logout');
 Route::get('/', 'HomeController@index')->name('home');					// Trang chủ
 Route::get('home','HomeController@index');								// Trang chủ
-Route::get('/compares',function(){return view('pages/compare');});		// So sánh
+Route::get('/compares','API\CompareController@addCompare')->name('add-compare');		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 
 //Danh mục
@@ -31,18 +31,19 @@ Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1');
 Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2');
 Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3');
 
-Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
+/*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
-Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');
+Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
+
+Route::get('/{slug}','ProductController@show')->name('article-detail');
 
 Route::group(['middleware'=>'auth'],function(){
-
-	Route::get('/favourites','ProductController@productUserFavorite');				  // Yêu thích
-	Route::get('/history','ProductController@productUserHistory');					  // Lịch sử xem tin
 
 	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
 	Route::post('/article/new/store','ProductController@store')->name('article-store');   // Đăng tin
 	Route::get('/user/my-article','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
+	Route::get('/user/favourites','ProductController@productUserFavorite')->name('favorites');				  // Yêu thích
+	Route::get('/user/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
 
 	//Profile
 	Route::get('/user/profile/{id}','UserController@edit')->name('');
@@ -51,7 +52,6 @@ Route::group(['middleware'=>'auth'],function(){
 
 
 });
-Route::post('add-favorited','ProductController@addFavorite')->name('add-favorite');
 
 // Đăng kí
 Route::post('/create-user','Auth\RegisterController@create')->name('createUser');
@@ -77,6 +77,8 @@ Route::get('/san-pham',function(){
 //API
 Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
 Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
+Route::post('/add-favorited','API\FavoriteController@addFavorite')->name('add-favorite');
+//Route::post('/add-compare','API\CompareController@addCompare')->name('add-compare');	
 
 
 //  test

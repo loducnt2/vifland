@@ -27,9 +27,9 @@ class Product extends Model
         'email',
     	'status',
         'type',
-    	'requirement',
     	'province_id',
     	'district_id',
     	'ward_id',
+        'soft_delete',
     ];
 }
