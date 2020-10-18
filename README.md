@@ -17,7 +17,7 @@
 ##
 
 php artisan migrate
-
+( nếu tải database mới thì k cần chạy migrate )
 -- php artisan serve
 
 ##

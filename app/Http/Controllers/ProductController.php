@@ -15,6 +15,7 @@ use App\Models\ProductImg;
 use App\Models\PostHistory;
 use App\Models\FilterPrice;
 use App\Models\TypeProduct;
+use App\Models\Favorited;
 use Str;
 class ProductController extends Controller
 {
@@ -70,8 +71,8 @@ class ProductController extends Controller
             'slug'           => NULL,
             'view'           => 1,
             'tags'           => $request->tags,
-            'datetime_start' => date('Y-m-d H:i:s',strtotime($request->datetime_start)),
-            'datetime_end'   => date('Y-m-d H:i:s',strtotime($request->datetime_end)),
+            'datetime_start' => date('Y-m-d',strtotime($request->datetime_start)),
+            'datetime_end'   => date('Y-m-d',strtotime($request->datetime_end)),
             'content'        => $request->content,
             'name_contact'   => $request->name_contact,
             'phone_contact'     => $request->phone_contact,
@@ -105,7 +106,7 @@ class ProductController extends Controller
             'bedroom'      => $request->bedroom,
             'price'        => $request->price,
             'unit_id'      => $request->unit_id,
-            'legal'        => implode(',',$request->legal),
+            'legal'        => $request->legal,
         ]);
         $productex->save();
 
@@ -115,9 +116,9 @@ class ProductController extends Controller
             foreach( $file as $img ){
                 $filetype = $img->getClientOriginalExtension('image');
                 $filename = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
-                $filesave = 'product'.'-'.$productex->id.Str::random(10).'.'.$filetype;
+                //$filesave = 'product'.'-'.$productex->id.Str::random(10).'.'.$filetype;
 
-                $img->move(public_path('/assets/product/'),$filesave);
+                $img->move(public_path('/assets/product/'), $filename);
                 /*move_uploaded_file($filesave,asset('/assets/product/'));*/
                 $arrfile[]= $filename;
             }
@@ -159,9 +160,49 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $product = Product::where('slug',$slug)
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->leftJoin('ward','product.ward_id','ward.id')
+        ->select(
+            'product_extend.*',
+            'product.*',
+            'product_extend.id as productex_id',
+            'province.name as province',
+            'district.name as district',
+            'ward.name as ward',
+            'product_unit.name as unit'
+        )
+        ->first();
+
+        $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
+        ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
+
+        $acreage = intval($product->depth)*intval($product->facades);
+        $total   = intval($product->price)*$acreage; 
+        $product->update(['view'=> $product->view + 1 ]);
+        $cate    = Category::where('id',$product->cate_id)->value('name');
+
+        $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
+
+        //Lịch sử xem sản phẩm
+        if(auth()->check()){
+           $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
+           if( count($histories) == 0 ){
+               $history = Favorited::create([
+                   'user_id'       => auth()->user()->id,
+                   'product_extend_id' => $product->product_id,
+                   'type'       => 1,
+               ]);
+           } 
+        }
+        
+
+        return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image'));
     }
 
     /**
@@ -203,8 +244,9 @@ class ProductController extends Controller
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
+        $title          = 'Mua Bán Nhà Đất';
 
-        return view('pages/category',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend','title'));
     }
 
     public function getByCateSlug2(){
@@ -212,8 +254,9 @@ class ProductController extends Controller
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
+        $title          = 'Cho Thuê Nhà Đất';
 
-        return view('pages/category',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend','title'));
     }
 
     public function getByCateSlug3(){
@@ -221,22 +264,12 @@ class ProductController extends Controller
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
         $product_extend = Product::where('cate_id',$cate_id)->get();
+        $title          = 'Sang Nhượng Nhà Đất';
 
-        return view('pages/category',compact('cate_child','product_extend'));
+        return view('pages/category',compact('cate_child','product_extend','title'));
     }
 
-    public function getDetailByCate1($slug){
-        $product = Product::where('slug',$slug)->first();
-        return $product;
-    }
-    public function getDetailByCate2($slug){
-        $product = Product::where('slug',$slug)->first();
-        return $product;
-    }
-    public function getDetailByCate3($slug){
-        $product = Product::where('slug',$slug)->first();
-        return $product;
-    }
+    
 
 
 
@@ -251,6 +284,7 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->orderBy('datetime_start','desc')
         ->get();
 
         //Tin đã đăng
@@ -259,6 +293,7 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->orderBy('datetime_start','desc')
         ->get();
 
         //Tin chờ xác nhận
@@ -267,11 +302,55 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->orderBy('datetime_start','desc')
         ->get();
 
 
-        //return $product_wait;
+        //return $product_posted;
 
         return view('pages/article/article-manage-user',compact('product_wait1','product_posted','product_wait2'));
     }
+
+    public function productUserHistory(){
+        $products = Favorited::where('favorited.type',1)
+        ->where('user_id',auth()->user()->id)
+        ->leftJoin('product','favorited.product_extend_id','product.id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->where('product.datetime_end','>',date('Y-m-d H:i:s',strtotime('now')))
+        ->select(
+            'product.*',
+            'product.id as product_id',
+            'product_unit.name as unit',
+            'product.title as title',
+            'product_extend.price as price',
+            'product_extend.facades as facades',
+            'product_extend.depth as depth'
+        )
+        ->get();
+
+        return view('pages/history',compact('products'));
+    }
+
+    public function productUserFavorite(){
+        $products = Favorited::where('favorited.type',2)
+        ->where('user_id',auth()->user()->id)
+        ->leftJoin('product','favorited.product_extend_id','product.id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->where('product.datetime_end','>',date('Y-m-d H:i:s',strtotime('now')))
+        ->select(
+            'product.*',
+            'product.id as product_id',
+            'product_unit.name as unit',
+            'product.title as title',
+            'product_extend.price as price',
+            'product_extend.facades as facades',
+            'product_extend.depth as depth'
+        )
+        ->get();
+
+        return view('pages/favourites',compact('products'));
+    }
+
 }

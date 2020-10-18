@@ -45,19 +45,21 @@
 				<div class="logo"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-s.png')}}" alt=""></a></div>
 				<div class="main-nav">
 					<ul class="nav-list">
-						<a href="/favourites">
+						<a href="{{route('favorites')}}">
 							<li class="nav-item"><i class="ri-heart-fill icon"></i>
 								<p class="text">Yêu thích</p>
 							</li>
 						</a>
-						<a href="/compares">
+						<a href="">
 							<li class="nav-item"><i class="ri-equalizer-line icon"></i>
 								<p class="text">So sánh</p>
 							</li>
 						</a>
-						<li class="nav-item"><i class="ri-time-line icon"></i>
-							<p class="text">Lịch sử</p>
-						</li>
+						<a href="{{route('history')}}">
+							<li class="nav-item"><i class="ri-time-line icon"></i>
+								<p class="text">Lịch sử</p>
+							</li>	
+						</a>
 						<li class="nav-item"><i class="fas fa-bell icon"></i>
 							<p class="text">Thông báo</p>
 						</li>
@@ -91,7 +93,7 @@
 					<div class="button-mobile-post">
 						<button class="button-mbp"><i class="ri-chat-new-fill icon"></i><span>Đăng bài</span></button>
 						<div class="sosanh"><a href="/compares"><i class="ri-equalizer-line icon"></i></a></div>
-						<div class="yeuthich"><a href="/favorites"><i class="ri-heart-fill icon"></i></a></div>
+						<div class="yeuthich"><a href="{{route('favorites')}}"><i class="ri-heart-fill icon"></i></a></div>
 					</div>
 				</div>
 				<div class="nav-mobile-2">

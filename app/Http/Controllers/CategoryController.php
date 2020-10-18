@@ -84,7 +84,7 @@ class CategoryController extends Controller
         $cate = Category::find($id);
         $cate->name      = $req->get('name');
         $cate->language  = $req->get('lang');
-        $cate->slug      = Str::slug($req->name,'-');
+        // $cate->slug      = Str::slug($req->name,'-');
         $cate->status    = $req->get('status');
         $cate->orders    = $req->get('orders');
         $cate->parent_id = $req->get('parent_id');
