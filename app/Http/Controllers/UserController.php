@@ -118,15 +118,18 @@ class UserController extends Controller
         $user->website = $request->website;
         $user->facebook =$request->facebook;
         $user->gender = $request->input('gender');
-        // upload profile image
+        // Check nếu có ảnh để upload
         if ($request->hasFile('image')) {
             $imageName = time().'.'.$request->image->getClientOriginalExtension();
             $request->image->move('assets/avatar/', $imageName);
-            $user->img    = $imageName;
+            $user->img= $imageName;
 
-
-            // $user->img = $image;
         }
+        // Nếu không thì dùng mặc định
+            else{
+                $imageName ="avatar.png";
+                $user->img= $imageName;
+            }
         $user -> save();
         return redirect()->back();
     }
