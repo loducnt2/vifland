@@ -34,7 +34,7 @@
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
-                            <input type="password" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id">
+                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id">
                         </div>
                     </div>
                     <p class="dieukhoan">Bằng việc đăng ký tài khoản bạn đồng ý với <a href="">điều khoản dịch vụ</a></p>
