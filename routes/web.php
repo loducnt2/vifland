@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get('/testcompare','API\CompareController@testcompare');
 Route::get('/logout','Auth\LoginController@logout');
 Route::get('/', 'HomeController@index')->name('home');					// Trang chủ
 Route::get('home','HomeController@index');								// Trang chủ
-Route::get('/compares','API\CompareController@addCompare')->name('add-compare');		// So sánh
+Route::get('/compares','API\CompareController@index');		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 
 //Danh mục

@@ -50,7 +50,7 @@
 								<p class="text">Yêu thích</p>
 							</li>
 						</a>
-						<a href="">
+						<a href="/compares">
 							<li class="nav-item"><i class="ri-equalizer-line icon"></i>
 								<p class="text">So sánh</p>
 							</li>

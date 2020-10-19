@@ -213,7 +213,7 @@
 						<div class="box-sp">
 							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
-								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line icons"></i></a><a href="" class="comp" productid="{{$product->product_id}}"><i class="ri-equalizer-line icons"></i></a></div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line icons"></i></a><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text"> 
@@ -276,7 +276,7 @@
 						<div class="box-sp">
 							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
-								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href="" class="comp" productid="{{$product->product_id}}"><i class="ri-equalizer-line icons"></i></a></div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href="{{$product->product_id}}" class="comp"><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text">
@@ -339,7 +339,7 @@
 						<div class="box-sp">
 							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
-								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href="" class="comp" productid="{{$product->product_id}}"><i class="ri-equalizer-line icons"></i></a></div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href="{{$product->product_id}}" class="comp"><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text"> <a  class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
@@ -389,46 +389,25 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script>
 	$(document).ready(function(){
-		
+		if($.cookie('compare') != null ){
+			var arr = $.cookie('compare').split(',');
+			$.each(arr,function(index,value){
+				console.log(value)
+			})
+		}
 		var listcomp = [] ;
 		$('.comp').each(function(){
 			$(this).click(function(){
-				var productid = $(this).attr('productid');
-				listcomp.push(productid); 
-				/*$.ajax({
-					url : '{{ route("add-compare") }}',
-
-					type: 'POST',
-					data: { 
-						productId : productid,
-						_token: "{{ csrf_token() }}"
-					},
-					success: function(data,status){
-						console.log(data)
-						console.log(status);
-						//Chưa đăng nhập
-						if(data == 0){
-							alert('Vui lòng đăng nhập để sử dụng tính năng này');
-						}
-						
-						if(data == 1){
-							//Thích sản phẩm, icon đỏ
-						}
-						
-						if(data == 2){
-							//Bỏ thích sản phẩm, icon bình thường lại
-						}
-					}
-				})*/
-				console.log(listcomp);
+				var productid = $(this).attr('href');
+				listcomp.push(productid);
+				console.log(listcomp.join())
 				$.cookie('compare',listcomp.join());
 				return false;
 			})
 		})
 
-		
-		
-		 
+
+
 	})
 </script>
 @endsection
