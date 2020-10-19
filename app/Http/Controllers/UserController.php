@@ -123,13 +123,8 @@ class UserController extends Controller
             $imageName = time().'.'.$request->image->getClientOriginalExtension();
             $request->image->move('assets/avatar/', $imageName);
             $user->img= $imageName;
-
-        }
-        // Nếu không thì dùng mặc định
-            else{
-                $imageName ="avatar.png";
-                $user->img= $imageName;
             }
+
         $user -> save();
         return redirect()->back();
     }
