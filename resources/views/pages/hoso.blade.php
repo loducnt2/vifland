@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-md-12 col-lg-3">
                                 <div class="box-left-admin">
-                                    <div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
+                                <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
                                         <p>{{$profile->full_name}}</p>
                                     </div>
                                     <div class="bl-2">
@@ -65,14 +65,16 @@
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist"><a class="active nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Thay đổi thông tin cá nhân</a><a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Thay đổi mật khẩu</a></div>
                                         <div class="tab-content" id="nav-tabContent">
                                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                <form action="{{route('user-update',$profile->id)}}" method="post" >
+                                                <form action="{{route('user-update',$profile->id)}}" method="post" enctype="multipart/form-data" >
                                                     @csrf
                                                     <div class="row form-wrap anhdaidien">
                                                         <div class="col-md-12 col-lg-2 form-group">
                                                             <p class="text-f">Ảnh đại diện</p>
                                                         </div>
                                                         <div class="col-md-12 col-lg-10 form-group hinhdd">
-                                                            <img class="img" src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
+                                                        <img class="img" src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
+                                                            <input type="file" name="image" id="" >
+
                                                             <div class="text">
                                                                 {{-- cập nhật họ tên --}}
                                                             <p>{{$profile->full_name}}</p><span>Nhà môi giới</span>

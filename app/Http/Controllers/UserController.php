@@ -38,7 +38,7 @@ class UserController extends Controller
     }
     //
 
-    // user admin 
+    // user admin
     public function getprofileDetail($id){
         $profile = DB::table('user')->find($id);
        //history post trong trang admin
@@ -118,6 +118,15 @@ class UserController extends Controller
         $user->website = $request->website;
         $user->facebook =$request->facebook;
         $user->gender = $request->input('gender');
+        // upload profile image
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move('assets/avatar/', $imageName);
+            $user->img    = $imageName;
+
+
+            // $user->img = $image;
+        }
         $user -> save();
         return redirect()->back();
     }
