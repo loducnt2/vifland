@@ -10,6 +10,7 @@ use App\Models\FilterPrice;
 use App\Models\Product;
 use App\Models\ProductExtends;
 use App\Models\PostHistory;
+use App\Models\Favorited;
 class HomeController extends Controller
 {
     /**
@@ -153,6 +154,17 @@ class HomeController extends Controller
         $count_cate3 = Product::join('category','product.cate_id','category.id')
         ->where('category.parent_id',3)
         ->count();
+
+        if(auth()->check()){
+            $favorite = Favorited::where('user_id',auth()->user()->id)->where('favorited.type',2)
+            ->join('product','favorited.product_extend_id','product.id')
+            ->select('product.id as product_id')
+            ->get();
+        }else{
+            $favorite = "chưa có đăng nhập";
+        }
+        
+
         return view('/pages/home',compact(
             'categories',
             'province',
@@ -163,7 +175,8 @@ class HomeController extends Controller
             'product_by_cate3',
             'count_cate1',
             'count_cate2',
-            'count_cate3'
+            'count_cate3',
+            'favorite'
         ));
     }
 }

@@ -19,17 +19,18 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get('/testcompare','API\CompareController@testcompare');
 Route::get('/logout','Auth\LoginController@logout');
 Route::get('/', 'HomeController@index')->name('home');					// Trang chủ
 Route::get('home','HomeController@index');								// Trang chủ
-Route::get('/compares','API\CompareController@addCompare')->name('add-compare');		// So sánh
+Route::get('/compares','API\CompareController@index');		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 
 //Danh mục
 
-Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1');
-Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2');
-Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3');
+Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1')->name('cate1');
+Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2')->name('cate2');
+Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cate3');
 
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
