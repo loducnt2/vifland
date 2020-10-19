@@ -74,7 +74,6 @@ Route::get('/san-pham',function(){
 );
 
 
-
 //API
 Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
 Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
@@ -125,7 +124,7 @@ Route::get('/admin/danh-sach-tin-tuc','NewsController@index');
 
 
 Route::post('/dang-tin/store','ProductController@store')->name('dang-tin');
-
+// Quản lý tin đăng
 
 
 // login admin

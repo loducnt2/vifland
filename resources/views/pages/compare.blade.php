@@ -116,8 +116,8 @@
 	</section>
 	
 
-	<section class="end"> </section>
-	<div id="js-page-verify" hidden></div>
+    <section class="end"> </section>
+    <div id="js-page-verify" hidden></div>
 </main>
 @endsection
 @section('footerScripts')
