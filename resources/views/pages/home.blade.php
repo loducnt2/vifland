@@ -40,14 +40,15 @@
 		<div class="max-width-container">
 			<div class="box-menu-mobile">
 				<div class="box-mobile-wrap">
-					<div class="box-m"><a href=""><img src="./assets/icon/house@3x.png" alt="">
+					<div class="box-m"><a href="{{route('cate1')}}"><img src="{{asset('assets/icon/house@3x.png')}}" alt="">
 							<p>{{$categories['0']->name}} </p></a></div>
-					<div class="box-m"><a href=""><img src="./assets/icon/rent@3x.png" alt="">
+					<div class="box-m"><a href="{{route('cate2')}}"><img src="{{asset('assets/icon/rent@3x.png')}}" alt="">
 							<p>{{$categories['1']->name}}</p></a></div>
-					<div class="box-m"><a href=""><img src="./assets/icon/transfer-image-category.png" alt="">
+					<div class="box-m"><a href="{{route('cate3')}}"><img src="{{asset('assets/icon/transfer-image-category.png')}}" alt="">
 							<p>{{$categories['2']->name}}</p></a></div>
 				</div>
 			</div>
+
 			<div class="box-search-index">
 				<form action=""></form>
 				<div class="row">
@@ -122,13 +123,14 @@
 			</div>
 		</div>
 	</section>
+	{{$favorite}}
 	<section class="index-sc3">
 		<div class="max-width-container border-bottom">
 			<div class="category-container">
 				<div class="row">
 					<div class="col-4">
 						<div class="box-cate">
-							<a href="/mua-ban-nha-dat">
+							<a href="{{route('cate1')}}">
 								<div class="img"><img src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt=""></div>
 								<div class="title-box">{{$categories[0]->name}}</div>
 							</a>
@@ -149,7 +151,7 @@
 					</div>
 					<div class="col-4">
 						<div class="box-cate">
-							<a href="/cho-thue-nha-dat">
+							<a href="{{route('cate2')}}">
 								<div class="img"><img src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt=""></div>
 								<div class="title-box">{{$categories[1]->name}}</div>
 							</a>
@@ -170,7 +172,7 @@
 					</div>
 					<div class="col-4">
 						<div class="box-cate">
-							<a href="/sang-nhuong-nha-dat">
+							<a href="{{route('cate3')}}">
 								<div class="img"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt=""></div>
 								<div class="title-box">{{$categories[2]->name}}</div>
 							</a>
@@ -195,9 +197,9 @@
 	<section class="index-sc4">
 		<div class="max-width-container">
 			<div class="text-title">
-				<div class="text-left"><a class="text-desktop" href="/mua-ban-nha-dat">
+				<div class="text-left"><a class="text-desktop" href="{{route('cate1')}}">
 						<h3>{{$categories[0]->name}}</h3></a></div>
-				<div class="text-right"><a class="text-desktop" href="/mua-ban-nha-dat"><i class="ri-equalizer-line"></i>
+				<div class="text-right"><a class="text-desktop" href="{{route('cate1')}}"><i class="ri-equalizer-line"></i>
 						<p>Xem tất cả &nbsp;<span>({{count($product_by_cate1)}} Tin đăng)</span></p></a></div>
 			</div>
 		</div>
@@ -212,7 +214,7 @@
 						<div class="box-sp">
 							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
 								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
-								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line icons"></i></a><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
+								<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line iconsheart"></i></a><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
 							<div class="box-sp-text"> 
@@ -278,7 +280,7 @@
                                         src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
                                 <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
                                 <div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i
-                                            class="ri-heart-line icons"></i></a><a href="" class="comp"
+                                            class="ri-heart-line iconsheart"></i></a><a href="{{$product->product_id}}" class="comp"
                                         productid="{{$product->product_id}}"><i class="ri-equalizer-line icons"></i></a>
                                 </div>
                                 <div class="overlay"></div>
@@ -361,10 +363,9 @@
                     @foreach($product_by_cate3 as $product)
                     <div class="swiper-slide">
                         <div class="box-sp">
-                            <div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
+                            <div class="box-sp-img"><a href=""><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
                                 <div class="tag-thuongluong">Thương lượng</div>
-                                <div class="box-icon"><i class="ri-heart-line icons"></i><i
-                                        class="ri-equalizer-line icons"></i></div>
+                                <div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line iconsheart"></i></a><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
                                 <div class="overlay"></div>
                             </div>
                             <div class="box-sp-text"> <a href="">
@@ -378,18 +379,17 @@
                                 </div>
                                 <div class="mota-place">
                                     <div class="mota-place-1">
-                                        <div class="mota-place-tt"><img src="./assets/icon/dientich.png" alt=""><span
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
                                                 title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
-                                        <div class="mota-place-tt"><img src="./assets/icon/icon-road@3x.png"
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                 title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-                                        <div class="mota-place-tt"><img src="./assets/icon/rectangle-copy-2@3x.png"
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                 title="{{$product->facades}}">{{$product->facades}} m</span></div>
                                     </div>
-                                     <div class="mota-place-1">
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">

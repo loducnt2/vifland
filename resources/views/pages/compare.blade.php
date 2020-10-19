@@ -17,12 +17,7 @@
 	</div>
 	<section class="pages-compare"> 
 		<div class="max-width-container">
-			@if($products==NULL)
-			<div class="article-none" id="article-none" > <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
-				<p>Quý khách chưa chọn sản phẩm so sánh.</p>
-				
-			</div>
-			@else
+			@if(count($products) != null )
 			<div class="row"> 
 				<div class="col-xl-3 col-md-3 d-none d-md-block">
 					<section class="compare-c-1">
@@ -46,6 +41,7 @@
 				<div class="col-xl-9 col-md-9 col-12">
 					<section class="compare-c-2">
 						<div class="compare-wrapper">
+
 							<div class="title-compare">
 								<h2>Mua / Bán </h2>
 							</div>
@@ -110,6 +106,10 @@
 						</div>
 					</section>
 				</div>
+			</div>
+			@else
+			<div class="article-none" id="article-none" > <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+				<p>Quý khách chưa chọn sản phẩm so sánh.</p>
 			</div>
 			@endif
 		</div>

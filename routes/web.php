@@ -28,9 +28,9 @@ Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 
 //Danh mục
 
-Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1');
-Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2');
-Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3');
+Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1')->name('cate1');
+Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2')->name('cate2');
+Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cate3');
 
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');

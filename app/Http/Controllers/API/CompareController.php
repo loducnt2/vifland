@@ -34,7 +34,7 @@ class CompareController extends Controller
     	}
     	
 
-
+        //return $products;
     	return view('pages/compare',compact('products'));
 
     }

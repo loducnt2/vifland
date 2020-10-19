@@ -67,11 +67,12 @@
                         }
 
                         if (data == 1) {
-                            //Thích sản phẩm, icon đỏ
+                            //Thích sản phẩm,
                         }
 
                         if (data == 2) {
-                            //Bỏ thích sản phẩm, icon bình thường lại
+                            //Bỏ thích sản phẩm
+                            
                         }
                     }
                 })
