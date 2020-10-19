@@ -93,15 +93,15 @@
                                                         </div>
                                                         <div class="col-md-12 col-lg-10 form-group bdb d-flex">
                                                             <div class="checked">
-                                                                <input id="nam" type="radio" value="muaban" name="canmuaban">
+                                                                <input id="nam" type="radio" value="1"  name="gender" {{ ($profile->gender=="1")? "checked" : "" }}>
                                                                 <label for="nam">Nam</label>
                                                             </div>
                                                             <div class="checked">
-                                                                <input id="nu" type="radio" value="muaban" name="canmuaban">
+                                                                <input id="nu" type="radio" value="2" name="gender"  {{ ($profile->gender=="2")? "checked" : "" }}>
                                                                 <label for="nu">Nữ</label>
                                                             </div>
                                                             <div class="checked">
-                                                                <input id="khac" type="radio" value="muaban" name="canmuaban">
+                                                                <input id="khac" type="radio" value="3" name="gender"  {{ ($profile->gender=="3")? "checked" : "" }}>
                                                                 <label for="khac">Khác</label>
                                                             </div>
                                                         </div>

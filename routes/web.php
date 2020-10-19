@@ -41,12 +41,12 @@ Route::group(['middleware'=>'auth'],function(){
 
 	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
 	Route::post('/article/new/store','ProductController@store')->name('article-store');   // Đăng tin
-	Route::get('/user/my-article','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
+	Route::get('/user/my-article/{id}','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
 	Route::get('/user/favourites','ProductController@productUserFavorite')->name('favorites');				  // Yêu thích
 	Route::get('/user/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
 
 	//Profile
-	Route::get('/user/profile/{id}','UserController@edit')->name('');
+	Route::get('/user/profile/{id}','UserController@profileDetail')->name('');
 	//Update profile
 	Route::post('/user/update/{id}','UserController@update')->name('user-update');
 
@@ -77,7 +77,7 @@ Route::get('/san-pham',function(){
 Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
 Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
 Route::post('/add-favorited','API\FavoriteController@addFavorite')->name('add-favorite');
-//Route::post('/add-compare','API\CompareController@addCompare')->name('add-compare');	
+//Route::post('/add-compare','API\CompareController@addCompare')->name('add-compare');
 
 
 //  test
@@ -92,7 +92,6 @@ Route::get('/pusher', function(Illuminate\Http\Request $request) {
     return redirect('getPusher');
 });
 Route::get('/test',function(){return view('test/home');});
-
 
 Route::post('/test/product-unit/create','ProductUnitController@store')->name('create-product-unit');
 Route::post('/test/product-unit/update/{id}','ProductUnitController@update')->name('update-product-unit');
@@ -140,3 +139,5 @@ Route::get('admin/user-profile/{id}','UserController@profileDetail');
 Route::get('/admin/list-product',function(){
     return view('admin/sanpham/danhsachsanpham');
 });
+// Route quản lí tin đã đăng của user
+// Route::get('/my-article/{id}','UserControllers@getPostbyID');

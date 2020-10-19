@@ -21,13 +21,27 @@ class UserController extends Controller
         $users =User::get();
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
+    // profile_user
     public function profileDetail($id){
         $profile = DB::table('user')->find($id);
-        // $profile = User::find($id);
-        // $profile = User::findOrFail($id);
-        // lấy danh sách các post có cùng id trong posts và tiêu đề bài viết
-        # Lấy Id người dùng trong bảng PostHistory và join vói id bảng prooduct
+       //history post trong trang admin
+        $posts = PostHistory::where('user_id',$profile->id)
+        ->join('product', 'product.id', '=', 'product_id')
 
+        ->get();
+        // dd($posts);
+        return view('pages/hoso')->with(
+        [
+            'profile'=>$profile,
+            'posts'=>$posts
+        ]);
+    }
+    //
+
+    // user admin 
+    public function getprofileDetail($id){
+        $profile = DB::table('user')->find($id);
+       //history post trong trang admin
         $posts = PostHistory::where('user_id',$profile->id)
         ->join('product', 'product.id', '=', 'product_id')
 
@@ -103,6 +117,7 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->website = $request->website;
         $user->facebook =$request->facebook;
+        $user->gender = $request->input('gender');
         $user -> save();
         return redirect()->back();
     }
