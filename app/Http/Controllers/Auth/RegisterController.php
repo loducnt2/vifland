@@ -80,7 +80,7 @@ class RegisterController extends Controller
                 'email'     => $email,
                 'status'    => '1',
                 'card_id'   => $data->card_id,
-                'img'       => 'user.png',
+                'img'       => 'avatar.png',
             ]);
             $user->save();
         } else {
@@ -91,7 +91,7 @@ class RegisterController extends Controller
                 'phone'     => $email,
                 'status'    => '1',
                 'card_id'   => $data->card_id,
-                'img'       => 'user.png',
+                'img'       => 'avatar.png',
             ]);
             $user->save();
         }

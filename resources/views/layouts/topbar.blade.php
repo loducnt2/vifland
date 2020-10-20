@@ -5,7 +5,7 @@
 		</div>
 		<div class="wrap-2 user-admin">
 			@if(auth()->check())
-				<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
+        <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
 					<div class="content"> <b>{{auth()->user()->username}}</b>
 						<p>Khách</p>
 					</div>
@@ -58,7 +58,7 @@
 						<a href="{{route('history')}}">
 							<li class="nav-item"><i class="ri-time-line icon"></i>
 								<p class="text">Lịch sử</p>
-							</li>	
+							</li>
 						</a>
 						<li class="nav-item"><i class="fas fa-bell icon"></i>
 							<p class="text">Thông báo</p>
@@ -66,10 +66,10 @@
 						<li class="post-new"><i class="ri-chat-new-fill icon"></i>
 							<p class="text">Đăng bài</p>
 						</li>
-						<li class="nav-item d-none user-logined"><img class="avatar-login" src="{{asset('assets/avatar/avatar-girl.png')}}" alt=""></li>
+						<li class="nav-item d-none user-logined"><img class="avatar-login" src="{{asset('assets/avatar/avatar.png')}}" alt=""></li>
 						<li class="nav-item">
 							@if(auth()->check())
-								<div class="avatar-user"><img src="{{asset('assets/avatar/avatar.png')}}" alt=""></div>
+                        <div class="avatar-user"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt=""></div>
 							@else
 								<a href="/login" class="btn btn__header" style="line-height:36px">Đăng Nhập</a>
 							@endif
@@ -180,7 +180,7 @@
 				</div>
 				<div class="wrap-2 user-admin">
 					@if(auth()->check())
-					<div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
+                <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
 						<p>{{auth()->user()->username}}</p>
 					</div>
 					<div class="bl-2">
