@@ -135,9 +135,9 @@
 								<div class="title-box">{{$categories[0]->name}}</div>
 							</a>
 							<div class="end-box">
-								<a href="/mua-ban-nha-dat">
+								<a href="{{route('cate1')}}">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>{{$count_cate1}} Tin đăng</p>
+										<p>{{count($product_by_cate1)}} Tin đăng</p>
 									</div>
 								</a>
 								<a href="{{route('new',$categories[0]->slug)}}">
@@ -156,9 +156,9 @@
 								<div class="title-box">{{$categories[1]->name}}</div>
 							</a>
 							<div class="end-box">
-								<a href="/cho-thue-nha-dat">
+								<a href="{{route('cate2')}}">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>{{$count_cate2}} Tin đăng</p>
+										<p>{{count($product_by_cate2)}} Tin đăng</p>
 									</div>
 								</a>
 								<a href="{{route('new',$categories[1]->slug)}}">
@@ -177,9 +177,9 @@
 								<div class="title-box">{{$categories[2]->name}}</div>
 							</a>
 							<div class="end-box">
-								<a href="/sang-nhuong-nha-dat">
+								<a href="{{route('cate3')}}">
 									<div class="box-left"><span class="material-icons">list</span>
-										<p>{{$count_cate3}} Tin đăng</p>
+										<p>{{count($product_by_cate3)}} Tin đăng</p>
 									</div>
 								</a>
 								<a href="{{route('new',$categories[2]->slug)}}">
@@ -416,30 +416,5 @@
 </main>
 @stop
 @section('footerScripts')
-<!-- Thêm script cho trang này ở đây -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js">
-</script>
-<script>
-	$(document).ready(function(){
-		if($.cookie('compare') != null ){
-			var arr = $.cookie('compare').split(',');
-			$.each(arr,function(index,value){
-				console.log(value)
-			})
-		}
-		var listcomp = [] ;
-		$('.comp').each(function(){
-			$(this).click(function(){
-				var productid = $(this).attr('href');
-				listcomp.push(productid);
-				console.log(listcomp.join())
-				$.cookie('compare',listcomp.join());
-				return false;
-			})
-		})
 
-
-
-	})
-</script>
 @endsection

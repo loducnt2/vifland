@@ -127,7 +127,7 @@ Route::post('/dang-tin/store','ProductController@store')->name('dang-tin');
 
 
 // login admin
-Route::get('/admin',function(){
+Route::get('/admin/index',function(){
     return view('admin/index');
 }); // Trang admin
 // ================= hồ sơ ==================
