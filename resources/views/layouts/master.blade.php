@@ -20,7 +20,7 @@
     <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 </head>
 
@@ -41,8 +41,10 @@
             </div>
         </div>
     </div>
+
     <script type="text/javascript" src="{{asset('js/core.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/main.min.js')}}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         $('.fav').each(function() {
@@ -76,6 +78,26 @@
                         }
                     }
                 })
+                return false;
+            })
+        })
+        var listcomp = [] ;
+        if($.cookie('compare') != null ){
+            var arr = $.cookie('compare').split(',');
+            $.each(arr,function(index,value){
+                console.log(value)
+
+            })
+        }
+        $('.comp').each(function(){
+            $(this).click(function(){
+                var productid = $(this).attr('href');
+                if(listcomp.indexOf( productid ) != -1 ){
+                    return false;
+                }
+                listcomp.push(productid);
+                console.log(listcomp.join())
+                $.cookie('compare',listcomp.join());
                 return false;
             })
         })

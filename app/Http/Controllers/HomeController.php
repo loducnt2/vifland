@@ -145,7 +145,7 @@ class HomeController extends Controller
         ->get();
 
         Product::where( 'datetime_end','<=', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
-        $count_cate1 = Product::join('category','product.cate_id','category.id')
+        /*$count_cate1 = Product::join('category','product.cate_id','category.id')
         ->where('category.parent_id',1)
         ->count();
         $count_cate2 = Product::join('category','product.cate_id','category.id')
@@ -153,7 +153,7 @@ class HomeController extends Controller
         ->count();
         $count_cate3 = Product::join('category','product.cate_id','category.id')
         ->where('category.parent_id',3)
-        ->count();
+        ->count();*/
 
         if(auth()->check()){
             $favorite = Favorited::where('user_id',auth()->user()->id)->where('favorited.type',2)
@@ -173,9 +173,9 @@ class HomeController extends Controller
             'product_by_cate1',
             'product_by_cate2',
             'product_by_cate3',
-            'count_cate1',
+            /*'count_cate1',
             'count_cate2',
-            'count_cate3',
+            'count_cate3',*/
             'favorite'
         ));
     }
