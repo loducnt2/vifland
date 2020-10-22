@@ -21,6 +21,7 @@ class UserController extends Controller
         $users =User::get();
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
+
     // profile_user
     public function profileDetail($id){
         $profile = DB::table('user')->find($id);
@@ -36,7 +37,6 @@ class UserController extends Controller
             'posts'=>$posts
         ]);
     }
-    //
 
     // user admin
     public function getprofileDetail($id){
@@ -139,8 +139,15 @@ class UserController extends Controller
     {
         //
     }
-    // profile-detail
+    // user-ban
+    //
+    public function ChangeUserStatus(Request $request){
+        $user = User::find($request->id);
+        $user->status = $request->status;
 
+        $user->save();
+
+    }
 
     }
 

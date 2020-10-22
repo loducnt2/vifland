@@ -7,11 +7,7 @@
     <title>Quản lý người dùng</title>
 
 </head>
-<script>
-    $(document).ready( function () {
-        $('#dataTable').DataTable();
-    } );
-    </script>
+
 <body>
 
     {{-- @extends('layouts.master') --}}
@@ -52,33 +48,10 @@
                   </td>
 
                   <td>
-                   {{-- modal box here --}}
-                   <!-- Button trigger modal -->
-<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
-    Khoá thành viên
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Khoá thành viên {{$profile->id}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
+                  {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
+                  <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Mở tài khoản" data-off="Khoá tài khoản" {{ $user->status ? 'checked' : '' }}>
+gi
+                </td>
                   </td>
                  @endforeach
 
@@ -89,7 +62,8 @@
             </table>
         </div>
     </div>
-
     @endsection
 </body>
+
+
 </html>
