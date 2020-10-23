@@ -7,11 +7,7 @@
     <title>Quản lý người dùng</title>
 
 </head>
-<script>
-    $(document).ready( function () {
-        $('#dataTable').DataTable();
-    } );
-    </script>
+
 <body>
 
     {{-- @extends('layouts.master') --}}
@@ -52,7 +48,10 @@
                   </td>
 
                   <td>
-                    <a href="user-profile/{{$user->id}}">Link</a>
+                  {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
+                  <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Mở tài khoản" data-off="Khoá tài khoản" {{ $user->status ? 'checked' : '' }}>
+gi
+                </td>
                   </td>
                  @endforeach
 
@@ -63,7 +62,8 @@
             </table>
         </div>
     </div>
-
     @endsection
 </body>
+
+
 </html>

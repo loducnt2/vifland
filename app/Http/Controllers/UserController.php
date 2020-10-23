@@ -21,6 +21,7 @@ class UserController extends Controller
         $users =User::get();
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
+
     // profile_user
     public function profileDetail($id){
         $profile = DB::table('user')->find($id);
@@ -36,7 +37,6 @@ class UserController extends Controller
             'posts'=>$posts
         ]);
     }
-    //
 
     // user admin
     public function getprofileDetail($id){
@@ -123,13 +123,8 @@ class UserController extends Controller
             $imageName = time().'.'.$request->image->getClientOriginalExtension();
             $request->image->move('assets/avatar/', $imageName);
             $user->img= $imageName;
-
-        }
-        // Nếu không thì dùng mặc định
-            else{
-                $imageName ="avatar.png";
-                $user->img= $imageName;
             }
+
         $user -> save();
         return redirect()->back();
     }
@@ -144,8 +139,15 @@ class UserController extends Controller
     {
         //
     }
-    // profile-detail
+    // user-ban
+    //
+    public function ChangeUserStatus(Request $request){
+        $user = User::find($request->id);
+        $user->status = $request->status;
 
+        $user->save();
+
+    }
 
     }
 

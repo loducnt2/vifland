@@ -36,8 +36,8 @@ class ProductController extends Controller
      */
     public function create($cate)
     {
-        $product_cate = ProductCate::all(); 
-        $wards        = Ward::orderBy('name','asc')->get(); 
+        $product_cate = ProductCate::all();
+        $wards        = Ward::orderBy('name','asc')->get();
         $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $cate_1       = Category::where('slug',$cate)->first(); //Lấy id category thông qua slug
@@ -49,7 +49,7 @@ class ProductController extends Controller
         }else{
             $units   = ProductUnit::all();
         }
-        
+
         return view('/pages/article/article-form',compact('cate_2','units','provinces','districts','wards','product_cate'));
     }
 
@@ -94,7 +94,7 @@ class ProductController extends Controller
             'slug' => Str::slug($request->title)
             .'-'.date('Ymd',strtotime($request->datetime_start)).str_pad($product->id,5,rand(10000,99999),STR_PAD_LEFT)
         ]);
-        
+
         $productex = new ProductExtend([
             'product_id'   => $product->id,
             'product_cate' => implode(',',$request->product_cate),
@@ -183,7 +183,7 @@ class ProductController extends Controller
         ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
 
         $acreage = doubleval( $product->depth*$product->facades );
-        $total   = intval($product->price)*$acreage; 
+        $total   = intval($product->price)*$acreage;
         $product->update(['view'=> $product->view + 1 ]);
         $cate    = Category::where('id',$product->cate_id)->value('name');
 
@@ -198,9 +198,9 @@ class ProductController extends Controller
                    'product_extend_id' => $product->product_id,
                    'type'       => 1,
                ]);
-           } 
+           }
         }
-        
+
 
         return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image'));
     }
@@ -269,7 +269,7 @@ class ProductController extends Controller
         return view('pages/category',compact('cate_child','product_extend','title'));
     }
 
-    
+
 
 
 

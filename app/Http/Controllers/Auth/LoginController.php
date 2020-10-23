@@ -59,10 +59,10 @@ class LoginController extends Controller
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
         ]);
         if ($user->user_type == 1) {
-            return redirect('/admin');
+            return redirect ('/admin/index');
         }
         if ($user->user_type == 0 ) {
-            return redirect('/');
+            return redirect ('/');
         }
 
 

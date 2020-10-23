@@ -142,3 +142,5 @@ Route::get('/admin/list-product',function(){
 });
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
+// User: thay đổi trạng thái user
+Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
