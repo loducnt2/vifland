@@ -134,13 +134,19 @@ Route::get('/admin/index',function(){
 
 // update thông tin hồ sơ cá nhân
 // Route admin - user
-Route::get('admin/list-user','UserController@index');
-Route::get('admin/user-profile/{id}','UserController@profileDetail');
+Route::get('admin/index/profiles','UserController@index');
+Route::get('admin/index/profile/{id}','UserController@getprofileDetail');
 // route admin- sản phẩm
 Route::get('/admin/list-product',function(){
     return view('admin/sanpham/danhsachsanpham');
 });
+Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
 // User: thay đổi trạng thái user
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
+
+
+// new list
+
+
