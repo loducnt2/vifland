@@ -363,12 +363,12 @@
                     @foreach($product_by_cate3 as $product)
                     <div class="swiper-slide">
                         <div class="box-sp">
-                            <div class="box-sp-img"><a href=""><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+                            <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
                                 <div class="tag-thuongluong">Thương lượng</div>
                                 <div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}" ><i class="ri-heart-line iconsheart"></i></a><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
                                 <div class="overlay"></div>
                             </div>
-                            <div class="box-sp-text"> <a href="">
+                            <div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
                                     <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
                                 </a>
                                 <div class="location"> <span class="material-icons">location_on</span>

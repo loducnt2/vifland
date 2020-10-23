@@ -349,7 +349,6 @@ class ProductController extends Controller
             'product_extend.depth as depth'
         )
         ->get();
-
         return view('pages/favourites',compact('products'));
     }
 

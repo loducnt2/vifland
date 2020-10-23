@@ -28,7 +28,7 @@ php artisan migrate
 -   git commit -m 'comment'
 -   git git pull
 
-## Trang admin : /admin-marvel
+## Trang admin : /admin/index
 
 username : admin
 pass : 1
