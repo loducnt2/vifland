@@ -52,7 +52,7 @@
 										<div class="box-sp">
 											<div class="box-sp-img"><a href=""><img src="./assets/product/sanpham1.webp" alt=""></a>
 												<!-- <div class="tag-thuongluong">Thương lượng</div> -->
-												<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+												<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href="{{$product->product_id}}" class="comp"><i class="ri-equalizer-line icons"></i></a></div>
 												<div class="overlay"></div>
 											</div>
 											<div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
@@ -122,4 +122,9 @@
 @endsection
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
+<script type="text/javascript">
+	$('.comp').click(function(){
+			location.reload()
+	})
+</script>
 @endsection

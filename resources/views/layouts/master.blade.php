@@ -84,21 +84,22 @@
         var listcomp = [] ;
         if($.cookie('compare') != null ){
             var arr = $.cookie('compare').split(',');
-            $.each(arr,function(index,value){
-                console.log(value)
-
-            })
         }
         $('.comp').each(function(){
             $(this).click(function(){
-                var productid = $(this).attr('href');
+                let productid = $(this).attr('href');
                 if(listcomp.indexOf( productid ) != -1 ){
-                    return false;
+                    listcomp.splice( listcomp.indexOf(productid) , 1)
+                    //listcomp = arr;
+                    console.log(listcomp.join())
+                }else{
+                    listcomp.push(productid);
+                    console.log(listcomp.join())
+                    
+                    
                 }
-                listcomp.push(productid);
-                console.log(listcomp.join())
                 $.cookie('compare',listcomp.join());
-                return false;
+                return false
             })
         })
     })

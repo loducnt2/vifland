@@ -36,7 +36,7 @@ Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cat
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
 
-Route::get('/{slug}','ProductController@show')->name('article-detail');
+Route::get('/article/{slug}','ProductController@show')->name('article-detail');
 
 Route::group(['middleware'=>'auth'],function(){
 
@@ -59,12 +59,12 @@ Route::post('/create-user','Auth\RegisterController@create')->name('createUser')
 
 
 
-Route::get('/new-detail',function(){
+/*Route::get('/new-detail',function(){
 	return view('pages/new-detail');}
 );
 Route::get('/new-list',function(){
 	return view('pages/new-list');}
-);
+);*/
 
 Route::get('/forgot-password',function(){
 	return view('auth/quenmk');}
