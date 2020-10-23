@@ -150,3 +150,17 @@ Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 // new list
 
 
+// route admin- danh muc
+// Route::get('/admin/danh-sach-danh-muc',function(){
+//     return view('/admin/danhmuc/danhsachdanhmuc');
+// });
+Route::get('admin/index/profile/delete/{id}','UserController@destroy');
+// Route quản lí tin đã đăng của user
+// Route::get('/my-article/{id}','UserControllers@getPostbyID');
+// User: thay đổi trạng thái user
+Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
+
+
+// new list
+
+

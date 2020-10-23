@@ -11,34 +11,62 @@
 <body>
 	{{-- @extends('layouts.master') --}}
 	@extends('admin.sidebar')
+
 	@section('content')
-	<form method="post" action="{{ route('update-cate',$cate->id) }}">
-		@csrf
-		Tên <br>
-		<input type="text" name="name" value="{{$cate->name}}"><br>
-		<?php
-		if ($cate->parent_id != NULL) {
-		?>
-			Cấp cha <br>
-			<select name="parent_id">
-				<option value="">Chọn</option>
-				@foreach($cate_level1 as $cate1)
-				<option value="{{$cate1->id}}" 
-					<?php if ($cate->parent_id == $cate1->id) {
-						echo 'selected';
-					} ?>>{{$cate1->name}}</option>
-				@endforeach
-			</select><br>
-		<?php } ?>
-		Ngôn ngữ <br>
-		<input type="text" name="lang" value="{{$cate->language}}"><br>
-		Thứ tự <br>
-		<input type="text" name="orders" value="{{$cate->orders}}"><br>
-		Hiện <input type="radio" name="status" value="1" {{$cate->status==1?'checked':''}}>
-		Ẩn <input type="radio" name="status" value="0" {{$cate->status==0?'checked':''}}><br>
-		<button type="">Cập nhật</button>
-	</form>
-	@endsection
+<div class="container">
+
+				<form method="post" action="{{ route('update-cate',$cate->id) }}">
+					@csrf
+
+					<label for="">Name</label>
+
+					<input  class="form-control" type="text" name="name" value="{{$cate->name}}">
+
+					<?php if ($cate->parent_id != NULL) { ?>
+
+					<label for="exampleFormControlSelect1">Example select</label>
+
+   							 <select class="form-control" name="parent_id">
+
+					@foreach($cate_level1 as $cate1)
+
+						<option value="{{$cate1->id}}" 
+
+							<?php if ($cate->parent_id == $cate1->id) {
+
+								echo 'selected';
+
+							} ?>>{{$cate1->name}}</option>
+
+						@endforeach
+
+					</select>
+
+					<?php } ?>
+
+					<label for="">Ngôn ngữ</label>
+
+					<input  class="form-control" type="text" name="lang" value="{{$cate->language}}">
+
+					<label for="">Thu tu</label>
+
+					<input  class="form-control" type="text" name="orders" value="{{$cate->orders}}">
+
+					<input  class="form-check-input" type="radio" name="status" value="1" {{$cate->status==1?'checked':''}}>
+
+					<label class="form-check-label" for="">Hiện</label>
+							<br>
+	
+					<input class="form-check-input" type="radio" name="status" value="0" {{$cate->status==0?'checked':''}}>
+
+					<label  class="form-check-label" for="">An</label>
+
+					<br>
+
+					<button class="btn btn-primary"  type="">Cập nhật</button>
+				</form>
+</div>
+@endsection
 </body>
 
 </html>
