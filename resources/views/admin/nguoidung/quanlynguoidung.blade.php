@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+
     <title>Quản lý người dùng</title>
 
 </head>
-
+<style>
+    <style>
+        .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+  .toggle.ios .toggle-handle { border-radius: 20px; }
+</style>
 <body>
 
     {{-- @extends('layouts.master') --}}
@@ -16,7 +22,7 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
                         <th>Họ và tên</th>
                         <th>Username</th>
@@ -26,6 +32,8 @@
                         {{-- <th>Salary</th> --}}
                         <th>Hoạt động</th>
                         <th>Chi tiết</th>
+                        <th>Hành động</th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -49,9 +57,27 @@
 
                   <td>
                   {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
-                  <input data-id="{{$user->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Mở tài khoản" data-off="Khoá tài khoản" {{ $user->status ? 'checked' : '' }}>
-gi
+                  <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} >
+                {{-- hồ sơ --}}
+
                 </td>
+                <td>
+                  <button type="submit" class="btn btn-primary">
+                      <a href="/admin/index/profile/{{$user->id}}">
+                        <i class="fa fa-search" style="font-size:12px;color:white"></i>
+                        </a>
+                        {{-- Xoá --}}
+
+                  </button>
+
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger">
+                    <a href="profile/delete/{{$user->id}}">
+                        <i class="fas fa-trash" style="color:white" ></i>
+                    </a>
+                   </button>
+
                   </td>
                  @endforeach
 
@@ -62,7 +88,9 @@ gi
             </table>
         </div>
     </div>
+
     @endsection
+
 </body>
 
 

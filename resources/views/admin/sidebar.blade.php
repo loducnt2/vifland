@@ -2,10 +2,13 @@
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
 <link rel="stylesheet" href="{{asset('css/styles.css') }}">
     <link href="css/update-admin.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+    {{-- <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> --}}
 {{-- toastr  css--}}
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+{{-- {{ $collection->links() }} --}}
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
     @yield('title')
@@ -106,7 +109,7 @@
 
                                       </nav>
                             </div>
-                        <a class="nav-link" href="{{ url('admin/list-user') }}">
+                        <a class="nav-link" href="{{ url('admin/index/profiles') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý người dùng
                             </a>

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Không tìm thấy/ mật khẩu',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'Không tìm thấy tài khoản.',
+    'throttle' => 'Đăng nhập quá nhiều lần. Xin vui lòng chờ đợi trong :seconds giây.',
 
 ];

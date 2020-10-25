@@ -1,22 +1,16 @@
 @extends('layouts.app')
 @section('title','Đăng nhập')
 @section('content')
-
+<style>
+    .invalid-feedback{
+        color:green;
+    }
+</style>
 <div class="ov-h" id="wrapper">
     <main>
-        @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-        @endif
+
         <section class="login">
-            @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            @endif
+
 
 
             <form method="POST" action="{{ route('login') }}">
@@ -39,7 +33,7 @@
                                     class="form-control @error('username') is-invalid @enderror" name="username"
                                     value="{{ old('username') }}" autocomplete="username" autofocus
                                     placeholder="Tên đăng nhập">
-                                @error('email')
+                                @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

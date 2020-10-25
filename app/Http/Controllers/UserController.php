@@ -36,6 +36,7 @@ class UserController extends Controller
             'profile'=>$profile,
             'posts'=>$posts
         ]);
+
     }
 
     // user admin
@@ -137,10 +138,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //xoá tài khoản
+        $user = User::find($id);
+        $user->delete();
+        // return redirect()->back();
+        return redirect('/admin/index/profiles');
     }
-    // user-ban
-    //
+    // khoá- mở khoá
     public function ChangeUserStatus(Request $request){
         $user = User::find($request->id);
         $user->status = $request->status;
