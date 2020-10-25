@@ -155,14 +155,14 @@ class HomeController extends Controller
         ->where('category.parent_id',3)
         ->count();*/
 
-        if(auth()->check()){
+        /*if(auth()->check()){
             $favorite = Favorited::where('user_id',auth()->user()->id)->where('favorited.type',2)
             ->join('product','favorited.product_extend_id','product.id')
             ->select('product.id as product_id')
             ->get();
         }else{
             $favorite = "chưa có đăng nhập";
-        }
+        }*/
         
 
         return view('/pages/home',compact(
@@ -172,11 +172,11 @@ class HomeController extends Controller
             'filter_price',
             'product_by_cate1',
             'product_by_cate2',
-            'product_by_cate3',
+            'product_by_cate3'
             /*'count_cate1',
             'count_cate2',
             'count_cate3',*/
-            'favorite'
+            //'favorite'
         ));
     }
 }

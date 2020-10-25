@@ -59,12 +59,12 @@ Route::post('/create-user','Auth\RegisterController@create')->name('createUser')
 
 
 
-/*Route::get('/new-detail',function(){
+Route::get('/new-detail',function(){
 	return view('pages/new-detail');}
 );
 Route::get('/new-list',function(){
 	return view('pages/new-list');}
-);*/
+);
 
 Route::get('/forgot-password',function(){
 	return view('auth/quenmk');}
@@ -78,6 +78,7 @@ Route::get('/san-pham',function(){
 Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
 Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
 Route::post('/add-favorited','API\FavoriteController@addFavorite')->name('add-favorite');
+Route::get('/all-favorite','API\FavoriteController@allFavorite')->name('all-favorite');
 //Route::post('/add-compare','API\CompareController@addCompare')->name('add-compare');
 
 

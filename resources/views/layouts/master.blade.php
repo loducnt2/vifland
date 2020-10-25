@@ -47,14 +47,14 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $('.fav').each(function() {
-            $(this).click(function() {
-                var productid = $(this).attr('productid');
-                /*alert(productid);
-                $(this).css('background-color','red');*/
+        $(".fav").click(function() {
+            $(this).toggleClass("active");
+            if ($(this).hasClass("ri-heart-line")) {
+                $(this).addClass("ri-heart-fill");
+                $(this).removeClass("ri-heart-line");
+                let productid = $(this).attr('productid');
                 $.ajax({
                     url: '{{ route("add-favorite") }}',
-
                     type: 'POST',
                     data: {
                         productId: productid,
@@ -74,20 +74,88 @@
 
                         if (data == 2) {
                             //Bỏ thích sản phẩm
-                            
                         }
                     }
                 })
-                return false;
-            })
+            } else if ($(this).hasClass("ri-heart-fill")) {
+                $(this).addClass("ri-heart-line");
+                $(this).removeClass("ri-heart-fill");
+                let productid = $(this).attr('productid');
+                $.ajax({
+                    url: '{{ route("add-favorite") }}',
+                    type: 'POST',
+                    data: {
+                        productId: productid,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(data, status) {
+                        console.log(data)
+                        console.log(status);
+                        //Chưa đăng nhập
+                        if (data == 0) {
+                            alert('Vui lòng đăng nhập để sử dụng tính năng này');
+                        }
+
+                        if (data == 1) {
+                            //Thích sản phẩm,
+                        }
+
+                        if (data == 2) {
+                            //Bỏ thích sản phẩm
+                        }
+                    }
+                })
+            }
+        });
+
+
+        $.ajax({
+            url  : '{{route("all-favorite")}}',
+            type : 'GET',
+            success: function( data,status ){
+                /*$.each(data,function(index,value){
+                    let arr = json_encode(value);
+                    //console.log(data);
+
+                })*/
+                let arr = [];
+
+                data.forEach(function(item,index,array){
+                    
+                    arr.push(item.id)
+
+                })
+                //arr = [63,64]
+                //console.log(arr)
+                //console.log(arr.indexOf( "65" ))
+
+                $('.fav').each(function(){
+                     var productid = parseInt( $(this).attr('productid'));
+                    console.log(productid)
+                     console.log(arr.indexOf( productid ))
+                     if( arr.indexOf( productid ) != -1 ){
+                         $(this).addClass('ri-heart-fill')
+                        $(this).addClass('active')
+                         $(this).removeClass('ri-heart-line')
+                     }
+                     else{
+                         $(this).removeClass('ri-heart-fill')
+                         $(this).removeClass('active')
+                         $(this).addClass('ri-heart-line')
+                     }
+                })
+                /*for( data ){
+                    console.log(data.id);
+                }*/
+                //console.log(data);
+            }
         })
-        var listcomp = [] ;
-        if($.cookie('compare') != null ){
-            var arr = $.cookie('compare').split(',');
-        }
+
+
         $('.comp').each(function(){
             $(this).click(function(){
-                let productid = $(this).attr('href');
+                let listcomp = $.cookie('compare').split(',')
+                let productid = $(this).attr('href')
                 if(listcomp.indexOf( productid ) != -1 ){
                     listcomp.splice( listcomp.indexOf(productid) , 1)
                     //listcomp = arr;
@@ -95,10 +163,8 @@
                 }else{
                     listcomp.push(productid);
                     console.log(listcomp.join())
-                    
-                    
                 }
-                $.cookie('compare',listcomp.join());
+                $.cookie('compare',listcomp.join())
                 return false
             })
         })

@@ -30,6 +30,17 @@ class FavoriteController extends Controller
         }else{
             return 0;
         }
-        
+    }
+
+    public function allFavorite(){
+        if(auth()->check()){
+            $favorite = Favorited::where('user_id',auth()->user()->id)->where('favorited.type',2)
+            ->join('product','favorited.product_extend_id','product.id')
+            ->select('product.id')
+            ->get();
+        }else{
+            $favorite = "chưa có đăng nhập";
+        }
+        return $favorite;
     }
 }
