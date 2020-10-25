@@ -160,50 +160,50 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
-    {
-        $product = Product::where('slug',$slug)
-        ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
-        ->leftJoin('province','product.province_id','province.id')
-        ->leftJoin('district','product.district_id','district.id')
-        ->leftJoin('ward','product.ward_id','ward.id')
-        ->select(
-            'product_extend.*',
-            'product.*',
-            'product_extend.id as productex_id',
-            'province.name as province',
-            'district.name as district',
-            'ward.name as ward',
-            'product_unit.name as unit'
-        )
-        ->first();
+    // public function show($slug)
+    // {
+    //     $product = Product::where('slug',$slug)
+    //     ->leftJoin('product_extend','product.id','product_extend.product_id')
+    //     ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+    //     ->leftJoin('province','product.province_id','province.id')
+    //     ->leftJoin('district','product.district_id','district.id')
+    //     ->leftJoin('ward','product.ward_id','ward.id')
+    //     ->select(
+    //         'product_extend.*',
+    //         'product.*',
+    //         'product_extend.id as productex_id',
+    //         'province.name as province',
+    //         'district.name as district',
+    //         'ward.name as ward',
+    //         'product_unit.name as unit'
+    //     )
+    //     ->first();
 
-        $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
-        ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
+    //     // $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
+    //     // ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
 
-        $acreage = doubleval( $product->depth*$product->facades );
-        $total   = intval($product->price)*$acreage;
-        $product->update(['view'=> $product->view + 1 ]);
-        $cate    = Category::where('id',$product->cate_id)->value('name');
+    //     $acreage = doubleval( $product->depth*$product->facades );
+    //     $total   = intval($product->price)*$acreage;
+    //     $product->update(['view'=> $product->view + 1 ]);
+    //     $cate    = Category::where('id',$product->cate_id)->value('name');
 
-        $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
+    //     $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
 
-        //Lịch sử xem sản phẩm
-        if(auth()->check()){
-           $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
-           if( count($histories) == 0 ){
-               $history = Favorited::create([
-                   'user_id'       => auth()->user()->id,
-                   'product_extend_id' => $product->product_id,
-                   'type'       => 1,
-               ]);
-           }
-        }
+    //     //Lịch sử xem sản phẩm
+    //     if(auth()->check()){
+    //        $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
+    //        if( count($histories) == 0 ){
+    //            $history = Favorited::create([
+    //                'user_id'       => auth()->user()->id,
+    //                'product_extend_id' => $product->product_id,
+    //                'type'       => 1,
+    //            ]);
+    //        }
+    //     }
 
 
-        return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image'));
-    }
+    //     return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image'));
+    // }
 
     /**
      * Show the form for editing the specified resource.

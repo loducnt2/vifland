@@ -7,6 +7,7 @@
     <title>Danh sách sản phẩm</title>
 </head>
 <body>
+
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
     @section('content')
