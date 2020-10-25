@@ -62,7 +62,7 @@ Route::post('/create-user','Auth\RegisterController@create')->name('createUser')
 Route::get('/new-detail',function(){
 	return view('pages/new-detail');}
 );
-Route::get('/new-list',function(){
+Route::get('/new-list/index',function(){
 	return view('pages/new-list');}
 );
 
