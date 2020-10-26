@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 class NewsController extends Controller
 {
     /**
@@ -37,7 +38,18 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // insert tin tức
+        $news = new News();
+        // tags
+        $news->tags= implode(',',$request->tags);
+        $news->title=$request->input('title');
+        $news->slug = $request->input('slug');
+        $news->content = $request->input('content');
+
+        $news->datepost = $request->input('datepost');
+        $news->status= "1";
+        $news->save();
+        return redirect()->back();
     }
 
     /**
@@ -49,6 +61,13 @@ class NewsController extends Controller
     public function show($id)
     {
         //
+        $news = DB::table('news')->find($id);
+
+        return view('pages/news-detail')->with(
+            [
+                'news'=>$news,
+                // 'posts'=>$posts
+            ]);
     }
 
     /**
