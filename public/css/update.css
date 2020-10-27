@@ -76,7 +76,7 @@
 .dangbaiviet .wrap-text {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 .dangbaiviet .box-tin .wrap-text h4 {
     font-size: 18px;
