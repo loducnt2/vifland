@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,7 +63,7 @@ Route::post('/create-user','Auth\RegisterController@create')->name('createUser')
 Route::get('/new-detail',function(){
 	return view('pages/new-detail');}
 );
-Route::get('/new-list',function(){
+Route::get('/new-list/index',function(){
 	return view('pages/new-list');}
 );
 
@@ -161,6 +162,7 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // User: thay đổi trạng thái user
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
+Route::get('/news/{id}','NewsController@show');
 
 // new list
 

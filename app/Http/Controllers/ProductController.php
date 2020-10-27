@@ -179,8 +179,8 @@ class ProductController extends Controller
         )
         ->first();
 
-        $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
-        ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
+        // $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
+        // ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
 
         $acreage = doubleval( $product->depth*$product->facades );
         $total   = intval($product->price)*$acreage;
