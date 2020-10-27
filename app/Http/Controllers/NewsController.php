@@ -60,13 +60,15 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        //get chi tiết bài đăng
         $news = DB::table('news')->find($id);
-
+        // get list bài đăng
+        $posts= DB::table('news')->get();
+        //
         return view('pages/news-detail')->with(
             [
                 'news'=>$news,
-                // 'posts'=>$posts
+                'posts'=>$posts
             ]);
     }
 
