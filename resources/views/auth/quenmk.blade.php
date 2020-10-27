@@ -6,7 +6,7 @@
 @section('content')
 <main>
     <section class="quenmk login">
-        <form action="">
+        <form action="{{ route('password.update') }}">
             <div class="login-wrap">
                 <div class="logo"><img src="./assets/logo/logo-footer-300.png" alt=""></div>
                 <div class="box-login">
