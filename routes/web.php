@@ -167,9 +167,8 @@ Route::get('/news/{id}','NewsController@show');
 Route::get('/admin/index/news',function(){
     return view('admin.tintuc.quanlytintuc');
 });
-Route::post('/admin/index/news/insert','NewsController@store'
+Route::POST('/admin/index/news/insert','NewsController@store'
 );
+// news list
 
-// new list
-
-
+Route::get('/listnews','NewsController@listnews');

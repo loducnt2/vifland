@@ -36,6 +36,7 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         // insert tin tức
@@ -43,12 +44,14 @@ class NewsController extends Controller
         // tags
         $news->tags= implode(',',$request->tags);
         $news->title=$request->input('title');
-        $news->slug = $request->input('slug');
+        $news->slug = $request->slug;
         $news->content = $request->input('content');
-
+        // $news->datepost = Carbon::now();
         $news->datepost = $request->input('datepost');
         $news->status= "1";
         $news->save();
+        $news->language ="vn";
+
         return redirect('/');
     }
 
@@ -82,6 +85,18 @@ class NewsController extends Controller
     {
         $new = News::find($id);
         return view('/admin/tintuc/quanlytintuc',compact('new'));
+    }
+    // get những tin trong db
+    public function listnews(){
+        // lấy mọi tin
+        $news = News::all();
+        // tin mới nhất theo create_at
+        $latest = DB::table('news')->orderBy('created_at','desc')->first();
+        return view('pages/news-list')->with(
+            [
+                'news'=>$news,
+                'latest'=>$latest
+            ]);
     }
      /**
      * Update the specified resource in storage.
