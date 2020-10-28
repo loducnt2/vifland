@@ -64,6 +64,44 @@
         /*$('#dangnhapModal').on('hidden.bs.modal', function() {
             location.reload();
         })*/
+        $.ajax({
+            url: '{{route("all-favorite")}}',
+            type: 'GET',
+            success: function(data, status) {
+
+                let arr = [];
+
+                data.forEach(function(item, index, array) {
+
+                    arr.push(item.id)
+
+                })
+                let countfav = arr.length;
+                if( countfav == 0 ){
+                    $('.number-yt').css('display','none')
+                }else{
+                    $('.number-yt').text(countfav)
+                    $('.number-yt').css('display','flex')
+                }
+                $('.fav').each(function() {
+                    var productid = parseInt($(this).attr('productid'));
+                    console.log(productid)
+                    console.log(arr.indexOf(productid))
+                    if (arr.indexOf(productid) != -1) {
+                        $(this).addClass('ri-heart-fill')
+                        $(this).addClass('active')
+                        $(this).removeClass('ri-heart-line')
+                    } else {
+                        $(this).removeClass('ri-heart-fill')
+                        $(this).removeClass('active')
+                        $(this).addClass('ri-heart-line')
+                    }
+                })
+
+            }
+        })
+
+
         $('.number-yt').css('display','none')
 
         $(".fav").click(function() {
@@ -149,37 +187,7 @@
             })
         });
 
-        $.ajax({
-            url: '{{route("all-favorite")}}',
-            type: 'GET',
-            success: function(data, status) {
-
-                let arr = [];
-
-                data.forEach(function(item, index, array) {
-
-                    arr.push(item.id)
-
-                })
-                let countfav = arr.length;
-                $('.number-yt').text(countfav)
-                $('.fav').each(function() {
-                    var productid = parseInt($(this).attr('productid'));
-                    console.log(productid)
-                    console.log(arr.indexOf(productid))
-                    if (arr.indexOf(productid) != -1) {
-                        $(this).addClass('ri-heart-fill')
-                        $(this).addClass('active')
-                        $(this).removeClass('ri-heart-line')
-                    } else {
-                        $(this).removeClass('ri-heart-fill')
-                        $(this).removeClass('active')
-                        $(this).addClass('ri-heart-line')
-                    }
-                })
-
-            }
-        })
+        
 
 
         $('.comp').each(function() {

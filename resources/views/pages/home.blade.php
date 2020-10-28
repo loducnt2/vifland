@@ -5,6 +5,7 @@
 @stop
 @section('content')
 <!-- @include('layouts.logo_animation') -->
+
 <main>
     <section class="index-s1" id="home">
         <div class="max-width-container">

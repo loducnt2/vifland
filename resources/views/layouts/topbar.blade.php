@@ -254,12 +254,12 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"><a class="box" href="#"><img src="{{asset('assets/index/mua-ban-nha-dat.png')}}"
+            <div class="modal-content"><a class="box" href="/article/new/mua-ban-nha-dat"><img src="{{asset('assets/index/mua-ban-nha-dat.png')}}"
                         alt="">
                     <p>Mua/ Bán</p><em class="material-icons">double_arrow</em>
-                </a><a class="box" href="#"><img src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt="">
+                </a><a class="box" href="/article/new/cho-thue-nha-dat"><img src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt="">
                     <p>Thuê/ Cho Thuê</p><em class="material-icons">double_arrow</em>
-                </a><a class="box" href="#"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
+                </a><a class="box" href="/article/new/sang-nhuong-nha-dat"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
                     <p>Sang Nhượng</p><em class="material-icons">double_arrow</em>
                 </a></div>
         </div>

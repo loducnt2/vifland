@@ -416,6 +416,12 @@
                                 <!-- END -->
                                 <div class="col-12">
                                     <div class="row wrap-lich">
+                                        
+                                         <div class="col-6 form-group">
+                                            <label for="songayvip">Ngày đăng bài</label>
+                                            <input class="calendar" id="ngaybdvip" type="datetime"
+                                                name="datetime_start">
+                                        </div>
                                         <div class="col-6 form-group">
                                             <label for="songayvip">Số ngày</label>
                                             <select class="selectNgay" name="songaydangbai">
@@ -426,14 +432,9 @@
                                             </select>
                                         </div>
                                         <!-- <div class="col-6 form-group">
-                                                    <label for="songayvip">Ngày đăng bài</label>
-                                                    <input class="calendar" id="ngaybdvip" type="datetime"
-                                                        name="datetime_start">
-                                                </div> -->
-                                        <div class="col-6 form-group">
                                             <label for="songayvip">Ngày kết thúc</label>
                                             <input class="calendar" id="ngayktvip" type="datetime" name="datetime_end">
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="wrap-des-vip" id="sub-vip1">
                                         <div class="wrap-left"><img src="{{asset('assets/icon/vip1.svg')}}" alt="">
