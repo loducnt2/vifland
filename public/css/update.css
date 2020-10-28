@@ -22,6 +22,9 @@
 .dangbaiviet .select2-selection__rendered {
     padding-left: 10px !important;
 }
+a.cke_button {
+    height: auto !important;
+}
 .dangbaiviet .modal-dialog {
     max-width: 913px;
     padding: 0 20px;

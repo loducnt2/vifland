@@ -15,12 +15,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     @yield('headerStyles')
-
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
     <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+    <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 </head>
 
@@ -41,12 +40,30 @@
             </div>
         </div>
     </div>
-
+    <div class="wrap-modal-dangnhap">
+        <div class="modal fade" id="dangnhapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <h3 class="title">Đăng nhập</h3>
+                    <p>Bạn cần đăng nhập để sử dụng chức năng này. Bạn có muốn đăng nhập không?</p>
+                    <div class="wrap-button">
+                        <button class="btn-huy" type="button" data-dismiss="modal">Hủy</button><a class="btn-login"
+                            href="\login">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript" src="{{asset('js/core.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/main.min.js')}}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
+        $('#dangnhapModal').on('hidden.bs.modal', function() {
+            location.reload();
+        })
         $(".fav").click(function() {
             $(this).toggleClass("active");
             if ($(this).hasClass("ri-heart-line")) {
@@ -65,7 +82,7 @@
                         console.log(status);
                         //Chưa đăng nhập
                         if (data == 0) {
-                            alert('Vui lòng đăng nhập để sử dụng tính năng này');
+                            $("#dangnhapModal").modal("show");
                         }
 
                         if (data == 1) {
@@ -93,7 +110,7 @@
                         console.log(status);
                         //Chưa đăng nhập
                         if (data == 0) {
-                            alert('Vui lòng đăng nhập để sử dụng tính năng này');
+                            $("#dangnhapModal").modal("show");
                         }
 
                         if (data == 1) {
@@ -110,9 +127,9 @@
 
 
         $.ajax({
-            url  : '{{route("all-favorite")}}',
-            type : 'GET',
-            success: function( data,status ){
+            url: '{{route("all-favorite")}}',
+            type: 'GET',
+            success: function(data, status) {
                 /*$.each(data,function(index,value){
                     let arr = json_encode(value);
                     //console.log(data);
@@ -120,8 +137,8 @@
                 })*/
                 let arr = [];
 
-                data.forEach(function(item,index,array){
-                    
+                data.forEach(function(item, index, array) {
+
                     arr.push(item.id)
 
                 })
@@ -129,20 +146,19 @@
                 //console.log(arr)
                 //console.log(arr.indexOf( "65" ))
 
-                $('.fav').each(function(){
-                     var productid = parseInt( $(this).attr('productid'));
+                $('.fav').each(function() {
+                    var productid = parseInt($(this).attr('productid'));
                     console.log(productid)
-                     console.log(arr.indexOf( productid ))
-                     if( arr.indexOf( productid ) != -1 ){
-                         $(this).addClass('ri-heart-fill')
+                    console.log(arr.indexOf(productid))
+                    if (arr.indexOf(productid) != -1) {
+                        $(this).addClass('ri-heart-fill')
                         $(this).addClass('active')
-                         $(this).removeClass('ri-heart-line')
-                     }
-                     else{
-                         $(this).removeClass('ri-heart-fill')
-                         $(this).removeClass('active')
-                         $(this).addClass('ri-heart-line')
-                     }
+                        $(this).removeClass('ri-heart-line')
+                    } else {
+                        $(this).removeClass('ri-heart-fill')
+                        $(this).removeClass('active')
+                        $(this).addClass('ri-heart-line')
+                    }
                 })
                 /*for( data ){
                     console.log(data.id);
@@ -152,19 +168,19 @@
         })
 
 
-        $('.comp').each(function(){
-            $(this).click(function(){
+        $('.comp').each(function() {
+            $(this).click(function() {
                 let listcomp = $.cookie('compare').split(',')
                 let productid = $(this).attr('href')
-                if(listcomp.indexOf( productid ) != -1 ){
-                    listcomp.splice( listcomp.indexOf(productid) , 1)
+                if (listcomp.indexOf(productid) != -1) {
+                    listcomp.splice(listcomp.indexOf(productid), 1)
                     //listcomp = arr;
                     console.log(listcomp.join())
-                }else{
+                } else {
                     listcomp.push(productid);
                     console.log(listcomp.join())
                 }
-                $.cookie('compare',listcomp.join())
+                $.cookie('compare', listcomp.join())
                 return false
             })
         })

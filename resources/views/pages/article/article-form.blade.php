@@ -18,7 +18,7 @@
         </div>
     </div>
     <section class="dangbaiviet">
-        <form action="{{route('article-store')}}" method="post" enctype="multipart/form-data">
+        <form class="formDangBaiViet" action="{{route('article-store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="max-width-container">
                 <div class="row">
@@ -75,20 +75,7 @@
                                             <label for="diachi">Địa chỉ</label>
                                             <input type="text" min="0" name="address" id="diachi">
                                         </div>
-                                        <!-- <div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Đường, Phố</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple" >
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
-											</select>
-										</div>
-										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Dự án</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
-											</select>
-										</div> -->
+
                                     </div>
                                     <div class="tab-pane fade" id="thongtin" role="tabpanel"
                                         aria-labelledby="thongtin-tab">
@@ -113,44 +100,11 @@
                                             <input type="number" min="0" name="acreage">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Đơn vị </label>
-                                            <select class="select1" name="unit_id" id="unit">
-                                                <option value="">Chọn</option>
-                                                @foreach($units as $unit)
-                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
                                             <input type="text" min="0" name="price"><em class="notedongia">Mặc
                                                 định 0 là
                                                 thương lượng</em>
                                         </div>
-
-                                        <!-- <div class="form-group-sl1 sl-1 select-many">
-									</div>
-									<div class="tab-pane fade" id="thongtin" role="tabpanel" aria-labelledby="thongtin-tab">
-										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Loại hình</label>
-											<select class="select1" name="product_cate[]" multiple="multiple" >
-												@foreach($product_cate as $prodcate)
-												<option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
-												@endforeach
-											</select>
-										</div>
-										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Mặt tiền</label>
-											<input type="number" min="0" name="facades" >
-										</div>
-										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Chiều sâu</label>
-											<input type="number" min="0" name="depth" >
-										</div>
-										<!-- <div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Diện tích</label>
-											<input type="number" min="0" name="acreage">
-										</div> -->
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn vị </label>
                                             <select class="select1" name="unit_id" id="unit">
@@ -165,21 +119,6 @@
                                             <input type="text" min="0" name="price"><em class="notedongia">Mặc
                                                 định 0 là thương lượng</em>
                                         </div>
-
-                                        <!-- <div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Đường rộng</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
-											</select>
-										</div>
-										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Loại nhà đất</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
-											</select>
-										</div> -->
                                     </div>
                                     <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
 
@@ -209,33 +148,7 @@
                                                 <option value="Đã có giấy hẹn lấy số">Đã có giấy hẹn
                                                     lấy số</option>
                                             </select>
-                                            <!-- <input type="text" name="legal" id="legal"> -->
                                         </div>
-                                        <!-- <div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Mức độ giao dịch </label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
-											</select>
-										</div>
-										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Đặc điểm nổi trội</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
-											</select>
-										</div>
-										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Hoa hồng môi giới</label>
-											<select class="select1" name="loainhadat[]" multiple="multiple">
-												<option value="AL">Alabama</option>
-												<option value="WY">Wyoming</option>
-											</select>
-										</div>
-										<div class="form-group-sl1 sl-1 select-many">
-											<label for="thanhpho">Tiền hoa hồng</label>
-											<input type="number" min="0">
-										</div> -->
                                         <div class="note-wrap"><em class="note">* Hãy cập nhật
                                                 các thông số đầy đủ và chi
                                                 tiết để khách hàng tìm thấy tin đăng của bạn dễ
@@ -259,7 +172,9 @@
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
                             <div class="col-12 form-group">
-                                <input type="file" name="img[]" multiple>
+                                <!-- <input type="file" name="img[]" multiple> -->
+                                <input class="filepond" type="file" name="filepond" multiple=""
+                                    data-allow-reorder="true" data-max-file-size="3MB" data-max-files="4">
                             </div>
                             <div class="col-12 form-group">
                                 <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
@@ -503,7 +418,12 @@
                                     <div class="row wrap-lich">
                                         <div class="col-6 form-group">
                                             <label for="songayvip">Số ngày</label>
-                                            <input id="songayvip" type="number" min="0">
+                                            <select class="selectNgay" name="songaydangbai">
+                                                <option value="7">7</option>
+                                                <option value="15">15</option>
+                                                <option value="30">30</option>
+                                                <option value="90">90</option>
+                                            </select>
                                         </div>
                                         <!-- <div class="col-6 form-group">
                                                     <label for="songayvip">Ngày đăng bài</label>
@@ -524,9 +444,10 @@
                                             </div>
                                         </div>
                                         <div class="wrap-right">
-                                            <div class="wrap-text"><strong>266.000 ₫</strong><span>
-                                                    <del>280.000đ</del>
-                                                    <p>(-5%)</p>
+                                            <div class="wrap-text"><strong> <span class="total"></span></strong><span>
+                                                    <del class="priceBase">280.000đ</del>
+                                                    <p> <span>(-</span><span class="phantram"></span><span>%)</span>
+                                                    </p>
                                                 </span></div>
                                         </div>
                                     </div>
@@ -539,9 +460,9 @@
                                             </div>
                                         </div>
                                         <div class="wrap-right">
-                                            <div class="wrap-text"><strong>166.250 ₫</strong><span>
-                                                    <del>280.000đ</del>
-                                                    <p>(-5%)</p>
+                                            <div class="wrap-text"><span class="total"></span></strong><span>
+                                                    <del class="priceBase">280.000đ</del>
+                                                    <p><span>(-</span><span class="phantram"></span><span>%)</span></p>
                                                 </span></div>
                                         </div>
                                     </div>
@@ -554,9 +475,9 @@
                                             </div>
                                         </div>
                                         <div class="wrap-right">
-                                            <div class="wrap-text"><strong>266.000 ₫</strong><span>
-                                                    <del>280.000đ</del>
-                                                    <p>(-5%)</p>
+                                            <div class="wrap-text"><strong><span class="total"></span></strong><span>
+                                                    <del class="priceBase">280.000đ</del>
+                                                    <p><span>(-</span><span class="phantram"></span><span>%)</span></p>
                                                 </span></div>
                                         </div>
                                     </div>
@@ -565,15 +486,18 @@
                                             <div class="tongThanhToan-box">
                                                 <div class="ttt-1">
                                                     <p>Thành tiền (Gồm VAT)</p>
-                                                    <p>0 ₫</p>
+                                                    <p> <span class="total">0</span></p>
                                                 </div>
                                                 <div class="ttt-2">
                                                     <p>Khuyến mại</p>
                                                     <p>0 ₫</p>
                                                 </div>
                                                 <hr>
-                                                <div class="ttt-3"><strong>Thanh toán</strong><strong>0
-                                                        ₫</strong></div>
+                                                <div class="ttt-3"><strong>Thanh toán</strong><strong>
+                                                        <span class="total">0</span>
+                                                        <input type="text" name="totalPriceVip" value="0" readonly
+                                                            style="display:none" disabled>
+                                                    </strong></div>
                                             </div>
                                         </div>
                                     </div>
