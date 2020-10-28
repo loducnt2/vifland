@@ -59,7 +59,7 @@
                         <a href="{{route('favorites')}}">
                             <li class="nav-item">
                                 <div class="yeuthich"><i class="ri-heart-fill icon"></i>
-                                    <div class="number-yt">1</div>
+                                    <div class="number-yt"></div>
                                 </div>
                                 <p class="text">Yêu thích</p>
                             </li>

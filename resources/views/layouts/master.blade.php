@@ -61,13 +61,16 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        $('#dangnhapModal').on('hidden.bs.modal', function() {
+        /*$('#dangnhapModal').on('hidden.bs.modal', function() {
             location.reload();
-        })
+        })*/
+        $('.number-yt').css('display','none')
+
         $(".fav").click(function() {
-            $(this).toggleClass("active");
+            //$(this).toggleClass("active");
             if ($(this).hasClass("ri-heart-line")) {
-                $(this).addClass("ri-heart-fill");
+                $(this).addClass("ri-heart-fill")
+                $(this).addClass("active")
                 $(this).removeClass("ri-heart-line");
                 let productid = $(this).attr('productid');
                 $.ajax({
@@ -83,12 +86,13 @@
                         //Chưa đăng nhập
                         if (data == 0) {
                             $("#dangnhapModal").modal("show");
+                            $('.fav').addClass("ri-heart-line");
+                            $('.fav').removeClass("ri-heart-fill");
+                            $('.fav').removeClass("active")
                         }
-
                         if (data == 1) {
                             //Thích sản phẩm,
                         }
-
                         if (data == 2) {
                             //Bỏ thích sản phẩm
                         }
@@ -97,6 +101,7 @@
             } else if ($(this).hasClass("ri-heart-fill")) {
                 $(this).addClass("ri-heart-line");
                 $(this).removeClass("ri-heart-fill");
+                $(this).removeClass("active")
                 let productid = $(this).attr('productid');
                 $.ajax({
                     url: '{{ route("add-favorite") }}',
@@ -111,30 +116,44 @@
                         //Chưa đăng nhập
                         if (data == 0) {
                             $("#dangnhapModal").modal("show");
+                            $('.fav').addClass("ri-heart-line");
+                            $('.fav').removeClass("ri-heart-fill");
+                            $('.fav').removeClass("active")
                         }
-
                         if (data == 1) {
                             //Thích sản phẩm,
                         }
-
                         if (data == 2) {
                             //Bỏ thích sản phẩm
                         }
                     }
                 })
             }
+            $.ajax({
+                url: '{{route("all-favorite")}}',
+                type: 'GET',
+                success: function(data, status) {
+                    let arr = [];
+                    data.forEach(function(item, index, array) {
+                        arr.push(item.id)
+                    })
+                    let countfav = arr.length;
+                    if( countfav == 0 ){
+                        $('.number-yt').css('display','none')
+                    }else{
+                        $('.number-yt').text(countfav)
+                        $('.number-yt').css('display','flex')
+                    }
+                    
+                }
+            })
         });
-
 
         $.ajax({
             url: '{{route("all-favorite")}}',
             type: 'GET',
             success: function(data, status) {
-                /*$.each(data,function(index,value){
-                    let arr = json_encode(value);
-                    //console.log(data);
 
-                })*/
                 let arr = [];
 
                 data.forEach(function(item, index, array) {
@@ -142,10 +161,8 @@
                     arr.push(item.id)
 
                 })
-                //arr = [63,64]
-                //console.log(arr)
-                //console.log(arr.indexOf( "65" ))
-
+                let countfav = arr.length;
+                $('.number-yt').text(countfav)
                 $('.fav').each(function() {
                     var productid = parseInt($(this).attr('productid'));
                     console.log(productid)
@@ -160,10 +177,7 @@
                         $(this).addClass('ri-heart-line')
                     }
                 })
-                /*for( data ){
-                    console.log(data.id);
-                }*/
-                //console.log(data);
+
             }
         })
 
