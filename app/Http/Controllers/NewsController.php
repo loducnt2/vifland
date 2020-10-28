@@ -72,7 +72,8 @@ class NewsController extends Controller
         return view('pages/news-detail')->with(
             [
                 'news'=>$news,
-                'posts'=>$posts
+                'posts'=>$posts,
+                'slug'=> $slug
             ]);
     }
 
