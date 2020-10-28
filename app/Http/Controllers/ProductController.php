@@ -61,6 +61,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request->input('img');
 
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         $price = doubleval($request->price)*intval($unit);
@@ -72,7 +73,7 @@ class ProductController extends Controller
             'view'           => 1,
             'tags'           => $request->tags,
             'datetime_start' => date('Y-m-d',strtotime($request->datetime_start)),
-            'datetime_end'   => date('Y-m-d',strtotime($request->datetime_end)),
+            'datetime_end'   => date('Y-m-d',strtotime($request->datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
             'content'        => $request->content,
             'name_contact'   => $request->name_contact,
             'phone_contact'     => $request->phone_contact,
@@ -150,7 +151,7 @@ class ProductController extends Controller
             'datetime'       => date('Y-m-d H:i:s',strtotime('now')),
         ]);
         $post_history->save();
-        return redirect()->route('user-article');
+        return redirect()->route('user-article',auth()->user()->id);
 
     }
 

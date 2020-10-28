@@ -95,16 +95,16 @@
                                             <label for="thanhpho">Chiều sâu</label>
                                             <input type="number" min="0" name="depth">
                                         </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
                                             <input type="number" min="0" name="acreage">
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
+                                        </div> -->
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
                                             <input type="text" min="0" name="price"><em class="notedongia">Mặc
                                                 định 0 là
                                                 thương lượng</em>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn vị </label>
                                             <select class="select1" name="unit_id" id="unit">
@@ -116,8 +116,8 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price"><em class="notedongia">Mặc
-                                                định 0 là thương lượng</em>
+                                            <input type="text" min="0" name="price"><!-- <em class="notedongia">Mặc
+                                                định 0 là thương lượng</em> -->
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
@@ -133,7 +133,7 @@
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="legal">Giấy tờ pháp lý</label>
                                             <select name="legal" class="select1" id="legal">
-                                                <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
+                                                <option selected value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
                                                     CN QSDĐ - Sổ đỏ - Sổ hồng</option>
                                                 <option value="Hợp đồng mua bán">Hợp đồng mua bán
                                                 </option>
@@ -172,9 +172,8 @@
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
                             <div class="col-12 form-group">
-                                <!-- <input type="file" name="img[]" multiple> -->
-                                <input class="filepond" type="file" name="filepond" multiple=""
-                                    data-allow-reorder="true" data-max-file-size="3MB" data-max-files="4">
+                                <input type="file" name="img[]" multiple> 
+                                <!-- <input class="filepond" type="file" name="img[]" multiple="multiple" data-allow-reorder="true" data-max-file-size="3MB" data-max-files="4"> -->
                             </div>
                             <div class="col-12 form-group">
                                 <input class="input-100-s" type="text" placeholder="Add tags" name="tags">

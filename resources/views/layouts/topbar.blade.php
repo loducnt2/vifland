@@ -27,7 +27,7 @@
                     <span class="material-icons">list_alt</span>
                     <a href="/user/my-article">
                         <p>
-                            <a href="/user/my-article">
+                            <a href="/user/my-article/{{auth()->user()->id}}">
                                 Quản lý tin đăng
                             </a>
 
