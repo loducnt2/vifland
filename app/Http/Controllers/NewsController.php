@@ -36,6 +36,7 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         // insert tin tức
@@ -43,12 +44,14 @@ class NewsController extends Controller
         // tags
         $news->tags= implode(',',$request->tags);
         $news->title=$request->input('title');
-        $news->slug = $request->input('slug');
+        $news->slug = $request->slug;
         $news->content = $request->input('content');
-
+        // $news->datepost = Carbon::now();
         $news->datepost = $request->input('datepost');
         $news->status= "1";
         $news->save();
+        $news->language ="vn";
+
         return redirect('/');
     }
 
@@ -58,17 +61,19 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //get chi tiết bài đăng
-        $news = DB::table('news')->find($id);
+        $news =  $news = DB::table('news')->where('slug',$slug)->first();
+
         // get list bài đăng
         $posts= DB::table('news')->get();
         //
         return view('pages/news-detail')->with(
             [
                 'news'=>$news,
-                'posts'=>$posts
+                'posts'=>$posts,
+                'slug'=> $slug
             ]);
     }
 
@@ -82,6 +87,18 @@ class NewsController extends Controller
     {
         $new = News::find($id);
         return view('/admin/tintuc/quanlytintuc',compact('new'));
+    }
+    // get những tin trong db
+    public function listnews(){
+        // lấy mọi tin
+        $news = News::all();
+        // tin mới nhất theo create_at
+        $latest = DB::table('news')->orderBy('created_at','desc')->get();
+        return view('pages/news-list')->with(
+            [
+                'news'=>$news,
+                'latest'=>$latest
+            ]);
     }
      /**
      * Update the specified resource in storage.
