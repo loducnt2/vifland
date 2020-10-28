@@ -19,164 +19,62 @@
 	</div>
 	<section class="pages-news-list">
 		<div class="container">
-			<h1 class="section-title text-uppercase">tin tức mới nhất </h1>
+
+            <h1 class="section-title text-uppercase">tin tức mới nhất </h1>
 			<div class="row sec-1">
 				<div class="col-xl-6 col-md-6 col-12">
-					<div class="article-big"><a class="bg" href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
+                <div class="article-big"><a class="bg" href="/news/{{$latest[0]->slug}}"><img src="./assets/news/bds_1.jpg" alt=""></a>
 						<div class="content"> <a href="">
-                            @foreach ($news as $posts)
-                            {{$posts->title}}
-                            @endforeach
-                            Tin mới nhất :{{$latest->title}}
-                        {{-- <h2 class="section-under-title">{{$post->title}}</h2></a> --}}
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, facilis? Ex exercitationem ullam optio, repudiandae iure porro expedita necessitatibus aspernatur vitae placeat temporibus reiciendis rerum. Nisi, est atque. Ratione, ducimus!</p>
+                            {{-- Tin mới nhất :{{$latest->title}} --}}
+                        <h2 class="section-under-title">{{$latest[0]->title}}</h2></a>
+                        <p>{{$latest[0]->summary}}</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-xl-6 col-md-6 col-12 wrapper">
 					<div class="article-wrapper">
 						<div class="date">
-							<p>29.09.2020</p>
+                        <p>{{$latest[1]->datepost}}</p>
 						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
+                    <div class="article-small"><a href="/news/{{$latest[1]->slug}}"><img src="./assets/news/bds_1.jpg" alt=""></a>
 							<div class="content"> <a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
+									<h2 class="section-under-title">{{$latest[1]->title}} </h2></a>
+                            <p>{{$latest[1]->summary}}</p>
 							</div>
 						</div>
 					</div>
 					<div class="article-wrapper">
 						<div class="date">
-							<p>29.09.2020</p>
+                        <p>{{$latest[2]->datepost}}</p>
 						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
+                    <div class="article-small"><a href="/news/{{$latest[2]->slug}}"><img src="./assets/news/bds_1.jpg" alt=""></a>
 							<div class="content"> <a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
+                            <h2 class="section-under-title">{{$latest[2]->title}}</h2></a>
+                            <p>{{$latest[2]->summary}}</p>
+
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row sec-2">
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
+                {{-- foreach --}}
+                @foreach ($news as $posts)
+                <div class="col-xl-4 col-md-4 col-sm-6 wrapper">
 					<div class="article-wrapper">
 						<div class="date">
-							<p>29.09.2020</p>
+                        <p>{{$posts->datepost}}</p>
 						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
+                    <div class="article-small"><a href="/news/{{$posts->slug}}"><img src="./assets/news/bds_1.jpg" alt=""></a>
+                    <div class="content"><a href="/news/{{$posts->slug}}">
+                            <h2 class="section-under-title">{{$posts->title}}</h2></a>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-					<div class="article-wrapper">
-						<div class="date">
-							<p>29.09.2020</p>
-						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-					<div class="article-wrapper">
-						<div class="date">
-							<p>29.09.2020</p>
-						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-					<div class="article-wrapper">
-						<div class="date">
-							<p>29.09.2020</p>
-						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-					<div class="article-wrapper">
-						<div class="date">
-							<p>29.09.2020</p>
-						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-					<div class="article-wrapper">
-						<div class="date">
-							<p>29.09.2020</p>
-						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-					<div class="article-wrapper">
-						<div class="date">
-							<p>29.09.2020</p>
-						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-					<div class="article-wrapper">
-						<div class="date">
-							<p>29.09.2020</p>
-						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-					<div class="article-wrapper">
-						<div class="date">
-							<p>29.09.2020</p>
-						</div>
-						<div class="article-small"><a href=""><img src="./assets/news/bds_1.jpg" alt=""></a>
-							<div class="content"><a href="">
-									<h2 class="section-under-title">"Đây" là tiêu đề </h2></a>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
-							</div>
-						</div>
-					</div>
-				</div>
+                @endforeach
 			</div>
 			<div class="paginationSP mx-auto">
 				<div class="paginationSP-box mx-auto"><span class="material-icons button-s">skip_previous</span>

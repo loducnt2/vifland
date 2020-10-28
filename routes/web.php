@@ -162,7 +162,7 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // User: thay đổi trạng thái user
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
-Route::get('/news/{id}','NewsController@show');
+Route::get('/news/{slug}','NewsController@show');
 // quản lý tin tứcf
 Route::get('/admin/index/news',function(){
     return view('admin.tintuc.quanlytintuc');
@@ -171,4 +171,4 @@ Route::POST('/admin/index/news/insert','NewsController@store'
 );
 // news list
 
-Route::get('/listnews','NewsController@listnews');
+Route::get('/news','NewsController@listnews');

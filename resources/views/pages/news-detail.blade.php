@@ -35,6 +35,7 @@
 						</div>
 						<div class="content">
                         {!!$news->content!!}
+                        <p>Test: {{$news->slug}}</p>
                         </div>
 					</div>
 				</div>
@@ -43,17 +44,19 @@
 						<div class="title">
 							<h2 class="section-des">Các tin khác</h2>
 						</div>
-						@foreach ($posts as $news)
-                        <div class="news-content">
-							<div class="img"> <a href=""><img src="./assets/news/bds_1.jpg" alt=""></a></div>
-							<div class="content">
-								<div class="date">
-                                <p>{{$news->datepost}}</p>
-								</div><a href="">
-                                <h2 class="section-des">{{$news->title}}</h2></a>
-							</div>
-						</div>
-
+                        @foreach ($posts as $news2)
+                        @if($news->slug == $news2->slug)
+                        @else
+                            <div class="news-content">
+                                <div class="img"> <a href=""><img src="./assets/news/bds_1.jpg" alt=""></a></div>
+                                <div class="content">
+                                    <div class="date">
+                                    <p>{{$news2->datepost}}</p>
+                                    </div><a href="/news/{{$news2->slug}}">
+                                    <h2 class="section-des">{{$news2->title}}</h2></a>
+                                </div>
+                            </div>
+                        @endif
                         @endforeach
 					</div>
 				</div>
@@ -62,6 +65,7 @@
 	</section>
 	<div id="js-page-verify" hidden></div>
 </main>
+
 @stop
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
