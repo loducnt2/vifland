@@ -61,10 +61,11 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //get chi tiết bài đăng
-        $news = DB::table('news')->find($id);
+        $news =  $news = DB::table('news')->where('slug',$slug)->first();
+
         // get list bài đăng
         $posts= DB::table('news')->get();
         //
@@ -91,7 +92,7 @@ class NewsController extends Controller
         // lấy mọi tin
         $news = News::all();
         // tin mới nhất theo create_at
-        $latest = DB::table('news')->orderBy('created_at','desc')->first();
+        $latest = DB::table('news')->orderBy('created_at','desc')->get();
         return view('pages/news-list')->with(
             [
                 'news'=>$news,

@@ -3,13 +3,11 @@
 @section('content')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
     {{-- typeahead --}}
@@ -54,14 +52,7 @@ width: 100%;
 
 {{-- get tags value --}}
 
-<script>
-    $(document).ready(function() {
-        $('#content').summernote({
-            height: 300,
-            disableResizeEditor: false,
-        });
-    });
-  </script>
+
 <div class="container">
     <div class="py-5 text-center">
     <form  method="POST" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
@@ -125,7 +116,7 @@ width: 100%;
           </li>
                   </ul>
 
-                  <input id="slug" type="text" class="searchbox1" name="search" placeholder="Search for Brand, Store or an Item..." value="" />
+                  {{-- <input id="slug" type="text" class="searchbox1" name="search" placeholder="Search for Brand, Store or an Item..." value="" /> --}}
 
       </div>
       <div class="col-md-8 order-md-1">
@@ -163,7 +154,11 @@ width: 100%;
 
                 </textarea>
             </div>
-
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor 4
+                // instance, using default configuration.
+                CKEDITOR.replace( 'content' );
+            </script>
           </div>
           <div class="form-group">
             <label for=""></label>
