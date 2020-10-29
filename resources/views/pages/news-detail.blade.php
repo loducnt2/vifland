@@ -12,8 +12,9 @@
 <!-- Thêm styles cho trang này ở đây-->
  @stop
 @section('content')
+Test image : {{$news->img}}
 <main>
-    <div class="global-breadcrumb">
+	<div class="global-breadcrumb">
 		<div class="max-width-container">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
@@ -31,6 +32,7 @@
 							<p>{{$news->datepost}}</p>
 						</div>
 						<div class="title">
+                        Test-image: {{$news->img}}
 							<h1 class="section-under-title">{{$news->title}}</h1>
 						</div>
 						<div class="content">

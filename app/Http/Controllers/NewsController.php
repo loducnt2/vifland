@@ -49,10 +49,21 @@ class NewsController extends Controller
         // $news->datepost = Carbon::now();
         $news->datepost = $request->input('datepost');
         $news->status= "1";
-        $news->save();
+        // $news->img= "bds_1.jpg";
         $news->language ="vn";
-
-        return redirect('/');
+        // up ảnh
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move('../public/assets/news', $imageName);
+            $news->img= $imageName;
+        }
+        else{
+         $news->img = "bds_1.jpg";
+        }
+        // $url = "/news/{{$news->slug}}";
+        $news->save();
+        // chuyển về trang đã tạo
+        return redirect("/news/$news->slug");
     }
 
     /**
@@ -85,7 +96,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $new = News::find($id);
+        $new = News::firstOrFail($id);
         return view('/admin/tintuc/quanlytintuc',compact('new'));
     }
     // get những tin trong db

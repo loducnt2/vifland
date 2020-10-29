@@ -164,7 +164,7 @@ Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/news/{slug}','NewsController@show');
 // quản lý tin tứcf
-Route::get('/admin/index/news',function(){
+Route::get('/admin/index/news/insert',function(){
     return view('admin.tintuc.quanlytintuc');
 });
 Route::POST('/admin/index/news/insert','NewsController@store'

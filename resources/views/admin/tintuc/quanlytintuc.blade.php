@@ -63,7 +63,7 @@ width: 100%;
 
 <div class="container">
     <div class="py-5 text-center">
-    <form  method="POST" action="{{url('admin/index/news/news-create')}}" enctype="multipart/form-data">
+    <form  method="POST" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
         {{-- {{ csrf_field() }} --}}
         @csrf
       <h2>Checkout form</h2>
