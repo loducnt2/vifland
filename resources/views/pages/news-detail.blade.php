@@ -13,7 +13,7 @@
  @stop
 @section('content')
 <main>
-	<div class="global-breadcrumb">
+    <div class="global-breadcrumb">
 		<div class="max-width-container">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
@@ -35,7 +35,7 @@
 						</div>
 						<div class="content">
                         {!!$news->content!!}
-                        <p>Test: {{$news->slug}}</p>
+
                         </div>
 					</div>
 				</div>
@@ -46,9 +46,10 @@
 						</div>
                         @foreach ($posts as $news2)
                         @if($news->slug == $news2->slug)
+                        {{-- ẩn tin --}}
                         @else
                             <div class="news-content">
-                                <div class="img"> <a href=""><img src="./assets/news/bds_1.jpg" alt=""></a></div>
+                                <div class="img"> <img src="{{asset('assets/news')}}/{{$news2->img}}" alt=""></div>
                                 <div class="content">
                                     <div class="date">
                                     <p>{{$news2->datepost}}</p>

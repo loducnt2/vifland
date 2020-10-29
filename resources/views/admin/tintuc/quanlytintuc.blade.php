@@ -16,6 +16,9 @@
     .bootstrap-tagsinput {
   width: 100% !important;
 }
+li{
+    text-decoration: none;
+}
 #list{
     word-break: break-all;
     /* background-color:blue; */
@@ -26,21 +29,26 @@ width: 100%;
 .my-0{
     font-weight: bold;
 }
+.images-preview{
+    margin-top:20px;
+
+    margin-left:40px;
+    float:left;
+    width:250px;
+}
 </style>
 {{-- @extends('admin.sidebar') --}}
 @section('title','Quản lý tin tức')
-{{-- script --}}
+
+
 <script>
     $( document ).ready(function() {
         $('input').on('itemAdded', function(event) {
     //   thêm item
 
      var t=$("#tag").val();
-     $('#list').html(t).addClass('tag-notes');
-    console.log(t);
-    alert(t);
+     $('#tags').html(t);
 
-    // $('#get-tags').tagsinput('items');
     });
     $('input').on('itemRemoved', function(event) {
         $t=$("#tag").val()
@@ -55,7 +63,7 @@ width: 100%;
 
 <div class="container">
     <div class="py-5 text-center">
-    <form  method="POST" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
+    <form  method="POST" action="{{url('admin/index/news/news-create')}}" enctype="multipart/form-data">
         {{-- {{ csrf_field() }} --}}
         @csrf
       <h2>Checkout form</h2>
@@ -98,7 +106,7 @@ width: 100%;
             </div>
             <span class="text-muted">Hiện</span>
           </li>
-          <li>
+
             <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
                   <h6 class="my-0">Ngôn ngữ </h6>
@@ -109,15 +117,33 @@ width: 100%;
                 </span>
               </li>
 
-          </li>
-          <li class="list-group-item d-flex justify-content-between bg-light">
 
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
 
-          </li>
+                <span class="text-muted"></span>
+              </li>
+          {{-- <li class="list-group-item d-flex justify-content-between bg-light"> --}}
+            <div class="col-md-12 custom-file ">
+                <input type="file" class="custom-file-input" id="customFile" name="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                <label class="custom-file-label" for="customFile">Chọn tập tin</label>
+              </div>
+              {{-- <input name="photo" type="file" accept="image/*"> --}}
+
+              <div class="col-md-12">
+                <div class="text-muted" style="font-weight:bold; text-align:center" >
+                    Ảnh minh hoạ
+                </div>
+                {{-- <input type="file" name="image" id="" > --}}
+                <img src="{{asset('assets/news/bds_1.jpg')}}" alt="" id="output" class="images-preview" name="image" accept="image/*">
+              </div>
+              <script language="javascript">
+                $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+            </script>
+                 </li>
                   </ul>
-
-                  {{-- <input id="slug" type="text" class="searchbox1" name="search" placeholder="Search for Brand, Store or an Item..." value="" /> --}}
-
       </div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Đăng tin tức</h4>
@@ -145,7 +171,7 @@ width: 100%;
             <label for="">Tags</label>
             <input type="text" class="form-control typeahead" name="tags[]" id="tag" aria-describedby="helpId" placeholder="" data-role="tagsinput" >
           </div>
-
+          Tag:<div id="tags"></div>
           <div class="row">
             <div class="col-md-12 mb-3">
 
@@ -211,4 +237,7 @@ width: 100%;
         document.getElementById('slug2').value=slug;
 
     }
+
 </script>
+
+
