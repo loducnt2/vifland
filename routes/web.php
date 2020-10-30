@@ -121,6 +121,10 @@ Route::post('/admin/danh-sach-tin-tuc/update/{id}','NewsController@update')->nam
 Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
 Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
 Route::get('/admin/danh-sach-tin-tuc','NewsController@index');
+// province
+Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')->name('update-province');
+Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');
+Route::get('/admin/danh-sach-province','ProvinceController@index');
 
 
 
