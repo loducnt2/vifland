@@ -36,6 +36,7 @@ class FavoriteController extends Controller
         if(auth()->check()){
             $favorite = Favorited::where('user_id',auth()->user()->id)->where('favorited.type',2)
             ->join('product','favorited.product_extend_id','product.id')
+            ->where('product.soft_delete',0)
             ->select('product.id')
             ->get();
         }else{

@@ -172,8 +172,8 @@
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
                             <div class="col-12 form-group">
-                                <input type="file" name="img[]" multiple> 
-                                <!-- <input class="filepond" type="file" name="img[]" multiple="multiple" data-allow-reorder="true" data-max-file-size="3MB" data-max-files="4"> -->
+                                <!-- <input type="file" name="img[]" multiple>  -->
+                                <input class="filepond" type="file" name="img[]" multiple="multiple" data-allow-reorder="true" data-max-file-size="3MB" data-max-files="4">
                             </div>
                             <div class="col-12 form-group">
                                 <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
