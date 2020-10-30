@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
 use App\User;
+use Illuminate\Auth\EloquentUserProvider;
+
 class UserController extends Controller
 {
     /**
@@ -125,6 +127,9 @@ class UserController extends Controller
             $request->image->move('assets/avatar/', $imageName);
             $user->img= $imageName;
             }
+            else{
+            $user->img = "user.png";
+            }
 
         $user -> save();
         return redirect()->back();
@@ -136,6 +141,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function upload_image(Request $request){
+        $user = new User();
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->getClientOriginalExtension();
+            $request->image->move('assets/avatar/', $imageName);
+            $user->img= $imageName;
+            }
+            else{
+            $user->img = "user.png";
+            }
+            $user->save();
+            return response()->json('Image uploaded successfully');
+
+    }
     public function destroy($id)
     {
         //xoá tài khoản

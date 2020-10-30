@@ -68,7 +68,7 @@ Route::get('/new-list/index',function(){
 );
 
 Route::get('/forgot-password',function(){
-	return view('auth/quenmk');}
+	return view('auth/passwords/email');}
 );
 Route::get('/san-pham',function(){
 	return view('pages/san-pham');}
@@ -172,3 +172,4 @@ Route::POST('/admin/index/news/insert','NewsController@store'
 // news list
 
 Route::get('/news','NewsController@listnews');
+Route::post('/upload_image','UserController@upload_image')->name('upload_image');

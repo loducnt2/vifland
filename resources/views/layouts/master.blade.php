@@ -182,12 +182,12 @@
                         $('.number-yt').text(countfav)
                         $('.number-yt').css('display','flex')
                     }
-                    
+
                 }
             })
         });
 
-        
+
 
 
         $('.comp').each(function() {

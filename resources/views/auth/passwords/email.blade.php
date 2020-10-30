@@ -1,4 +1,7 @@
 @extends('layouts.app')
+{{-- @extends('layouts.app') --}}
+@section('title','Quên mật khẩu')
+@section('headerStyles')
 
 @section('content')
 <div class="container">

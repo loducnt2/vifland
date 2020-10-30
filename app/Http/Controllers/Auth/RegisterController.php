@@ -80,7 +80,7 @@ class RegisterController extends Controller
                 'email'     => $email,
                 'status'    => '1',
                 'card_id'   => $data->card_id,
-                'img'       => 'avatar.png',
+                'img'       => 'user.png',
             ]);
             $user->save();
         } else {
