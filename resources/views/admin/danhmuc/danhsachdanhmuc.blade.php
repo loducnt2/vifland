@@ -22,7 +22,6 @@
       <thead>
         <tr>
           <th>Mã</th>
-          <th>Cấp cha</th>
           <th>Tên</th>
           <th>Ngôn ngữ</th>
           <th>Trạng thái</th>
@@ -35,7 +34,6 @@
         @foreach($cates as $cate)
         <tr>
           <td>{{$cate->id}}</td>
-          <td>{{$cate->parent_id}}</td>
           <td>{{$cate->name}}</td>
           <td>{{$cate->language}}</td>
           <td>{{$cate->status==1?'Đang hiện':'Đang ẩn'}}</td>
