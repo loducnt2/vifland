@@ -42,8 +42,8 @@
           <td>{{$cate->orders}}</td>
           <td>{{$cate->slug}}</td>
           <td>
-            <a href="{{route('delete-cate',$cate->id)}}"> <button class="btn btn-danger">Xóa</button> </a>
-            <a href="{{route('edit-cate',$cate->id)}}"> <button class="btn btn-info">Sửa</button> </a>
+            <!-- <a href="{{route('delete-cate',$cate->id)}}"> <button class="btn btn-danger">Xóa</button> </a> -->
+            <a href="{{route('edit-cate',$cate->id)}}"> <button class="btn btn-info">Xem chi tiết</button> </a>
           </td>
         </tr>
         @endforeach

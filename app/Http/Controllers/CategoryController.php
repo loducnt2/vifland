@@ -88,6 +88,7 @@ class CategoryController extends Controller
         $cate->status    = $req->get('status');
         $cate->orders    = $req->get('orders');
         $cate->parent_id = $req->get('parent_id');
+        $cate->content = $req->get('content');
         $cate->save();
         return redirect('/admin/danh-sach-danh-muc');
     }

@@ -49,7 +49,7 @@
 					<br>
 					<label for="exampleFormControlTextarea1">Mô tả </label>
 					<textarea class="form-control" name="content" id="editor" rows="30" cols="30" aria-label="editor" style="min-height: 350px;" >
-					{{$cate->content}}
+					{!!$cate->content!!}
     		</textarea>
 
 					<button class="btn btn-primary mt-3"  type="">Cập nhật</button>
