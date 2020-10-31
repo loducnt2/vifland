@@ -180,11 +180,20 @@
                     console.log(listcomp)
                     if (listcomp.indexOf(productid) != -1) {
                         listcomp.splice(listcomp.indexOf(productid), 1)
-                        //listcomp = arr;
                         console.log(listcomp.join())
+                        $(this).children().removeClass('active')
+
+                        if( listcomp.length == 0 ){
+                            $('.numbercompare').css('display','none')
+                        }else{
+                            $('.numbercompare').text( listcomp.length )
+                        }
+                        
                     } else {
                         listcomp.push(productid);
                         console.log(listcomp.join())
+                        $(this).children().addClass('active')
+                        $('.numbercompare').text( listcomp.length )
                     }
                     $.cookie('compare', listcomp.join())
                     return false
@@ -193,30 +202,30 @@
                     let listcomp = []
                     let productid = $(this).attr('href')
                     listcomp.push(productid);
+                    $(this).children().addClass('active') 
                     console.log(listcomp.join())
                     $.cookie('compare', listcomp.join())
+                    $('.numbercompare').text( listcomp.length )
                     return false
                 }
                 
             })
-        })
-        /*$('#compare').click(function(){
-            if( $.cookie('compare') ){
-                $.ajax({
-                    url: '{{route("compare")}}',
-                    method: 'POST',
-                    data: {
-                        listcomp: $.cookie('compare'),
-                        _token: "{{ csrf_token() }}"
-                    },
-                    success: function(data,status){
-                        alert(data)
-                    }
-                })
-            }else{
-                alert('Chưa có sản phẩm để so sánh')
+            if($.cookie('compare')){
+                let listcomp = $.cookie('compare').split(',')
+
+                $('.numbercompare').text( listcomp.length )
+
+                let productid = $(this).attr('href')
+                if( listcomp.indexOf(productid) != -1 ){
+                    $(this).children().addClass('active')
+                }else{
+                    $(this).children().removeClass('active')
+                }
+
+                $('numbercompare').text( listcomp.length )
             }
-        })*/
+        })
+        
     })
     </script>
     @yield('footerScripts')

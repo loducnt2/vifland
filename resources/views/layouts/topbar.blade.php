@@ -57,15 +57,18 @@
                     <ul class="nav-list">
                         <a href="{{route('favorites')}}">
                             <li class="nav-item">
-                                <div class="yeuthich"><i class="ri-heart-fill icon"></i>
+                                <div class="yeuthich">
+                                    <i class="ri-heart-fill icon"></i>
                                     <div class="number-yt"></div>
                                 </div>
                                 <p class="text">Yêu thích</p>
                             </li>
                         </a>
                         <a href="/compares" id="compare">
-                            <li class="nav-item"><i class="ri-equalizer-line icon"></i>
+                            <li class="nav-item">
+                                <i class="ri-equalizer-line icon"></i>
                                 <p class="text">So sánh</p>
+                                <div class="numbercompare"></div>
                             </li>
                         </a>
                         <a href="{{route('history')}}">
