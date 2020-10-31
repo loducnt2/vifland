@@ -8,11 +8,20 @@
 @section('title','Đăng ký')
 @section('content')
 <style>
-.error {
-    color: tomato;
-    font-weight: bold;
-    font-size: 12px;
-}
+    label{
+        width: 200px;
+        /* background-color:red; */
+        /* float:left; */
+        /* margin-top:80px; */
+        position: absolute;
+        left:40px;
+        margin-top:80px;
+        /* top:100px; */
+        width:600px;
+        color:tomato;
+        /* font-weight: bold; */
+        font-size:13px;
+    }
 </style>
 <main>
     <section class="dangky login">
@@ -25,13 +34,18 @@
                         <a href="{{route('login')}}"><span class="material-icons">keyboard_backspace</span></a>
                         <p> Đăng ký</p>
                     </div>
+                    <label for="text" class="error"></label>
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">person</span></div>
                         <div class="box-mid-se">
                             <input type="text" placeholder="Tên Đăng Nhập" name="username">
-                            <label for="text" class="error"></label>
+
                         </div>
+
                     </div>
+
+                    {{-- <label for="text" class="error"></label> --}}
+                    <div class="error"></div>
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">lock</span></div>
                         <div class="box-mid-se">

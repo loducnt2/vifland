@@ -1,7 +1,10 @@
 @extends('layouts.master')
 @section('title','Trang cá nhân ')
 @section('headerStyles')
-
+<script
+src="https://code.jquery.com/jquery-3.5.1.min.js"
+integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+crossorigin="anonymous"></script>
 @section('content')
 {{-- trước khi đăng nhập --}}
 <main>
@@ -84,23 +87,23 @@
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                         aria-labelledby="nav-home-tab">
                                         <form action="{{route('user-update',$profile->id)}}" method="post"
-                                            enctype="multipart/form-data">
+                                            enctype="multipart/form-data" id="form-profile">
                                             @csrf
                                             <div class="row form-wrap anhdaidien">
                                                 <div class="col-md-12 col-lg-2 form-group">
                                                     <p class="text-f">Ảnh đại diện</p>
                                                 </div>
                                                 <div class="col-md-12 col-lg-10 form-group hinhdd">
-                                                    <!-- <img class="img" src="{{asset('assets/avatar')}}/{{$profile->img}}"
-                                                        alt="">
-                                                    <input type="file" name="image" id=""> -->
                                                     <div class="wrap-img"> <img class="img"
                                                             src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
-                                                        <label class="wrap-input" for="upload"> <em
+                                                        <label class="wrap-input" for="upload" id=> <em
                                                                 class="material-icons">add_a_photo</em>
-                                                            <input id="upload" name="image" type="file"
+                                                            <input id="upload-image" name="image" type="file"
                                                                 style="display:none">
+
                                                         </label>
+                                                        <span class="text-danger" id="image-input-error"></span>
+
                                                     </div>
                                                     <div class="text">
                                                         {{-- cập nhật họ tên --}}
@@ -117,7 +120,7 @@
                                                 </div>
                                             </div>
                                             <div class="row form-wrap">
-                                                <div class="col-md-12 col-lg-2 form-group">
+                                                                                            <div class="col-md-12 col-lg-2 form-group">
                                                     <p class="text-f">Giới tính</p>
                                                 </div>
                                                 <div class="col-md-12 col-lg-10 form-group bdb d-flex">
@@ -268,3 +271,36 @@
 @section('footerScripts')
 
 @endsection
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+   $('#upload-image').click(function(e) {
+        $('#upload').click(function(e)
+       e.preventDefault();
+    //    let formData = new FormData(this);
+    //    $('#image-input-error').text('');
+       $.ajax({
+          type:'post',
+          url: 'google.com',
+           data: formData,
+           contentType: false,
+           processData: false,
+           success: (response) => {
+             if (response) {
+               this.reset();
+               alert('Image has been uploaded successfully');
+             }
+           },
+           error: function(response){
+              console.log(response);
+                $('#image-input-error').text(response.responseJSON.errors.file);
+           }
+       });
+
+  });
+
+</script>

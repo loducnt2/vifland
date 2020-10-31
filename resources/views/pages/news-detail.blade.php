@@ -12,6 +12,7 @@
 <!-- Thêm styles cho trang này ở đây-->
  @stop
 @section('content')
+Test image : {{$news->img}}
 <main>
 	<div class="global-breadcrumb">
 		<div class="max-width-container">
@@ -31,11 +32,12 @@
 							<p>{{$news->datepost}}</p>
 						</div>
 						<div class="title">
+                        Test-image: {{$news->img}}
 							<h1 class="section-under-title">{{$news->title}}</h1>
 						</div>
 						<div class="content">
                         {!!$news->content!!}
-                        <p>Test: {{$news->slug}}</p>
+
                         </div>
 					</div>
 				</div>
@@ -46,9 +48,10 @@
 						</div>
                         @foreach ($posts as $news2)
                         @if($news->slug == $news2->slug)
+                        {{-- ẩn tin --}}
                         @else
                             <div class="news-content">
-                                <div class="img"> <a href=""><img src="./assets/news/bds_1.jpg" alt=""></a></div>
+                                <div class="img"> <img src="{{asset('assets/news')}}/{{$news2->img}}" alt=""></div>
                                 <div class="content">
                                     <div class="date">
                                     <p>{{$news2->datepost}}</p>

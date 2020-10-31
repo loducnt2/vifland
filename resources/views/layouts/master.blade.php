@@ -168,7 +168,7 @@
                         $('.number-yt').text(countfav)
                         $('.number-yt').css('display','flex')
                     }
-                    
+
                 }
             })
         });

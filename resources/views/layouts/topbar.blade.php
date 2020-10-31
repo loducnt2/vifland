@@ -77,7 +77,7 @@
                             <p class="text">Thông báo</p>
                         </li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
-                            <a class="text" href="" data-toggle="modal" data-target="#exampleModal">Đăng bài</a>
+                            <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal">Đăng bài</a>
                         </li>
                         <li class="nav-item d-none user-logined"><img class="avatar-login"
                                 src="{{asset('assets/avatar/avatar.png')}}" alt=""></li>

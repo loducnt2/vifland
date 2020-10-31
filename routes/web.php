@@ -68,7 +68,7 @@ Route::get('/new-list/index',function(){
 );
 
 Route::get('/forgot-password',function(){
-	return view('auth/quenmk');}
+	return view('auth/passwords/email');}
 );
 Route::get('/san-pham',function(){
 	return view('pages/san-pham');}
@@ -121,6 +121,10 @@ Route::post('/admin/danh-sach-tin-tuc/update/{id}','NewsController@update')->nam
 Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
 Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
 Route::get('/admin/danh-sach-tin-tuc','NewsController@index');
+// province
+Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')->name('update-province');
+Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');
+Route::get('/admin/danh-sach-province','ProvinceController@index');
 
 
 
@@ -164,7 +168,7 @@ Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/news/{slug}','NewsController@show');
 // quản lý tin tứcf
-Route::get('/admin/index/news',function(){
+Route::get('/admin/index/news/insert',function(){
     return view('admin.tintuc.quanlytintuc');
 });
 Route::POST('/admin/index/news/insert','NewsController@store'
@@ -172,3 +176,4 @@ Route::POST('/admin/index/news/insert','NewsController@store'
 // news list
 
 Route::get('/news','NewsController@listnews');
+Route::post('/upload_image','UserController@upload_image')->name('upload_image');
