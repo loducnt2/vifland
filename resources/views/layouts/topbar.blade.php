@@ -68,7 +68,7 @@
                             <li class="nav-item">
                                 <i class="ri-equalizer-line icon"></i>
                                 <p class="text">So sánh</p>
-                                <div class="numbercompare"></div>
+                                <div class="number-ss"></div>
                             </li>
                         </a>
                         <a href="{{route('history')}}">

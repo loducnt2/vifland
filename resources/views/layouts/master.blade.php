@@ -184,16 +184,16 @@
                         $(this).children().removeClass('active')
 
                         if( listcomp.length == 0 ){
-                            $('.numbercompare').css('display','none')
+                            $('.number-ss').css('display','none')
                         }else{
-                            $('.numbercompare').text( listcomp.length )
+                            $('.number-ss').text( listcomp.length )
                         }
                         
                     } else {
                         listcomp.push(productid);
                         console.log(listcomp.join())
                         $(this).children().addClass('active')
-                        $('.numbercompare').text( listcomp.length )
+                        $('.number-ss').text( listcomp.length )
                     }
                     $.cookie('compare', listcomp.join())
                     return false
@@ -205,7 +205,7 @@
                     $(this).children().addClass('active') 
                     console.log(listcomp.join())
                     $.cookie('compare', listcomp.join())
-                    $('.numbercompare').text( listcomp.length )
+                    $('.number-ss').text( listcomp.length )
                     return false
                 }
                 
@@ -213,7 +213,7 @@
             if($.cookie('compare')){
                 let listcomp = $.cookie('compare').split(',')
 
-                $('.numbercompare').text( listcomp.length )
+                $('.number-ss').text( listcomp.length )
 
                 let productid = $(this).attr('href')
                 if( listcomp.indexOf(productid) != -1 ){
@@ -222,7 +222,7 @@
                     $(this).children().removeClass('active')
                 }
 
-                $('numbercompare').text( listcomp.length )
+                $('number-ss').text( listcomp.length )
             }
         })
         
