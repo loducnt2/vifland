@@ -139,6 +139,7 @@ class NewsController extends Controller
         return redirect('/admin/danh-sach-tin-tuc');
     }
     public function getpostsbytag($tags){
+// news3 = get tất cả các tin theo tags
         $news3 = DB::table('news')->where(
 
             'tags','like','%'.$tags.'%')->get();
@@ -151,5 +152,7 @@ class NewsController extends Controller
                     'latest'=>$latest
                 ]);
     }
+    // Tin get được từ các danh mục
+
 }
 
