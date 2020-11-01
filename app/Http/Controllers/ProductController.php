@@ -16,6 +16,7 @@ use App\Models\PostHistory;
 use App\Models\FilterPrice;
 use App\Models\TypeProduct;
 use App\Models\Favorited;
+use App\User;
 use Str;
 class ProductController extends Controller
 {
@@ -61,7 +62,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->input('img');
+        if ($request->hasFile('img')){
+            $arrfile = [];
+            $file = $request->file('img');
+            foreach( $file as $img ){
+                $filetype = $img->getClientOriginalExtension('image');
+                $filename = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
+                //$filesave = 'product'.'-'.$productex->id.Str::random(10).'.'.$filetype;
+
+                $img->move(public_path('/assets/product/'), $filename);
+                /*move_uploaded_file($filesave,asset('/assets/product/'));*/
+                $arrfile[]= $filename;
+            }
+
+            foreach( $arrfile as $imgpro ){
+
+                $productimg = new ProductImg([
+                    'product_extend_id' => $productex->id,
+                    'name'              => $imgpro,
+                    'orders'            => NULL,
+                ]);
+                $productimg->save();
+            }
+        }
 
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         $price = doubleval($request->price)*intval($unit);
@@ -98,7 +121,9 @@ class ProductController extends Controller
 
         $productex = new ProductExtend([
             'product_id'   => $product->id,
+
             'product_cate' => implode(',',$request->product_cate),
+
             'filter_price' => $filter_price,
             'address'      => $request->address_product,
             'facades'      => $request->facades,
@@ -144,6 +169,7 @@ class ProductController extends Controller
             $product_cate->save();
         }
 
+        //Lưu vào lịch sử đăng
         $post_history = new PostHistory([
             'user_id'        => auth()->user()->id,
             'product_id'     => $product->id,
@@ -151,6 +177,16 @@ class ProductController extends Controller
             'datetime'       => date('Y-m-d H:i:s',strtotime('now')),
         ]);
         $post_history->save();
+
+
+        //Trừ tiền vào ví
+        $wallet = User::where('user.id',auth()->user()->id)->value('wallet');
+        $user = User::find( auth()->user()->id )->update([
+            'wallet' => intval( $wallet )-intval($request->pricePost)  
+        ]);
+
+
+
         return redirect()->route('user-article',auth()->user()->id);
 
     }
@@ -251,7 +287,7 @@ class ProductController extends Controller
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $title          = 'Mua Bán Nhà Đất';
 
-        $product_by_cate = Category::where('parent_id',1)
+        $products = Category::where('parent_id',1)
         ->leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('post_history','product.id','post_history.product_id')
@@ -287,7 +323,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','product_by_cate','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
     }
 
     public function getByCateSlug2(){
@@ -301,7 +337,7 @@ class ProductController extends Controller
         $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
-        $product_by_cate = Category::where('parent_id',2)
+        $products = Category::where('parent_id',2)
         ->leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('post_history','product.id','post_history.product_id')
@@ -337,7 +373,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','product_by_cate','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
     }
 
     public function getByCateSlug3(){
@@ -351,7 +387,7 @@ class ProductController extends Controller
         $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
-        $product_by_cate = Category::where('parent_id',3)
+        $products = Category::where('parent_id',3)
         ->leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('post_history','product.id','post_history.product_id')
@@ -387,7 +423,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','product_by_cate','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
     }
 
     public function getByUser(){
