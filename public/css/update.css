@@ -29,6 +29,14 @@ a.cke_button {
     max-width: 913px;
     padding: 0 20px;
 }
+.datepicker td,
+.datepicker th {
+    width: 40px !important;
+    height: 30px !important;
+}
+.datepicker table tr td.active {
+    background-image: linear-gradient(to bottom, #d3ad7a, #c8a074) !important;
+}
 .dangbaiviet .modal-content {
     background-color: white;
     padding: 72px;

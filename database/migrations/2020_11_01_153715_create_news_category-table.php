@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Themtinhvaodanhmuc extends Migration
+class CreateNewsCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class Themtinhvaodanhmuc extends Migration
      */
     public function up()
     {
-        Schema::table('province', function ($table) {
-            $table->integer('idcate');   
-            $table->string('content',1000);
+        Schema::create('news_category', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string("category_name",255);
+            $table->integer('id_post');
+            $table->string("slug",255);
+            $table->timestamps();
+
+
 
         });
     }
@@ -27,6 +32,6 @@ class Themtinhvaodanhmuc extends Migration
      */
     public function down()
     {
-        
+        Schema::dropIfExists('news_category');
     }
 }

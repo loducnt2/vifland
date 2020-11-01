@@ -136,7 +136,7 @@
             </div>
             <div id="layoutSidenav_content">
                 @yield('content')
-                
+
             </div>
         </div>
 

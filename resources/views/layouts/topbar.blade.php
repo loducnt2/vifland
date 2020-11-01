@@ -78,8 +78,38 @@
                                 <p class="text">Lịch sử</p>
                             </li>
                         </a>
-                        <li class="nav-item"><i class="fas fa-bell icon"></i>
+                        <li class="nav-item thong-bao">
+                            <div class="thong-bao-num"><i class="fas fa-bell icon"></i>
+                                <div class="number-tb">1</div>
+                            </div>
                             <p class="text">Thông báo</p>
+                            <div class="wrap-list-thongbao">
+                                <div class="wrap-1">
+                                    <p>Thông báo mới</p><em class="material-icons close-tb">close</em>
+                                </div>
+                                <div class="wrap-2">
+                                    <div class="khong-thong-bao"> <img src="./assets/icon/icon-notification.png" alt="">
+                                        <p>Không có thông báo nào</p>
+                                    </div>
+                                    <div class="co-thong-bao">
+                                        <div class="item">
+                                            <div class="wrap-text">
+                                                <div class="thongbao post-expired">Bài viết hết hạn</div><a href="#">Bài
+                                                    viết của bạn sắp hết hạn</a>
+                                                <div class="date">1/11/2020 </div>
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="wrap-text">
+                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#">Thông
+                                                    báo khuyến mãi nạp thẻ cho nhân diệp 20/10 20/10/2020 -
+                                                    20/12/2020</a>
+                                                <div class="date">1/11/2020</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
