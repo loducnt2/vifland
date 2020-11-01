@@ -174,7 +174,7 @@
                             </div>
                             <div class="col-12 form-group">
                                 <!-- <input type="file" name="img[]" multiple>  -->
-                                <input class="filepond" type="file" name="img[]" multiple="multiple"
+                                <input class="filepond my-pond" type="file" name="img[]" multiple="multiple"
                                     accept="image/png, image/jpeg, image/gif">
                             </div>
                             <div class="col-12 form-group">
@@ -735,6 +735,35 @@
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
+<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+<script>
+$(function() {
+
+    // Turn input element into a pond
+    $('.my-pond').filepond();
+
+    // Turn input element into a pond with configuration options
+    $('.my-pond').filepond({
+        allowMultiple: true
+    });
+
+    // Set allowMultiple property to true
+    $('.my-pond').filepond('allowMultiple', false);
+
+    // Listen for addfile event
+    $('.my-pond').on('FilePond:addfile', function(e) {
+        console.log('file added event', e);
+    });
+
+    // Manually add a file using the addfile method
+    $('.my-pond').filepond('addFile', 'index.html').then(function(file) {
+        console.log('file added', file);
+    });
+
+});
+</script>
 <script>
 // $('#testdate').datepicker();
 $("#testdate").datepicker({
