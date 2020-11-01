@@ -206,7 +206,8 @@
                 </div>
                 <div class="col-lg-9 col-md-12">
                     <div class="row box-right">
-                        @foreach($product_by_cate as $product)
+                        @if(count($products)>0)
+                        @foreach($products as $product)
                         <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12">
                             <div class="box-sp">
                                 <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
@@ -244,6 +245,11 @@
                             </div>
                         </div>
                         @endforeach
+                        @else
+                        <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                            <p>Không có bài đăng nào</p>
+                        </div>
+                        @endif
 
 
                         <div class="col-12">

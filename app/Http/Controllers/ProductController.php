@@ -251,7 +251,7 @@ class ProductController extends Controller
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $title          = 'Mua Bán Nhà Đất';
 
-        $product_by_cate = Category::where('parent_id',1)
+        $products = Category::where('parent_id',1)
         ->leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('post_history','product.id','post_history.product_id')
@@ -287,7 +287,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','product_by_cate','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
     }
 
     public function getByCateSlug2(){
@@ -301,7 +301,7 @@ class ProductController extends Controller
         $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
-        $product_by_cate = Category::where('parent_id',2)
+        $products = Category::where('parent_id',2)
         ->leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('post_history','product.id','post_history.product_id')
@@ -337,7 +337,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','product_by_cate','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
     }
 
     public function getByCateSlug3(){
@@ -351,7 +351,7 @@ class ProductController extends Controller
         $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
-        $product_by_cate = Category::where('parent_id',3)
+        $products = Category::where('parent_id',3)
         ->leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('post_history','product.id','post_history.product_id')
@@ -387,7 +387,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','product_by_cate','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
     }
 
     public function getByUser(){
