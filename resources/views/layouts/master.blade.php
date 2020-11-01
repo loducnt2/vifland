@@ -198,7 +198,7 @@
                     $.cookie('compare', listcomp.join())
                     return false
                 }else{
-                    alert('ds')
+                    
                     let listcomp = []
                     let productid = $(this).attr('href')
                     listcomp.push(productid);

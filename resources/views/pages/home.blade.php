@@ -51,22 +51,23 @@
 			</div>
 
 			<div class="box-search-index">
-				<form action=""></form>
+				<form action="{{route('search')}}" method="post">
+					@csrf
 				<div class="row">
 					<div class="col-3">
 						<div class="box-left">
 							<div class="warp-form">
 								<div class="checked">
-									<input id="idgiaohang1" type="radio" value="{{$categories['0']->id}}" name="requirement">
+									<input id="idgiaohang1" type="radio" value="{{$categories['0']->id}}" name="cate" checked="">
 									<label for="idgiaohang1">{{$categories['0']->name}}</label>
 								</div>
 								<div class="checked">
-									<input id="idgiaohang2" type="radio" value="{{$categories['1']->id}}" name="requirement">
+									<input id="idgiaohang2" type="radio" value="{{$categories['1']->id}}" name="cate">
 									<label for="idgiaohang2">{{$categories['1']->name}}</label>
 								</div>
 								<div class="checked">
-									<input id="idgiaohang3" type="radio" value="{{$categories['2']->id}}" name="requirement">
-									<label for="idgiaohang3">{{$categories['2']->name}}</label>
+									<input id="idgiaohang3" type="radio" value="{{$categories['2']->id}}" name="cate">
+									<label for="idgiaohang3">{{$categories['2']->name}}</label>	
 								</div>
 							</div>
 						</div>
@@ -84,7 +85,7 @@
 							<div class="row">
 								<div class="col-3">
 									<div class="form-group-sl1 sl-1">
-										<select class="select1 sltp" name="tinhthanh">
+										<select class="select1 sltp" name="province">
 											<option value="">Tỉnh/ Thành phố</option>
 											@foreach($province as $prov)
 												<option value="{{$prov->id}}">{{$prov->name}}</option>
@@ -94,7 +95,7 @@
 								</div>
 								<div class="col-3">
 									<div class="form-group-sl1 sl-2 select-many">
-										<select class="select1 slnhadat" name="loainhadat[]" multiple="multiple">
+										<select class="select1 slnhadat" name="product_cate[]" multiple="multiple">
 											@foreach($product_cate as $prodcate)
 											<option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
 											@endforeach
@@ -103,7 +104,7 @@
 								</div>
 								<div class="col-3">
 									<div class="form-group-sl1 sl-3 select-many">
-										<select class="select1 slgia" name="khoanggia[]" multiple="multiple">
+										<select class="select1 slgia" name="price[]" multiple="multiple">
 											@foreach($filter_price as $price)
 												<option value="{{$price->id}}">{{$price->name}}</option>
 											@endforeach
@@ -121,6 +122,7 @@
 						</div>
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 	</section>
