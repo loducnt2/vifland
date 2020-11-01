@@ -61,49 +61,39 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        /*$('#dangnhapModal').on('hidden.bs.modal', function() {
-            location.reload();
-        })*/
-        $.ajax({
-            url: '{{route("all-favorite")}}',
-            type: 'GET',
-            success: function(data, status) {
-
-                let arr = [];
-
-                data.forEach(function(item, index, array) {
-
-                    arr.push(item.id)
-
-                })
-                let countfav = arr.length;
-                if( countfav == 0 ){
-                    $('.number-yt').css('display','none')
-                }else{
-                    $('.number-yt').text(countfav)
-                    $('.number-yt').css('display','flex')
-                }
-                $('.fav').each(function() {
-                    var productid = parseInt($(this).attr('productid'));
-                    console.log(productid)
-                    console.log(arr.indexOf(productid))
-                    if (arr.indexOf(productid) != -1) {
-                        $(this).addClass('ri-heart-fill')
-                        $(this).addClass('active')
-                        $(this).removeClass('ri-heart-line')
-                    } else {
-                        $(this).removeClass('ri-heart-fill')
-                        $(this).removeClass('active')
-                        $(this).addClass('ri-heart-line')
+        if( !$('.btn__header').hasClass('login1') ){
+            $.ajax({
+                url: '{{route("all-favorite")}}',
+                type: 'GET',
+                success: function(data, status) {
+                    let arr = [];
+                    data.forEach(function(item, index, array) {
+                        arr.push(item.id)
+                    })
+                    let countfav = arr.length;
+                    if( countfav == 0 ){
+                        $('.number-yt').css('display','none')
+                    }else{
+                        $('.number-yt').text(countfav)
+                        $('.number-yt').css('display','flex')
                     }
-                })
+                    $('.fav').each(function() {
+                        var productid = parseInt($(this).attr('productid'));
+                        if (arr.indexOf(productid) != -1) {
+                            $(this).addClass('ri-heart-fill')
+                            $(this).addClass('active')
+                            $(this).removeClass('ri-heart-line')
+                        } else {
+                            $(this).removeClass('ri-heart-fill')
+                            $(this).removeClass('active')
+                            $(this).addClass('ri-heart-line')
+                        }
+                    })
 
-            }
-        })
-
-
+                }
+            })
+        }
         $('.number-yt').css('display','none')
-
         $(".fav").click(function() {
             //$(this).toggleClass("active");
             if ($(this).hasClass("ri-heart-line")) {
@@ -119,8 +109,6 @@
                         _token: "{{ csrf_token() }}"
                     },
                     success: function(data, status) {
-                        console.log(data)
-                        console.log(status);
                         //Chưa đăng nhập
                         if (data == 0) {
                             $("#dangnhapModal").modal("show");
@@ -149,8 +137,6 @@
                         _token: "{{ csrf_token() }}"
                     },
                     success: function(data, status) {
-                        console.log(data)
-                        console.log(status);
                         //Chưa đăng nhập
                         if (data == 0) {
                             $("#dangnhapModal").modal("show");
@@ -186,26 +172,60 @@
                 }
             })
         });
-
-
-
-
         $('.comp').each(function() {
             $(this).click(function() {
-                let listcomp = $.cookie('compare').split(',')
-                let productid = $(this).attr('href')
-                if (listcomp.indexOf(productid) != -1) {
-                    listcomp.splice(listcomp.indexOf(productid), 1)
-                    //listcomp = arr;
-                    console.log(listcomp.join())
-                } else {
+                if($.cookie('compare')){
+                    let listcomp = $.cookie('compare').split(',')
+                    let productid = $(this).attr('href')
+                    console.log(listcomp)
+                    if (listcomp.indexOf(productid) != -1) {
+                        listcomp.splice(listcomp.indexOf(productid), 1)
+                        console.log(listcomp.join())
+                        $(this).children().removeClass('active')
+
+                        if( listcomp.length == 0 ){
+                            $('.number-ss').css('display','none')
+                        }else{
+                            $('.number-ss').text( listcomp.length )
+                        }
+                        
+                    } else {
+                        listcomp.push(productid);
+                        console.log(listcomp.join())
+                        $(this).children().addClass('active')
+                        $('.number-ss').text( listcomp.length )
+                    }
+                    $.cookie('compare', listcomp.join())
+                    return false
+                }else{
+                    alert('ds')
+                    let listcomp = []
+                    let productid = $(this).attr('href')
                     listcomp.push(productid);
+                    $(this).children().addClass('active') 
                     console.log(listcomp.join())
+                    $.cookie('compare', listcomp.join())
+                    $('.number-ss').text( listcomp.length )
+                    return false
                 }
-                $.cookie('compare', listcomp.join())
-                return false
+                
             })
+            if($.cookie('compare')){
+                let listcomp = $.cookie('compare').split(',')
+
+                $('.number-ss').text( listcomp.length )
+
+                let productid = $(this).attr('href')
+                if( listcomp.indexOf(productid) != -1 ){
+                    $(this).children().addClass('active')
+                }else{
+                    $(this).children().removeClass('active')
+                }
+
+                $('number-ss').text( listcomp.length )
+            }
         })
+        
     })
     </script>
     @yield('footerScripts')

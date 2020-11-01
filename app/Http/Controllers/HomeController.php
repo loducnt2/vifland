@@ -30,7 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //Product::where( 'datetime_end','<', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
         $filter_price = FilterPrice::orderBy('id','asc')->get();
         $product_cate = ProductCate::orderBy('id','desc')->get();
         $province = Province::orderBy('orders','desc')->orderBy('name','asc')->get();

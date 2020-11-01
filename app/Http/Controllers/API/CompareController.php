@@ -10,14 +10,12 @@ use App\Models\Product;
 class CompareController extends Controller
 {
     public function index(Request $request){
-    	/*$compare = Cookie::get('compare');
-    	return view('pages/compare',compact('compare'));
-    	$compare = $request->listcomp;
-    	return $compare;*/
     	$arr = Cookie::get('compare');
+
     	$compare = explode( ',',$arr);
+        $products = [];    
     	foreach( $compare as $comp ){
-    		$product = Product::where('product.id',$comp)
+    		$product = Product::where('product.id',intval($comp))
     		->join('product_extend','product.id','product_extend.product_id')
     		->join('product_unit','product_extend.unit_id','product_unit.id')
     		->join('province','product.province_id','province.id')
@@ -30,11 +28,10 @@ class CompareController extends Controller
     			'district.name as district'
     		])
     		->get();
+
     		$products[] = $product;
     	}
     	
-
-        //return $products;
     	return view('pages/compare',compact('products'));
 
     }

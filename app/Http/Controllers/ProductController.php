@@ -61,7 +61,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->input('img');
+        return $request->input('img');
 
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         $price = doubleval($request->price)*intval($unit);

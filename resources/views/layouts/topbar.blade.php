@@ -32,7 +32,6 @@
                             </a>
 
                         </p>
-
                 </div>
                 <ul>
                     <li> <a href="">Tin đã đăng </a></li>
@@ -58,15 +57,18 @@
                     <ul class="nav-list">
                         <a href="{{route('favorites')}}">
                             <li class="nav-item">
-                                <div class="yeuthich"><i class="ri-heart-fill icon"></i>
+                                <div class="yeuthich">
+                                    <i class="ri-heart-fill icon"></i>
                                     <div class="number-yt"></div>
                                 </div>
                                 <p class="text">Yêu thích</p>
                             </li>
                         </a>
-                        <a href="/compares">
-                            <li class="nav-item"><i class="ri-equalizer-line icon"></i>
+                        <a href="/compares" id="compare">
+                            <li class="nav-item">
+                                <i class="ri-equalizer-line icon"></i>
                                 <p class="text">So sánh</p>
+                                <div class="number-ss"></div>
                             </li>
                         </a>
                         <a href="{{route('history')}}">
@@ -87,7 +89,7 @@
                             <div class="avatar-user"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}"
                                     alt=""></div>
                             @else
-                            <a href="/login" class="btn btn__header" style="line-height:36px">Đăng Nhập</a>
+                            <a href="/login" class="btn btn__header login1" style="line-height:36px">Đăng Nhập</a>
                             @endif
                         </li>
                         <li class="nav-item change-lang"><span class="button-change-lang"><img
