@@ -196,25 +196,12 @@
                                     @foreach($image as $img)
                                     <div class="swiper-slide">
                                         <div class="img-box">
-                                            <img src="{{asset('assets/product')}}/{{$img->name}}"alt="">
+                                            <a href="{{asset('assets/product')}}/{{$img->name}}" data-fancybox>
+                                                <img src="{{asset('assets/product')}}/{{$img->name}}" alt="">
+                                            </a>
                                         </div>
                                     </div>
                                     @endforeach
-                                    <!-- <div class="swiper-slide"> 
-										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
-									</div>
-									<div class="swiper-slide"> 
-										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
-									</div>
-									<div class="swiper-slide"> 
-										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
-									</div>
-									<div class="swiper-slide"> 
-										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
-									</div>
-									<div class="swiper-slide"> 
-										<div class="img-box"><img src="{{asset('assets/san_pham/slide.png')}}" alt=""></div>
-									</div> -->
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>

@@ -116,7 +116,8 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price"><!-- <em class="notedongia">Mặc
+                                            <input type="text" min="0" name="price">
+                                            <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
                                     </div>
@@ -173,7 +174,8 @@
                             </div>
                             <div class="col-12 form-group">
                                 <!-- <input type="file" name="img[]" multiple>  -->
-                                <input class="filepond" type="file" name="img[]" multiple="multiple" data-allow-reorder="true" data-max-file-size="3MB" data-max-files="4">
+                                <input class="filepond" type="file" name="img[]" multiple="multiple"
+                                    accept="image/png, image/jpeg, image/gif">
                             </div>
                             <div class="col-12 form-group">
                                 <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
@@ -415,11 +417,10 @@
                                 <!-- END -->
                                 <div class="col-12">
                                     <div class="row wrap-lich">
-                                        
-                                         <div class="col-6 form-group">
+
+                                        <div class="col-6 form-group">
                                             <label for="songayvip">Ngày đăng bài</label>
-                                            <input class="calendar" id="ngaybdvip" type="datetime"
-                                                name="datetime_start">
+                                            <input class="calendar" type="datetime" name="datetime_start" id="testdate">
                                         </div>
                                         <div class="col-6 form-group">
                                             <label for="songayvip">Số ngày</label>
@@ -728,7 +729,18 @@
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
+
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
 <script>
+// $('#testdate').datepicker();
+$("#testdate").datepicker({
+    language: 'vi',
+
+}).attr('readonly', 'readonly');
 CKEDITOR.replace('summary-ckeditor');
 $(document).ready(function() {
     $('#province').change(function() {
