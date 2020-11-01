@@ -17,7 +17,7 @@
 	</div>
 	<section class="pages-compare"> 
 		<div class="max-width-container">
-			@if(count($products) != null )
+			@if(count($products) > 0 )
 			<div class="row"> 
 				<div class="col-xl-3 col-md-3 d-none d-md-block">
 					<section class="compare-c-1">

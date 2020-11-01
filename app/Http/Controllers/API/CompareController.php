@@ -9,30 +9,33 @@ use App\Models\Product;
 
 class CompareController extends Controller
 {
-    public function index(Request $request){
+    public function index(){
     	$arr = Cookie::get('compare');
+        $products = [];
+        if( $arr != null ){
+            $compare = explode( ',',$arr);
+            foreach( $compare as $comp ){
+                $product = Product::where('product.id',intval($comp))
+                ->join('product_extend','product.id','product_extend.product_id')
+                ->join('product_unit','product_extend.unit_id','product_unit.id')
+                ->join('province','product.province_id','province.id')
+                ->join('district','product.district_id','district.id')
+                ->select([
+                    'product_unit.name as unit',
+                    'product.*',
+                    'product_extend.*',
+                    'province.name as province',
+                    'district.name as district'
+                ])
+                ->get();
 
-    	$compare = explode( ',',$arr);
-        $products = [];    
-    	foreach( $compare as $comp ){
-    		$product = Product::where('product.id',intval($comp))
-    		->join('product_extend','product.id','product_extend.product_id')
-    		->join('product_unit','product_extend.unit_id','product_unit.id')
-    		->join('province','product.province_id','province.id')
-    		->join('district','product.district_id','district.id')
-    		->select([
-    			'product_unit.name as unit',
-    			'product.*',
-    			'product_extend.*',
-    			'province.name as province',
-    			'district.name as district'
-    		])
-    		->get();
-
-    		$products[] = $product;
-    	}
+                $products[] = $product;
+            }
+            return view('pages/compare',compact('products'));
+        }else{
+            return view('pages/compare',compact('products'));
+        }
     	
-    	return view('pages/compare',compact('products'));
 
     }
 }
