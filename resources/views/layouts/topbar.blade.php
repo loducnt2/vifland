@@ -66,9 +66,11 @@
                         </a>
                         <a href="/compares" id="compare">
                             <li class="nav-item">
-                                <i class="ri-equalizer-line icon"></i>
+                                <div class="sosanh-num">
+                                    <i class="ri-equalizer-line icon"></i>
+                                    <div class="number-ss"></div>
+                                </div>
                                 <p class="text">So sánh</p>
-                                <div class="number-ss"></div>
                             </li>
                         </a>
                         <a href="{{route('history')}}">
@@ -80,7 +82,8 @@
                             <p class="text">Thông báo</p>
                         </li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
-                            <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal">Đăng bài</a>
+                            <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
+                                data-target="#exampleModal">Đăng bài</a>
                         </li>
                         <li class="nav-item d-none user-logined"><img class="avatar-login"
                                 src="{{asset('assets/avatar/avatar.png')}}" alt=""></li>
@@ -256,12 +259,14 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"><a class="box" href="/article/new/mua-ban-nha-dat"><img src="{{asset('assets/index/mua-ban-nha-dat.png')}}"
-                        alt="">
+            <div class="modal-content"><a class="box" href="/article/new/mua-ban-nha-dat"><img
+                        src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt="">
                     <p>Mua/ Bán</p><em class="material-icons">double_arrow</em>
-                </a><a class="box" href="/article/new/cho-thue-nha-dat"><img src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt="">
+                </a><a class="box" href="/article/new/cho-thue-nha-dat"><img
+                        src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt="">
                     <p>Thuê/ Cho Thuê</p><em class="material-icons">double_arrow</em>
-                </a><a class="box" href="/article/new/sang-nhuong-nha-dat"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
+                </a><a class="box" href="/article/new/sang-nhuong-nha-dat"><img
+                        src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
                     <p>Sang Nhượng</p><em class="material-icons">double_arrow</em>
                 </a></div>
         </div>
