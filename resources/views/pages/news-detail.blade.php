@@ -10,9 +10,9 @@
 @endif
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
- @stop
+@stop
 @section('content')
-Test image : {{$news->img}}
+}
 <main>
 	<div class="global-breadcrumb">
 		<div class="max-width-container">
@@ -32,9 +32,12 @@ Test image : {{$news->img}}
 							<p>{{$news->datepost}}</p>
 						</div>
 						<div class="title">
-                        Test-image: {{$news->img}}
+                        {{-- Test-image: {{$news->img}} --}}
+                        {{-- Test image : {{$news->img}} --}}
+
+
 							<h1 class="section-under-title">{{$news->title}}</h1>
-						</div>
+                        </div>
 						<div class="content">
                         {!!$news->content!!}
 
@@ -47,16 +50,25 @@ Test image : {{$news->img}}
 							<h2 class="section-des">Các tin khác</h2>
 						</div>
                         @foreach ($posts as $news2)
+                        @foreach(explode(",",$news2->tags) as $tags)
+
+                        <div class="tag"style="color:red"><a href="/news/tags/{{$tags}}">{{$tags}}</a></div>
+
+
+                        {{--  --}}
+                        @endforeach
                         @if($news->slug == $news2->slug)
                         {{-- ẩn tin --}}
                         @else
                             <div class="news-content">
+
                                 <div class="img"> <img src="{{asset('assets/news')}}/{{$news2->img}}" alt=""></div>
                                 <div class="content">
                                     <div class="date">
                                     <p>{{$news2->datepost}}</p>
                                     </div><a href="/news/{{$news2->slug}}">
                                     <h2 class="section-des">{{$news2->title}}</h2></a>
+
                                 </div>
                             </div>
                         @endif

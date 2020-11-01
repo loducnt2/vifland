@@ -167,13 +167,13 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/news/{slug}','NewsController@show');
-// quản lý tin tứcf
+// quản lý tin tức
 Route::get('/admin/index/news/insert',function(){
     return view('admin.tintuc.quanlytintuc');
 });
 Route::POST('/admin/index/news/insert','NewsController@store'
 );
-// news list
-
+// get tất cả các tin đang có
 Route::get('/news','NewsController@listnews');
-Route::post('/upload_image','UserController@upload_image')->name('upload_image');
+// get những bài tin tức bằng tag
+Route::get('/news/tags/{tags}','NewsController@getpostsbytag');

@@ -138,5 +138,18 @@ class NewsController extends Controller
         $new->delete();
         return redirect('/admin/danh-sach-tin-tuc');
     }
+    public function getpostsbytag($tags){
+        $news3 = DB::table('news')->where(
+
+            'tags','like','%'.$tags.'%')->get();
+
+            $latest = DB::table('news')->orderBy('created_at','desc')->get();
+
+            return view('pages/postsbytags')->with(
+                [
+                    'news3'=>$news3,
+                    'latest'=>$latest
+                ]);
     }
+}
 
