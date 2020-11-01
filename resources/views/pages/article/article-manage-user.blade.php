@@ -34,13 +34,16 @@
                             <div class="bl-2">
                                 <div class="row">
                                     <div class="col-6"><span class="vifPay"> <img
-                                                src="{{asset('assets/icon/card.png')}}" alt="">VifPay</span></div>
+                                                src="{{asset('assets/icon/card.png')}}" alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
                                     <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
                                                     class="material-icons">keyboard_arrow_right</span></a></span></div>
-                                    <div class="col-12"><span class="lkvi"><img
-                                                src="{{asset('assets/icon/warning.png')}}" alt="">Chưa liên kết
-                                            ví</span><span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn
-                                            nhé</span></div>
+                                    <!-- <div class="col-12">
+                                        <span class="lkvi">
+                                            <img src="{{asset('assets/icon/warning.png')}}" alt="">
+                                            Chưa liên kết ví
+                                        </span>
+                                        <span class="text">Liên kết để hưởng khuyến mãi với ưu đãi bạn nhé</span>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="bl-3">

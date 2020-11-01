@@ -16,6 +16,7 @@ use App\Models\PostHistory;
 use App\Models\FilterPrice;
 use App\Models\TypeProduct;
 use App\Models\Favorited;
+use App\User;
 use Str;
 class ProductController extends Controller
 {
@@ -61,7 +62,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->input('img');
+        if ($request->hasFile('img')){
+            $arrfile = [];
+            $file = $request->file('img');
+            foreach( $file as $img ){
+                $filetype = $img->getClientOriginalExtension('image');
+                $filename = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
+                //$filesave = 'product'.'-'.$productex->id.Str::random(10).'.'.$filetype;
+
+                $img->move(public_path('/assets/product/'), $filename);
+                /*move_uploaded_file($filesave,asset('/assets/product/'));*/
+                $arrfile[]= $filename;
+            }
+
+            foreach( $arrfile as $imgpro ){
+
+                $productimg = new ProductImg([
+                    'product_extend_id' => $productex->id,
+                    'name'              => $imgpro,
+                    'orders'            => NULL,
+                ]);
+                $productimg->save();
+            }
+        }
 
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         $price = doubleval($request->price)*intval($unit);
@@ -98,7 +121,9 @@ class ProductController extends Controller
 
         $productex = new ProductExtend([
             'product_id'   => $product->id,
+
             'product_cate' => implode(',',$request->product_cate),
+
             'filter_price' => $filter_price,
             'address'      => $request->address_product,
             'facades'      => $request->facades,
@@ -144,6 +169,7 @@ class ProductController extends Controller
             $product_cate->save();
         }
 
+        //Lưu vào lịch sử đăng
         $post_history = new PostHistory([
             'user_id'        => auth()->user()->id,
             'product_id'     => $product->id,
@@ -151,6 +177,16 @@ class ProductController extends Controller
             'datetime'       => date('Y-m-d H:i:s',strtotime('now')),
         ]);
         $post_history->save();
+
+
+        //Trừ tiền vào ví
+        $wallet = User::where('user.id',auth()->user()->id)->value('wallet');
+        $user = User::find( auth()->user()->id )->update([
+            'wallet' => intval( $wallet )-intval($request->pricePost)  
+        ]);
+
+
+
         return redirect()->route('user-article',auth()->user()->id);
 
     }

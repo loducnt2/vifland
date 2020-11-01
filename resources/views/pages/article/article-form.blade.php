@@ -498,6 +498,9 @@
                                                         <span class="total">0</span>
                                                         <input type="text" name="totalPriceVip" value="0" readonly
                                                             style="display:none" disabled>
+
+                                                        <!-- HUY -->
+                                                        <input type="number" name="pricePost" value="0" style="display:none">
                                                     </strong></div>
                                             </div>
                                         </div>
@@ -507,7 +510,7 @@
                                     <!-- END -->
                                     <div class="col-12 wrap-button-dbv">
                                         <div class="row">
-                                            <button class="button-huy" type="submit">Hủy bỏ</button>
+                                            <!-- <button class="button-huy" type="submit">Hủy bỏ</button> -->
                                             <button class="button-luu" type="submit">Đăng bài</button>
                                         </div>
                                     </div>
@@ -734,11 +737,14 @@
 
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    
+
 
 <script>
 // $('#testdate').datepicker();
 $("#testdate").datepicker({
     language: 'vi',
+    format: 'mm/dd/yyyy',
 
 }).attr('readonly', 'readonly');
 CKEDITOR.replace('summary-ckeditor');
@@ -757,6 +763,22 @@ $(document).ready(function() {
         var url1 = '/get-ward/' + district;
         $('#ward').load(url1);
     });
+
+    FilePond.registerPlugin();
+              var element = document.querySelector('meta[name="csrf-token"]');
+              var csrf = element && element.getAttribute("content");
+              FilePond.setOptions({
+                server: {
+                      url: "{{ url('upload')}}",
+                      process: {
+                          headers: {
+                            'X-CSRF-TOKEN': csrf 
+                          },
+                      }
+                  }
+              });
+              const inputElement = document.querySelector('input[name="image"]');
+              const pond = FilePond.create( inputElement);
 
 });
 </script>
