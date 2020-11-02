@@ -141,18 +141,18 @@ class NewsController extends Controller
     public function getpostsbytag($tags){
 // news3 = get tất cả các tin theo tags
         $news3 = DB::table('news')->where(
-
             'tags','like','%'.$tags.'%')->get();
-
+            // $tags= DB::table('news')->where(
+            //     'tags','like','%'.$tags.'%')->first();
             $latest = DB::table('news')->orderBy('created_at','desc')->get();
-
+            // $tags = DB::table('news')->where('tags',$tags)->get();
             return view('pages/postsbytags')->with(
                 [
+                    // 'tags'=>$tags,
                     'news3'=>$news3,
-                    'latest'=>$latest
+                    'latest'=>$latest,
                 ]);
     }
     // Tin get được từ các danh mục
-
 }
 

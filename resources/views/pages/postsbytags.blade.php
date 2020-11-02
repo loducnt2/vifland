@@ -1,10 +1,17 @@
 @extends('layouts.master')
-@section('title','New list')
+@section('title','Bài viết theo tags')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
  @stop
-@section('content')
-<main>
+
+
+ @section('content')
+ <?php
+ //Get tags names
+$tags = \Route::current()->parameter('tags');
+//  echo '',$tags;
+ ?>
+ <main>
 	<section class="banner-top">
 		<div class="img"> </div>
 	</section>
@@ -20,14 +27,32 @@
 	<section class="pages-news-list">
 		<div class="container">
 
-            <h1 class="section-title text-uppercase">tin tức theo tags </h1>
+            <h1 class="section-title text-uppercase">Các bài viết theo tag :
+                <?php
+                    echo ''.$tags;
+                    ?>
+            </h1>
 
-            @foreach ($news3 as $posts)
-            Test ID Posts {{$posts->id}}
+        </div>
+        <div class="col-md-12 row sec-2">
+         @foreach ($news3 as $posts)
+         <div class="col-xl-4 col-md-4 col-sm-6 wrapper">
+            <div class="article-wrapper">
+                <div class="date">
+                <p>{{$posts->datepost}}</p>
+                </div>
+            <div class="article-small"><a href="/news/{{$posts->slug}}"><img src="{{asset('assets/news/' .$posts->img)}}" alt=""></a>
+            <div class="content"><a href="/news/{{$posts->slug}}">
+                    <h2 class="section-under-title">{{$posts->title}}</h2></a>
+            <p>{{$posts->summary}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        </div>
 
-            @endforeach
 
-		</div>
 	</section>
 	<div id="js-page-verify" hidden></div>
 </main>
