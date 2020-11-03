@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
+use App\Models\NewsCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -179,4 +180,5 @@ Route::get('/news/tags/{tags}','NewsController@getpostsbytag');
 // quản lí tin tức
 Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index');
 // ===================danh mục tin tức======================
-Route::get('')
+//Route::post('/admin/danh-muc-tin-tuc/them-moi','NewsCategoryController@store');
+//Route::resource('/admin/danh-muc-tin-tuc/them-moi', 'NewsCategoryController');

@@ -36,7 +36,13 @@ class NewsCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $news_cate = new NewsCategory();
+        $news_cate->category_name=$request->input('category_name');
+        $news_cate->slug = $request->slug;
+        $news_cate->status = "1";
+        $news_cate->save();
+
     }
 
     /**
