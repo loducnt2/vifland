@@ -1,18 +1,9 @@
 
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
-<link rel="stylesheet" href="{{asset('css/styles.css') }}">
-    <link href="css/update-admin.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
 
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> --}}
-{{-- toastr  css--}}
-<link rel="stylesheet" href="{{asset('css/bootstrap-toggle.css')}}">
-{{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
-{{-- {{ $collection->links() }} --}}
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('title')
    <style>
         ::-webkit-scrollbar {
@@ -34,6 +25,7 @@
   background: #555;
 }
     </style>
+
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <a class="navbar-brand" href="index.html">Start Bootstrap</a>
@@ -142,67 +134,4 @@
 
             </div>
         </div>
-
-
-        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script> --}}
-
-
-        <script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-  crossorigin="anonymous"></script>
-        <script src="{{asset('js/script.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="{{asset('assets/demo/chart-pie.js') }}"></script>
-        <script src="{{asset('assets/demo/chart-bar-demo.js') }}"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-
-         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-         <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="{{asset('js/datatables.js') }}"></script>
-
-
-{{-- toggle ban/unban trong quản lý admin bar # --}}
-
-<script>
-    $(function() {
-      $('.toggle-class').change(function() {
-          var status = $(this).prop('checked') == true ? 1 : 0;
-          var id = $(this).data('id');
-
-          $.ajax({
-              type: "GET",
-              dataType: "json",
-              url: '/admin/changestatus',
-              data: {'status': status, 'id': id},
-              success: function(data){
-                if(data.status = status )
-                {
-
-                    console.log("True");
-                }
-                else
-                {
-                    console.log('Failed');
-                }
-              }
-          });
-      })
-    })
-  </script>
-
-{{-- end toggle-bar --}}
-<script>
-    $(document).ready( function () {
-    $('#myTable').DataTable(
-        {
-            "paging":true
-        }
-    );
-});
-</script>
+        @extends('admin.footer');

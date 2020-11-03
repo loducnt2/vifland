@@ -202,7 +202,7 @@ width: 100%;
             <label for=""></label>
             <input type="hidden"
               class="form-control" name="slug" id="slug2" aria-describedby="helpId" placeholder="" readonly>
-            <small id="helpId" class="form-text text-muted">Help text</small>
+            {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
           </div>
 
           <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
