@@ -62,6 +62,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //return false;
         if ($request->hasFile('img')){
             $arrfile = [];
             $file = $request->file('img');

@@ -21,6 +21,9 @@ class SearchController extends Controller
     	$products = Category::leftJoin('product','category.id','product.cate_id')
     	->leftJoin('product_extend','product.id','product_extend.product_id')
     	->leftJoin('type_of_product','product_extend.id','type_of_product.product_extend_id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
 	    ->where('product.soft_delete',0)
 	    ->where('category.parent_id',$cate)
     	->when($kyw, function ($q) use ($kyw) {
@@ -38,11 +41,21 @@ class SearchController extends Controller
     	    return $q->whereIn('product_extend.filter_price',$price);
     	})
     	->select(
+            'product.id as product_id',
     		'product.title',
     		'product.slug',
+            'product.view',
+            'product.datetime_start',
     		'product_extend.filter_price',
+            'product_extend.price',
     		'product.province_id',
-    		'type_of_product.product_cate_id'
+    		'type_of_product.product_cate_id',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit',
+            'product_extend.depth',
+            'product_extend.facades',
+            'product.view'
     	)
     	->get();
     	

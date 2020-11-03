@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+Route::get('/testform',function(){return view('pages/article/testform');} );
 
 Auth::routes();
 Route::get('/testcompare','API\CompareController@testcompare');
