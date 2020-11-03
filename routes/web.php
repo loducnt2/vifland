@@ -176,3 +176,7 @@ Route::POST('/admin/index/news/insert','NewsController@store');
 Route::get('/news','NewsController@listnews');
 // get những bài tin tức bằng tag
 Route::get('/news/tags/{tags}','NewsController@getpostsbytag');
+// quản lí tin tức
+Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index');
+// ===================danh mục tin tức======================
+Route::get('')

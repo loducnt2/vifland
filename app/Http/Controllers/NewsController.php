@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\News;
+use App\Models\NewsCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 class NewsController extends Controller
@@ -47,6 +49,7 @@ class NewsController extends Controller
         $news->slug = $request->slug;
         $news->content = $request->input('content');
         // $news->datepost = Carbon::now();
+        $news->id_category = $request->input('category');
         $news->datepost = $request->input('datepost');
         $news->status= "1";
         // $news->img= "bds_1.jpg";
@@ -72,6 +75,12 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function getCate()
+    {
+        // lấy tất cả các danh mục trong tin tức
+        $news_cate = NewsCategory::all();
+        return view('admin.tintuc.quanlytintuc',compact('news_cate'));
+    }
     public function show($slug)
     {
         //get chi tiết bài đăng
@@ -94,19 +103,23 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $new = News::firstOrFail($id);
-        return view('/admin/tintuc/quanlytintuc',compact('new'));
-    }
+    // public function edit($id)
+    // {
+
+    //     $new = News::firstOrFail($id);
+    //     return view('/admin/tintuc/quanlytintuc',compact('new'));
+    // }
     // get những tin trong db
     public function listnews(){
         // lấy mọi tin
+        // lấy danh mục
+        $news_cate = NewsCategory::all();
         $news = News::all();
         // tin mới nhất theo create_at
         $latest = DB::table('news')->orderBy('created_at','desc')->get();
         return view('pages/news-list')->with(
             [
+                // 'news_cate'=>$news_cate,
                 'news'=>$news,
                 'latest'=>$latest
             ]);

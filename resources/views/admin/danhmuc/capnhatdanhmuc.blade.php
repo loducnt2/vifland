@@ -26,7 +26,7 @@
 					<label for="">Name</label>
 
 					<input  class="form-control" type="text" name="name" value="{{$cate->name}}">
-				
+
 					<label for="">Ngôn ngữ</label>
 
 					<input  class="form-control" type="text" name="lang" value="{{$cate->language}}">
@@ -41,7 +41,7 @@
 
 					<label class="form-check-label" for="">Hiện</label>
 							<br>
-	
+
 					<input class="form-check-input" type="radio" name="status" value="0" {{$cate->status==0?'checked':''}}>
 
 					<label  class="form-check-label" for="">An</label> -->

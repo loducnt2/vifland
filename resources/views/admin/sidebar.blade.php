@@ -3,11 +3,13 @@
 <link rel="stylesheet" href="{{asset('css/styles.css') }}">
     <link href="css/update-admin.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{asset('css/datatables.css')}}">
 
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     {{-- <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> --}}
 {{-- toastr  css--}}
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<link rel="stylesheet" href="{{asset('css/bootstrap-toggle.css')}}">
+{{-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"> --}}
 {{-- {{ $collection->links() }} --}}
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
@@ -98,13 +100,14 @@
                             <div class="sb-sidenav-menu-heading">Quản trị trang web</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Quản lí tin tức
+                                Quản lý tin tức
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages3" aria-labelledby="headingFour" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
 
                                     <a class="nav-link" href="{{ url('admin/cap-nhat-tin-tuc') }}">Cập nhật tin tức</a>
+                                    <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Danh mục tin tức</a>
                                     <a class="nav-link" href="{{ url('admin/danh-sach-tin-tuc') }}">Danh sách tin tức</a>
 
                                       </nav>
@@ -154,13 +157,16 @@
         <script src="{{asset('assets/demo/chart-bar-demo.js') }}"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-        <script src="{{asset('assets/demo/datatables-demo.js') }}">
+
          <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
          <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-        </script>
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="{{asset('js/datatables.js') }}"></script>
+
+
 {{-- toggle ban/unban trong quản lý admin bar # --}}
 
 <script>
@@ -190,4 +196,13 @@
     })
   </script>
 
-{{-- toggle-bar --}}
+{{-- end toggle-bar --}}
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable(
+        {
+            "paging":true
+        }
+    );
+});
+</script>
