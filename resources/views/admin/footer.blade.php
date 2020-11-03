@@ -11,7 +11,7 @@ $( "#myform" ).submit(function( event ) {
   alert( "Handler for .submit() called." );
   event.preventDefault();
 
-});
+}); 
 </script>
 
 <script>
@@ -19,3 +19,12 @@ $( "#myform" ).submit(function( event ) {
       $('#table_id').DataTable();
   } );
   </script>
+<script> 
+ slideNav();
+function slideNav() {
+    $(".sb-topnav button").on("click", function() {
+        // $("#layoutSidenav #layoutSidenav_nav").toggleClass("active");
+        $("#layoutSidenav #layoutSidenav_nav").toggleClass("active");
+    });
+} 
+</script>
