@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price">
+                                            <input type="text" min="0" name="price" id="price">
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
@@ -172,9 +172,12 @@
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
                             <div class="col-12 form-group">
-                                <!-- <input type="file" name="img[]" multiple>  -->
-                                <input class="filepond my-pond" type="file" name="img[]" multiple="multiple"
-                                    accept="image/png, image/jpeg, image/gif">
+                                <span >Ảnh tiêu đề (1 ảnh): &nbsp;</span>
+                                <input type="file" name="thumbnail" >
+                            </div>
+                            <div class="col-12 form-group">
+                                <span>Ảnh chi tiết (ít nhất 3 ảnh): &nbsp;</span>
+                                <input type="file" name="img[]" multiple>
                             </div>
                             <div class="col-12 form-group">
                                 <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
@@ -733,7 +736,7 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
 
@@ -775,6 +778,15 @@ $("#testdate").datepicker({
 }).attr('readonly', 'readonly');
 CKEDITOR.replace('summary-ckeditor');
 $(document).ready(function() {
+
+    $('#unit').change(function(){
+        if( $(this).val()==13 ){
+            $('#price').attr('disabled',true);
+        }else{
+            $('#price').attr('disabled',false);
+        }
+    })
+
     $('#province').change(function() {
         var province = $(this).val();
         var url = '/get-district/' + province;
@@ -817,7 +829,7 @@ $(document).ready(function() {
             return false
         }
       })
-      $('.formDangBaiViet').validate({
+      /*$('.formDangBaiViet').validate({
           rules:{
               title:{
                 required:true,
@@ -872,8 +884,7 @@ $(document).ready(function() {
 
               
           },
-          //Custom message validate
-          /*errorPlacement: function(error, element) {
+          errorPlacement: function(error, element) {
               //Custom position: first name
               if (element.attr("name") == "first" ) {
                   $("#errNm1").text(error);
@@ -886,14 +897,14 @@ $(document).ready(function() {
               else {
                    error.append($('.errorTxt span'));
               }
-          },*/
+          },
           submitHandler: function(form) {
                   form.submit(function(){
 
                   });
               }
           
-      });
+      });*/
 
 
 });

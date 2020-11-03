@@ -62,7 +62,8 @@
             <div class="row main-danh-muc">
                 <div class="col-lg-3 col-md-12">
                     <div class="box-left-form-muaban">
-                        <form action="">
+                        <form id="filter">
+                            @csrf
                             <div class="mdm-1">
                                 <div class="checked">
                                     <input id="luachonsearch1" type="radio" value="muaban" name="canmuaban">
@@ -90,8 +91,8 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province_id" id="province">
-                                                <option value="">Chọn</option>
+                                            <select class="select1" name="province_id" id="province" >
+                                                <option value="0">Chọn</option>
                                                 @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
                                                 @endforeach
@@ -99,14 +100,14 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district_id" id="district">
-                                                <option value="">Chọn</option>
+                                            <select class="select1" name="district_id" id="district" >
+                                                <option value="0">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
-                                            <select class="select1" name="ward_id" id="ward">
-                                                <option value="">Chọn</option>
+                                            <select class="select1" name="ward_id" id="ward" >
+                                                <option value="0">Chọn</option>
                                             </select>
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
@@ -210,7 +211,7 @@
                         @foreach($products as $product)
                         <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12">
                             <div class="box-sp">
-                                <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+                                <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
                                     <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
                                     <div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
                                     <div class="overlay"></div>
@@ -930,18 +931,30 @@
 <!-- Thêm script cho trang này ở đây -->
 <script type="text/javascript">
     $(document).ready(function() {
+
+        /*$('#filter').change(function(){
+            $.ajax({
+                url: '{{ route("filter") }}',
+                type: 'POST',
+                data: $('#filter').serialize(),
+                success: function(data, status) {
+                    console.log(data)
+                }
+            })
+        });*/
+
         $('#province').change(function() {
-            var province = $(this).val();
-            var url = '/get-district/' + province;
+            let province = $(this).val();
+            let url = '/get-district/' + province;
             $('#district').load(url, function() {
-                var district = $(this).val();
-                var url1 = '/get-ward/' + district;
+                let district = $(this).val();
+                let url1 = '/get-ward/' + district;
                 $('#ward').load(url1);
             });
         });
         $('#district').change(function() {
-            var district = $(this).val();
-            var url1 = '/get-ward/' + district;
+            let district = $(this).val();
+            let url1 = '/get-ward/' + district;
             $('#ward').load(url1);
         });
 
