@@ -16,12 +16,11 @@ class CreateNewsCategoryTable extends Migration
         Schema::create('news_category', function (Blueprint $table) {
             $table->increments('id');
             $table->string("category_name",255);
-            $table->integer('id_post');
+            // $table->integer('id_post');
             $table->string("slug",255);
+            $table->tinyInteger('status');
             $table->timestamps();
-
-
-
+            // 🌝 Dùng để up database
         });
     }
 

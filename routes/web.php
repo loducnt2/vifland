@@ -171,9 +171,12 @@ Route::get('/news/{slug}','NewsController@show');
 Route::get('/admin/cap-nhat-tin-tuc',function(){
     return view('admin.tintuc.quanlytintuc');
 });
-Route::POST('/admin/index/news/insert','NewsController@store'
-);
+Route::POST('/admin/index/news/insert','NewsController@store');
 // get tất cả các tin đang có
 Route::get('/news','NewsController@listnews');
 // get những bài tin tức bằng tag
 Route::get('/news/tags/{tags}','NewsController@getpostsbytag');
+// quản lí tin tức
+Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index');
+// ===================danh mục tin tức======================
+Route::get('')

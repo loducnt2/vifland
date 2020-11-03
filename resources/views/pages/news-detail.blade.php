@@ -1,4 +1,5 @@
 @extends('layouts.master')
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 {{-- @if ($news->title =''){ --}}
 
@@ -9,6 +10,7 @@
 <title>{{$news->title}}</title>
 @endif
 @section('headerStyles')
+
 <!-- Thêm styles cho trang này ở đây-->
 @stop
 @section('content')
@@ -30,13 +32,15 @@
 					<div class="article-container">
 						<div class="date">
 							<p>{{$news->datepost}}</p>
-						</div>
+                        </div>
+
+                        @foreach(explode(",",$news->tags) as $tags)
+                            <a href="/news/tags/{{$tags}}">
+                        <span class="badge badge-secondary badge-pill">{{$tags}}</span></a>
+                        @endforeach
+                        <hr class="my-4">
 						<div class="title">
-                        {{-- Test-image: {{$news->img}} --}}
-                        {{-- Test image : {{$news->img}} --}}
-
-
-							<h1 class="section-under-title">{{$news->title}}</h1>
+        			<h1 class="section-under-title">{{$news->title}}</h1>
                         </div>
 						<div class="content">
                         {!!$news->content!!}
@@ -50,13 +54,6 @@
 							<h2 class="section-des">Các tin khác</h2>
 						</div>
                         @foreach ($posts as $news2)
-                        @foreach(explode(",",$news2->tags) as $tags)
-
-                        <div class="tag"style="color:red"><a href="/news/tags/{{$tags}}">{{$tags}}</a></div>
-
-
-                        {{--  --}}
-                        @endforeach
                         @if($news->slug == $news2->slug)
                         {{-- ẩn tin --}}
                         @else

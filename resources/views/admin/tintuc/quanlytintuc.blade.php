@@ -154,6 +154,8 @@ width: 100%;
               <input type="text" class="form-control" id="title" onkeyup="ChangeToSlug();" placeholder="" value="" name="title">
               {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
             </div>
+
+            {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
             <div class="col-md-6 mb-3">
                 <label for="">Ngày đăng</label>
                 <div class="input-group">
@@ -166,7 +168,17 @@ width: 100%;
               </div>
 
           </div>
-
+          Danh mục tin tức
+          <div class="form-group">
+            <label for=""></label>
+            <?php $cate = \App\Models\NewsCategory::all()?>
+            <select class="form-control" id="category" name="category">
+              @foreach ($cate as $item)
+            <option value="{{$item->id}}">{{$item->category_name}}</option>
+              @endforeach
+            </select>
+          </div>
+          {{-- tags --}}
           <div class="form-group">
             <label for="">Tags</label>
             <input type="text" class="form-control typeahead" name="tags[]" id="tag" aria-describedby="helpId" placeholder="" data-role="tagsinput" >

@@ -23,7 +23,7 @@
             <h1 class="section-title text-uppercase">tin tức mới nhất </h1>
 			<div class="row sec-1">
 				<div class="col-xl-6 col-md-6 col-12">
-                <div class="article-big"><a class="bg" href="/news/{{$latest[0]->slug}}"><img src="./assets/news/bds_1.jpg" alt=""></a>
+                <div class="article-big"><a class="bg" href="/news/{{$latest[0]->slug}}"><img src="{{asset('assets/news/' .$latest[0]->img)}}" alt=""></a>
 						<div class="content"> <a href="">
                             {{-- Tin mới nhất :{{$latest->title}} --}}
                         <h2 class="section-under-title">{{$latest[0]->title}}</h2></a>
@@ -36,7 +36,7 @@
 						<div class="date">
                         <p>{{$latest[1]->datepost}}</p>
 						</div>
-                    <div class="article-small"><a href="/news/{{$latest[1]->slug}}"><img src="./assets/news/bds_1.jpg" alt=""></a>
+                    <div class="article-small"><a href="/news/{{$latest[1]->slug}}"><img src="{{asset('assets/news/'.$latest[1]->img)}}" alt=""></a>
 							<div class="content"> <a href="">
 									<h2 class="section-under-title">{{$latest[1]->title}} </h2></a>
                             <p>{{$latest[1]->summary}}</p>
@@ -47,7 +47,7 @@
 						<div class="date">
                         <p>{{$latest[2]->datepost}}</p>
 						</div>
-                    <div class="article-small"><a href="/news/{{$latest[2]->slug}}"><img src="./assets/news/bds_1.jpg" alt=""></a>
+                    <div class="article-small"><a href="/news/{{$latest[2]->slug}}"><img src="{{asset('assets/news/' .$latest[2]->img)}}" alt=""></a>
 							<div class="content"> <a href="">
                             <h2 class="section-under-title">{{$latest[2]->title}}</h2></a>
                             <p>{{$latest[2]->summary}}</p>
@@ -65,11 +65,9 @@
 						<div class="date">
                         <p>{{$posts->datepost}}</p>
 						</div>
-                    <div class="article-small"><a href="/news/{{$posts->slug}}"><img src="./assets/news/bds_1.jpg" alt=""></a>
+                    <div class="article-small"><a href="/news/{{$posts->slug}}"><img src="{{asset('assets/news/' .$posts->img)}}" alt=""></a>
                     <div class="content"><a href="/news/{{$posts->slug}}">
                             <h2 class="section-under-title">{{$posts->title}}</h2></a>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, minima laudantium. Voluptatem alias quibusdam ex non repellendus quidem magni laudantium accusantium, pariatur, blanditiis soluta natus dicta aliquid inventore quae officiis? </p>
 							</div>
 						</div>
 					</div>
