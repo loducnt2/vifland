@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @extends('admin.sidebar')
     <title>Danh mục tin tức</title>
-
 </head>
 <body>
     {{-- @extends('layouts.master') --}}
-    @extends('admin.sidebar')
     @section('content')
     <div class="container">
 
@@ -42,13 +41,17 @@
                     </button>
                </div>
                <div class="modal-body">
-                <form action="google.com" method="POST" enctype="multipart/form-data">
-                                @csrf
+               <form id="myform">
+                        {{ csrf_field() }}
                 <div class="form-group">
-                  <label for=""></label>
-                  <input type="text" class="form-control" id="categony_name" onkeyup="ChangeToSlug();" placeholder="" value="" name="categony_name">
-                    <span style="margin-top:10px;" id="slug"></span>
-                    {{-- slug --}}
+                  {{-- <label for=""></label> --}}
+                  <input type="text" class="form-control" id="category_name" onkeyup="ChangeToSlug();" placeholder="" value="" name="category_name">
+                  <small class="text">
+                    <input type="hidden"
+                    class="form-control" name="slug" id="slug2" aria-describedby="helpId" placeholder="" readonly>
+                    <div id ="slug" name="slug">
+                    </div>
+                  </small>
                 </div>
                </div>
                <div class="modal-footer">
@@ -73,7 +76,7 @@
 
         </tr>
       </thead>
-      <tbody id="myTable">
+      <tbody id="myTable2">
         @foreach($newsCategory as $category)
         <tr>
 
@@ -95,14 +98,13 @@
 
 </body>
 
-<script src="{{asset('js/bootstrap-toggle.js') }}"></script>
 <script language="javascript">
     function ChangeToSlug()
     {
         var title, slug;
 
         //Lấy text từ thẻ input title
-        title = document.getElementById("categony_name").value;
+        title = document.getElementById("category_name").value;
 
         //Đổi chữ hoa thành chữ thường
         slug = title.toLowerCase();
@@ -134,6 +136,9 @@
         document.getElementById('slug2').value=slug;
 
     }
-
+// form add thông tin
 </script>
+@extends('admin.footer');
 </html>
+
+

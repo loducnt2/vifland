@@ -51,6 +51,7 @@ class HomeController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.thumbnail',
             'product.slug as slug',
             'product.view',
             'product.datetime_start',
@@ -87,6 +88,7 @@ class HomeController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.thumbnail',
             'product.slug as slug',
             'product.view',
             'product.datetime_start',
@@ -123,6 +125,7 @@ class HomeController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.thumbnail',
             'product.slug as slug',
             'product.view',
             'product.datetime_start',

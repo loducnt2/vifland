@@ -62,29 +62,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('img')){
-            $arrfile = [];
-            $file = $request->file('img');
-            foreach( $file as $img ){
-                $filetype = $img->getClientOriginalExtension('image');
-                $filename = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
-                //$filesave = 'product'.'-'.$productex->id.Str::random(10).'.'.$filetype;
-
-                $img->move(public_path('/assets/product/'), $filename);
-                /*move_uploaded_file($filesave,asset('/assets/product/'));*/
-                $arrfile[]= $filename;
-            }
-
-            foreach( $arrfile as $imgpro ){
-
-                $productimg = new ProductImg([
-                    'product_extend_id' => $productex->id,
-                    'name'              => $imgpro,
-                    'orders'            => NULL,
-                ]);
-                $productimg->save();
-            }
-        }
+        //return false;
+        
 
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         $price = doubleval($request->price)*intval($unit);
@@ -92,6 +71,7 @@ class ProductController extends Controller
         $product = new Product([
             'cate_id'        => $request->cate_id,
             'title'          => $request->title,
+            'thumbnail'      => NULL,
             'slug'           => NULL,
             'view'           => 1,
             'tags'           => $request->tags,
@@ -135,7 +115,7 @@ class ProductController extends Controller
             'legal'        => $request->legal,
         ]);
         $productex->save();
-
+        //Image Detail
         if ($request->hasFile('img')){
             $arrfile = [];
             $file = $request->file('img');
@@ -144,7 +124,7 @@ class ProductController extends Controller
                 $filename = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
                 //$filesave = 'product'.'-'.$productex->id.Str::random(10).'.'.$filetype;
 
-                $img->move(public_path('/assets/product/'), $filename);
+                $img->move(public_path('/assets/product/detail'), $filename);
                 /*move_uploaded_file($filesave,asset('/assets/product/'));*/
                 $arrfile[]= $filename;
             }
@@ -158,6 +138,17 @@ class ProductController extends Controller
                 ]);
                 $productimg->save();
             }
+        }
+        //Image Thumb
+        if ($request->hasFile('thumbnail')){
+            $img = $request->thumbnail;
+            $filetype1 = $img->getClientOriginalExtension('image');
+            $filename1 = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
+            $img->move(public_path('/assets/product/thumb'), $filename1);
+
+            $product->update([
+                'thumbnail' => $filename1
+            ]);
 
         }
 

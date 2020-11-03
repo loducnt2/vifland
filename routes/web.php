@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
+use App\Models\NewsCategory;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+Route::get('/testform',function(){return view('pages/article/testform');} );
 
 Auth::routes();
 Route::get('/testcompare','API\CompareController@testcompare');
@@ -33,6 +34,7 @@ Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1')->name('cate1')
 Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2')->name('cate2');
 Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cate3');
 Route::post('/search','SearchController@index')->name('search');
+Route::post('/filter','SearchController@filter')->name('filter');
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
