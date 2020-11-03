@@ -1,1 +1,83 @@
 /* ------------------Admin------------------  */
+
+#layoutSidenav .sb-sidenav-dark {
+    position: relative;
+    background-color: transparent;
+}
+
+#layoutSidenav .sb-sidenav-dark::after {
+    background-image: url(https://i.pinimg.com/originals/ee/bb/4a/eebb4ad6dd9e6c3e1a956f38d8d2149e.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 16px 20px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    content: "";
+    width: 100%;
+    filter: blur(2px);
+}
+
+nav .sb-sidenav-menu {
+    z-index: 99;
+}
+
+nav .nav .collapse .sb-sidenav-menu-nested {
+    border-left: thin solid #cccccc;
+    transition: 0.3s all ease-in-out;
+}
+
+nav a.navbar-brand {
+    color: #3c4858 !important;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-sidenav-collapse-arrow {
+    color: #3c4858;
+}
+
+.sb-sidenav-menu .nav-link {
+    transition: 0.3s all ease-in-out;
+}
+
+.sb-sidenav-menu .nav-link:hover {
+    border-radius: 5px;
+    background: #e5e5e587;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link .sb-nav-link-icon {
+    color: #3c4858;
+}
+
+.sb-sidenav-menu .nav .nav-link .sb-sidenav-menu-heading {
+    color: #3c4858;
+    font-size: 13px;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .sb-sidenav-menu-heading {
+    color: #3c4858;
+    font-size: 13px;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link {
+    color: #3c4858;
+    font-size: 13px;
+}
+
+.sb-sidenav-dark .sb-sidenav-menu .nav-link:hover {
+    color: #3c4858;
+    font-size: 13px;
+}
+
+.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+    transform: translateX(0);
+}
+
+#layoutSidenav #layoutSidenav_nav {
+    transition: 0.3s all ease-in-out;
+}
+
+#layoutSidenav #layoutSidenav_nav.active {
+    transform: translateX(0);
+}

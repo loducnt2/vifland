@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
 <link rel="stylesheet" href="{{asset('css/styles.css') }}">
-    <link href="css/update-admin.css" rel="stylesheet" />
+    <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
 
@@ -36,16 +36,16 @@
     </style>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+           
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                <div class="input-group">
+                <!-- <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
                     </div>
-                </div>
+                </div> -->
             </form>
             <!-- Navbar-->
             <ul class="navbar-nav ml-auto ml-md-0">
@@ -62,7 +62,8 @@
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"> 
+                     <a class="navbar-brand" href="index.html">Start Bootstrap</a>
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
@@ -195,7 +196,15 @@
       })
     })
   </script>
-
+<script>
+     slideNav();
+    function slideNav() {
+    $(".sb-topnav button").on("click", function() {
+        // $("#layoutSidenav #layoutSidenav_nav").toggleClass("active");
+        $("#layoutSidenav #layoutSidenav_nav").toggleClass("active");
+    });
+}
+</script>
 {{-- end toggle-bar --}}
 <script>
     $(document).ready( function () {
