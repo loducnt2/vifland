@@ -8,6 +8,7 @@ use App\Models\Province;
 use App\Models\ProductCate;
 use App\Models\FilterPrice;
 use App\Models\Product;
+use App\User;
 use App\Models\ProductExtends;
 use App\Models\PostHistory;
 use App\Models\Favorited;
@@ -147,8 +148,15 @@ class HomeController extends Controller
         ->get();
 
         Product::where( 'datetime_end','<=', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
+        if( auth()->check() ){
+            $Duedate = PostHistory::leftJoin('product','post_history.product_id','product.id')
+           ->where('post_history.user_id',auth()->user()->id)
+           ->value('product.datetime_end'); 
+        }
+        else {
+            $Duedate = "";
+        }
        
-
         return view('/pages/home',compact(
             'categories',
             'province',
@@ -156,7 +164,8 @@ class HomeController extends Controller
             'filter_price',
             'product_by_cate1',
             'product_by_cate2',
-            'product_by_cate3'
+            'product_by_cate3',
+            'Duedate'
             /*'count_cate1',
             'count_cate2',
             'count_cate3',*/
