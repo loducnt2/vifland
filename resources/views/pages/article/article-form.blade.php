@@ -172,11 +172,11 @@
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
                             <div class="col-12 form-group">
-                                <span >Ảnh tiêu đề (1 ảnh): &nbsp;</span>
+                                <span >Ảnh tiêu đề : &nbsp;</span>
                                 <input type="file" name="thumbnail" >
                             </div>
                             <div class="col-12 form-group">
-                                <span>Ảnh chi tiết (ít nhất 3 ảnh): &nbsp;</span>
+                                <span>Ảnh chi tiết : &nbsp;</span>
                                 <input type="file" name="img[]" multiple>
                             </div>
                             <div class="col-12 form-group">
