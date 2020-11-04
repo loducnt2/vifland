@@ -269,7 +269,11 @@
                         <div class="col-12">
                             <div class="content-box">
                                 <div class="inner-content">
+
                                     <h1 class="MsoNormal" align="center">Mua bán nhà đất bất động sản </h1>
+                                    @if($content_province != NULL)
+                                    <?php echo $content_province; ?>
+                                    @else
                                     <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                         <font size="3"></font><i><a href="https://meeyland.com/mua-ban-nha-dat">Mua bán
                                                 nhà đất</a> hay còn gọi là mua bán bất động sản được coi là cuộc giao
@@ -915,6 +919,7 @@
                                         cầu, giá hợp lý. Với nền tảng công nghệ 4.0, Big data, Artificial
                                         Intelligence(AI),  Machine Learning(ML) sẽ giúp bạn Mua bán nhà Đất nhanh nhất,
                                         Phương pháp MVT của chúng tôi chưa từng có ai làm được tại Việt Nam.</font>
+                                    @endif
                                 </div>
                                 <div class="moreContent"><span class="xemthem" id="xemthem">Xem thêm</span></div>
                             </div>

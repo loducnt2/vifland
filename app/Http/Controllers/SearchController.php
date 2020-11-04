@@ -73,8 +73,8 @@ class SearchController extends Controller
     	}
     	$cate_child     = Category::where('parent_id',$cate)->get();
     	$provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
-
-    	return view('pages.category',compact('products','title','cate_child','provinces'));
+        $content_province = Province::where('id',$request->province)->value('content');
+    	return view('pages.category',compact('products','title','cate_child','provinces','content_province'));
     }
 
     public function filter(Request $request)
@@ -143,5 +143,6 @@ class SearchController extends Controller
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
         return view('pages.category',compact('products','title','cate_child','provinces'));
+
     }
 }
