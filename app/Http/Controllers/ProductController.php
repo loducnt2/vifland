@@ -347,7 +347,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','district','provinces'));
     }
 
     public function getByCateSlug2(){
@@ -397,7 +397,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','district','provinces'));
     }
 
     public function getByCateSlug3(){
@@ -447,7 +447,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','district','provinces'));
     }
 
     public function getByUser(){
