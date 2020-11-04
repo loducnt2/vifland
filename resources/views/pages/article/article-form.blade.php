@@ -89,11 +89,11 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="number" min="0" name="facades">
+                                            <input type="text" min="0" name="facades">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="number" min="0" name="depth">
+                                            <input type="text" min="0" name="depth">
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price">
+                                            <input type="text" min="0" name="price" id="price">
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
@@ -125,11 +125,11 @@
 
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số tầng</label>
-                                            <input type="number" min="0" name="floors">
+                                            <input type="text" min="0" name="floors">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số phòng ngủ </label>
-                                            <input type="number" min="0" name="bedroom">
+                                            <input type="text" min="0" name="bedroom">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="legal">Giấy tờ pháp lý</label>
@@ -166,16 +166,18 @@
                     <div class="col-lg-9 col-md-12">
                         <div class="row">
                             <div class="col-12 form-group">
-                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title"
-                                    required="">
+                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
                             </div>
                             <div class="col-12 form-group">
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
                             <div class="col-12 form-group">
+                                <span>Ảnh tiêu đề : &nbsp;</span>
+                                <input type="file" name="thumbnail">
+                            </div>
+                            <div class="col-12 form-group">
+                                <span>Ảnh chi tiết : &nbsp;</span>
                                 <input type="file" name="img[]" multiple>
-                                <!-- <input class="filepond my-pond" type="file" name="img[]" multiple="multiple"
-                                    accept="image/png, image/jpeg, image/gif"> -->
                             </div>
                             <div class="col-12 form-group">
                                 <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
@@ -735,81 +737,205 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
-
-<link rel="stylesheet"
+<<<<<<< HEAD <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
+    =======
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    >>>>>>> 2453dfaf2f2cf99fd83d5da56f3eafabc681ba7f
 
 
-<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
 
-<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
-<script>
-$(function() {
+    <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+    <script>
+    $(function() {
 
-    // Turn input element into a pond
-    $('.my-pond').filepond();
+        // Turn input element into a pond
+        $('.my-pond').filepond();
 
-    // Turn input element into a pond with configuration options
-    $('.my-pond').filepond({
-        allowMultiple: true
+        // Turn input element into a pond with configuration options
+        $('.my-pond').filepond({
+            allowMultiple: true
+        });
+
+        // Set allowMultiple property to true
+        $('.my-pond').filepond('allowMultiple', false);
+
+        // Listen for addfile event
+        $('.my-pond').on('FilePond:addfile', function(e) {
+            console.log('file added event', e);
+        });
+
+        // Manually add a file using the addfile method
+        $('.my-pond').filepond('addFile', 'index.html').then(function(file) {
+            console.log('file added', file);
+        });
+
     });
+    </script>
+    <script>
+    // $('#testdate').datepicker();
+    $("#testdate").datepicker({
+        language: 'vi',
+        format: 'mm/dd/yyyy',
 
-    // Set allowMultiple property to true
-    $('.my-pond').filepond('allowMultiple', false);
+    }).attr('readonly', 'readonly');
+    CKEDITOR.replace('summary-ckeditor');
+    $(document).ready(function() {
 
-    // Listen for addfile event
-    $('.my-pond').on('FilePond:addfile', function(e) {
-        console.log('file added event', e);
-    });
+        $('#unit').change(function() {
+            if ($(this).val() == 13) {
+                $('#price').attr('disabled', true);
+            } else {
+                $('#price').attr('disabled', false);
+            }
+        })
 
-    // Manually add a file using the addfile method
-    $('.my-pond').filepond('addFile', 'index.html').then(function(file) {
-        console.log('file added', file);
-    });
-
-});
-</script>
-<script>
-// $('#testdate').datepicker();
-$("#testdate").datepicker({
-    language: 'vi',
-    format: 'mm/dd/yyyy',
-
-}).attr('readonly', 'readonly');
-CKEDITOR.replace('summary-ckeditor');
-$(document).ready(function() {
-    $('#province').change(function() {
-        var province = $(this).val();
-        var url = '/get-district/' + province;
-        $('#district').load(url, function() {
+        $('#province').change(function() {
+            var province = $(this).val();
+            var url = '/get-district/' + province;
+            $('#district').load(url, function() {
+                var district = $(this).val();
+                var url1 = '/get-ward/' + district;
+                $('#ward').load(url1);
+            });
+        });
+        $('#district').change(function() {
             var district = $(this).val();
             var url1 = '/get-ward/' + district;
             $('#ward').load(url1);
         });
-    });
-    $('#district').change(function() {
-        var district = $(this).val();
-        var url1 = '/get-ward/' + district;
-        $('#ward').load(url1);
-    });
 
-    FilePond.registerPlugin();
-    var element = document.querySelector('meta[name="csrf-token"]');
-    var csrf = element && element.getAttribute("content");
-    FilePond.setOptions({
-        server: {
-            url: "{{ url('upload')}}",
-            process: {
-                headers: {
-                    'X-CSRF-TOKEN': csrf
-                },
+        FilePond.registerPlugin(); <<
+        << << < HEAD
+        var element = document.querySelector('meta[name="csrf-token"]');
+        var csrf = element && element.getAttribute("content");
+        FilePond.setOptions({
+            server: {
+                url: "{{ url('upload')}}",
+                process: {
+                    headers: {
+                        'X-CSRF-TOKEN': csrf
+                    },
+                }
             }
-        }
-    });
-    const inputElement = document.querySelector('input[name="image"]');
-    const pond = FilePond.create(inputElement);
+        });
+        const inputElement = document.querySelector('input[name="image"]');
+        const pond = FilePond.create(inputElement); ===
+        === =
+        var element = document.querySelector('meta[name="csrf-token"]');
+        var csrf = element && element.getAttribute("content");
+        FilePond.setOptions({
+            server: {
+                url: "{{ url('upload')}}",
+                process: {
+                    headers: {
+                        'X-CSRF-TOKEN': csrf
+                    },
+                }
+            }
+        });
+        const inputElement = document.querySelector('input[name="image"]');
+        const pond = FilePond.create(inputElement);
 
-});
-</script>
-@endsection
+
+        //Validate 
+        $('.formDangBaiViet').submit(function() {
+                let wallet = {
+                    {
+                        auth() - > user() - > wallet
+                    }
+                };
+                let pricepost = $('input[name="pricePost"]').val();
+                //console.log(wallet + ' ' + pricepost)
+                if (parseInt(wallet) < parseInt(pricepost)) {
+                    alert(' k đủ tiền')
+                    return false
+                }
+            })
+            /*$('.formDangBaiViet').validate({
+                rules:{
+                    title:{
+                      required:true,
+                    },
+                    name_contact:{
+                      required:true,
+                    },
+                    phone_contact:{
+                      required:true,
+                    },
+                    address_contact:{
+                      required:true,
+                    },
+                    address:{
+                      required:true,
+                    },
+                    facades:{
+                      required:true,
+                      number:true,
+                    },
+                    depth:{
+                      required:true,
+                      number:true,
+                    },
+                    
+
+                },
+                messages:{
+                    title :{
+                        required: "Trường này bắt buộc"
+                    },
+                    name_contact :{
+                        required: "Trường này bắt buộc"
+                    },
+                    phone_contact :{
+                        required: "Trường này bắt buộc"
+                    },
+                    address_contact :{
+                        required: "Trường này bắt buộc"
+                    },
+                    address :{
+                        required: "Trường này bắt buộc"
+                    },
+                    facades :{
+                        required: "Trường này bắt buộc",
+                        number: "Trường này không hợp lệ",
+                    },
+                    depth:{
+                      required: "Trường này bắt buộc",
+                      number: "Trường này không hợp lệ",
+                    },
+
+                    
+                },
+                errorPlacement: function(error, element) {
+                    //Custom position: first name
+                    if (element.attr("name") == "first" ) {
+                        $("#errNm1").text(error);
+                    }
+                    //Custom position: second name
+                    else if (element.attr("name") == "second" ) {
+                        $("#errNm2").text(error);
+                    }
+                    // Default position: if no match is met (other fields)
+                    else {
+                         error.append($('.errorTxt span'));
+                    }
+                },
+                submitHandler: function(form) {
+                        form.submit(function(){
+
+                        });
+                    }
+                
+            });*/
+
+            >>>
+            >>> > 2453 dfaf2f2cf99fd83d5da56f3eafabc681ba7f
+
+    });
+    </script>
+    @endsection

@@ -93,10 +93,11 @@
                                     </div>
                                     <div class="co-thong-bao">
                                         <div class="item">
-                                            <div class="wrap-text">
-                                                <div class="thongbao post-expired">Bài viết hết hạn</div><a href="#">Bài
+                                            <div class="wrap-text notification-duedate ">
+                                               
+                                                <div class="thongbao post-expired"></div><a href="#">Bài
                                                     viết của bạn sắp hết hạn</a>
-                                                <div class="date">1/11/2020 </div>
+                                                <div class="date"></div>
                                             </div>
                                         </div>
                                         <div class="item">
@@ -107,6 +108,7 @@
                                                 <div class="date">1/11/2020</div>
                                             </div>
                                         </div>
+                                       
                                     </div>
                                 </div>
                             </div>

@@ -127,7 +127,7 @@
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <div class="img"><img
-                                                                            src="{{asset('assets/product/sanpham1.webp')}}"
+                                                                            src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}"
                                                                             alt=""><img class="iconVip"
                                                                             src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
@@ -139,7 +139,7 @@
                                                                         <p class="t-1">{{$product->title}}</p>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>Quận gò vấp, Thành phố hồ chí minh</p>
+                                                                            <p>{{$product->district}}, {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng
@@ -215,7 +215,7 @@
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <div class="img"><img
-                                                                            src="{{asset('assets/product/sanpham1.webp')}}"
+                                                                            src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}"
                                                                             alt=""><img class="iconVip"
                                                                             src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
@@ -227,7 +227,7 @@
                                                                         <p class="t-1">{{$product->title}}</p>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>Quận gò vấp, Thành phố hồ chí minh</p>
+                                                                            <p>{{$product->district}}, {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng
@@ -291,7 +291,7 @@
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <div class="img"><img
-                                                                            src="{{asset('assets/product/sanpham1.webp')}}"
+                                                                            src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}"
                                                                             alt=""><img class="iconVip"
                                                                             src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
@@ -303,7 +303,7 @@
                                                                         <p class="t-1">{{$product->title}}</p>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>Quận gò vấp, Thành phố hồ chí minh</p>
+                                                                            <p>{{$product->district}}, {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng

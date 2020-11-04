@@ -196,8 +196,8 @@
                                     @foreach($image as $img)
                                     <div class="swiper-slide">
                                         <div class="img-box">
-                                            <a href="{{asset('assets/product')}}/{{$img->name}}" data-fancybox>
-                                                <img src="{{asset('assets/product')}}/{{$img->name}}" alt="">
+                                            <a href="{{asset('assets/product/detail/')}}/{{$img->name}}" data-fancybox>
+                                                <img src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
                                             </a>
                                         </div>
                                     </div>

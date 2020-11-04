@@ -102,28 +102,13 @@
                 $(this).addClass("active")
                 $(this).removeClass("ri-heart-line");
                 let productid = $(this).attr('productid');
-                $.ajax({
+                $.post({
                     url: '{{ route("add-favorite") }}',
-                    type: 'POST',
                     data: {
                         productId: productid,
                         _token: "{{ csrf_token() }}"
-                    },
-                    success: function(data, status) {
-                        //Chưa đăng nhập
-                        if (data == 0) {
-                            $("#dangnhapModal").modal("show");
-                            $('.fav').addClass("ri-heart-line");
-                            $('.fav').removeClass("ri-heart-fill");
-                            $('.fav').removeClass("active")
-                        }
-                        if (data == 1) {
-                            //Thích sản phẩm,
-                        }
-                        if (data == 2) {
-                            //Bỏ thích sản phẩm
-                        }
                     }
+                    
                 })
             } else if ($(this).hasClass("ri-heart-fill")) {
                 $(this).addClass("ri-heart-line");
