@@ -347,7 +347,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','wards','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
     }
 
     public function getByCateSlug2(){
