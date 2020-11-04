@@ -271,7 +271,7 @@
                                 <div class="inner-content">
 
                                     <h1 class="MsoNormal" align="center">Mua bán nhà đất bất động sản </h1>
-                                    @if($content_province != NULL)
+                                    @if(isset($content_province) && $content_province != NULL)
                                     <?php echo $content_province; ?>
                                     @else
                                     <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
