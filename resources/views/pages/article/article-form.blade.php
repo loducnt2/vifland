@@ -173,9 +173,9 @@
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
                             <div class="col-12 form-group">
-                                <!-- <input type="file" name="img[]" multiple>  -->
-                                <input class="filepond my-pond" type="file" name="img[]" multiple="multiple"
-                                    accept="image/png, image/jpeg, image/gif">
+                                <input type="file" name="img[]" multiple>
+                                <!-- <input class="filepond my-pond" type="file" name="img[]" multiple="multiple"
+                                    accept="image/png, image/jpeg, image/gif"> -->
                             </div>
                             <div class="col-12 form-group">
                                 <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
@@ -500,7 +500,8 @@
                                                             style="display:none" disabled>
 
                                                         <!-- HUY -->
-                                                        <input type="number" name="pricePost" value="0" style="display:none">
+                                                        <input type="number" name="pricePost" value="0"
+                                                            style="display:none">
                                                     </strong></div>
                                             </div>
                                         </div>
@@ -737,7 +738,7 @@
 
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    
+
 
 
 <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
@@ -794,20 +795,20 @@ $(document).ready(function() {
     });
 
     FilePond.registerPlugin();
-              var element = document.querySelector('meta[name="csrf-token"]');
-              var csrf = element && element.getAttribute("content");
-              FilePond.setOptions({
-                server: {
-                      url: "{{ url('upload')}}",
-                      process: {
-                          headers: {
-                            'X-CSRF-TOKEN': csrf 
-                          },
-                      }
-                  }
-              });
-              const inputElement = document.querySelector('input[name="image"]');
-              const pond = FilePond.create( inputElement);
+    var element = document.querySelector('meta[name="csrf-token"]');
+    var csrf = element && element.getAttribute("content");
+    FilePond.setOptions({
+        server: {
+            url: "{{ url('upload')}}",
+            process: {
+                headers: {
+                    'X-CSRF-TOKEN': csrf
+                },
+            }
+        }
+    });
+    const inputElement = document.querySelector('input[name="image"]');
+    const pond = FilePond.create(inputElement);
 
 });
 </script>

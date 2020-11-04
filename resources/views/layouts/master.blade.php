@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="{{asset('css/core.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/main.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/update.css')}}">
-    <link rel="shortcut icon" type="image/png" href="{{asset('assets/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{asset('assets/favicon.ico')}}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     @yield('headerStyles')
     <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
@@ -61,7 +62,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        if( !$('.btn__header').hasClass('login1') ){
+        if (!$('.btn__header').hasClass('login1')) {
             $.ajax({
                 url: '{{route("all-favorite")}}',
                 type: 'GET',
@@ -71,11 +72,11 @@
                         arr.push(item.id)
                     })
                     let countfav = arr.length;
-                    if( countfav == 0 ){
-                        $('.number-yt').css('display','none')
-                    }else{
+                    if (countfav == 0) {
+                        $('.number-yt').css('display', 'none')
+                    } else {
                         $('.number-yt').text(countfav)
-                        $('.number-yt').css('display','flex')
+                        $('.number-yt').css('display', 'flex')
                     }
                     $('.fav').each(function() {
                         var productid = parseInt($(this).attr('productid'));
@@ -93,7 +94,7 @@
                 }
             })
         }
-        $('.number-yt').css('display','none')
+        $('.number-yt').css('display', 'none')
         $(".fav").click(function() {
             //$(this).toggleClass("active");
             if ($(this).hasClass("ri-heart-line")) {
@@ -162,29 +163,29 @@
                         arr.push(item.id)
                     })
                     let countfav = arr.length;
-                    if( countfav == 0 ){
-                        $('.number-yt').css('display','none')
-                    }else{
+                    if (countfav == 0) {
+                        $('.number-yt').css('display', 'none')
+                    } else {
                         $('.number-yt').text(countfav)
-                        $('.number-yt').css('display','flex')
+                        $('.number-yt').css('display', 'flex')
                     }
 
                 }
             })
         });
-        
-        if( $.cookie('compare') != null ){
+
+        if ($.cookie('compare') != null) {
             let checkcookie = $.cookie('compare')
-            console.log( checkcookie.length )
-            if( checkcookie.length == 0 ){
-               $.removeCookie('compare')
+            console.log(checkcookie.length)
+            if (checkcookie.length == 0) {
+                $.removeCookie('compare')
             }
         }
 
-        $('.number-ss').css('display','none')
+        $('.number-ss').css('display', 'none')
         $('.comp').each(function() {
             $(this).click(function() {
-                if($.cookie('compare')){
+                if ($.cookie('compare')) {
                     let listcomp = $.cookie('compare').split(',')
                     let productid = $(this).attr('href')
                     console.log(listcomp)
@@ -192,59 +193,59 @@
                         listcomp.splice(listcomp.indexOf(productid), 1)
 
                         $(this).children().removeClass('active')
-                        if( listcomp.length == 0 ){
-                            $('.number-ss').css('display','none')
-                        }else{
-                            $('.number-ss').css('display','flex')
-                            $('.number-ss').text( listcomp.length )
+                        if (listcomp.length == 0) {
+                            $('.number-ss').css('display', 'none')
+                        } else {
+                            $('.number-ss').css('display', 'flex')
+                            $('.number-ss').text(listcomp.length)
                         }
-                        
+
                     } else {
-                        
+
                         listcomp.push(productid);
                         console.log(listcomp.join())
 
                         $(this).children().addClass('active')
-                        $('.number-ss').css('display','flex')
-                        $('.number-ss').text( listcomp.length )
+                        $('.number-ss').css('display', 'flex')
+                        $('.number-ss').text(listcomp.length)
 
                     }
                     $.cookie('compare', listcomp.join())
                     return false
-                }else{
-                    
+                } else {
+
                     let listcomp = []
                     let productid = $(this).attr('href')
                     listcomp.push(productid);
-                    $(this).children().addClass('active') 
+                    $(this).children().addClass('active')
                     console.log(listcomp.join())
                     $.cookie('compare', listcomp.join())
 
-                    $('.number-ss').text( listcomp.length )
-                    $('.number-ss').css('display','flex')
+                    $('.number-ss').text(listcomp.length)
+                    $('.number-ss').css('display', 'flex')
 
                     return false
                 }
-                
+
             })
-            if($.cookie('compare')){
+            if ($.cookie('compare')) {
                 let listcomp = $.cookie('compare').split(',')
 
-                $('.number-ss').css('display','flex')
-                $('.number-ss').text( listcomp.length )
-                
+                $('.number-ss').css('display', 'flex')
+                $('.number-ss').text(listcomp.length)
+
                 let productid = $(this).attr('href')
-                if( listcomp.indexOf(productid) != -1 ){
+                if (listcomp.indexOf(productid) != -1) {
                     $(this).children().addClass('active')
-                }else{
+                } else {
                     $(this).children().removeClass('active')
                 }
 
-                
+
             }
         })
 
-        
+
     })
     </script>
     @yield('footerScripts')
