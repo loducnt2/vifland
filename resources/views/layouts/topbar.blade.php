@@ -97,7 +97,7 @@
                                                
                                                 <div class="thongbao post-expired"></div><a href="#">Bài
                                                     viết của bạn sắp hết hạn</a>
-                                                <div class="date">{{$Duedate}} </div>
+                                                <div class="date"></div>
                                             </div>
                                         </div>
                                         <div class="item">
