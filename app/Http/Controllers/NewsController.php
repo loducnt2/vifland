@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Str;
 use App\Models\News;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
@@ -49,7 +49,9 @@ class NewsController extends Controller
         $news->slug = $request->slug;
         $news->content = $request->input('content');
         // $news->datepost = Carbon::now();
-        $news->id_category = $request->input('category');
+        // slug tên danh mục khi input vào cột category_slug của news
+        $news->category_slug = Str::slug($request->input('category_news_slug'));
+        $news->id_category = $request->input('id_category');
         $news->datepost = $request->input('datepost');
         $news->status= "1";
         // $news->img= "bds_1.jpg";
@@ -66,7 +68,7 @@ class NewsController extends Controller
         // $url = "/news/{{$news->slug}}";
         $news->save();
         // chuyển về trang đã tạo
-        return redirect("/news/$news->slug");
+        return redirect("/tin-tuc/$news->slug");
     }
 
     /**
@@ -81,10 +83,22 @@ class NewsController extends Controller
         $news_cate = NewsCategory::all();
         return view('admin.tintuc.quanlytintuc',compact('news_cate'));
     }
+    public function getNewsbyCate($slug)
+    {
+        $cate = NewsCategory::where('slug',$slug)->first();
+        // lấy category_slug
+        $posts = News::where('category_slug',$cate->slug)->get();
+        // truyền category_slug và tìm post
+        return view('pages/new-by-category')->with(
+            [
+                'posts'=>$posts,
+                // 'cate'=> $cate
+            ]);
+    }
     public function show($slug)
     {
         //get chi tiết bài đăng
-        $news =  $news = DB::table('news')->where('slug',$slug)->first();
+        $news = DB::table('news')->where('slug',$slug)->first();
 
         // get list bài đăng
         $posts= DB::table('news')->get();
@@ -111,8 +125,7 @@ class NewsController extends Controller
     // }
     // get những tin trong db
     public function listnews(){
-        // lấy mọi tin
-        // lấy danh mục
+
         $news_cate = NewsCategory::all();
         $news = News::all();
         // tin mới nhất theo create_at

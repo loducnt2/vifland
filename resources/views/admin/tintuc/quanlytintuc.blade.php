@@ -3,16 +3,13 @@
 @section('content')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
-    {{-- typeahead --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-<style>
+
+    <style>
     .bootstrap-tagsinput {
   width: 100% !important;
 }
@@ -41,21 +38,6 @@ width: 100%;
 @section('title','Quản lý tin tức')
 
 
-<script>
-    $( document ).ready(function() {
-        $('input').on('itemAdded', function(event) {
-    //   thêm item
-
-     var t=$("#tag").val();
-     $('#tags').html(t);
-
-    });
-    $('input').on('itemRemoved', function(event) {
-        $t=$("#tag").val()
-    console.log($t);
-    });
-    });
-</script>
 
 
 {{-- get tags value --}}
@@ -66,8 +48,7 @@ width: 100%;
     <form  method="POST" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
         {{-- {{ csrf_field() }} --}}
         @csrf
-      <h2>Checkout form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+
      </div>
 
         <div class="row">
@@ -172,34 +153,33 @@ width: 100%;
           <div class="form-group">
             <label for=""></label>
             <?php $cate = \App\Models\NewsCategory::all()?>
-            <select class="form-control" id="category" name="category">
-              @foreach ($cate as $item)
+            <select class="form-control" id="category_dropdown" name="id_category" onchange="test(this);">
+                <option value="0">Lựa chọn danh mục</option>
+                @foreach ($cate as $item)
             <option value="{{$item->id}}">{{$item->category_name}}</option>
               @endforeach
             </select>
           </div>
-          {{-- tags --}}
+
+          <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug" aria-describedby="helpId" placeholder="" >
+
           <div class="form-group">
-            <label for="">Tags</label>
+            <label for="">Từ khoá</label>
             <input type="text" class="form-control typeahead" name="tags[]" id="tag" aria-describedby="helpId" placeholder="" data-role="tagsinput" >
           </div>
-          Tag:<div id="tags"></div>
+          Từ khoá của bài viết:<div id="tags"></div>
           <div class="row">
             <div class="col-md-12 mb-3">
 
               <label for="content">Đăng tin mới</label>
-                <textarea id="content" name="content">
+                <textarea id="editor1" name="content">
 
                 </textarea>
             </div>
-            <script>
-                // Replace the <textarea id="editor1"> with a CKEditor 4
-                // instance, using default configuration.
-                CKEDITOR.replace( 'content' );
-            </script>
+
           </div>
           <div class="form-group">
-            <label for=""></label>
+
             <input type="hidden"
               class="form-control" name="slug" id="slug2" aria-describedby="helpId" placeholder="" readonly>
             {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
@@ -210,6 +190,7 @@ width: 100%;
     </div>
     </div>
 </form>
+
 @endsection
 <script language="javascript">
     function ChangeToSlug()

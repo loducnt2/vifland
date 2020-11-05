@@ -14,8 +14,9 @@ class NewsCategoryController extends Controller
      */
     public function index()
      {
-    $newsCategory = NewsCategory::all();
-    return view('admin.tintuc.danhmuctintuc',compact('newsCategory'));
+        // show all database
+        $news_cate = NewsCategory::all();
+        return view('admin.tintuc.danhmuctintuc',compact('news_cate'));
     }
 
     /**
@@ -36,13 +37,24 @@ class NewsCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $news_cate = new NewsCategory();
-        $news_cate->category_name=$request->input('category_name');
+        // $news_cate->id = $request->id;
+        $news_cate->id = $request->id;
+        $news_cate->category_name=$request->category_name;
         $news_cate->slug = $request->slug;
         $news_cate->status = "1";
         $news_cate->save();
+        return response()->json(
+            [
 
+                'status'=>$news_cate->status,
+                'id'=>$news_cate->id,
+                'category_name'=>$news_cate->category_name,
+                'slug'=>$news_cate->slug,
+                'created_at'=>$news_cate->created_at
+            ]
+        );
     }
 
     /**
@@ -53,7 +65,7 @@ class NewsCategoryController extends Controller
      */
     public function show(NewsCategory $newsCategory)
     {
-        //
+
     }
 
     /**
@@ -85,8 +97,11 @@ class NewsCategoryController extends Controller
      * @param  \App\NewsCategory  $newsCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NewsCategory $newsCategory)
+    public function destroy($id)
     {
-        //
+        // $newsCategory = new NewsCategory();
+        $newsCategory = NewsCategory::find($id);
+        $newsCategory->delete();
+        return response()->json(['success'=>'Xoá thành công']);
     }
 }

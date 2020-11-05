@@ -52,7 +52,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/user/profile/{id}','UserController@profileDetail')->name('');
 	//Update profile
 	Route::post('/user/update/{id}','UserController@update')->name('user-update');
-
+    //
 
 });
 
@@ -152,33 +152,27 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
 // User: thay đổi trạng thái user
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
-
-
-// new list
-
-
-// route admin- danh muc
-// Route::get('/admin/danh-sach-danh-muc',function(){
-//     return view('/admin/danhmuc/danhsachdanhmuc');
-// });
+// Tin tức theo danh mục
+Route::get('/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
 Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
 // User: thay đổi trạng thái user
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
-Route::get('/news/{slug}','NewsController@show');
+Route::get('/tin-tuc/{slug}','NewsController@show');
 // đăng tin tức
 Route::get('/admin/cap-nhat-tin-tuc',function(){
     return view('admin.tintuc.quanlytintuc');
 });
 Route::POST('/admin/index/news/insert','NewsController@store');
 // get tất cả các tin đang có
-Route::get('/news','NewsController@listnews');
+Route::get('/tin-tuc','NewsController@listnews');
 // get những bài tin tức bằng tag
-Route::get('/news/tags/{tags}','NewsController@getpostsbytag');
+Route::get('/tin-tuc/tu-khoa/{tags}','NewsController@getpostsbytag');
 // quản lí tin tức
-Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index');
+Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news_category.index');
 // ===================danh mục tin tức======================
-//Route::post('/admin/danh-muc-tin-tuc/them-moi','NewsCategoryController@store');
-//Route::resource('/admin/danh-muc-tin-tuc/them-moi', 'NewsCategoryController');
+Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
+
+Route::delete('/admin/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
