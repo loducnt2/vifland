@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','New list')
+@section('title','Danh sách tin tức')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
  @stop

@@ -35,7 +35,7 @@
                         </div>
 
                         @foreach(explode(",",$news->tags) as $tags)
-                            <a href="/news/tags/{{$tags}}">
+                            <a href="/tin-tuc/tu-khoa/{{$tags}}">
                         <span class="badge badge-secondary badge-pill">{{$tags}}</span></a>
                         @endforeach
                         <hr class="my-4">
