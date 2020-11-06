@@ -65,8 +65,8 @@
 						<div class="date">
                         <p>{{$posts->datepost}}</p>
 						</div>
-                    <div class="article-small"><a href="/news/{{$posts->slug}}"><img src="{{asset('assets/news/' .$posts->img)}}" alt=""></a>
-                    <div class="content"><a href="/news/{{$posts->slug}}">
+                    <div class="article-small"><a href="/tin-tuc/{{$posts->slug}}"><img src="{{asset('assets/news/' .$posts->img)}}" alt=""></a>
+                    <div class="content"><a href="/tin-tuc/{{$posts->slug}}">
                             <h2 class="section-under-title">{{$posts->title}}</h2></a>
 							</div>
 						</div>
@@ -74,13 +74,11 @@
 				</div>
                 @endforeach
 			</div>
-			<div class="paginationSP mx-auto">
+            <div class="paginationSP mx-auto">
 				<div class="paginationSP-box mx-auto"><span class="material-icons button-s">skip_previous</span>
-					<ul>
-						<li> <a class="active" href="">1</a></li>
-						<li> <a href="">2</a></li>
-						<li> <a href="">3</a></li>
-					</ul><span class="3cham">...</span><a class="last-pg" href="">4534</a><span class="material-icons button-s">skip_next</span>
+                        <div class="paginationSP mx-auto">
+                            {{ $news->links() }}
+                        </div>
 				</div>
 			</div>
 		</div>

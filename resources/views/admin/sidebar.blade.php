@@ -1,12 +1,10 @@
 
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
-<link rel="stylesheet" href="{{asset('css/datatables.css')}}">
-
-<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+{{-- <link rel="stylesheet" href="{{asset('css/datatables.css')}}"> --}}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @yield('title')
+@yield('title')
    <style>
         ::-webkit-scrollbar {
   width: 5px;

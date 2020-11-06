@@ -3,12 +3,10 @@
 @section('content')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
-
+    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
     <style>
     .bootstrap-tagsinput {
   width: 100% !important;
@@ -36,10 +34,6 @@ width: 100%;
 </style>
 {{-- @extends('admin.sidebar') --}}
 @section('title','Quản lý tin tức')
-
-
-
-
 {{-- get tags value --}}
 
 
@@ -175,6 +169,11 @@ width: 100%;
                 <textarea id="editor1" name="content">
 
                 </textarea>
+                {{-- quản lí tin tức --}}
+    <script>
+        CKEDITOR.replace( 'editor1' );
+    </script>
+
             </div>
 
           </div>
@@ -232,5 +231,4 @@ width: 100%;
     }
 
 </script>
-
 

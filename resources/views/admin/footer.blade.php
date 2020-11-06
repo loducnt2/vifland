@@ -3,14 +3,14 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
 
 <script src="{{asset('js/core.min.js') }}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
-<script src="{{asset('js/datatables.js') }}"></script>
-<script src="{{asset('js/bootstrap-toggle.js') }}"></script>
-<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 
+<script src="{{asset('js/bootstrap-toggle.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+
 
 <script type="text/javascript">
     $.ajaxSetup({
@@ -22,6 +22,7 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
 
 
 {{-- get thông tin dropdown-menu--}}
+
 <script>
     function test(){
    var test= $("#category_dropdown option:selected").text();
@@ -74,9 +75,7 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
         })
         })
     </script>
-<script>
-    CKEDITOR.replace( 'editor1' );
-</script>
+
 {{-- script delete record --}}
     {{-- <script>
         function delete(id)
@@ -96,6 +95,3 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
             });
         }
     </script> --}}
-
-    {{-- quản lí tin tức --}}
-

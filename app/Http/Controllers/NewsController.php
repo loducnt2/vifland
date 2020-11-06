@@ -87,7 +87,7 @@ class NewsController extends Controller
     {
         $cate = NewsCategory::where('slug',$slug)->first();
         // lấy category_slug
-        $posts = News::where('category_slug',$cate->slug)->get();
+        $posts = News::where('category_slug',$cate->slug)->paginate(3);
         // truyền category_slug và tìm post
         return view('pages/new-by-category')->with(
             [
@@ -127,7 +127,7 @@ class NewsController extends Controller
     public function listnews(){
 
         $news_cate = NewsCategory::all();
-        $news = News::all();
+        $news = News::paginate(3);
         // tin mới nhất theo create_at
         $latest = DB::table('news')->orderBy('created_at','desc')->get();
         return view('pages/news-list')->with(
@@ -167,7 +167,7 @@ class NewsController extends Controller
     public function getpostsbytag($tags){
 // news3 = get tất cả các tin theo tags
         $news3 = DB::table('news')->where(
-            'tags','like','%'.$tags.'%')->get();
+            'tags','like','%'.$tags.'%')->paginate(3);
             // $tags= DB::table('news')->where(
             //     'tags','like','%'.$tags.'%')->first();
             $latest = DB::table('news')->orderBy('created_at','desc')->get();
