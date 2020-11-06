@@ -35,7 +35,7 @@ $tags = \Route::current()->parameter('tags');
 
         </div>
         <div class="col-md-12 row sec-2">
-         @foreach ($news3 as $posts)
+         @foreach ($posts as $posts)
          <div class="col-xl-4 col-md-4 col-sm-6 wrapper">
             <div class="article-wrapper">
                 <div class="date">

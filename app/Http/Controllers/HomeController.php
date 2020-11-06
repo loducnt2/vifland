@@ -156,6 +156,7 @@ class HomeController extends Controller
         else {
             $Duedate = "";
         }
+        session()->flash('duedate',$Duedate);
        
         return view('/pages/home',compact(
             'categories',
