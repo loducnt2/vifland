@@ -3,11 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\ProductExtend;
 use App\Models\Category;
-use App\Models\TypeProduct;
 use App\Models\Province;
+use App\Models\District;
+use App\Models\Ward;
+use App\Models\ProductExtend;
+use App\Models\ProductUnit;
+use App\Models\ProductCate;
+use App\Models\Product;
+use App\Models\ProductImg;
+use App\Models\PostHistory;
+use App\Models\FilterPrice;
+use App\Models\TypeProduct;
+use App\Models\Favorited;
+use App\User;
+use Str;
 class SearchController extends Controller
 {
     public function index(Request $request)
@@ -17,6 +27,11 @@ class SearchController extends Controller
     	$province      = $request->province;
     	$product_cate  = $request->product_cate;
     	$price       = $request ->price;
+        if( $kyw == NULL && $province == NULL && $product_cate == NULL &&  $price == NULL ){
+            $slug = Category::where('id',$cate)->value('slug');
+            return redirect( route('cate',$slug) );
+        }
+        
 
     	$products = Category::leftJoin('product','category.id','product.cate_id')
     	->leftJoin('product_extend','product.id','product_extend.product_id')
@@ -79,12 +94,14 @@ class SearchController extends Controller
 
     public function filter(Request $request)
     {
-        //return $request;
-        $cate          = $request->cate;
-        $kyw           = $request->keyword;
+       
+        //$cate          = $request->cate_child;
+        //$kyw           = $request->keyword;
         $province      = $request->province;
-        $product_cate  = $request->product_cate;
-        $price       = $request ->price;
+        $district      = $request->district;
+        $ward          = $request->ward;
+        //$product_cate  = $request->product_cate;
+        //$price         = $request->price;
 
         $products = Category::leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
@@ -93,21 +110,27 @@ class SearchController extends Controller
         ->leftJoin('district','product.district_id','district.id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->where('product.soft_delete',0)
-        ->where('category.parent_id',$cate)
-        ->when($kyw, function ($q) use ($kyw) {
+        //->where('category.parent_id',$cate)
+        /*->when($kyw, function ($q) use ($kyw) {
             return $q->where('product.title', 'like','%'.$kyw.'%');
-        })
+        })*/
         ->when($province, function ($q) use ($province) {
             return $q->where('product.province_id',$province);
         })
-        ->when($product_cate, function ($q) use ($product_cate) {
+        ->when($district, function ($q) use ($district) {
+            return $q->where('product.district_id',$district);
+        })
+        ->when($ward, function ($q) use ($ward) {
+            return $q->where('product.ward_id',$ward);
+        })
+        /*->when($product_cate, function ($q) use ($product_cate) {
 
             return $q->whereIn('type_of_product.product_cate_id',$product_cate);
         })
         ->when($price, function ($q) use ($price) {
 
             return $q->whereIn('product_extend.filter_price',$price);
-        })
+        })*/
         ->select(
             'product.id as product_id',
             'product.thumbnail',
@@ -128,21 +151,82 @@ class SearchController extends Controller
         )
         ->get();
         
-        switch ($cate) {
-            case 1:
+       /* switch ($cate) {
+            case 13:
                 $title = "Mua Bán Nhà Đất Bất động sản Giá Rẻ, Mới Nhất 2020";
                 break;
-            case 2:
+            case 14:
+                $title = "Mua Bán Nhà Đất Bất động sản Giá Rẻ, Mới Nhất 2020";
+                break;
+            case 18:
                 $title = "Cho Thuê Nhà Nguyên Căn Giá Rẻ, Chính Chủ Mới Nhất 2020";
                 break;
-            case 3:
+            case 19:
+                $title = "Cho Thuê Nhà Nguyên Căn Giá Rẻ, Chính Chủ Mới Nhất 2020";
+                break;
+            case 20:
                 $title = "Sang Nhượng Cửa Hàng, Mặt Bằng Giá Rẻ Mới Nhất 2020";
                 break;
-        }
-        $cate_child     = Category::where('parent_id',$cate)->get();
+            case 21:
+                $title = "Sang Nhượng Cửa Hàng, Mặt Bằng Giá Rẻ Mới Nhất 2020";
+                break;
+        }*/
+        $title = 'dsa';
+        //$cate_child     = Category::where('parent_id',$cate)->get();
+        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
+        return $products;
+        //return view('pages.category',compact('products','title','cate_child','provinces'));
+
+    }
+
+    public function getByCate($slug){
+        $cate           = Category::where('slug',$slug)->first();
+        $cate_id        = $cate->id;
+        $cate_child     = Category::where('parent_id',$cate_id)->get();
+        $product_extend = Product::where('cate_id',$cate_id)->get();
+        $title          = 'Sang Nhượng Nhà Đất';
+
+        $wards        = Ward::orderBy('name','asc')->get();
+        $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
-        return view('pages.category',compact('products','title','cate_child','provinces'));
+        $products = Category::where('parent_id',3)
+        ->leftJoin('product','category.id','product.cate_id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
+        //->leftJoin('ward','product.ward_id','ward.id')
+        ->where('post_history.status',1)
+        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('soft_delete',0)
+        ->select(
+            //'product_image.name as img',
+            'product.id as product_id',
+            'product.thumbnail as thumbnail',
+            'product.slug as slug',
+            'product.view',
+            'product.datetime_start',
+            'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
+            'product_extend.price',
+            'product_extend.product_cate',
+            'product_extend.depth',
+            'product_extend.facades',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit'
+            //'ward.name as ward'
+        )
+        ->orderBy('product.type','desc')
+        ->limit(5)
+        ->get();
 
+        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
     }
 }

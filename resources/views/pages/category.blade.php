@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title',$title)
+ @section('title',$title)
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop
@@ -66,11 +66,11 @@
                             @csrf
                             <div class="mdm-1">
                                 <div class="checked">
-                                    <input id="luachonsearch1" type="radio" value="muaban" name="canmuaban">
+                                    <input id="luachonsearch1" type="radio" value="{{$cate_child[0]->id}}" name="cate_child">
                                     <label for="luachonsearch1">{{$cate_child[0]->name}}</label>
                                 </div>
                                 <div class="checked">
-                                    <input id="luachonsearch2" type="radio" value="muaban" name="canmuaban">
+                                    <input id="luachonsearch2" type="radio" value="{{$cate_child[1]->id}}" name="cate_child">
                                     <label for="luachonsearch2">{{$cate_child[1]->name}}</label>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province_id" id="province" >
+                                            <select class="select1" name="province" id="province" >
                                                 <option value="0">Chọn</option>
                                                 @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
@@ -100,14 +100,14 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district_id" id="district" >
-                                                <option value="0">Chọn</option>
+                                            <select class="select1" name="district" id="district" >
+                                                <option value="0" id="district_def">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
-                                            <select class="select1" name="ward_id" id="ward" >
-                                                <option value="0">Chọn</option>
+                                            <select class="select1" name="ward" id="ward" >
+                                                <option value="0" id="ward_def">Chọn</option>
                                             </select>
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
@@ -937,18 +937,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        /*$('#filter').change(function(){
-            $.ajax({
-                url: '{{ route("filter") }}',
-                type: 'POST',
-                data: $('#filter').serialize(),
-                success: function(data, status) {
-                    console.log(data)
-                }
-            })
-        });*/
+        
 
-        $('#province').change(function() {
+        /*$('#province').change(function() {
             let province = $(this).val();
             let url = '/get-district/' + province;
             $('#district').load(url, function() {
@@ -961,6 +952,42 @@
             let district = $(this).val();
             let url1 = '/get-ward/' + district;
             $('#ward').load(url1);
+        });*/
+        $('#province').change(function() {
+            let province = $(this).val();
+            let url = '/get-district/' + province;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data, status) {
+                    data = '<option value="0" selected>Chọn</option>'+data
+                    $('#district').html(data)
+                }
+            })
+        })
+        $('#district').change(function() {
+            let district = $(this).val();
+            let url1 = '/get-ward/' + district;
+            $.ajax({
+                url: url1,
+                type: 'GET',
+                success: function(data, status) {
+                    data = '<option value="0" selected>Chọn</option>'+data
+                    $('#ward').html(data)
+                }
+            })
+        })
+       
+        $('#filter').change(function(){
+            $.ajax({
+                url: '{{ route("filter") }}',
+                type: 'POST',
+                data: $('#filter').serialize(),
+                success: function(data, status) {
+                    console.log(data)
+                }
+            })
+            //alert( $(this).serialize() )
         });
 
     });
