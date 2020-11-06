@@ -37,7 +37,7 @@
 				</div>
                 @endforeach
 			</div>
-			<div class="paginationSP mx-auto">
+            <div class="paginationSP mx-auto">
 				<div class="paginationSP-box mx-auto"><span class="material-icons button-s">skip_previous</span>
                         <div class="paginationSP mx-auto">
                             {{ $posts->links() }}

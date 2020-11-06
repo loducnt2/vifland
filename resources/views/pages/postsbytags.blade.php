@@ -60,9 +60,6 @@ $tags = \Route::current()->parameter('tags');
                 </div>
         </div>
     </div>
-
-
-
 	</section>
 	<div id="js-page-verify" hidden></div>
 </main>

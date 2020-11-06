@@ -78,6 +78,7 @@
 				<div class="paginationSP-box mx-auto"><span class="material-icons button-s">skip_previous</span>
                         <div class="paginationSP mx-auto">
                             {{ $news->links() }}
+                            {{-- phân trang --}}
                         </div>
 				</div>
 			</div>

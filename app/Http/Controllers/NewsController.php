@@ -87,7 +87,7 @@ class NewsController extends Controller
     {
         $cate = NewsCategory::where('slug',$slug)->first();
         // lấy category_slug
-        $posts = News::where('category_slug',$cate->slug)->paginate(3);
+        $posts = News::where('category_slug',$cate->slug)->paginate( 3 );
         // truyền category_slug và tìm post
         return view('pages/new-by-category')->with(
             [
