@@ -201,13 +201,11 @@ Route::get('/tin-tuc','NewsController@listnews');
 // get những bài tin tức bằng tag
 Route::get('/tin-tuc/tu-khoa/{tags}','NewsController@getpostsbytag');
 // quản lí tin tức
-<<<<<<< HEAD
-Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index');
+
 // ===================danh mục tin tức======================
-=======
 Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news_category.index');
 // ===================danh mục tin tức======================
 Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
 
 Route::delete('/admin/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
->>>>>>> 45de986df89fe13fccf0e65061558220f4609500
+
