@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Trang chủ')
+@section('title','VIF Land - Sàn rao bán bất động sản')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop

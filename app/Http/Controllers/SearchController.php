@@ -22,6 +22,7 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
+        //return $request;
     	$cate          = $request->cate;
     	$kyw           = $request->keyword;
     	$province      = $request->province;
@@ -94,8 +95,8 @@ class SearchController extends Controller
 
     public function filter(Request $request)
     {
-       
-        //$cate          = $request->cate_child;
+        //return $request;
+        $cate          = $request->cate_child;
         //$kyw           = $request->keyword;
         $province      = $request->province;
         $district      = $request->district;
@@ -109,11 +110,16 @@ class SearchController extends Controller
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->where('product.soft_delete',0)
         //->where('category.parent_id',$cate)
         /*->when($kyw, function ($q) use ($kyw) {
             return $q->where('product.title', 'like','%'.$kyw.'%');
         })*/
+        ->when($cate, function ($q) use ($cate) {
+            return $q->whereIn('category.id',$cate);
+        })
         ->when($province, function ($q) use ($province) {
             return $q->where('product.province_id',$province);
         })
@@ -140,7 +146,8 @@ class SearchController extends Controller
             'product.datetime_start',
             'product_extend.filter_price',
             'product_extend.price',
-            'product.province_id',
+            /*'product.province_id',
+            'product.district_id',*/
             'type_of_product.product_cate_id',
             'province.name as province',
             'district.name as district',
@@ -171,6 +178,7 @@ class SearchController extends Controller
                 $title = "Sang Nhượng Cửa Hàng, Mặt Bằng Giá Rẻ Mới Nhất 2020";
                 break;
         }*/
+        //$acreage = intval($products->depth)*intval($products->facades);
         $title = 'dsa';
         //$cate_child     = Category::where('parent_id',$cate)->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
@@ -180,17 +188,14 @@ class SearchController extends Controller
     }
 
     public function getByCate($slug){
-        $cate           = Category::where('slug',$slug)->first();
-        $cate_id        = $cate->id;
-        $cate_child     = Category::where('parent_id',$cate_id)->get();
-        $product_extend = Product::where('cate_id',$cate_id)->get();
-        $title          = 'Sang Nhượng Nhà Đất';
-
+        $cate           = Category::where('slug',$slug)->value('id');
+        $cate_child     = Category::where('parent_id',$cate)->get();
+        $product_extend = Product::where('cate_id',$cate)->get();
         $wards        = Ward::orderBy('name','asc')->get();
         $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
-        $products = Category::where('parent_id',3)
+        $products = Category::where('parent_id',$cate)
         ->leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('post_history','product.id','post_history.product_id')
@@ -226,6 +231,18 @@ class SearchController extends Controller
         ->orderBy('product.type','desc')
         ->limit(5)
         ->get();
+
+        switch ($cate) {
+            case 1:
+                $title = 'Mua Bán Nhà Đất';
+                break;
+            case 2:
+                $title = 'Cho Thuê Nhà Đất';
+                break;
+            case 3:
+                $title = 'Sang Nhượng Nhà Đất';
+                break;
+        }
 
         return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
     }
