@@ -91,7 +91,7 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province_id" id="province" >
+                                            <select class="select1" name="province_id" id="province">
                                                 <option value="0">Chọn</option>
                                                 @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
@@ -100,13 +100,13 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district_id" id="district" >
+                                            <select class="select1" name="district_id" id="district">
                                                 <option value="0">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
-                                            <select class="select1" name="ward_id" id="ward" >
+                                            <select class="select1" name="ward_id" id="ward">
                                                 <option value="0">Chọn</option>
                                             </select>
                                         </div>
@@ -211,23 +211,39 @@
                         @foreach($products as $product)
                         <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12">
                             <div class="box-sp">
-                                <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
+                                <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
+                                        href="{{route('article-detail',$product->slug)}}"><img
+                                            src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
                                     <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
-                                    <div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
+                                    <div class="box-icon"><i class="fav ri-heart-line icons"
+                                            productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}"
+                                            class="comp"><i class="ri-equalizer-line icons"></i></a></div>
                                     <div class="overlay"></div>
                                 </div>
-                                <div class="box-sp-text"> 
-                                    <a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
+                                <div class="box-sp-text">
+                                    <a class="localstore" localstore="{{$product->product_id}}"
+                                        href="{{route('article-detail',$product->slug)}}">
                                         <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
                                     </a>
                                     <div class="location"> <span class="material-icons">location_on</span>
-                                        <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
+                                        <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{$product->district}}, {{$product->province}}">
+                                            {{$product->district}}, {{$product->province}}</p>
                                     </div>
                                     <div class="mota-place">
                                         <div class="mota-place-1">
-                                            <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }} m²</span></div>
-                                            <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-                                            <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
+                                            <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
+                                                    alt=""><span data-toggle="tooltip" data-placement="bottom"
+                                                    title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
+                                                    m²</span></div>
+                                            <div class="mota-place-tt"><img
+                                                    src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+                                            <div class="mota-place-tt"><img
+                                                    src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    title="{{$product->facades}}">{{$product->facades}} m</span></div>
                                         </div>
                                         <!-- <div class="mota-place-1">
                                             <div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
@@ -237,9 +253,15 @@
                                     </div>
                                     <div class="end-mota">
                                         <div class="mota-end-box">
-                                            <div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span></div>
-                                            <div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
-                                            <div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
+                                            <div class="end-box-tt"><span
+                                                    class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
+                                            </div>
+                                            <div class="end-box-tt"><span
+                                                    class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
+                                            </div>
+                                            <div class="end-box-tt"><span
+                                                    class="material-icons icons-15 chat">chat</span><span
+                                                    class="chat">chat ngay</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -271,8 +293,8 @@
                                 <div class="inner-content">
 
                                     <h1 class="MsoNormal" align="center">Mua bán nhà đất bất động sản </h1>
-                                    @if($content_province != NULL)
-                                    <?php echo $content_province; ?>
+                                    @if($provinces != NULL)
+                                    <?php echo $provinces; ?>
                                     @else
                                     <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                         <font size="3"></font><i><a href="https://meeyland.com/mua-ban-nha-dat">Mua bán
@@ -935,34 +957,34 @@
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
 <script type="text/javascript">
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        /*$('#filter').change(function(){
-            $.ajax({
-                url: '{{ route("filter") }}',
-                type: 'POST',
-                data: $('#filter').serialize(),
-                success: function(data, status) {
-                    console.log(data)
-                }
-            })
-        });*/
+    /*$('#filter').change(function(){
+        $.ajax({
+            url: '{{ route("filter") }}',
+            type: 'POST',
+            data: $('#filter').serialize(),
+            success: function(data, status) {
+                console.log(data)
+            }
+        })
+    });*/
 
-        $('#province').change(function() {
-            let province = $(this).val();
-            let url = '/get-district/' + province;
-            $('#district').load(url, function() {
-                let district = $(this).val();
-                let url1 = '/get-ward/' + district;
-                $('#ward').load(url1);
-            });
-        });
-        $('#district').change(function() {
+    $('#province').change(function() {
+        let province = $(this).val();
+        let url = '/get-district/' + province;
+        $('#district').load(url, function() {
             let district = $(this).val();
             let url1 = '/get-ward/' + district;
             $('#ward').load(url1);
         });
-
     });
+    $('#district').change(function() {
+        let district = $(this).val();
+        let url1 = '/get-ward/' + district;
+        $('#ward').load(url1);
+    });
+
+});
 </script>
 @endsection
