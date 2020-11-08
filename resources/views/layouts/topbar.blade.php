@@ -16,7 +16,14 @@
             @if(auth()->check())
             <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
-                    <p>Khách</p>
+                    @if(Auth::check() && Auth::user()->user_type == "1")
+
+                        <p>Quản trị viên</p>
+
+                    @else
+                        <p>Khách</p>
+
+                    @endif
                 </div>
             </div>
             <div class="bl-3">
@@ -100,7 +107,10 @@
                                     <div class="khong-thong-bao"> <img src="./assets/icon/icon-notification.png" alt="">
                                         <p>Không có thông báo nào</p>
                                     </div>
+
+
                                     <div class="co-thong-bao">
+
                                         <div class="item">
                                             <div class="wrap-text notification-duedate ">
 
@@ -123,7 +133,7 @@
                                         </div>
 
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </li>
@@ -324,12 +334,12 @@
     var today=new Date();
     var xetDuedate = today-duedate;
 console.log(xetDuedate);
-    
+
     if(xetDuedate < 0){
         $(".notification-duedate").hide();
     }
     else if(textduedate == ""){
         $(".notification-duedate").hide();
     }
-    
+
 </script>
