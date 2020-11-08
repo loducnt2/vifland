@@ -99,26 +99,23 @@
                                     <div class="khong-thong-bao"> <img src="./assets/icon/icon-notification.png" alt="">
                                         <p>Không có thông báo nào</p>
                                     </div>
-                                   
-                                   
+
+
                                     <div class="co-thong-bao">
-                                  
+
                                         <div class="item">
-<<<<<<< HEAD
                                             <div class="wrap-text notification-duedate ">
-                                               
+
                                                 <div class="thongbao post-expired"></div><a href="#">Bài
                                                     viết của bạn sắp hết hạn</a>
                                                 <div class="date"></div>
-=======
                                             <div class="wrap-text notification-duedate">
                                                 <div class="thongbao post-expired">Bài viết hết hạn</div><a href="#">
                                                     Bài viết của bạn sắp hết hạn</a>
                                                 <div class="date">{{ session()->get('duedate') }}</div>
->>>>>>> 45de986df89fe13fccf0e65061558220f4609500
                                             </div>
                                         </div>
-                                  
+
                                         <div class="item">
                                             <div class="wrap-text">
                                                 <div class="thongbao thongbao-color">Thông báo</div><a href="#">Thông
@@ -127,9 +124,9 @@
                                                 <div class="date">1/11/2020</div>
                                             </div>
                                         </div>
-                                       
+
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </li>
@@ -324,21 +321,18 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 <script>
     var textduedate = $(".notification-duedate .date").text();
     var  duedate=new Date(textduedate);
     var today=new Date();
     var xetDuedate = today-duedate;
 console.log(xetDuedate);
-    
+
     if(xetDuedate < 0){
         $(".notification-duedate").hide();
     }
     else if(textduedate == ""){
         $(".notification-duedate").hide();
     }
-    
+
 </script>
-=======
->>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)

@@ -3,7 +3,6 @@
 {{-- @extends('admin.footer') --}}
 @section('content')
 
-<<<<<<< HEAD
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> --}}
@@ -11,12 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
 
-=======
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
->>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
     <style>
     .bootstrap-tagsinput {
   width: 100% !important;
@@ -185,15 +182,12 @@ width: 100%;
                 <textarea id="editor1" name="content">
 
                 </textarea>
-<<<<<<< HEAD
-=======
                 {{-- quản lí tin tức --}}
                 <label for="text" class="error"></label>
     <script>
         CKEDITOR.replace( 'editor1' );
     </script>
 
->>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
             </div>
 
           </div>

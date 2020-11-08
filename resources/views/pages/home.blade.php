@@ -100,13 +100,10 @@
 									<label for="idgiaohang2">{{$categories['1']->name}}</label>
 								</div>
 								<div class="checked">
-<<<<<<< HEAD
 									<input id="idgiaohang3" slug="{{$categories['2']->slug}}" type="radio" value="{{$categories['2']->id}}" name="cate">
-									<label for="idgiaohang3">{{$categories['2']->name}}</label>	
-=======
+									<label for="idgiaohang3">{{$categories['2']->name}}</label>
 									<input id="idgiaohang3" type="radio" value="{{$categories['2']->id}}" name="cate">
 									<label for="idgiaohang3">{{$categories['2']->name}}</label>
->>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
 								</div>
 							</div>
 						</div>
@@ -460,19 +457,16 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
-<<<<<<< HEAD
 		$('input[name="cate"]').click(function() {
 		  if ($(this).is(':checked')) {
 		    let cate = $(this).attr('slug')
 		    let route = '/search/'+cate
 		    let action = $('#formsearch').attr('action',route)
 		    console.log($('#formsearch').attr('action'))
-		    
+
 		  }
 		});
 	})
 </script>
 @endsection
-=======
 @endsection
->>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
