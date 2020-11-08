@@ -6,9 +6,10 @@ use App\Models\PostHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
+use Toastr;
 use App\User;
 use Illuminate\Auth\EloquentUserProvider;
-
+use Hash;
 class UserController extends Controller
 {
     /**
@@ -135,6 +136,24 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function changePassword(request $request ,$id)
+    {
+        $user = User::find($id);
+        $currentpassword =$request->input('password');
+        $hashedPassword = User::find($id)->password;
+        $newpassword = Hash::make($request->input('newpassword'));
+        if (Hash::check($currentpassword, $hashedPassword)) {
+                    $user->password = $newpassword;
+                    Toastr::success('Thay đổi thành công :)','Thông báo');
+    }
+    else{
+
+        Toastr::error('Thay đổi thất bại ! Vui lòng thử lại','Thông báo');
+
+    }
+    $user -> save();
+    return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -1,18 +1,52 @@
+
 @extends('layouts.master')
 @section('title','VIF Land - Sàn rao bán bất động sản')
 @section('headerStyles')
-<!-- Thêm styles cho trang này ở đây-->
+
 @stop
+
+@if(Auth::check() && Auth::user()->user_type == "1")
+<!-- Nav tabs -->
+
+<nav class="navbar navbar-light bg-dark" style="font-size:12px;color:white;">
+    <a class="navbar-brand" href="/admin/index">
+      {{-- <img src= width="30" height="30" class="d-inline-block align-top" alt=""> --}}
+      Quay về trang quản trị
+    </a>
+  </nav>
+
+@endif
 @section('content')
+
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+    <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+</div>
+
+<script>
+    $('#navId a').click(e => {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+</script>
+{{-- @endif --}}
 <!-- @include('layouts.logo_animation') -->
 
 <main>
+    {{--  --}}
+
     <section class="index-s1" id="home">
         <div class="max-width-container">
             <div class="row pd-banner">
                 <div class="col-xs-4 col-md-4 col-lg-3">
                     <div class="box-left-banner">
-                        <h2 class="title-banner">Hệ sinh thái <br>Bất động sản</h2>
+                        <h2 class="title-banner">Hệ sinh thái<br>Bất động sản</h2>
+
                         <p class="text-banner">Cuộc cách mạng vĩ đại trong kỷ nguyên 4.0 với sự kết hợp hoàn hảo giữa:
                             con người + trí thông minh nhân tạo + bất động sản + đầu tư tài chính</p>
                     </div>
@@ -66,8 +100,13 @@
 									<label for="idgiaohang2">{{$categories['1']->name}}</label>
 								</div>
 								<div class="checked">
+<<<<<<< HEAD
 									<input id="idgiaohang3" slug="{{$categories['2']->slug}}" type="radio" value="{{$categories['2']->id}}" name="cate">
 									<label for="idgiaohang3">{{$categories['2']->name}}</label>	
+=======
+									<input id="idgiaohang3" type="radio" value="{{$categories['2']->id}}" name="cate">
+									<label for="idgiaohang3">{{$categories['2']->name}}</label>
+>>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
 								</div>
 							</div>
 						</div>
@@ -126,7 +165,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<section class="index-sc3">
 		<div class="max-width-container border-bottom">
 			<div class="category-container">
@@ -149,7 +188,7 @@
 									</div>
 								</a>
 							</div>
-							
+
 						</div>
 					</div>
 					<div class="col-4">
@@ -220,7 +259,7 @@
 								<div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
 							</div>
-							<div class="box-sp-text"> 
+							<div class="box-sp-text">
 								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
 									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
 								</a>
@@ -421,6 +460,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
+<<<<<<< HEAD
 		$('input[name="cate"]').click(function() {
 		  if ($(this).is(':checked')) {
 		    let cate = $(this).attr('slug')
@@ -433,3 +473,6 @@
 	})
 </script>
 @endsection
+=======
+@endsection
+>>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)

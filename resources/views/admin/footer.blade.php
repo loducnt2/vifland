@@ -1,6 +1,5 @@
 <script
 src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
 <script src="{{asset('js/core.min.js') }}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/datatables.js') }}"></script>
@@ -10,7 +9,13 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
+<<<<<<< HEAD
 <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+=======
+{{-- <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script> --}}
+
+
+>>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
 
 <script type="text/javascript">
     $.ajaxSetup({
@@ -22,6 +27,7 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
 
 
 {{-- get thông tin dropdown-menu--}}
+<<<<<<< HEAD
 <script>
     function test(){
    var test= $("#category_dropdown option:selected").text();
@@ -44,6 +50,9 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
     });
     });
 </script>
+=======
+
+>>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
   <script>
     //   insert record ajax
       $('#myform').submit(function(e){
@@ -96,6 +105,7 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
             });
         }
     </script> --}}
+<<<<<<< HEAD
 
     {{-- quản lí tin tức --}}
 
@@ -112,3 +122,7 @@ function slideNav() {
     });
 } 
 </script>
+=======
+{{-- validate đăng tin --}}
+{{-- validate --}}
+>>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)

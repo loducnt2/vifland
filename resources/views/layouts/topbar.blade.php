@@ -8,7 +8,14 @@
             @if(auth()->check())
             <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
-                    <p>Khách</p>
+                    @if(Auth::check() && Auth::user()->user_type == "1")
+
+                        <p>Quản trị viên</p>
+
+                    @else
+                        <p>Khách</p>
+
+                    @endif
                 </div>
             </div>
             <div class="bl-3">
@@ -317,6 +324,7 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 <script>
     var textduedate = $(".notification-duedate .date").text();
     var  duedate=new Date(textduedate);
@@ -332,3 +340,5 @@ console.log(xetDuedate);
     }
     
 </script>
+=======
+>>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)

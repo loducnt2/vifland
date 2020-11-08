@@ -59,14 +59,14 @@
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
                         <div class="box-mid-se">
                             <input type="email" placeholder="Email hoặc Số điện thoại" name="email">
-                            {{-- <label for="text" class="error"></label> --}}
+                            <label for="text" class="error"></label>
                         </div>
                     </div>
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
                             <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id">
-                            {{-- <label for="text" class="error"></label> --}}
+                            <label for="text" class="error"></label>
                         </div>
                     </div>
                     <p class="dieukhoan">Bằng việc đăng ký tài khoản bạn đồng ý với <a href="">điều khoản dịch vụ</a>

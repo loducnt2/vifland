@@ -44,11 +44,12 @@ class NewsController extends Controller
         // insert tin tức
         $news = new News();
         // tags
-        $news->tags= implode(',',$request->tags);
+
         $news->title=$request->input('title');
         $news->slug = $request->slug;
         $news->content = $request->input('content');
         // $news->datepost = Carbon::now();
+        $news->tags= implode(',',$request->tags);
         // slug tên danh mục khi input vào cột category_slug của news
         $news->category_slug = Str::slug($request->input('category_news_slug'));
         $news->id_category = $request->input('id_category');
@@ -87,7 +88,11 @@ class NewsController extends Controller
     {
         $cate = NewsCategory::where('slug',$slug)->first();
         // lấy category_slug
+<<<<<<< HEAD
         $posts = News::where('category_slug',$cate->slug)->get();
+=======
+        $posts = News::where('category_slug',$cate->slug)->paginate(3);
+>>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
         // truyền category_slug và tìm post
         return view('pages/new-by-category')->with(
             [
