@@ -469,4 +469,4 @@
 	})
 </script>
 @endsection
-@endsection
+{{-- @endsection --}}
