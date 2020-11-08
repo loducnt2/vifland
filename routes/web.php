@@ -23,17 +23,20 @@ Route::get('/testform',function(){return view('pages/article/testform');} );
 Auth::routes();
 Route::get('/testcompare','API\CompareController@testcompare');
 Route::get('/logout','Auth\LoginController@logout');
-Route::get('/', 'HomeController@index')->name('home');					// Trang chủ
+Route::get('/', 'HomeController@index')->name('home');	
+//Route::get('/', 'HomeController@sessionUser');				// Trang chủ
 Route::get('home','HomeController@index');								// Trang chủ
 Route::get('/compares','API\CompareController@index')->name('compare');		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 
 //Danh mục
-
+/*
 Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1')->name('cate1');
 Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2')->name('cate2');
-Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cate3');
-Route::post('/search','SearchController@index')->name('search');
+Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cate3');*/
+
+Route::get('/{cate}','SearchController@getByCate')->name('cate');
+Route::post('/search/{cate}','SearchController@index')->name('search');
 Route::post('/filter','SearchController@filter')->name('filter');
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
@@ -53,7 +56,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/user/profile/{id}','UserController@profileDetail')->name('');
 	//Update profile
 	Route::post('/user/update/{id}','UserController@update')->name('user-update');
-
+    //
 
 });
 
@@ -130,7 +133,12 @@ Route::get('/admin/danh-sach-province','ProvinceController@index');
 
 
 
-Route::post('/dang-tin/store','ProductController@store')->name('dang-tin');
+//Banner
+Route::post('/admin/danh-sach-banner/update/{id}','ImgController@update')->name('update-img');
+Route::get('/admin/danh-sach-banner/edit/{id}','ImgController@edit')->name('edit-img');
+Route::get('/admin/danh-sach-banner','ImgController@index');
+
+
 // Quản lý tin đăng
 
 
@@ -153,15 +161,8 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
 // User: thay đổi trạng thái user
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
-
-
-// new list
-
-
-// route admin- danh muc
-// Route::get('/admin/danh-sach-danh-muc',function(){
-//     return view('/admin/danhmuc/danhsachdanhmuc');
-// });
+// Tin tức theo danh mục
+Route::get('/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
 Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
@@ -169,15 +170,42 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/news/{slug}','NewsController@show');
+// quản lý tin tứcf
+Route::get('/admin/index/news',function(){
+    return view('admin.tintuc.quanlytintuc');
+});
+Route::POST('/admin/index/news/insert','NewsController@store'
+);
+// news list
+
+// route admin- danh muc
+// Route::get('/admin/danh-sach-danh-muc',function(){
+//     return view('/admin/danhmuc/danhsachdanhmuc');
+// });
+// Tin tức theo danh mục
+Route::get('/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
+Route::get('admin/index/profile/delete/{id}','UserController@destroy');
+// Route quản lí tin đã đăng của user
+// Route::get('/my-article/{id}','UserControllers@getPostbyID');
+// User: thay đổi trạng thái user
+Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
+
+Route::get('/tin-tuc/{slug}','NewsController@show');
 // đăng tin tức
 Route::get('/admin/cap-nhat-tin-tuc',function(){
     return view('admin.tintuc.quanlytintuc');
 });
 Route::POST('/admin/index/news/insert','NewsController@store');
 // get tất cả các tin đang có
-Route::get('/news','NewsController@listnews');
+Route::get('/tin-tuc','NewsController@listnews');
 // get những bài tin tức bằng tag
-Route::get('/news/tags/{tags}','NewsController@getpostsbytag');
+Route::get('/tin-tuc/tu-khoa/{tags}','NewsController@getpostsbytag');
 // quản lí tin tức
-Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index');
+
 // ===================danh mục tin tức======================
+Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news_category.index');
+// ===================danh mục tin tức======================
+Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
+
+Route::delete('/admin/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
+

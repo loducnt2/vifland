@@ -35,24 +35,31 @@ $tags = \Route::current()->parameter('tags');
 
         </div>
         <div class="col-md-12 row sec-2">
-         @foreach ($news3 as $posts)
+         @foreach ($posts as $posts)
          <div class="col-xl-4 col-md-4 col-sm-6 wrapper">
             <div class="article-wrapper">
                 <div class="date">
                 <p>{{$posts->datepost}}</p>
                 </div>
-            <div class="article-small"><a href="/news/{{$posts->slug}}"><img src="{{asset('assets/news/' .$posts->img)}}" alt=""></a>
-            <div class="content"><a href="/news/{{$posts->slug}}">
+            <div class="article-small"><a href="/tin-tuc/{{$posts->slug}}"><img src="{{asset('assets/news/' .$posts->img)}}" alt=""></a>
+            <div class="content"><a href="/tin-tuc/{{$posts->slug}}">
                     <h2 class="section-under-title">{{$posts->title}}</h2></a>
             <p>{{$posts->summary}}</p>
                     </div>
                 </div>
             </div>
         </div>
+
         @endforeach
+
+    </div>
+    <div class="paginationSP mx-auto">
+        <div class="paginationSP-box mx-auto"><span class="material-icons button-s">skip_previous</span>
+                <div class="paginationSP mx-auto">
+                    {{ $news3->links() }}
+                </div>
         </div>
-
-
+    </div>
 	</section>
 	<div id="js-page-verify" hidden></div>
 </main>

@@ -11,10 +11,10 @@ class GetDistrict extends Controller
 	// Lấy quận/huyện theo tỉnh/thành phố
     public function getDistrictByProvince($id){
     	$district = District::where('province_id',$id)->orderBy('name','asc')->get();
-    	echo "<option value="">Chọn</option>";
-    	foreach($district as $dist){
+    	return response()->json($district);
+    	/*foreach($district as $dist){
     		echo '<option value="'.$dist->id.'">'.$dist->name.'</option>';
-    	}
+    	}*/
     }
 
     // Lấy phường xã theo quận/huyện

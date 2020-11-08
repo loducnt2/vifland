@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title',$title)
+ @section('title',$title)
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop
@@ -66,11 +66,11 @@
                             @csrf
                             <div class="mdm-1">
                                 <div class="checked">
-                                    <input id="luachonsearch1" type="radio" value="muaban" name="canmuaban">
+                                    <input id="luachonsearch1" type="checkbox" value="{{$cate_child[0]->id}}" name="cate_child[]" checked="">
                                     <label for="luachonsearch1">{{$cate_child[0]->name}}</label>
                                 </div>
                                 <div class="checked">
-                                    <input id="luachonsearch2" type="radio" value="muaban" name="canmuaban">
+                                    <input id="luachonsearch2" type="checkbox" value="{{$cate_child[1]->id}}" name="cate_child[]" checked="" >
                                     <label for="luachonsearch2">{{$cate_child[1]->name}}</label>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province_id" id="province">
+                                            <select class="select1" name="province" id="province" >
                                                 <option value="0">Chọn</option>
                                                 @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
@@ -100,14 +100,14 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district_id" id="district">
-                                                <option value="0">Chọn</option>
+                                            <select class="select1" name="district" id="district" >
+                                                <option value="0" id="district_def">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
-                                            <select class="select1" name="ward_id" id="ward">
-                                                <option value="0">Chọn</option>
+                                            <select class="select1" name="ward" id="ward" >
+                                                <option value="0" id="ward_def">Chọn</option>
                                             </select>
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
@@ -207,72 +207,84 @@
                 </div>
                 <div class="col-lg-9 col-md-12">
                     <div class="row box-right">
-                        @if(count($products)>0)
-                        @foreach($products as $product)
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12">
-                            <div class="box-sp">
-                                <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                        href="{{route('article-detail',$product->slug)}}"><img
-                                            src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
-                                    <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
-                                    <div class="box-icon"><i class="fav ri-heart-line icons"
-                                            productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}"
-                                            class="comp"><i class="ri-equalizer-line icons"></i></a></div>
-                                    <div class="overlay"></div>
-                                </div>
-                                <div class="box-sp-text">
-                                    <a class="localstore" localstore="{{$product->product_id}}"
-                                        href="{{route('article-detail',$product->slug)}}">
-                                        <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
-                                    </a>
-                                    <div class="location"> <span class="material-icons">location_on</span>
-                                        <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
-                                            title="{{$product->district}}, {{$product->province}}">
-                                            {{$product->district}}, {{$product->province}}</p>
+                        <div id="products" class="row">
+                            <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12" style="display:none" id="appendproduct">
+                                <div class="box-sp">
+                                    <div class="box-sp-img"><a class="localstore" localstore="" href=""><img src="" alt=""></a>
+                                        <div class="tag-thuongluong"></div>
+                                        <div class="box-icon"><i class="fav ri-heart-line icons" productid=""></i><a href="" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
+                                        <div class="overlay"></div>
                                     </div>
-                                    <div class="mota-place">
-                                        <div class="mota-place-1">
-                                            <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
-                                                    alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                    title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
-                                                    m²</span></div>
-                                            <div class="mota-place-tt"><img
-                                                    src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
-                                                    data-toggle="tooltip" data-placement="bottom"
-                                                    title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-                                            <div class="mota-place-tt"><img
-                                                    src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
-                                                    data-toggle="tooltip" data-placement="bottom"
-                                                    title="{{$product->facades}}">{{$product->facades}} m</span></div>
+                                    <div class="box-sp-text"> 
+                                        <a class="localstore" localstore="" href="">
+                                            <h5 class="title-text lcl lcl-2"></h5>
+                                        </a>
+                                        <div class="location"> <span class="material-icons">location_on</span>
+                                            <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title=""></p>
                                         </div>
-                                        <!-- <div class="mota-place-1">
-                                            <div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-                                            <div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-                                            <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{$product->depth*$product->facades}} m²</span></div>
-                                        </div> -->
+                                        <div class="mota-place">
+                                            <div class="mota-place-1">
+                                                <div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title=""></span></div>
+                                                <div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+                                                <div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title=""></span></div>
+                                            </div>
+                                        </div>
+                                        <div class="end-mota">
+                                            <div class="mota-end-box">
+                                                <div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span></span></div>
+                                                <div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span></span></div>
+                                                <div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="end-mota">
-                                        <div class="mota-end-box">
-                                            <div class="end-box-tt"><span
-                                                    class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
+                                </div>
+                            </div> -->
+                            @if(count($products)>0)
+                            @foreach($products as $product)
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
+                                <div class="box-sp">
+                                    <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
+                                        <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
+                                        <div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
+                                        <div class="overlay"></div>
+                                    </div>
+                                    <div class="box-sp-text"> 
+                                        <a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
+                                            <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+                                        </a>
+                                        <div class="location"> <span class="material-icons">location_on</span>
+                                            <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
+                                        </div>
+                                        <div class="mota-place">
+                                            <div class="mota-place-1">
+                                                <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }} m²</span></div>
+                                                <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+                                                <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
                                             </div>
-                                            <div class="end-box-tt"><span
-                                                    class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
+                                            <!-- <div class="mota-place-1">
+                                                <div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
+                                                <div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
+                                                <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{$product->depth*$product->facades}} m²</span></div>
+                                            </div> -->
+                                        </div>
+                                        <div class="end-mota">
+                                            <div class="mota-end-box">
+                                                <div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span></div>
+                                                <div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
+                                                <div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
                                             </div>
-                                            <div class="end-box-tt"><span
-                                                    class="material-icons icons-15 chat">chat</span><span
-                                                    class="chat">chat ngay</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
+                            @else
+                            <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                                <p>Không có bài đăng nào</p>
+                            </div>
+                            @endif
                         </div>
-                        @endforeach
-                        @else
-                        <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
-                            <p>Không có bài đăng nào</p>
-                        </div>
-                        @endif
+                        
 
 
                         <div class="col-12">
@@ -293,8 +305,8 @@
                                 <div class="inner-content">
 
                                     <h1 class="MsoNormal" align="center">Mua bán nhà đất bất động sản </h1>
-                                    @if($provinces != NULL)
-                                    <?php echo $provinces; ?>
+                                    @if(isset($content_province) &&  $content_province != NULL)
+                                    <?php echo $content_province; ?>
                                     @else
                                     <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                         <font size="3"></font><i><a href="https://meeyland.com/mua-ban-nha-dat">Mua bán
@@ -959,24 +971,64 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-    /*$('#filter').change(function(){
-        $.ajax({
-            url: '{{ route("filter") }}',
-            type: 'POST',
-            data: $('#filter').serialize(),
-            success: function(data, status) {
-                console.log(data)
-            }
-        })
-    });*/
+        
 
-    $('#province').change(function() {
-        let province = $(this).val();
-        let url = '/get-district/' + province;
-        $('#district').load(url, function() {
+        /*$('#province').change(function() {
+            let province = $(this).val();
+            let url = '/get-district/' + province;
+            $('#district').load(url, function() {
+                let district = $(this).val();
+                let url1 = '/get-ward/' + district;
+                $('#ward').load(url1);
+            });
+        });
+        $('#district').change(function() {
             let district = $(this).val();
             let url1 = '/get-ward/' + district;
             $('#ward').load(url1);
+        });*/
+        $('#province').change(function() {
+            let province = $(this).val();
+            let url = '/get-district/' + province;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data, status) {
+                    data = '<option value="0" selected>Chọn</option>'+data
+                    $('#district').html(data)
+                }
+            })
+        })
+        $('#district').change(function() {
+            let district = $(this).val();
+            let url1 = '/get-ward/' + district;
+            $.ajax({
+                url: url1,
+                type: 'GET',
+                success: function(data, status) {
+                    data = '<option value="0" selected>Chọn</option>'+data
+                    $('#ward').html(data)
+                }
+            })
+        })
+       
+        $('#filter').change(function(){
+            $.ajax({
+                url: '{{ route("filter") }}',
+                type: 'POST',
+                data: $('#filter').serialize(),
+                success: function(data, status) {
+                    /*$('.vass').css('display','none')*/
+                    let arr = [];
+                    data.forEach(function(item, index, array){
+                        /*let pr = '<div class="col-lg-3 col-md-4 col-sm-6 col-sx-12" id=""><div class="box-sp"><div class="box-sp-img"><a class="localstore" localstore="" href=""><img src="" alt=""></a><div class="tag-thuongluong"></div>><i class="ri-equalizer-line icons"></i></a></div><div class="overlay"></div></div><div class="box-sp-text"> <a class="localstore" localstore="" href=""><h5 class="title-text lcl lcl-2">'+item.title+'</h5></a><div class="location"> <span class="material-icons">location_on</span><p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title=""></p></div><div class="mota-place"><div class="mota-place-1"><div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title=""></span></div><div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt  <div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title=""></span></div></div></div><div class="end-mota"><div class="mota-end-box"><div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span></span></div><div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span></span></div><div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div></div></div></div></div></div>'*/
+                        let pr = '<div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass"><div class="box-sp"><div class="box-sp-img"><a class="localstore" localstore="'+item.product_id+'" href="{{route('article-detail','+item.slug+')}}"><img src="{{asset('assets/product/thumb/')}}/'+item.thumbnail+'" alt=""></a><div class="tag-thuongluong">'+item.price+' '+item.unit+'</div><div class="box-icon"><i class="fav ri-heart-line icons" productid="'+item.product_id+'"></i><a href="'+item.product_id+'" class="comp" ><i class="ri-equalizer-line icons"></i></a></div><div class="overlay"></div></div><div class="box-sp-text"><a class="localstore" localstore="'+item.product_id+'" href="{{route('article-detail','+item.slug+')}}"><h5 class="title-text lcl lcl-2">'+item.title+'</h5></a><div class="location"> <span class="material-icons">location_on</span><p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="'+item.district+', '+item.province+'">'+item.district+', '+item.province+'</p></div><div class="mota-place"><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="m²">m²</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+item.facades+'">'+item.facades+' m</span></div></div></div><div class="end-mota"><div class="mota-end-box"><div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span></span></div><div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>'+item.view+'</span></div><div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div></div></div></div></div></div>';
+                        arr.push(pr)
+                    })
+                    $('#products').html(arr)                 
+                }
+            })
+            //alert( $(this).serialize() )
         });
     });
     $('#district').change(function() {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Image;
+use Str;
 
 class ImgController extends Controller
 {
@@ -13,7 +15,8 @@ class ImgController extends Controller
      */
     public function index()
     {
-        //
+        $banners = Image::orderBy('id','asc')->get();
+        return view('/admin/banner/danhsachbanner',compact('banners'));
     }
 
     /**
@@ -34,7 +37,14 @@ class ImgController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $banner = new Image([
+            'name'      => $req->get("name") ,
+            'status'  => $req->get("status"),
+            'position'    => $req->get("position"),
+            'parent_id' => $req->get("parent"),
+        ]);
+        $cate->save();
+        return redirect('/admin/danh-sach-danh-muc'); 
     }
 
     /**
@@ -45,7 +55,7 @@ class ImgController extends Controller
      */
     public function show($id)
     {
-        //
+      
     }
 
     /**
@@ -56,7 +66,9 @@ class ImgController extends Controller
      */
     public function edit($id)
     {
-        //
+        $banner = Category::find($id);
+       
+        return view('/admin/danhmuc/capnhatdanhmuc',compact('$banner'));
     }
 
     /**
@@ -68,7 +80,13 @@ class ImgController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $banner = bannergory::find($id);
+        $banner->name      = $req->get('name');
+        $banner->status    = $req->get('status');
+        $banner->image    = $req->get('image');
+        $banner->position    = $req->get('position');
+        $banner->save();
+        return redirect('/admin/danh-sach-banner');
     }
 
     /**

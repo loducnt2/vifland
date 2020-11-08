@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Trang chủ')
+@section('title','VIF Land - Sàn rao bán bất động sản')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop
@@ -41,32 +41,32 @@
 		<div class="max-width-container">
 			<div class="box-menu-mobile">
 				<div class="box-mobile-wrap">
-					<div class="box-m"><a href="{{route('cate1')}}"><img src="{{asset('assets/icon/house@3x.png')}}" alt="">
+					<div class="box-m"><a href="{{route('cate',$categories['0']->slug)}}"><img src="{{asset('assets/icon/house@3x.png')}}" alt="">
 							<p>{{$categories['0']->name}} </p></a></div>
-					<div class="box-m"><a href="{{route('cate2')}}"><img src="{{asset('assets/icon/rent@3x.png')}}" alt="">
+					<div class="box-m"><a href="{{route('cate',$categories['1']->slug)}}"><img src="{{asset('assets/icon/rent@3x.png')}}" alt="">
 							<p>{{$categories['1']->name}}</p></a></div>
-					<div class="box-m"><a href="{{route('cate3')}}"><img src="{{asset('assets/icon/transfer-image-category.png')}}" alt="">
+					<div class="box-m"><a href="{{route('cate',$categories['2']->slug)}}"><img src="{{asset('assets/icon/transfer-image-category.png')}}" alt="">
 							<p>{{$categories['2']->name}}</p></a></div>
 				</div>
 			</div>
 
 			<div class="box-search-index">
-				<form action="{{route('search')}}" method="post">
+				<form action="{{route('search',$categories['0']->slug)}}" method="post" id="formsearch">
 					@csrf
 				<div class="row">
 					<div class="col-3">
 						<div class="box-left">
 							<div class="warp-form">
 								<div class="checked">
-									<input id="idgiaohang1" type="radio" value="{{$categories['0']->id}}" name="cate" checked="">
+									<input id="idgiaohang1" slug="{{$categories['0']->slug}}" type="radio" value="{{$categories['0']->id}}" name="cate" checked="">
 									<label for="idgiaohang1">{{$categories['0']->name}}</label>
 								</div>
 								<div class="checked">
-									<input id="idgiaohang2" type="radio" value="{{$categories['1']->id}}" name="cate">
+									<input id="idgiaohang2" slug="{{$categories['1']->slug}}" type="radio" value="{{$categories['1']->id}}" name="cate">
 									<label for="idgiaohang2">{{$categories['1']->name}}</label>
 								</div>
 								<div class="checked">
-									<input id="idgiaohang3" type="radio" value="{{$categories['2']->id}}" name="cate">
+									<input id="idgiaohang3" slug="{{$categories['2']->slug}}" type="radio" value="{{$categories['2']->id}}" name="cate">
 									<label for="idgiaohang3">{{$categories['2']->name}}</label>	
 								</div>
 							</div>
@@ -133,12 +133,12 @@
 				<div class="row">
 					<div class="col-4">
 						<div class="box-cate">
-							<a href="{{route('cate1')}}">
+							<a href="{{route('cate',$categories['0']->slug)}}">
 								<div class="img"><img src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt=""></div>
 								<div class="title-box">{{$categories[0]->name}}</div>
 							</a>
 							<div class="end-box">
-								<a href="{{route('cate1')}}">
+								<a href="{{route('cate',$categories['0']->slug)}}">
 									<div class="box-left"><span class="material-icons">list</span>
 										<p>{{count($product_by_cate1)}} Tin đăng</p>
 									</div>
@@ -154,12 +154,12 @@
 					</div>
 					<div class="col-4">
 						<div class="box-cate">
-							<a href="{{route('cate2')}}">
+							<a href="{{route('cate',$categories['1']->slug)}}">
 								<div class="img"><img src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt=""></div>
 								<div class="title-box">{{$categories[1]->name}}</div>
 							</a>
 							<div class="end-box">
-								<a href="{{route('cate2')}}">
+								<a href="{{route('cate',$categories['1']->slug)}}">
 									<div class="box-left"><span class="material-icons">list</span>
 										<p>{{count($product_by_cate2)}} Tin đăng</p>
 									</div>
@@ -175,12 +175,12 @@
 					</div>
 					<div class="col-4">
 						<div class="box-cate">
-							<a href="{{route('cate3')}}">
+							<a href="{{route('cate',$categories['2']->slug)}}">
 								<div class="img"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt=""></div>
 								<div class="title-box">{{$categories[2]->name}}</div>
 							</a>
 							<div class="end-box">
-								<a href="{{route('cate3')}}">
+								<a href="{{route('cate',$categories['2']->slug)}}">
 									<div class="box-left"><span class="material-icons">list</span>
 										<p>{{count($product_by_cate3)}} Tin đăng</p>
 									</div>
@@ -200,9 +200,9 @@
 	<section class="index-sc4">
 		<div class="max-width-container">
 			<div class="text-title">
-				<div class="text-left"><a class="text-desktop" href="{{route('cate1')}}">
+				<div class="text-left"><a class="text-desktop" href="{{route('cate',$categories['0']->slug)}}">
 						<h3>{{$categories[0]->name}}</h3></a></div>
-				<div class="text-right"><a class="text-desktop" href="{{route('cate1')}}"><i class="ri-equalizer-line"></i>
+				<div class="text-right"><a class="text-desktop" href="{{route('cate',$categories['0']->slug)}}"><i class="ri-equalizer-line"></i>
 						<p>Xem tất cả &nbsp;<span>({{count($product_by_cate1)}} Tin đăng)</span></p></a></div>
 			</div>
 		</div>
@@ -418,5 +418,18 @@
 </main>
 @stop
 @section('footerScripts')
+<script type="text/javascript">
+	$(document).ready(function(){
 
+		$('input[name="cate"]').click(function() {
+		  if ($(this).is(':checked')) {
+		    let cate = $(this).attr('slug')
+		    let route = '/search/'+cate
+		    let action = $('#formsearch').attr('action',route)
+		    console.log($('#formsearch').attr('action'))
+		    
+		  }
+		});
+	})
+</script>
 @endsection

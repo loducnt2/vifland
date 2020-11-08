@@ -41,7 +41,7 @@
                         <tr>
                             <td>
                                 <div class="box-sp m-0">
-                                    <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+                                    <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
                                         <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
                                         <div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
                                         <div class="overlay"></div>

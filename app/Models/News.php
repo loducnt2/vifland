@@ -4,7 +4,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
+
 {
+    public function NewsCategory()
+    {
+        return $this->belongsToMany(NewsCategory::class);
+    }
     protected $table = 'news';
     protected $primaryKey = 'id';
     protected $fillable = [
@@ -20,9 +25,6 @@ class News extends Model
         'status',
         'id_category',
     ];
-    public function NewsCategory()
-{
-    return $this->belongsTo(NewsCategory::class);
-}
+
 
 }
