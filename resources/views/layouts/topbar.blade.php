@@ -1,5 +1,13 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <header>
+    <div class="top-bar-admin"> 
+        <div class="max-width-container">
+            <div class="wrap-text-left"><a class="truycapadmin" href="">Truy cập admin dashboard</a></div>
+            <div class="wrap-text-right"> 
+                <p>Xin chào mừng: Quang Nguyên</p>
+                <div class="line"> </div><a class="dangxuat" href="">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
     <div class="user-login d-none d-lg-block">
         <div class="wrap-1">
             <div class="title">Tài khoản</div><i class="ri-close-line close-button-3"></i>
@@ -92,10 +100,7 @@
                                     <div class="khong-thong-bao"> <img src="./assets/icon/icon-notification.png" alt="">
                                         <p>Không có thông báo nào</p>
                                     </div>
-                                   
-                                   
                                     <div class="co-thong-bao">
-                                  
                                         <div class="item">
                                             <div class="wrap-text notification-duedate ">
 
@@ -108,7 +113,6 @@
                                                 <div class="date">{{ session()->get('duedate') }}</div>
                                             </div>
                                         </div>
-                                  
                                         <div class="item">
                                             <div class="wrap-text">
                                                 <div class="thongbao thongbao-color">Thông báo</div><a href="#">Thông

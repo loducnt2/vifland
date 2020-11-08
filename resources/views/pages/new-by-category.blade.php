@@ -2,7 +2,7 @@
 @section('title','Tin tức theo danh mục')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
- @stop
+@stop
 @section('content')
 <main>
 	<section class="banner-top">
