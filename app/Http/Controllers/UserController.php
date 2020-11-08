@@ -86,7 +86,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-       
+
     }
 
     /**
@@ -147,7 +147,6 @@ class UserController extends Controller
                     Toastr::success('Thay đổi thành công :)','Thông báo');
     }
     else{
-
         Toastr::error('Thay đổi thất bại ! Vui lòng thử lại','Thông báo');
 
     }
