@@ -32,3 +32,12 @@ php artisan migrate
 
 username : admin
 pass : 1
+## Lưu ý (cập nhật lúc 8 giờ sáng ngày 10/11/2020): 
+-- Sau khi khi chạy composer install, chạy tiếp lệnh : 
+-- **composer require brian2694/laravel-toastr** 
+
+Để sửa lỗi thiếu bộ nhớ khi cài lệnh trên, vào Xampp Control Panel, chọn Config của Apache -> PHP.ini , thay giá trị của memory_limit = -1 
+[php.ini]
+**; Maximum amount of memory a script may consume
+; http://php.net/memory-limit
+memory_limit= -1**

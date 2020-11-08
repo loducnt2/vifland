@@ -1,12 +1,6 @@
 <header>
-    <div class="top-bar-admin"> 
-        <div class="max-width-container">
-            <div class="wrap-text-left"><a class="truycapadmin" href="">Truy cập admin dashboard</a></div>
-            <div class="wrap-text-right"> 
-                <p>Xin chào mừng: Quang Nguyên</p>
-                <div class="line"> </div><a class="dangxuat" href="">Đăng xuất</a>
-            </div>
-        </div>
+    <div class="top-bar-admin">
+
     </div>
     <div class="user-login d-none d-lg-block">
         <div class="wrap-1">
