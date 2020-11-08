@@ -970,6 +970,23 @@
 <!-- Thêm script cho trang này ở đây -->
 <script type="text/javascript">
     $(document).ready(function() {
+
+        
+
+        /*$('#province').change(function() {
+            let province = $(this).val();
+            let url = '/get-district/' + province;
+            $('#district').load(url, function() {
+                let district = $(this).val();
+                let url1 = '/get-ward/' + district;
+                $('#ward').load(url1);
+            });
+        });
+        $('#district').change(function() {
+            let district = $(this).val();
+            let url1 = '/get-ward/' + district;
+            $('#ward').load(url1);
+        });*/
         $('#province').change(function() {
             let province = $(this).val();
             let url = '/get-district/' + province;
@@ -1014,6 +1031,7 @@
                     $('#products').html(arr)                 
                 }
             })
+            //alert( $(this).serialize() )
         });
 
     });

@@ -58,15 +58,15 @@
     </div>
     <script type="text/javascript" src="{{asset('js/core.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/main.min.js')}}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        if (!$('.btn__header').hasClass('login1')) {
+        /*if (!$('.btn__header').hasClass('login1')) {
             $.ajax({
                 url: '{{route("all-favorite")}}',
                 type: 'GET',
                 success: function(data, status) {
-                    console.log(status,data)
                     let arr = [];
                     data.forEach(function(item, index, array) {
                         arr.push(item.id)
@@ -124,7 +124,6 @@
                     },
                     success: function(data, status) {
                         //Chưa đăng nhập
-                        console.log(data)
                         if (data == 0) {
                             $("#dangnhapModal").modal("show");
                             $('.fav').addClass("ri-heart-line");
@@ -144,7 +143,6 @@
                 url: '{{route("all-favorite")}}',
                 type: 'GET',
                 success: function(data, status) {
-                    console.log(data)
                     let arr = [];
                     data.forEach(function(item, index, array) {
                         arr.push(item.id)
@@ -159,7 +157,7 @@
 
                 }
             })
-        });
+        });*/
 
         if ($.cookie('compare') != null) {
             let checkcookie = $.cookie('compare')
