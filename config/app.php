@@ -140,7 +140,7 @@ return [
          * Laravel Framework Service Providers...
          */
         // Thọ - Đây là Toastr Notification, xin vui lòng đừng xóa
-        Brian2694\Toastr\ToastrServiceProvider::class,
+        // Brian2694\Toastr\ToastrServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
