@@ -1,9 +1,10 @@
 @extends('layouts.master')
 @section('title','Trang cá nhân ')
 @section('headerStyles')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-@section('content')
+
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
+    @section('content')
 {{-- trước khi đăng nhập --}}
 <main>
     <div class="global-breadcrumb">
@@ -29,6 +30,10 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-3">
                         <div class="box-left-admin">
+
+
+                               {{-- var_dump($user->full_name); --}}
+
                             <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
                                 <p>{{$profile->full_name}}</p>
                             </div>
@@ -103,7 +108,12 @@
                                                     </div>
                                                     <div class="text">
                                                         {{-- cập nhật họ tên --}}
-                                                        <p>{{$profile->full_name}}</p><span>Nhà môi giới</span>
+                                                        <p>{{$profile->full_name}}</p>
+                                                        @if(Auth::check() && Auth::user()->user_type == "1")
+                                                        <span>Quản trị viên</span>
+                                                        @else
+                                                        <span>Nhà môi giới</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,7 +122,11 @@
                                                     <p class="text-f">Loại đối tượng</p>
                                                 </div>
                                                 <div class="col-md-12 col-lg-10 form-group bdb">
-                                                    <p>Nhà môi giới</p>
+                                                    @if(Auth::check() && Auth::user()->user_type == "1")
+                                                        <span>Quản trị viên</span>
+                                                        @else
+                                                        <span>Nhà môi giới</span>
+                                                        @endif
                                                 </div>
                                             </div>
                                             <div class="row form-wrap">
@@ -202,19 +216,21 @@
                                             </div>
                                             <div class="button-save">
                                                 <button class="button-huy" type="">Hủy bỏ </button>
-                                                <button class="button-luu" type="submit">Lưu thay đổi</button>
+                                                <button class="button-luu" type="submit " action="">Lưu thay đổi</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                         aria-labelledby="nav-profile-tab">
-                                        <form action="">
+                                        <form action="{{route('user-changePassword',$profile->id)}}" method="post">
+                                            @csrf
+
                                             <div class="row form-wrap thongtinform">
                                                 <div class="col-md-12 col-lg-3 form-group">
                                                     <p class="text-f">Mật khẩu hiện tại</p>
                                                 </div>
                                                 <div class="col-md-12 col-lg-4 form-group">
-                                                    <input type="text" placeholder="Nhập mật khẩu hiện tại">
+                                                    <input type="text" placeholder="Nhập mật khẩu hiện tại" value="" name="password">
                                                     <p class="notemk">Vì lý do an ninh, bạn phải xác minh mật khẩu hiện
                                                         tại trước khi đặt mật khẩu mới.</p>
                                                 </div>
@@ -224,7 +240,7 @@
                                                     <p class="text-f">Mật khẩu mới</p>
                                                 </div>
                                                 <div class="col-md-12 col-lg-4 form-group">
-                                                    <input type="text" placeholder="Nhập mật khẩu mới">
+                                                    <input type="text" placeholder="Nhập mật khẩu mới" name="newpassword">
                                                 </div>
                                             </div>
                                             <div class="row form-wrap thongtinform">
@@ -258,7 +274,11 @@
 
 
 </form>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    {!! Toastr::message() !!}
 </body>
 
 </html>
@@ -267,34 +287,33 @@
 @section('footerScripts')
 
 @endsection
+
 <script>
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 $('#upload-image').click(function(e) {
-            $('#upload').click(function(e) e.preventDefault();
-                //    let formData = new FormData(this);
-                //    $('#image-input-error').text('');
-                $.ajax({
-                    type: 'post',
-                    url: 'google.com',
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: (response) => {
-                        if (response) {
-                            this.reset();
-                            alert('Image has been uploaded successfully');
+                $('#upload').click(function(e) e.preventDefault();
+                    //    let formData = new FormData(this);
+                    //    $('#image-input-error').text('');
+                    $.ajax({
+                        type: 'post',
+                        url: 'google.com',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: (response) => {
+                            if (response) {
+                                this.reset();
+                                alert('Image has been uploaded successfully');
+                            }
+                        },
+                        error: function(response) {
+                            console.log(response);
+                            $('#image-input-error').text(response.responseJSON.errors.file);
                         }
-                    },
-                    error: function(response) {
-                        console.log(response);
-                        $('#image-input-error').text(response.responseJSON.errors.file);
-                    }
-                });
+                    });
+    </script>
 
-            });
-</script>

@@ -14,13 +14,31 @@
     display: flex;
     justify-content: flex-end;
 }
+header .nav-desktop .main-nav .nav-list .icon {
+    margin-bottom: 8px;
+}
+.box-sp .box-sp-text .title-text {
+    height: 38px;
+}
+.form-group-sl1 .select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 10px;
+}
 .wrap-button-dbv {
     margin-top: 30px;
     display: flex;
     justify-content: flex-end;
 }
+#products {
+    width: 100%;
+}
 .dangbaiviet .select2-selection__rendered {
     padding-left: 10px !important;
+}
+.index-s2 .sl-1
+    .select2-container
+    .select2-selection--single
+    .select2-selection__rendered {
+    padding-left: 40px;
 }
 a.cke_button {
     height: auto !important;

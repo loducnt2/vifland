@@ -969,10 +969,7 @@
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
 <script type="text/javascript">
-    $(document).ready(function() {
-
-        
-
+$(document).ready(function() {
         /*$('#province').change(function() {
             let province = $(this).val();
             let url = '/get-district/' + province;
@@ -1011,7 +1008,6 @@
                 }
             })
         })
-       
         $('#filter').change(function(){
             $.ajax({
                 url: '{{ route("filter") }}',
@@ -1036,7 +1032,11 @@
             })
             //alert( $(this).serialize() )
         });
-
+    });
+    $('#district').change(function() {
+        let district = $(this).val();
+        let url1 = '/get-ward/' + district;
+        $('#ward').load(url1);
     });
 </script>
 @endsection

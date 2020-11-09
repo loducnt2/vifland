@@ -1,5 +1,13 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <header>
+    <div class="top-bar-admin"> 
+        <div class="max-width-container">
+            <div class="wrap-text-left"><a class="truycapadmin" href="">Truy cập admin dashboard</a></div>
+            <div class="wrap-text-right"> 
+                <p>Xin chào mừng: Quang Nguyên</p>
+                <div class="line"> </div><a class="dangxuat" href="">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
     <div class="user-login d-none d-lg-block">
         <div class="wrap-1">
             <div class="title">Tài khoản</div><i class="ri-close-line close-button-3"></i>
@@ -8,7 +16,14 @@
             @if(auth()->check())
             <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
-                    <p>Khách</p>
+                    @if(Auth::check() && Auth::user()->user_type == "1")
+
+                        <p>Quản trị viên</p>
+
+                    @else
+                        <p>Khách</p>
+
+                    @endif
                 </div>
             </div>
             <div class="bl-3">
@@ -92,26 +107,22 @@
                                     <div class="khong-thong-bao"> <img src="./assets/icon/icon-notification.png" alt="">
                                         <p>Không có thông báo nào</p>
                                     </div>
-                                   
-                                   
+
+
                                     <div class="co-thong-bao">
-                                  
+
                                         <div class="item">
-<<<<<<< HEAD
                                             <div class="wrap-text notification-duedate ">
-                                               
+
                                                 <div class="thongbao post-expired"></div><a href="#">Bài
                                                     viết của bạn sắp hết hạn</a>
                                                 <div class="date"></div>
-=======
                                             <div class="wrap-text notification-duedate">
                                                 <div class="thongbao post-expired">Bài viết hết hạn</div><a href="#">
                                                     Bài viết của bạn sắp hết hạn</a>
                                                 <div class="date">{{ session()->get('duedate') }}</div>
->>>>>>> 45de986df89fe13fccf0e65061558220f4609500
                                             </div>
                                         </div>
-                                  
                                         <div class="item">
                                             <div class="wrap-text">
                                                 <div class="thongbao thongbao-color">Thông báo</div><a href="#">Thông
@@ -120,9 +131,9 @@
                                                 <div class="date">1/11/2020</div>
                                             </div>
                                         </div>
-                                       
+
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </li>
@@ -323,12 +334,12 @@
     var today=new Date();
     var xetDuedate = today-duedate;
 console.log(xetDuedate);
-    
+
     if(xetDuedate < 0){
         $(".notification-duedate").hide();
     }
     else if(textduedate == ""){
         $(".notification-duedate").hide();
     }
-    
+
 </script>
