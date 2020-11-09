@@ -8,6 +8,9 @@ use App\Models\News;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+
+use function Psy\debug;
+
 class NewsController extends Controller
 {
     /**
@@ -21,6 +24,15 @@ class NewsController extends Controller
         // $newsHidden = News::select('select * from news where id = 1')->get();
         return view('/admin/tintuc/danhsachtintuc',compact('news'));
     }
+    public function duyettin()
+    {
+        $news = News::orderBy('id','asc')
+        -> where('status',0)
+        ->get();
+        
+        return view('/admin/tintuc/danhsachduyettin',compact('news'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -111,6 +123,13 @@ class NewsController extends Controller
                 'slug'=> $slug
             ]);
     }
+    public function ShowDuyetTin($id)
+    {
+     
+        $new = DB::table('news')->where('id',$id)->first();
+        return view('/admin/tintuc/chitietduyettin',compact('new'));
+    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -145,12 +164,20 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $id)
+    public function update()
     {
-        $new = News::find($id);
-        $new->status = 1;
-        $new->save();
-        return redirect('/admin/danh-sach-tin-tuc');
+         //$new = News::find($id);
+        // $new->status = 1;
+        // $new->save();
+        return redirect('/admin/danh-sach-duyet-tin');
+    }
+
+    public function Anduyettin(Request $request,$id)
+    {
+            $new = News::find($id);
+            $new->status =  1;
+            $new->save();
+        return redirect('/admin/danh-sach-duyet-tin');
     }
 
     /**

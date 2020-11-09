@@ -107,6 +107,7 @@
                                     <a class="nav-link" href="{{ url('admin/cap-nhat-tin-tuc') }}">Cập nhật tin tức</a>
                                     <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Danh mục tin tức</a>
                                     <a class="nav-link" href="{{ url('admin/danh-sach-tin-tuc') }}">Danh sách tin tức</a>
+                                    <a class="nav-link" href="{{ url('admin/danh-sach-duyet-tin') }}">Duyệt tin</a>
 
                                       </nav>
                             </div>
@@ -122,6 +123,14 @@
                             <a class="nav-link" href="{{ url('admin/danh-sach-province') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý tỉnh/ thành phố
+                            </a>
+                            <a class="nav-link" href="{{ url('admin/danh-sach-banner') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Banner
+                            </a>
+                            <a class="nav-link" href="{{ url('admin/danh-sach-thong-bao') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Thông báo
                             </a>
                             <a class="nav-link" href="{{ url('admin/chinh-sua-trang-chu') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
