@@ -136,7 +136,7 @@
                                                                 </div>
                                                                 <div class="col-9">
                                                                     <div class="text">
-                                                                        <p class="t-1">{{$product->title}}</p>
+                                                                        <a href="{{route('article-detail',$product->slug)}}"><p class="t-1">{{$product->title}}</p></a>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
                                                                             <p>{{$product->district}}, {{$product->province}}</p>
