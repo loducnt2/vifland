@@ -176,13 +176,6 @@
                                 <input type="file" name="thumbnail" >
                             </div>
                             <div class="col-12 form-group">
-                                <span>Ảnh chi tiết : &nbsp;</span>
-                                <!-- <input type="file" name="img[]" multiple> -->
-                            </div>
-                            <div class="col-12 form-group">
-                                <!-- <input class="input-100-s" type="text" placeholder="Add tags" name="tags"> -->
-                            </div>
-                            <div class="col-12 form-group">
                                 <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" placeholder="Add tags" name="tags">
                             </div>
                             <div class="col-12 form-group wrap-input-img form-upload">

@@ -28,6 +28,13 @@ header .nav-desktop .main-nav .nav-list .icon {
     display: flex;
     justify-content: flex-end;
 }
+#cke_1_contents {
+    height: 370px!important;
+}
+.cke_chrome {
+    border-radius: 5px;
+    overflow: hidden;
+}
 #products {
     width: 100%;
 }
