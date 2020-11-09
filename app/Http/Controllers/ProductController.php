@@ -254,7 +254,7 @@ class ProductController extends Controller
         if(auth()->check()){
            $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
            if( count($histories) == 0 ){
-               $history = Favorited::create([
+               $history = Favorited::y([
                    'user_id'       => auth()->user()->id,
                    'product_extend_id' => $product->product_id,
                    'type'       => 1,

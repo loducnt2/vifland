@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="{{asset('assets/favicon.ico')}}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
     @yield('headerStyles')
     <!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
     <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
@@ -62,7 +62,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-        /*if (!$('.btn__header').hasClass('login1')) {
+        if (!$('.btn__header').hasClass('login1')) {
             $.ajax({
                 url: '{{route("all-favorite")}}',
                 type: 'GET',
@@ -96,19 +96,34 @@
         }
         $('.number-yt').css('display', 'none')
         $(".fav").click(function() {
-            //$(this).toggleClass("active");
             if ($(this).hasClass("ri-heart-line")) {
                 $(this).addClass("ri-heart-fill")
                 $(this).addClass("active")
                 $(this).removeClass("ri-heart-line");
                 let productid = $(this).attr('productid');
-                $.post({
+                $.ajax({
                     url: '{{ route("add-favorite") }}',
+                    type: 'POST',
                     data: {
                         productId: productid,
                         _token: "{{ csrf_token() }}"
+                    },
+                    success: function(data, status) {
+                        //Chưa đăng nhập
+                        console.log(data)
+                        if (data == 0) {
+                            $("#dangnhapModal").modal("show");
+                            $('.fav').addClass("ri-heart-line");
+                            $('.fav').removeClass("ri-heart-fill");
+                            $('.fav').removeClass("active")
+                        }
+                        if (data == 1) {
+                            //Thích sản phẩm,
+                        }
+                        if (data == 2) {
+                            //Bỏ thích sản phẩm
+                        }
                     }
-                    
                 })
             } else if ($(this).hasClass("ri-heart-fill")) {
                 $(this).addClass("ri-heart-line");
@@ -124,11 +139,12 @@
                     },
                     success: function(data, status) {
                         //Chưa đăng nhập
+                        console.log(data)
                         if (data == 0) {
-                            $("#dangnhapModal").modal("show");
+                            /*$("#dangnhapModal").modal("show");
                             $('.fav').addClass("ri-heart-line");
                             $('.fav').removeClass("ri-heart-fill");
-                            $('.fav').removeClass("active")
+                            $('.fav').removeClass("active")*/
                         }
                         if (data == 1) {
                             //Thích sản phẩm,
@@ -143,6 +159,7 @@
                 url: '{{route("all-favorite")}}',
                 type: 'GET',
                 success: function(data, status) {
+                    console.log(data)
                     let arr = [];
                     data.forEach(function(item, index, array) {
                         arr.push(item.id)
@@ -157,7 +174,12 @@
 
                 }
             })
-        });*/
+        });
+
+
+
+
+
 
         if ($.cookie('compare') != null) {
             let checkcookie = $.cookie('compare')
@@ -172,7 +194,7 @@
             $(this).click(function() {
                 if ($.cookie('compare')) {
                     let listcomp = $.cookie('compare').split(',')
-                    let productid = $(this).attr('href')
+                    let productid = $(this).attr('productid')
                     console.log(listcomp)
                     if (listcomp.indexOf(productid) != -1) {
                         listcomp.splice(listcomp.indexOf(productid), 1)
@@ -184,7 +206,6 @@
                             $('.number-ss').css('display', 'flex')
                             $('.number-ss').text(listcomp.length)
                         }
-
                     } else {
 
                         listcomp.push(productid);
@@ -193,14 +214,14 @@
                         $(this).children().addClass('active')
                         $('.number-ss').css('display', 'flex')
                         $('.number-ss').text(listcomp.length)
-
+                        return false
                     }
                     $.cookie('compare', listcomp.join())
                     return false
                 } else {
 
                     let listcomp = []
-                    let productid = $(this).attr('href')
+                    let productid = $(this).attr('productid')
                     listcomp.push(productid);
                     $(this).children().addClass('active')
                     console.log(listcomp.join())
@@ -219,7 +240,7 @@
                 $('.number-ss').css('display', 'flex')
                 $('.number-ss').text(listcomp.length)
 
-                let productid = $(this).attr('href')
+                let productid = $(this).attr('productid')
                 if (listcomp.indexOf(productid) != -1) {
                     $(this).children().addClass('active')
                 } else {

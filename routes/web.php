@@ -84,7 +84,7 @@ Route::get('/san-pham',function(){
 Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
 Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
 Route::post('/add-favorited','API\FavoriteController@addFavorite')->name('add-favorite');
-Route::get('/all-favorite','API\FavoriteController@allFavorite')->name('all-favorite');
+Route::get('/favorites/all','API\FavoriteController@allFavorite')->name('all-favorite');
 //Route::post('/add-compare','API\CompareController@addCompare')->name('add-compare');
 
 
