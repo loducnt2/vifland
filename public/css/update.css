@@ -31,6 +31,9 @@ header .nav-desktop .main-nav .nav-list .icon {
 #products {
     width: 100%;
 }
+section.sanpham-s-2 .article-content p {
+    font-size: 1rem;
+}
 .dangbaiviet .select2-selection__rendered {
     padding-left: 10px !important;
 }

@@ -177,10 +177,22 @@
                             </div>
                             <div class="col-12 form-group">
                                 <span>Ảnh chi tiết : &nbsp;</span>
-                                <input type="file" name="img[]" multiple>
+                                <!-- <input type="file" name="img[]" multiple> -->
                             </div>
                             <div class="col-12 form-group">
-                                <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
+                                <!-- <input class="input-100-s" type="text" placeholder="Add tags" name="tags"> -->
+                            </div>
+                            <div class="col-12 form-group">
+                                <input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" placeholder="Add tags" name="tags">
+                            </div>
+                            <div class="col-12 form-group wrap-input-img form-upload">
+                                <div class="form-upload__preview"></div>
+                                <div class="form-upload__field">
+                                    <label class="form-upload__title" for="upload">Thêm ảnh
+                                        <input class="form-upload__control js-form-upload-control" id="upload" type="file" multiple="true" style="display:none"  name="img[]">
+                                    </label>
+                                    <button class="btn btn-clear ml-3">Xóa ảnh</button>
+                                </div>
                             </div>
                         </div>
                         <div class="row thongtinlh">
@@ -739,38 +751,7 @@
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
-
-<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-
-<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 <script>
-$(function() {
-
-    // Turn input element into a pond
-    $('.my-pond').filepond();
-
-    // Turn input element into a pond with configuration options
-    $('.my-pond').filepond({
-        allowMultiple: true
-    });
-
-    // Set allowMultiple property to true
-    $('.my-pond').filepond('allowMultiple', false);
-
-    // Listen for addfile event
-    $('.my-pond').on('FilePond:addfile', function(e) {
-        console.log('file added event', e);
-    });
-
-    // Manually add a file using the addfile method
-    $('.my-pond').filepond('addFile', 'index.html').then(function(file) {
-        console.log('file added', file);
-    });
-
-});
-</script>
-<script>
-// $('#testdate').datepicker();
 $("#testdate").datepicker({
     language: 'vi',
     format: 'mm/dd/yyyy',
@@ -801,23 +782,6 @@ $(document).ready(function() {
         var url1 = '/get-ward/' + district;
         $('#ward').load(url1);
     });
-
-    FilePond.registerPlugin();
-      var element = document.querySelector('meta[name="csrf-token"]');
-      var csrf = element && element.getAttribute("content");
-      FilePond.setOptions({
-        server: {
-              url: "{{ url('upload')}}",
-              process: {
-                  headers: {
-                    'X-CSRF-TOKEN': csrf 
-                  },
-              }
-          }
-      });
-      const inputElement = document.querySelector('input[name="image"]');
-      const pond = FilePond.create( inputElement);
-
 
       //Validate 
       $('.formDangBaiViet').submit(function(){
