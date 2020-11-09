@@ -64,7 +64,7 @@ class NewsController extends Controller
             $news->img= $imageName;
         }
         else{
-         $news->img = "bds_1.jpg";
+            $news->img = "bds_1.jpg";
         }
         // $url = "/news/{{$news->slug}}";
         $news->save();
@@ -88,11 +88,7 @@ class NewsController extends Controller
     {
         $cate = NewsCategory::where('slug',$slug)->first();
         // lấy category_slug
-<<<<<<< HEAD
-        $posts = News::where('category_slug',$cate->slug)->get();
-=======
         $posts = News::where('category_slug',$cate->slug)->paginate(3);
->>>>>>> 545c2ac (Thọ- Thêm thanh thông báo, thay đổi mật khẩu thành công,)
         // truyền category_slug và tìm post
         return view('pages/new-by-category')->with(
             [
@@ -142,7 +138,7 @@ class NewsController extends Controller
                 'latest'=>$latest
             ]);
     }
-     /**
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

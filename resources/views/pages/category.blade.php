@@ -970,9 +970,6 @@
 <!-- Thêm script cho trang này ở đây -->
 <script type="text/javascript">
 $(document).ready(function() {
-
-        
-
         /*$('#province').change(function() {
             let province = $(this).val();
             let url = '/get-district/' + province;
@@ -1011,7 +1008,6 @@ $(document).ready(function() {
                 }
             })
         })
-       
         $('#filter').change(function(){
             $.ajax({
                 url: '{{ route("filter") }}',
@@ -1036,7 +1032,5 @@ $(document).ready(function() {
         let url1 = '/get-ward/' + district;
         $('#ward').load(url1);
     });
-
-});
 </script>
 @endsection

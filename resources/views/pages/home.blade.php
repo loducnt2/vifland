@@ -102,8 +102,8 @@
 								<div class="checked">
 									<input id="idgiaohang3" slug="{{$categories['2']->slug}}" type="radio" value="{{$categories['2']->id}}" name="cate">
 									<label for="idgiaohang3">{{$categories['2']->name}}</label>
-									<input id="idgiaohang3" type="radio" value="{{$categories['2']->id}}" name="cate">
-									<label for="idgiaohang3">{{$categories['2']->name}}</label>
+									<!-- <input id="idgiaohang3" type="radio" value="{{$categories['2']->id}}" name="cate">
+									<label for="idgiaohang3">{{$categories['2']->name}}</label> -->
 								</div>
 							</div>
 						</div>
