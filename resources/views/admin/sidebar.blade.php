@@ -60,13 +60,13 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"> 
-                     <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                     <a class="navbar-brand" href="index.html">VIFLAND</a>
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <div class="sb-sidenav-menu-heading">MỤC THỐNG KÊ</div>
                         <a class="nav-link" href="{{url('admin')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Trang chủ
+                                trang thống kê dữ liệu
                             </a>
                             <div class="sb-sidenav-menu-heading">Quản lí sản phẩm và danh mục</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
