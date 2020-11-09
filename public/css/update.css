@@ -28,8 +28,21 @@ header .nav-desktop .main-nav .nav-list .icon {
     display: flex;
     justify-content: flex-end;
 }
+#cke_1_contents {
+    height: 370px!important;
+}
+.box-sp {
+    width: 100%
+}
+.cke_chrome {
+    border-radius: 5px;
+    overflow: hidden;
+}
 #products {
     width: 100%;
+}
+section.sanpham-s-2 .article-content p {
+    font-size: 1rem;
 }
 .dangbaiviet .select2-selection__rendered {
     padding-left: 10px !important;

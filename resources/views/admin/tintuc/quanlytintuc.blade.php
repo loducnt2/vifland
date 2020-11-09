@@ -48,12 +48,11 @@ width: 100%;
 {{-- get tags value --}}
 
 
-<div class="container">
+<div class="max-width-container">
     <div class="py-5 text-center">
     <form  method="POST" id="dangtin" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
         {{-- {{ csrf_field() }} --}}
         @csrf
-
      </div>
 
         <div class="row">
@@ -134,7 +133,7 @@ width: 100%;
       <div class="col-md-8 order-md-1">
         <div>
           <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
               <label for="firstName">Tiêu đề bài viết</label>
               <label for="text" class="error"></label>
 
@@ -143,14 +142,13 @@ width: 100%;
             </div>
 
             {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="">Ngày đăng</label>
                 <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar" aria-hidden="true"></i>
                     </div>
-                <input class="form-control" id="email" name="datepost" type="text" readonly value="
-                {{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
+                <input class="form-control" id="email" name="datepost" type="text" readonly value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
                   </div>
               </div>
 
@@ -171,9 +169,8 @@ width: 100%;
 
           <div class="form-group">
             <label for="">Từ khoá</label>
-            <input type="text" class="form-control typeahead" name="tags[]" id="tag" aria-describedby="helpId" placeholder="" data-role="tagsinput" >
+            <input type="text" class="form-control typeahead" name="tags[]" id="tag" aria-describedby="helpId" placeholder="" data-role="tagsinput">
           </div>
-          Từ khoá của bài viết:<div id="tags"></div>
           <div class="row">
             <div class="col-md-12 mb-3">
                 <label for="text" class="error"></label>

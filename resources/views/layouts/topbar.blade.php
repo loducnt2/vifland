@@ -135,6 +135,7 @@
                                 </div>
                             </div>
                         </li>
+                        <li class="nav-item tin-tuc-icon"><em class="material-icons icon">list_alt</em><a class="text" href="">Tin tức</a></li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
                                 data-target="#exampleModal">Đăng bài</a>
