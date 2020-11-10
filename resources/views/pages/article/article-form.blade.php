@@ -1,10 +1,12 @@
 @extends('layouts.master')
 @section('title','Đăng bài viết')
 @section('headerStyles')
-<!-- Thêm styles cho trang này ở đây-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.css">
+    
 @stop
 @section('content')
 <main>
+   
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
@@ -425,11 +427,15 @@
                                 <div class="col-12">
                                     <div class="row wrap-lich">
 
-                                        <div class="col-6 form-group">
+                                        <div class="col-4 form-group">
                                             <label for="songayvip">Ngày đăng bài</label>
                                             <input class="calendar" type="datetime" name="datetime_start" id="testdate">
                                         </div>
-                                        <div class="col-6 form-group">
+                                        <div class="col-4 form-group">
+                                            <label for="songayvip">Giờ đăng bài</label>
+                                            <input class="timepicker" type="text" id="timepicker" data-mintime="now"/>
+                                        </div>
+                                        <div class="col-4 form-group">
                                             <label for="songayvip">Số ngày</label>
                                             <select class="selectNgay" name="songaydangbai">
                                                 <option value="7">7</option>
@@ -741,18 +747,29 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
-<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-
+<script src="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.js"></script>
 <script>
+// var date = new Date();
+// date.setDate(date.getDate()-1);
+// var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+var now = new Date();
+var formatted = now.getHours() + ":" + now.getMinutes();
+$('#timepicker').mdtimepicker({format: 'hh:mm'});
+$('#timepicker').mdtimepicker('setValue', formatted);
+
+var date = new Date();
+var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 $("#testdate").datepicker({
+    startDate: today,
+    todayHighlight: true,
     language: 'vi',
     format: 'mm/dd/yyyy',
-
 }).attr('readonly', 'readonly');
+$( '#testdate' ).datepicker( 'setDate', today );
 CKEDITOR.replace('summary-ckeditor');
 $(document).ready(function() {
-
+    
     $('#unit').change(function(){
         if( $(this).val()==13 ){
             $('#price').attr('disabled',true);
