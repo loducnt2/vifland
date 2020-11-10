@@ -62,7 +62,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
+        return $request->tags;
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         $price = doubleval($request->price)*intval($unit);
         $filter_price = FilterPrice::where('min','<=',$price)->where('max','>=',$price)->value('id');
