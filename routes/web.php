@@ -122,21 +122,24 @@ Route::post('/admin/danh-sach-danh-muc/update/{id}','CategoryController@update')
 Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');
 Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');
 Route::get('/admin/danh-sach-danh-muc','CategoryController@index');
-//duyệt tin
+/////////////////////////////////////////
 // Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
 // Route::post('/admin/danh-sach-duyet-tin/update/{id}','NewsController@update')->name('update-new');
 Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
 Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
-Route::get('/admin/danh-sach-duyet-tin','NewsController@duyettin');
-Route::post('/admin/danh-sach-duyet-tin/{id}','NewsController@Anduyettin')->name('duyet-new');
-Route::get('/admin/danh-sach-duyet-tin/detail/{id}','NewsController@ShowDuyetTin')->name('detail-new');
 Route::get('/admin/danh-sach-tin-tuc','NewsController@index');
 // province
 Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')->name('update-province');
 Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');
 Route::get('/admin/danh-sach-province','ProvinceController@index');
 
+//duyet tin
 
+Route::get('/admin/danh-sach-duyet-tin','HistoryPostController@index');
+Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
+Route::get('/admin/danh-sach-duyet-tin/show/{id}','HistoryPostController@show')->name('show-tintuc');
+
+Route::get('/admin/post-history/update/dsds/{id}','HistoryPostController@updatePost')->name('update-post');
 
 //Banner
 Route::post('/admin/danh-sach-banner/create','ImgController@store')->name('create-banner');
