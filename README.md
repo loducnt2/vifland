@@ -48,5 +48,5 @@ memory_limit= -1**
 - **MAILCHIMP_APIKEY=382c609f5e4fa85ef07cd4176bede4de-us2**
 - **MAILCHIMP_LIST_ID=fb224cafd9**
 - Chạy lệnh **php artisan config:clear** hoặc **php artisan config:cache** để .env nhận config mới
-
+-- Chạy **php artisan migrate** để thực thi file migration 2020_11_10_080944_create_newsletter_table để tạo table newsletter trong Database vifland
 
