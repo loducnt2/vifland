@@ -185,5 +185,6 @@ class HomeController extends Controller
             'count_cate3',*/
             //'favorite'
         ));
+        
     }
 }
