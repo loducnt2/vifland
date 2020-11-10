@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\ProductImg;
 use App\Models\PostHistory;
 use App\Models\FilterPrice;
+use App\Models\FilterFacades;
 use App\Models\TypeProduct;
 use App\Models\Favorited;
 use App\User;
@@ -28,11 +29,11 @@ class SearchController extends Controller
     	$province      = $request->province;
     	$product_cate  = $request->product_cate;
     	$price       = $request ->price;
+        
         if( $kyw == NULL && $province == NULL && $product_cate == NULL &&  $price == NULL ){
             $slug = Category::where('id',$cate)->value('slug');
             return redirect( route('cate',$slug) );
         }
-        
 
     	$products = Category::leftJoin('product','category.id','product.cate_id')
     	->leftJoin('product_extend','product.id','product_extend.product_id')
@@ -56,6 +57,7 @@ class SearchController extends Controller
 
     	    return $q->whereIn('product_extend.filter_price',$price);
     	})
+        
     	->select(
             'product.id as product_id',
             'product.thumbnail',
@@ -64,7 +66,10 @@ class SearchController extends Controller
             'product.view',
             'product.datetime_start',
     		'product_extend.filter_price',
+            'product_extend.filter_facades',
             'product_extend.price',
+            'product_extend.floor',
+            'product_extend.bedroom',
     		'product.province_id',
     		'type_of_product.product_cate_id',
             'province.name as province',
@@ -91,20 +96,23 @@ class SearchController extends Controller
     	$provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $content_province = Province::where('id',$request->province)->value('content');
         $filter_price = FilterPrice::orderBy('id','asc')->get();
+        $filter_facades = FilterFacades::orderBy('id','asc')->get();
         $product_cate = ProductCate::orderBy('id','desc')->get();
-    	return view('pages.category',compact('products','title','cate_child','provinces','content_province','filter_price','product_cate'));
+    	return view('pages.category',compact('products','title','cate_child','provinces','content_province','filter_price','product_cate','filter_facades'));
     }
 
     public function filter(Request $request)
     {
         //return $request;
         $cate          = $request->cate_child;
-        //$kyw           = $request->keyword;
+        $floors        = $request->floors;
+        $bedroom       = $request->bedroom;
         $province      = $request->province;
         $district      = $request->district;
         $ward          = $request->ward;
         //$product_cate  = $request->product_cate;
         $price         = $request->price;
+        $facades     = $request->facades;
 
         $products = Category::leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
@@ -142,24 +150,39 @@ class SearchController extends Controller
 
             return $q->whereIn('product_extend.filter_price',$price);
         })
+        ->when($facades, function ($q) use ($facades) {
+
+            return $q->whereIn('product_extend.filter_facades',$facades);
+        })
+        ->when($floors, function ($q) use ($floors) {
+
+            return $q->where('product_extend.floors',$floors);
+        })
+        ->when($bedroom, function ($q) use ($bedroom) {
+
+            return $q->where('product_extend.bedroom',$bedroom);
+        })
         ->select(
+            //'product_image.name as img',
             'product.id as product_id',
-            'product.thumbnail',
-            'product.title',
-            'product.slug',
+            'product.thumbnail as thumbnail',
+            'product.slug as slug',
             'product.view',
             'product.datetime_start',
-            'product_extend.filter_price',
+            'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
             'product_extend.price',
-            /*'product.province_id',
-            'product.district_id',*/
-            //'type_of_product.product_cate_id',
-            'province.name as province',
-            'district.name as district',
-            'product_unit.name as unit',
+            'product_extend.product_cate',
             'product_extend.depth',
             'product_extend.facades',
-            'product.view'
+            'product_extend.floors',
+            'product_extend.bedroom',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit'
+            //'ward.name as ward'
         )
         ->get();
         
@@ -200,6 +223,7 @@ class SearchController extends Controller
         $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $filter_price = FilterPrice::orderBy('id','asc')->get();
+        $filter_facades = FilterFacades::orderBy('id','asc')->get();
         $product_cate = ProductCate::orderBy('id','desc')->get();
 
         $products = Category::where('parent_id',$cate)
@@ -230,6 +254,8 @@ class SearchController extends Controller
             'product_extend.product_cate',
             'product_extend.depth',
             'product_extend.facades',
+            'product_extend.floors',
+            'product_extend.bedroom',
             'province.name as province',
             'district.name as district',
             'product_unit.name as unit'
@@ -252,6 +278,6 @@ class SearchController extends Controller
         }
 
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces','filter_price','product_cate'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces','filter_price','product_cate','filter_facades'));
     }
 }

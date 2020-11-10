@@ -1,5 +1,5 @@
 @extends('layouts.master')
- @section('title',$title)
+ @section('title','dsds')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop
@@ -138,7 +138,12 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Khoảng mặt tiền</label>
-                                            <input type="number" name="facades">
+                                            <select  class="select1" name="facades[]" multiple="multiple">
+                                                <option value="AL">Chọn</option>
+                                                @foreach($filter_facades as $faca)
+                                                <option value="{{$faca->id}}">{{$faca->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Khoảng dự tính</label>
@@ -181,17 +186,11 @@
                                     <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số tầng</label>
-                                            <select class="select1" name="loainhadat[]" multiple="multiple">
-                                                <option value="AL">Alabama</option>
-                                                <option value="WY">Wyoming</option>
-                                            </select>
+                                            <input type="number" value="floor" name="floors" min="0">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số phòng ngủ</label>
-                                            <select class="select1" name="loainhadat[]" multiple="multiple">
-                                                <option value="AL">Alabama</option>
-                                                <option value="WY">Wyoming</option>
-                                            </select>
+                                            <input type="number" value="bedroom" name="bedroom" min="0">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Giấy tờ pháp lý</label>
@@ -262,11 +261,10 @@
                                                 <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
                                                 <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
                                             </div>
-                                            <!-- <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-                                                <div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-                                                <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{$product->depth*$product->facades}} m²</span></div>
-                                            </div> -->
+                                            <div class="mota-place-1">
+                                                <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->floors}} Tầng">{{$product->floors}} Tầng</span></div>
+                                                <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom}} Phòng ngủ</span></div>
+                                            </div>
                                         </div>
                                         <div class="end-mota">
                                             <div class="mota-end-box">
@@ -1025,7 +1023,8 @@ $(document).ready(function() {
                         if( item.facades > 0 && item.depth > 0 ){
                              acreage = parseInt(item.depth)*parseInt(item.facades)
                         }
-                        let pr = '<div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass"><div class="box-sp"><div class="box-sp-img"><a class="localstore" localstore="'+item.product_id+'" href="{{route('article-detail','+item.slug+')}}"><img src="{{asset('assets/product/thumb/')}}/'+item.thumbnail+'" alt=""></a><div class="tag-thuongluong">'+item.price+' '+item.unit+'</div><div class="box-icon"><i class="fav ri-heart-line icons" productid="'+item.product_id+'"></i><a href="" productid="'+item.product_id+'" class="comp" ><i class="ri-equalizer-line icons"></i></a></div><div class="overlay"></div></div><div class="box-sp-text"><a class="localstore" localstore="'+item.product_id+'" href="{{route('article-detail','+item.slug+')}}"><h5 class="title-text lcl lcl-2">'+item.title+'</h5></a><div class="location"> <span class="material-icons">location_on</span><p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="'+item.district+', '+item.province+'">'+item.district+', '+item.province+'</p></div><div class="mota-place"><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+acreage+' m²">'+acreage+' m²</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+item.facades+'">'+item.facades+' m</span></div></div></div><div class="end-mota"><div class="mota-end-box"><div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span></span></div><div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>'+item.view+'</span></div><div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div></div></div></div></div></div>';
+                        /*let pr = '<div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass"><div class="box-sp"><div class="box-sp-img"><a class="localstore" localstore="'+item.product_id+'" href="{{route('article-detail','+item.slug+')}}"><img src="{{asset('assets/product/thumb/')}}/'+item.thumbnail+'" alt=""></a><div class="tag-thuongluong">'+item.price+' '+item.unit+'</div><div class="box-icon"><i class="fav ri-heart-line icons" productid="'+item.product_id+'"></i><a href="" productid="'+item.product_id+'" class="comp" ><i class="ri-equalizer-line icons"></i></a></div><div class="overlay"></div></div><div class="box-sp-text"><a class="localstore" localstore="'+item.product_id+'" href="{{route('article-detail','+item.slug+')}}"><h5 class="title-text lcl lcl-2">'+item.title+'</h5></a><div class="location"> <span class="material-icons">location_on</span><p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="'+item.district+', '+item.province+'">'+item.district+', '+item.province+'</p></div><div class="mota-place"><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+acreage+' m²">'+acreage+' m²</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+item.facades+'">'+item.facades+' m</span></div></div></div><div class="end-mota"><div class="mota-end-box"><div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span></span></div><div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>'+item.view+'</span></div><div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div></div></div></div></div></div>';*/
+                        let pr ='<div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass"><div class="box-sp"><div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail','+item.slug+')}}"><img src="{{asset('assets/product/thumb/')}}/'+item.thumbnail+'" alt=""></a><div class="tag-thuongluong">'+item.price+' '+item.unit+'</div><div class="box-icon"><i class="fav ri-heart-line icons" productid="'+item.product_id+'"></i><a href="" productid="'+item.product_id+'" class="comp" ><i class="ri-equalizer-line icons"></i></a></div><div class="overlay"></div></div><div class="box-sp-text"> <a class="localstore" localstore="'+item.product_id+'" href="{{route('article-detail','+item.slug+')}}"><h5 class="title-text lcl lcl-2">'+item.title+'</h5></a><div class="location"> <span class="material-icons">location_on</span><p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="'+item.district+', '+item.province+'">'+item.district+', '+item.province+'</p></div><div class="mota-place"><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+acreage+' m²">'+acreage+' m²</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+item.facades+'">'+item.facades+' m</span></div></div><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+item.floors+' Tầng">'+item.floors+' Tầng</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="'+item.bedroom+' Phòng ngủ">'+item.bedroom+' Phòng ngủ</span></div></div></div><div class="end-mota"><div class="mota-end-box"><div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span></div><div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>'+item.view+'</span></div><div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div></div></div></div></div></div>'
                         arr.push(pr)
                     })
                     $('#products').html(arr)                 

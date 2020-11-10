@@ -176,7 +176,7 @@
                     <div class="img"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-res-white.png')}}"
                                 alt=""></a></div>
                     <div class="button-mobile-post">
-                        <button class="button-mbp"><i class="ri-chat-new-fill icon"></i><span>Đăng bài</span></button>
+                        <button class="button-mbp"><i class="ri-chat-new-fill icon"></i><a style="color:#fff" class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal">Đăng bài</a></button>
                         <div class="sosanh"><a href="/compares"><i class="ri-equalizer-line icon"></i></a></div>
                         <div class="yeuthich"><a href="{{route('favorites')}}"><i class="ri-heart-fill icon"></i></a>
                         </div>

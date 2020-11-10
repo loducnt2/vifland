@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\ProductImg;
 use App\Models\PostHistory;
 use App\Models\FilterPrice;
+use App\Models\FilterFacades;
 use App\Models\TypeProduct;
 use App\Models\Favorited;
 use App\User;
@@ -68,8 +69,14 @@ class ProductController extends Controller
         }else{
             $pr = $request->price;
         }
+        if( $request->facades == NULL ){
+            $fa = 0;
+        }else{
+            $fa = $request->facades;
+        }
         $price = doubleval($pr)*intval($unit);
-        $filter_price = FilterPrice::where('min','<=',$price)->where('max','>=',$price)->value('id');
+        $filter_price = FilterPrice::where('min','<',$price)->where('max','>=',$price)->value('id');
+        $filter_facades = FilterFacades::where('min','<',$fa)->where('max','>=',$fa)->value('id');
         $product = new Product([
             'cate_id'        => $request->cate_id,
             'title'          => $request->title,
@@ -139,6 +146,7 @@ class ProductController extends Controller
             'product_id'   => $product->id,
             'product_cate' => $product_cate,
             'filter_price' => $filter_price,
+            'filter_facades'=>$filter_facades,
             'address'      => $request->address_product,
             'facades'      => $facades,
             'depth'        => $depth,
