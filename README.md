@@ -43,10 +43,10 @@ pass : 1
 ; http://php.net/memory-limit
 memory_limit= -1**
 -- -------------------------------------------------------------------------------------------
--- 2. Chạy lệnh ** composer require spatie/laravel-newsletter để cài đặt package NewsLetter
--- Sau khi đã cài package, bổ sung 2 dòng vào cuối .env (tạm thời) 
---**MAILCHIMP_APIKEY=382c609f5e4fa85ef07cd4176bede4de-us2**
---**MAILCHIMP_LIST_ID=fb224cafd9**
--- Chạy lệnh **php artisan config:clear** hoặc **php artisan config:cache** để .env nhận config mới
+- 2. Chạy lệnh ** composer require spatie/laravel-newsletter để cài đặt package NewsLetter
+- Sau khi đã cài package, bổ sung 2 dòng vào cuối .env (tạm thời) 
+- **MAILCHIMP_APIKEY=382c609f5e4fa85ef07cd4176bede4de-us2**
+- **MAILCHIMP_LIST_ID=fb224cafd9**
+- Chạy lệnh **php artisan config:clear** hoặc **php artisan config:cache** để .env nhận config mới
 
 
