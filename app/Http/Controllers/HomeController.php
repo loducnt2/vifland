@@ -178,7 +178,7 @@ class HomeController extends Controller
             'filter_price',
             'product_by_cate1',
             'product_by_cate2',
-            'product_by_cate3',
+            'product_by_cate3'
             
             
             /*'count_cate1',

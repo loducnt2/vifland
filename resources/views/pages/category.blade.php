@@ -128,34 +128,35 @@
                                     <div class="tab-pane fade" id="thongtin" role="tabpanel"
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="loainhadat[]" multiple="multiple">
-                                                <option value="AL">Alabama</option>
-                                                <option value="WY">Wyoming</option>
+                                            <label for="thanhpho">Loại nhà đất</label>
+                                            <select disabled="" class="select1" name="loainhadat[]" multiple="multiple">
+                                                <option value="AL">Chọn</option>
+                                                @foreach($product_cate as $cate)
+                                                <option value="{{$cate->id}}">{{$cate->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Khoảng mặt tiền</label>
-                                            <select class="select1" name="loainhadat[]" multiple="multiple">
-                                                <option value="AL">Alabama</option>
-                                                <option value="WY">Wyoming</option>
-                                            </select>
+                                            <input type="number" name="facades">
                                         </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Khoảng dự tính</label>
                                             <select class="select1" name="loainhadat[]" multiple="multiple">
                                                 <option value="AL">Alabama</option>
                                                 <option value="WY">Wyoming</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mức giá </label>
-                                            <select class="select1" name="loainhadat[]" multiple="multiple">
-                                                <option value="AL">Alabama</option>
-                                                <option value="WY">Wyoming</option>
+                                            <select class="select1" name="price[]" multiple="multiple">
+                                                <option value="">Chọn</option>
+                                                @foreach($filter_price as $price)
+                                                <option value="{{$price->id}}">{{$price->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Hướng</label>
                                             <select class="select1" name="loainhadat[]" multiple="multiple">
                                                 <option value="AL">Alabama</option>
@@ -168,14 +169,14 @@
                                                 <option value="AL">Alabama</option>
                                                 <option value="WY">Wyoming</option>
                                             </select>
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
+                                        </div> -->
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại nhà đất</label>
                                             <select class="select1" name="loainhadat[]" multiple="multiple">
                                                 <option value="AL">Alabama</option>
                                                 <option value="WY">Wyoming</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
@@ -244,7 +245,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
-                                        <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
+                                        <div class="tag-thuongluong">{{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}</div>
                                         <div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="" productid="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
                                         <div class="overlay"></div>
                                     </div>
@@ -1020,7 +1021,7 @@ $(document).ready(function() {
                     data.forEach(function(item, index, array){
                         console.log(item)
                         var acreage = 0
-                        if(item.price == null){item.price = ""}
+                        if(item.price == 0){item.price = ""}
                         if( item.facades > 0 && item.depth > 0 ){
                              acreage = parseInt(item.depth)*parseInt(item.facades)
                         }

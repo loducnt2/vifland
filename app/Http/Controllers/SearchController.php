@@ -90,7 +90,9 @@ class SearchController extends Controller
     	$cate_child     = Category::where('parent_id',$cate)->get();
     	$provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $content_province = Province::where('id',$request->province)->value('content');
-    	return view('pages.category',compact('products','title','cate_child','provinces','content_province'));
+        $filter_price = FilterPrice::orderBy('id','asc')->get();
+        $product_cate = ProductCate::orderBy('id','desc')->get();
+    	return view('pages.category',compact('products','title','cate_child','provinces','content_province','filter_price','product_cate'));
     }
 
     public function filter(Request $request)
@@ -102,11 +104,11 @@ class SearchController extends Controller
         $district      = $request->district;
         $ward          = $request->ward;
         //$product_cate  = $request->product_cate;
-        //$price         = $request->price;
+        $price         = $request->price;
 
         $products = Category::leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('type_of_product','product_extend.id','type_of_product.product_extend_id')
+        //s->leftJoin('type_of_product','product_extend.id','type_of_product.product_extend_id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
@@ -130,13 +132,16 @@ class SearchController extends Controller
             return $q->where('product.ward_id',$ward);
         })
         /*->when($product_cate, function ($q) use ($product_cate) {
+            return $q->whereIn('type_of_product.product_cate_id',$product_cate);
+        })*/
+        /*->when($product_cate, function ($q) use ($product_cate) {
 
             return $q->whereIn('type_of_product.product_cate_id',$product_cate);
-        })
+        })*/
         ->when($price, function ($q) use ($price) {
 
             return $q->whereIn('product_extend.filter_price',$price);
-        })*/
+        })
         ->select(
             'product.id as product_id',
             'product.thumbnail',
@@ -148,7 +153,7 @@ class SearchController extends Controller
             'product_extend.price',
             /*'product.province_id',
             'product.district_id',*/
-            'type_of_product.product_cate_id',
+            //'type_of_product.product_cate_id',
             'province.name as province',
             'district.name as district',
             'product_unit.name as unit',
@@ -179,9 +184,9 @@ class SearchController extends Controller
                 break;
         }*/
         //$acreage = intval($products->depth)*intval($products->facades);
-        $title = 'dsa';
+        //$title = 'dsa';
         //$cate_child     = Category::where('parent_id',$cate)->get();
-        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
+        //$provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         return $products;
         //return view('pages.category',compact('products','title','cate_child','provinces'));
 
@@ -194,6 +199,8 @@ class SearchController extends Controller
         $wards        = Ward::orderBy('name','asc')->get();
         $districts    = District::orderBy('name','asc')->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
+        $filter_price = FilterPrice::orderBy('id','asc')->get();
+        $product_cate = ProductCate::orderBy('id','desc')->get();
 
         $products = Category::where('parent_id',$cate)
         ->leftJoin('product','category.id','product.cate_id')
@@ -244,6 +251,7 @@ class SearchController extends Controller
                 break;
         }
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
+
+        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces','filter_price','product_cate'));
     }
 }

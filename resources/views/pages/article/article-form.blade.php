@@ -54,7 +54,7 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province_id" id="province" required>
+                                            <select class="select1" name="province_id" id="province" >
                                                 <option value="">Chọn</option>
                                                 @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
@@ -63,19 +63,19 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district_id" id="district" required>
+                                            <select class="select1" name="district_id" id="district" >
                                                 <option value="">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
-                                            <select class="select1" name="ward_id" id="ward" required>
+                                            <select class="select1" name="ward_id" id="ward" >
                                                 <option value="">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="diachi">Địa chỉ</label>
-                                            <input type="text" min="0" name="address" id="diachi" required>
+                                            <input type="text" name="address" id="diachi" >
                                         </div>
 
                                     </div>
@@ -83,7 +83,7 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate[]" multiple="multiple" required >
+                                            <select class="select1" name="product_cate[]" multiple="multiple"  >
                                                 @foreach($product_cate as $prodcate)
                                                 <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
                                                 @endforeach
@@ -91,11 +91,11 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="text" min="0" name="facades" required>
+                                            <input type="text" min="0" name="facades" >
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="text" min="0" name="depth" required>
+                                            <input type="text" min="0" name="depth" >
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -109,7 +109,7 @@
                                         </div> -->
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn vị </label>
-                                            <select class="select1" name="unit_id" id="unit" required>
+                                            <select class="select1" name="unit_id" id="unit" >
                                                 <option value="">Chọn</option>
                                                 @foreach($units as $unit)
                                                 <option value="{{$unit->id}}">{{$unit->name}}</option>
@@ -118,7 +118,7 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price" id="price" required>
+                                            <input type="text" min="0" name="price" id="price" >
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
@@ -135,8 +135,9 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="legal">Giấy tờ pháp lý</label>
-                                            <select name="legal" class="select1" id="legal" required>
-                                                <option selected value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
+                                            <select name="legal" class="select1" id="legal" >
+                                                <option value="">Chọn</option>}
+                                                <option  value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
                                                     CN QSDĐ - Sổ đỏ - Sổ hồng</option>
                                                 <option value="Hợp đồng mua bán">Hợp đồng mua bán
                                                 </option>
@@ -171,14 +172,14 @@
                                 <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
                             </div>
                             <div class="col-12 form-group">
-                                <textarea class="form-control" id="summary-ckeditor" name="content" required></textarea>
+                                <textarea class="form-control" id="summary-ckeditor" name="content" ></textarea>
                             </div>
                             <div class="col-12 form-group">
                                 <span >Ảnh tiêu đề : &nbsp;</span>
-                                <input type="file" name="thumbnail" required>
+                                <input type="file" name="thumbnail">
                             </div>
                             <div class="col-12 form-group">
-                                <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags" required>
+                                <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags" >
                             </div>
                             <div class="col-12 form-group wrap-input-img form-upload">
                                 <div class="form-upload__preview"></div>
@@ -198,22 +199,22 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">person</span>
-                                <input type="text" placeholder="Tên liên lạc" name="name_contact" required>
+                                <input type="text" placeholder="Tên liên lạc" name="name_contact" >
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">business</span>
-                                <input type="text" placeholder="Tên Công ty" name="company_name" required>
+                                <input type="text" placeholder="Tên Công ty" name="company_name" >
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">phone</span>
-                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact" required>
+                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact" >
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
-                                <input type="text" placeholder="Facebook cá nhân" name="facebook" required>
+                                <input type="text" placeholder="Facebook cá nhân" name="facebook" >
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">location_on</span>
-                                <input type="text" placeholder="Địa chỉ" name="address_contact" required>
+                                <input type="text" placeholder="Địa chỉ" name="address_contact" >
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">public</span>
@@ -221,7 +222,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">email</span>
-                                <input type="text" placeholder="Hộp thư điện tử" name="email" required>
+                                <input type="text" placeholder="Hộp thư điện tử" name="email" >
                             </div>
                         </div>
                         <div class="row loaitindang">
@@ -747,6 +748,7 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script src="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.js"></script>
 <script>
@@ -770,6 +772,8 @@ $( '#testdate' ).datepicker( 'setDate', today );
 CKEDITOR.replace('summary-ckeditor');
 $(document).ready(function() {
     
+
+
     $('#unit').change(function(){
         if( $(this).val()==13 ){
             $('#price').attr('disabled',true);
@@ -795,6 +799,12 @@ $(document).ready(function() {
 
       //Validate 
       $('.formDangBaiViet').submit(function(){
+
+        if( !$('#province').change() ){alert('ds')}
+
+
+
+
         let wallet = {{ auth()->user()->wallet }};
         let pricepost = $('input[name="pricePost"]').val();
         //console.log(wallet + ' ' + pricepost)
@@ -803,21 +813,33 @@ $(document).ready(function() {
             return false
         }
       })
-      /*$('.formDangBaiViet').validate({
+      $('.formDangBaiViet').validate({
+          ignore: [],
           rules:{
-              title:{
-                required:true,
-              },
-              name_contact:{
-                required:true,
-              },
-              phone_contact:{
-                required:true,
-              },
-              address_contact:{
+              province_id:{
                 required:true,
               },
               address:{
+                required:true,
+              },
+              title:{
+               required :true,
+              },
+              content:{
+                required:true,
+                lettersonly: true,
+                minlength:50
+              },
+              img:{
+                required:true,
+              },
+              name_contact:{
+               required :true,
+              },
+              phone_contact:{
+               required :true,
+              },
+              address_contact:{
                 required:true,
               },
               facades:{
@@ -828,37 +850,84 @@ $(document).ready(function() {
                 required:true,
                 number:true,
               },
+              datetime_start:{
+                required:true,
+              },
+              tags:{
+                required:true,
+              },
+              thumbnail:{
+                required:true,
+              },
+              legal:{
+                required:true,
+              },
+              unit_id:{
+                required:true,
+              },
+              price:{
+                required:true,
+              },
               
 
           },
           messages:{
-              title :{
-                  required: "Trường này bắt buộc"
-              },
-              name_contact :{
-                  required: "Trường này bắt buộc"
-              },
-              phone_contact :{
-                  required: "Trường này bắt buộc"
-              },
-              address_contact :{
-                  required: "Trường này bắt buộc"
-              },
-              address :{
-                  required: "Trường này bắt buộc"
-              },
-              facades :{
-                  required: "Trường này bắt buộc",
-                  number: "Trường này không hợp lệ",
-              },
-              depth:{
-                required: "Trường này bắt buộc",
-                number: "Trường này không hợp lệ",
-              },
+            province_id:{
+              required: "Trường này bắt buộc",
+            },
+            address:{
+              required: "Trường này bắt buộc",
+            },
+            title :{
+                required: "Trường này bắt buộc"
+            },
+            content:{
+              required: "Trường này bắt buộc",
+              minlength: "Nhập ít nhất 50 ký tự"
+            },
+            img:{
+                required:"Trường này bắt buộc",
+            },
+            name_contact :{
+                 required: "Trường này bắt buộc"
+            },
+            phone_contact :{
+                required: "Trường này bắt buộc"
+            },
+            address_contact :{
+                required: "Trường này bắt buộc"
+            },
+            facades :{
+               required: "Trường này bắt buộc",
+               number: "Trường này không hợp lệ",
+            },
+            depth:{
+              required: "Trường này bắt buộc",
+              number: "Trường này không hợp lệ",
+            },
+            datetime_start:{
+              required: "Trường này bắt buộc",
+            },
+            tags:{
+              required: "Trường này bắt buộc",
+            },
+            thumbnail:{
+              required: "Trường này bắt buộc",
+            },
+            legal:{
+              required: "Trường này bắt buộc",
+            },
+            unit_id:{
+              required: "Trường này bắt buộc",
+            },
+            price:{
+              required: "Trường này bắt buộc",
+            },
 
               
           },
-          errorPlacement: function(error, element) {
+          //Custom
+          /*errorPlacement: function(error, element) {
               //Custom position: first name
               if (element.attr("name") == "first" ) {
                   $("#errNm1").text(error);
@@ -871,14 +940,14 @@ $(document).ready(function() {
               else {
                    error.append($('.errorTxt span'));
               }
-          },
+          },*/
           submitHandler: function(form) {
                   form.submit(function(){
 
                   });
               }
           
-      });*/
+      });
 
 
 });
