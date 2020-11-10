@@ -1,7 +1,16 @@
 <header>
+    @if(Auth::check() && Auth::user()->user_type == "1")
     <div class="top-bar-admin">
+        <div class="max-width-container">
+        <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a></div>
 
+            <div class="wrap-text-right">
+                <p>Xin chào mừng: {{auth()->user()->username}}</p>
+                <div class="line"> </div><a class="dangxuat" href="/logout">Đăng xuất</a>
+            </div>
+        </div>
     </div>
+    @endif
     <div class="user-login d-none d-lg-block">
         <div class="wrap-1">
             <div class="title">Tài khoản</div><i class="ri-close-line close-button-3"></i>

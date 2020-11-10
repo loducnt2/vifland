@@ -8,13 +8,6 @@
 @if(Auth::check() && Auth::user()->user_type == "1")
 <!-- Nav tabs -->
 
-<nav class="navbar navbar-light bg-dark" style="font-size:12px;color:white;">
-    <a class="navbar-brand" href="/admin/index">
-      {{-- <img src= width="30" height="30" class="d-inline-block align-top" alt=""> --}}
-      Quay về trang quản trị
-    </a>
-  </nav>
-
 @endif
 @section('content')
 
