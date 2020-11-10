@@ -26,6 +26,12 @@
             <a href="{{route('show-tintuc',$new->product_id)}}">Detail</a>
             <a href="{{route('update-post',$new->post_id)}}">Duyệt</a>
           </td>
+          t select status = 0
+          select all đi
+          trong đó phân ra cái nào đã đăng, cái nào chờ duyệt,
+          ok thnak bzerro
+      cái nào chờ duyệt thì gắn link duyệt, rồi gắn tohong bao lkuon
+      
           
         </tr>
         @endforeach

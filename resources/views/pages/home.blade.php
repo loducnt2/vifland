@@ -157,7 +157,7 @@
 	</section>
 
 	<section class="index-sc3">
-		<div class="max-width-container border-bottom">
+		<div class="max-width-container border-botfm">
 			<div class="category-container">
 				<div class="row">
 					<div class="col-4">

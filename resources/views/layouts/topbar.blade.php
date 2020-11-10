@@ -113,7 +113,7 @@
 
 
                                     <div class="co-thong-bao">
-                                  
+
                                         <div class="item">
                                             <div class="wrap-text notification-duedate ">
                                                 <div class="thongbao post-expired">Thông báo</div><a href="#">Bài
@@ -121,17 +121,17 @@
                                                 <div class="date"></div>
                                              </div>
                                         </div>
-                                     
-                                  
+
+
                                         <div class="item">
                                             <div class="wrap-text">
                                                 <div class="thongbao thongbao-color">Thông báo</div><a href="#"></a>
                                                 <div class="date">{{session()->get('noti')}}</div>
                                             </div>
                                         </div>
-                                     
-                                        
-                                        
+
+
+
 
                                     </div>
 

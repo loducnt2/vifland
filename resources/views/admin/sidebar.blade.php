@@ -126,6 +126,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý tỉnh/ thành phố
                             </a>
+                            <a class="nav-link" href="{{ url('admin/index/quan-ly-thu-tin-tuc') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Quản lý thư tin tức
+                            </a>
+
                             <a class="nav-link" href="{{ url('admin/danh-sach-banner') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Banner
