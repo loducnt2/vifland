@@ -248,6 +248,14 @@
 								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
 								<div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
+								<div class="vip">
+								<!-- {{$product->type}} -->
+									
+									@if ($product->type == 0)
+									@else
+										<img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
+									@endif
+								</div>
 							</div>
 							<div class="box-sp-text">
 								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">

@@ -58,6 +58,7 @@ class HomeController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
