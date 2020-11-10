@@ -1,13 +1,16 @@
 <header>
-    <div class="top-bar-admin"> 
+    @if(Auth::check() && Auth::user()->user_type == "1")
+    <div class="top-bar-admin">
         <div class="max-width-container">
-            <div class="wrap-text-left"><a class="truycapadmin" href="">Truy cập admin dashboard</a></div>
-            <div class="wrap-text-right"> 
-                <p>Xin chào mừng: Quang Nguyên</p>
-                <div class="line"> </div><a class="dangxuat" href="">Đăng xuất</a>
+        <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a></div>
+
+            <div class="wrap-text-right">
+                <p>Xin chào mừng: {{auth()->user()->username}}</p>
+                <div class="line"> </div><a class="dangxuat" href="/logout">Đăng xuất</a>
             </div>
         </div>
     </div>
+    @endif
     <div class="user-login d-none d-lg-block">
         <div class="wrap-1">
             <div class="title">Tài khoản</div><i class="ri-close-line close-button-3"></i>
@@ -110,27 +113,25 @@
 
 
                                     <div class="co-thong-bao">
-
+                                  
                                         <div class="item">
                                             <div class="wrap-text notification-duedate ">
-
-                                                <div class="thongbao post-expired"></div><a href="#">Bài
+                                                <div class="thongbao post-expired">Thông báo</div><a href="#">Bài
                                                     viết của bạn sắp hết hạn</a>
                                                 <div class="date"></div>
-                                            <div class="wrap-text notification-duedate">
-                                                <div class="thongbao post-expired">Bài viết hết hạn</div><a href="#">
-                                                    Bài viết của bạn sắp hết hạn</a>
-                                                <div class="date">{{ session()->get('duedate') }}</div>
-                                            </div>
+                                             </div>
                                         </div>
+                                     
+                                  
                                         <div class="item">
                                             <div class="wrap-text">
-                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#">Thông
-                                                    báo khuyến mãi nạp thẻ cho nhân diệp 20/10 20/10/2020 -
-                                                    20/12/2020</a>
-                                                <div class="date">1/11/2020</div>
+                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#"></a>
+                                                <div class="date">{{session()->get('noti')}}</div>
                                             </div>
                                         </div>
+                                     
+                                        
+                                        
 
                                     </div>
 
@@ -329,18 +330,19 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     var textduedate = $(".notification-duedate .date").text();
     var  duedate=new Date(textduedate);
     var today=new Date();
-    var xetDuedate = today-duedate;
+    var xetDuedate = today - duedate;
 console.log(xetDuedate);
 
     if(xetDuedate < 0){
-        $(".notification-duedate").hide();
+        $(".notification-duedate,.number-tb").hide();
     }
     else if(textduedate == ""){
-        $(".notification-duedate").hide();
+        $(".notification-duedate,.number-tb").hide();
     }
 
 </script>

@@ -124,9 +124,12 @@ Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->nam
 Route::get('/admin/danh-sach-danh-muc','CategoryController@index');
 //duyệt tin
 // Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
-Route::post('/admin/danh-sach-tin-tuc/update/{id}','NewsController@update')->name('update-new');
+// Route::post('/admin/danh-sach-duyet-tin/update/{id}','NewsController@update')->name('update-new');
 Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
 Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
+Route::get('/admin/danh-sach-duyet-tin','NewsController@duyettin');
+Route::post('/admin/danh-sach-duyet-tin/{id}','NewsController@Anduyettin')->name('duyet-new');
+Route::get('/admin/danh-sach-duyet-tin/detail/{id}','NewsController@ShowDuyetTin')->name('detail-new');
 Route::get('/admin/danh-sach-tin-tuc','NewsController@index');
 // province
 Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')->name('update-province');
@@ -136,11 +139,17 @@ Route::get('/admin/danh-sach-province','ProvinceController@index');
 
 
 //Banner
-Route::post('/admin/danh-sach-banner/update/{id}','ImgController@update')->name('update-img');
-Route::get('/admin/danh-sach-banner/edit/{id}','ImgController@edit')->name('edit-img');
+Route::post('/admin/danh-sach-banner/create','ImgController@store')->name('create-banner');
+Route::post('/admin/danh-sach-banner/update/{id}','ImgController@update')->name('update-banner');
+Route::get('/admin/danh-sach-banner/edit/{id}','ImgController@edit')->name('edit-banner');
+Route::get('/admin/danh-sach-banner/delete/{id}','ImgController@destroy')->name('del-banner');
 Route::get('/admin/danh-sach-banner','ImgController@index');
-
-
+//thông báo chung
+Route::post('/danh-sach-thong-bao/update/{id}','NotificationController@update')->name('update-noti');
+Route::get('/admin/danh-sach-thong-bao/edit/{id}','NotificationController@edit')->name('edit-noti');
+Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
+Route::get('/admin/danh-sach-thong-bao/delete/{id}','NotificationController@destroy')->name('del-noti');
+Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
 // Quản lý tin đăng
 
 

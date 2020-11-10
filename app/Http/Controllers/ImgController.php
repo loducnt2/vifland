@@ -38,13 +38,30 @@ class ImgController extends Controller
     public function store(Request $request)
     {
        $banner = new Image([
-            'name'      => $req->get("name") ,
-            'status'  => $req->get("status"),
-            'position'    => $req->get("position"),
-            'parent_id' => $req->get("parent"),
+            //'name'      => $request->get("name") ,
+            'status'  => $request->get("status"),
+            'position'    => $request->get("position"),
         ]);
-        $cate->save();
-        return redirect('/admin/danh-sach-danh-muc'); 
+        if ($request->has('img')) {
+                 $file = $request->file('img');
+                 $name = $file->getClientOriginalName();
+                 //$extension = $file->getClientOriginalExtension();
+                 //$filename = $name.'.'.$extension;
+                 $file->move("assets/banner/", $name);
+                 $banner->name = $name;
+
+
+        //    // $name = Str::slug($request->input('name')).'_'.time();
+        //     $folder ='/assets/banner';
+        //     $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+        //     $this->uploadOne($image, $folder, 'public', $name);
+        //     $banner->profile_image = $filePath;
+        }
+        $banner->save();
+
+        
+
+        return redirect('/admin/danh-sach-banner'); 
     }
 
     /**
@@ -66,9 +83,9 @@ class ImgController extends Controller
      */
     public function edit($id)
     {
-        $banner = Category::find($id);
+        $banner = Image::find($id);
        
-        return view('/admin/danhmuc/capnhatdanhmuc',compact('$banner'));
+        return view('/admin/banner/capnhatbanner',compact('banner'));
     }
 
     /**
@@ -80,11 +97,22 @@ class ImgController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $banner = bannergory::find($id);
-        $banner->name      = $req->get('name');
-        $banner->status    = $req->get('status');
-        $banner->image    = $req->get('image');
-        $banner->position    = $req->get('position');
+       $banner = Image::find($id);
+        $banner->status    = $request->get('status');
+        $banner->position    = $request->get('position');
+        if ($request->has('img')) {
+            $file = $request->file('img');
+            $name = $file->getClientOriginalName();
+            $file->move(public_path('/../../assets/banner/'), $name);
+            $banner->name = $name;
+
+
+   //    // $name = Str::slug($request->input('name')).'_'.time();
+   //     $folder ='/assets/banner';
+   //     $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+   //     $this->uploadOne($image, $folder, 'public', $name);
+   //     $banner->profile_image = $filePath;
+   }
         $banner->save();
         return redirect('/admin/danh-sach-banner');
     }
@@ -97,6 +125,8 @@ class ImgController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $banner = Image::find($id);
+        $banner->delete();
+        return redirect('/admin/danh-sach-banner');
     }
 }

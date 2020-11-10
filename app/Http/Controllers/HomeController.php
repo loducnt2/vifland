@@ -9,6 +9,7 @@ use App\Models\ProductCate;
 use App\Models\FilterPrice;
 use App\Models\Product;
 use App\User;
+use App\Notification;
 use App\Models\ProductExtends;
 use App\Models\PostHistory;
 use App\Models\Favorited;
@@ -151,12 +152,23 @@ class HomeController extends Controller
         if( auth()->check() ){
             $Duedate = PostHistory::leftJoin('product','post_history.product_id','product.id')
            ->where('post_history.user_id',auth()->user()->id)
-           ->value('product.datetime_end'); 
+           ->select(
+               'product.id',
+               'product.datetime_end'
+           )
+           ->get();
         }
         else {
             $Duedate = "";
         }
         session()->flash('duedate',$Duedate);
+
+        $noti= Notification::orderBy('id','asc')
+        ->where('status',1)
+        ->get();
+        session()->flash('noti',$noti);
+    
+     
        
         return view('/pages/home',compact(
             'categories',
@@ -166,7 +178,8 @@ class HomeController extends Controller
             'product_by_cate1',
             'product_by_cate2',
             'product_by_cate3',
-            'Duedate'
+            
+            
             /*'count_cate1',
             'count_cate2',
             'count_cate3',*/

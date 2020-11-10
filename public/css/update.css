@@ -31,6 +31,9 @@ header .nav-desktop .main-nav .nav-list .icon {
 #cke_1_contents {
     height: 370px!important;
 }
+.box-sp {
+    width: 100%
+}
 .cke_chrome {
     border-radius: 5px;
     overflow: hidden;
