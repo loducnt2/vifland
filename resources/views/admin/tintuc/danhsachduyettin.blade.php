@@ -12,13 +12,6 @@
         <tr>
           <th>Mã</th>
           <th>Tiêu đề</th>
-          <th>slug</th>
-          <th>Ngôn ngữ</th>
-          <th>Nội dung</th>
-          <th>summary</th>
-          <th>daypost</th>
-          <th>hình</th>
-          <th>tag</th>
           <th>trạng thái</th>
           <th>Action</th>
         </tr>
@@ -26,21 +19,12 @@
       <tbody id="myTable">
         @foreach($news as $new)
         <tr>
-       
-          <td>{{$new->id}}</td>
-          <td>{{$new->title}}</td>
-          <td>{{$new->slug}}</td>
-          <td>{{$new->language}}</td>
-          <td>{{$new->content}}</td>
-          <td>{{$new->summary}}</td>
-          <td>{{$new->datepost}}</td>
-          <td><img class="img-tintuc" src="{{$new->img}}" alt=""></td>
-          <td>{{$new->tag}}</td>
-          <td>{{$new->status==1?'Đang hiện':'Đang ẩn'}}</td>
+          <td>{{$new->post_id}}</td>
+          <td>{{$new->product_title}}</td>
+          <td>{{$new->status == 1 ? 'Đang hiện':'Chờ duyệt'}}</td>
           <td>
-            <a href="{{route('detail-new',$new->id)}}"> <button class="btn btn-info">Xem chi tiết</button> </a>
-            <a href="{{route('delete-new',$new->id)}}"> <button class="btn btn-danger">Xóa tin</button> </a>
-           
+            <a href="{{route('show-tintuc',$new->product_id)}}">Detail</a>
+            <a href="{{route('update-post',$new->post_id)}}">Duyệt</a>
           </td>
           
         </tr>

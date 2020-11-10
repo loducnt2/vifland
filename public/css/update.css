@@ -31,8 +31,21 @@ header .nav-desktop .main-nav .nav-list .icon {
 #cke_1_contents {
     height: 370px!important;
 }
+.vip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.mdtp__wrapper {
+    bottom: 50%!important;
+}
 .box-sp {
     width: 100%
+}
+.timepicker {
+    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M12 16l-6-6h12z' fill='rgba(153,153,153,1)'/%3E%3C/svg%3E") no-repeat;
+background-position: right 10px center;
 }
 .cke_chrome {
     border-radius: 5px;
