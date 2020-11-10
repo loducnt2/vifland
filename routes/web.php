@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\UserController;
 use App\Models\NewsCategory;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,7 @@ Route::get('/testform',function(){return view('pages/article/testform');} );
 Auth::routes();
 Route::get('/testcompare','API\CompareController@testcompare');
 Route::get('/logout','Auth\LoginController@logout');
-Route::get('/', 'HomeController@index')->name('home');	
+Route::get('/', 'HomeController@index')->name('home');
 //Route::get('/', 'HomeController@sessionUser');				// Trang chủ
 Route::get('home','HomeController@index');								// Trang chủ
 Route::get('/compares','API\CompareController@index')->name('compare');		// So sánh
@@ -220,3 +221,6 @@ Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')-
 
 Route::delete('/admin/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
 
+// Newsletter
+Route::post('/sub','NewsLetterController@subscribe')->name('newsletter.subscribe');
+Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->name('newsletter.admin.index');
