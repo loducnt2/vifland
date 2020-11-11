@@ -20,7 +20,6 @@ class HistoryPostController extends Controller
     public function index()
     {
        $news = PostHistory::leftJoin('product','post_history.product_id','product.id')
-        ->where('post_history.status',0)
         ->select(
             'product.title as product_title' ,
             'post_history.status as status',
@@ -85,7 +84,8 @@ class HistoryPostController extends Controller
        $cate    = Category::where('id',$product->cate_id)->value('name');
 
        $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
-       return view('/admin/tintuc/chitietduyettin',compact('product','acreage','total','product_cate','cate','image'));
+        return view('/admin/tintuc/chitietduyettin',compact('product','acreage','total','product_cate','cate','image'));
+    //return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image'));
 
     }
 
@@ -125,7 +125,11 @@ class HistoryPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $pro = Product::find($id);
+       
+        $pro->delete();
+        return redirect('/admin/danh-sach-duyet-tin');
     }
 
     public function updatePost($id){
