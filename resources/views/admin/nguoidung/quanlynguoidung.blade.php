@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
 
     <title>Quản lý người dùng</title>
 
@@ -53,7 +52,7 @@
 
                   <td>
                   {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
-                  <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} >
+                  <input data-id="{{$user->id}}" data-style="ios" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} class="toggle-class" onchange="refreshTable();">
                 {{-- hồ sơ --}}
 
                 </td>
@@ -86,15 +85,20 @@
     </div>
 
     @endsection
-
+{{-- @extends(') --}}
 </body>
 <script>
- function refreshTable() {
-  $('#table').fadeOut();
-  $('#table').load(url, function() {
-      $('#table').fadeIn();
-  });
-}
+    function refreshTable(){
+
+    // location.reload();
+    $('#table').fadeOut(500);
+    setTimeout(function(){
+        $('#table').fadeOut(10, function(){
+            location.reload(true);
+        });
+    }, 10); // 0.01 seconds
+
+    }
 </script>
 
 </html>
