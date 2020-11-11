@@ -11,126 +11,14 @@
 </head>
 <body>
 
-    {{-- @extends('layouts.master') --}}
-    @section('content')
-    <div class="container">
-
-        <h2>Danh mục tin tức</h2>
-        <style>
-            /* .btn{margin-top:40px;} */
-          #myInput{
-              margin-top:20px;
-          }
-          .form-input{
-              margin-top:20px;
-          }
-          .add-cate{
-              margin-top:20px;
-          }
-          table{margin-top:20px;}
-        </style>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-          Launch
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <div class="modal-body">
-                        Body
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <!-- table -->
-<!-- Button trigger modal -->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
+   @section('content')
+    <div class="form-group">
+      <label for=""></label>
+      <input type="text"
+        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+      {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
     </div>
-  </div>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
-     Thêm danh mục tin tức
-</button>
-
-    <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-       <div class="modal-dialog" role="document">
-           <div class="modal-content">
-               <div class="modal-header">
-
-                   <h5 class="modal-title">Thêm danh mục</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                    </button>
-               </div>
-               <div class="modal-body">
-                <input type="hidden" name="cate_id" id="cate_id">
-               <form id="myform" action="#">
-                        {{-- {{ csrf_field() }} --}}
-                <div class="form-group">
-                  {{-- <label for=""></label> --}}
-
-                  <small class="text">
-                    <input type="hidden"
-                    class="form-control" name="slug" id="slug2" aria-describedby="helpId" placeholder="" readonly>
-                    <div id ="slug" name="slug">
-                    </div>
-                  </small>
-                </div>
-               </div>
-               <div class="modal-footer">
-                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                   <button type="submit" class="btn btn-primary">Thực thi</button>
-               </div>
-            </form>
-           </div>
-       </div>
-
-   </div>
-
-    <br>
-
-
-    {{-- <table class="ui celled table" id="myTable">
-      <thead>
-
-      </thead>
-      <tbody id="myTable2">
-
-        </tbody> --}}
-    {{-- </table> --}}
-    <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+   <table id="myTable" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>STT</th>
