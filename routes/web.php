@@ -5,7 +5,7 @@ use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\UserController;
 use App\Models\NewsCategory;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -155,9 +155,10 @@ Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
 
 
 // login admin
-Route::get('/admin/index',function(){
+Route::get('admin/index', ['middleware' => 'admin.auth', function () {
     return view('admin/index');
-}); // Trang admin
+}]);
+
 // ================= hồ sơ ==================
 
 // update thông tin hồ sơ cá nhân
