@@ -46,6 +46,10 @@ a.active {
 .nav-list .active .text {
     color: #eac688!important;
 }
+header .nav-desktop .main-nav .nav-list .text {
+    display: flex;
+    flex-direction: column;
+}
 .tdmk-s {
     display: flex;
     align-items: center;
