@@ -1,8 +1,9 @@
 
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
 <link rel="stylesheet" href="{{asset('css/styles.css') }}">
-    <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
+<link href="{{asset('css/profile.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
 
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
@@ -60,15 +61,15 @@
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                     <a class="navbar-brand" href="index.html">VIFLAND</a>
+                     <a class="navbar-brand" href="">VIFLAND</a>
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <a class="navbar-brand" href="/admin/index">Trang quản trị</a>
+                <a class="sidebar-title" href="/admin/index">Trang quản trị</a>
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">MỤC THỐNG KÊ</div>
                         <a class="nav-link" href="{{url('admin')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                trang thống kê dữ liệu
+                                Trang thống kê dữ liệu
                             </a>
                             <div class="sb-sidenav-menu-heading">Quản lí sản phẩm và danh mục</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -156,4 +157,4 @@
 
             </div>
         </div>
-        @extends('admin.footer');
+        @extends('admin.footer')
