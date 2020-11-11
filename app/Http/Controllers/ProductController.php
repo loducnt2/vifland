@@ -75,7 +75,7 @@ class ProductController extends Controller
             $fa = $request->facades;
         }
         $price = doubleval($pr)*intval($unit);
-        $filter_price = FilterPrice::where('min','<',$price)->where('max','>=',$price)->value('id');
+        $filter_price = FilterPrice::where('min','<s',$price)->where('max','>=',$price)->value('id');
         $filter_facades = FilterFacades::where('min','<',$fa)->where('max','>=',$fa)->value('id');
         $product = new Product([
             'cate_id'        => $request->cate_id,
@@ -137,14 +137,14 @@ class ProductController extends Controller
             $price = $request->price;
         }
         
-        if($request->product_cate!=null){
+        /*if($request->product_cate!=null){
             $product_cate = implode(',',$request->product_cate);
         }else{
             $product_cate = $request->product_cate;
-        }
+        }*/
         $productex = new ProductExtend([
             'product_id'   => $product->id,
-            'product_cate' => $product_cate,
+            'product_cate' => $request->product_cate;,
             'filter_price' => $filter_price,
             'filter_facades'=>$filter_facades,
             'address'      => $request->address_product,

@@ -1,5 +1,5 @@
 @extends('layouts.master')
- @section('title','dsds')
+ @section('title','Danh Mục')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop
@@ -129,8 +129,8 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại nhà đất</label>
-                                            <select disabled="" class="select1" name="loainhadat[]" multiple="multiple">
-                                                <option value="AL">Chọn</option>
+                                            <select  class="select1" name="product_cate[]" multiple="multiple">
+                                                <!-- <option value="AL">Chọn</option> -->
                                                 @foreach($product_cate as $cate)
                                                 <option value="{{$cate->id}}">{{$cate->name}}</option>
                                                 @endforeach
@@ -139,7 +139,7 @@
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Khoảng mặt tiền</label>
                                             <select  class="select1" name="facades[]" multiple="multiple">
-                                                <option value="AL">Chọn</option>
+                                               <!--  <option value="AL">Chọn</option> -->
                                                 @foreach($filter_facades as $faca)
                                                 <option value="{{$faca->id}}">{{$faca->name}}</option>
                                                 @endforeach
@@ -155,7 +155,7 @@
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mức giá </label>
                                             <select class="select1" name="price[]" multiple="multiple">
-                                                <option value="">Chọn</option>
+                                                <!-- <option value="">Chọn</option> -->
                                                 @foreach($filter_price as $price)
                                                 <option value="{{$price->id}}">{{$price->name}}</option>
                                                 @endforeach
@@ -208,37 +208,6 @@
                 <div class="col-lg-9 col-md-12">
                     <div class="row box-right">
                         <div id="products" class="row">
-                            <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12" style="display:none" id="appendproduct">
-                                <div class="box-sp">
-                                    <div class="box-sp-img"><a class="localstore" localstore="" href=""><img src="" alt=""></a>
-                                        <div class="tag-thuongluong"></div>
-                                        <div class="box-icon"><i class="fav ri-heart-line icons" productid=""></i><a href="" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
-                                        <div class="overlay"></div>
-                                    </div>
-                                    <div class="box-sp-text"> 
-                                        <a class="localstore" localstore="" href="">
-                                            <h5 class="title-text lcl lcl-2"></h5>
-                                        </a>
-                                        <div class="location"> <span class="material-icons">location_on</span>
-                                            <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title=""></p>
-                                        </div>
-                                        <div class="mota-place">
-                                            <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title=""></span></div>
-                                                <div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-                                                <div class="mota-place-tt"><img src="" alt=""><span data-toggle="tooltip" data-placement="bottom" title=""></span></div>
-                                            </div>
-                                        </div>
-                                        <div class="end-mota">
-                                            <div class="mota-end-box">
-                                                <div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span></span></div>
-                                                <div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span></span></div>
-                                                <div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                             @if(count($products)>0)
                             @foreach($products as $product)
                             <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
@@ -1029,7 +998,193 @@ $(document).ready(function() {
                     })
                     $('#products').html(arr)                 
                 }
+            }).done(function(){
+                if (!$('.btn__header').hasClass('login1')) {
+                    $.ajax({
+                        url: '{{route("all-favorite")}}',
+                        type: 'GET',
+                        success: function(data, status) {
+                            let arr = [];
+                            data.forEach(function(item, index, array) {
+                                arr.push(item.id)
+                            })
+                            let countfav = arr.length;
+                            if (countfav == 0) {
+                                $('.number-yt').css('display', 'none')
+                            } else {
+                                $('.number-yt').text(countfav)
+                                $('.number-yt').css('display', 'flex')
+                            }
+                            $('.fav').each(function() {
+                                var productid = parseInt($(this).attr('productid'));
+                                if (arr.indexOf(productid) != -1) {
+                                    $(this).addClass('ri-heart-fill')
+                                    $(this).addClass('active')
+                                    $(this).removeClass('ri-heart-line')
+                                } else {
+                                    $(this).removeClass('ri-heart-fill')
+                                    $(this).removeClass('active')
+                                    $(this).addClass('ri-heart-line')
+                                }
+                            })
+
+                        }
+                    })
+                }
+                $.ajax({
+                    url: '{{route("all-favorite")}}',
+                    type: 'GET',
+                    success: function(data, status) {
+                        console.log(data)
+                        let arr = [];
+                        data.forEach(function(item, index, array) {
+                            arr.push(item.id)
+                        })
+                        let countfav = arr.length;
+                        if (countfav == 0) {
+                            $('.number-yt').css('display', 'none')
+                        } else {
+                            $('.number-yt').text(countfav)
+                            $('.number-yt').css('display', 'flex')
+                        }
+
+                    }
+                })
+                $('.number-yt').css('display', 'none')
+                $(".fav").click(function() {
+                    if ($(this).hasClass("ri-heart-line")) {
+                        $(this).addClass("ri-heart-fill")
+                        $(this).addClass("active")
+                        $(this).removeClass("ri-heart-line");
+                        let productid = $(this).attr('productid');
+                        $.ajax({
+                            url: '{{ route("add-favorite") }}',
+                            type: 'POST',
+                            data: {
+                                productId: productid,
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(data, status) {
+                                //Chưa đăng nhập
+                                console.log(data)
+                                if (data == 0) {
+                                    $("#dangnhapModal").modal("show");
+                                    $('.fav').addClass("ri-heart-line");
+                                    $('.fav').removeClass("ri-heart-fill");
+                                    $('.fav').removeClass("active")
+                                }
+                                if (data == 1) {
+                                    //Thích sản phẩm,
+                                }
+                                if (data == 2) {
+                                    //Bỏ thích sản phẩm
+                                }
+                            }
+                        })
+                    } else if ($(this).hasClass("ri-heart-fill")) {
+                        $(this).addClass("ri-heart-line");
+                        $(this).removeClass("ri-heart-fill");
+                        $(this).removeClass("active")
+                        let productid = $(this).attr('productid');
+                        $.ajax({
+                            url: '{{ route("add-favorite") }}',
+                            type: 'POST',
+                            data: {
+                                productId: productid,
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(data, status) {
+                                //Chưa đăng nhập
+                                console.log(data)
+                                if (data == 0) {
+                                    /*$("#dangnhapModal").modal("show");
+                                    $('.fav').addClass("ri-heart-line");
+                                    $('.fav').removeClass("ri-heart-fill");
+                                    $('.fav').removeClass("active")*/
+                                }
+                                if (data == 1) {
+                                    //Thích sản phẩm,
+                                }
+                                if (data == 2) {
+                                    //Bỏ thích sản phẩm
+                                }
+                            }
+                        })
+                    }
+                    
+                })
+                if ($.cookie('compare') != null) {
+                    let checkcookie = $.cookie('compare')
+                    console.log(checkcookie.length)
+                    if (checkcookie.length == 0) {
+                        $.removeCookie('compare')
+                    }
+                }
+
+                $('.number-ss').css('display', 'none')
+                $('.comp').each(function() {
+                    $(this).click(function() {
+                        if ($.cookie('compare')) {
+                            let listcomp = $.cookie('compare').split(',')
+                            let productid = $(this).attr('productid')
+                            console.log(listcomp)
+                            if (listcomp.indexOf(productid) != -1) {
+                                listcomp.splice(listcomp.indexOf(productid), 1)
+
+                                $(this).children().removeClass('active')
+                                if (listcomp.length == 0) {
+                                    $('.number-ss').css('display', 'none')
+                                } else {
+                                    $('.number-ss').css('display', 'flex')
+                                    $('.number-ss').text(listcomp.length)
+                                }
+                            } else {
+
+                                listcomp.push(productid);
+                                console.log(listcomp.join())
+
+                                $(this).children().addClass('active')
+                                $('.number-ss').css('display', 'flex')
+                                $('.number-ss').text(listcomp.length)
+                                return false
+                            }
+                            $.cookie('compare', listcomp.join())
+                            return false
+                        } else {
+
+                            let listcomp = []
+                            let productid = $(this).attr('productid')
+                            listcomp.push(productid);
+                            $(this).children().addClass('active')
+                            console.log(listcomp.join())
+                            $.cookie('compare', listcomp.join())
+
+                            $('.number-ss').text(listcomp.length)
+                            $('.number-ss').css('display', 'flex')
+
+                            return false
+                        }
+
+                    })
+                    if ($.cookie('compare')) {
+                        let listcomp = $.cookie('compare').split(',')
+
+                        $('.number-ss').css('display', 'flex')
+                        $('.number-ss').text(listcomp.length)
+
+                        let productid = $(this).attr('productid')
+                        if (listcomp.indexOf(productid) != -1) {
+                            $(this).children().addClass('active')
+                        } else {
+                            $(this).children().removeClass('active')
+                        }
+
+
+                    }
+                })
             })
+            
+
             //alert( $(this).serialize() )
         });
     });

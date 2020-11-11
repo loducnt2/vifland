@@ -83,7 +83,7 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate[]" multiple="multiple"  >
+                                            <select class="select1" name="product_cate" multiple=  >
                                                 @foreach($product_cate as $prodcate)
                                                 <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
                                                 @endforeach
@@ -801,9 +801,6 @@ $(document).ready(function() {
       $('.formDangBaiViet').submit(function(){
 
         if( !$('#province').change() ){alert('ds')}
-
-
-
 
         let wallet = {{ auth()->user()->wallet }};
         let pricepost = $('input[name="pricePost"]').val();

@@ -41,8 +41,10 @@ class SearchController extends Controller
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
 	    ->where('product.soft_delete',0)
 	    ->where('category.parent_id',$cate)
+        ->where('post_history.status',1)
     	->when($kyw, function ($q) use ($kyw) {
     	    return $q->where('product.title', 'like','%'.$kyw.'%');
     	})
@@ -51,7 +53,7 @@ class SearchController extends Controller
     	})
     	->when($product_cate, function ($q) use ($product_cate) {
 
-    	    return $q->whereIn('type_of_product.product_cate_id',$product_cate);
+    	    return $q->whereIn('product_extend.product_cate',$product_cate);
     	})
     	->when($price, function ($q) use ($price) {
 
@@ -68,7 +70,7 @@ class SearchController extends Controller
     		'product_extend.filter_price',
             'product_extend.filter_facades',
             'product_extend.price',
-            'product_extend.floor',
+            'product_extend.floors',
             'product_extend.bedroom',
     		'product.province_id',
     		'type_of_product.product_cate_id',
@@ -103,6 +105,7 @@ class SearchController extends Controller
 
     public function filter(Request $request)
     {
+
         //return $request;
         $cate          = $request->cate_child;
         $floors        = $request->floors;
@@ -110,7 +113,7 @@ class SearchController extends Controller
         $province      = $request->province;
         $district      = $request->district;
         $ward          = $request->ward;
-        //$product_cate  = $request->product_cate;
+        $product_cate  = $request->product_cate;
         $price         = $request->price;
         $facades     = $request->facades;
 
@@ -120,9 +123,11 @@ class SearchController extends Controller
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
         ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->where('product.soft_delete',0)
+        ->where('post_history.status',1)
         //->where('category.parent_id',$cate)
         /*->when($kyw, function ($q) use ($kyw) {
             return $q->where('product.title', 'like','%'.$kyw.'%');
@@ -139,9 +144,9 @@ class SearchController extends Controller
         ->when($ward, function ($q) use ($ward) {
             return $q->where('product.ward_id',$ward);
         })
-        /*->when($product_cate, function ($q) use ($product_cate) {
-            return $q->whereIn('type_of_product.product_cate_id',$product_cate);
-        })*/
+        ->when($product_cate, function ($q) use ($product_cate) {
+            return $q->whereIn('product_extend.product_cate',$product_cate);
+        })
         /*->when($product_cate, function ($q) use ($product_cate) {
 
             return $q->whereIn('type_of_product.product_cate_id',$product_cate);
