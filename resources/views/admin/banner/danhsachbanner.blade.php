@@ -53,7 +53,7 @@
          <tr>
            <td>{{$banner->id}}</td>
            <td>{{$banner->name}}</td>
-           <td> <img src="{{asset('public/assets/banner')}}/{{$banner->name}}" alt=""></td>
+           <td> <img class="" style="width:200px" src="{{asset('assets/banner')}}/{{$banner->name}}" alt=""></td>
            <td>{{$banner->position}}</td>
            <td>{{$banner->status}}</td>
            <td>

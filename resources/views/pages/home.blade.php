@@ -44,19 +44,27 @@
                             con người + trí thông minh nhân tạo + bất động sản + đầu tư tài chính</p>
                     </div>
                 </div>
+				<?php
+				$banners = DB::table('image')
+				->where('status',1)
+				->orderby('position', 'asc')
+				->get();
+				?>
                 <div class="col-xs-8 col-md-8 col-lg-9">
                     <div class="slide-banner">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
+								@foreach($banners as $banner)
                                 <div class="swiper-slide">
-                                    <div class="img-banner"><img src="{{asset('assets/bg/banner1.png')}}" alt=""></div>
-                                </div>
-                                <div class="swiper-slide">
+                                    <div class="img-banner"><img src="{{asset('assets/banner')}}/{{$banner->name}}" alt=""></div>
+								</div>
+								@endforeach
+                                <!-- <div class="swiper-slide">
                                     <div class="img-banner"><img src="{{asset('assets/bg/banner2.png')}}" alt=""></div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="img-banner"><img src="{{asset('assets/bg/banner3.png')}}" alt=""></div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
