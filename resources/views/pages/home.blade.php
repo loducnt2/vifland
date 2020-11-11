@@ -44,19 +44,27 @@
                             con người + trí thông minh nhân tạo + bất động sản + đầu tư tài chính</p>
                     </div>
                 </div>
+				<?php
+				$banners = DB::table('image')
+				->where('status',1)
+				->orderby('position', 'asc')
+				->get();
+				?>
                 <div class="col-xs-8 col-md-8 col-lg-9">
                     <div class="slide-banner">
                         <div class="swiper-container">
                             <div class="swiper-wrapper">
+								@foreach($banners as $banner)
                                 <div class="swiper-slide">
-                                    <div class="img-banner"><img src="{{asset('assets/bg/banner1.png')}}" alt=""></div>
-                                </div>
-                                <div class="swiper-slide">
+                                    <div class="img-banner"><img src="{{asset('assets/banner')}}/{{$banner->name}}" alt=""></div>
+								</div>
+								@endforeach
+                                <!-- <div class="swiper-slide">
                                     <div class="img-banner"><img src="{{asset('assets/bg/banner2.png')}}" alt=""></div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="img-banner"><img src="{{asset('assets/bg/banner3.png')}}" alt=""></div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -242,16 +250,34 @@
 				<div class="swiper-wrapper">
 					@if(count($product_by_cate1)>0)
 					@foreach($product_by_cate1 as $product)
+					<script>
+		
+					</script>
 					<div class="swiper-slide">
 						<div class="box-sp">
 							<div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
 								<div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
 								<div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
 								<div class="overlay"></div>
+								<div class="vip">
+								<!-- {{$product->type}} -->
+									@if ($product->type == 0)
+									@else
+										<img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
+									@endif
+								</div>
 							</div>
 							<div class="box-sp-text">
 								<a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
-									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+									@if($product->type == 1)
+										<h5 class="title-text lcl lcl-2 vip1">{{$product->title}}</h5>
+									@elseif($product->type == 2)
+										<h5 class="title-text lcl lcl-2 vip2">{{$product->title}}</h5>
+									@elseif($product->type == 3)
+										<h5 class="title-text lcl lcl-2 vip3">{{$product->title}}</h5>
+									@else 
+										<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+									@endif
 								</a>
 								<div class="location"> <span class="material-icons">location_on</span>
 									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
@@ -449,7 +475,7 @@
 @section('footerScripts')
 <script type="text/javascript">
 	$(document).ready(function(){
-
+		
 		$('input[name="cate"]').click(function() {
 		  if ($(this).is(':checked')) {
 		    let cate = $(this).attr('slug')

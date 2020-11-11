@@ -36,11 +36,11 @@
                     </p>
                 </div>
                 <ul>
-                    <li> <a class="active" href="/user/profile/{{auth()->user()->id}}/">Trang thay đổi thông tin cá nhân
+                    <li> <a href="/user/profile/{{auth()->user()->id}}">Trang thay đổi thông tin cá nhân
                         </a></li>
-                    <li> <a href="">Thay đổi mật khẩu</a></li>
-                    <li> <a href="">Số dư tài khoản </a></li>
-                    <li> <a href="">Nạp tiền</a></li>
+                    <li> <a id="thaydoimk-link" href="#">Thay đổi mật khẩu</a></li>
+                    <!-- <li> <a href="">Số dư tài khoản </a></li> -->
+                    <li> <a href="/user/profile/{{auth()->user()->id}}/nap-tien">Nạp tiền</a></li>
                 </ul>
                 <div class="title-bl3">
                     <span class="material-icons">list_alt</span>
@@ -53,9 +53,8 @@
                         </p>
                 </div>
                 <ul>
-                    <li> <a href="">Tin đã đăng </a></li>
-                    <li> <a href="">Tin chờ đăng</a></li>
-                    <li> <a href="">Chờ xác nhận </a></li>
+                    <li> <a href="/user/my-article/{{auth()->user()->id}}/#tindadang">Tin đã đăng </a></li>
+                    <li> <a href="/user/my-article/{{auth()->user()->id}}/#tinchodang">Tin chờ đăng</a></li>
                 </ul>
 
             </div>
@@ -99,7 +98,7 @@
                         </a>
                         <li class="nav-item thong-bao">
                             <div class="thong-bao-num"><i class="fas fa-bell icon"></i>
-                                <div class="number-tb">1</div>
+                                <div class="number-tb"></div>
                             </div>
                             <p class="text">Thông báo</p>
                             <div class="wrap-list-thongbao">
@@ -111,24 +110,45 @@
                                         <p>Không có thông báo nào</p>
                                     </div>
 
-
+                                    <?php
+                                        $notis = DB::table('notification')
+                                        ->where('status',1)
+                                        ->orderby('id', 'asc')
+                                        ->get();
+                                        if( auth()->check() ){
+                                            $duedate = DB::table('post_history')
+                                            ->leftJoin('product','post_history.product_id','product.id')
+                                           ->where('post_history.user_id',auth()->user()->id)
+                                           ->select(
+                                               'product.id as id',
+                                               'product.datetime_end as date',
+                                               'product.slug as slug'
+                                           )
+                                           ->get();
+                                        }
+                                        else {
+                                            $duedate = [];
+                                        }
+                                      ?>
                                     <div class="co-thong-bao">
-
+                                            @foreach($duedate as $due)
                                         <div class="item">
                                             <div class="wrap-text notification-duedate ">
-                                                <div class="thongbao post-expired">Thông báo</div><a href="#">Bài
+                                                <div class="thongbao post-expired">Thông báo</div><a href="{{route('article-detail',$due->slug)}}">Bài
                                                     viết của bạn sắp hết hạn</a>
-                                                <div class="date"></div>
+                                                <div class="date">{{$due->date}}</div>
                                              </div>
                                         </div>
+                                        @endforeach
 
-
+                                            @foreach($notis as $noti)
                                         <div class="item">
                                             <div class="wrap-text">
-                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#"></a>
-                                                <div class="date">{{session()->get('noti')}}</div>
+                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#">{{$noti->content}}</a>
+                                                <div class="date"> {{$noti->created_at}}</div>
                                             </div>
                                         </div>
+                                             @endforeach
 
 
 
@@ -138,7 +158,7 @@
                                 </div>
                             </div>
                         </li>
-                    <li class="nav-item tin-tuc-icon"><em class="material-icons icon">list_alt</em><a class="text" href="/index/tin-tuc">Tin tức</a></li>
+                    <li class="nav-item tin-tuc-icon"><a class="text" href="/index/tin-tuc"><em class="material-icons icon">list_alt</em>Tin tức</a></li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
                                 data-target="#exampleModal">Đăng bài</a>
@@ -336,7 +356,8 @@
     var  duedate=new Date(textduedate);
     var today=new Date();
     var xetDuedate = today - duedate;
-console.log(xetDuedate);
+    var number=0;
+ console.log(xetDuedate);
 
     if(xetDuedate < 0){
         $(".notification-duedate,.number-tb").hide();
@@ -344,5 +365,17 @@ console.log(xetDuedate);
     else if(textduedate == ""){
         $(".notification-duedate,.number-tb").hide();
     }
+    $(".item").each(function(){
+        number+=1;
+    if(number==0){
+        $(".number-tb").hidden();
+    }
+    else{
+        $(".number-tb").text(number);
+    }
+    });
+        
+       
+  
 
 </script>
