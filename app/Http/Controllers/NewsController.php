@@ -24,6 +24,16 @@ class NewsController extends Controller
         // $newsHidden = News::select('select * from news where id = 1')->get();
         return view('/admin/tintuc/danhsachtintuc',compact('news'));
     }
+    public function duyettin()
+    {
+        $news = News::orderBy('id','asc')
+        -> where('status',0)
+        ->get();
+
+        return view('/admin/tintuc/danhsachduyettin',compact('news'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -115,11 +125,11 @@ class NewsController extends Controller
     }
     public function ShowDuyetTin($id)
     {
-     
+
         $new = DB::table('news')->where('id',$id)->first();
         return view('/admin/tintuc/chitietduyettin',compact('new'));
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.

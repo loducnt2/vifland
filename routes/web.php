@@ -5,7 +5,7 @@ use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\UserController;
 use App\Models\NewsCategory;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -158,9 +158,10 @@ Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
 
 
 // login admin
-Route::get('/admin/index',function(){
+Route::get('admin/index', ['middleware' => 'admin.auth', function () {
     return view('admin/index');
-}); // Trang admin
+}]);
+
 // ================= hồ sơ ==================
 
 // update thông tin hồ sơ cá nhân
@@ -177,7 +178,7 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // User: thay đổi trạng thái user
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 // Tin tức theo danh mục
-Route::get('/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
+Route::get('/index/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
 Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
@@ -198,7 +199,6 @@ Route::POST('/admin/index/news/insert','NewsController@store'
 //     return view('/admin/danhmuc/danhsachdanhmuc');
 // });
 // Tin tức theo danh mục
-Route::get('/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
 Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
@@ -212,9 +212,9 @@ Route::get('/admin/cap-nhat-tin-tuc',function(){
 });
 Route::POST('/admin/index/news/insert','NewsController@store');
 // get tất cả các tin đang có
-Route::get('/tin-tuc','NewsController@listnews');
+Route::get('/index/tin-tuc/','NewsController@listnews');
 // get những bài tin tức bằng tag
-Route::get('/tin-tuc/tu-khoa/{tags}','NewsController@getpostsbytag');
+Route::get('/index/tin-tuc/tu-khoa/{tags}','NewsController@getpostsbytag');
 // quản lí tin tức
 
 // ===================danh mục tin tức======================

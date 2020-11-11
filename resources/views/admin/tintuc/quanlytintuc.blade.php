@@ -2,18 +2,17 @@
 @extends('admin.sidebar')
 {{-- @extends('admin.footer') --}}
 @section('content')
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
     {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
 
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+
     <style>
     .bootstrap-tagsinput {
   width: 100% !important;
@@ -25,6 +24,11 @@ li{
     word-break: break-all;
     /* background-color:blue; */
 width: 100%;
+}
+
+.bootstrap-tagsinput input {
+width:100%;
+/* background-color:red; */
 }
 .text-muted{
 }
@@ -43,14 +47,61 @@ width: 100%;
 @section('title','Quản lý tin tức')
 
 
+<script>
+    $(document).ready(function() {
+        $('#tintuc').validate({
+            rules: {
+                'title': {
+                    required: true,
+                    minlength:8,
+                    maxlength:255
+                },
+                'tags': {
+                    required: true,
+                },
+                'content': {
+                    required:true,
+                },
+            },
+            messages: {
+                'title': {
+                    required: "Tiêu đề không được để trống",
+                    minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
 
+                },
+                'tags[]': {
+                    required: "Từ khoá không được để trống",
+                },
 
+                'content': {
+                    required: "Nội dung không được để trống",
+                },
+            },
+        });
+    });
+</script>
+<style>
+      .error{
+        width: 200px;
+        /* background-color:red; */
+        /* float:left; */
+        /* margin-top:80px; */
+        position: absolute;
+        left:40px;
+        margin-top:80px;
+        /* top:100px; */
+        width:600px;
+        color:tomato;
+        /* font-weight: bold; */
+        font-size:13px;
+    }
+</style>
 {{-- get tags value --}}
 
 
 <div class="max-width-container">
     <div class="py-5 text-center">
-    <form  method="POST" id="dangtin" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
+    <form  method="POST" id "tintuc" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
         {{-- {{ csrf_field() }} --}}
         @csrf
      </div>
@@ -134,7 +185,7 @@ width: 100%;
         <div>
           <div class="row">
             <div class="col-md-12 mb-3">
-              <label for="firstName">Tiêu đề bài viết</label>
+              <label for="title">Tiêu đề bài viết</label>
               <label for="text" class="error"></label>
 
               <input type="text" class="form-control" id="title" onkeyup="ChangeToSlug();" placeholder="" value="" name="title">
@@ -173,17 +224,16 @@ width: 100%;
           </div>
           <div class="row">
             <div class="col-md-12 mb-3">
-                <label for="text" class="error"></label>
+                {{-- <label for="text" class="error"></label> --}}
               <label for="content">Nội dung</label>
               <label for="text" class="error"></label>
                 <textarea id="editor1" name="content">
 
                 </textarea>
-                {{-- quản lí tin tức --}}
+                <script>
+                    CKEDITOR.replace( 'editor1' );
+                </script>
                 <label for="text" class="error"></label>
-    <script>
-        CKEDITOR.replace( 'editor1' );
-    </script>
 
             </div>
 
@@ -196,15 +246,51 @@ width: 100%;
 
           <button class="btn btn-primary btn-lg btn-block" type="submit">Đăng tin</button>
              </div>
+            </form>
     </div>
     </div>
-</form>
 
+
+<script>
+$(document).ready(function() {
+    $('#tintuc').validate({
+
+        rules: {
+            title: "required",
+        },
+        messages: {
+            'title':"Không được bỏ trống nội dung",
+            'email': {
+                required: "Emal không được để trống",
+                email: "Nhập đúng định dạng Email",
+                // maxlength: "Email must be less than or equal 255 letters",
+            },
+
+            'card_id': {
+                required: "Số nhân dân không đươc để trống",
+                digits: "Chỉ được nhập số"
+            },
+            'password': {
+                required: "Mật khẩu không được để trống",
+                minlength: "Vui lòng nhập mật khẩu khoản  giữa 8 đến 255 kí tự",
+                maxlength: "Vui lòng nhập tên tài khoản giữa 8 đến 255 kí tự"
+            },
+        },
+
+    });
+});
+</script>
 @endsection
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js
 "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.js
+"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
 <script language="javascript">
     function ChangeToSlug()
     {
@@ -252,37 +338,3 @@ width: 100%;
   $("#category_news_slug").attr('value',test);
     }
   </script>
-
-<script>
-    $(document).ready(function() {
-        $('#dangtin').validate({
-            rules: {
-                'title': {
-                    required: true,
-                    minlength:8,
-                    maxlength:255
-                },
-                'tags[]': {
-                    required: true,
-                },
-                'content': {
-                    required:true,
-                },
-            },
-            messages: {
-                'title': {
-                    required: "Tiêu đề không được để trống",
-                    minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
-
-                },
-                'tags[]': {
-                    required: "Từ khoá không được để trống",
-                },
-
-                'content': {
-                    required: "Nội dung không được để trống",
-                },
-            },
-        });
-    });
-    </script>
