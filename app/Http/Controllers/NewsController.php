@@ -29,7 +29,7 @@ class NewsController extends Controller
         $news = News::orderBy('id','asc')
         -> where('status',0)
         ->get();
-        
+
         return view('/admin/tintuc/danhsachduyettin',compact('news'));
     }
 
@@ -125,11 +125,11 @@ class NewsController extends Controller
     }
     public function ShowDuyetTin($id)
     {
-     
+
         $new = DB::table('news')->where('id',$id)->first();
         return view('/admin/tintuc/chitietduyettin',compact('new'));
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.

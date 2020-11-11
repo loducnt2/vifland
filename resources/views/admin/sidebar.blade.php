@@ -156,4 +156,4 @@
 
             </div>
         </div>
-        @extends('admin.footer');
+        @extends('admin.footer')
