@@ -1,86 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('admin.sidebar')
+@section('content')
+<div class="container">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    @extends('admin.sidebar')
 
-    <title>Danh mục tin tức</title>
-</head>
-<body>
+<form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
+        {{ csrf_field() }}
+    <div class="row">
+        <div class="col-md-8 mt-4 form-group">
+            <label for="">Nhập tiêu đề</label>
+            <input type="text" class="form-control" name="category_name" id="category_name" aria-describedby="helpId" placeholder="">
+            <input type="hidden" class="form-control" name="slug2" id="slug2" aria-describedby="helpId" placeholder="">
 
-   @section('content')
-    <div class="form-group">
-      <label for=""></label>
-      <input type="text"
-        class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-      {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+            {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+          </div>
     </div>
-   <table id="myTable" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Tên danh mục</th>
-                <th>Slug</th>
-                <th>Hiện ẩn</th>
-                <th>Hành động</th>
 
-        </tr>
-      </thead>
-      <tbody id="myTable">
-        @foreach ($news_cate as $category_news)
-        <tr>
-        <td id="id">{{$category_news->id}}</td>
-            <td>{{$category_news->category_name}}</td>
-            <td>{{$category_news->slug}}</td>
-            <td>{{$category_news->status}}</td>
-        {{-- <td><a name="" id="" onclick="delete({{$category_news->id}})" class="btn btn-primary" href="{{$category_news->id}}" role="button">Xoá</a></td> --}}
-            {{-- <td>{{$category_news->category_name}}</td> --}}
-        </tr>
-        @endforeach
-    </tbody>
-    </table>
-    @endsection
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="card-body">
+        <div class="col-md-8 table-responsive">
+            <table class=" table table-bordered" id="myTable" width="100%" cellspacing="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Slug</th>
+                        {{-- <th>Username</th> --}}
+                        {{-- <th>Email</th> --}}
+                        {{-- <th>Năm sinh </th> --}}
+                        <th>Tên danh mục</th>
+                        <th>Tình trạng</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
 
-</body>
 
-<script language="javascript">
-    function ChangeToSlug()
-    {
-        var title, slug;
-        //Lấy text từ thẻ input title
-        title = document.getElementById("category_name").value;
-        //Đổi chữ hoa thành chữ thường
-        slug = title.toLowerCase();
-        //Đổi ký tự có dấu thành không dấu
-        slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-        slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-        slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-        slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-        slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-        slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-        slug = slug.replace(/đ/gi, 'd');
-        //Xóa các ký tự đặt biệt
-        slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
-        //Đổi khoảng trắng thành ký tự gạch ngang
-        slug = slug.replace(/ /gi, "-");
-        //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
-        //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
-        slug = slug.replace(/\-\-\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-/gi, '-');
-        //Xóa các ký tự gạch ngang ở đầu và cuối
-        slug = '@' + slug + '@';
-        slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-        //In slug ra textbox có id “slug”
+                <tr>
+                 @foreach ($news_cate as $item)
+                 <tr id="row_{{$item->id}}">
+                 <td>{{$item->id}}</td>
 
-        document.getElementById('slug').innerHTML = slug;
-        document.getElementById('slug2').value=slug;
+                 <td>{{$item->slug}}</td>
+                 {{-- <td>{{$user->birth_day}}</td> --}}
+                 <td>{{$item->category_name}}</td>
+                 <td>{{$item->status}}</td>
+                    <td><a href="javascript:void(0)" data-id="{{ $item->id }}" class="btn btn-danger" onclick="deletePost(event.target)">Xoá</a></td>
+                </td>
+                 @endforeach
 
-    }
-// form add thông tin
-</script>
-</html>
+                </tr>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</form>
+@endsection
