@@ -10,6 +10,7 @@
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
     @section('content')
+
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="table" width="100%" cellspacing="0">
@@ -48,5 +49,6 @@
         </div>
     </div>
     @endsection
+
 </body>
 </html>

@@ -44,7 +44,6 @@ width: 100%;
 
 
 
-
 {{-- get tags value --}}
 
 
@@ -179,11 +178,10 @@ width: 100%;
                 <textarea id="editor1" name="content">
 
                 </textarea>
-                {{-- quản lí tin tức --}}
+                <script>
+                    CKEDITOR.replace( 'editor1' );
+                </script>
                 <label for="text" class="error"></label>
-    <script>
-        CKEDITOR.replace( 'editor1' );
-    </script>
 
             </div>
 
@@ -286,3 +284,5 @@ width: 100%;
         });
     });
     </script>
+
+@extends('admin.footer');
