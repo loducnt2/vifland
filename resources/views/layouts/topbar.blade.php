@@ -128,7 +128,7 @@
                                            ->get();
                                         }
                                         else {
-                                            $duedate = "";
+                                            $duedate = [];
                                         }
                                       ?>
                                     <div class="co-thong-bao">
@@ -374,8 +374,6 @@
     else{
         $(".number-tb").text(number);
     }
-       
-        
     });
         
        
