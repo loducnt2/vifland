@@ -235,7 +235,7 @@
                             <div class="col-12">
                                 <div class="wrap-vip">
                                     <div class="checked">
-                                        <input id="tinthuong" type="radio" value="0" name="type" checked>
+                                        <input id="tinthuong" type="radio" value="4" name="type" checked>
                                         <label for="tinthuong">Tin Thường</label>
                                     </div>
                                     <div class="checked">

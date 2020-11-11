@@ -144,7 +144,7 @@ class ProductController extends Controller
         }*/
         $productex = new ProductExtend([
             'product_id'   => $product->id,
-            'product_cate' => $request->product_cate;,
+            'product_cate' => $request->product_cate,
             'filter_price' => $filter_price,
             'filter_facades'=>$filter_facades,
             'address'      => $request->address_product,

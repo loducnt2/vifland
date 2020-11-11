@@ -251,7 +251,7 @@
 								<div class="vip">
 								<!-- {{$product->type}} -->
 									
-									@if ($product->type == 0)
+									@if ($product->type == 4)
 									@else
 										<img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
 									@endif
@@ -323,6 +323,14 @@
                                         productid="{{$product->product_id}}"><i class="ri-equalizer-line icons"></i></a>
                                 </div>
                                 <div class="overlay"></div>
+                                <div class="vip">
+                                <!-- {{$product->type}} -->
+                                	
+                                	@if ($product->type == 4)
+                                	@else
+                                		<img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
+                                	@endif
+                                </div>
                             </div>
                             <div class="box-sp-text">
                                 <a class="localstore" localstore="{{$product->product_id}}"
@@ -406,6 +414,14 @@
                                 <div class="tag-thuongluong">{{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}</div>
                                 <div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
                                 <div class="overlay"></div>
+                                <div class="vip">
+                                <!-- {{$product->type}} -->
+                                	
+                                	@if ($product->type == 4)
+                                	@else
+                                		<img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
+                                	@endif
+                                </div>
                             </div>
                             <div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
                                     <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>

@@ -252,6 +252,7 @@ class SearchController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
@@ -266,8 +267,7 @@ class SearchController extends Controller
             'product_unit.name as unit'
             //'ward.name as ward'
         )
-        ->orderBy('product.type','desc')
-        ->limit(5)
+        ->orderBy('product.type','asc')
         ->get();
 
         switch ($cate) {
