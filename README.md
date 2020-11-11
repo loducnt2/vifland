@@ -51,3 +51,4 @@ memory_limit= -1**
 ** hoặc **php artisan config:cache** để .env nhận config mới
 -- Chạy **php artisan migrate** để thực thi file migration 2020_11_10_080944_create_newsletter_table để tạo table newsletter trong Database vifland
 
+=>Tổng hợp chạy 2 lệnh kia nếu chưa chạy lần nào => composer install 

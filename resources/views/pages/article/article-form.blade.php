@@ -1,12 +1,12 @@
 @extends('layouts.master')
 @section('title','Đăng bài viết')
 @section('headerStyles')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.css">
-    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.css">
+
 @stop
 @section('content')
 <main>
-   
+
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
@@ -54,7 +54,7 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province_id" id="province" >
+                                            <select class="select1" name="province_id" id="province">
                                                 <option value="">Chọn</option>
                                                 @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
@@ -63,19 +63,19 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district_id" id="district" >
+                                            <select class="select1" name="district_id" id="district">
                                                 <option value="">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
-                                            <select class="select1" name="ward_id" id="ward" >
+                                            <select class="select1" name="ward_id" id="ward">
                                                 <option value="">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="diachi">Địa chỉ</label>
-                                            <input type="text" name="address" id="diachi" >
+                                            <input type="text" name="address" id="diachi">
                                         </div>
 
                                     </div>
@@ -83,7 +83,7 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate[]" multiple="multiple"  >
+                                            <select class="select1" name="product_cate[]" multiple="multiple">
                                                 @foreach($product_cate as $prodcate)
                                                 <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
                                                 @endforeach
@@ -91,11 +91,11 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="text" min="0" name="facades" >
+                                            <input type="text" min="0" name="facades">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="text" min="0" name="depth" >
+                                            <input type="text" min="0" name="depth">
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -109,7 +109,7 @@
                                         </div> -->
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn vị </label>
-                                            <select class="select1" name="unit_id" id="unit" >
+                                            <select class="select1" name="unit_id" id="unit">
                                                 <option value="">Chọn</option>
                                                 @foreach($units as $unit)
                                                 <option value="{{$unit->id}}">{{$unit->name}}</option>
@@ -118,13 +118,13 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price" id="price" >
+                                            <input type="text" min="0" name="price" id="price">
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
-
+                                    <div class="tab-pane fade" id="khac" role="tabpanel"
+                                        aria-labelledby="khac-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số tầng</label>
                                             <input type="text" min="0" name="floors">
@@ -135,9 +135,9 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="legal">Giấy tờ pháp lý</label>
-                                            <select name="legal" class="select1" id="legal" >
+                                            <select name="legal" class="select1" id="legal">
                                                 <option value="">Chọn</option>}
-                                                <option  value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
+                                                <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
                                                     CN QSDĐ - Sổ đỏ - Sổ hồng</option>
                                                 <option value="Hợp đồng mua bán">Hợp đồng mua bán
                                                 </option>
@@ -172,20 +172,21 @@
                                 <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
                             </div>
                             <div class="col-12 form-group">
-                                <textarea class="form-control" id="summary-ckeditor" name="content" ></textarea>
+                                <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
                             <div class="col-12 form-group">
-                                <span >Ảnh tiêu đề : &nbsp;</span>
+                                <span>Ảnh tiêu đề : &nbsp;</span>
                                 <input type="file" name="thumbnail">
                             </div>
                             <div class="col-12 form-group">
-                                <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags" >
+                                <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags">
                             </div>
                             <div class="col-12 form-group wrap-input-img form-upload">
                                 <div class="form-upload__preview"></div>
                                 <div class="form-upload__field">
                                     <label class="form-upload__title" for="upload">Thêm ảnh
-                                        <input class="form-upload__control js-form-upload-control" id="upload" type="file" multiple="true" style="display:none"  name="img[]" required>
+                                        <input class="form-upload__control js-form-upload-control" id="upload"
+                                            type="file" multiple="true" style="display:none" name="img[]" required>
                                     </label>
                                     <button class="btn btn-clear ml-3">Xóa ảnh</button>
                                 </div>
@@ -199,30 +200,30 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">person</span>
-                                <input type="text" placeholder="Tên liên lạc" name="name_contact" >
+                                <input type="text" placeholder="Tên liên lạc" name="name_contact">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">business</span>
-                                <input type="text" placeholder="Tên Công ty" name="company_name" >
+                                <input type="text" placeholder="Tên Công ty" name="company_name">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">phone</span>
-                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact" >
+                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
-                                <input type="text" placeholder="Facebook cá nhân" name="facebook" >
+                                <input type="text" placeholder="Facebook cá nhân" name="facebook">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">location_on</span>
-                                <input type="text" placeholder="Địa chỉ" name="address_contact" >
+                                <input type="text" placeholder="Địa chỉ" name="address_contact">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">public</span>
-                                <input type="text" placeholder="Trang web" name="website" >
+                                <input type="text" placeholder="Trang web" name="website">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">email</span>
-                                <input type="text" placeholder="Hộp thư điện tử" name="email" >
+                                <input type="text" placeholder="Hộp thư điện tử" name="email">
                             </div>
                         </div>
                         <div class="row loaitindang">
@@ -434,7 +435,7 @@
                                         </div>
                                         <div class="col-4 form-group">
                                             <label for="songayvip">Giờ đăng bài</label>
-                                            <input class="timepicker" type="text" id="timepicker" data-mintime="now"/>
+                                            <input class="timepicker" type="text" id="timepicker" data-mintime="now" />
                                         </div>
                                         <div class="col-4 form-group">
                                             <label for="songayvip">Số ngày</label>
@@ -514,7 +515,8 @@
                                                             style="display:none" disabled>
 
                                                         <!-- HUY -->
-                                                        <input type="number" name="pricePost" value="0" style="display:none">
+                                                        <input type="number" name="pricePost" value="0"
+                                                            style="display:none">
                                                     </strong></div>
                                             </div>
                                         </div>
@@ -749,207 +751,211 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script src="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.js"></script>
 <script>
-// var date = new Date();
-// date.setDate(date.getDate()-1);
-// var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-var now = new Date();
-var formatted = now.getHours() + ":" + now.getMinutes();
-$('#timepicker').mdtimepicker({format: 'hh:mm'});
-$('#timepicker').mdtimepicker('setValue', formatted);
+    // var date = new Date();
+    // date.setDate(date.getDate()-1);
+    // var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    var now = new Date();
+    var formatted = now.getHours() + ":" + now.getMinutes();
+    $('#timepicker').mdtimepicker({
+        format: 'hh:mm'
+    });
+    $('#timepicker').mdtimepicker('setValue', formatted);
 
-var date = new Date();
-var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-$("#testdate").datepicker({
-    startDate: today,
-    todayHighlight: true,
-    language: 'vi',
-    format: 'mm/dd/yyyy',
-}).attr('readonly', 'readonly');
-$( '#testdate' ).datepicker( 'setDate', today );
-CKEDITOR.replace('summary-ckeditor');
-$(document).ready(function() {
-    
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    $("#testdate").datepicker({
+        startDate: today,
+        todayHighlight: true,
+        language: 'vi',
+        format: 'mm/dd/yyyy',
+    }).attr('readonly', 'readonly');
+    $('#testdate').datepicker('setDate', today);
+    CKEDITOR.replace('summary-ckeditor');
+    $(document).ready(function () {
 
 
-    $('#unit').change(function(){
-        if( $(this).val()==13 ){
-            $('#price').attr('disabled',true);
-        }else{
-            $('#price').attr('disabled',false);
-        }
-    })
 
-    $('#province').change(function() {
-        var province = $(this).val();
-        var url = '/get-district/' + province;
-        $('#district').load(url, function() {
+        $('#unit').change(function () {
+            if ($(this).val() == 13) {
+                $('#price').attr('disabled', true);
+            } else {
+                $('#price').attr('disabled', false);
+            }
+        })
+
+        $('#province').change(function () {
+            var province = $(this).val();
+            var url = '/get-district/' + province;
+            $('#district').load(url, function () {
+                var district = $(this).val();
+                var url1 = '/get-ward/' + district;
+                $('#ward').load(url1);
+            });
+        });
+        $('#district').change(function () {
             var district = $(this).val();
             var url1 = '/get-ward/' + district;
             $('#ward').load(url1);
         });
+
+        //Validate 
+        $('.formDangBaiViet').submit(function () {
+
+            if (!$('#province').change()) {
+                alert('ds')
+            }
+            let wallet = auth() - > user() - > wallet
+                
+            }
+            let pricepost = $('input[name="pricePost"]').val();
+            //console.log(wallet + ' ' + pricepost)
+            if (parseInt(wallet) < parseInt(pricepost)) {
+                alert(' k đủ tiền')
+                return false
+            }
+        })
+        $('.formDangBaiViet').validate({
+            ignore: [],
+            rules: {
+                province_id: {
+                    required: true,
+                },
+                address: {
+                    required: true,
+                },
+                title: {
+                    required: true,
+                },
+                content: {
+                    required: true,
+                    lettersonly: true,
+                    minlength: 50
+                },
+                img: {
+                    required: true,
+                },
+                name_contact: {
+                    required: true,
+                },
+                phone_contact: {
+                    required: true,
+                },
+                address_contact: {
+                    required: true,
+                },
+                facades: {
+                    required: true,
+                    number: true,
+                },
+                depth: {
+                    required: true,
+                    number: true,
+                },
+                datetime_start: {
+                    required: true,
+                },
+                tags: {
+                    required: true,
+                },
+                thumbnail: {
+                    required: true,
+                },
+                legal: {
+                    required: true,
+                },
+                unit_id: {
+                    required: true,
+                },
+                price: {
+                    required: true,
+                },
+
+
+            },
+            messages: {
+                province_id: {
+                    required: "Trường này bắt buộc",
+                },
+                address: {
+                    required: "Trường này bắt buộc",
+                },
+                title: {
+                    required: "Trường này bắt buộc"
+                },
+                content: {
+                    required: "Trường này bắt buộc",
+                    minlength: "Nhập ít nhất 50 ký tự"
+                },
+                img: {
+                    required: "Trường này bắt buộc",
+                },
+                name_contact: {
+                    required: "Trường này bắt buộc"
+                },
+                phone_contact: {
+                    required: "Trường này bắt buộc"
+                },
+                address_contact: {
+                    required: "Trường này bắt buộc"
+                },
+                facades: {
+                    required: "Trường này bắt buộc",
+                    number: "Trường này không hợp lệ",
+                },
+                depth: {
+                    required: "Trường này bắt buộc",
+                    number: "Trường này không hợp lệ",
+                },
+                datetime_start: {
+                    required: "Trường này bắt buộc",
+                },
+                tags: {
+                    required: "Trường này bắt buộc",
+                },
+                thumbnail: {
+                    required: "Trường này bắt buộc",
+                },
+                legal: {
+                    required: "Trường này bắt buộc",
+                },
+                unit_id: {
+                    required: "Trường này bắt buộc",
+                },
+                price: {
+                    required: "Trường này bắt buộc",
+                },
+
+
+            },
+            //Custom
+            /*errorPlacement: function(error, element) {
+                //Custom position: first name
+                if (element.attr("name") == "first" ) {
+                    $("#errNm1").text(error);
+                }
+                //Custom position: second name
+                else if (element.attr("name") == "second" ) {
+                    $("#errNm2").text(error);
+                }
+                // Default position: if no match is met (other fields)
+                else {
+                     error.append($('.errorTxt span'));
+                }
+            },*/
+            submitHandler: function (form) {
+                form.submit(function () {
+
+                });
+            }
+
+        });
+
+
     });
-    $('#district').change(function() {
-        var district = $(this).val();
-        var url1 = '/get-ward/' + district;
-        $('#ward').load(url1);
-    });
 
-      //Validate 
-      $('.formDangBaiViet').submit(function(){
-
-        if( !$('#province').change() ){alert('ds')}
-
-
-
-
-        let wallet = {{ auth()->user()->wallet }};
-        let pricepost = $('input[name="pricePost"]').val();
-        //console.log(wallet + ' ' + pricepost)
-        if( parseInt(wallet) < parseInt(pricepost)  ){
-            alert( ' k đủ tiền' )
-            return false
-        }
-      })
-      $('.formDangBaiViet').validate({
-          ignore: [],
-          rules:{
-              province_id:{
-                required:true,
-              },
-              address:{
-                required:true,
-              },
-              title:{
-               required :true,
-              },
-              content:{
-                required:true,
-                lettersonly: true,
-                minlength:50
-              },
-              img:{
-                required:true,
-              },
-              name_contact:{
-               required :true,
-              },
-              phone_contact:{
-               required :true,
-              },
-              address_contact:{
-                required:true,
-              },
-              facades:{
-                required:true,
-                number:true,
-              },
-              depth:{
-                required:true,
-                number:true,
-              },
-              datetime_start:{
-                required:true,
-              },
-              tags:{
-                required:true,
-              },
-              thumbnail:{
-                required:true,
-              },
-              legal:{
-                required:true,
-              },
-              unit_id:{
-                required:true,
-              },
-              price:{
-                required:true,
-              },
-              
-
-          },
-          messages:{
-            province_id:{
-              required: "Trường này bắt buộc",
-            },
-            address:{
-              required: "Trường này bắt buộc",
-            },
-            title :{
-                required: "Trường này bắt buộc"
-            },
-            content:{
-              required: "Trường này bắt buộc",
-              minlength: "Nhập ít nhất 50 ký tự"
-            },
-            img:{
-                required:"Trường này bắt buộc",
-            },
-            name_contact :{
-                 required: "Trường này bắt buộc"
-            },
-            phone_contact :{
-                required: "Trường này bắt buộc"
-            },
-            address_contact :{
-                required: "Trường này bắt buộc"
-            },
-            facades :{
-               required: "Trường này bắt buộc",
-               number: "Trường này không hợp lệ",
-            },
-            depth:{
-              required: "Trường này bắt buộc",
-              number: "Trường này không hợp lệ",
-            },
-            datetime_start:{
-              required: "Trường này bắt buộc",
-            },
-            tags:{
-              required: "Trường này bắt buộc",
-            },
-            thumbnail:{
-              required: "Trường này bắt buộc",
-            },
-            legal:{
-              required: "Trường này bắt buộc",
-            },
-            unit_id:{
-              required: "Trường này bắt buộc",
-            },
-            price:{
-              required: "Trường này bắt buộc",
-            },
-
-              
-          },
-          //Custom
-          /*errorPlacement: function(error, element) {
-              //Custom position: first name
-              if (element.attr("name") == "first" ) {
-                  $("#errNm1").text(error);
-              }
-              //Custom position: second name
-              else if (element.attr("name") == "second" ) {
-                  $("#errNm2").text(error);
-              }
-              // Default position: if no match is met (other fields)
-              else {
-                   error.append($('.errorTxt span'));
-              }
-          },*/
-          submitHandler: function(form) {
-                  form.submit(function(){
-
-                  });
-              }
-          
-      });
-
-
-});
 </script>
 @endsection

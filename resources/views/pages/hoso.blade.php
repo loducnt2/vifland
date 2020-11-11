@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
-    @section('content')
+@section('content')
 {{-- trước khi đăng nhập --}}
 <main>
     <div class="global-breadcrumb">
@@ -32,7 +32,7 @@
                         <div class="box-left-admin">
 
 
-                               {{-- var_dump($user->full_name); --}}
+                            {{-- var_dump($user->full_name); --}}
 
                             <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
                                 <p>{{$profile->full_name}}</p>
@@ -40,7 +40,8 @@
                             <div class="bl-2">
                                 <div class="row">
                                     <div class="col-6"><span class="vifPay"> <img
-                                                src="{{asset('assets/icon/card.png')}}" alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
+                                                src="{{asset('assets/icon/card.png')}}"
+                                                alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
                                     <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
                                                     class="material-icons">keyboard_arrow_right</span></a></span></div>
                                     <!-- <div class="col-12"><span class="lkvi"><img
@@ -80,15 +81,17 @@
                     <div class="col-md-12 col-lg-9">
                         <div class="box-right">
                             <nav>
-                                <div class="nav nav-tabs" id="nav-tab" role="tablist"><a class="active nav-link active"
-                                        id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                                        aria-controls="nav-home" aria-selected="true">Thay đổi thông tin cá nhân</a><a
-                                        class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                                        role="tab" aria-controls="nav-profile" aria-selected="false">Thay đổi mật
-                                        khẩu</a></div>
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <a class="active nav-link active" id="thaydoithongtin-tab" data-toggle="tab"
+                                        href="#thaydoithongtin" role="tab" aria-controls="nav-home"
+                                        aria-selected="true">Thay đổi thông tin cá nhân</a>
+                                    <a class="nav-link" id="thaydoimk-tab" data-toggle="tab" href="#thaydoimk"
+                                        role="tab" aria-controls="thaydoimk" aria-selected="false">Thay đổi mật
+                                        khẩu</a>
+                                </div>
                                 <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                        aria-labelledby="nav-home-tab">
+                                    <div class="tab-pane fade show active" id="thaydoithongtin" role="tabpanel"
+                                        aria-labelledby="thaydoithongtin-tab">
                                         <form action="{{route('user-update',$profile->id)}}" method="post"
                                             enctype="multipart/form-data" id="form-profile">
                                             @csrf
@@ -123,10 +126,10 @@
                                                 </div>
                                                 <div class="col-md-12 col-lg-10 form-group bdb">
                                                     @if(Auth::check() && Auth::user()->user_type == "1")
-                                                        <span>Quản trị viên</span>
-                                                        @else
-                                                        <span>Nhà môi giới</span>
-                                                        @endif
+                                                    <span>Quản trị viên</span>
+                                                    @else
+                                                    <span>Nhà môi giới</span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <div class="row form-wrap">
@@ -216,12 +219,13 @@
                                             </div>
                                             <div class="button-save">
                                                 <button class="button-huy" type="">Hủy bỏ </button>
-                                                <button class="button-luu" type="submit " action="">Lưu thay đổi</button>
+                                                <button class="button-luu" type="submit " action="">Lưu thay
+                                                    đổi</button>
                                             </div>
                                         </form>
                                     </div>
-                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                        aria-labelledby="nav-profile-tab">
+                                    <div class="tab-pane fade" id="thaydoimk" role="tabpanel"
+                                        aria-labelledby="thaydoimk-tab">
                                         <form action="{{route('user-changePassword',$profile->id)}}" method="post">
                                             @csrf
 
@@ -230,7 +234,8 @@
                                                     <p class="text-f">Mật khẩu hiện tại</p>
                                                 </div>
                                                 <div class="col-md-12 col-lg-4 form-group">
-                                                    <input type="text" placeholder="Nhập mật khẩu hiện tại" value="" name="password">
+                                                    <input type="text" placeholder="Nhập mật khẩu hiện tại" value=""
+                                                        name="password">
                                                     <p class="notemk">Vì lý do an ninh, bạn phải xác minh mật khẩu hiện
                                                         tại trước khi đặt mật khẩu mới.</p>
                                                 </div>
@@ -240,7 +245,8 @@
                                                     <p class="text-f">Mật khẩu mới</p>
                                                 </div>
                                                 <div class="col-md-12 col-lg-4 form-group">
-                                                    <input type="text" placeholder="Nhập mật khẩu mới" name="newpassword">
+                                                    <input type="text" placeholder="Nhập mật khẩu mới"
+                                                        name="newpassword">
                                                 </div>
                                             </div>
                                             <div class="row form-wrap thongtinform">
@@ -277,8 +283,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    {!! Toastr::message() !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+{!! Toastr::message() !!}
 </body>
 
 </html>
@@ -294,26 +300,26 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-$('#upload-image').click(function(e) {
-                $('#upload').click(function(e) e.preventDefault();
-                    //    let formData = new FormData(this);
-                    //    $('#image-input-error').text('');
-                    $.ajax({
-                        type: 'post',
-                        url: 'google.com',
-                        data: formData,
-                        contentType: false,
-                        processData: false,
-                        success: (response) => {
-                            if (response) {
-                                this.reset();
-                                alert('Image has been uploaded successfully');
+    $('#upload-image').click(function (e) {
+                $('#upload').click(function (e) e.preventDefault();
+                        //    let formData = new FormData(this);
+                        //    $('#image-input-error').text('');
+                        $.ajax({
+                            type: 'post',
+                            url: 'google.com',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: (response) => {
+                                if (response) {
+                                    this.reset();
+                                    alert('Image has been uploaded successfully');
+                                }
+                            },
+                            error: function (response) {
+                                console.log(response);
+                                $('#image-input-error').text(response.responseJSON.errors.file);
                             }
-                        },
-                        error: function(response) {
-                            console.log(response);
-                            $('#image-input-error').text(response.responseJSON.errors.file);
-                        }
-                    });
-    </script>
+                        });
 
+</script>
