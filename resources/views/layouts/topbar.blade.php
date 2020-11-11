@@ -36,11 +36,11 @@
                     </p>
                 </div>
                 <ul>
-                    <li> <a class="active" href="/user/profile/{{auth()->user()->id}}/">Trang thay đổi thông tin cá nhân
+                    <li> <a href="/user/profile/{{auth()->user()->id}}">Trang thay đổi thông tin cá nhân
                         </a></li>
-                    <li> <a href="">Thay đổi mật khẩu</a></li>
-                    <li> <a href="">Số dư tài khoản </a></li>
-                    <li> <a href="">Nạp tiền</a></li>
+                    <li> <a id="thaydoimk-link" href="#">Thay đổi mật khẩu</a></li>
+                    <!-- <li> <a href="">Số dư tài khoản </a></li> -->
+                    <li> <a href="/user/profile/{{auth()->user()->id}}/nap-tien">Nạp tiền</a></li>
                 </ul>
                 <div class="title-bl3">
                     <span class="material-icons">list_alt</span>
@@ -53,9 +53,8 @@
                         </p>
                 </div>
                 <ul>
-                    <li> <a href="">Tin đã đăng </a></li>
-                    <li> <a href="">Tin chờ đăng</a></li>
-                    <li> <a href="">Chờ xác nhận </a></li>
+                    <li> <a href="/user/my-article/{{auth()->user()->id}}/#tindadang">Tin đã đăng </a></li>
+                    <li> <a href="/user/my-article/{{auth()->user()->id}}/#tinchodang">Tin chờ đăng</a></li>
                 </ul>
 
             </div>
@@ -138,7 +137,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item tin-tuc-icon"><em class="material-icons icon">list_alt</em><a class="text" href="">Tin tức</a></li>
+                        <li class="nav-item tin-tuc-icon"><em class="material-icons icon">list_alt</em><a class="text" href="/tin-tuc">Tin tức</a></li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
                                 data-target="#exampleModal">Đăng bài</a>

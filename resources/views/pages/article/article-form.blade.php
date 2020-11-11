@@ -808,15 +808,9 @@
             if (!$('#province').change()) {
                 alert('ds')
             }
-
-
-
-
-            let wallet = {
-                {
-                    auth() - > user() - > wallet
-                }
-            };
+            let wallet = auth() - > user() - > wallet
+                
+            }
             let pricepost = $('input[name="pricePost"]').val();
             //console.log(wallet + ' ' + pricepost)
             if (parseInt(wallet) < parseInt(pricepost)) {

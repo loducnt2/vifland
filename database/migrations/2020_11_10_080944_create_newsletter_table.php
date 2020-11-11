@@ -13,7 +13,7 @@ class CreateNewsletterTable extends Migration
      */
     public function up()
     {
-        Schema::create('vifland.newsletter', function (Blueprint $table) {
+        Schema::create('vifland.newsletters', function (Blueprint $table) {
             $table->id();
             $table->string('email',255);
 

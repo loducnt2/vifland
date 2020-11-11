@@ -40,6 +40,16 @@ header .nav-desktop .main-nav .nav-list .icon {
 .mdtp__wrapper {
     bottom: 50%!important;
 }
+a.active {
+    color: #eac688!important;
+}
+.nav-list .active .text {
+    color: #eac688!important;
+}
+.tdmk-s {
+    display: flex;
+    align-items: center;
+}
 .box-sp {
     width: 100%
 }
