@@ -62,8 +62,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //return false;
-        
 
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         $price = doubleval($request->price)*intval($unit);
@@ -99,18 +97,50 @@ class ProductController extends Controller
             .'-'.date('Ymd',strtotime($request->datetime_start)).str_pad($product->id,5,rand(10000,99999),STR_PAD_LEFT)
         ]);
 
+
+        if($request->facades!=null){
+            if (str_contains($request->facades, ',')) { 
+                $facades = str_replace(",",".",$request->facades);
+            }else{
+                $facades = $request->facades;
+            }
+        }else{
+            $facades = $request->facades;
+        }
+        if($request->depth!=null){
+            if (str_contains($request->depth, ',')) { 
+                $depth = str_replace(",",".",$request->depth);
+            }else{
+                $depth = $request->depth;
+            }
+        }else{
+            $depth = $request->depth;
+        }
+        if($request->price!=null){
+            if (str_contains($request->price, ',')) { 
+                $price = str_replace(",",".",$request->price);
+            }else{
+                $price = $request->price;
+            }
+        }else{
+            $price = $request->price;
+        }
+        
+        if($request->product_cate!=null){
+            $product_cate = implode(',',$request->product_cate);
+        }else{
+            $product_cate = $request->product_cate;
+        }
         $productex = new ProductExtend([
             'product_id'   => $product->id,
-
-            'product_cate' => implode(',',$request->product_cate),
-
+            'product_cate' => $product_cate,
             'filter_price' => $filter_price,
             'address'      => $request->address_product,
-            'facades'      => $request->facades,
-            'depth'        => $request->depth,
+            'facades'      => $facades,
+            'depth'        => $depth,
             'floors'       => $request->floors,
             'bedroom'      => $request->bedroom,
-            'price'        => $request->price,
+            'price'        => $price,
             'unit_id'      => $request->unit_id,
             'legal'        => $request->legal,
         ]);
@@ -152,13 +182,16 @@ class ProductController extends Controller
 
         }
 
-        foreach($request->product_cate as $prodcate){
-            $product_cate = new TypeProduct([
-                'product_extend_id' => $productex->id,
-                'product_cate_id'   => $prodcate,
-            ]);
-            $product_cate->save();
+        if( $request->product_cate != NULL ){
+           foreach($request->product_cate as $prodcate){
+               $product_cate = new TypeProduct([
+                   'product_extend_id' => $productex->id,
+                   'product_cate_id'   => $prodcate,
+               ]);
+               $product_cate->save();
+           } 
         }
+        
 
         //Lưu vào lịch sử đăng
         $post_history = new PostHistory([
@@ -190,7 +223,7 @@ class ProductController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::where('slug',$slug)
+        $product = Product::where('product.slug',$slug)
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
@@ -267,7 +300,7 @@ class ProductController extends Controller
         //
     }
 
-    public function getByCateSlug1(){
+/*    public function getByCateSlug1(){
         $cate           = Category::where('slug','mua-ban-nha-dat')->first();
         $cate_id        = $cate->id;
         $cate_child     = Category::where('parent_id',$cate_id)->get();
@@ -294,6 +327,7 @@ class ProductController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.thumbnail as thumbnail',
             'product.slug as slug',
             'product.view',
             'product.datetime_start',
@@ -314,7 +348,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
     }
 
     public function getByCateSlug2(){
@@ -344,6 +378,7 @@ class ProductController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.thumbnail as thumbnail',
             'product.slug as slug',
             'product.view',
             'product.datetime_start',
@@ -364,7 +399,7 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
     }
 
     public function getByCateSlug3(){
@@ -394,6 +429,7 @@ class ProductController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.thumbnail as thumbnail',
             'product.slug as slug',
             'product.view',
             'product.datetime_start',
@@ -414,7 +450,58 @@ class ProductController extends Controller
         ->limit(5)
         ->get();
 
-        return view('pages/category',compact('cate_child','product_extend','title','products','ward','district','provinces'));
+        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
+    }*/
+
+    public function getByCate($slug){
+        $cate           = Category::where('slug',$slug)->first();
+        $cate_id        = $cate->id;
+        $cate_child     = Category::where('parent_id',$cate_id)->get();
+        $product_extend = Product::where('cate_id',$cate_id)->get();
+        $title          = 'Sang Nhượng Nhà Đất';
+
+        $wards        = Ward::orderBy('name','asc')->get();
+        $districts    = District::orderBy('name','asc')->get();
+        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
+
+        $products = Category::where('parent_id',3)
+        ->leftJoin('product','category.id','product.cate_id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
+        //->leftJoin('ward','product.ward_id','ward.id')
+        ->where('post_history.status',1)
+        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('soft_delete',0)
+        ->select(
+            //'product_image.name as img',
+            'product.id as product_id',
+            'product.thumbnail as thumbnail',
+            'product.slug as slug',
+            'product.view',
+            'product.datetime_start',
+            'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
+            'product_extend.price',
+            'product_extend.product_cate',
+            'product_extend.depth',
+            'product_extend.facades',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit'
+            //'ward.name as ward'
+        )
+        ->orderBy('product.type','desc')
+        ->limit(5)
+        ->get();
+
+        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
     }
 
     public function getByUser(){
@@ -426,7 +513,29 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
         ->orderBy('datetime_start','desc')
+        ->select(
+            //'product_image.name as img',
+            'product.id as product_id',
+            'product.thumbnail',
+            'product.slug as slug',
+            'product.view',
+            'product.datetime_start',
+            'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
+            'product_extend.price',
+            'product_extend.product_cate',
+            'product_extend.depth',
+            'product_extend.facades',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit'
+            //'ward.name as ward'
+        )
         ->get();
 
         //Tin đã đăng
@@ -435,7 +544,29 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
         ->orderBy('datetime_start','desc')
+        ->select(
+            //'product_image.name as img',
+            'product.id as product_id',
+            'product.thumbnail',
+            'product.slug as slug',
+            'product.view',
+            'product.datetime_start',
+            'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
+            'product_extend.price',
+            'product_extend.product_cate',
+            'product_extend.depth',
+            'product_extend.facades',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit'
+            //'ward.name as ward'
+        )
         ->get();
 
         //Tin chờ xác nhận
@@ -444,7 +575,29 @@ class ProductController extends Controller
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
         ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
         ->orderBy('datetime_start','desc')
+        ->select(
+            //'product_image.name as img',
+            'product.id as product_id',
+            'product.thumbnail',
+            'product.slug as slug',
+            'product.view',
+            'product.datetime_start',
+            'product.title',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
+            'product_extend.price',
+            'product_extend.product_cate',
+            'product_extend.depth',
+            'product_extend.facades',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit'
+            //'ward.name as ward'
+        )
         ->get();
 
 

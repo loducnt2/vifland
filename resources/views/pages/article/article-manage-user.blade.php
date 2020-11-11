@@ -136,10 +136,10 @@
                                                                 </div>
                                                                 <div class="col-9">
                                                                     <div class="text">
-                                                                        <p class="t-1">{{$product->title}}</p>
+                                                                        <a href="{{route('article-detail',$product->slug)}}"><p class="t-1">{{$product->title}}</p></a>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>Quận gò vấp, Thành phố hồ chí minh</p>
+                                                                            <p>{{$product->district}}, {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng
@@ -227,7 +227,7 @@
                                                                         <p class="t-1">{{$product->title}}</p>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>Quận gò vấp, Thành phố hồ chí minh</p>
+                                                                            <p>{{$product->district}}, {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng
@@ -303,7 +303,7 @@
                                                                         <p class="t-1">{{$product->title}}</p>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>Quận gò vấp, Thành phố hồ chí minh</p>
+                                                                            <p>{{$product->district}}, {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng

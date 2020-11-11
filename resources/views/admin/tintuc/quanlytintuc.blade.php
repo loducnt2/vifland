@@ -1,18 +1,20 @@
+<title>Nhập tin tức</title>
 @extends('admin.sidebar')
-
+{{-- @extends('admin.footer') --}}
 @section('content')
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+
+    {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
+    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
+
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
-    {{-- typeahead --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-<style>
+    <style>
     .bootstrap-tagsinput {
   width: 100% !important;
 }
@@ -41,33 +43,15 @@ width: 100%;
 @section('title','Quản lý tin tức')
 
 
-<script>
-    $( document ).ready(function() {
-        $('input').on('itemAdded', function(event) {
-    //   thêm item
-
-     var t=$("#tag").val();
-     $('#tags').html(t);
-
-    });
-    $('input').on('itemRemoved', function(event) {
-        $t=$("#tag").val()
-    console.log($t);
-    });
-    });
-</script>
-
 
 {{-- get tags value --}}
 
 
-<div class="container">
+<div class="max-width-container">
     <div class="py-5 text-center">
-    <form  method="POST" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
+    <form  method="POST" id="dangtin" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
         {{-- {{ csrf_field() }} --}}
         @csrf
-      <h2>Checkout form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
      </div>
 
         <div class="row">
@@ -146,24 +130,24 @@ width: 100%;
                   </ul>
       </div>
       <div class="col-md-8 order-md-1">
-        <h4 class="mb-3">Đăng tin tức</h4>
         <div>
           <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
               <label for="firstName">Tiêu đề bài viết</label>
+              <label for="text" class="error"></label>
+
               <input type="text" class="form-control" id="title" onkeyup="ChangeToSlug();" placeholder="" value="" name="title">
               {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
             </div>
 
             {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
                 <label for="">Ngày đăng</label>
                 <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar" aria-hidden="true"></i>
                     </div>
-                <input class="form-control" id="email" name="datepost" type="text" readonly value="
-                {{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
+                <input class="form-control" id="email" name="datepost" type="text" readonly value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
                   </div>
               </div>
 
@@ -172,45 +156,53 @@ width: 100%;
           <div class="form-group">
             <label for=""></label>
             <?php $cate = \App\Models\NewsCategory::all()?>
-            <select class="form-control" id="category" name="category">
-              @foreach ($cate as $item)
+            <select class="form-control" id="category_dropdown" name="id_category" onchange="test(this);">
+                <option value="">Lựa chọn danh mục</option>
+                @foreach ($cate as $item)
             <option value="{{$item->id}}">{{$item->category_name}}</option>
               @endforeach
             </select>
           </div>
-          {{-- tags --}}
+
+          <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug" aria-describedby="helpId" placeholder="" >
+
           <div class="form-group">
-            <label for="">Tags</label>
-            <input type="text" class="form-control typeahead" name="tags[]" id="tag" aria-describedby="helpId" placeholder="" data-role="tagsinput" >
+            <label for="">Từ khoá</label>
+            <input type="text" class="form-control typeahead" name="tags[]" id="tag" aria-describedby="helpId" placeholder="" data-role="tagsinput">
           </div>
-          Tag:<div id="tags"></div>
           <div class="row">
             <div class="col-md-12 mb-3">
-
-              <label for="content">Đăng tin mới</label>
-                <textarea id="content" name="content">
+                <label for="text" class="error"></label>
+              <label for="content">Nội dung</label>
+              <label for="text" class="error"></label>
+                <textarea id="editor1" name="content">
 
                 </textarea>
+                <script>
+                    CKEDITOR.replace( 'editor1' );
+                </script>
+                <label for="text" class="error"></label>
+
             </div>
-            <script>
-                // Replace the <textarea id="editor1"> with a CKEditor 4
-                // instance, using default configuration.
-                CKEDITOR.replace( 'content' );
-            </script>
+
           </div>
           <div class="form-group">
-            <label for=""></label>
+
             <input type="hidden"
               class="form-control" name="slug" id="slug2" aria-describedby="helpId" placeholder="" readonly>
-            {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Đăng tin</button>
              </div>
     </div>
     </div>
 </form>
+
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
+"></script>
 <script language="javascript">
     function ChangeToSlug()
     {
@@ -251,5 +243,46 @@ width: 100%;
     }
 
 </script>
+    <script>
+    function test(){
+   var test= $("#category_dropdown option:selected").text();
+   console.log(test);
+  $("#category_news_slug").attr('value',test);
+    }
+  </script>
 
+<script>
+    $(document).ready(function() {
+        $('#dangtin').validate({
+            rules: {
+                'title': {
+                    required: true,
+                    minlength:8,
+                    maxlength:255
+                },
+                'tags[]': {
+                    required: true,
+                },
+                'content': {
+                    required:true,
+                },
+            },
+            messages: {
+                'title': {
+                    required: "Tiêu đề không được để trống",
+                    minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
 
+                },
+                'tags[]': {
+                    required: "Từ khoá không được để trống",
+                },
+
+                'content': {
+                    required: "Nội dung không được để trống",
+                },
+            },
+        });
+    });
+    </script>
+
+@extends('admin.footer');

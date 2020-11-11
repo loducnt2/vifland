@@ -234,10 +234,10 @@
                             </div>
                             <div class="share">
                                 <button class="btn btn-share">
-                                    <p>Chia sẽ Facebook</p>
+                                    <p>Chia sẻ Facebook</p>
                                 </button>
                                 <button class="btn btn-share">
-                                    <p>Chia sẽ Zalo</p>
+                                    <p>Chia sẻ Zalo</p>
                                 </button>
                             </div>
                             <div class="contact-info" id="info">

@@ -52,7 +52,7 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province_id" id="province">
+                                            <select class="select1" name="province_id" id="province" required>
                                                 <option value="">Chọn</option>
                                                 @foreach($provinces as $province)
                                                 <option value="{{$province->id}}">{{$province->name}}</option>
@@ -61,19 +61,19 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district_id" id="district">
+                                            <select class="select1" name="district_id" id="district" required>
                                                 <option value="">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
-                                            <select class="select1" name="ward_id" id="ward">
+                                            <select class="select1" name="ward_id" id="ward" required>
                                                 <option value="">Chọn</option>
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="diachi">Địa chỉ</label>
-                                            <input type="text" min="0" name="address" id="diachi">
+                                            <input type="text" min="0" name="address" id="diachi" required>
                                         </div>
 
                                     </div>
@@ -81,7 +81,7 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate[]" multiple="multiple">
+                                            <select class="select1" name="product_cate[]" multiple="multiple" required >
                                                 @foreach($product_cate as $prodcate)
                                                 <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
                                                 @endforeach
@@ -89,11 +89,11 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="text" min="0" name="facades" >
+                                            <input type="text" min="0" name="facades" required>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="text" min="0" name="depth">
+                                            <input type="text" min="0" name="depth" required>
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -107,7 +107,7 @@
                                         </div> -->
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn vị </label>
-                                            <select class="select1" name="unit_id" id="unit">
+                                            <select class="select1" name="unit_id" id="unit" required>
                                                 <option value="">Chọn</option>
                                                 @foreach($units as $unit)
                                                 <option value="{{$unit->id}}">{{$unit->name}}</option>
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price" id="price">
+                                            <input type="text" min="0" name="price" id="price" required>
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
@@ -133,7 +133,7 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="legal">Giấy tờ pháp lý</label>
-                                            <select name="legal" class="select1" id="legal">
+                                            <select name="legal" class="select1" id="legal" required>
                                                 <option selected value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
                                                     CN QSDĐ - Sổ đỏ - Sổ hồng</option>
                                                 <option value="Hợp đồng mua bán">Hợp đồng mua bán
@@ -169,18 +169,23 @@
                                 <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
                             </div>
                             <div class="col-12 form-group">
-                                <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
+                                <textarea class="form-control" id="summary-ckeditor" name="content" required></textarea>
                             </div>
                             <div class="col-12 form-group">
-                                <span >Ảnh tiêu đề (1 ảnh): &nbsp;</span>
-                                <input type="file" name="thumbnail" >
+                                <span >Ảnh tiêu đề : &nbsp;</span>
+                                <input type="file" name="thumbnail" required>
                             </div>
                             <div class="col-12 form-group">
-                                <span>Ảnh chi tiết (ít nhất 3 ảnh): &nbsp;</span>
-                                <input type="file" name="img[]" multiple>
+                                <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags" required>
                             </div>
-                            <div class="col-12 form-group">
-                                <input class="input-100-s" type="text" placeholder="Add tags" name="tags">
+                            <div class="col-12 form-group wrap-input-img form-upload">
+                                <div class="form-upload__preview"></div>
+                                <div class="form-upload__field">
+                                    <label class="form-upload__title" for="upload">Thêm ảnh
+                                        <input class="form-upload__control js-form-upload-control" id="upload" type="file" multiple="true" style="display:none"  name="img[]" required>
+                                    </label>
+                                    <button class="btn btn-clear ml-3">Xóa ảnh</button>
+                                </div>
                             </div>
                         </div>
                         <div class="row thongtinlh">
@@ -191,30 +196,30 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">person</span>
-                                <input type="text" placeholder="Tên liên lạc" name="name_contact">
+                                <input type="text" placeholder="Tên liên lạc" name="name_contact" required>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">business</span>
-                                <input type="text" placeholder="Tên Công ty" name="company_name">
+                                <input type="text" placeholder="Tên Công ty" name="company_name" required>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">phone</span>
-                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact">
+                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact" required>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
-                                <input type="text" placeholder="Facebook cá nhân" name="facebook">
+                                <input type="text" placeholder="Facebook cá nhân" name="facebook" required>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">location_on</span>
-                                <input type="text" placeholder="Địa chỉ" name="address_contact">
+                                <input type="text" placeholder="Địa chỉ" name="address_contact" required>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">public</span>
-                                <input type="text" placeholder="Trang web" name="website">
+                                <input type="text" placeholder="Trang web" name="website" >
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">email</span>
-                                <input type="text" placeholder="Hộp thư điện tử" name="email">
+                                <input type="text" placeholder="Hộp thư điện tử" name="email" required>
                             </div>
                         </div>
                         <div class="row loaitindang">
@@ -739,38 +744,7 @@
 <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
-
-<script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
-
-<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 <script>
-$(function() {
-
-    // Turn input element into a pond
-    $('.my-pond').filepond();
-
-    // Turn input element into a pond with configuration options
-    $('.my-pond').filepond({
-        allowMultiple: true
-    });
-
-    // Set allowMultiple property to true
-    $('.my-pond').filepond('allowMultiple', false);
-
-    // Listen for addfile event
-    $('.my-pond').on('FilePond:addfile', function(e) {
-        console.log('file added event', e);
-    });
-
-    // Manually add a file using the addfile method
-    $('.my-pond').filepond('addFile', 'index.html').then(function(file) {
-        console.log('file added', file);
-    });
-
-});
-</script>
-<script>
-// $('#testdate').datepicker();
 $("#testdate").datepicker({
     language: 'vi',
     format: 'mm/dd/yyyy',
@@ -801,23 +775,6 @@ $(document).ready(function() {
         var url1 = '/get-ward/' + district;
         $('#ward').load(url1);
     });
-
-    FilePond.registerPlugin();
-      var element = document.querySelector('meta[name="csrf-token"]');
-      var csrf = element && element.getAttribute("content");
-      FilePond.setOptions({
-        server: {
-              url: "{{ url('upload')}}",
-              process: {
-                  headers: {
-                    'X-CSRF-TOKEN': csrf 
-                  },
-              }
-          }
-      });
-      const inputElement = document.querySelector('input[name="image"]');
-      const pond = FilePond.create( inputElement);
-
 
       //Validate 
       $('.formDangBaiViet').submit(function(){

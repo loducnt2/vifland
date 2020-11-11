@@ -1,4 +1,4 @@
-    
+
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
 <link rel="stylesheet" href="{{asset('css/styles.css') }}">
     <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
@@ -6,8 +6,10 @@
 <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
 
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @yield('title')
+@yield('title')
    <style>
         ::-webkit-scrollbar {
   width: 5px;
@@ -31,7 +33,7 @@
 
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-           
+
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -57,14 +59,16 @@
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"> 
-                     <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                     <a class="navbar-brand" href="index.html">VIFLAND</a>
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <a class="navbar-brand" href="/admin/index">Trang quản trị</a>
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <div class="sb-sidenav-menu-heading">MỤC THỐNG KÊ</div>
                         <a class="nav-link" href="{{url('admin')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Trang chủ
+                                trang thống kê dữ liệu
                             </a>
                             <div class="sb-sidenav-menu-heading">Quản lí sản phẩm và danh mục</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -105,6 +109,7 @@
                                     <a class="nav-link" href="{{ url('admin/cap-nhat-tin-tuc') }}">Cập nhật tin tức</a>
                                     <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Danh mục tin tức</a>
                                     <a class="nav-link" href="{{ url('admin/danh-sach-tin-tuc') }}">Danh sách tin tức</a>
+                                    <a class="nav-link" href="{{ url('admin/danh-sach-duyet-tin') }}">Duyệt tin</a>
 
                                       </nav>
                             </div>
@@ -120,6 +125,19 @@
                             <a class="nav-link" href="{{ url('admin/danh-sach-province') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý tỉnh/ thành phố
+                            </a>
+                            <a class="nav-link" href="{{ url('admin/index/quan-ly-thu-tin-tuc') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Quản lý thư tin tức
+                            </a>
+
+                            <a class="nav-link" href="{{ url('admin/danh-sach-banner') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Banner
+                            </a>
+                            <a class="nav-link" href="{{ url('admin/danh-sach-thong-bao') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Thông báo
                             </a>
                             <a class="nav-link" href="{{ url('admin/chinh-sua-trang-chu') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>

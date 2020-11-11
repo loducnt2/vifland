@@ -1,4 +1,16 @@
 <header>
+    @if(Auth::check() && Auth::user()->user_type == "1")
+    <div class="top-bar-admin">
+        <div class="max-width-container">
+        <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a></div>
+
+            <div class="wrap-text-right">
+                <p>Xin chào mừng: {{auth()->user()->username}}</p>
+                <div class="line"> </div><a class="dangxuat" href="/logout">Đăng xuất</a>
+            </div>
+        </div>
+    </div>
+    @endif
     <div class="user-login d-none d-lg-block">
         <div class="wrap-1">
             <div class="title">Tài khoản</div><i class="ri-close-line close-button-3"></i>
@@ -7,7 +19,14 @@
             @if(auth()->check())
             <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
-                    <p>Khách</p>
+                    @if(Auth::check() && Auth::user()->user_type == "1")
+
+                        <p>Quản trị viên</p>
+
+                    @else
+                        <p>Khách</p>
+
+                    @endif
                 </div>
             </div>
             <div class="bl-3">
@@ -91,26 +110,35 @@
                                     <div class="khong-thong-bao"> <img src="./assets/icon/icon-notification.png" alt="">
                                         <p>Không có thông báo nào</p>
                                     </div>
+
+
                                     <div class="co-thong-bao">
+
                                         <div class="item">
-                                            <div class="wrap-text">
-                                                <div class="thongbao post-expired">Bài viết hết hạn</div><a href="#">Bài
+                                            <div class="wrap-text notification-duedate ">
+                                                <div class="thongbao post-expired">Thông báo</div><a href="#">Bài
                                                     viết của bạn sắp hết hạn</a>
-                                                <div class="date">1/11/2020 </div>
-                                            </div>
+                                                <div class="date"></div>
+                                             </div>
                                         </div>
+
+
                                         <div class="item">
                                             <div class="wrap-text">
-                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#">Thông
-                                                    báo khuyến mãi nạp thẻ cho nhân diệp 20/10 20/10/2020 -
-                                                    20/12/2020</a>
-                                                <div class="date">1/11/2020</div>
+                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#"></a>
+                                                <div class="date">{{session()->get('noti')}}</div>
                                             </div>
                                         </div>
+
+
+
+
                                     </div>
+
                                 </div>
                             </div>
                         </li>
+                    <li class="nav-item tin-tuc-icon"><em class="material-icons icon">list_alt</em><a class="text" href="/index/tin-tuc">Tin tức</a></li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
                                 data-target="#exampleModal">Đăng bài</a>
@@ -302,3 +330,19 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    var textduedate = $(".notification-duedate .date").text();
+    var  duedate=new Date(textduedate);
+    var today=new Date();
+    var xetDuedate = today - duedate;
+console.log(xetDuedate);
+
+    if(xetDuedate < 0){
+        $(".notification-duedate,.number-tb").hide();
+    }
+    else if(textduedate == ""){
+        $(".notification-duedate,.number-tb").hide();
+    }
+
+</script>

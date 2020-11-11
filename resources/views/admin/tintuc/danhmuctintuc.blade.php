@@ -4,10 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     @extends('admin.sidebar')
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css
+   ">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Danh mục tin tức</title>
 </head>
 <body>
+
     {{-- @extends('layouts.master') --}}
     @section('content')
     <div class="container">
@@ -26,26 +35,78 @@
           }
           table{margin-top:20px;}
         </style>
-    <!-- table -->
-     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelId">
-     Thêm danh mục tin tức
-   </button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+          Launch
+        </button>
 
-    <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <!-- Modal -->
+        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        Body
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- table -->
+<!-- Button trigger modal -->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
+     Thêm danh mục tin tức
+</button>
+
+    <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
        <div class="modal-dialog" role="document">
            <div class="modal-content">
                <div class="modal-header">
+
                    <h5 class="modal-title">Thêm danh mục</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                            <span aria-hidden="true">&times;</span>
                     </button>
                </div>
                <div class="modal-body">
-               <form id="myform">
-                        {{ csrf_field() }}
+                <input type="hidden" name="cate_id" id="cate_id">
+               <form id="myform" action="#">
+                        {{-- {{ csrf_field() }} --}}
                 <div class="form-group">
                   {{-- <label for=""></label> --}}
-                  <input type="text" class="form-control" id="category_name" onkeyup="ChangeToSlug();" placeholder="" value="" name="category_name">
+
                   <small class="text">
                     <input type="hidden"
                     class="form-control" name="slug" id="slug2" aria-describedby="helpId" placeholder="" readonly>
@@ -65,34 +126,39 @@
    </div>
 
     <br>
-    <table class="table table-bordered table-striped" id="myTable">
+
+
+    {{-- <table class="ui celled table" id="myTable">
       <thead>
-        <tr>
-            <th>STT</th>
-            <th>Tên danh mục</th>
-            <th>Slug</th>
-            <th>Hiện ẩn</th>
-            <th>Hành động</th>
+
+      </thead>
+      <tbody id="myTable2">
+
+        </tbody> --}}
+    {{-- </table> --}}
+    <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên danh mục</th>
+                <th>Slug</th>
+                <th>Hiện ẩn</th>
+                <th>Hành động</th>
 
         </tr>
       </thead>
-      <tbody id="myTable2">
-        @foreach($newsCategory as $category)
+      <tbody id="myTable">
+        @foreach ($news_cate as $category_news)
         <tr>
-
-        <td>{{$category->id}}</td>
-        <td>{{$category->category_name}}</td>
-        <td>{{$category->slug}}</td>
-        <td>{{$category->status}}</td>
-        <td><a name="" id="" data-toggle="modal" data-target="#bootstrapmodal" class="btn btn-primary">
-        Xoá
-        </a></td>
-
-
-</tr>
+        <td id="id">{{$category_news->id}}</td>
+            <td>{{$category_news->category_name}}</td>
+            <td>{{$category_news->slug}}</td>
+            <td>{{$category_news->status}}</td>
+        {{-- <td><a name="" id="" onclick="delete({{$category_news->id}})" class="btn btn-primary" href="{{$category_news->id}}" role="button">Xoá</a></td> --}}
+            {{-- <td>{{$category_news->category_name}}</td> --}}
+        </tr>
         @endforeach
-
-      </tbody>
+    </tbody>
     </table>
     @endsection
 
@@ -102,13 +168,10 @@
     function ChangeToSlug()
     {
         var title, slug;
-
         //Lấy text từ thẻ input title
         title = document.getElementById("category_name").value;
-
         //Đổi chữ hoa thành chữ thường
         slug = title.toLowerCase();
-
         //Đổi ký tự có dấu thành không dấu
         slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
         slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -138,7 +201,4 @@
     }
 // form add thông tin
 </script>
-@extends('admin.footer');
 </html>
-
-

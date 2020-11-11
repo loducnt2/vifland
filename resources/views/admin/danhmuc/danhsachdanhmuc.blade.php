@@ -29,6 +29,7 @@
           <th>Trạng thái</th>
           <th>Thứ tự</th>
           <th>Slug</th>
+          <th>content status</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -42,6 +43,7 @@
           <td>{{$cate->status==1?'Đang hiện':'Đang ẩn'}}</td>
           <td>{{$cate->orders}}</td>
           <td>{{$cate->slug}}</td>
+          <td>{{$cate->content==""?'Chưa có nội dung':'Đã có nội dung'}}</td>
           <td>
             <!-- <a href="{{route('delete-cate',$cate->id)}}"> <button class="btn btn-danger">Xóa</button> </a> -->
             <a href="{{route('edit-cate',$cate->id)}}"> <button class="btn btn-info">Xem chi tiết</button> </a>

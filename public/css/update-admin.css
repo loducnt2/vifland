@@ -81,3 +81,28 @@ nav a.navbar-brand {
 #layoutSidenav #layoutSidenav_nav.active {
     transform: translateX(0);
 }
+#userDropdown {
+    margin-right: 10px;
+}
+.fixed-top, .sb-nav-fixed #layoutSidenav #layoutSidenav_nav, .sb-nav-fixed .sb-topnav {
+    box-shadow: -1px 3px 8px #00000021;
+}
+.sb-sidenav-dark .sb-sidenav-menu .nav-link.active {
+    color: #333333;
+    font-weight: bold;
+    background-color: #233e8c1c;
+}
+.sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-heading {
+    font-size: 13px 
+}
+.max-width-container {
+    max-width: 95%;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.bootstrap-tagsinput input {
+    width: 100% !important
+}
