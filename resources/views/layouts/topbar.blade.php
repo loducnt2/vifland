@@ -118,7 +118,7 @@
                                                 <div class="thongbao post-expired">Thông báo</div><a href="#">Bài
                                                     viết của bạn sắp hết hạn</a>
                                                 <div class="date"></div>
-                                             </div>
+                                            </div>
                                         </div>
 
 
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item tin-tuc-icon"><em class="material-icons icon">list_alt</em><a class="text" href="/tin-tuc">Tin tức</a></li>
+                    <li class="nav-item tin-tuc-icon"><a class="text" href="/index/tin-tuc"><em class="material-icons icon">list_alt</em>Tin tức</a></li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
                                 data-target="#exampleModal">Đăng bài</a>
