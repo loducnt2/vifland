@@ -8,12 +8,12 @@
 
   
    <div class="form-create-banner">
-     <form action="{{route('create-banner')}}" method="POST" enctype="multipart/form-data">
+     <form action="{{route('update-banner',$banner->id)}}" method="POST" enctype="multipart/form-data">
      {{csrf_field()}}
      <div class="">
           <label for="">banner cũ</label>
           <div>
-              <img  class="img-old" src="/assets/banner/{{$banner->name}}" alt="">
+              <img  class="img-old" src="{{asset('public/assets/banner')}}/{{$banner->name}}" alt="">
           </div>
           
         </div>

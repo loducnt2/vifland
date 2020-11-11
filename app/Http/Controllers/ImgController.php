@@ -15,7 +15,7 @@ class ImgController extends Controller
      */
     public function index()
     {
-        $banners = Image::orderBy('id','asc')->get();
+        $banners = Image::orderBy('position','asc')->get();
         return view('/admin/banner/danhsachbanner',compact('banners'));
     }
 
@@ -45,22 +45,10 @@ class ImgController extends Controller
         if ($request->has('img')) {
                  $file = $request->file('img');
                  $name = $file->getClientOriginalName();
-                 //$extension = $file->getClientOriginalExtension();
-                 //$filename = $name.'.'.$extension;
-                 $file->move("assets/banner/", $name);
+                 $file->move("../public/assets/banner", $name);
                  $banner->name = $name;
-
-
-        //    // $name = Str::slug($request->input('name')).'_'.time();
-        //     $folder ='/assets/banner';
-        //     $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
-        //     $this->uploadOne($image, $folder, 'public', $name);
-        //     $banner->profile_image = $filePath;
         }
         $banner->save();
-
-        
-
         return redirect('/admin/danh-sach-banner'); 
     }
 
@@ -103,15 +91,8 @@ class ImgController extends Controller
         if ($request->has('img')) {
             $file = $request->file('img');
             $name = $file->getClientOriginalName();
-            $file->move(public_path('/../../assets/banner/'), $name);
+            $file->move("../public/assets/banner", $name);
             $banner->name = $name;
-
-
-   //    // $name = Str::slug($request->input('name')).'_'.time();
-   //     $folder ='/assets/banner';
-   //     $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
-   //     $this->uploadOne($image, $folder, 'public', $name);
-   //     $banner->profile_image = $filePath;
    }
         $banner->save();
         return redirect('/admin/danh-sach-banner');

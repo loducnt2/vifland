@@ -1,7 +1,7 @@
 @extends('admin.sidebar')
     @section('content')
     <div class="container">
-    <h2>Danh sách tin chưa duyệt</h2>
+    <h2>Danh sách tin </h2>
 
     <!-- table -->
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
@@ -10,15 +10,9 @@
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Mã</th>
+          <th>Mã post</th>
+          <th>Mã tin</th>
           <th>Tiêu đề</th>
-          <th>slug</th>
-          <th>Ngôn ngữ</th>
-          <th>Nội dung</th>
-          <th>summary</th>
-          <th>daypost</th>
-          <th>hình</th>
-          <th>tag</th>
           <th>trạng thái</th>
           <th>Action</th>
         </tr>
@@ -26,23 +20,22 @@
       <tbody id="myTable">
         @foreach($news as $new)
         <tr>
-       
-          <td>{{$new->id}}</td>
-          <td>{{$new->title}}</td>
-          <td>{{$new->slug}}</td>
-          <td>{{$new->language}}</td>
-          <td>{{$new->content}}</td>
-          <td>{{$new->summary}}</td>
-          <td>{{$new->datepost}}</td>
-          <td><img class="img-tintuc" src="{{$new->img}}" alt=""></td>
-          <td>{{$new->tag}}</td>
-          <td>{{$new->status==1?'Đang hiện':'Đang ẩn'}}</td>
-          <td>
-            <a href="{{route('detail-new',$new->id)}}"> <button class="btn btn-info">Xem chi tiết</button> </a>
-            <a href="{{route('delete-new',$new->id)}}"> <button class="btn btn-danger">Xóa tin</button> </a>
+          <td>{{$new->post_id}}</td>
+          <td>{{$new->product_id}}</td>
+          <td>{{$new->product_title}}</td>
+          <td style="width:15%"> <button class="btn {{$new->status == 1 ? 'btn-success':'btn-warning'}}">{{$new->status == 1 ? 'Đã duyệt':'Chờ duyệt'}}</button></td>
+          <td style="width:30%">
+          <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn btn-primary"> Detail</button></a>
+          @if($new->status == 1)
+          <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger"> Hủy duyệt </button></a>
+          @else
+           <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt tin </button> </a>
+          @endif
+         
            
+           
+            
           </td>
-          
         </tr>
         @endforeach
 
@@ -50,4 +43,22 @@
     </table>
    
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
+    <style>
+      
+      th,tr{
+        margin: 0 auto;
+        text-align: center;
+      }
+    </style>
     @endsection
