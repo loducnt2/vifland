@@ -115,11 +115,11 @@ class NewsController extends Controller
     }
     public function ShowDuyetTin($id)
     {
-     
+
         $new = DB::table('news')->where('id',$id)->first();
         return view('/admin/tintuc/chitietduyettin',compact('new'));
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.

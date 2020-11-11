@@ -27,7 +27,7 @@
                         <th>Thời gian đăng kí</th>
                         {{-- <th>Salary</th> --}}
                         <th>Hoạt động</th>
-                        <th>Chi tiết</th>
+                        <th>Trang thái</th>
                         <th>Hành động</th>
                         <th></th>
                     </tr>
@@ -53,7 +53,7 @@
 
                   <td>
                   {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
-                  <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} >
+                  <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="Ban" data-off="Unban" {{ $user->status ? 'checked' : '' }} >
                 {{-- hồ sơ --}}
 
                 </td>

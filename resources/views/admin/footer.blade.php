@@ -1,17 +1,15 @@
-<script
-src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="{{asset('js/core.min.js') }}"></script>
-<script src="{{asset('js/scripts.js')}}"></script>
-<script src="{{asset('js/datatables.js') }}"></script>
+
 {{-- <script src="{{asset('js/bootstrap-toggle.js') }}"></script> --}}
 {{-- <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script> --}}
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.min.js"></script>
+
 {{-- <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script> --}}
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"> --}}
 
-
+<script src="{{asset('js/core.min.js') }}"></script>
+<script src="{{asset('js/scripts.js')}}"></script>
+<script src="{{asset('js/datatables.js') }}"></script>
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
@@ -78,9 +76,7 @@ src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2t
         })
         })
     </script>
-<script>
-    CKEDITOR.replace( 'editor1' );
-</script>
+
 {{-- script delete record --}}
     {{-- <script>
         function delete(id)
@@ -116,3 +112,4 @@ function slideNav() {
     });
 }
 </script>
+
