@@ -2,17 +2,6 @@
 @extends('admin.sidebar')
 {{-- @extends('admin.footer') --}}
 @section('content')
-{{--
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-
-    {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> --}}
-    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> --}}
-
-
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-
     <style>
     .bootstrap-tagsinput {
   width: 100% !important;
@@ -208,7 +197,7 @@ width:100%;
           <div class="form-group">
             <label for=""></label>
             <?php $cate = \App\Models\NewsCategory::all()?>
-            <select class="form-control" id="category_dropdown" name="id_category" onchange="test(this);">
+            <select class="form-control" id="category_dropdown" name="id_category" onChange="test();">
                 <option value="">Lựa chọn danh mục</option>
                 @foreach ($cate as $item)
             <option value="{{$item->id}}">{{$item->category_name}}</option>
@@ -230,9 +219,7 @@ width:100%;
                 <textarea id="editor1" name="content">
 
                 </textarea>
-                <script>
-                    CKEDITOR.replace( 'editor1' );
-                </script>
+
                 <label for="text" class="error"></label>
 
             </div>
@@ -251,87 +238,10 @@ width:100%;
     </div>
 
 
-<script>
-$(document).ready(function() {
-    $('#tintuc').validate({
-
-        rules: {
-            title: "required",
-        },
-        messages: {
-            'title':"Không được bỏ trống nội dung",
-            'email': {
-                required: "Emal không được để trống",
-                email: "Nhập đúng định dạng Email",
-                // maxlength: "Email must be less than or equal 255 letters",
-            },
-
-            'card_id': {
-                required: "Số nhân dân không đươc để trống",
-                digits: "Chỉ được nhập số"
-            },
-            'password': {
-                required: "Mật khẩu không được để trống",
-                minlength: "Vui lòng nhập mật khẩu khoản  giữa 8 đến 255 kí tự",
-                maxlength: "Vui lòng nhập tên tài khoản giữa 8 đến 255 kí tự"
-            },
-        },
-
-    });
-});
-</script>
 @endsection
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
-<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js
-"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.js
-"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+{{-- @extends('admin.footer') --}}
 
-<script language="javascript">
-    function ChangeToSlug()
-    {
-        var title, slug;
-
-        //Lấy text từ thẻ input title
-        title = document.getElementById("title").value;
-
-        //Đổi chữ hoa thành chữ thường
-        slug = title.toLowerCase();
-
-        //Đổi ký tự có dấu thành không dấu
-        slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-        slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-        slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-        slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-        slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-        slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-        slug = slug.replace(/đ/gi, 'd');
-        //Xóa các ký tự đặt biệt
-        slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
-        //Đổi khoảng trắng thành ký tự gạch ngang
-        slug = slug.replace(/ /gi, "-");
-        //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
-        //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
-        slug = slug.replace(/\-\-\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-/gi, '-');
-        //Xóa các ký tự gạch ngang ở đầu và cuối
-        slug = '@' + slug + '@';
-        slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-        //In slug ra textbox có id “slug”
-
-        document.getElementById('slug').innerHTML = slug;
-        document.getElementById('slug2').value=slug;
-
-    }
-
-</script>
-    <script>
+<script>
     function test(){
    var test= $("#category_dropdown option:selected").text();
    console.log(test);
