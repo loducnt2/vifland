@@ -44,10 +44,11 @@ pass : 1
 memory_limit= -1**
 -- -------------------------------------------------------------------------------------------
 - 2. Chạy lệnh ** composer require spatie/laravel-newsletter để cài đặt package NewsLetter
-- Sau khi đã cài package, bổ sung 2 dòng vào cuối .env (chính thức) 
-- **MAILCHIMP_APIKEY=dfbb49bddc54a110d726feb3731286c9-us2**
-- **MAILCHIMP_LIST_ID=1917eb0f36**
-- Chạy lệnh **php artisan config:clear** hoặc **php artisan config:cache** để .env nhận config mới
+- Sau khi đã cài package, bổ sung 2 dòng vào cuối .env (tạm thời) 
+- **MAILCHIMP_APIKEY=382c609f5e4fa85ef07cd4176bede4de-us2**
+- **MAILCHIMP_LIST_ID=fb224cafd9**
+- Chạy lệnh **
+** hoặc **php artisan config:cache** để .env nhận config mới
 -- Chạy **php artisan migrate** để thực thi file migration 2020_11_10_080944_create_newsletter_table để tạo table newsletter trong Database vifland
 
 =>Tổng hợp chạy 2 lệnh kia nếu chưa chạy lần nào => composer install 

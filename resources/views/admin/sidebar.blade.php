@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
 <link rel="stylesheet" href="{{asset('css/styles.css') }}">
 <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
@@ -11,7 +10,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-=======
+
     <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
     <link rel="stylesheet" href="{{asset('css/styles.css') }}">
         <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
@@ -20,8 +19,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-
->>>>>>> 3195db80b62284f2df69dc1742a27b30e6348ebb
 @yield('title')
    <style>
         ::-webkit-scrollbar {

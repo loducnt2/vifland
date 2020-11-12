@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 {{-- <script src="{{asset('js/bootstrap-toggle.js') }}"></script> --}}
 {{-- <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script> --}}
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -9,8 +8,7 @@
 
 {{-- <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script> --}}
 {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"> --}}
-=======
->>>>>>> 3195db80b62284f2df69dc1742a27b30e6348ebb
+
 
 {{-- Jquery --}}
 <script
