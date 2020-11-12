@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('{folder1}')
+
 
 Route::get('/testform',function(){return view('pages/article/testform');} );
 
