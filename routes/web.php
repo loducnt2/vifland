@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
+Route::get('{folder1}')
 
 Route::get('/testform',function(){return view('pages/article/testform');} );
 
@@ -85,6 +85,7 @@ Route::get('/san-pham',function(){
 
 //API
 Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
+Route::get('/get-content-province/{id}','API\GetZone@contentProvince');
 Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
 Route::post('/add-favorited','API\FavoriteController@addFavorite')->name('add-favorite');
 Route::get('/favorites/all','API\FavoriteController@allFavorite')->name('all-favorite');

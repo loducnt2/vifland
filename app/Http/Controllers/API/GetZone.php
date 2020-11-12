@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
 
@@ -23,6 +24,11 @@ class GetZone extends Controller
     	foreach($wards as $ward){
     		echo '<option value="'.$ward->id.'">'.$ward->name.'</option>';
     	}
+    }
+
+    public function contentProvince($id){
+        $content = Province::where('id',$id)->value('content');
+        return $content;
     }
 
 }

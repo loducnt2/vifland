@@ -64,6 +64,7 @@ class SearchController extends Controller
             'product.id as product_id',
             'product.thumbnail',
     		'product.title',
+            'product.type',
     		'product.slug',
             'product.view',
             'product.datetime_start',
@@ -81,6 +82,7 @@ class SearchController extends Controller
             'product_extend.facades',
             'product.view'
     	)
+        ->orderBy('product.type','asc')
     	->get();
     	
     	switch ($cate) {
@@ -175,6 +177,7 @@ class SearchController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
@@ -189,34 +192,9 @@ class SearchController extends Controller
             'product_unit.name as unit'
             //'ward.name as ward'
         )
+        ->orderBy('product.type','asc')
         ->get();
-        
-       /* switch ($cate) {
-            case 13:
-                $title = "Mua Bán Nhà Đất Bất động sản Giá Rẻ, Mới Nhất 2020";
-                break;
-            case 14:
-                $title = "Mua Bán Nhà Đất Bất động sản Giá Rẻ, Mới Nhất 2020";
-                break;
-            case 18:
-                $title = "Cho Thuê Nhà Nguyên Căn Giá Rẻ, Chính Chủ Mới Nhất 2020";
-                break;
-            case 19:
-                $title = "Cho Thuê Nhà Nguyên Căn Giá Rẻ, Chính Chủ Mới Nhất 2020";
-                break;
-            case 20:
-                $title = "Sang Nhượng Cửa Hàng, Mặt Bằng Giá Rẻ Mới Nhất 2020";
-                break;
-            case 21:
-                $title = "Sang Nhượng Cửa Hàng, Mặt Bằng Giá Rẻ Mới Nhất 2020";
-                break;
-        }*/
-        //$acreage = intval($products->depth)*intval($products->facades);
-        //$title = 'dsa';
-        //$cate_child     = Category::where('parent_id',$cate)->get();
-        //$provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         return $products;
-        //return view('pages.category',compact('products','title','cate_child','provinces'));
 
     }
 

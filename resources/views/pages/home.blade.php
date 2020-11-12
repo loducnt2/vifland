@@ -281,11 +281,11 @@
 										<div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
 										<div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades}}">{{$product->facades}} m</span></div>
 									</div>
-									<!-- <div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{$product->depth*$product->facades}} m²</span></div>
-									</div> -->
+									<div class="mota-place-1">
+									    <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</span></div>
+									    <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}} </span></div>
+									    <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tooltip on bottom"></span></div>
+									</div>
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">
@@ -346,7 +346,15 @@
                             <div class="box-sp-text">
                                 <a class="localstore" localstore="{{$product->product_id}}"
                                     href="{{route('article-detail',$product->slug)}}">
-                                    <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+                                    @if($product->type == 1)
+                                    	<h5 class="title-text lcl lcl-2 vip1">{{$product->title}}</h5>
+                                    @elseif($product->type == 2)
+                                    	<h5 class="title-text lcl lcl-2 vip2">{{$product->title}}</h5>
+                                    @elseif($product->type == 3)
+                                    	<h5 class="title-text lcl lcl-2 vip3">{{$product->title}}</h5>
+                                    @else 
+                                    	<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+                                    @endif
                                 </a>
                                 <div class="location"> <span class="material-icons">location_on</span>
                                     <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
@@ -367,11 +375,11 @@
                                                 data-toggle="tooltip" data-placement="bottom"
                                                 title="{{$product->facades}}">{{$product->facades}} m</span></div>
                                     </div>
-                                     <div class="mota-place-1">
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-2@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Sàn văn phòng, Mặt bằng thương mại, Phòng học </span></div>
-										<div class="mota-place-tt"><img src="./assets/icon/rectangle-3@3x.png" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">---</span></div>
-										<div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">{{$product->depth*$product->facades}} m²</span></div>
-									</div>
+                                    <div class="mota-place-1">
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</span></div>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}</span></div>
+                                        <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tooltip on bottom"></span></div>
+                                    </div>
                                 </div>
                                 <div class="end-mota">
                                     <div class="mota-end-box">
@@ -435,7 +443,15 @@
                                 </div>
                             </div>
                             <div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
-                                    <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+                                    @if($product->type == 1)
+                                    	<h5 class="title-text lcl lcl-2 vip1">{{$product->title}}</h5>
+                                    @elseif($product->type == 2)
+                                    	<h5 class="title-text lcl lcl-2 vip2">{{$product->title}}</h5>
+                                    @elseif($product->type == 3)
+                                    	<h5 class="title-text lcl lcl-2 vip3">{{$product->title}}</h5>
+                                    @else 
+                                    	<h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+                                    @endif
                                 </a>
                                 <div class="location"> <span class="material-icons">location_on</span>
                                     <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
@@ -456,12 +472,18 @@
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                 title="{{$product->facades}}">{{$product->facades}} m</span></div>
                                     </div>
+                                    <div class="mota-place-1">
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</span></div>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}</span></div>
+                                        <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tooltip on bottom"></span></div>
+                                    </div>
 								</div>
 								<div class="end-mota">
 									<div class="mota-end-box">
 										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
+
 									</div>
 								</div>
 							</div>

@@ -628,6 +628,7 @@ class ProductController extends Controller
         ->select(
             'product.*',
             'product.id as product_id',
+            'product.thumbnail',
             'product_unit.name as unit',
             'product.title as title',
             'product_extend.price as price',

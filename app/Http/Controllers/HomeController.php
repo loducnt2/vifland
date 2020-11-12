@@ -66,6 +66,8 @@ class HomeController extends Controller
             'product_extend.product_cate',
             'product_extend.depth',
             'product_extend.facades',
+            'product_extend.floors',
+            'product_extend.bedroom',
             'province.name as province',
             'district.name as district',
             'product_unit.name as unit'
@@ -104,6 +106,8 @@ class HomeController extends Controller
             'product_extend.product_cate',
             'product_extend.depth',
             'product_extend.facades',
+            'product_extend.floors',
+            'product_extend.bedroom',
             'province.name as province',
             'district.name as district',
             'product_unit.name as unit'
@@ -142,6 +146,8 @@ class HomeController extends Controller
             'product_extend.product_cate',
             'product_extend.depth',
             'product_extend.facades',
+            'product_extend.floors',
+            'product_extend.bedroom',
             'province.name as province',
             'district.name as district',
             'product_unit.name as unit'
@@ -189,5 +195,21 @@ class HomeController extends Controller
             //'favorite'
         ));
         
+    }
+    public function indexWithOneFolder($folderName,$fileName)
+    {   
+        // Render perticular view file by foldername and filename
+        if(view()->exists($folderName.".".$fileName)){
+            return view($folderName.".".$fileName); 
+        }
+        return abort('404');
+    }
+    public function indexWithTwoFolder($folderName1,$folderName2,$fileName)
+    {   
+        // Render perticular view file by foldername and filename
+        if(view()->exists($folderName1.".".$folderName2.".".$fileName)){
+            return view($folderName1.".".$folderName2.".".$fileName); 
+        }
+        return abort('404');
     }
 }
