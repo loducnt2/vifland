@@ -98,3 +98,58 @@
       })
     })
 </script>
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    </script>
+{{-- form-table --}}
+<script>
+    //   insert record ajax
+      $('#myform').submit(function(e){
+          e.preventDefault();
+        let formData = {
+            category_name : $("#category_name").val(),
+            slug : $("#slug2").val()
+        };
+        $.ajax({
+            // setup ajax
+            type:'POST',
+            url: '/admin/danh-muc-tin-tuc/them-moi/',
+            data: formData,
+            success: function(data){
+                $('#myTable').prepend(`<tr>
+                <td>`+data.id+`</td>
+                <td>`+data.slug+`</td>
+                <td>`+data.category_name+`</td>
+                <td>`+data.status+`</td>
+                <td>`+`<a name="" id="" class="btn btn-primary" href="{{`data.id`}}" data-id="{{`data.id`}}"role="button">Xoá</a>`+`</td>
+
+                </tr>`);
+            },
+            error: function(error){
+                console.log(error);
+            },
+        })
+        })
+    </script>
+    <script>
+    function deletePost(event) {
+    var id  = $(event).data("id");
+    let _url = `/posts/${id}`;
+    let _token   = $('meta[name="csrf-token"]').attr('content');
+
+      $.ajax({
+        url: _url,
+        type: 'DELETE',
+        data: {
+          _token: _token
+        },
+        success: function(response) {
+          $("#row_"+id).remove();
+        }
+      });
+  }
+    </script>

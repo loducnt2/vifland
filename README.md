@@ -33,7 +33,7 @@ php artisan migrate
 
 username : admin
 pass : 1
-## Lưu ý (cập nhật lúc 16:46 ngày 10/11/2020): 
+## Lưu ý (cập nhật lúc 16:00 ngày 11/11/2020): 
 -- Sau khi khi chạy composer install, chạy tiếp lệnh : 
 -- **composer require brian2694/laravel-toastr** 
 

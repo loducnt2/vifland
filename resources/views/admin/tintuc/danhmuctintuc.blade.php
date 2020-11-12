@@ -1,198 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('admin.sidebar')
+@section('content')
+<div class="container">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    @extends('admin.sidebar')
 
-    <title>Danh mục tin tức</title>
-</head>
-<body>
+<form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
+        {{ csrf_field() }}
+    <div class="row">
+        <div class="col-md-8 mt-4 form-group">
+            <label for="">Nhập tiêu đề</label>
+            <input type="text" class="form-control" name="category_name" id="category_name" aria-describedby="helpId" placeholder="">
+            <input type="hidden" class="form-control" name="slug2" id="slug2" aria-describedby="helpId" placeholder="">
 
-    {{-- @extends('layouts.master') --}}
-    @section('content')
-    <div class="container">
-
-        <h2>Danh mục tin tức</h2>
-        <style>
-            /* .btn{margin-top:40px;} */
-          #myInput{
-              margin-top:20px;
-          }
-          .form-input{
-              margin-top:20px;
-          }
-          .add-cate{
-              margin-top:20px;
-          }
-          table{margin-top:20px;}
-        </style>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-          Launch
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                    </div>
-                    <div class="modal-body">
-                        Body
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <!-- table -->
-<!-- Button trigger modal -->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
+            {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+          </div>
     </div>
-  </div>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
-     Thêm danh mục tin tức
-</button>
-
-    <div class="modal fade" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-       <div class="modal-dialog" role="document">
-           <div class="modal-content">
-               <div class="modal-header">
-
-                   <h5 class="modal-title">Thêm danh mục</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                    </button>
-               </div>
-               <div class="modal-body">
-                <input type="hidden" name="cate_id" id="cate_id">
-               <form id="myform" action="#">
-                        {{-- {{ csrf_field() }} --}}
-                <div class="form-group">
-                  {{-- <label for=""></label> --}}
-
-                  <small class="text">
-                    <input type="hidden"
-                    class="form-control" name="slug" id="slug2" aria-describedby="helpId" placeholder="" readonly>
-                    <div id ="slug" name="slug">
-                    </div>
-                  </small>
-                </div>
-               </div>
-               <div class="modal-footer">
-                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                   <button type="submit" class="btn btn-primary">Thực thi</button>
-               </div>
-            </form>
-           </div>
-       </div>
-
-   </div>
-
-    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="card-body">
+        <div class="col-md-8 table-responsive">
+            <table class=" table table-bordered" id="myTable" width="100%" cellspacing="0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Slug</th>
+                        {{-- <th>Username</th> --}}
+                        {{-- <th>Email</th> --}}
+                        {{-- <th>Năm sinh </th> --}}
+                        <th>Tên danh mục</th>
+                        <th>Tình trạng</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
 
 
-    {{-- <table class="ui celled table" id="myTable">
-      <thead>
+                <tr>
+                 @foreach ($news_cate as $item)
+                 <tr id="row_{{$item->id}}">
+                 <td>{{$item->id}}</td>
 
-      </thead>
-      <tbody id="myTable2">
+                 <td>{{$item->slug}}</td>
+                 {{-- <td>{{$user->birth_day}}</td> --}}
+                 <td>{{$item->category_name}}</td>
+                 <td>{{$item->status}}</td>
+                    <td><a href="javascript:void(0)" data-id="{{ $item->id }}" class="btn btn-danger" onclick="deletePost(event.target)">Xoá</a></td>
+                </td>
+                 @endforeach
 
-        </tbody> --}}
-    {{-- </table> --}}
-    <table id="myTable" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Tên danh mục</th>
-                <th>Slug</th>
-                <th>Hiện ẩn</th>
-                <th>Hành động</th>
+                </tr>
+                <tbody>
 
-        </tr>
-      </thead>
-      <tbody id="myTable">
-        @foreach ($news_cate as $category_news)
-        <tr>
-        <td id="id">{{$category_news->id}}</td>
-            <td>{{$category_news->category_name}}</td>
-            <td>{{$category_news->slug}}</td>
-            <td>{{$category_news->status}}</td>
-        {{-- <td><a name="" id="" onclick="delete({{$category_news->id}})" class="btn btn-primary" href="{{$category_news->id}}" role="button">Xoá</a></td> --}}
-            {{-- <td>{{$category_news->category_name}}</td> --}}
-        </tr>
-        @endforeach
-    </tbody>
-    </table>
-    @endsection
-
-</body>
-
-<script language="javascript">
-    function ChangeToSlug()
-    {
-        var title, slug;
-        //Lấy text từ thẻ input title
-        title = document.getElementById("category_name").value;
-        //Đổi chữ hoa thành chữ thường
-        slug = title.toLowerCase();
-        //Đổi ký tự có dấu thành không dấu
-        slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-        slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-        slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-        slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-        slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-        slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-        slug = slug.replace(/đ/gi, 'd');
-        //Xóa các ký tự đặt biệt
-        slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
-        //Đổi khoảng trắng thành ký tự gạch ngang
-        slug = slug.replace(/ /gi, "-");
-        //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
-        //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
-        slug = slug.replace(/\-\-\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-\-/gi, '-');
-        slug = slug.replace(/\-\-/gi, '-');
-        //Xóa các ký tự gạch ngang ở đầu và cuối
-        slug = '@' + slug + '@';
-        slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-        //In slug ra textbox có id “slug”
-
-        document.getElementById('slug').innerHTML = slug;
-        document.getElementById('slug2').value=slug;
-
-    }
-// form add thông tin
-</script>
-</html>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</form>
+@endsection
