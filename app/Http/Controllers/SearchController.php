@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Province;
@@ -83,7 +83,7 @@ class SearchController extends Controller
             'product.view'
     	)
         ->orderBy('product.type','asc')
-    	->get();
+    	->paginate(12);
     	
     	switch ($cate) {
     		case 1:
@@ -246,7 +246,7 @@ class SearchController extends Controller
             //'ward.name as ward'
         )
         ->orderBy('product.type','asc')
-        ->get();
+        ->paginate(12);
 
         switch ($cate) {
             case 1:

@@ -183,13 +183,13 @@ class ProductController extends Controller
             ]);
         }
         if( $request->product_cate != NULL ){
-           foreach($request->product_cate as $prodcate){
+           /*foreach($request->product_cate as $prodcate){*/
                $product_cate = new TypeProduct([
                    'product_extend_id' => $productex->id,
-                   'product_cate_id'   => $prodcate,
+                   'product_cate_id'   => $request->product,
                ]);
                $product_cate->save();
-           } 
+           /*} */
         }
         
 

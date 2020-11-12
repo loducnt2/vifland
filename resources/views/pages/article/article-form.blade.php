@@ -839,23 +839,23 @@
               phone_contact:{
                required :true,
               },
-              address_contact:{
+              /*address_contact:{
                 required:true,
-              },
-              facades:{
+              },*/
+              /*facades:{
                 required:true,
                 number:true,
               },
               depth:{
                 required:true,
                 number:true,
-              },
+              },*/
               datetime_start:{
                 required:true,
               },
-              tags:{
+              /*tags:{
                 required:true,
-              },
+              },*/
               /*thumbnail:{
                 required:true,
               },*/
