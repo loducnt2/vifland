@@ -212,7 +212,7 @@
                             @foreach($products as $product)
                             <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
                                 <div class="box-sp">
-                                    <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
+                                    <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                         <div class="tag-thuongluong">{{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}</div>
                                         <div class="box-icon"><i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i><a href="" productid="{{$product->product_id}}" class="comp" ><i class="ri-equalizer-line icons"></i></a></div>
                                         <div class="overlay"></div>

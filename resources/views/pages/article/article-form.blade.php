@@ -174,10 +174,10 @@
                             <div class="col-12 form-group">
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
-                            <div class="col-12 form-group">
+                            <!-- <div class="col-12 form-group">
                                 <span>Ảnh tiêu đề : &nbsp;</span>
-                                <input type="file" name="thumbnail">
-                            </div>
+                                <input type="file" name="thumbnail" disabled="">
+                            </div> -->
                             <div class="col-12 form-group">
                                 <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags">
                             </div>
@@ -856,9 +856,9 @@
               tags:{
                 required:true,
               },
-              thumbnail:{
+              /*thumbnail:{
                 required:true,
-              },
+              },*/
               legal:{
                 required:true,
               },
@@ -868,8 +868,6 @@
               price:{
                 required:true,
               },
-              
-
             },
             //Custom
             /*errorPlacement: function(error, element) {

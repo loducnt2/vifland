@@ -38,7 +38,7 @@
 						<tr>
 							<td> 
 								<div class="box-sp m-0">
-									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}" alt=""></a>
+									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
 										<div class="tag-thuongluong d-none d-xl-block">Thương lượng</div>
 										<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 									</div>

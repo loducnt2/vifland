@@ -63,6 +63,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        /*$img = $request->file('img');
+        return dd($img[0]);*/
+
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         if( $request->price == NULL ){
             $pr = 0;
@@ -164,15 +167,10 @@ class ProductController extends Controller
             foreach( $file as $img ){
                 $filetype = $img->getClientOriginalExtension('image');
                 $filename = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
-                //$filesave = 'product'.'-'.$productex->id.Str::random(10).'.'.$filetype;
-
                 $img->move(public_path('/assets/product/detail'), $filename);
-                /*move_uploaded_file($filesave,asset('/assets/product/'));*/
                 $arrfile[]= $filename;
             }
-
             foreach( $arrfile as $imgpro ){
-
                 $productimg = new ProductImg([
                     'product_extend_id' => $productex->id,
                     'name'              => $imgpro,
@@ -180,20 +178,10 @@ class ProductController extends Controller
                 ]);
                 $productimg->save();
             }
-        }
-        //Image Thumb
-        if ($request->hasFile('thumbnail')){
-            $img = $request->thumbnail;
-            $filetype1 = $img->getClientOriginalExtension('image');
-            $filename1 = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
-            $img->move(public_path('/assets/product/thumb'), $filename1);
-
             $product->update([
-                'thumbnail' => $filename1
+                'thumbnail' => $arrfile[0]
             ]);
-
         }
-
         if( $request->product_cate != NULL ){
            foreach($request->product_cate as $prodcate){
                $product_cate = new TypeProduct([

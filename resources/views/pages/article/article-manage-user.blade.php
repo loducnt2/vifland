@@ -127,7 +127,7 @@
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <div class="img"><img
-                                                                            src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}"
+                                                                            src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                                             alt=""><img class="iconVip"
                                                                             src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
@@ -215,7 +215,7 @@
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <div class="img"><img
-                                                                            src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}"
+                                                                            src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                                             alt=""><img class="iconVip"
                                                                             src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
@@ -291,7 +291,7 @@
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <div class="img"><img
-                                                                            src="{{asset('assets/product/thumb/')}}/{{$product->thumbnail}}"
+                                                                            src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                                             alt=""><img class="iconVip"
                                                                             src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
