@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\ProductImg;
 use App\Models\PostHistory;
 use App\Models\FilterPrice;
+use App\Models\FilterFacades;
 use App\Models\TypeProduct;
 use App\Models\Favorited;
 use App\User;
@@ -62,14 +63,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        /*$img = $request->file('img');
+        return dd($img[0]);*/
+
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         if( $request->price == NULL ){
             $pr = 0;
         }else{
             $pr = $request->price;
         }
+        if( $request->facades == NULL ){
+            $fa = 0;
+        }else{
+            $fa = $request->facades;
+        }
         $price = doubleval($pr)*intval($unit);
-        $filter_price = FilterPrice::where('min','<=',$price)->where('max','>=',$price)->value('id');
+        $filter_price = FilterPrice::where('min','<s',$price)->where('max','>=',$price)->value('id');
+        $filter_facades = FilterFacades::where('min','<',$fa)->where('max','>=',$fa)->value('id');
         $product = new Product([
             'cate_id'        => $request->cate_id,
             'title'          => $request->title,
@@ -130,15 +140,16 @@ class ProductController extends Controller
             $price = $request->price;
         }
         
-        if($request->product_cate!=null){
+        /*if($request->product_cate!=null){
             $product_cate = implode(',',$request->product_cate);
         }else{
             $product_cate = $request->product_cate;
-        }
+        }*/
         $productex = new ProductExtend([
             'product_id'   => $product->id,
-            'product_cate' => $product_cate,
+            'product_cate' => $request->product_cate,
             'filter_price' => $filter_price,
+            'filter_facades'=>$filter_facades,
             'address'      => $request->address_product,
             'facades'      => $facades,
             'depth'        => $depth,
@@ -156,15 +167,10 @@ class ProductController extends Controller
             foreach( $file as $img ){
                 $filetype = $img->getClientOriginalExtension('image');
                 $filename = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
-                //$filesave = 'product'.'-'.$productex->id.Str::random(10).'.'.$filetype;
-
                 $img->move(public_path('/assets/product/detail'), $filename);
-                /*move_uploaded_file($filesave,asset('/assets/product/'));*/
                 $arrfile[]= $filename;
             }
-
             foreach( $arrfile as $imgpro ){
-
                 $productimg = new ProductImg([
                     'product_extend_id' => $productex->id,
                     'name'              => $imgpro,
@@ -172,28 +178,18 @@ class ProductController extends Controller
                 ]);
                 $productimg->save();
             }
-        }
-        //Image Thumb
-        if ($request->hasFile('thumbnail')){
-            $img = $request->thumbnail;
-            $filetype1 = $img->getClientOriginalExtension('image');
-            $filename1 = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
-            $img->move(public_path('/assets/product/thumb'), $filename1);
-
             $product->update([
-                'thumbnail' => $filename1
+                'thumbnail' => $arrfile[0]
             ]);
-
         }
-
         if( $request->product_cate != NULL ){
-           foreach($request->product_cate as $prodcate){
+           /*foreach($request->product_cate as $prodcate){*/
                $product_cate = new TypeProduct([
                    'product_extend_id' => $productex->id,
-                   'product_cate_id'   => $prodcate,
+                   'product_cate_id'   => $request->product,
                ]);
                $product_cate->save();
-           } 
+           /*} */
         }
         
 
@@ -528,6 +524,7 @@ class ProductController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
@@ -559,6 +556,7 @@ class ProductController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
@@ -590,6 +588,7 @@ class ProductController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
@@ -620,6 +619,7 @@ class ProductController extends Controller
         ->select(
             'product.*',
             'product.id as product_id',
+            'product.thumbnail',
             'product_unit.name as unit',
             'product.title as title',
             'product_extend.price as price',

@@ -83,7 +83,7 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate[]" multiple="multiple">
+                                            <select class="select1" name="product_cate" multiple=  >
                                                 @foreach($product_cate as $prodcate)
                                                 <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
                                                 @endforeach
@@ -174,10 +174,10 @@
                             <div class="col-12 form-group">
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
                             </div>
-                            <div class="col-12 form-group">
+                            <!-- <div class="col-12 form-group">
                                 <span>Ảnh tiêu đề : &nbsp;</span>
-                                <input type="file" name="thumbnail">
-                            </div>
+                                <input type="file" name="thumbnail" disabled="">
+                            </div> -->
                             <div class="col-12 form-group">
                                 <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags">
                             </div>
@@ -236,7 +236,7 @@
                             <div class="col-12">
                                 <div class="wrap-vip">
                                     <div class="checked">
-                                        <input id="tinthuong" type="radio" value="0" name="type" checked>
+                                        <input id="tinthuong" type="radio" value="4" name="type" checked>
                                         <label for="tinthuong">Tin Thường</label>
                                     </div>
                                     <div class="checked">
@@ -805,131 +805,69 @@
         //Validate 
         $('.formDangBaiViet').submit(function () {
 
-            if (!$('#province').change()) {
-                alert('ds')
-            }
-            let wallet = auth() - > user() - > wallet
-                
-            }
-            let pricepost = $('input[name="pricePost"]').val();
-            //console.log(wallet + ' ' + pricepost)
-            if (parseInt(wallet) < parseInt(pricepost)) {
-                alert(' k đủ tiền')
-                return false
-            }
-        })
-        $('.formDangBaiViet').validate({
-            ignore: [],
-            rules: {
-                province_id: {
-                    required: true,
-                },
-                address: {
-                    required: true,
-                },
-                title: {
-                    required: true,
-                },
-                content: {
-                    required: true,
-                    lettersonly: true,
-                    minlength: 50
-                },
-                img: {
-                    required: true,
-                },
-                name_contact: {
-                    required: true,
-                },
-                phone_contact: {
-                    required: true,
-                },
-                address_contact: {
-                    required: true,
-                },
-                facades: {
-                    required: true,
-                    number: true,
-                },
-                depth: {
-                    required: true,
-                    number: true,
-                },
-                datetime_start: {
-                    required: true,
-                },
-                tags: {
-                    required: true,
-                },
-                thumbnail: {
-                    required: true,
-                },
-                legal: {
-                    required: true,
-                },
-                unit_id: {
-                    required: true,
-                },
-                price: {
-                    required: true,
-                },
-
-
-            },
-            messages: {
-                province_id: {
-                    required: "Trường này bắt buộc",
-                },
-                address: {
-                    required: "Trường này bắt buộc",
-                },
-                title: {
-                    required: "Trường này bắt buộc"
-                },
-                content: {
-                    required: "Trường này bắt buộc",
-                    minlength: "Nhập ít nhất 50 ký tự"
-                },
-                img: {
-                    required: "Trường này bắt buộc",
-                },
-                name_contact: {
-                    required: "Trường này bắt buộc"
-                },
-                phone_contact: {
-                    required: "Trường này bắt buộc"
-                },
-                address_contact: {
-                    required: "Trường này bắt buộc"
-                },
-                facades: {
-                    required: "Trường này bắt buộc",
-                    number: "Trường này không hợp lệ",
-                },
-                depth: {
-                    required: "Trường này bắt buộc",
-                    number: "Trường này không hợp lệ",
-                },
-                datetime_start: {
-                    required: "Trường này bắt buộc",
-                },
-                tags: {
-                    required: "Trường này bắt buộc",
-                },
-                thumbnail: {
-                    required: "Trường này bắt buộc",
-                },
-                legal: {
-                    required: "Trường này bắt buộc",
-                },
-                unit_id: {
-                    required: "Trường này bắt buộc",
-                },
-                price: {
-                    required: "Trường này bắt buộc",
-                },
-
-
+        let wallet = {{ auth()->user()->wallet }};
+        let pricepost = $('input[name="pricePost"]').val();
+        //console.log(wallet + ' ' + pricepost)
+        if( parseInt(wallet) < parseInt(pricepost)  ){
+            alert( ' k đủ tiền' )
+            return false
+        }
+      })
+      $('.formDangBaiViet').validate({
+          ignore: [],
+          rules:{
+              province_id:{
+                required:true,
+              },
+              address:{
+                required:true,
+              },
+              title:{
+               required :true,
+              },
+              content:{
+                required:true,
+                lettersonly: true,
+                minlength:50
+              },
+              img:{
+                required:true,
+              },
+              name_contact:{
+               required :true,
+              },
+              phone_contact:{
+               required :true,
+              },
+              /*address_contact:{
+                required:true,
+              },*/
+              /*facades:{
+                required:true,
+                number:true,
+              },
+              depth:{
+                required:true,
+                number:true,
+              },*/
+              datetime_start:{
+                required:true,
+              },
+              /*tags:{
+                required:true,
+              },*/
+              /*thumbnail:{
+                required:true,
+              },*/
+              legal:{
+                required:true,
+              },
+              unit_id:{
+                required:true,
+              },
+              price:{
+                required:true,
+              },
             },
             //Custom
             /*errorPlacement: function(error, element) {

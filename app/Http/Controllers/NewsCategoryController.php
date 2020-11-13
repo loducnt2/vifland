@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
-
+use Str;
 class NewsCategoryController extends Controller
 {
     /**
@@ -42,7 +42,7 @@ class NewsCategoryController extends Controller
         // $news_cate->id = $request->id;
         $news_cate->id = $request->id;
         $news_cate->category_name=$request->category_name;
-        $news_cate->slug = $request->slug;
+        $news_cate->slug = Str::slug($request->category_name);
         $news_cate->status = "1";
         $news_cate->save();
         return response()->json(
