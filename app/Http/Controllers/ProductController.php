@@ -627,8 +627,9 @@ class ProductController extends Controller
             'product_extend.depth as depth'
         )
         ->get();
+        
 
-        return view('pages/history',compact('products'));
+        return view('pages/history',compact('products','acreage'));
     }
 
     public function productUserFavorite(){
