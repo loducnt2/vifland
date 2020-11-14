@@ -74,9 +74,8 @@
                         <i class="fas fa-trash" style="color:white" ></i>
                     </a>
                    </button>
-
                   </td>
-                 @endforeach
+                @endforeach
 
                 </tr>
                 <tbody>

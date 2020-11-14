@@ -286,7 +286,7 @@
                                 </div> -->
 
                                 <?php echo $products->render(); ?>
-                                
+                                  
                             </div>
                         </div>
                         <div class="col-12">

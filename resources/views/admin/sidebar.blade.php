@@ -123,9 +123,14 @@
 
                                       </nav>
                             </div>
-                        <a class="nav-link" href="{{ url('admin/index/profiles') }}">
+                            <a class="nav-link" href="{{ url('admin/index/profiles') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý người dùng
+                            </a>
+
+                            <a class="nav-link" href="{{ route('wallet') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Nạp tiền
                             </a>
 
                             <a class="nav-link" href="{{ url('admin/don-hang/quan-ly-don-hang') }}">

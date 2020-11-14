@@ -163,6 +163,9 @@ Route::get('admin/index', ['middleware' => 'admin.auth', function () {
     return view('admin/index');
 }]);
 
+//Wallet
+Route::get('admin/wallet','WalletController@index')->name('wallet');
+Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');
 // ================= hồ sơ ==================
 
 // update thông tin hồ sơ cá nhân

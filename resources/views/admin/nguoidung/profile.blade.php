@@ -52,8 +52,14 @@
                             {{-- <a href="">Bootply Profile</a> --}}
                             <p>Tình trạng</p>
                             <button type="button" name="" id="" class="btn btn-primary" btn-lg btn-block">
-                                Đang hoạt động
+                                Đang hoạt động 
                             </button>
+                            
+                            <div class="col-6">
+                                <span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}" alt="">{{$profile->wallet}}</span>
+
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-md-8">
@@ -119,5 +125,7 @@
                     </div>
                 </div>
             </form>
+            
         </div>
+
 @endsection
