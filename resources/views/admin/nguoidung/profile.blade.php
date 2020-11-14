@@ -220,7 +220,8 @@ ul.timeline {
                                 {{$profile->full_name}}
                             </a>
                                     </b> đã đăng bài viết
-                                <a href=""><b>{{$posts2->title}}</b></a>
+
+                                <a href="../../../article/{{$posts2->slug}}"><b>{{$posts2->title}}</b></a>
                                 {{-- <a href="#" class="float-right"><b></b></a> --}}
                                 <p>
 
