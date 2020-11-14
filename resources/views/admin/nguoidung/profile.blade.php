@@ -39,7 +39,7 @@
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Lịch sử bài viết</a>
                                 </li>
                             </ul>
-                        </div> 
+                        </div>
                         {{-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Quay về trang trước"/> --}}
                     </div>
                 </div>
@@ -121,3 +121,4 @@
             </form>
         </div>
 @endsection
+@section('admin.footer')
