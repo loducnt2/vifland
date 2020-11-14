@@ -129,7 +129,7 @@ Route::get('/admin/danh-sach-danh-muc','CategoryController@index');
 // Route::post('/admin/danh-sach-duyet-tin/update/{id}','NewsController@update')->name('update-new');
 Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
 Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
-Route::get('/admin/danh-sach-tin-tuc','NewsController@index');
+Route::get('/admin/danh-sach-tin-tuc','NewsController@index')->name('newscate-index');
 // province
 Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')->name('update-province');
 Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');

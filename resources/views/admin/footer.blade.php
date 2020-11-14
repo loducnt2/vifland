@@ -129,10 +129,11 @@
         })
         })
     </script>
+    {{-- xoá danh mục --}}
     <script>
     function deletePost(event) {
     var id  = $(event).data("id");
-    let _url = `/posts/${id}`;
+    let _url = `/category/${id}`;
     let _token   = $('meta[name="csrf-token"]').attr('content');
 
       $.ajax({
