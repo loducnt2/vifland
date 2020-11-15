@@ -524,6 +524,7 @@ class ProductController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
@@ -555,6 +556,7 @@ class ProductController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
@@ -586,6 +588,7 @@ class ProductController extends Controller
             'product.view',
             'product.datetime_start',
             'product.title',
+            'product.type',
             'product.soft_delete',
             'product.datetime_end',
             'product_extend.address',
@@ -624,8 +627,9 @@ class ProductController extends Controller
             'product_extend.depth as depth'
         )
         ->get();
+        
 
-        return view('pages/history',compact('products'));
+        return view('pages/history',compact('products','acreage'));
     }
 
     public function productUserFavorite(){
