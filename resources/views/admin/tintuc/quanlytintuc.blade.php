@@ -5,6 +5,7 @@
 <style>
 .bootstrap-tagsinput {
     width: 100% !important;
+
 }
 
 li {
@@ -25,68 +26,29 @@ li {
 .my-0 {
     font-weight: bold;
 }
+
 </style>
 {{-- @extends('admin.sidebar') --}}
 @section('title','Quản lý tin tức')
 
 
-<script>
-$(document).ready(function() {
-    $('#tintuc').validate({
-        rules: {
-            'title': {
-                required: true,
-                minlength: 8,
-                maxlength: 255
-            },
-            'tags': {
-                required: true,
-            },
-            'content': {
-                required: true,
-            },
-        },
-        messages: {
-            'title': {
-                required: "Tiêu đề không được để trống",
-                minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
 
-            },
-            'tags[]': {
-                required: "Từ khoá không được để trống",
-            },
-
-            'content': {
-                required: "Nội dung không được để trống",
-            },
-        },
-    });
-});
-</script>
 <style>
-.error {
-    width: 200px;
-    /* background-color:red; */
-    /* float:left; */
-    /* margin-top:80px; */
-    position: absolute;
-    left: 40px;
-    margin-top: 80px;
-    /* top:100px; */
-    width: 600px;
-    color: tomato;
-    /* font-weight: bold; */
-    font-size: 13px;
-}
+      .error{
+        color:red;
+
+    }
 </style>
 {{-- get tags value --}}
 
 
-<div class="container-fluid">
-    <div class="section-title">Thêm Bài Viết Tin Tức</div>
+<div class="max-width-container">
+    {{-- <div class="py-5 text-center"> --}}
     <form method="POST" id="tintuc" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
         {{-- {{ csrf_field() }} --}}
         @csrf
+
+
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -150,11 +112,23 @@ $(document).ready(function() {
                 </div>
                 <script language="javascript">
                 $(".custom-file-input").on("change", function() {
-                    var fileName = $(this).val().split("\\").pop();
-                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                });
-                </script>
-                </li>
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+            </script>
+                 </li>
+                  </ul>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="error"></div>
+
+              <label for="title">Tiêu đề bài viết</label>
+
+              <input type="text" class="form-control" id="title" onkeyup="ChangeToSlug();" placeholder="" value="" name="title">
+              {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
             </div>
             <div class="col-md-8 order-md-1">
                 <div>
@@ -205,16 +179,38 @@ $(document).ready(function() {
                         <input type="text" class="form-control typeahead" name="tags[]" id="tag"
                             aria-describedby="helpId" placeholder="" data-role="tagsinput">
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            {{-- <label for="text" class="error"></label> --}}
-                            <label for="content" class="section-title-small">Nội dung</label>
-                            <label for="text" class="error"></label>
-                            <textarea id="editor1" name="content">
+                <input class="form-control" id="email" name="datepost" type="text" readonly value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
+                  </div>
+              </div>
 
-                </textarea>
+          </div>
+          Danh mục tin tức
 
-                            <label for="text" class="error"></label>
+          <div class="form-group">
+            <label for=""></label>
+            <label for="text" class="error"></label>
+            <?php $cate = \App\Models\NewsCategory::all()?>
+            <select class="form-control" id="category_dropdown" name="id_category" onChange="test();" >
+                <option value="">Không có danh mục</option>
+                @foreach ($cate as $item)
+            <option value="{{$item->id}}">{{$item->category_name}}</option>
+              @endforeach
+            </select>
+          </div>
+
+          <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug" aria-describedby="helpId" placeholder="" >
+
+          <div class="form-group">
+            <label for="">Từ khoá</label>
+            <input type="text" class="form-control typeahead" name="tags[]" id="tags[]" aria-describedby="helpId" placeholder="" data-role="tagsinput">
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+                {{-- <label for="text" class="error"></label> --}}
+
+              <label for="content">Nội dung</label>
+              <label for="text" class="error"></label>
+                <textarea id="editor1" name="editor1" required></textarea>
 
                         </div>
 
@@ -236,9 +232,63 @@ $(document).ready(function() {
 {{-- @extends('admin.footer') --}}
 
 <script>
-function test() {
-    var test = $("#category_dropdown option:selected").text();
-    console.log(test);
-    $("#category_news_slug").attr('value', test);
-}
+    function test(){
+   var test= $("#category_dropdown option:selected").text();
+   console.log(test);
+  $("#category_news_slug").attr('value',test);
+    }
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
+  "></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        $('#tintuc').validate({
+            rules: {
+                'title': {
+                    required: true,
+                    minlength:8,
+                    maxlength:255
+                },
+
+                'tags': {
+                    required: true,
+                },
+                'id_category':{
+                    required:true,
+                },
+                'editor1': {
+                required: function(textarea) {
+          CKEDITOR.instances[textarea.id].updateElement(); // update textarea
+          var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
+          return editorcontent.length === 0;
+                    }
+                },
+            },
+            messages: {
+                'title': {
+                    required: "Tiêu đề không được để trống",
+                    minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
+
+                },
+
+                'tags[]': {
+                    required: "Từ khoá không được để trống",
+                },
+                'id_category' :{
+                    required:"Vui lòng chọn lại danh mục",
+                },
+                'editor1': {
+                    maxlength:'Vui lòng nhập tối đa 20 kí tự',
+                    required: "Nội dung không được để trống"
+                },
+            },
+        });
+    });
 </script>
+

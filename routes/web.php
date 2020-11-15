@@ -75,7 +75,7 @@ Route::get('/new-list/index',function(){
 	return view('pages/new-list');}
 );
 
-Route::get('/forgot-password',function(){
+Route::get('/index/forgot-password',function(){
 	return view('auth/passwords/email');}
 );
 Route::get('/san-pham',function(){
