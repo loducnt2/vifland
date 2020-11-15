@@ -140,7 +140,7 @@ return [
          * Laravel Framework Service Providers...
 
          */
-        Yajra\DataTables\DataTablesServiceProvider::class,
+        // Yajra\DataTables\DataTablesServiceProvider::class,
 
          // Thọ - Đây là Toastr Notification, xin vui lòng đừng xóa
 
