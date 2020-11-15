@@ -145,7 +145,7 @@
                                         <div class="item">
                                             <div class="wrap-text">
                                                 <div class="thongbao thongbao-color">Thông báo</div><a href="#">{{$noti->content}}</a>
-                                                <div class="date" ta > {{$noti->created_at}}</div>
+                                                <div class="date" > {{$noti->created_at}}</div>
                                             </div>
                                         </div>
                                              @endforeach
@@ -352,20 +352,27 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    var product_duedate = $(".products-duedate .date").text();
-    var noti_dudate = $("").text();
-    var  duedate=new Date(product_duedate);
-    var today=new Date();
-    var xetDuedate = today - duedate;
-    var number=0;
- console.log(xetDuedate);
+   var number =0;
+  
+  
+  $(".products-duedate").each(function(){
+        var get_product_date = $(this).children(".date").text();
+        console.log(get_product_date);
+        var now = new Date().getTime();
+        var due_date_product = new Date(get_product_date).getTime() + 604800000;
+        var due = due_date_product - now;
+        console.log(due_date_product < now)
+        if(due_date_product < now){
+            $(this).parent().remove();
+        }
+        
+  })
+  
 
-    if(xetDuedate < 0){
-        $(".products-duedate,.number-tb").hide();
-    }
-    else if(product_duedate == ""){
-        $(".products-duedate,.number-tb").hide();
-    }
+
+
+
+
     $(".item").each(function(){
         number+=1;
     if(number==0){
