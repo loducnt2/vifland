@@ -56,7 +56,6 @@
                     <li> <a href="/user/my-article/{{auth()->user()->id}}/#tindadang">Tin đã đăng </a></li>
                     <li> <a href="/user/my-article/{{auth()->user()->id}}/#tinchodang">Tin chờ đăng</a></li>
                 </ul>
-
             </div>
             <div class="bl-4"> <span class="material-icons">exit_to_app</span>
                 <a href="/logout">
@@ -113,6 +112,7 @@
                                     <?php
                                         $notis = DB::table('notification')
                                         ->where('status',1)
+                                        ->where('due_date','>',date('Y-m-d',strtotime('now')))
                                         ->orderby('id', 'asc')
                                         ->get();
                                         if( auth()->check() ){
@@ -133,7 +133,7 @@
                                     <div class="co-thong-bao">
                                             @foreach($duedate as $due)
                                         <div class="item">
-                                            <div class="wrap-text notification-duedate ">
+                                            <div class="wrap-text products-duedate ">
                                                 <div class="thongbao post-expired">Thông báo</div><a href="{{route('article-detail',$due->slug)}}">Bài
                                                     viết của bạn sắp hết hạn</a>
                                                 <div class="date">{{$due->date}}</div>
@@ -145,7 +145,7 @@
                                         <div class="item">
                                             <div class="wrap-text">
                                                 <div class="thongbao thongbao-color">Thông báo</div><a href="#">{{$noti->content}}</a>
-                                                <div class="date"> {{$noti->created_at}}</div>
+                                                <div class="date" > {{$noti->created_at}}</div>
                                             </div>
                                         </div>
                                              @endforeach
@@ -352,19 +352,27 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    var textduedate = $(".notification-duedate .date").text();
-    var  duedate=new Date(textduedate);
-    var today=new Date();
-    var xetDuedate = today - duedate;
-    var number=0;
- console.log(xetDuedate);
+   var number =0;
+  
+  
+  $(".products-duedate").each(function(){
+        var get_product_date = $(this).children(".date").text();
+        console.log(get_product_date);
+        var now = new Date().getTime();
+        var due_date_product = new Date(get_product_date).getTime() + 604800000;
+        var due = due_date_product - now;
+        console.log(due_date_product < now)
+        if(due_date_product < now){
+            $(this).parent().remove();
+        }
+        
+  })
+  
 
-    if(xetDuedate < 0){
-        $(".notification-duedate,.number-tb").hide();
-    }
-    else if(textduedate == ""){
-        $(".notification-duedate,.number-tb").hide();
-    }
+
+
+
+
     $(".item").each(function(){
         number+=1;
     if(number==0){
@@ -374,6 +382,7 @@
         $(".number-tb").text(number);
     }
     });
+  
         
        
   

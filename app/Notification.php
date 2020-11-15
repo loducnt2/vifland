@@ -12,6 +12,7 @@ class Notification extends Model
         'name',
         'content',
     	'language',
-    	'status',
+        'status',
+        'due_date',
     ];
 }

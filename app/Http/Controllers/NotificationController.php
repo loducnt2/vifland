@@ -42,6 +42,7 @@ class NotificationController extends Controller
             'language'  => $request->get("lang"),
             'status'    => $request->get("status"),
             'content'    => $request->get("content"),
+            'due_date'    => $request->get("due_date"),
             
         ]);
         $noti->save();
@@ -85,6 +86,7 @@ class NotificationController extends Controller
         $noti->language  = $request->get('lang');
         $noti->status    = $request->get('status');
         $noti->content = $request->get('content');
+        $noti->due_date = $request->get('due_date');
         $noti->save();
         return redirect('/admin/danh-sach-thong-bao');
     }

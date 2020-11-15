@@ -15,7 +15,7 @@ class CreateDueDate extends Migration
     {
         Schema::table('notification', function (Blueprint $table) {
             //
-            $table->date('due_date');
+            $table->date('due_date')->default(now());
 
         });
     }
