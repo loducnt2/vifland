@@ -2,34 +2,28 @@
 @extends('admin.sidebar')
 {{-- @extends('admin.footer') --}}
 @section('content')
-    <style>
-    .bootstrap-tagsinput {
-  width: 100% !important;
+<style>
+.bootstrap-tagsinput {
+    width: 100% !important;
 }
-li{
+
+li {
     text-decoration: none;
 }
-#list{
+
+#list {
     word-break: break-all;
     /* background-color:blue; */
-width: 100%;
+    width: 100%;
 }
 
 .bootstrap-tagsinput input {
-width:100%;
-/* background-color:red; */
+    width: 100%;
+    /* background-color:red; */
 }
-.text-muted{
-}
-.my-0{
-    font-weight: bold;
-}
-.images-preview{
-    margin-top:20px;
 
-    margin-left:40px;
-    float:left;
-    width:250px;
+.my-0 {
+    font-weight: bold;
 }
 </style>
 {{-- @extends('admin.sidebar') --}}
@@ -37,214 +31,214 @@ width:100%;
 
 
 <script>
-    $(document).ready(function() {
-        $('#tintuc').validate({
-            rules: {
-                'title': {
-                    required: true,
-                    minlength:8,
-                    maxlength:255
-                },
-                'tags': {
-                    required: true,
-                },
-                'content': {
-                    required:true,
-                },
+$(document).ready(function() {
+    $('#tintuc').validate({
+        rules: {
+            'title': {
+                required: true,
+                minlength: 8,
+                maxlength: 255
             },
-            messages: {
-                'title': {
-                    required: "Tiêu đề không được để trống",
-                    minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
-
-                },
-                'tags[]': {
-                    required: "Từ khoá không được để trống",
-                },
-
-                'content': {
-                    required: "Nội dung không được để trống",
-                },
+            'tags': {
+                required: true,
             },
-        });
+            'content': {
+                required: true,
+            },
+        },
+        messages: {
+            'title': {
+                required: "Tiêu đề không được để trống",
+                minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
+
+            },
+            'tags[]': {
+                required: "Từ khoá không được để trống",
+            },
+
+            'content': {
+                required: "Nội dung không được để trống",
+            },
+        },
     });
+});
 </script>
 <style>
-      .error{
-        width: 200px;
-        /* background-color:red; */
-        /* float:left; */
-        /* margin-top:80px; */
-        position: absolute;
-        left:40px;
-        margin-top:80px;
-        /* top:100px; */
-        width:600px;
-        color:tomato;
-        /* font-weight: bold; */
-        font-size:13px;
-    }
+.error {
+    width: 200px;
+    /* background-color:red; */
+    /* float:left; */
+    /* margin-top:80px; */
+    position: absolute;
+    left: 40px;
+    margin-top: 80px;
+    /* top:100px; */
+    width: 600px;
+    color: tomato;
+    /* font-weight: bold; */
+    font-size: 13px;
+}
 </style>
 {{-- get tags value --}}
 
 
-<div class="max-width-container">
-    <div class="py-5 text-center">
-    <form  method="POST" id "tintuc" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
+<div class="container-fluid">
+    <div class="section-title">Thêm Bài Viết Tin Tức</div>
+    <form method="POST" id="tintuc" action="{{url('admin/index/news/insert')}}" enctype="multipart/form-data">
         {{-- {{ csrf_field() }} --}}
         @csrf
-     </div>
-
         <div class="row">
-      <div class="col-md-4 order-md-2 mb-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-muted">Thông tin bài viết</span>
-          {{-- <span class="badge badge-secondary badge-pill">3</span> --}}
-        </h4>
-        <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Liên kết slug</h6>
-              {{-- get slug --}}
-              <small class="text-muted">
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <!-- <span class="text-muted ">Thông tin bài viết</span> -->
+                    {{-- <span class="badge badge-secondary badge-pill">3</span> --}}
+                </h4>
+                <ul class="list-group mb-3 box-n p-4">
+                    <li class=" d-flex justify-content-between align-items-center lh-condensed mb-3">
+                        <div>
+                            <p class="my-0 section-title-small">Liên kết slug</p>
+                            {{-- get slug --}}
+                            <small class="text-muted">
+                                <div id="slug" class="">
+                                    {{-- show kết quả --}}
+                                </div>
 
-                <div id ="slug">
-            {{-- show kết quả --}}
-                </div>
+                            </small>
+                            {{-- <input type="text"" value="" name="slug"> --}}
+                        </div>
+                        <span class="text-muted"></span>
+                    </li>
+                    <li class=" d-flex justify-content-between align-items-center lh-condensed mb-3">
+                        <div>
+                            <h6 class="my-0 section-title-small">Tình trạng bài viết</h6>
+                            {{-- <small class="text-muted"></small> --}}
+                        </div>
+                        <span class="text-muted">Hiện</span>
+                    </li>
 
-              </small>
-              {{-- <input type="text"" value="" name="slug"> --}}
-            </div>
-            <span class="text-muted"></span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Tag</h6>
-
-            </div>
-            <span class="text-muted"><div id="list"></div></span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Tình trạng bài viết</h6>
-              {{-- <small class="text-muted"></small> --}}
-            </div>
-            <span class="text-muted">Hiện</span>
-          </li>
-
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                <div>
-                  <h6 class="my-0">Ngôn ngữ </h6>
-                  {{-- <small class="text-muted"></small> --}}
-                </div>
-                <span class="text-muted">
-                  <img src="../../../assets/news/vn.png" alt="">
-                </span>
-              </li>
+                    <li class=" d-flex justify-content-between align-items-center lh-condensed mb-3">
+                        <div>
+                            <h6 class="my-0 section-title-small">Ngôn ngữ </h6>
+                            {{-- <small class="text-muted"></small> --}}
+                        </div>
+                        <span class="text-muted">
+                            <img src="../../../assets/news/vn.png" alt="">
+                        </span>
+                    </li>
 
 
-              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <li class=" d-flex justify-content-between lh-condensed">
 
-                <span class="text-muted"></span>
-              </li>
-          {{-- <li class="list-group-item d-flex justify-content-between bg-light"> --}}
-            <div class="col-md-12 custom-file ">
-                <input type="file" class="custom-file-input" id="customFile" name="image" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
-                <label class="custom-file-label" for="customFile">Chọn tập tin</label>
-              </div>
-              {{-- <input name="photo" type="file" accept="image/*"> --}}
-
-              <div class="col-md-12">
-                <div class="text-muted" style="font-weight:bold; text-align:center" >
-                    Ảnh minh hoạ
-                </div>
-                {{-- <input type="file" name="image" id="" > --}}
-                <img src="{{asset('assets/news/bds_1.jpg')}}" alt="" id="output" class="images-preview" name="image" accept="image/*">
-              </div>
-              <script language="javascript">
-                $(".custom-file-input").on("change", function() {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            });
-            </script>
-                 </li>
-                  </ul>
-      </div>
-      <div class="col-md-8 order-md-1">
-        <div>
-          <div class="row">
-            <div class="col-md-12 mb-3">
-              <label for="title">Tiêu đề bài viết</label>
-              <label for="text" class="error"></label>
-
-              <input type="text" class="form-control" id="title" onkeyup="ChangeToSlug();" placeholder="" value="" name="title">
-              {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
-            </div>
-
-            {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
-            <div class="col-md-12 mb-3">
-                <label for="">Ngày đăng</label>
-                <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <span class="text-muted"></span>
+                    </li>
+                    {{-- <li class=" d-flex justify-content-between bg-light"> --}}
+                </ul>
+                <div class="wrap-input-img box-n p-4">
+                    <div class="section-title-small">Ảnh đại diện bài viết</div>
+                    <div class=" custom-file ">
+                        <input type="file" class="custom-file-input" id="customFile" name="image"
+                            onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
+                        <label class="custom-file-label" for="customFile">Chọn tập tin</label>
                     </div>
-                <input class="form-control" id="email" name="datepost" type="text" readonly value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
-                  </div>
-              </div>
+                    {{-- <input name="photo" type="file" accept="image/*"> --}}
 
-          </div>
-          Danh mục tin tức
-          <div class="form-group">
-            <label for=""></label>
-            <?php $cate = \App\Models\NewsCategory::all()?>
-            <select class="form-control" id="category_dropdown" name="id_category" onChange="test();">
-                <option value="">Lựa chọn danh mục</option>
-                @foreach ($cate as $item)
-            <option value="{{$item->id}}">{{$item->category_name}}</option>
-              @endforeach
-            </select>
-          </div>
+                    <div class="show-img">
+                        {{-- <input type="file" name="image" id="" > --}}
+                        <img src="{{asset('assets/news/bds_1.jpg')}}" alt="" id="output" class="images-preview"
+                            name="image" accept="image/*">
+                    </div>
+                </div>
+                <script language="javascript">
+                $(".custom-file-input").on("change", function() {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                });
+                </script>
+                </li>
+            </div>
+            <div class="col-md-8 order-md-1">
+                <div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="title" class="section-title-small">Tiêu đề bài viết</label>
+                            <label for="text" class="error"></label>
+                            <input type="text" class="w-full input-n input--lg box-n" id="title"
+                                onkeyup="ChangeToSlug();" placeholder="Tiêu đề bài viết" value="" name="title">
+                            {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
+                        </div>
 
-          <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug" aria-describedby="helpId" placeholder="" >
+                        {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox"
+                        data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On"
+                        data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
+                        <div class="col-md-12 mb-3">
+                            <label for="" class="section-title-small">Ngày đăng</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                                <input class="form-control" id="email" name="datepost" type="text" readonly
+                                    value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}" />
+                            </div>
+                        </div>
 
-          <div class="form-group">
-            <label for="">Từ khoá</label>
-            <input type="text" class="form-control typeahead" name="tags[]" id="tag" aria-describedby="helpId" placeholder="" data-role="tagsinput">
-          </div>
-          <div class="row">
-            <div class="col-md-12 mb-3">
-                {{-- <label for="text" class="error"></label> --}}
-              <label for="content">Nội dung</label>
-              <label for="text" class="error"></label>
-                <textarea id="editor1" name="content">
+                    </div>
+                    <div class="section-title-small">
+                        Danh mục tin tức
+                    </div>
+                    <div class="form-group">
+                        <label for=""></label>
+                        <?php $cate = \App\Models\NewsCategory::all()?>
+                        <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
+                            onChange="test();">
+                            <option value="">Lựa chọn danh mục</option>
+                            @foreach ($cate as $item)
+                            <option value="{{$item->id}}">{{$item->category_name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
+                        aria-describedby="helpId" placeholder="">
+
+                    <div class="form-group">
+                        <label for="" class="section-title-small">Từ khoá</label>
+                        <input type="text" class="form-control typeahead" name="tags[]" id="tag"
+                            aria-describedby="helpId" placeholder="" data-role="tagsinput">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            {{-- <label for="text" class="error"></label> --}}
+                            <label for="content" class="section-title-small">Nội dung</label>
+                            <label for="text" class="error"></label>
+                            <textarea id="editor1" name="content">
 
                 </textarea>
 
-                <label for="text" class="error"></label>
+                            <label for="text" class="error"></label>
 
-            </div>
+                        </div>
 
-          </div>
-          <div class="form-group">
+                    </div>
+                    <div class="form-group">
 
-            <input type="hidden"
-              class="form-control" name="slug" id="slug2" aria-describedby="helpId" placeholder="" readonly>
-          </div>
+                        <input type="hidden" class="form-control" name="slug" id="slug2" aria-describedby="helpId"
+                            placeholder="" readonly>
+                    </div>
 
-          <button class="btn btn-primary btn-lg btn-block" type="submit">Đăng tin</button>
-             </div>
-            </form>
-    </div>
-    </div>
+                    <button class="button-n" type="submit">Đăng tin</button>
+                </div>
+    </form>
+</div>
+</div>
 
 
 @endsection
 {{-- @extends('admin.footer') --}}
 
 <script>
-    function test(){
-   var test= $("#category_dropdown option:selected").text();
-   console.log(test);
-  $("#category_news_slug").attr('value',test);
-    }
-  </script>
+function test() {
+    var test = $("#category_dropdown option:selected").text();
+    console.log(test);
+    $("#category_news_slug").attr('value', test);
+}
+</script>
