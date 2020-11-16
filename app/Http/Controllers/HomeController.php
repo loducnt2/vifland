@@ -158,6 +158,7 @@ class HomeController extends Controller
         ->get();
 
         Product::where( 'datetime_end','<=', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
+        
         if( auth()->check() ){
             $Duedate = PostHistory::leftJoin('product','post_history.product_id','product.id')
            ->where('post_history.user_id',auth()->user()->id)
@@ -187,12 +188,7 @@ class HomeController extends Controller
             'product_by_cate1',
             'product_by_cate2',
             'product_by_cate3'
-            
-            
-            /*'count_cate1',
-            'count_cate2',
-            'count_cate3',*/
-            //'favorite'
+
         ));
         
     }

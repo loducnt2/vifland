@@ -81,7 +81,7 @@
                                     <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
                                         role="tab" aria-controls="nav-profile" aria-selected="false">Tin đã đăng</a>
                                     <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                                        role="tab" aria-controls="nav-contact" aria-selected="false">Tin chờ đăng</a>
+                                        role="tab" aria-controls="nav-contact" aria-selected="false">Tin hết hạn</a>
                                 </div>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
@@ -272,7 +272,8 @@
 												</div>
 											</div>
 										</div> -->
-                                        @if(count($product_wait2) >0 )
+                                        <span>*Tin sẽ tự động xóa sau 7 ngày</span>
+                                        @if(count($product_expire) >0 )
                                         <div class="box-content">
                                             <table>
                                                 <thead>
@@ -285,7 +286,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach( $product_wait2 as $product)
+                                                    @foreach( $product_expire as $product)
                                                     <tr>
                                                         <td>
                                                             <div class="row">
