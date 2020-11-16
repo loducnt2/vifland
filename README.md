@@ -35,8 +35,7 @@ username : admin
 pass : 1
 ## Lưu ý (cập nhật lúc 14:44 ngày 16/11/2020): 
 -- Sau khi khi chạy composer install, chạy tiếp lệnh : 
--- **composer require brian2694/laravel-toastr** 
--- **composer require maatwebsite/excel**
+-- **composer require brian2694/laravel-toastr**  -- **composer require maatwebsite/excel**
 - Chạy lệnh ở dưới đây để publish config của laravel-excel package
 > php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider
 
