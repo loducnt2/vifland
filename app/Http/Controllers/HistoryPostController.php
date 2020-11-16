@@ -20,12 +20,14 @@ class HistoryPostController extends Controller
     public function index()
     {
        $news = PostHistory::leftJoin('product','post_history.product_id','product.id')
+       ->orderby('post_history.status', 'asc')
         ->select(
             'product.title as product_title' ,
             'post_history.status as status',
             'post_history.id as post_id',
             'product.id as product_id',
         )
+       
         ->get();
         return view('/admin/tintuc/danhsachduyettin',compact('news'));
     }
