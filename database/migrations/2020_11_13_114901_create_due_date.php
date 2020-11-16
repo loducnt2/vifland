@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsletterTable extends Migration
+class CreateDueDate extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateNewsletterTable extends Migration
      */
     public function up()
     {
-        Schema::create('vifland.newsletters', function (Blueprint $table) {
-            $table->id();
-            $table->string('email',255);
+        Schema::table('notification', function (Blueprint $table) {
+            //
+            $table->date('due_date')->default(now());
 
-            $table->timestamps();
         });
     }
 
@@ -28,6 +27,8 @@ class CreateNewsletterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('newsletter');
+        Schema::table('notification', function (Blueprint $table) {
+            //
+        });
     }
 }

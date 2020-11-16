@@ -18,6 +18,10 @@
               <input type="text" name="content"  class="form-control" value="{{$noti->content}}" >
           </div>
           <div class="form-group">
+              <label for="">Ngày hết hạn</label>
+              <input class="form-control" value="{{$noti->due_date}}" type="date" name="due_date">
+          </div>
+          <div class="form-group">
               <label for="">Trạng thái</label>
               <select  class="form-control" name="status" value="{{$noti->status}}" id="">
                   <option value="0">Ẩn thông báo</option>

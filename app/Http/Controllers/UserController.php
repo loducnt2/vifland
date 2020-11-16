@@ -99,7 +99,6 @@ class UserController extends Controller
     {
 
         $profile = DB::table('user')->find($id);
-        // lịch sử bài đăng
 
         // $profile = User::findOrFail($id);
         return view('pages/hoso')->with('profile',$profile);

@@ -43,6 +43,7 @@
                  <td>{{$item->category_name}}</td>
                  <td>{{$item->status}}</td>
                     <td><a href="javascript:void(0)" data-id="{{ $item->id }}" class="btn btn-danger" onclick="deletePost(event.target)">Xoá</a></td>
+
                 </td>
                  @endforeach
 

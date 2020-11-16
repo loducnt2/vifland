@@ -34,7 +34,7 @@
         </tr>
       </thead>
       <tbody id="myTable">
-        @foreach($news as $new)
+        @foreach($news ?? '' as $new)
         <tr>
           <td>{{$new->id}}</td>
           <td>{{$new->title}}</td>

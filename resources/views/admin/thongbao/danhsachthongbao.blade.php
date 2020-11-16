@@ -26,6 +26,10 @@
               </select>
           </div>
           <div class="form-group">
+              <label for="">Ngày hết hạn</label>
+              <input class="form-control" type="date" name="due_date">
+          </div>
+          <div class="form-group">
               <label for="">Ngôn ngữ</label>
               <select  class="form-control" name="lang"  id="">
                   <option value="vn">Việt Nam</option>
@@ -47,6 +51,7 @@
      <th>id</th>
      <th>name</th>
      <th>content</th>
+     <th>Ngày hết hạn</th>
      <th>ngôn ngữ</th>
      <th>status</th>
      <th>action</th>
@@ -60,6 +65,7 @@
       <td>{{$noti->id}}</td>
       <td>{{$noti->name}}</td>
       <td>{{$noti->content}}</td>
+      <td>{{$noti->due_date}}</td>
       <td>{{$noti->language}}</td>
       <td>{{$noti->status==0?'Đang ẩn':'Đang hiện'}}</td>
       <td>
