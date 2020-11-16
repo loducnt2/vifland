@@ -221,18 +221,13 @@
                                                                 <div class="col-3">
                                                                     <div class="img"><img
                                                                             src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-<<<<<<< HEAD
-                                                                            alt=""><img class="iconVip"
-                                                                            src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
-=======
-                                                                            alt="">@if ($product->type == 4)
+                                                                        @if ($product->type == 4)
                                                                         @else
                                                                         <img class="iconVip"
                                                                             src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                                                             alt="">
                                                                         @endif
->>>>>>> 00e4cc2aadab29aa991599425b053c2249fb28de
                                                                         <!-- <div class="tag">Thương lượng</div> -->
                                                                     </div>
                                                                 </div>
@@ -311,18 +306,13 @@
                                                                 <div class="col-3">
                                                                     <div class="img"><img
                                                                             src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-<<<<<<< HEAD
-                                                                            alt=""><img class="iconVip"
-                                                                            src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
-=======
-                                                                            alt="">@if ($product->type == 4)
+                                                                        @if ($product->type == 4)
                                                                         @else
                                                                         <img class="iconVip"
                                                                             src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                                                             alt="">
                                                                         @endif
->>>>>>> 00e4cc2aadab29aa991599425b053c2249fb28de
                                                                         <!-- <div class="tag">Thương lượng</div> -->
                                                                     </div>
                                                                 </div>
