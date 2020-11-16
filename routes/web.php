@@ -159,9 +159,7 @@ Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
 
 
 // login admin
-Route::get('admin/index', ['middleware' => 'admin.auth', function () {
-    return view('admin/index');
-}]);
+Route::get('admin/index','AdminController@index')->middleware('admin.auth');
 
 //Wallet
 Route::get('admin/wallet','WalletController@index')->name('wallet');
