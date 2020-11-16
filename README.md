@@ -33,9 +33,12 @@ php artisan migrate
 
 username : admin
 pass : 1
-## Lưu ý (cập nhật lúc 16:00 ngày 11/11/2020): 
+## Lưu ý (cập nhật lúc 14:44 ngày 16/11/2020): 
 -- Sau khi khi chạy composer install, chạy tiếp lệnh : 
 -- **composer require brian2694/laravel-toastr** 
+-- **composer require maatwebsite/excel**
+- Chạy lệnh ở dưới đây để publish config của laravel-excel package
+> php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider
 
 --1. Để sửa lỗi thiếu bộ nhớ khi cài lệnh trên, vào Xampp Control Panel, chọn Config của Apache -> PHP.ini , thay giá trị của memory_limit = -1 
 [php.ini]
