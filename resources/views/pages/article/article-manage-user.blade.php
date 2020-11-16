@@ -34,7 +34,8 @@
                             <div class="bl-2">
                                 <div class="row">
                                     <div class="col-6"><span class="vifPay"> <img
-                                                src="{{asset('assets/icon/card.png')}}" alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
+                                                src="{{asset('assets/icon/card.png')}}"
+                                                alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
                                     <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
                                                     class="material-icons">keyboard_arrow_right</span></a></span></div>
                                     <!-- <div class="col-12">
@@ -63,7 +64,7 @@
                                 <ul>
                                     <li> <a href="">Tin đã đăng</a></li>
                                     <li> <a href="">Tin chờ đăng</a></li>
-                                    <li> <a href="">Chờ xác nhận </a></li>
+                                    <li> <a href="">Tin hết hạn</a></li>
                                 </ul>
                             </div>
                             <div class="bl-4"> <span class="material-icons">exit_to_app</span>
@@ -81,7 +82,7 @@
                                     <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
                                         role="tab" aria-controls="nav-profile" aria-selected="false">Tin đã đăng</a>
                                     <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                                        role="tab" aria-controls="nav-contact" aria-selected="false">Tin chờ đăng</a>
+                                        role="tab" aria-controls="nav-contact" aria-selected="false">Tin hết hạn</a>
                                 </div>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
@@ -129,18 +130,24 @@
                                                                     <div class="img"><img
                                                                             src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                                             alt="">@if ($product->type == 4)
-                                    @else
-                                        <img class="iconVip" src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
-                                    @endif
+                                                                        @else
+                                                                        <img class="iconVip"
+                                                                            src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
+                                                                            alt="">
+                                                                        @endif
                                                                         <!-- <div class="tag">Thương lượng</div> -->
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-9">
                                                                     <div class="text">
-                                                                        <a href="{{route('article-detail',$product->slug)}}"><p class="t-1">{{$product->title}}</p></a>
+                                                                        <a
+                                                                            href="{{route('article-detail',$product->slug)}}">
+                                                                            <p class="t-1">{{$product->title}}</p>
+                                                                        </a>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>{{$product->district}}, {{$product->province}}</p>
+                                                                            <p>{{$product->district}},
+                                                                                {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng
@@ -218,18 +225,24 @@
                                                                     <div class="img"><img
                                                                             src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                                             alt="">@if ($product->type == 4)
-                                    @else
-                                        <img class="iconVip" src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
-                                    @endif
+                                                                        @else
+                                                                        <img class="iconVip"
+                                                                            src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
+                                                                            alt="">
+                                                                        @endif
                                                                         <!-- <div class="tag">Thương lượng</div> -->
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-9">
                                                                     <div class="text">
-                                                                        <a href="{{route('article-detail',$product->slug)}}"><p class="t-1">{{$product->title}}</p></a>
+                                                                        <a
+                                                                            href="{{route('article-detail',$product->slug)}}">
+                                                                            <p class="t-1">{{$product->title}}</p>
+                                                                        </a>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>{{$product->district}}, {{$product->province}}</p>
+                                                                            <p>{{$product->district}},
+                                                                                {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng
@@ -295,18 +308,24 @@
                                                                     <div class="img"><img
                                                                             src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                                             alt="">@if ($product->type == 4)
-                                    @else
-                                        <img class="iconVip" src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
-                                    @endif
+                                                                        @else
+                                                                        <img class="iconVip"
+                                                                            src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
+                                                                            alt="">
+                                                                        @endif
                                                                         <!-- <div class="tag">Thương lượng</div> -->
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-9">
                                                                     <div class="text">
-                                                                        <a href="{{route('article-detail',$product->slug)}}"><p class="t-1">{{$product->title}}</p></a>
+                                                                        <a
+                                                                            href="{{route('article-detail',$product->slug)}}">
+                                                                            <p class="t-1">{{$product->title}}</p>
+                                                                        </a>
                                                                         <div class="t-2"><span
                                                                                 class="material-icons">location_on</span>
-                                                                            <p>{{$product->district}}, {{$product->province}}</p>
+                                                                            <p>{{$product->district}},
+                                                                                {{$product->province}}</p>
                                                                         </div>
                                                                         <div class="t-3">
                                                                             <p> <strong>Ngày đăng
