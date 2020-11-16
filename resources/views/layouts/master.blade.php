@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html  class="overflow-hidden">    
 <head>
     @section('title','Trang chủ')
     <title>@yield('title')</title>
