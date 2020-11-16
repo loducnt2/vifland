@@ -431,11 +431,11 @@
 
                                         <div class="col-4 form-group">
                                             <label for="songayvip">Ngày đăng bài</label>
-                                            <input class="calendar" type="datetime" name="datetime_start" id="testdate">
+                                            <input class="calendar" type="datetime" name="date_start" id="testdate">
                                         </div>
                                         <div class="col-4 form-group">
                                             <label for="songayvip">Giờ đăng bài</label>
-                                            <input class="timepicker" type="text" id="timepicker" data-mintime="now" />
+                                            <input class="timepicker" type="text" name="time_start" id="timepicker" data-mintime="now" />
                                         </div>
                                         <div class="col-4 form-group">
                                             <label for="songayvip">Số ngày</label>
@@ -813,7 +813,7 @@
             return false
         }
       })
-      $('.formDangBaiViet').validate({
+      /*$('.formDangBaiViet').validate({
           ignore: [],
           rules:{
               province_id:{
@@ -839,26 +839,13 @@
               phone_contact:{
                required :true,
               },
-              /*address_contact:{
-                required:true,
-              },*/
-              /*facades:{
-                required:true,
-                number:true,
-              },
-              depth:{
-                required:true,
-                number:true,
-              },*/
               datetime_start:{
                 required:true,
               },
-              /*tags:{
+              tags:{
                 required:true,
-              },*/
-              /*thumbnail:{
-                required:true,
-              },*/
+              },
+
               legal:{
                 required:true,
               },
@@ -870,7 +857,7 @@
               },
             },
             //Custom
-            /*errorPlacement: function(error, element) {
+            errorPlacement: function(error, element) {
                 //Custom position: first name
                 if (element.attr("name") == "first" ) {
                     $("#errNm1").text(error);
@@ -883,14 +870,14 @@
                 else {
                      error.append($('.errorTxt span'));
                 }
-            },*/
+            },
             submitHandler: function (form) {
                 form.submit(function () {
 
                 });
             }
 
-        });
+        });*/
 
 
     });

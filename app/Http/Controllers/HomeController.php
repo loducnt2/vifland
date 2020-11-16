@@ -47,8 +47,8 @@ class HomeController extends Controller
         //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
-        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
-        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d H:i',strtotime('now')))
         ->where('soft_delete',0)
         ->select(
             //'product_image.name as img',
@@ -87,8 +87,8 @@ class HomeController extends Controller
         //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
-        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
-        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d H:i',strtotime('now')))
         ->where('soft_delete',0)
         ->select(
             //'product_image.name as img',
@@ -127,8 +127,8 @@ class HomeController extends Controller
         //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
         //->leftJoin('ward','product.ward_id','ward.id')
         ->where('post_history.status',1)
-        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
-        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d H:i',strtotime('now')))
         ->where('soft_delete',0)
         ->select(
             //'product_image.name as img',
@@ -157,7 +157,7 @@ class HomeController extends Controller
         ->limit(5)
         ->get();
 
-        Product::where( 'datetime_end','<=', date('Y-m-d',strtotime('now')) )->update(['soft_delete'=>1]);
+        Product::where( 'datetime_end','<=', date('Y-m-d H:i',strtotime('now')) )->update(['soft_delete'=>1]);
         
         if( auth()->check() ){
             $Duedate = PostHistory::leftJoin('product','post_history.product_id','product.id')

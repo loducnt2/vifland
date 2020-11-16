@@ -65,7 +65,8 @@ class ProductController extends Controller
     {
         /*$img = $request->file('img');
         return dd($img[0]);*/
-
+        $datetime_start = $request->date_start." ".$request->time_start;
+        /*$datetime_start = */
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         if( $request->price == NULL ){
             $pr = 0;
@@ -87,8 +88,8 @@ class ProductController extends Controller
             'slug'           => NULL,
             'view'           => 1,
             'tags'           => $request->tags,
-            'datetime_start' => date('Y-m-d',strtotime($request->datetime_start)),
-            'datetime_end'   => date('Y-m-d',strtotime($request->datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
+            'datetime_start' => date('Y-m-d H:i',strtotime($datetime_start)),
+            'datetime_end'   => date('Y-m-d H:i',strtotime($datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
             'content'        => $request->content,
             'name_contact'   => $request->name_contact,
             'phone_contact'     => $request->phone_contact,

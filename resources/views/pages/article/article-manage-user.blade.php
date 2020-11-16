@@ -285,8 +285,9 @@
 												</div>
 											</div>
 										</div> -->
-                                        <span>*Tin sẽ tự động xóa sau 7 ngày</span>
+                                        
                                         @if(count($product_expire) >0 )
+                                        <span>*Tin sẽ tự động xóa sau 7 ngày</span>
                                         <div class="box-content">
                                             <table>
                                                 <thead>
