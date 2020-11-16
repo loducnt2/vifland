@@ -143,7 +143,7 @@ return [
         // Yajra\DataTables\DataTablesServiceProvider::class,
 
          // Thọ - Đây là Toastr Notification, xin vui lòng đừng xóa
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -196,6 +196,7 @@ return [
 
     'aliases' => [
         // 'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,

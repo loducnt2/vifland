@@ -7,6 +7,11 @@
     <title>Quản lý thư tin tức</title>
 </head>
 <body>
+    <style>
+        .custom-file-label::after {
+content: "Chọn tập tin " !important; }
+    </style>
+
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
     @section('content')

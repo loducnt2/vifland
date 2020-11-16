@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 // use Brian2694\Toastr\Toastr;
 // use Illuminate\Http\Request;
 use Toastr;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use App\Exports\NewsLettersExport;
+use App\Imports\NewsLettersImport;
 
 use Newsletter;
 use App\Newsletters2;
+
 // use App\Models\Newsletters2;
 // use Mailchimp;
 class NewsLetterController extends Controller
@@ -105,6 +109,31 @@ class NewsLetterController extends Controller
         }
         return redirect()->back();
     }
+    public function export(){
+        return Excel::download(new NewsLettersExport, 'NewsLetters.xlsx');
+
+    }
+    public function import(Request $request){
+
+
+        // $request->file('import_file')->isValid(){
+	if ($request->file('import_file')) {
+        $import = \Excel::import(new NewsLettersImport, request()->file('import_file'));
+        Toastr::success('Cập nhật file excel thành công!  :)','Thông báo');
+        // dd('Có file');
+        return redirect()->back()->with('success', 'Success!!!');
+
+    }
+    else{
+        Toastr::error('Không thành công! Vui lòng làm lại !  :)','Thông báo');
+        // dd('Có file');
+        return redirect()->back()->with('success', 'Success!!!');
+    }
+
+
+
+
+    }
     // send campaign
     // public function send_email(Request $request){
 
@@ -141,3 +170,4 @@ class NewsLetterController extends Controller
     //     ]);
     // }
 }
+

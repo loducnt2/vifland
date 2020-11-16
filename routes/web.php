@@ -231,3 +231,7 @@ Route::delete('/admin/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryControlle
 // Newsletter
 Route::post('/sub','NewsLetterController@subscribe')->name('newsletter.subscribe');
 Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->name('newsletter.admin.index');
+#export
+Route::get('/admin/index/quan-ly-thu-tin-tuc/export','NewsLetterController@export')->name('table.export');
+// import
+Route::post('/admin/index/quan-ly-thu-tin-tuc/import', 'NewsLetterController@import')->name('table.import');
