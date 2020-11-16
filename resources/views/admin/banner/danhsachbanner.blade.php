@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
           <label for="">Position</label>
-          <input type="number" name="position" class="form-control">
+          <input type="number" name="position" value="0" class="form-control">
         </div>
         <div>
           <button type="submit" class="btn btn-primary">Thêm</button>
