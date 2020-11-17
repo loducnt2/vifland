@@ -264,9 +264,6 @@ $('#navId a').click(e => {
                 <div class="swiper-wrapper">
                     @if(count($product_by_cate1)>0)
                     @foreach($product_by_cate1 as $product)
-                    <script>
-
-                    </script>
                     <div class="swiper-slide">
                         <div class="box-sp">
                             <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"

@@ -201,13 +201,11 @@
                                                 </div>
                                             </div>
                                             <div class="right-bxh">
-                                                <span class="amount">{{number_format($user->total_cash)}}</span> VNĐ
+                                                <span class="amount">{{number_format($user->total_cash) }}</span> VNĐ
                                             </div>
                                         </div>
                                     </div>
                                     @endforeach
-                                    
-
                                     <!-- End list -->
                                 </div>
                                 <!-- End  -->
