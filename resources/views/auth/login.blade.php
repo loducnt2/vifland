@@ -30,9 +30,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 {!! Toastr::message() !!}
         <section class="login">
-
-
-
             <form method="POST" action="{{ route('login') }} " id="dangnhap">
 
                 {{-- hiện session thông tin nếu --}}
@@ -65,7 +62,7 @@
 
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
-                                    autocomplete="current-password" placeholder="Mật khẩu">
+                                    autocomplete="current-password" placeholder="Mật khẩu" value="{{ old('password')}}">
 
 
                             </div>

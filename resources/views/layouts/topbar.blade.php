@@ -110,7 +110,7 @@
                                     </div>
 
                                     <?php
-                                    // noti 
+                                    // noti
                                         $notis = DB::table('notification')
                                         ->where('status',1)
                                         ->where('due_date','>',date('Y-m-d',strtotime('now')))
@@ -122,6 +122,22 @@
                                             $duedate = DB::table('post_history')
                                             ->leftJoin('product','post_history.product_id','product.id')
                                            ->where('post_history.user_id',auth()->user()->id)
+                                           ->where('product.datetime_end','<=',date('Y-m-d',strtotime("+2 day")))
+                                           ->where('product.datetime_end','>',date('Y-m-d',strtotime('now')))
+                                           ->where('post_history.status',1)
+                                           ->orderby('id', 'asc')
+                                           ->select(
+                                               'product.id as id',
+                                               'product.datetime_end as date',
+                                               'product.slug as slug'
+                                           )
+                                           ->get();
+
+                                           $duedate1 = DB::table('post_history')
+                                            ->leftJoin('product','post_history.product_id','product.id')
+                                           ->where('post_history.user_id',auth()->user()->id)
+                                           ->where('product.datetime_end','<=',date('Y-m-d',strtotime('now')))
+                                           ->where('product.datetime_end','>=',date('Y-m-d',strtotime("-7 day")))
                                            ->where('post_history.status',1)
                                            ->orderby('id', 'asc')
                                            ->select(
@@ -133,6 +149,7 @@
                                         }
                                         else {
                                             $duedate = [];
+                                            $duedate1 = [];
                                         }
                                       ?>
                                     <div class="co-thong-bao">
@@ -141,11 +158,23 @@
                                             <div class="wrap-text products-duedate ">
                                                 <div class="thongbao post-expired">Thông báo</div><a href="{{route('article-detail',$due->slug)}}">Bài
                                                     viết của bạn sắp hết hạn</a>
-                                                <div class="date">{{$due->date}}</div>
+                                                <div class="date"> ngày hết hạn :{{$due->date}}</div>
                                                 <div>{{$due->id}}</div>
                                              </div>
                                         </div>
                                         @endforeach
+
+                                        @foreach($duedate1 as $due1)
+                                        <div class="item">
+                                            <div class="wrap-text products-duedate ">
+                                                <div class="thongbao post-due" style="background: red;">Thông báo</div><a href="{{route('article-detail',$due1->slug)}}">Bài
+                                                    viết của bạn đã hết hạn</a>
+                                                <div class="date"> ngày hết hạn : {{$due1->date}}</div>
+                                                <div>{{$due1->id}}</div>
+                                             </div>
+                                        </div>
+                                        @endforeach
+
 
                                             @foreach($notis as $noti)
                                         <div class="item">
@@ -169,7 +198,8 @@
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
                                 data-target="#exampleModal">Đăng bài</a>
                         </li>
-                        <li class="nav-item d-none user-logined"><img class="avatar-login"
+                        <li class="nav-item d-none user-logined">
+                            <img class="avatar-login"
                                 src="{{asset('assets/avatar/avatar.png')}}" alt=""></li>
                         <li class="nav-item">
                             @if(auth()->check())
@@ -358,29 +388,14 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-   var number =0;
-  
-  
-  $(".products-duedate").each(function(){
-        var get_product_date = $(this).children(".date").text();
-        console.log(get_product_date);
-        var now = new Date().getTime();
-        var due_date_product_PL = new Date(get_product_date).getTime() + 604800000;
-        var due_date_product=new Date(get_product_date).getTime() - 86400000;
-        var due = due_date_product - now;
-        console.log(due_date_product);
-        if(due_date_product < now < due_date_product_PL  ){
-          
-            number+=1;
-        }
-        else{
-            $(this).parent().remove();
-        }
-  })
-    if(number == 0){
+   var number_noti =0;
+   $(".item").each(function(){
+    number_noti+=1
+   })
+    if(number_noti == 0){
         $(".number-tb").hide();
     }
     else{
-        $(".number-tb").text(number);
+        $(".number-tb").text(number_noti);
     }
 </script>

@@ -2,9 +2,28 @@
 @section('title',$product->title)
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
+<style>
+    .delete-post{
+        position: fixed;
+        top: 30%;
+        right: 0;
+        width: 50px;
+        height: 50px;
+        background: red;
+        line-height: 50px;
+        text-align: center;
+        color: #fff;
+    }
+</style>
+
 @stop
 @section('content')
 <main>
+@if(Auth::check() && Auth::user()->user_type == "1")
+    <div class="delete-post">
+       <a href="{{route('delete-post',$product->id)}}">Xóa</a>
+    </div>
+    @endif
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
@@ -372,6 +391,7 @@
     </section>
     <div class="index-page" id="js-page-verify" hidden></div>
 </main>
+
 @stop
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->

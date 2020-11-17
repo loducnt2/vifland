@@ -44,6 +44,7 @@ Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->nam
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
 
 Route::get('/article/{slug}','ProductController@show')->name('article-detail');
+Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-post');
 
 Route::group(['middleware'=>'auth'],function(){
 
@@ -224,8 +225,8 @@ Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news
 // ===================danh mục tin tức======================
 Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
 
-Route::delete('/admin/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
-
+Route::delete('/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
+Route::delete('/admin/index/danh-muc-tin-tuc/xoa-het','NewsCategoryController@deleteall')->name('news_cate.delete_all');
 // Newsletter
 Route::post('/sub','NewsLetterController@subscribe')->name('newsletter.subscribe');
 Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->name('newsletter.admin.index');

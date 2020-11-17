@@ -90,10 +90,10 @@ class RegisterController extends Controller
                 'username'  => $data->username,
                 'password'  => Hash::make($data->password),
                 'user_type' => '0',
-                'phone'     => $email,
+                'email'     => $email,
                 'status'    => '1',
                 'card_id'   => $data->card_id,
-                'img'       => 'avatar.png',
+                'img'       => 'user.png',
             ]);
             $user->save();
         }
