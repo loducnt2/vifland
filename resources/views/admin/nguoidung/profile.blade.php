@@ -95,7 +95,7 @@ ul.timeline {
 
           <!-- /Breadcrumb -->
 
-          <div class="row gutters-sm">
+          <div class="row col-md-12 gutters-sm">
             <div class="col-md-4 mb-3">
               <div class="card">
                 <div class="card-body">
@@ -233,17 +233,8 @@ ul.timeline {
                     </div>
                   </div>
                 </div>
-<<<<<<< HEAD
             </form>
-            
-        </div>
-=======
 
-              </div>
-            </div>
-          </div>
         </div>
-    </div>
->>>>>>> 00e4cc2aadab29aa991599425b053c2249fb28de
 
 @endsection

@@ -5,6 +5,7 @@ use DB;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use Str;
+use Toastr;
 class NewsCategoryController extends Controller
 {
     /**
@@ -18,7 +19,10 @@ class NewsCategoryController extends Controller
         $news_cate = NewsCategory::all();
         return view('admin.tintuc.danhmuctintuc',compact('news_cate'));
     }
-
+    public function deleteall(){
+        NewsCategory::truncate();
+        Toastr::success('Xoá hết thành công','Thông báo');
+    }
     /**
      * Show the form for creating a new resource.
      *

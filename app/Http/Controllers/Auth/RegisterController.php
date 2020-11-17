@@ -7,6 +7,9 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+// use App\Http\Requests\Register;
+use App\Http\Requests\RegisterRequest;
+
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
 use Illuminate\Support\Facades\Auth;
@@ -66,9 +69,8 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(request $data)
+    protected function create(RegisterRequest $data)
     {
-
 
         // Thêm email or SĐT vào bảng contact
         $email = $data->email;
@@ -88,10 +90,10 @@ class RegisterController extends Controller
                 'username'  => $data->username,
                 'password'  => Hash::make($data->password),
                 'user_type' => '0',
-                'phone'     => $email,
+                'email'     => $email,
                 'status'    => '1',
                 'card_id'   => $data->card_id,
-                'img'       => 'avatar.png',
+                'img'       => 'user.png',
             ]);
             $user->save();
         }
