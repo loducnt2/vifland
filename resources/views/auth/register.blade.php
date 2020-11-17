@@ -21,20 +21,12 @@
         color:tomato;
         /* font-weight: bold; */
         font-size:13px;
+        font-weight: bold;
     }
 </style>
 <main>
 
     <section class="dangky login">
-        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
         <form action="{{ route('createUser') }}" method="POST" id="dangki">
             <?php //Hiển thị thông báo lỗi?>
@@ -66,12 +58,17 @@
                         <p> Đăng ký</p>
                     </div>
 
-                    <label for="text" class="error"></label>
+                    <label for="text" class="error">
+                        <?php echo $errors->first('username'); ?>
+                    </label>
+
                     <div class="form-group-input">
+
+
                         <div class="box-left-se"><span class="material-icons">person</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Tên Đăng Nhập" name="username">
 
+                            <input type="text" placeholder="Tên Đăng Nhập" name="username" value="{{ old('username') }}">
                         </div>
 
                     </div>
@@ -81,23 +78,28 @@
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">lock</span></div>
                         <div class="box-mid-se">
-                            <input type="password" placeholder="Mật khẩu" name="password" id="password">
+                            <input type="password" placeholder="Mật khẩu" name="password" id="password" value="{{ old('password') }}">
                             {{-- <label for="text" class="error"></label> --}}
                         </div>
                         <div class="box-right-se"><span class="material-icons mk-icons"
                                 onclick="showpass();">visibility</span></div>
                     </div>
+
                     <div class="form-group-input">
+
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
                         <div class="box-mid-se">
-                            <input type="email" placeholder="Email hoặc Số điện thoại" name="email">
-                            <label for="text" class="error"></label>
+                            <input type="email" placeholder="Email hoặc Số điện thoại" name="email" value="{{ old('email') }}">
+                            <label for="text" class="error">
+                                <?php echo $errors->first('email'); ?>
+                            </label>
                         </div>
                     </div>
+
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id">
+                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id" value="{{ old('card_id') }}">
                             <label for="text" class="error"></label>
                         </div>
                     </div>

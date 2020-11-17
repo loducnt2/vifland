@@ -28,5 +28,15 @@ class RegisterRequest extends FormRequest
             'username' => 'unique:user',
             'email' => '|unique:user',
         ];
+
     }
+    public function messages()
+    {
+    return [
+        'username.unique' => 'Tên tài khoản đã có, vui lòng sử dụng tên khác',
+        'email.unique' => 'Địa chỉ email đã có ! vui lòng sử dụng địa chỉ khác',
+    ];
+    }
+
+
 }

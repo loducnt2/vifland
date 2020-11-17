@@ -119,31 +119,6 @@ li {
                 </ul>
             </div>
             <div class="col-md-8 order-md-1">
-<<<<<<< HEAD
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <label for="title" class="section-title-small">Tiêu đề bài viết</label>
-                        <label for="text" class="error"></label>
-                        <input type="text" class="w-full input-n input--lg box-n" id="title" onkeyup="ChangeToSlug();"
-                            placeholder="Tiêu đề bài viết" value="" name="title">
-                        {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
-                    </div>
-
-                    {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class"
-                    type="checkbox"
-                    data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios"
-                    data-on="On"
-                    data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
-                    <div class="col-md-12 mb-3">
-                        <label for="" class="section-title-small">Ngày đăng</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                            </div>
-                            <input class="form-control" id="email" name="datepost" type="text" readonly
-                                value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}" />
-                        </div>
-=======
                 <div>
 
 
@@ -166,7 +141,6 @@ li {
                             <option value="{{$item->id}}">{{$item->category_name}}</option>
                             @endforeach
                         </select>
->>>>>>> be68a39 (Thọ - hiện thông báo khi sai mật khẩu)
                     </div>
 
                 </div>
@@ -185,10 +159,6 @@ li {
                     </select>
                 </div>
 
-<<<<<<< HEAD
-                <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
-                    aria-describedby="helpId" placeholder="">
-=======
                     <div class="form-group">
                         <label for="" class="section-title-small">Từ khoá</label>
                         <input type="text" class="form-control typeahead" name="tags[]" id="tag"
@@ -210,7 +180,6 @@ li {
               <label for="content">Nội dung</label>
               <label for="text" class="error"></label>
                 <textarea id="editor1" name="editor1" required></textarea>
->>>>>>> be68a39 (Thọ - hiện thông báo khi sai mật khẩu)
 
                 <div class="form-group">
                     <label for="" class="section-title-small">Từ khoá</label>
