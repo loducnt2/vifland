@@ -63,10 +63,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        /*$img = $request->file('img');
-        return dd($img[0]);*/
         $datetime_start = $request->date_start." ".$request->time_start;
-        /*$datetime_start = */
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         if( $request->price == NULL ){
             $pr = 0;
@@ -90,6 +87,7 @@ class ProductController extends Controller
             'tags'           => $request->tags,
             'datetime_start' => date('Y-m-d H:i',strtotime($datetime_start)),
             'datetime_end'   => date('Y-m-d H:i',strtotime($datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
+
             'content'        => $request->content,
             'name_contact'   => $request->name_contact,
             'phone_contact'     => $request->phone_contact,
@@ -108,8 +106,8 @@ class ProductController extends Controller
         ]);
         $product->save();
         $productup = Product::find($product->id)->update([
-            'slug' => Str::slug($request->title)
-            .'-'.date('Ymd',strtotime($request->datetime_start)).str_pad($product->id,5,rand(10000,99999),STR_PAD_LEFT)
+            'slug' => Str::slug($request->title).'-'.date('Ymd',strtotime($request->datetime_start)).str_pad($product->id,5,rand(10000,99999),STR_PAD_LEFT),
+            'datetime_delete'=> date('Y-m-d H:i',strtotime($product->datetime_end.' '.'+'.' '. 7 .' '.'days') ),
         ]);
 
 
