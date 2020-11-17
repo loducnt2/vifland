@@ -14,8 +14,8 @@
             {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
           </div>
     </div>
-
     <button type="submit" class="btn btn-primary">Submit</button>
+    <a name="" id="" class="btn btn-primary" href="google.com" role="button">Xoá tất cả danh mục</a>
     <div class="card-body">
         <div class="col-md-8 table-responsive">
             <table class=" table table-bordered" id="myTable" width="100%" cellspacing="0">

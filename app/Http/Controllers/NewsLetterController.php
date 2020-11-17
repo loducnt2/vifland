@@ -105,7 +105,7 @@ class NewsLetterController extends Controller
             // $user -> save();\
         }
         else{
-            Toastr::success('Đăng kí thất bài :(','Thông báo');
+            Toastr::success('Đăng kí thất bại :(','Thông báo');
         }
         return redirect()->back();
     }

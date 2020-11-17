@@ -264,9 +264,6 @@ $('#navId a').click(e => {
                 <div class="swiper-wrapper">
                     @if(count($product_by_cate1)>0)
                     @foreach($product_by_cate1 as $product)
-                    <script>
-
-                    </script>
                     <div class="swiper-slide">
                         <div class="box-sp">
                             <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
@@ -282,7 +279,7 @@ $('#navId a').click(e => {
                                 <div class="vip">
                                     <!-- {{$product->type}} -->
 
-                                    @if ($product->type != 0)
+                                    @if ($product->type != 4)
                                     <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                     @else
                                     @endif
@@ -400,7 +397,7 @@ $('#navId a').click(e => {
                                 <div class="vip">
                                     <!-- {{$product->type}} -->
 
-                                    @if ($product->type != 0)
+                                    @if ($product->type != 4)
                                     <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                     @else
                                     @endif
@@ -515,7 +512,7 @@ $('#navId a').click(e => {
                                 <div class="vip">
                                     <!-- {{$product->type}} -->
 
-                                    @if ($product->type != 0)
+                                    @if ($product->type != 4)
                                     <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                     @else
                                     @endif

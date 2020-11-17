@@ -195,10 +195,14 @@ class ProductController extends Controller
         
 
         //Lưu vào lịch sử đăng
+        $post_status = 0;
+        if(auth()->user()->user_type == 1){
+            $post_status = 1;
+        }
         $post_history = new PostHistory([
             'user_id'        => auth()->user()->id,
             'product_id'     => $product->id,
-            'status'         => 0,
+            'status'         => $post_status,
             'datetime'       => date('Y-m-d H:i:s',strtotime('now')),
         ]);
         $post_history->save();
@@ -230,6 +234,7 @@ class ProductController extends Controller
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->leftJoin('ward','product.ward_id','ward.id')
+        ->leftJoin('category','product.cate_id','category.id')
         ->select(
             'product_extend.*',
             'product.*',
@@ -237,7 +242,8 @@ class ProductController extends Controller
             'province.name as province',
             'district.name as district',
             'ward.name as ward',
-            'product_unit.name as unit'
+            'product_unit.name as unit',
+            'category.parent_id'
         )
         ->first();
 
@@ -263,8 +269,30 @@ class ProductController extends Controller
            }
         }
 
-        //return $roduct_cate;
-        return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image'));
+        $product_related  = Category::where('category.parent_id',$product->parent_id)
+        ->leftJoin('product','product.cate_id','category.id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->leftJoin('ward','product.ward_id','ward.id')
+        ->select(
+            'product_extend.*',
+            'product.*',
+            'product_extend.id as productex_id',
+            'province.name as province',
+            'district.name as district',
+            'ward.name as ward',
+            'product_unit.name as unit',
+            'category.parent_id'
+        )
+        ->where('product.province_id',$product->province_id)
+        ->orderBy('type','asc')
+        ->inRandomOrder()
+        ->limit(4)
+        ->get();
+
+        return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image','product_related'));
     }
 
     /**

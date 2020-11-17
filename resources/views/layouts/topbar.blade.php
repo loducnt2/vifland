@@ -110,7 +110,7 @@
                                     </div>
 
                                     <?php
-                                    // noti 
+                                    // noti
                                         $notis = DB::table('notification')
                                         ->where('status',1)
                                         ->where('due_date','>',date('Y-m-d',strtotime('now')))
@@ -170,7 +170,8 @@
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
                                 data-target="#exampleModal">Đăng bài</a>
                         </li>
-                        <li class="nav-item d-none user-logined"><img class="avatar-login"
+                        <li class="nav-item d-none user-logined">
+                            <img class="avatar-login"
                                 src="{{asset('assets/avatar/avatar.png')}}" alt=""></li>
                         <li class="nav-item">
                             @if(auth()->check())
@@ -360,8 +361,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
    var number =0;
-  
-  
+
+
   $(".products-duedate").each(function(){
         var get_product_date = $(this).children(".date").text();
         //due
