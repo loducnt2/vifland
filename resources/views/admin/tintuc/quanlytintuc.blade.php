@@ -26,7 +26,6 @@ li {
 .my-0 {
     font-weight: bold;
 }
-
 </style>
 {{-- @extends('admin.sidebar') --}}
 @section('title','Quản lý tin tức')
@@ -34,10 +33,10 @@ li {
 
 
 <style>
-      .error{
-        color:red;
+.error {
+    color: red;
 
-    }
+}
 </style>
 {{-- get tags value --}}
 
@@ -112,117 +111,83 @@ li {
                 </div>
                 <script language="javascript">
                 $(".custom-file-input").on("change", function() {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            });
-            </script>
-                 </li>
-                  </ul>
-      </div>
-      <div class="col-md-8 order-md-1">
-        <div>
-          <div class="row">
-            <div class="col-md-12 mb-3">
-                <div class="error"></div>
-
-              <label for="title">Tiêu đề bài viết</label>
-
-              <input type="text" class="form-control" id="title" onkeyup="ChangeToSlug();" placeholder="" value="" name="title">
-              {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                });
+                </script>
+                </li>
+                </ul>
             </div>
             <div class="col-md-8 order-md-1">
-                <div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="title" class="section-title-small">Tiêu đề bài viết</label>
-                            <label for="text" class="error"></label>
-                            <input type="text" class="w-full input-n input--lg box-n" id="title"
-                                onkeyup="ChangeToSlug();" placeholder="Tiêu đề bài viết" value="" name="title">
-                            {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
-                        </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="title" class="section-title-small">Tiêu đề bài viết</label>
+                        <label for="text" class="error"></label>
+                        <input type="text" class="w-full input-n input--lg box-n" id="title" onkeyup="ChangeToSlug();"
+                            placeholder="Tiêu đề bài viết" value="" name="title">
+                        {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
+                    </div>
 
-                        {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox"
-                        data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On"
-                        data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
-                        <div class="col-md-12 mb-3">
-                            <label for="" class="section-title-small">Ngày đăng</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                                </div>
-                                <input class="form-control" id="email" name="datepost" type="text" readonly
-                                    value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}" />
+                    {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class"
+                    type="checkbox"
+                    data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios"
+                    data-on="On"
+                    data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
+                    <div class="col-md-12 mb-3">
+                        <label for="" class="section-title-small">Ngày đăng</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
                             </div>
+                            <input class="form-control" id="email" name="datepost" type="text" readonly
+                                value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}" />
                         </div>
-
-                    </div>
-                    <div class="section-title-small">
-                        Danh mục tin tức
-                    </div>
-                    <div class="form-group">
-                        <label for=""></label>
-                        <?php $cate = \App\Models\NewsCategory::all()?>
-                        <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
-                            onChange="test();">
-                            <option value="">Lựa chọn danh mục</option>
-                            @foreach ($cate as $item)
-                            <option value="{{$item->id}}">{{$item->category_name}}</option>
-                            @endforeach
-                        </select>
                     </div>
 
-                    <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
-                        aria-describedby="helpId" placeholder="">
-
-                    <div class="form-group">
-                        <label for="" class="section-title-small">Từ khoá</label>
-                        <input type="text" class="form-control typeahead" name="tags[]" id="tag"
-                            aria-describedby="helpId" placeholder="" data-role="tagsinput">
-                    </div>
-                <input class="form-control" id="email" name="datepost" type="text" readonly value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
-                  </div>
-              </div>
-
-          </div>
-          Danh mục tin tức
-
-          <div class="form-group">
-            <label for=""></label>
-            <label for="text" class="error"></label>
-            <?php $cate = \App\Models\NewsCategory::all()?>
-            <select class="form-control" id="category_dropdown" name="id_category" onChange="test();" >
-                <option value="">Không có danh mục</option>
-                @foreach ($cate as $item)
-            <option value="{{$item->id}}">{{$item->category_name}}</option>
-              @endforeach
-            </select>
-          </div>
-
-          <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug" aria-describedby="helpId" placeholder="" >
-
-          <div class="form-group">
-            <label for="">Từ khoá</label>
-            <input type="text" class="form-control typeahead" name="tags[]" id="tags[]" aria-describedby="helpId" placeholder="" data-role="tagsinput">
-          </div>
-          <div class="row">
-            <div class="col-md-12 mb-3">
-                {{-- <label for="text" class="error"></label> --}}
-
-              <label for="content">Nội dung</label>
-              <label for="text" class="error"></label>
-                <textarea id="editor1" name="editor1" required></textarea>
-
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-
-                        <input type="hidden" class="form-control" name="slug" id="slug2" aria-describedby="helpId"
-                            placeholder="" readonly>
-                    </div>
-
-                    <button class="button-n" type="submit">Đăng tin</button>
                 </div>
+                <div class="section-title-small">
+                    Danh mục tin tức
+                </div>
+                <div class="form-group">
+                    <label for=""></label>
+                    <?php $cate = \App\Models\NewsCategory::all()?>
+                    <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
+                        onChange="test();">
+                        <option value="">Lựa chọn danh mục</option>
+                        @foreach ($cate as $item)
+                        <option value="{{$item->id}}">{{$item->category_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
+                    aria-describedby="helpId" placeholder="">
+
+                <div class="form-group">
+                    <label for="" class="section-title-small">Từ khoá</label>
+                    <input type="text" class="form-control typeahead input-n input--lg border" name="tags[]" id="tag"
+                        aria-describedby="helpId" placeholder="" data-role="tagsinput">
+                </div>
+                <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
+                    aria-describedby="helpId" placeholder="">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        {{-- <label for="text" class="error"></label> --}}
+
+                        <label for="content">Nội dung</label>
+                        <label for="text" class="error"></label>
+                        <textarea id="editor1" name="editor1" required></textarea>
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+
+                    <input type="hidden" class="form-control" name="slug" id="slug2" aria-describedby="helpId"
+                        placeholder="" readonly>
+                </div>
+
+                <button class="button-n" type="submit">Đăng tin</button>
     </form>
 </div>
 </div>
@@ -232,63 +197,62 @@ li {
 {{-- @extends('admin.footer') --}}
 
 <script>
-    function test(){
-   var test= $("#category_dropdown option:selected").text();
-   console.log(test);
-  $("#category_news_slug").attr('value',test);
-    }
-  </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+function test() {
+    var test = $("#category_dropdown option:selected").text();
+    console.log(test);
+    $("#category_news_slug").attr('value', test);
+}
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
   "></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        $('#tintuc').validate({
-            rules: {
-                'title': {
-                    required: true,
-                    minlength:8,
-                    maxlength:255
-                },
+    $('#tintuc').validate({
+        rules: {
+            'title': {
+                required: true,
+                minlength: 8,
+                maxlength: 255
+            },
 
-                'tags': {
-                    required: true,
-                },
-                'id_category':{
-                    required:true,
-                },
-                'editor1': {
+            'tags': {
+                required: true,
+            },
+            'id_category': {
+                required: true,
+            },
+            'editor1': {
                 required: function(textarea) {
-          CKEDITOR.instances[textarea.id].updateElement(); // update textarea
-          var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
-          return editorcontent.length === 0;
-                    }
-                },
+                    CKEDITOR.instances[textarea.id].updateElement(); // update textarea
+                    var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
+                    return editorcontent.length === 0;
+                }
             },
-            messages: {
-                'title': {
-                    required: "Tiêu đề không được để trống",
-                    minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
+        },
+        messages: {
+            'title': {
+                required: "Tiêu đề không được để trống",
+                minlength: "Vui lòng nhập mật khẩu khoản tối đa 8 kí tự",
 
-                },
-
-                'tags[]': {
-                    required: "Từ khoá không được để trống",
-                },
-                'id_category' :{
-                    required:"Vui lòng chọn lại danh mục",
-                },
-                'editor1': {
-                    maxlength:'Vui lòng nhập tối đa 20 kí tự',
-                    required: "Nội dung không được để trống"
-                },
             },
-        });
+
+            'tags[]': {
+                required: "Từ khoá không được để trống",
+            },
+            'id_category': {
+                required: "Vui lòng chọn lại danh mục",
+            },
+            'editor1': {
+                maxlength: 'Vui lòng nhập tối đa 20 kí tự',
+                required: "Nội dung không được để trống"
+            },
+        },
     });
+});
 </script>
-
