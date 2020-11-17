@@ -99,7 +99,7 @@ li {
                     <div class=" custom-file ">
                         <input type="file" class="custom-file-input" id="customFile" name="image"
                             onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
-                        <label class="custom-file-label" for="customFile">Chọn tập tin</label>
+                        <label class="custom-file-label" for="customFile">Chọn tập tin </label>
                     </div>
                     {{-- <input name="photo" type="file" accept="image/*"> --}}
 
@@ -119,28 +119,29 @@ li {
                 </ul>
             </div>
             <div class="col-md-8 order-md-1">
-                <div>
-
-
-                        {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox"
-                        data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On"
-                        data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
-
-
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="title" class="section-title-small">Tiêu đề bài viết</label>
+                        <label for="text" class="error"></label>
+                        <input type="text" class="w-full input-n input--lg box-n" id="title" onkeyup="ChangeToSlug();"
+                            placeholder="Tiêu đề bài viết" value="" name="title">
+                        {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
                     </div>
-                    <div class="section-title-small">
-                        Danh mục tin tức
-                    </div>
-                    <div class="form-group">
-                        <label for=""></label>
-                        <?php $cate = \App\Models\NewsCategory::all()?>
-                        <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
-                            onChange="test();">
-                            <option value="">Lựa chọn danh mục</option>
-                            @foreach ($cate as $item)
-                            <option value="{{$item->id}}">{{$item->category_name}}</option>
-                            @endforeach
-                        </select>
+
+                    {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class"
+                    type="checkbox"
+                    data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios"
+                    data-on="On"
+                    data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
+                    <div class="col-md-12 mb-3">
+                        <label for="" class="section-title-small">Ngày đăng</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                            <input class="form-control" id="email" name="datepost" type="text" readonly
+                                value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}" />
+                        </div>
                     </div>
 
                 </div>
@@ -159,27 +160,8 @@ li {
                     </select>
                 </div>
 
-                    <div class="form-group">
-                        <label for="" class="section-title-small">Từ khoá</label>
-                        <input type="text" class="form-control typeahead" name="tags[]" id="tag"
-                            aria-describedby="helpId" placeholder="" data-role="tagsinput">
-                    </div>
-                <input class="form-control" id="email" name="datepost" type="text" readonly value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
-                  </div>
-              </div>
-
-          </div>
-
-          <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug" aria-describedby="helpId" placeholder="" >
-
-
-          <div class="row">
-            <div class="col-md-12 mb-3">
-                {{-- <label for="text" class="error"></label> --}}
-
-              <label for="content">Nội dung</label>
-              <label for="text" class="error"></label>
-                <textarea id="editor1" name="editor1" required></textarea>
+                <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
+                    aria-describedby="helpId" placeholder="">
 
                 <div class="form-group">
                     <label for="" class="section-title-small">Từ khoá</label>
@@ -263,7 +245,7 @@ $(document).ready(function() {
             'tags[]': {
                 required: "Từ khoá không được để trống",
             },
-            'id_category': {
+            'id_category': {t
                 required: "Vui lòng chọn lại danh mục",
             },
             'editor1': {
