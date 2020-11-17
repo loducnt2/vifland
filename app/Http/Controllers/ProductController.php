@@ -298,7 +298,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pro = Product::find($id);
+        $pro->delete();
+        return redirect('/');
     }
 
 
@@ -500,5 +502,6 @@ class ProductController extends Controller
         ->get();
         return view('pages/favourites',compact('products'));
     }
+
 
 }

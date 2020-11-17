@@ -44,6 +44,7 @@ Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->nam
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
 
 Route::get('/article/{slug}','ProductController@show')->name('article-detail');
+Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-post');
 
 Route::group(['middleware'=>'auth'],function(){
 

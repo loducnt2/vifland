@@ -123,6 +123,7 @@
                                             ->leftJoin('product','post_history.product_id','product.id')
                                            ->where('post_history.user_id',auth()->user()->id)
                                            ->where('post_history.status',1)
+                                           
                                            ->orderby('id', 'asc')
                                            ->select(
                                                'product.id as id',
@@ -363,20 +364,29 @@
   
   $(".products-duedate").each(function(){
         var get_product_date = $(this).children(".date").text();
-        console.log(get_product_date);
+        //due
+       var due_date_product=new Date(get_product_date).getTime()
+       //now
         var now = new Date().getTime();
+        //7
         var due_date_product_PL = new Date(get_product_date).getTime() + 604800000;
-        var due_date_product=new Date(get_product_date).getTime() - 86400000;
-        var due = due_date_product - now;
+        //2
+        var due_date_product_2=new Date(get_product_date).getTime() - 86400000;
+
+       
         console.log(due_date_product);
-        if(due_date_product < now < due_date_product_PL  ){
-          
-            number+=1;
+        if(due_date_product_2 < now < due_date_product ){
+          console.log(1)
+            
+        }
+        else if(due_date_product < now < due_date_product_PL ){
+            console.log(2)
         }
         else{
             $(this).parent().remove();
         }
   })
+
     if(number == 0){
         $(".number-tb").hide();
     }
