@@ -119,6 +119,7 @@ li {
                 </ul>
             </div>
             <div class="col-md-8 order-md-1">
+<<<<<<< HEAD
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="title" class="section-title-small">Tiêu đề bài viết</label>
@@ -142,6 +143,30 @@ li {
                             <input class="form-control" id="email" name="datepost" type="text" readonly
                                 value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}" />
                         </div>
+=======
+                <div>
+
+
+                        {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class" type="checkbox"
+                        data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On"
+                        data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
+
+
+                    </div>
+                    <div class="section-title-small">
+                        Danh mục tin tức
+                    </div>
+                    <div class="form-group">
+                        <label for=""></label>
+                        <?php $cate = \App\Models\NewsCategory::all()?>
+                        <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
+                            onChange="test();">
+                            <option value="">Lựa chọn danh mục</option>
+                            @foreach ($cate as $item)
+                            <option value="{{$item->id}}">{{$item->category_name}}</option>
+                            @endforeach
+                        </select>
+>>>>>>> be68a39 (Thọ - hiện thông báo khi sai mật khẩu)
                     </div>
 
                 </div>
@@ -160,8 +185,32 @@ li {
                     </select>
                 </div>
 
+<<<<<<< HEAD
                 <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
                     aria-describedby="helpId" placeholder="">
+=======
+                    <div class="form-group">
+                        <label for="" class="section-title-small">Từ khoá</label>
+                        <input type="text" class="form-control typeahead" name="tags[]" id="tag"
+                            aria-describedby="helpId" placeholder="" data-role="tagsinput">
+                    </div>
+                <input class="form-control" id="email" name="datepost" type="text" readonly value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}"/>
+                  </div>
+              </div>
+
+          </div>
+
+          <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug" aria-describedby="helpId" placeholder="" >
+
+
+          <div class="row">
+            <div class="col-md-12 mb-3">
+                {{-- <label for="text" class="error"></label> --}}
+
+              <label for="content">Nội dung</label>
+              <label for="text" class="error"></label>
+                <textarea id="editor1" name="editor1" required></textarea>
+>>>>>>> be68a39 (Thọ - hiện thông báo khi sai mật khẩu)
 
                 <div class="form-group">
                     <label for="" class="section-title-small">Từ khoá</label>
