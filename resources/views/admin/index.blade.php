@@ -27,7 +27,7 @@
                                 <div class="wrap-db-head">
                                     <i class="far fa-file fs-icon blue-n"></i>
                                     <div class="badege">
-                                        Số Lượng Tin Đã Đăng
+                                        Tin Đã Đăng
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
@@ -43,7 +43,7 @@
                                 <div class="wrap-db-head">
                                     <i class="far fa-file fs-icon blue-n"></i>
                                     <div class="badege">
-                                        Số Lượng Tin Đang Đăng
+                                        Tin Đang Đăng
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
@@ -59,7 +59,7 @@
                                 <div class="wrap-db-head">
                                     <i class="far fa-eye fs-icon cam-n"></i>
                                     <div class="badege">
-                                        Tổng Số Lượt Xem
+                                        Lượt Xem
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
@@ -75,7 +75,7 @@
                                 <div class="wrap-db-head">
                                     <i class="far fa-user fs-icon vang-n"></i>
                                     <div class="badege">
-                                        Số Lượng Tài Khoản Đăng Ký
+                                        Tài Khoản Đăng Ký
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
@@ -91,7 +91,7 @@
                                 <div class="wrap-db-head">
                                     <i class="far fa-envelope fs-icon green-n"></i>
                                     <div class="badege">
-                                        Số Lượng Email Theo Dõi
+                                        Email Theo Dõi
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
@@ -159,7 +159,7 @@
                                             </div>
                                             <div class="line-right xanh ">
                                                 <span>{{$post_history_1}}</span>
-                                                {{$post_history_00}} %
+                                                {{$post_history_11}} %
                                             </div>
                                         </div>
                                         <div class="line-1">
@@ -169,7 +169,7 @@
                                             </div>
                                             <div class="line-right cam">
                                                 <span>{{$post_history_0}}</span>
-                                                {{$post_history_11}} %
+                                                {{$post_history_00}} %
                                             </div>
                                         </div>
 
@@ -315,7 +315,7 @@ $(document).ready(function() {
         backgroundColor: ["#285FD3", "#FF8B26"],
         borderColor: "#fff",
         borderWidth: 2,
-        data: [{{$post_history_00}}, {{$post_history_11}}],
+        data: [{{$post_history_11}}, {{$post_history_00}}],
         hoverBorderWidth: 5,
         labels: ["Bài viết đã duyệt", "Bài viết chưa duyệt"],
     }, ];
