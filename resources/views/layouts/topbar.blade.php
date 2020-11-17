@@ -122,8 +122,23 @@
                                             $duedate = DB::table('post_history')
                                             ->leftJoin('product','post_history.product_id','product.id')
                                            ->where('post_history.user_id',auth()->user()->id)
+                                           ->where('product.datetime_end','<=',date('Y-m-d',strtotime("+2 day")))
+                                           ->where('product.datetime_end','>',date('Y-m-d',strtotime('now')))
                                            ->where('post_history.status',1)
-                                           
+                                           ->orderby('id', 'asc')
+                                           ->select(
+                                               'product.id as id',
+                                               'product.datetime_end as date',
+                                               'product.slug as slug'
+                                           )
+                                           ->get();
+
+                                           $duedate1 = DB::table('post_history')
+                                            ->leftJoin('product','post_history.product_id','product.id')
+                                           ->where('post_history.user_id',auth()->user()->id)
+                                           ->where('product.datetime_end','<=',date('Y-m-d',strtotime('now')))
+                                           ->where('product.datetime_end','>=',date('Y-m-d',strtotime("-7 day")))
+                                           ->where('post_history.status',1)
                                            ->orderby('id', 'asc')
                                            ->select(
                                                'product.id as id',
@@ -134,6 +149,7 @@
                                         }
                                         else {
                                             $duedate = [];
+                                            $duedate1 = [];
                                         }
                                       ?>
                                     <div class="co-thong-bao">
@@ -142,11 +158,23 @@
                                             <div class="wrap-text products-duedate ">
                                                 <div class="thongbao post-expired">Thông báo</div><a href="{{route('article-detail',$due->slug)}}">Bài
                                                     viết của bạn sắp hết hạn</a>
-                                                <div class="date">{{$due->date}}</div>
+                                                <div class="date"> ngày hết hạn :{{$due->date}}</div>
                                                 <div>{{$due->id}}</div>
                                              </div>
                                         </div>
                                         @endforeach
+
+                                        @foreach($duedate1 as $due1)
+                                        <div class="item">
+                                            <div class="wrap-text products-duedate ">
+                                                <div class="thongbao post-due" style="background: red;">Thông báo</div><a href="{{route('article-detail',$due1->slug)}}">Bài
+                                                    viết của bạn đã hết hạn</a>
+                                                <div class="date"> ngày hết hạn : {{$due1->date}}</div>
+                                                <div>{{$due1->id}}</div>
+                                             </div>
+                                        </div>
+                                        @endforeach
+
 
                                             @foreach($notis as $noti)
                                         <div class="item">
@@ -360,38 +388,14 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-   var number =0;
-
-
-  $(".products-duedate").each(function(){
-        var get_product_date = $(this).children(".date").text();
-        //due
-       var due_date_product=new Date(get_product_date).getTime()
-       //now
-        var now = new Date().getTime();
-        //7
-        var due_date_product_PL = new Date(get_product_date).getTime() + 604800000;
-        //2
-        var due_date_product_2=new Date(get_product_date).getTime() - 86400000;
-
-       
-        console.log(due_date_product);
-        if(due_date_product_2 < now < due_date_product ){
-          console.log(1)
-            
-        }
-        else if(due_date_product < now < due_date_product_PL ){
-            console.log(2)
-        }
-        else{
-            $(this).parent().remove();
-        }
-  })
-
-    if(number == 0){
+   var number_noti =0;
+   $(".item").each(function(){
+    number_noti+=1
+   })
+    if(number_noti == 0){
         $(".number-tb").hide();
     }
     else{
-        $(".number-tb").text(number);
+        $(".number-tb").text(number_noti);
     }
 </script>
