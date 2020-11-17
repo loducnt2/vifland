@@ -282,7 +282,7 @@ $('#navId a').click(e => {
                                 <div class="vip">
                                     <!-- {{$product->type}} -->
 
-                                    @if ($product->type != 0)
+                                    @if ($product->type != 4)
                                     <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                     @else
                                     @endif
@@ -400,7 +400,7 @@ $('#navId a').click(e => {
                                 <div class="vip">
                                     <!-- {{$product->type}} -->
 
-                                    @if ($product->type != 0)
+                                    @if ($product->type != 4)
                                     <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                     @else
                                     @endif
@@ -515,7 +515,7 @@ $('#navId a').click(e => {
                                 <div class="vip">
                                     <!-- {{$product->type}} -->
 
-                                    @if ($product->type != 0)
+                                    @if ($product->type != 4)
                                     <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                     @else
                                     @endif
