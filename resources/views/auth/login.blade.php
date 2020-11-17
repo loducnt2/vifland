@@ -30,9 +30,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 {!! Toastr::message() !!}
         <section class="login">
-
-
-
             <form method="POST" action="{{ route('login') }} " id="dangnhap">
 
                 {{-- hiện session thông tin nếu --}}

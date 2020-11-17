@@ -35,6 +35,7 @@ class RegisterRequest extends FormRequest
     return [
         'username.unique' => 'Tên tài khoản đã có, vui lòng sử dụng tên khác',
         'email.unique' => 'Địa chỉ email đã có ! vui lòng sử dụng địa chỉ khác',
+        // 'email.ends_with'=> 'Địa chỉ email phải kết thúc với đuôi @gmail',
         // 'email.email' => 'Nhập đúng định dạng Email',
     ];
     }

@@ -89,7 +89,8 @@
 
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
                         <div class="box-mid-se">
-                            <input type="email" placeholder="Email hoặc Số điện thoại" name="email" value="{{ old('email') }}">
+
+                            <input type="email" placeholder="Email hoặc Số điện thoại" name="email" value="{{ old('email') }}"  aria-required="true" aria-invalid="false">
                             <label for="text" class="error">
                                 <?php echo $errors->first('email'); ?>
                             </label>
@@ -133,10 +134,23 @@ function showpass() {
     }
 }
 </script>
-
-{{-- form đăng ki --}}
 <script>
+
+</script>
+ {{-- form đăng ki --}}
+<script>
+
 $(document).ready(function() {
+    // thêm validate end with
+    jQuery.validator.addMethod("end_with", function(value, element) {
+
+if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
+    return true;
+} else {
+    return false;
+}
+}, "Email không đúng định dạng!.");
+
     $('#dangki').validate({
 
         rules: {
@@ -149,8 +163,10 @@ $(document).ready(function() {
 
             'email': {
                 email: true,
+                end_with: true,
                 required: true,
                 maxlength: 255
+
             },
             'password': {
                 required: true,
@@ -171,7 +187,8 @@ $(document).ready(function() {
             'email': {
                 required: "Emal không được để trống",
                 email: "Nhập đúng định dạng Email",
-                // maxlength: "Email must be less than or equal 255 letters",
+                end_with:"Email phải có sau nút @"
+
             },
 
             'card_id': {

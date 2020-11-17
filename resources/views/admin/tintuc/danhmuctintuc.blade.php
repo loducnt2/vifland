@@ -23,9 +23,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Slug</th>
-                        {{-- <th>Username</th> --}}
-                        {{-- <th>Email</th> --}}
-                        {{-- <th>Năm sinh </th> --}}
+
                         <th>Tên danh mục</th>
                         <th>Tình trạng</th>
                         <th>Hành động</th>
