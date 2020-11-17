@@ -1228,45 +1228,7 @@ $(document).ready(function() {
 
                     let pr =
                         '<div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass"><div class="box-sp"><div class="box-sp-img"><a class="localstore" localstore="' +
-                        item.product_id + '" href="{{route('
-                    article - detail ',' + item.slug + ')}}"><img src="{{asset('
-                    assets / product / detail / ')}}/' + item.thumbnail +
-                        '" alt=""></a><div class="tag-thuongluong">' + item.price +
-                        ' ' + item.unit +
-                        '</div><div class="box-icon"><i class="fav ri-heart-line icons" productid="' +
-                        item.product_id + '"></i><a href="" productid="' + item
-                        .product_id +
-                        '" class="comp" ><i class="ri-equalizer-line icons"></i></a></div><div class="overlay"></div>' +
-                        vip +
-                        '</div><div class="box-sp-text"> <a class="localstore" localstore="' +
-                        item.product_id + '" href="{{route('
-                    article - detail ',' + item.slug + ')}}">' + title +
-                        '</a><div class="location"> <span class="material-icons">location_on</span><p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="' +
-                        item.district + ', ' + item.province + '">' + item
-                        .district + ', ' + item.province +
-                        '</p></div><div class="mota-place"><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('
-                    assets / icon / dientich
-                        .png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +
-                        acreage + ' m²">' + acreage +
-                        ' m²</span></div><div class="mota-place-tt"><img src="{{asset('
-                    assets / icon / icon - road @3x
-                        .png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div><div class="mota-place-tt"><img src="{{asset('
-                    assets / icon / rectangle - copy - 2 @3x
-                        .png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +
-                        item.facades + '">' + item.facades +
-                        ' m</span></div></div><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('
-                    assets / icon / rectangle - 2 @3x
-                        .png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +
-                        item.floors + ' Tầng">' + item.floors +
-                        ' Tầng</span></div><div class="mota-place-tt"><img src="{{asset('
-                    assets / icon / rectangle - 3 @3x
-                        .png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +
-                        item.bedroom + ' Phòng ngủ">' + item.bedroom +
-                        ' Phòng ngủ</span></div><div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tooltip on bottom"></span></div></div></div><div class="end-mota"><div class="mota-end-box"><div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>' +
-                        item.datetime_start +
-                        '</span></div><div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>' +
-                        item.view +
-                        '</span></div><div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div></div></div></div></div></div>'
+                        item.product_id + '" href="{{route('article-detail',' + item.slug + ')}}"><img src="{{asset('assets / product / detail / ')}}/' + item.thumbnail +'" alt=""></a><div class="tag-thuongluong">' + item.price +' ' + item.unit +'</div><div class="box-icon"><i class="fav ri-heart-line icons" productid="' +item.product_id + '"></i><a href="" productid="' + item.product_id +'" class="comp" ><i class="ri-equalizer-line icons"></i></a></div><div class="overlay"></div>' +vip +'</div><div class="box-sp-text"> <a class="localstore" localstore="' +item.'</a><div class="location"> <span class="material-icons">location_on</span><p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="' +item.district + ', ' + item.province + '">' + item.district + ', ' + item.province +'</p></div><div class="mota-place"><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets / icon / dientich.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +acreage + ' m²">' + acreage +' m²</span></div><div class="mota-place-tt"><img src="{{asset('assets / icon / icon - road @3x.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div><div class="mota-place-tt"><img src="{{asset('assets / icon / rectangle - copy - 2 @3x.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +item.facades + '">' + item.facades +' m</span></div></div><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets / icon / rectangle - 2 @3x.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +item.floors + ' Tầng">' + item.floors +' Tầng</span></div><div class="mota-place-tt"><img src="{{asset('assets / icon / rectangle - 3 @3x.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +item.bedroom + ' Phòng ngủ">' + item.bedroom +' Phòng ngủ</span></div><div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tooltip on bottom"></span></div></div></div><div class="end-mota"><div class="mota-end-box"><div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>' +item.datetime_start +'</span></div><div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>' +item.view +'</span></div><div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div></div></div></div></div></div>'
                     arr.push(pr)
                 })
                 $('#products').html(arr)

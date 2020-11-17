@@ -464,7 +464,7 @@ class ProductController extends Controller
         ->leftJoin('product','favorited.product_extend_id','product.id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
-        ->where('product.datetime_end','>',date('Y-m-d H:i:s',strtotime('now')))
+        ->where('product.soft_delete',0)
         ->select(
             'product.*',
             'product.id as product_id',
@@ -478,7 +478,7 @@ class ProductController extends Controller
         ->get();
         
 
-        return view('pages/history',compact('products','acreage'));
+        return view('pages/history',compact('products'));
     }
 
     public function productUserFavorite(){
