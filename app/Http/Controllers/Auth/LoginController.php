@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
+use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Session;
 class LoginController extends Controller
 {
     /*
@@ -45,12 +47,13 @@ class LoginController extends Controller
     }
     // login authenication
 
-    // end login
+
     public function authenticated(Request $request, $user)
     {
-
-
         $user = Auth::user();
+        // Kiểm tra dữ liệu nhập vào
+
+
         // tài khoản bị ban
         if ($user->status == 0 ) {
             return redirect ('/login')->with(Auth::logout())->with('msg','Tài khoản đã bị ban ! ');
@@ -59,13 +62,16 @@ class LoginController extends Controller
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
         ]);
         if ($user->user_type == 1) {
-
             return redirect ('/');
         }
         else {
         return redirect('/');
         }
-
+            // check password mật khẩu
+        $user = Auth::user();
+        $username=$request->username;
+        $password=$request->password;
+        dd($username);
 
     }
 

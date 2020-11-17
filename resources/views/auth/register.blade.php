@@ -24,9 +24,40 @@
     }
 </style>
 <main>
+
     <section class="dangky login">
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
         <form action="{{ route('createUser') }}" method="POST" id="dangki">
+            <?php //Hiển thị thông báo lỗi?>
+
+            @if ( Session::has('error') )
+
+                <div class="alert alert-danger alert-dismissible" role="alert">
+
+                    <strong>{{ Session::get('error') }}</strong>
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+                        <span aria-hidden="true">&times;</span>
+
+                        <span class="sr-only">Close</span>
+
+                    </button>
+
+                </div>
+
+            @endif
             @csrf
+
             <div class="login-wrap">
                 <div class="logo"><img src="./assets/logo/logo-footer-300.png" alt=""></div>
                 <div class="box-login">
@@ -34,6 +65,7 @@
                         <a href="{{route('login')}}"><span class="material-icons">keyboard_backspace</span></a>
                         <p> Đăng ký</p>
                     </div>
+
                     <label for="text" class="error"></label>
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">person</span></div>
