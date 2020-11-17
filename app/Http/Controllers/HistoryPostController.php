@@ -147,4 +147,16 @@ class HistoryPostController extends Controller
         ]);
        return redirect('/admin/danh-sach-duyet-tin');
     }
+
+    public function cancelPost($id){
+        $product = Product::where('product.id',$id)
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->update([
+            'product.soft_delete' => 1,
+            'product.datetime_end'=> date('Y-m-d H:i:s',strtotime('now')),
+            'product.datetime_delete'=>date('Y-m-d H:i',strtotime('now'.' '.'+'.' '. 7 .' '.'days') ),
+            'post_history.status' => 2,
+        ]);
+        return  redirect()->back();
+    }
 }

@@ -169,7 +169,7 @@
                     <div class="col-lg-9 col-md-12">
                         <div class="row">
                             <div class="col-12 form-group">
-                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
+                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title" value="{{$product->title}}">
                             </div>
                             <div class="col-12 form-group">
                                 <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
@@ -805,14 +805,14 @@
         //Validate 
         $('.formDangBaiViet').submit(function () {
 
-            let wallet = {{ auth()->user()->wallet }};
-            let pricepost = $('input[name="pricePost"]').val();
-            //console.log(wallet + ' ' + pricepost)
-            if( parseInt(wallet) < parseInt(pricepost)  ){
-                alert( 'Ví không đủ tiền' )
-                return false
-            }
-          })
+        let wallet = {{ auth()->user()->wallet }};
+        let pricepost = $('input[name="pricePost"]').val();
+        //console.log(wallet + ' ' + pricepost)
+        if( parseInt(wallet) < parseInt(pricepost)  ){
+            alert( ' k đủ tiền' )
+            return false
+        }
+      })
       /*$('.formDangBaiViet').validate({
           ignore: [],
           rules:{

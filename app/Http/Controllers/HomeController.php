@@ -32,6 +32,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        Product::where( 'datetime_start','<=', date('Y-m-d H:i',strtotime('now')) )->update(['status'=>1]);
+
         $filter_price = FilterPrice::orderBy('id','asc')->get();
         $product_cate = ProductCate::orderBy('id','desc')->get();
         $province = Province::orderBy('orders','desc')->orderBy('name','asc')->get();

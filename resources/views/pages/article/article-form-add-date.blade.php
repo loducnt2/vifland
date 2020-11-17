@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Đăng bài viết')
+@section('title','Gia hạn tin')
 @section('headerStyles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.css">
 
@@ -20,212 +20,14 @@
         </div>
     </div>
     <section class="dangbaiviet">
-        <form class="formDangBaiViet" action="{{route('article-store')}}" method="post" enctype="multipart/form-data">
+        <form class="formDangBaiViet" action="{{route('add-date-article')}}" method="post" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="product_id" value="{{$product_id}}">
             <div class="max-width-container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-12">
-                        <div class="box-left-form-muaban">
-                            <div class="mdm-1">
-                                <div class="checked">
-                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id"
-                                        checked="">
-                                    <label for="luachonsearch1">{{$cate_2[0]->name}}</label>
-                                </div>
-                                <div class="checked">
-                                    <input id="luachonsearch2" type="radio" value="{{$cate_2[1]->id}}" name="cate_id">
-                                    <label for="luachonsearch2">{{$cate_2[1]->name}}</label>
-                                </div>
-                            </div>
-                            <div class="mdm-2">
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation"><a class="nav-link active" id="vitri-tab"
-                                            data-toggle="tab" href="#vitri" role="tab" aria-controls="vitri"
-                                            aria-selected="true">Vị trí</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" id="thongtin-tab"
-                                            data-toggle="tab" href="#thongtin" role="tab" aria-controls="thongtin"
-                                            aria-selected="false">Thông tin </a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" id="khac-tab"
-                                            data-toggle="tab" href="#khac" role="tab" aria-controls="khac"
-                                            aria-selected="false">Khác</a></li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="vitri" role="tabpanel"
-                                        aria-labelledby="vitri-tab">
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province_id" id="province">
-                                                <option value="">Chọn</option>
-                                                @foreach($provinces as $province)
-                                                <option value="{{$province->id}}">{{$province->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district_id" id="district">
-                                                <option value="">Chọn</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Phường/Xã</label>
-                                            <select class="select1" name="ward_id" id="ward">
-                                                <option value="">Chọn</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="diachi">Địa chỉ</label>
-                                            <input type="text" name="address" id="diachi">
-                                        </div>
+                    <div class="col-lg-9 col-md-12 mx-auto">
+                    <h3 class="text-center">Gia Hạn Tin</h3>
 
-                                    </div>
-                                    <div class="tab-pane fade" id="thongtin" role="tabpanel"
-                                        aria-labelledby="thongtin-tab">
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate" multiple=  >
-                                                @foreach($product_cate as $prodcate)
-                                                <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Mặt tiền</label>
-                                            <input type="text" min="0" name="facades">
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Chiều sâu</label>
-                                            <input type="text" min="0" name="depth">
-                                        </div>
-                                        <!-- <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Diện tích</label>
-                                            <input type="number" min="0" name="acreage">
-                                        </div> -->
-                                        <!-- <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price"><em class="notedongia">Mặc
-                                                định 0 là
-                                                thương lượng</em>
-                                        </div> -->
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Đơn vị </label>
-                                            <select class="select1" name="unit_id" id="unit">
-                                                <option value="">Chọn</option>
-                                                @foreach($units as $unit)
-                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price" id="price">
-                                            <!-- <em class="notedongia">Mặc
-                                                định 0 là thương lượng</em> -->
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="khac" role="tabpanel"
-                                        aria-labelledby="khac-tab">
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Số tầng</label>
-                                            <input type="text" min="0" name="floors">
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Số phòng ngủ </label>
-                                            <input type="text" min="0" name="bedroom">
-                                        </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="legal">Giấy tờ pháp lý</label>
-                                            <select name="legal" class="select1" id="legal">
-                                                <option value="">Chọn</option>}
-                                                <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
-                                                    CN QSDĐ - Sổ đỏ - Sổ hồng</option>
-                                                <option value="Hợp đồng mua bán">Hợp đồng mua bán
-                                                </option>
-                                                <option value="Hợp đồng góp vốn">Hợp đồng góp vốn
-                                                </option>
-                                                <option value="Hợp đồng góp vốn">Hợp đồng góp vốn
-                                                </option>
-                                                <option value="Đất giao - Đất phân">Đất giao - Đất
-                                                    phân</option>
-                                                <option value="Đang làm giấy CN QSDĐ">Đang làm giấy
-                                                    CN QSDĐ</option>
-                                                <option value="Đã có giấy hẹn lấy số">Đã có giấy hẹn
-                                                    lấy số</option>
-                                            </select>
-                                        </div>
-                                        <div class="note-wrap"><em class="note">* Hãy cập nhật
-                                                các thông số đầy đủ và chi
-                                                tiết để khách hàng tìm thấy tin đăng của bạn dễ
-                                                dàng</em>
-                                            <p class="note"> <b>Cảnh báo: &nbsp;</b>Nếu thông
-                                                tin không được chọn đầy đủ thì
-                                                tin đăng sẽ không thể tìm kiếm.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-12">
-                        <div class="row">
-                            <div class="col-12 form-group">
-                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
-                            </div>
-                            <div class="col-12 form-group">
-                                <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
-                            </div>
-                            <!-- <div class="col-12 form-group">
-                                <span>Ảnh tiêu đề : &nbsp;</span>
-                                <input type="file" name="thumbnail" disabled="">
-                            </div> -->
-                            <div class="col-12 form-group">
-                                <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags">
-                            </div>
-                            <div class="col-12 form-group wrap-input-img form-upload">
-                                <div class="form-upload__preview"></div>
-                                <div class="form-upload__field">
-                                    <label class="form-upload__title" for="upload">Thêm ảnh
-                                        <input class="form-upload__control js-form-upload-control" id="upload"
-                                            type="file" multiple="true" style="display:none" name="img[]" required>
-                                    </label>
-                                    <button class="btn btn-clear ml-3">Xóa ảnh</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row thongtinlh">
-                            <div class="col-12 wrap-title">
-                                <h4 class="tt-line"> <span>Thông Tin Liên Hệ</span></h4>
-                                <p>Hãy điền thông tin liên hệ đầy đủ để khách hàng có thể liên lạc khi
-                                    có nhu cầu </p>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                    class="material-icons">person</span>
-                                <input type="text" placeholder="Tên liên lạc" name="name_contact">
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                    class="material-icons">business</span>
-                                <input type="text" placeholder="Tên Công ty" name="company_name">
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                    class="material-icons">phone</span>
-                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact">
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
-                                <input type="text" placeholder="Facebook cá nhân" name="facebook">
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                    class="material-icons">location_on</span>
-                                <input type="text" placeholder="Địa chỉ" name="address_contact">
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                    class="material-icons">public</span>
-                                <input type="text" placeholder="Trang web" name="website">
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
-                                    class="material-icons">email</span>
-                                <input type="text" placeholder="Hộp thư điện tử" name="email">
-                            </div>
-                        </div>
                         <div class="row loaitindang">
                             <div class="col-12">
                                 <div class="title">
@@ -527,7 +329,7 @@
                                     <div class="col-12 wrap-button-dbv">
                                         <div class="row">
                                             <!-- <button class="button-huy" type="submit">Hủy bỏ</button> -->
-                                            <button class="button-luu" type="submit">Đăng bài</button>
+                                            <button class="button-luu" type="submit">Gia hạn</button>
                                         </div>
                                     </div>
                                 </div>
@@ -774,35 +576,7 @@
         format: 'mm/dd/yyyy',
     }).attr('readonly', 'readonly');
     $('#testdate').datepicker('setDate', today);
-    CKEDITOR.replace('summary-ckeditor');
     $(document).ready(function () {
-
-
-
-        $('#unit').change(function () {
-            if ($(this).val() == 13) {
-                $('#price').attr('disabled', true);
-            } else {
-                $('#price').attr('disabled', false);
-            }
-        })
-
-        $('#province').change(function () {
-            var province = $(this).val();
-            var url = '/get-district/' + province;
-            $('#district').load(url, function () {
-                var district = $(this).val();
-                var url1 = '/get-ward/' + district;
-                $('#ward').load(url1);
-            });
-        });
-        $('#district').change(function () {
-            var district = $(this).val();
-            var url1 = '/get-ward/' + district;
-            $('#ward').load(url1);
-        });
-
-        //Validate 
         $('.formDangBaiViet').submit(function () {
 
             let wallet = {{ auth()->user()->wallet }};
@@ -812,75 +586,11 @@
                 alert( 'Ví không đủ tiền' )
                 return false
             }
-          })
-      /*$('.formDangBaiViet').validate({
-          ignore: [],
-          rules:{
-              province_id:{
-                required:true,
-              },
-              address:{
-                required:true,
-              },
-              title:{
-               required :true,
-              },
-              content:{
-                required:true,
-                lettersonly: true,
-                minlength:50
-              },
-              img:{
-                required:true,
-              },
-              name_contact:{
-               required :true,
-              },
-              phone_contact:{
-               required :true,
-              },
-              datetime_start:{
-                required:true,
-              },
-              tags:{
-                required:true,
-              },
-
-              legal:{
-                required:true,
-              },
-              unit_id:{
-                required:true,
-              },
-              price:{
-                required:true,
-              },
-            },
-            //Custom
-            errorPlacement: function(error, element) {
-                //Custom position: first name
-                if (element.attr("name") == "first" ) {
-                    $("#errNm1").text(error);
-                }
-                //Custom position: second name
-                else if (element.attr("name") == "second" ) {
-                    $("#errNm2").text(error);
-                }
-                // Default position: if no match is met (other fields)
-                else {
-                     error.append($('.errorTxt span'));
-                }
-            },
-            submitHandler: function (form) {
-                form.submit(function () {
-
-                });
-            }
-
-        });*/
+        })
+    })
 
 
-    });
+    
 
 </script>
 @endsection
