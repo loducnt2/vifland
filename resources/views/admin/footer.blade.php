@@ -10,6 +10,8 @@
 <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('js/ckeditor.js')}}"></script>
 {{-- script --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
     CKEDITOR.replace( 'editor1' );
 </script>
@@ -87,6 +89,9 @@
               data: {'status': status, 'id':id},
               success: function(data){
                 console.log(data.success)
+                location.reload();
+                // console.log('thực thi');
+
               }
           });
       })
@@ -149,3 +154,15 @@
       });
   }
     </script>
+<script>
+    function refreshTable(){
+        if ($(this).parent().hasClass("off")) {
+            toastr.error('Vô hiệu hoá User', 'title')
+
+    }else{
+        toastr.success('Cho phép user hoạt động', 'title')
+        this.fadeout();
+    }
+
+    }
+</script>

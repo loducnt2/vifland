@@ -161,7 +161,11 @@ class NewsController extends Controller
         // $new->save();
         return redirect('/admin/danh-sach-duyet-tin');
     }
-
+    public function deleteall(){
+        // xoá hết tin tức
+        News::truncate();
+        return redirect()->back();
+    }
     public function Anduyettin(Request $request,$id)
     {
             $new = News::find($id);

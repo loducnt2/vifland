@@ -184,13 +184,16 @@ class UserController extends Controller
     public function ChangeUserStatus(Request $request){
         $user = User::find($request->id);
         $user->status = $request->status;
+        // $request->session()->flash('success', 'Thay đổi successfully.');
 
         $user->save();
+        // Toastr::error('Thay đổi thất bại ! Vui lòng thử lại','Thông báo');
+
 
     }
 
 
-   
+
 
 
 

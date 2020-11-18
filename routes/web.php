@@ -230,7 +230,9 @@ Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news
 Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
 
 Route::delete('/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
-Route::delete('/admin/index/danh-muc-tin-tuc/xoa-het','NewsCategoryController@deleteall')->name('news_cate.delete_all');
+Route::get('/admin/index/danh-muc-tin-tuc/xoa-het','NewsCategoryController@deleteall')->name('newsletter_deleteall');
+Route::get('/admin/index/tin-tuc/xoa-het','NewsController@deleteall')->name('news_deleteall');
+
 // Newsletter
 Route::post('/sub','NewsLetterController@subscribe')->name('newsletter.subscribe');
 Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->name('newsletter.admin.index');
