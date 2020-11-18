@@ -145,7 +145,7 @@ Route::get('/admin/danh-sach-duyet-tin','HistoryPostController@index');
 //Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
 Route::get('/admin/danh-sach-duyet-tin/show/{id}','HistoryPostController@show')->name('show-tintuc');
 Route::get('/admin/danh-sach-duyet-tin/cancel/{id}','HistoryPostController@cancelPost')->name('cancel-post');
-Route::get('/admin/danh-sach-duyet-tin/delete/{id}','HistoryPostController@destroy')->name('del-post');
+Route::get('/admin/danh-sach-duyet-tin/delete/{id}','HistoryPostController@destroy')->name('delelete-post');
 Route::get('/admin/post-history/update/dsds/{id}','HistoryPostController@updatePost')->name('update-post');
 
 //Banner
