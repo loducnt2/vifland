@@ -26,6 +26,12 @@ li {
 .my-0 {
     font-weight: bold;
 }
+.error{
+    color:tomato;
+        /* font-weight: bold; */
+        font-size:13px;
+        font-weight: bold;
+}
 </style>
 {{-- @extends('admin.sidebar') --}}
 @section('title','Quản lý tin tức')
@@ -120,7 +126,11 @@ li {
             </div>
             <div class="col-md-8 order-md-1">
                 <div class="row">
+                    <label for="text" class="error">
+                        <?php echo $errors->first('title'); ?>
+                        </label>
                     <div class="col-md-12 mb-3">
+
                         <label for="title" class="section-title-small">Tiêu đề bài viết</label>
                         <label for="text" class="error"></label>
                         <input type="text" class="w-full input-n input--lg box-n" id="title" onkeyup="ChangeToSlug();"
@@ -145,6 +155,7 @@ li {
                     </div>
 
                 </div>
+
                 <div class="section-title-small">
                     Danh mục tin tức
                 </div>
@@ -159,10 +170,6 @@ li {
                         @endforeach
                     </select>
                 </div>
-
-                <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
-                    aria-describedby="helpId" placeholder="">
-
                 <div class="form-group">
                     <label for="" class="section-title-small">Từ khoá</label>
                     <input type="text" class="form-control typeahead input-n input--lg border" name="tags[]" id="tag"
@@ -172,30 +179,21 @@ li {
                     aria-describedby="helpId" placeholder="">
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        {{-- <label for="text" class="error"></label> --}}
-
                         <label for="content">Nội dung</label>
                         <label for="text" class="error"></label>
-                        <textarea id="editor1" name="editor1" required></textarea>
-
+                        <textarea id="editor1" name="content" required></textarea>
                     </div>
-
                 </div>
                 <div class="form-group">
-
                     <input type="hidden" class="form-control" name="slug" id="slug2" aria-describedby="helpId"
                         placeholder="" readonly>
                 </div>
-
                 <button class="button-n" type="submit">Đăng tin</button>
     </form>
 </div>
 </div>
-
-
 @endsection
 {{-- @extends('admin.footer') --}}
-
 <script>
 function test() {
     var test = $("#category_dropdown option:selected").text();
@@ -245,7 +243,7 @@ $(document).ready(function() {
             'tags[]': {
                 required: "Từ khoá không được để trống",
             },
-            'id_category': {t
+            'id_category': {
                 required: "Vui lòng chọn lại danh mục",
             },
             'editor1': {
