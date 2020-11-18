@@ -19,6 +19,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <style>
 ::-webkit-scrollbar {
     width: 5px;
@@ -41,6 +42,7 @@
 </style>
 
 <body class="sb-nav-fixed">
+    {!! Toastr::message() !!}
     <!-- <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
             <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">

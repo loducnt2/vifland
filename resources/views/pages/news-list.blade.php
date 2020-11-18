@@ -65,10 +65,15 @@
 						<div class="date">
                         <p>{{$posts->datepost}}</p>
 						</div>
+						<?php $tomtat = \Illuminate\Support\Str::limit($posts->content,150,'...')
+            				?>
                     <div class="article-small"><a href="/tin-tuc/{{$posts->slug}}"><img src="{{asset('assets/news/' .$posts->img)}}" alt=""></a>
                     <div class="content"><a href="/tin-tuc/{{$posts->slug}}">
                             <h2 class="section-under-title">{{$posts->title}}</h2></a>
-							</div>
+						<p><?php echo "".$tomtat;?></p>
+						</div>
+
+
 						</div>
 					</div>
 				</div>

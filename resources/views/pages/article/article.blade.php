@@ -21,7 +21,7 @@
 <main>
 @if(Auth::check() && Auth::user()->user_type == "1")
     <div class="delete-post">
-       <a href="{{route('delete-post',$product->id)}}">Xóa</a>
+       <a href="">Xóa</a>
     </div>
     @endif
     <div class="global-breadcrumb">

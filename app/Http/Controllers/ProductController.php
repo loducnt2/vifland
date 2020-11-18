@@ -63,10 +63,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        /*$img = $request->file('img');
-        return dd($img[0]);*/
         $datetime_start = $request->date_start." ".$request->time_start;
-        /*$datetime_start = */
         $unit = ProductUnit::where('id',$request->unit_id)->value('description');
         if( $request->price == NULL ){
             $pr = 0;
@@ -98,7 +95,7 @@ class ProductController extends Controller
             'email'          => $request->email,
             'website'        => $request->website,
             'facebook'       => $request->facebook,
-            //'status'         => 0,
+            'status'         => 0,
             'type'           => $request->type,
             'orders'         => NULL,
             'province_id'    => $request->province_id,
@@ -108,8 +105,8 @@ class ProductController extends Controller
         ]);
         $product->save();
         $productup = Product::find($product->id)->update([
-            'slug' => Str::slug($request->title)
-            .'-'.date('Ymd',strtotime($request->datetime_start)).str_pad($product->id,5,rand(10000,99999),STR_PAD_LEFT)
+            'slug' => Str::slug($request->title).'-'.date('Ymd',strtotime($request->datetime_start)).str_pad($product->id,5,rand(10000,99999),STR_PAD_LEFT),
+            'datetime_delete'=> date('Y-m-d H:i',strtotime($product->datetime_end.' '.'+'.' '. 7 .' '.'days') ),
         ]);
 
 
@@ -303,7 +300,51 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product_cate = ProductCate::all();
+        $wards        = Ward::orderBy('name','asc')->get();
+        $districts    = District::orderBy('name','asc')->get();
+        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
+
+        $cate_1       = Product::leftJoin('category','product.cate_id','category.id')->value('category.parent_id');
+        $cate_2       = Category::where('parent_id',$cate_1)->get();//Lấy category con
+
+        $cate         = Category::where('category.id',$cate_1)->value('slug');
+        if($cate == "cho-thue-nha-dat"){
+            $units   = ProductUnit::where('type',2)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
+        }elseif($cate == "mua-ban-nha-dat"){
+            $units   = ProductUnit::where('type',1)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
+        }else{
+            $units   = ProductUnit::all();
+        }
+
+        $product = Product::where('product.id',$id)->first();
+        return view('pages/article/article-form-edit',compact('product','cate_2','units','provinces','districts','wards','product_cate'));
+    }
+
+    public function addDateForm($id){
+        $product_id = $id;
+        return view('pages/article/article-form-add-date',compact('product_id'));
+    }
+    public function addDate(Request $request){
+        $datetime_start = $request->date_start." ".$request->time_start;
+        $product = Product::find($request->product_id);
+        $product->update([
+            'datetime_start' => date('Y-m-d H:i',strtotime($datetime_start)),
+            'datetime_end'   => date('Y-m-d H:i',strtotime($datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
+            'soft_delete'    => 0,
+            'type'           => $request->type,
+        ]);
+        $product->update([
+            'datetime_delete'=> date('Y-m-d H:i',strtotime($product->datetime_end.' '.'+'.' '. 7 .' '.'days') ),
+        ]);
+
+
+
+        $wallet = User::where('user.id',auth()->user()->id)->value('wallet');
+        $user = User::find( auth()->user()->id )->update([
+            'wallet' => intval( $wallet )-intval($request->pricePost)  
+        ]);
+        return redirect()->route('user-article',auth()->user()->id);
     }
 
     /**
@@ -328,7 +369,7 @@ class ProductController extends Controller
     {
         $pro = Product::find($id);
         $pro->delete();
-        return redirect('/');
+        return redirect()->back();
     }
 
 
@@ -418,7 +459,7 @@ class ProductController extends Controller
         )
         ->get();
 
-        //Tin đã đăng
+        //Tin đang đăng
         $product_posted = PostHistory::where('user_id',$user_id)
         ->where('post_history.status',1)
         ->join('product','post_history.product_id','product.id')
@@ -450,7 +491,7 @@ class ProductController extends Controller
         )
         ->get();
 
-        //Tin chờ xác nhận
+        //Tin hết hạn
         $product_expire = PostHistory::where('user_id',$user_id)
         ->join('product','post_history.product_id','product.id')
         ->join('product_extend','post_history.product_id','product_extend.product_id')
@@ -477,7 +518,8 @@ class ProductController extends Controller
             'product_extend.facades',
             'province.name as province',
             'district.name as district',
-            'product_unit.name as unit'
+            'product_unit.name as unit',
+            'post_history.status as status'
             //'ward.name as ward'
         )
         ->get();

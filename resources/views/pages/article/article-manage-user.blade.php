@@ -62,7 +62,7 @@
                                     <p>Quản lý tin đăng</p>
                                 </div>
                                 <ul>
-                                    <li> <a href="">Tin đã đăng</a></li>
+                                    <li> <a href="">Tin đang đăng</a></li>
                                     <li> <a href="">Tin chờ đăng</a></li>
                                     <li> <a href="">Tin hết hạn</a></li>
                                 </ul>
@@ -80,35 +80,13 @@
                                         href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Tin
                                         chờ xác nhận</a>
                                     <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                                        role="tab" aria-controls="nav-profile" aria-selected="false">Tin đã đăng</a>
+                                        role="tab" aria-controls="nav-profile" aria-selected="false">Tin đang đăng</a>
                                     <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
                                         role="tab" aria-controls="nav-contact" aria-selected="false">Tin hết hạn</a>
                                 </div>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                         aria-labelledby="nav-home-tab">
-                                        <!-- <div class="box-search">
-											<div class="row box-search-wrap">
-												<div class="col-4 form-group-sl1 sl-1 select-many">
-													<select class="select1 sltrangthai" name="loainhadat[]" multiple="multiple">
-														<option value="3">Chưa hết hạn</option>
-														<option value="4">Hết hạn</option>
-													</select>
-												</div>
-												<div class="col-4 form-group-sl1 sl-1 select-many">
-													<select class="select1 slloaitin" name="loainhadat[]" multiple="multiple">
-														<option hidden="" disabled="" selected="" value="">  Loại tin</option>
-														<option value="">Loại thường</option>
-														<option value="">Tin vip 1</option>
-														<option value="">Tin vip 2</option>
-														<option value="">Tin vip 3</option>
-													</select>
-												</div>
-												<div class="col-4">
-													<input class="input-search" type="text" placeholder="Nhập tìm kiếm...">
-												</div>
-											</div>
-										</div> -->
                                         @if(count($product_wait1) >0 )
                                         <div class="box-content">
                                             <table>
@@ -118,7 +96,7 @@
                                                         <th>Đơn giá </th>
                                                         <th>Mặt tiền (m)</th>
                                                         <th>Chiều sâu (m)</th>
-                                                        <th>Đối tượng</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -129,9 +107,13 @@
                                                                 <div class="col-3">
                                                                     <div class="img"><img
                                                                             src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-                                                                            alt=""><img class="iconVip"
-                                                                            src="{{asset('assets/tinvip/subscription-normal.svg')}}"
                                                                             alt="">
+                                                                        @if ($product->type == 4)
+                                                                        @else
+                                                                        <img class="iconVip"
+                                                                            src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
+                                                                            alt="">
+                                                                        @endif
                                                                         <!-- <div class="tag">Thương lượng</div> -->
                                                                     </div>
                                                                 </div>
@@ -167,12 +149,15 @@
                                                         <td>{{ $product->price}} {{$product->name}}</td>
                                                         <td>{{$product->facades}}</td>
                                                         <td>{{$product->depth}}</td>
-                                                        <td>NMG</td>
+                                                        <td>
+                                                                <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a>
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
+
                                         @else
                                         <div class="article-none"> <img
                                                 src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
@@ -185,22 +170,6 @@
 
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                         aria-labelledby="nav-profile-tab">
-                                        <!-- <div class="box-search">
-											<div class="row box-search-wrap">
-												<div class="col-2 form-group-sl1 sl-1 select-many">
-													<select class="select1 slloaitin2" name="loainhadat[]" multiple="multiple" placeholder="Loại tin">
-														<option hidden="" disabled="" selected="" value="">  Loại tin</option>
-														<option value="">Loại thường</option>
-														<option value="">Tin vip 1</option>
-														<option value="">Tin vip 2</option>
-														<option value="">Tin vip 3</option>
-													</select>
-												</div>
-												<div class="col-4">
-													<input class="input-search" type="text" placeholder="Nhập tìm kiếm...">
-												</div>
-											</div>
-										</div> -->
                                         @if(count($product_posted) >0 )
                                         <div class="box-content">
                                             <table>
@@ -210,7 +179,7 @@
                                                         <th>Đơn giá </th>
                                                         <th>Mặt tiền (m)</th>
                                                         <th>Chiều sâu (m)</th>
-                                                        <th>Đối tượng</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -263,7 +232,10 @@
                                                         <td>{{ $product->price}} {{$product->name}}</td>
                                                         <td>{{$product->facades}}</td>
                                                         <td>{{$product->depth}}</td>
-                                                        <td>NMG</td>
+                                                        <td>
+                                                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
+                                                            <a href="{{route('edit-article',$product->product_id)}}" class="text-danger">Chỉnh sửa</a>
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -296,7 +268,7 @@
                                                         <th>Đơn giá </th>
                                                         <th>Mặt tiền (m)</th>
                                                         <th>Chiều sâu (m)</th>
-                                                        <th>Đối tượng</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -342,6 +314,9 @@
                                                                                 class="material-icons">visibility</span>
                                                                             <p>{{$product->view}} lượt xem</p>
                                                                         </div>
+                                                                        <div class="t-4">
+                                                                            <p class="text-danger">{{$product->status==2?"Tin không được duyệt":""}}</p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -349,12 +324,15 @@
                                                         <td>{{ $product->price}} {{$product->name}}</td>
                                                         <td>{{$product->facades}}</td>
                                                         <td>{{$product->depth}}</td>
-                                                        <td>NMG</td>
+                                                        <td>
+                                                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
+                                                            <a href="{{route('add-date-form',$product->product_id)}}" class="text-danger"> Gia hạn</a>
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                        </div>
+                                        </div>                                        
                                         @else
                                         <div class="article-none"> <img
                                                 src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
@@ -370,6 +348,27 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal32" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Gian hạn</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="index-page" id="js-page-verify" hidden></div>
 </main>
 @stop

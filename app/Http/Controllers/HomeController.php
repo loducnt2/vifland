@@ -32,6 +32,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        Product::where( 'datetime_start','<=', date('Y-m-d H:i',strtotime('now')) )->update(['status'=>1]);
+
         $filter_price = FilterPrice::orderBy('id','asc')->get();
         $product_cate = ProductCate::orderBy('id','desc')->get();
         $province = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
@@ -158,6 +160,7 @@ class HomeController extends Controller
         ->get();
 
         Product::where( 'datetime_end','<=', date('Y-m-d H:i',strtotime('now')) )->update(['soft_delete'=>1]);
+        Product::where('datetime_delete','<=',date('Y-m-d H:i',strtotime('now') ))->delete();
         
         if( auth()->check() ){
             $Duedate = PostHistory::leftJoin('product','post_history.product_id','product.id')
@@ -177,8 +180,9 @@ class HomeController extends Controller
         ->where('status',1)
         ->get();
         session()->flash('noti',$noti);
-    
-     
+        
+
+         
        
         return view('/pages/home',compact(
             'categories',

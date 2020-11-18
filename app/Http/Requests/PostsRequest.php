@@ -1,10 +1,10 @@
 <?php
-
+// viết validate cho cập nhật tin tức trong publish posts
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class PostsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,17 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'username' => 'unique:user',
-            'email' => 'unique:user',
+            // dùng unique để hạn chế việc post bài trùng với bài đã có trong bảng news
+            'title' => 'unique:news',
+
         ];
 
     }
     public function messages()
     {
     return [
-        'username.unique' => 'Tên tài khoản đã có, vui lòng sử dụng tên khác',
-        'email.unique' => 'Địa chỉ email đã có ! vui lòng sử dụng địa chỉ khác',
-        // 'email.ends_with'=> 'Địa chỉ email phải kết thúc với đuôi @gmail',
-        // 'email.email' => 'Nhập đúng định dạng Email',
+        'title.unique' => 'Bài viết đã có, vui lòng sử dụng tiêu đề khác',
     ];
     }
-
 
 }

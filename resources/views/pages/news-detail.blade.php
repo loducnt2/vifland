@@ -14,7 +14,7 @@
 <!-- Thêm styles cho trang này ở đây-->
 @stop
 @section('content')
-}
+
 <main>
 	<div class="global-breadcrumb">
 		<div class="max-width-container">
@@ -35,7 +35,7 @@
                         </div>
 
                         @foreach(explode(",",$news->tags) as $tags)
-                            <a href="/tin-tuc/tu-khoa/{{$tags}}">
+                            <a href="/index/tin-tuc/tu-khoa/{{$tags}}">
                         <span class="badge badge-secondary badge-pill">{{$tags}}</span></a>
                         @endforeach
                         <hr class="my-4">

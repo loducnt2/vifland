@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+    <a name="" id="" class="btn btn-primary" href="{{route('newsletter_deleteall')}}" role="button">Xoá tất cả danh mục</a>
 <form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
         {{ csrf_field() }}
     <div class="row">
@@ -15,7 +15,7 @@
           </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <a name="" id="" class="btn btn-primary" href="google.com" role="button">Xoá tất cả danh mục</a>
+
     <div class="card-body">
         <div class="col-md-8 table-responsive">
             <table class=" table table-bordered" id="myTable" width="100%" cellspacing="0">
@@ -23,9 +23,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Slug</th>
-                        {{-- <th>Username</th> --}}
-                        {{-- <th>Email</th> --}}
-                        {{-- <th>Năm sinh </th> --}}
+
                         <th>Tên danh mục</th>
                         <th>Tình trạng</th>
                         <th>Hành động</th>

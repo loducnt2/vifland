@@ -156,23 +156,38 @@
                                             </div>
                                             <div class="row form-wrap thongtinform">
                                                 <div class="col-md-12 col-lg-2 form-group">
+                                                    <?php
+                                                    $birthday=$profile->birthday;
+                                                        $date=explode("-",$birthday);
+
+                                                        // echo(''.$fdate);
+                                                        ?>
                                                     <p class="text-f">Ngày sinh</p>
+                                                    {{-- cắt chuỗi ngày sinh--}}
+
                                                 </div>
                                                 <div class="col-md-12 col-lg-10 form-group">
                                                     <div class="row">
                                                         <div class="col-4 form-group">
-                                                            <input type="number" min="0" placeholder="Ngày">
+                                                            <input type="number" value="<?php echo ''.$date[2]; ?>" min="0" placeholder="Ngày" name="date" id="date">
                                                         </div>
                                                         <div class="col-4 form-group">
-                                                            <select class="input-select" name="">
-                                                                <option hidden="" disabled="" selected="" value="">Tháng
+                                                            <select class="input-select" name="month" id="month">
+                                                            <option hidden="" disabled="" selected value=""> <?php echo 'Tháng '.$date[1]; ?>
                                                                 </option>
-                                                                <option value="">Tháng 1</option>
+                                                                    @for ($i = 1; $i <= 12; $i++)
+
+                                                            {{-- <option value="{{$i}}" name="" id="">Tháng {{$i}}</option>
+                                                                    @endfor --}}
+                                                            <option value="{{$i}}">Tháng {{$i}}</option>
+
+                                                                        @endfor
                                                             </select>
                                                         </div>
                                                         <div class="col-4 form-group">
-                                                            <input type="number" min="0" placeholder="Năm">
+                                                            <input type="number" min="0" placeholder="Năm" value="<?php echo ''.$date[0]; ?>" name="year" id="year">
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>

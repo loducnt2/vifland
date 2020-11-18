@@ -8,7 +8,7 @@ use App\Models\News;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Requests\PostsRequest;
 use function Psy\debug;
 
 class NewsController extends Controller
@@ -41,7 +41,7 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(PostsRequest $request)
     {
         // insert tin tức
         $news = new News();
@@ -54,6 +54,7 @@ class NewsController extends Controller
         $news->tags= implode(',',$request->tags);
         // slug tên danh mục khi input vào cột category_slug của news
         $news->category_slug = Str::slug($request->input('category_news_slug'));
+        // dd($news->category_slug);
         $news->id_category = $request->input('id_category');
         $news->datepost = $request->input('datepost');
         $news->status= "1";
@@ -161,7 +162,11 @@ class NewsController extends Controller
         // $new->save();
         return redirect('/admin/danh-sach-duyet-tin');
     }
-
+    public function deleteall(){
+        // xoá hết tin tức
+        News::truncate();
+        return redirect()->back();
+    }
     public function Anduyettin(Request $request,$id)
     {
             $new = News::find($id);
@@ -186,10 +191,7 @@ class NewsController extends Controller
 // news3 = get tất cả các tin theo tags
         $news3 = DB::table('news')->where(
             'tags','like','%'.$tags.'%')->paginate(3);
-            // $tags= DB::table('news')->where(
-            //     'tags','like','%'.$tags.'%')->first();
             $latest = DB::table('news')->orderBy('created_at','desc')->get();
-            // $tags = DB::table('news')->where('tags',$tags)->get();
             return view('pages/postsbytags')->with(
                 [
                     // 'tags'=>$tags,
