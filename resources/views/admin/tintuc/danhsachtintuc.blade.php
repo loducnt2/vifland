@@ -15,6 +15,8 @@
     <h2>Danh sách tin tức</h2>
 
     <!-- table -->
+    <a name="" id="" class="btn btn-primary" href="{{route('news_deleteall')}}" role="button">Xoá tất cả tin tức</a>
+    {{-- <button type="submit" class="btn btn-primary" href="{{route('news_deleteall')}}">Xoá hết tin</button> --}}
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <br>
     <table class="table table-bordered table-striped">

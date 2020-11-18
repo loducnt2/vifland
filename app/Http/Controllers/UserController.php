@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
 use Toastr;
+use Illuminate\Support\Carbon;
 use App\User;
+// use Input;
 use Illuminate\Auth\EloquentUserProvider;
 use Hash;
 class UserController extends Controller
@@ -115,6 +117,12 @@ class UserController extends Controller
     {
         //update hồ sơ cá nhân theo id
         $user = User::find($id);
+        $month= $request->get('month');
+        $date= $request->get('date');
+        $year= $request->get('year');
+        $dateOfBirth =$date.'-'.$month.'-'.$year;
+        $user->birthday = Carbon::parse($dateOfBirth);
+        // dd($user->birthday);
         $user->full_name = $request->fullname;
         $user->phone = $request->phone;
         $user->address = $request->address;
@@ -130,6 +138,7 @@ class UserController extends Controller
             else{
             $user->img = "user.png";
             }
+            // form sinh nhật
 
         $user -> save();
         return redirect()->back();
@@ -184,13 +193,16 @@ class UserController extends Controller
     public function ChangeUserStatus(Request $request){
         $user = User::find($request->id);
         $user->status = $request->status;
+        // $request->session()->flash('success', 'Thay đổi successfully.');
 
         $user->save();
+        // Toastr::error('Thay đổi thất bại ! Vui lòng thử lại','Thông báo');
+
 
     }
 
 
-   
+
 
 
 

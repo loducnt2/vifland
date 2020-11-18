@@ -18,6 +18,7 @@ class Product extends Model
     	'price_id',
     	'datetime_start',
     	'datetime_end',
+        'datetime_delete',
         'content',
         'name_contact',
         'phone_contact',

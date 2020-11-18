@@ -44,6 +44,10 @@ Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->nam
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
 
 Route::get('/article/{slug}','ProductController@show')->name('article-detail');
+Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-article');
+Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
+Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
+Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
 
 Route::group(['middleware'=>'auth'],function(){
 
@@ -140,6 +144,7 @@ Route::get('/admin/danh-sach-province','ProvinceController@index');
 Route::get('/admin/danh-sach-duyet-tin','HistoryPostController@index');
 //Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
 Route::get('/admin/danh-sach-duyet-tin/show/{id}','HistoryPostController@show')->name('show-tintuc');
+Route::get('/admin/danh-sach-duyet-tin/cancel/{id}','HistoryPostController@cancelPost')->name('cancel-post');
 Route::get('/admin/danh-sach-duyet-tin/delete/{id}','HistoryPostController@destroy')->name('del-post');
 Route::get('/admin/post-history/update/dsds/{id}','HistoryPostController@updatePost')->name('update-post');
 
@@ -224,7 +229,9 @@ Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news
 // ===================danh mục tin tức======================
 Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
 
-Route::delete('/admin/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
+Route::delete('/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
+Route::get('/admin/index/danh-muc-tin-tuc/xoa-het','NewsCategoryController@deleteall')->name('newsletter_deleteall');
+Route::get('/admin/index/tin-tuc/xoa-het','NewsController@deleteall')->name('news_deleteall');
 
 // Newsletter
 Route::post('/sub','NewsLetterController@subscribe')->name('newsletter.subscribe');

@@ -27,9 +27,10 @@
           <td style="width:30%">
           <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn btn-primary"> Detail</button></a>
           @if($new->status == 1)
-          <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger"> Hủy duyệt </button></a>
+          <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger"> Xóa </button></a>
           @else
-           <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt tin </button> </a>
+           <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt </button> </a>
+           <a href="{{route('cancel-post',$new->product_id)}}"><button class="btn btn-danger"> Hủy </button></a>
           @endif
          
            
@@ -41,6 +42,7 @@
 
       </tbody>
     </table>
+    {{ $news->links() }}
    
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

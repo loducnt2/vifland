@@ -254,6 +254,13 @@
                 <div class="btn"><a href="#contact">Liên hệ</a></div>
             </div>
         </div>
+        <div class="">
+        @if($new->status==0)
+        <a href="{{route('update-post',$new->id)}}"> <button class="btn btn-success "> Duyệt tin </button> </a>
+        @else
+        <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
+        @endif
+        </div>
     </section>
     <div class="index-page" id="js-page-verify" hidden></div>
 </main>

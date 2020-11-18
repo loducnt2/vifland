@@ -45,6 +45,7 @@ class SearchController extends Controller
 	    ->where('product.soft_delete',0)
 	    ->where('category.parent_id',$cate)
         ->where('post_history.status',1)
+        ->where('product.status',1)
     	->when($kyw, function ($q) use ($kyw) {
     	    return $q->where('product.title', 'like','%'.$kyw.'%');
     	})
@@ -128,6 +129,7 @@ class SearchController extends Controller
         ->leftJoin('post_history','product.id','post_history.product_id')
         ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('product.status',1)
         ->where('product.soft_delete',0)
         ->where('post_history.status',1)
         //->where('category.parent_id',$cate)
@@ -223,6 +225,7 @@ class SearchController extends Controller
             ->where('post_history.status',1)
             ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
             ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+            ->where('product.status',1)
             ->where('soft_delete',0)
             ->select(
                 //'product_image.name as img',

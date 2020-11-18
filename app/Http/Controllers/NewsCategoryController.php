@@ -5,6 +5,9 @@ use DB;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use Str;
+use Toastr;
+use Schema;
+
 class NewsCategoryController extends Controller
 {
     /**
@@ -18,7 +21,15 @@ class NewsCategoryController extends Controller
         $news_cate = NewsCategory::all();
         return view('admin.tintuc.danhmuctintuc',compact('news_cate'));
     }
+    public function deleteall(){
+        Toastr::success('Xoá hết thành công','Thông báo');
+        Schema::disableForeignKeyConstraints();
+        DB::table('news_category')->truncate();
+        Schema::enableForeignKeyConstraints();
+        return redirect()->back();
 
+
+    }
     /**
      * Show the form for creating a new resource.
      *

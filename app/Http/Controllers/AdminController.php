@@ -20,8 +20,18 @@ class AdminController extends Controller
     	}
     	$post_history_0 = PostHistory::where('status',0)->count(); //chưa duyệt
     	$post_history_1 = PostHistory::where('status',1)->count(); //đã duyệt
-    	$post_history_00 = number_format(doubleval( $post_history_1*100/( $post_history_1 + $post_history_0)),2 );
-    	$post_history_11 = number_format(100 - $post_history_00,2);
+
+    	if($post_history_0==0){
+    		$post_history_00 = 0;
+    	}else{
+    		$post_history_00 = number_format(doubleval( $post_history_0*100/( $post_history_1 + $post_history_0)),0 );
+    	}
+    	if( $post_history_1 != 0 ){
+    		$post_history_11 = number_format(100 - $post_history_00,0);
+    	}else{
+    		$post_history_11 = 0;
+    	}
+    	
     	$user_count = User::count();
 
     	$user_by_cash = User::orderBy('total_cash','desc')

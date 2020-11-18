@@ -80,24 +80,19 @@
 
                 </tbody>
             </table>
+            <button type="submit" class="btn btn-primary">Lưu thông tin </button>
         </div>
     </div>
 
     @endsection
 {{-- @extends(') --}}
 </body>
-<script>
-    function refreshTable(){
 
-    // location.reload();
-    $('#table').fadeOut(500);
+{{--  $('#table').fadeOut(500);
     setTimeout(function(){
         $('#table').fadeOut(10, function(){
+
             location.reload(true);
         });
-    }, 10); // 0.01 seconds
-
-    }
-</script>
-
+    }, 10); --}}
 </html>

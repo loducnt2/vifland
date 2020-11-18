@@ -10,6 +10,7 @@ use App\Models\TypeProduct;
 use App\Models\ProductImg;
 use Illuminate\Support\Facades\DB;
 
+
 class HistoryPostController extends Controller
 {
     /**
@@ -28,7 +29,8 @@ class HistoryPostController extends Controller
             'product.id as product_id',
         )
        
-        ->get();
+        ->paginate(10);
+       
         return view('/admin/tintuc/danhsachduyettin',compact('news'));
     }
 
@@ -86,7 +88,13 @@ class HistoryPostController extends Controller
        $cate    = Category::where('id',$product->cate_id)->value('name');
 
        $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
-        return view('/admin/tintuc/chitietduyettin',compact('product','acreage','total','product_cate','cate','image'));
+       $new = PostHistory:: where('product_id',$id)
+       
+       ->first();
+      
+       
+
+        return view('/admin/tintuc/chitietduyettin',compact('product','acreage','total','product_cate','cate','image','new'));
     //return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image'));
 
     }
@@ -127,9 +135,7 @@ class HistoryPostController extends Controller
      */
     public function destroy($id)
     {
-        
         $pro = Product::find($id);
-       
         $pro->delete();
         return redirect('/admin/danh-sach-duyet-tin');
     }
@@ -140,5 +146,17 @@ class HistoryPostController extends Controller
             'status' => 1
         ]);
        return redirect('/admin/danh-sach-duyet-tin');
+    }
+
+    public function cancelPost($id){
+        $product = Product::where('product.id',$id)
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->update([
+            'product.soft_delete' => 1,
+            'product.datetime_end'=> date('Y-m-d H:i:s',strtotime('now')),
+            'product.datetime_delete'=>date('Y-m-d H:i',strtotime('now'.' '.'+'.' '. 7 .' '.'days') ),
+            'post_history.status' => 2,
+        ]);
+        return  redirect()->back();
     }
 }

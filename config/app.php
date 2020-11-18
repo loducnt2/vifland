@@ -143,7 +143,7 @@ return [
         // Yajra\DataTables\DataTablesServiceProvider::class,
 
          // Thọ - Đây là Toastr Notification, xin vui lòng đừng xóa
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+       Maatwebsite\Excel\ExcelServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,

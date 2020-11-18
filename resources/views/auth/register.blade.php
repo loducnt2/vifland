@@ -21,12 +21,35 @@
         color:tomato;
         /* font-weight: bold; */
         font-size:13px;
+        font-weight: bold;
     }
 </style>
 <main>
+
     <section class="dangky login">
+
         <form action="{{ route('createUser') }}" method="POST" id="dangki">
+            <?php //Hiển thị thông báo lỗi?>
+
+            @if ( Session::has('error') )
+
+                <div class="alert alert-danger alert-dismissible" role="alert">
+
+                    <strong>{{ Session::get('error') }}</strong>
+
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+
+                        <span aria-hidden="true">&times;</span>
+
+                        <span class="sr-only">Close</span>
+
+                    </button>
+
+                </div>
+
+            @endif
             @csrf
+
             <div class="login-wrap">
                 <div class="logo"><img src="./assets/logo/logo-footer-300.png" alt=""></div>
                 <div class="box-login">
@@ -34,12 +57,18 @@
                         <a href="{{route('login')}}"><span class="material-icons">keyboard_backspace</span></a>
                         <p> Đăng ký</p>
                     </div>
-                    <label for="text" class="error"></label>
+
+                    <label for="text" class="error">
+                        <?php echo $errors->first('username'); ?>
+                    </label>
+
                     <div class="form-group-input">
+
+
                         <div class="box-left-se"><span class="material-icons">person</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Tên Đăng Nhập" name="username">
 
+                            <input type="text" placeholder="Tên Đăng Nhập" name="username" value="{{ old('username') }}">
                         </div>
 
                     </div>
@@ -49,23 +78,29 @@
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">lock</span></div>
                         <div class="box-mid-se">
-                            <input type="password" placeholder="Mật khẩu" name="password" id="password">
+                            <input type="password" placeholder="Mật khẩu" name="password" id="password" value="{{ old('password') }}">
                             {{-- <label for="text" class="error"></label> --}}
                         </div>
                         <div class="box-right-se"><span class="material-icons mk-icons"
                                 onclick="showpass();">visibility</span></div>
                     </div>
+
                     <div class="form-group-input">
+
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
                         <div class="box-mid-se">
-                            <input type="email" placeholder="Email hoặc Số điện thoại" name="email">
-                            <label for="text" class="error"></label>
+
+                            <input type="email" placeholder="Email hoặc Số điện thoại" name="email" value="{{ old('email') }}"  aria-required="true" aria-invalid="false">
+                            <label for="text" class="error">
+                                <?php echo $errors->first('email'); ?>
+                            </label>
                         </div>
                     </div>
+
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id">
+                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id" value="{{ old('card_id') }}">
                             <label for="text" class="error"></label>
                         </div>
                     </div>
@@ -99,10 +134,23 @@ function showpass() {
     }
 }
 </script>
-
-{{-- form đăng ki --}}
 <script>
+
+</script>
+ {{-- form đăng ki --}}
+<script>
+
 $(document).ready(function() {
+    // thêm validate end with
+    jQuery.validator.addMethod("end_with", function(value, element) {
+
+if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
+    return true;
+} else {
+    return false;
+}
+}, "Email không đúng định dạng!.");
+
     $('#dangki').validate({
 
         rules: {
@@ -115,8 +163,10 @@ $(document).ready(function() {
 
             'email': {
                 email: true,
+                end_with: true,
                 required: true,
                 maxlength: 255
+
             },
             'password': {
                 required: true,
@@ -137,7 +187,8 @@ $(document).ready(function() {
             'email': {
                 required: "Emal không được để trống",
                 email: "Nhập đúng định dạng Email",
-                // maxlength: "Email must be less than or equal 255 letters",
+                end_with:"Email phải có sau nút @"
+
             },
 
             'card_id': {
