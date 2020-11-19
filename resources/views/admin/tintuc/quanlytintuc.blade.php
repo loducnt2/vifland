@@ -164,7 +164,7 @@ li {
                     <?php $cate = \App\Models\NewsCategory::all()?>
                     <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
                         onChange="test();">
-                        <option value="">Lựa chọn danh mục</option>
+                        <option value="" disable hidden>Lựa chọn danh mục</option>
                         @foreach ($cate as $item)
                         <option value="{{$item->id}}">{{$item->category_name}}</option>
                         @endforeach
@@ -172,8 +172,12 @@ li {
                 </div>
                 <div class="form-group">
                     <label for="" class="section-title-small">Từ khoá</label>
-                    <input type="text" class="form-control typeahead input-n input--lg border" name="tags[]" id="tag"
-                        aria-describedby="helpId" placeholder="" data-role="tagsinput">
+
+                    <div class="form-group">
+                      {{-- <label for=""></label> --}}
+                      <input type="text" class="form-control" name="country" id="" value=""aria-describedby="helpId" placeholder="">
+                      {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+                    </div>
                 </div>
                 <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
                     aria-describedby="helpId" placeholder="">
@@ -188,7 +192,7 @@ li {
                     <input type="hidden" class="form-control" name="slug" id="slug2" aria-describedby="helpId"
                         placeholder="" readonly>
                 </div>
-                <button class="button-n" type="submit">Đăng tin</button>
+                <submit type="submit" class="btn btn-primary">Gửi tin</button>
     </form>
 </div>
 </div>

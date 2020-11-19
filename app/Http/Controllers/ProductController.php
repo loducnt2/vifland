@@ -114,7 +114,7 @@ class ProductController extends Controller
 
 
         if($request->facades!=null){
-            if (str_contains($request->facades, ',')) { 
+            if (str_contains($request->facades, ',')) {
                 $facades = str_replace(",",".",$request->facades);
             }else{
                 $facades = $request->facades;
@@ -123,7 +123,7 @@ class ProductController extends Controller
             $facades = $request->facades;
         }
         if($request->depth!=null){
-            if (str_contains($request->depth, ',')) { 
+            if (str_contains($request->depth, ',')) {
                 $depth = str_replace(",",".",$request->depth);
             }else{
                 $depth = $request->depth;
@@ -132,7 +132,7 @@ class ProductController extends Controller
             $depth = $request->depth;
         }
         if($request->price!=null){
-            if (str_contains($request->price, ',')) { 
+            if (str_contains($request->price, ',')) {
                 $price = str_replace(",",".",$request->price);
             }else{
                 $price = $request->price;
@@ -140,7 +140,7 @@ class ProductController extends Controller
         }else{
             $price = $request->price;
         }
-        
+
         /*if($request->product_cate!=null){
             $product_cate = implode(',',$request->product_cate);
         }else{
@@ -192,7 +192,7 @@ class ProductController extends Controller
                $product_cate->save();
            /*} */
         }
-        
+
 
         //Lưu vào lịch sử đăng
         $post_status = 0;
@@ -211,7 +211,7 @@ class ProductController extends Controller
         //Trừ tiền vào ví
         $wallet = User::where('user.id',auth()->user()->id)->value('wallet');
         $user = User::find( auth()->user()->id )->update([
-            'wallet' => intval( $wallet )-intval($request->pricePost)  
+            'wallet' => intval( $wallet )-intval($request->pricePost)
         ]);
 
         $notification = array(
@@ -363,7 +363,7 @@ class ProductController extends Controller
 
         $wallet = User::where('user.id',auth()->user()->id)->value('wallet');
         $user = User::find( auth()->user()->id )->update([
-            'wallet' => intval( $wallet )-intval($request->pricePost)  
+            'wallet' => intval( $wallet )-intval($request->pricePost)
         ]);
         $notification = array(
             'message' => 'Gia hạn tin thành công', 
@@ -643,7 +643,7 @@ class ProductController extends Controller
             'product_extend.depth as depth'
         )
         ->get();
-        
+
 
         return view('pages/history',compact('products'));
     }

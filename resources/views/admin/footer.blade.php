@@ -5,7 +5,6 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
   <script src="{{asset('js/core.min.js') }}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
@@ -14,6 +13,8 @@
 {{-- script --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script type="text/javascript" src="https://frontbackend.com/storage/resources/jquery-amsify-suggestags/jquery.amsify.suggestags.js"></script>
+
 <script>
     CKEDITOR.replace( 'editor1' );
 </script>
@@ -58,10 +59,8 @@
     }
 
 </script>
-{{-- </script> --}}
-{{-- danh mục --}}
-{{-- <script language="javascript"> --}}
-    <script>
+
+    {{-- <script>
         $( document ).ready(function() {
             $('input').on('itemAdded', function(event) {
         //   thêm item
@@ -75,7 +74,7 @@
         console.log($t);
         });
         });
-    </script>
+    </script> --}}
 
 {{-- toggle-bootstrap-bar --}}
 <script>
@@ -168,3 +167,14 @@
 
     }
 </script>
+
+{{-- tags --}}
+<script>
+    $( document ).ready(function() {
+      console.log( "ready!" );
+      $('input[name="country"]').amsifySuggestags({
+      suggestions: ['Covid-19', 'Tin-hau-covid', 'Nepal', 'UAE', 'Iran', 'Bangladesh']
+  });
+  });
+  //
+  </script>

@@ -158,9 +158,14 @@
                                                 <div class="col-md-12 col-lg-2 form-group">
                                                     <?php
                                                     $birthday=$profile->birthday;
-                                                        if($birthday!= NULL){
-                                                           $date=explode("-",$birthday); 
+                                                        $date=explode("-",$birthday);
+                                                        if($birthday=="")
+                                                        {
+                                                            $date[0]="";
+                                                            $date[1]="";
+                                                            $date[2]="";
                                                         }
+                                                        // echo(''.$fdate);
                                                         ?>
                                                     <p class="text-f">Ngày sinh</p>
                                                     {{-- cắt chuỗi ngày sinh--}}
@@ -174,7 +179,7 @@
                                                         </div>
                                                         <div class="col-4 form-group">
                                                             <select class="input-select" name="month" id="month">
-                                                            <option hidden="" disabled="" selected value=""> <?php 
+                                                            <option hidden="" disabled="" selected value=""> <?php
                                                             if(isset($date)){ echo 'Tháng '.$date[1];} ?>
                                                             </option>
                                                                     @for ($i = 1; $i <= 12; $i++)
