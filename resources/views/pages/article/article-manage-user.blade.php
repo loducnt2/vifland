@@ -326,7 +326,9 @@
                                                         <td>{{$product->depth}}</td>
                                                         <td>
                                                             <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
+                                                            @if( $product->status!=2 )
                                                             <a href="{{route('add-date-form',$product->product_id)}}" class="text-danger"> Gia hạn</a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     @endforeach

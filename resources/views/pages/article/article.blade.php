@@ -19,25 +19,19 @@
 @stop
 @section('content')
 <main>
-@if(Auth::check() && Auth::user()->user_type == "1")
-    <div class="delete-post">
-       <a href="">Xóa</a>
-    </div>
-    @endif
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán
                         <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
                 <li class="breadcrumb-item"><a href="#">
-                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
-                            gì hôm nay?</p>
+                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh </p>
                     </a></li>
-                <div class="search">
+                <!-- <div class="search">
                     <form action="">
                         <input type="text" placeholder="Bạn cần tìm hôm nay?">
                     </form>
-                </div>
+                </div> -->
             </ol>
         </div>
     </div>

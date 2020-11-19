@@ -9,7 +9,7 @@ use App\Models\Category;
 use App\Models\TypeProduct;
 use App\Models\ProductImg;
 use Illuminate\Support\Facades\DB;
-
+use App\User;
 
 class HistoryPostController extends Controller
 {
@@ -149,14 +149,27 @@ class HistoryPostController extends Controller
     }
 
     public function cancelPost($id){
+        
+        //ví tiền của user
+        $wallet = PostHistory::where('post_history.product_id',$id)
+        ->leftJoin('user','post_history.user_id','user.id')
+        ->value('user.wallet');
+        
+        //giá tiền đăng bài
+        $price_post = Product::where('product.id',$id)
+        ->value('product.price_post');
+
         $product = Product::where('product.id',$id)
         ->leftJoin('post_history','product.id','post_history.product_id')
+        ->leftJoin('user','post_history.user_id','user.id')
         ->update([
             'product.soft_delete' => 1,
             'product.datetime_end'=> date('Y-m-d H:i:s',strtotime('now')),
             'product.datetime_delete'=>date('Y-m-d H:i',strtotime('now'.' '.'+'.' '. 7 .' '.'days') ),
             'post_history.status' => 2,
+            'user.wallet'         =>  doubleval($wallet + $price_post),
         ]);
+
         return  redirect()->back();
     }
 }

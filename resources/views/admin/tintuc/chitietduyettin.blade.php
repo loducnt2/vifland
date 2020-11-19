@@ -5,8 +5,9 @@
 @stop
 @section('content')
 <main>
-  <h2 class="text-center">Detail Tin</h2>
+  <h2 class="text-center">Chi Tiết Tin</h2>
     <section class="pages-sanpham pt-30">
+        <h3 class="text-right"></h3>
         <div class="max-width-container">
             <div class="row">
                 <div class="col-lg-3 col-sm-12 col-md-4 col-12 sec-1">
@@ -257,6 +258,7 @@
         <div class="">
         @if($new->status==0)
         <a href="{{route('update-post',$new->id)}}"> <button class="btn btn-success "> Duyệt tin </button> </a>
+        <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
         @else
         <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
         @endif

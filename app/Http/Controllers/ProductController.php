@@ -79,6 +79,7 @@ class ProductController extends Controller
         $filter_price = FilterPrice::where('min','<s',$price)->where('max','>=',$price)->value('id');
         $filter_facades = FilterFacades::where('min','<',$fa)->where('max','>=',$fa)->value('id');
         $product = new Product([
+            'price_post'     => $request->pricePost,
             'cate_id'        => $request->cate_id,
             'title'          => $request->title,
             'thumbnail'      => NULL,
@@ -301,8 +302,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product_cate = ProductCate::all();
-        $wards        = Ward::orderBy('name','asc')->get();
-        $districts    = District::orderBy('name','asc')->get();
+        
+        
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
         $cate_1       = Product::leftJoin('category','product.cate_id','category.id')->value('category.parent_id');
@@ -317,14 +318,26 @@ class ProductController extends Controller
             $units   = ProductUnit::all();
         }
 
-        $product = Product::where('product.id',$id)->first();
-        return view('pages/article/article-form-edit',compact('product','cate_2','units','provinces','districts','wards','product_cate'));
+        $product   = Product::where('product.id',$id)
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->first();
+        $districts = District::orderBy('name','asc')->where('province_id',$product->province_id)->get();
+        $wards     = Ward::orderBy('name','asc')->where('district_id',$product->district_id)->get();
+        $img = Product::leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
+        ->where('product.id',$id)
+        ->select('product_image.name as img')
+        ->get();
+
+        return view('pages/article/article-form-edit',compact('product','cate_2','units','provinces','districts','wards','product_cate','img'));
     }
 
+    //form gia hạn
     public function addDateForm($id){
         $product_id = $id;
         return view('pages/article/article-form-add-date',compact('product_id'));
     }
+    //gia hạn
     public function addDate(Request $request){
         $datetime_start = $request->date_start." ".$request->time_start;
         $product = Product::find($request->product_id);
@@ -430,9 +443,9 @@ class ProductController extends Controller
         //các tin chờ xác nhận
         $product_wait1 = PostHistory::where('user_id',$user_id)
         ->where('post_history.status',0)
-        ->join('product','post_history.product_id','product.id')
-        ->join('product_extend','post_history.product_id','product_extend.product_id')
-        ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->orderBy('datetime_start','desc')
@@ -462,9 +475,9 @@ class ProductController extends Controller
         //Tin đang đăng
         $product_posted = PostHistory::where('user_id',$user_id)
         ->where('post_history.status',1)
-        ->join('product','post_history.product_id','product.id')
-        ->join('product_extend','post_history.product_id','product_extend.product_id')
-        ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->orderBy('datetime_start','desc')
@@ -493,9 +506,9 @@ class ProductController extends Controller
 
         //Tin hết hạn
         $product_expire = PostHistory::where('user_id',$user_id)
-        ->join('product','post_history.product_id','product.id')
-        ->join('product_extend','post_history.product_id','product_extend.product_id')
-        ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->where('product.soft_delete',1)

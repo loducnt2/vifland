@@ -812,7 +812,7 @@
                 alert( 'Ví không đủ tiền' )
                 return false
             }
-          })
+        })
       /*$('.formDangBaiViet').validate({
           ignore: [],
           rules:{
