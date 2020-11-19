@@ -188,7 +188,7 @@
     $(document).ready(function() {
         $(".breadcrumb-n .avatar").click(function() {
             $(".breadcrumb-n .list-menu-login").toggleClass("show")
-        })
+        }) 
     });
     </script>
     @extends('admin.footer')
