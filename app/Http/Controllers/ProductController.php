@@ -88,7 +88,7 @@ class ProductController extends Controller
             'tags'           => $request->tags,
             'datetime_start' => date('Y-m-d H:i',strtotime($datetime_start)),
             'datetime_end'   => date('Y-m-d H:i',strtotime($datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
-            'content'        => $request->content,
+            'content'        => strip_tags($request->content,!'<a>'),
             'name_contact'   => $request->name_contact,
             'phone_contact'     => $request->phone_contact,
             'address_contact'   => $request->address_contact,
@@ -386,7 +386,7 @@ class ProductController extends Controller
         $product->update([
             'product.cate_id' => $request->cate_id,
             'product.title' => $request->title,
-            'product.content' =>$request->content,
+            'product.content' =>strip_tags($request->content,!'<a>'),
             'product.province_id' =>$request->province_id,
             'product.district_id' =>$request->district_id,
             'product.ward_id' =>$request->ward_id,

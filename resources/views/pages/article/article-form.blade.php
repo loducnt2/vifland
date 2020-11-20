@@ -91,11 +91,11 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="text" min="0" name="facades">
+                                            <input type="number" min="0" name="facades">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="text" min="0" name="depth">
+                                            <input type="number" min="0" name="depth">
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -850,7 +850,7 @@
                 e.preventDefault();
                 delay_submit();
             }
-            if($('#content').text()==""){
+            if($('#content').val()==""){
                 toastr.warning("Vui lòng nhập nội dung ");
                 e.preventDefault();
                 delay_submit();
