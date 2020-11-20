@@ -363,7 +363,11 @@ class ProductController extends Controller
         $user = User::find( auth()->user()->id )->update([
             'wallet' => intval( $wallet )-intval($request->pricePost)  
         ]);
-        return redirect()->route('user-article',auth()->user()->id);
+        $notification = array(
+            'message' => 'Gia hạn tin thành công', 
+            'alert-type' => 'success'
+        );
+        return redirect()->route('article-detail',$product->slug)->with($notification);
     }
 
     /**
@@ -434,10 +438,13 @@ class ProductController extends Controller
             ]);
         }
         
-        
-
+        $notification = array(
+            'message' => 'Chỉnh sửa tin thành công', 
+            'alert-type' => 'success'
+        );
+        $slug = Product::where('id',$id)->value('slug');
         //return $product;
-        return redirect(route('user-article',auth()->user()->id));
+        return redirect(route('article-detail',$slug ))->with($notification);
     }
 
     /**
