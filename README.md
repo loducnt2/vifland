@@ -62,3 +62,11 @@ memory_limit= -1**
 ## =>Tổng hợp chạy 2 lệnh kia nếu chưa chạy lần nào => composer install
 
 -- **composer require maatwebsite/excel**
+
+## Tài khoản nạp tiền
+
+Ngân hàng	    NCB
+Số thẻ	        9704198526191432198
+Tên chủ thẻ	    NGUYEN VAN A
+Ngày phát hành	07/15
+Mật khẩu OTP	123456
