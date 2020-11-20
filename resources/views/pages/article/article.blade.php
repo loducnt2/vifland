@@ -46,7 +46,7 @@
                                 <div class="content">
                                     <div class="content-1">
                                         <div class="name">
-                                            <p class="section-content">{{$product->name_contact}}</p>
+                                            <p class="section-content">{{auth()->user()->full_name}}</p>
                                         </div>
                                         <div class="host">
                                             <p class="section-content">Nhà môi giới</p>
@@ -152,9 +152,7 @@
                                         <p class="section-content">Loại Nhà Đất</p>
                                         <div class="dashed-line"> </div>
                                         <p class="section-content active">
-                                            @foreach($product_cate as $cate)
-                                            {{$cate->name}},
-                                            @endforeach
+                                            {{ App\Models\ProductCate::where('id',$product->product_cate)->value('name')  }}
                                         </p>
                                     </div>
 

@@ -105,9 +105,9 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-3">
-                                                                    <div class="img"><img
-                                                                            src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-                                                                            alt="">
+                                                                    <div class="img">
+                                                                        <a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                                                                        
                                                                         @if ($product->type == 4)
                                                                         @else
                                                                         <img class="iconVip"
@@ -188,9 +188,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-3">
-                                                                    <div class="img"><img
-                                                                            src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-                                                                            alt="">
+                                                                    <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                                                         @if ($product->type == 4)
                                                                         @else
                                                                         <img class="iconVip"
@@ -277,9 +275,7 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-3">
-                                                                    <div class="img"><img
-                                                                            src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-                                                                            alt="">
+                                                                    <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                                                         @if ($product->type == 4)
                                                                         @else
                                                                         <img class="iconVip"

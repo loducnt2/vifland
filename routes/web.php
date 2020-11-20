@@ -39,10 +39,12 @@ Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cat
 Route::get('/{cate}','SearchController@getByCate')->name('cate');
 Route::post('/search/{cate}','SearchController@index')->name('search');
 Route::post('/filter','SearchController@filter')->name('filter');
+Route::get('/filter','SearchController@filter');
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
-
+Route::post('/article/new/store','ProductController@store')->middleware('auth')->name('article-store');
+Route::post('/article/update/{id}','ProductController@update')->middleware('auth')->name('update-article');
 Route::get('/article/{slug}','ProductController@show')->name('article-detail');
 Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-article');
 Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
@@ -52,7 +54,7 @@ Route::post('/article/add-date','ProductController@addDate')->name('add-date-art
 Route::group(['middleware'=>'auth'],function(){
 
 	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
-	Route::post('/article/new/store','ProductController@store')->name('article-store');   // Đăng tin
+	   // Đăng tin
 	Route::get('/user/my-article/{id}','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
 	Route::get('/user/favourites','ProductController@productUserFavorite')->name('favorites');				  // Yêu thích
 	Route::get('/user/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin

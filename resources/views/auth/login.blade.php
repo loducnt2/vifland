@@ -79,10 +79,10 @@
                             <input type="submit" value="Đăng nhập">
                         </div>
                         <p class="logindef">Hoặc đăng nhập bằng</p>
-                        <div class="button-loginSocial"><a href=""><img src="./assets/icon/gmail.svg" alt="">
+                        <div class="button-loginSocial"><a href=""><img src="{{asset('assets/icon/gmail.svg')}}" alt="">
                                 <p class="m-0">Đăng nhập bằng Gmail</p>
                             </a></div>
-                        <div class="button-loginSocial"><a href=""><img src="./assets/icon/facebook.svg" alt="">
+                        <div class="button-loginSocial"><a href=""><img src="{{asset('assets/icon/facebook.svg')}}" alt="">
                                 <p class="m-0">Đăng nhập bằng Facebook</p>
                             </a></div>
                     </div>

@@ -212,9 +212,13 @@ class ProductController extends Controller
             'wallet' => intval( $wallet )-intval($request->pricePost)  
         ]);
 
+        $notification = array(
+            'message' => 'Tin của bạn đã tạo thành công, vui lòng chờ duyệt', 
+            'alert-type' => 'success'
+        );
 
 
-        return redirect()->route('user-article',auth()->user()->id);
+        return redirect()->route('user-article',auth()->user()->id)->with($notification);
 
     }
 
@@ -245,8 +249,8 @@ class ProductController extends Controller
         )
         ->first();
 
-         $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
-         ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
+        /*$product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
+        ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();*/
 
         $acreage = doubleval( $product->depth*$product->facades );
         $total   = intval($product->price)*$acreage;
@@ -278,6 +282,7 @@ class ProductController extends Controller
             'product_extend.*',
             'product.*',
             'product_extend.id as productex_id',
+            'product_extend.product_cate as product_cate',
             'province.name as province',
             'district.name as district',
             'ward.name as ward',
@@ -290,7 +295,7 @@ class ProductController extends Controller
         ->limit(4)
         ->get();
 
-        return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image','product_related'));
+        return view('pages/article/article',compact('product','acreage','total','cate','image','product_related'));
     }
 
     /**
@@ -320,6 +325,7 @@ class ProductController extends Controller
 
         $product   = Product::where('product.id',$id)
         ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->select('product.*','product.id as product_id','product_extend.*')
         ->first();
         $districts = District::orderBy('name','asc')->where('province_id',$product->province_id)->get();
         $wards     = Ward::orderBy('name','asc')->where('district_id',$product->district_id)->get();
@@ -369,7 +375,69 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $productex = ProductExtend::where('product_id',$id)->value('id');
+        $product = Product::where('product.id',$id)
+        ->leftJoin('product_extend','product.id','product_extend.product_id');
+        $product->update([
+            'product.cate_id' => $request->cate_id,
+            'product.title' => $request->title,
+            'product.content' =>$request->content,
+            'product.province_id' =>$request->province_id,
+            'product.district_id' =>$request->district_id,
+            'product.ward_id' =>$request->ward_id,
+            'product.address_contact'=>$request->address_contact,
+            'product.phone_contact'=>$request->phone_contact,
+            'product.name_contact'=>$request->name_contact,
+            'product.company_name'=>$request->company_name,
+            'product.website'=>$request->website,
+            'product.email'=>$request->email,
+            'product.facebook'=>$request->facebook,
+            'product_extend.address' =>$request->address,
+            'product_extend.product_cate' => $request->product_cate,
+            'product_extend.facades' => $request->facades,
+            'product_extend.depth' => $request->depth,
+            'product_extend.unit_id'=>$request->unit_id,
+            'product_extend.price' => $request->price,
+            'product_extend.floors' => $request->floors,
+            'product_extend.bedroom'=> $request->bedroom,
+            'product_extend.legal' => $request->legal,
+
+        ]);
+        if( $request->tags != NULL ){
+            $product->update(['tags' => $request->tags]);
+        }
+        if ($request->hasFile('img')){
+            $prd = ProductImg::leftJoin('product_extend','product_image.product_extend_id','product_extend.id')
+            ->leftJoin('product','product_extend.product_id','product.id')
+            ->where('product.id',$id)
+            ->delete();
+
+            $arrfile = [];
+            $file = $request->file('img');
+            foreach( $file as $img ){
+                $filetype = $img->getClientOriginalExtension('image');
+                $filename = date('Ymd',time()).'product'.$productex.Str::random(10).'.'.$filetype;
+                $img->move(public_path('/assets/product/detail'), $filename);
+                $arrfile[]= $filename;
+            }
+            foreach( $arrfile as $imgpro ){
+                $productimg = new ProductImg([
+                    'product_extend_id' => $productex,
+                    'name'              => $imgpro,
+                    'orders'            => NULL,
+                ]);
+                $productimg->save();
+            }
+            $product->update([
+                'thumbnail' => $arrfile[0]
+            ]);
+        }
+        
+        
+
+        //return $product;
+        return redirect(route('user-article',auth()->user()->id));
     }
 
     /**
@@ -382,7 +450,12 @@ class ProductController extends Controller
     {
         $pro = Product::find($id);
         $pro->delete();
-        return redirect()->back();
+        $notification = array(
+            'message' => 'Xóa tin thành công', 
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
     }
 
 

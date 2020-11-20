@@ -20,7 +20,7 @@
         </div>
     </div>
     <section class="dangbaiviet">
-        <form class="formDangBaiViet" action="{{route('article-store')}}" method="post" enctype="multipart/form-data">
+        <form class="formDangBaiViet" action="{{route('update-article',$product->product_id)}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="max-width-container">
                 <div class="row">
@@ -28,12 +28,11 @@
                         <div class="box-left-form-muaban">
                             <div class="mdm-1">
                                 <div class="checked">
-                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id"
-                                        checked="">
+                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id" {{$product->cate_id==$cate_2[0]->id?"checked":""}}>
                                     <label for="luachonsearch1">{{$cate_2[0]->name}}</label>
                                 </div>
                                 <div class="checked">
-                                    <input id="luachonsearch2" type="radio" value="{{$cate_2[1]->id}}" name="cate_id">
+                                    <input id="luachonsearch2" type="radio" value="{{$cate_2[1]->id}}" name="cate_id" {{$product->cate_id==$cate_2[1]->id?"checked":""}}>
                                     <label for="luachonsearch2">{{$cate_2[1]->name}}</label>
                                 </div>
                             </div>
@@ -87,9 +86,10 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate" multiple=  >
+                                            <select class="select1" name="product_cate"  >
+                                                <option value="">Chọn</option>
                                                 @foreach($product_cate as $prodcate)
-                                                <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
+                                                <option value="{{$prodcate->id}}" {{$product->product_cate==$prodcate->id?"selected":""}}>{{$prodcate->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -182,6 +182,7 @@
                             </div> -->
                             <div class="col-12 form-group">
                                 <input type="text" value="" data-role="tagsinput" placeholder="Chỉnh sửa lại tag" name="tags" value="">
+                                @if($product->tags!=NULL)
                                 <?php 
                                     if(strpos($product->tags,',')){
                                         $tag = explode(",",$product->tags);
@@ -192,20 +193,22 @@
                                         echo '<span class="badge badge-secondary">'.$product->tags.'<span data-role="remove"></span></span>';
                                     }
                                 ?>
+                                @endif
                             </div>
                             <div class="col-12 form-group wrap-input-img form-upload">
                                 <div class="form-upload__preview">
-                                    @foreach($img as $ig)
                                     <div class="mb-2" id="old-img">
+                                        @foreach($img as $ig)
                                         <img style="" src="{{asset('assets/product/detail/'.$ig->img)}}" alt="" height="150px" width="150px">
+                                        @endforeach
                                     </div>
-                                    @endforeach
                                 </div>
                                 
                                 <div class="form-upload__field">
-                                    <label class="form-upload__title" for="upload">Thay đổi / thêm ảnh
+                                    <label class="form-upload__title" for="upload">Thay đổi / thêm ảnh <br> <small>(Chọn nhiều ảnh cùng lúc)</small>
                                         <input class="form-upload__control js-form-upload-control" id="upload"
-                                            type="file" multiple="true" style="display:none" name="img[]" required>
+                                            type="file" multiple="true" style="display:none" name="img[]">
+                                    
                                     </label>
                                     <button class="btn btn-clear ml-3">Xóa ảnh</button>
                                 </div>

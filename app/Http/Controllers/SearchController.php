@@ -120,7 +120,7 @@ class SearchController extends Controller
         $price         = $request->price;
         $facades     = $request->facades;
 
-        $products = Category::leftJoin('product','category.id','product.cate_id')
+        $productss = Category::leftJoin('product','category.id','product.cate_id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         //s->leftJoin('type_of_product','product_extend.id','type_of_product.product_extend_id')
         ->leftJoin('province','product.province_id','province.id')
@@ -195,8 +195,9 @@ class SearchController extends Controller
             //'ward.name as ward'
         )
         ->orderBy('product.type','asc')
-        ->get();
-        return $products;
+        ->paginate(1);
+        //return $products;
+        return view('pages/load-filter',compact('productss'));
 
     }
 
