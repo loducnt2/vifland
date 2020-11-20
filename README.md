@@ -64,9 +64,17 @@ memory_limit= -1**
 -- **composer require maatwebsite/excel**
 
 ## Tài khoản nạp tiền
-
 Ngân hàng	    NCB
 Số thẻ	        9704198526191432198
 Tên chủ thẻ	    NGUYEN VAN A
 Ngày phát hành	07/15
 Mật khẩu OTP	123456
+
+## Quản lý giao dịch
+https://sandbox.vnpayment.vn/merchantv2/
+-> vifland2020@gmail.com 
+=> Vifland123
+
+GMail: 
+-> vifland2020@gmail.com
+=> vifland123

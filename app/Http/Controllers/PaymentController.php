@@ -12,8 +12,8 @@ class PaymentController extends Controller
 	}
     public function create(Request $request)
     {
-        $vnp_TmnCode = "W03KPPT1"; //Mã website tại VNPAY 
-        $vnp_HashSecret = "LWXXUOLRWUWNLDTEHQSRDYDDASMVXUKE"; //Chuỗi bí mật
+        $vnp_TmnCode = "MNR0GBSC"; //Mã website tại VNPAY 
+        $vnp_HashSecret = "AHVEMQRMJESXLLHSFDVMBMKLWGFDLPYR"; //Chuỗi bí mật
         $vnp_Url = "http://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         $vnp_Returnurl = route('return-payment');
 
