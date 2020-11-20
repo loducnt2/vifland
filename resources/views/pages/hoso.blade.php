@@ -158,9 +158,9 @@
                                                 <div class="col-md-12 col-lg-2 form-group">
                                                     <?php
                                                     $birthday=$profile->birthday;
-                                                        $date=explode("-",$birthday);
-
-                                                        // echo(''.$fdate);
+                                                        if($birthday!= NULL){
+                                                           $date=explode("-",$birthday); 
+                                                        }
                                                         ?>
                                                     <p class="text-f">Ngày sinh</p>
                                                     {{-- cắt chuỗi ngày sinh--}}
@@ -169,12 +169,14 @@
                                                 <div class="col-md-12 col-lg-10 form-group">
                                                     <div class="row">
                                                         <div class="col-4 form-group">
-                                                            <input type="number" value="<?php echo ''.$date[2]; ?>" min="0" placeholder="Ngày" name="date" id="date">
+                                                            <input type="number" value="<?php if(isset($date)){ echo ''.$date[2];} ?>" min="0" placeholder="Ngày" name="date" id="date">
+                                                            <!-- "Tạm đóng để sử dụng" -->
                                                         </div>
                                                         <div class="col-4 form-group">
                                                             <select class="input-select" name="month" id="month">
-                                                            <option hidden="" disabled="" selected value=""> <?php echo 'Tháng '.$date[1]; ?>
-                                                                </option>
+                                                            <option hidden="" disabled="" selected value=""> <?php 
+                                                            if(isset($date)){ echo 'Tháng '.$date[1];} ?>
+                                                            </option>
                                                                     @for ($i = 1; $i <= 12; $i++)
 
                                                             {{-- <option value="{{$i}}" name="" id="">Tháng {{$i}}</option>
@@ -185,7 +187,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-4 form-group">
-                                                            <input type="number" min="0" placeholder="Năm" value="<?php echo ''.$date[0]; ?>" name="year" id="year">
+                                                            <input type="number" min="0" placeholder="Năm" value="<?php if(isset($date)){echo ''.$date[0];} ?>" name="year" id="year">
                                                         </div>
 
                                                     </div>

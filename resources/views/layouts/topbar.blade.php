@@ -32,7 +32,7 @@
             <div class="bl-3">
                 <div class="title-bl3"> <span class="material-icons">portrait</span>
                     <p>
-                        <a href="/user/profile/{{auth()->user()->id}}/"> Quản lý tài khoản cá nhân</a>
+                        <a href="{{route('user-profile',auth()->user()->id)}}"> Quản lý tài khoản cá nhân</a>
                     </p>
                 </div>
                 <ul>
@@ -40,7 +40,7 @@
                         </a></li>
                     <li> <a id="thaydoimk-link" href="#">Thay đổi mật khẩu</a></li>
                     <!-- <li> <a href="">Số dư tài khoản </a></li> -->
-                    <li> <a href="/user/profile/{{auth()->user()->id}}/nap-tien">Nạp tiền</a></li>
+                    <li> <a href="{{route('add-cash',auth()->user()->id)}}">Nạp tiền</a></li>
                 </ul>
                 <div class="title-bl3">
                     <span class="material-icons">list_alt</span>

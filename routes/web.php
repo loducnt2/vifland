@@ -50,8 +50,11 @@ Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-art
 Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
 Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
 Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
-
 Route::group(['middleware'=>'auth'],function(){
+	//Nạp tiền
+	Route::get('/user/add-cash/{id}','PaymentController@form')->name('add-cash');
+	Route::post('/user/create-payment','PaymentController@create')->name('create-payment');
+	Route::get('/user/return-payment','PaymentController@return')->name('return-payment');
 
 	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
 	   // Đăng tin
@@ -60,7 +63,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/user/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
 
 	//Profile
-	Route::get('/user/profile/{id}','UserController@profileDetail')->name('');
+	Route::get('/user/profile/{id}','UserController@profileDetail')->name('user-profile');
 	//Update profile
 	Route::post('/user/update/{id}','UserController@update')->name('user-update');
 	Route::post('/user/changepass/{id}','UserController@changePassword')->name('user-changePassword');
