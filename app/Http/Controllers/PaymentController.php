@@ -7,9 +7,6 @@ use App\User;
 use App\Models\Payment;
 class PaymentController extends Controller
 {
-	public function form(){
-		return view('pages/add-cash-user');
-	}
     public function create(Request $request)
     {
         $vnp_TmnCode = "MNR0GBSC"; //Mã website tại VNPAY 

@@ -17,7 +17,12 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
+Route::get('/user/profile','UserController@profileUser')->name('profile');
+Route::get('/user/password','UserController@formpassword')->name('change-password');
+Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');
+Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');
+Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');
+Route::get('/user/article-expire','UserController@articlexpire')->name('article-expire');
 
 Route::get('/testform',function(){return view('pages/article/testform');} );
 
@@ -52,7 +57,6 @@ Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-
 Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
 Route::group(['middleware'=>'auth'],function(){
 	//Nạp tiền
-	Route::get('/user/add-cash/{id}','PaymentController@form')->name('add-cash');
 	Route::post('/user/create-payment','PaymentController@create')->name('create-payment');
 	Route::get('/user/return-payment','PaymentController@return')->name('return-payment');
 

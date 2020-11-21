@@ -28,7 +28,8 @@ class UserController extends Controller
     }
 
     // profile_user
-    public function profileDetail($id){
+    public function profileDetail(){
+        $id = auth()->user()->id;
         $profile = DB::table('user')->find($id);
        //history post trong trang admin
         $posts = PostHistory::where('user_id',$profile->id)
@@ -43,6 +44,139 @@ class UserController extends Controller
         ]);
 
     }
+    public function profileUser(){
+        $id = auth()->user()->id;
+        $profile = DB::table('user')->find($id);
+       //history post trong trang admin
+        $posts = PostHistory::where('user_id',$profile->id)
+        ->join('product', 'product.id', '=', 'product_id')
+
+        ->get();
+        // dd($posts);
+        return view('/pages/user/profile')->with(
+        [
+            'profile'=>$profile,
+            'posts'=>$posts
+        ]);
+
+    }
+    public function formpassword(){
+        $id = auth()->user()->id;
+        return view('/pages/user/change-pass',compact('id'));
+    }
+    public function formaddmoney(){
+        $id = auth()->user()->id;
+        return view('/pages/user/add-money',compact('id'));
+    }
+    public function articleposted(){
+        $user_id = auth()->user()->id;
+        $product_posted = PostHistory::where('user_id',$user_id)
+        ->where('post_history.status',1)
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->orderBy('datetime_start','desc')
+        ->select(
+            //'product_image.name as img',
+            'product.id as product_id',
+            'product.thumbnail',
+            'product.slug as slug',
+            'product.view',
+            'product.datetime_start',
+            'product.title',
+            'product.type',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
+            'product_extend.price',
+            'product_extend.product_cate',
+            'product_extend.depth',
+            'product_extend.facades',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit'
+            //'ward.name as ward'
+        )
+        ->get();
+        return  view('/pages/user/article-posted',compact('product_posted'));
+    }
+    public function articlewait(){
+        $user_id = auth()->user()->id;
+        $product_wait = PostHistory::where('user_id',$user_id)
+        ->where('post_history.status',0)
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->orderBy('datetime_start','desc')
+        ->select(
+            //'product_image.name as img',
+            'product.id as product_id',
+            'product.thumbnail',
+            'product.slug as slug',
+            'product.view',
+            'product.datetime_start',
+            'product.title',
+            'product.type',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
+            'product_extend.price',
+            'product_extend.product_cate',
+            'product_extend.depth',
+            'product_extend.facades',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit'
+            //'ward.name as ward'
+        )
+        ->get();
+        return  view('/pages/user/article-wait',compact('product_wait'));
+    }
+    public function articlexpire(){
+        $user_id = auth()->user()->id;
+        $product_expire = PostHistory::where('user_id',$user_id)
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->where('product.soft_delete',1)
+        ->orderBy('datetime_start','desc')
+        ->select(
+            //'product_image.name as img',
+            'product.id as product_id',
+            'product.thumbnail',
+            'product.slug as slug',
+            'product.view',
+            'product.datetime_start',
+            'product.title',
+            'product.type',
+            'product.soft_delete',
+            'product.datetime_end',
+            'product_extend.address',
+            'product_extend.price',
+            'product_extend.product_cate',
+            'product_extend.depth',
+            'product_extend.facades',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit',
+            'post_history.status as status'
+            //'ward.name as ward'
+        )
+        ->get();
+        return  view('/pages/user/article-expire',compact('product_expire'));
+    }
+
+
+
+
+
+
 
     // user admin
     public function getprofileDetail($id){
@@ -117,9 +251,23 @@ class UserController extends Controller
     {
         //update hồ sơ cá nhân theo id
         $user = User::find($id);
-        $month= $request->get('month');
-        $date= $request->get('date');
-        $year= $request->get('year');
+        
+        if( $request->get('month') > 0 ){
+            $month= $request->get('month');
+        }else{
+            $month = 1;
+        }
+        if( $request->get('date') > 0 ){
+            $date= $request->get('date');
+        }else{
+            $date= 1;
+        }
+        if( $request->get('year') > 0 ){
+            $year= $request->get('year');
+        }else{
+            $year= 1970;
+        }
+        
         $dateOfBirth =$date.'-'.$month.'-'.$year;
         $user->birthday = Carbon::parse($dateOfBirth);
         // dd($user->birthday);
