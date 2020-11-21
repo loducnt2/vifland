@@ -81,52 +81,32 @@
                                 $year = $birthday[0];
                                 $month = $birthday[1];
                                 $day = $birthday[2];
-                                if($year%4==0){
-                                    if( in_array($month,[1,3,5,7,8,10,12]) ){
-                                        $day1 = 31;
-                                    }elseif( $month == 2 ){
-                                        $day1 = 29;
-                                    }else{
-                                        $day1 = 30;
-                                    }
-                                }else{
-                                    if( in_array($month,[1,3,5,7,8,10,12]) ){
-                                        $day1 = 31;
-                                    }elseif( $month == 2 ){
-                                        $day1 = 28;
-                                    }else{
-                                        $day1 = 30;
-                                    }
-                                }
+                                
                             }else{
                                 $year = 0;
                                 $month = 0;
                                 $day = 0;
-                                $day1 = 0;
+                                //  $day1 = 0;
                             }
                         ?>
                     </div>
                     <div class="col-md-12 col-lg-10 form-group">
                         <div class="row">
                             <div class="col-4 form-group">
+                                <!-- <input type="number" value="<?php if(isset($date)){ echo ''.$date[2];} ?>" min="0" placeholder="Ngày" name="date" id="date"> -->
+                                <select  class="input-select" name="date" id="date">
+                                    <option value="">Ngày</option>
+                                    @for( $i = 1; $i <= 31; $i++ )
+                                    <option value="{{$i}}" {{$i==$day?'selected':''}}>{{$i}}</option>
+                                    @endfor
+
+                                </select>
+                            </div>
+                            <div class="col-4 form-group">
                                 <select class="input-select" name="month" id="month">
                                     <option value="">Tháng</option>
                                     @for ($i = 1; $i <= 12; $i++)
                                     <option value="{{$i}}" {{$i==$month?'selected':''}}>Tháng {{$i}}</option>
-                                    @endfor
-                                </select>
-                            </div>
-                            <div class="col-4 form-group">
-                                <!-- <input type="number" value="<?php if(isset($date)){ echo ''.$date[2];} ?>" min="0" placeholder="Ngày" name="date" id="date"> -->
-                                <select  class="input-select" name="date" id="date">
-                                    <option value="">Ngày</option>
-                                    @if($day != 0)
-                                    @for( $i = 1; $i <= $day1; $i++ )
-                                    <option value="{{$i}}" {{$i==$day?'selected':''}}>{{$i}}</option>
-                                    @endfor
-                                    @endif
-                                    @for( $i = 1; $i <= 31; $i++ )
-                                    <option value="{{$i}}" >{{$i}}</option>
                                     @endfor
                                 </select>
                             </div>
@@ -159,7 +139,7 @@
                                     value="{{$profile->card_id}}">
                             </div>
                             <div class="col-sm-12 col-md-6 form-group">
-                                <input class="phone" type="text" placeholder="Số điện thoại"
+                                <input class="phone" type="number" placeholder="Số điện thoại"
                                     name="phone" value="{{$profile->phone}}">
                             </div>
                             <div class="col-sm-12 col-md-6 form-group">
@@ -194,12 +174,39 @@
 @endsection
 @section('footerScripts')
 <script type="text/javascript">
-    /*$('#form-profile').submit(function(e){
+    $('#form-profile').submit(function(e){
         let year = $('#year').val()
         let month = $('#month').val()
         let date = $('#date').val()
+        if(year % 4 == 0){
+            if( month.indexOf(4,6,9,11) ){
+                if( date == 31 ){
+                    e.preventDefault();
+                    toastr.warning('Ngày sinh không hợp lệ')
+                }
+            }
+            if( month == 2 ){
+                if( date == 31 || date == 30 ){
+                    e.preventDefault();
+                    toastr.warning('Ngày sinh không hợp lệ')
+                }
+            }
+        }else{
+            if( month.indexOf(4,6,9,11) ){
+                if( date == 31 ){
+                    e.preventDefault();
+                    toastr.warning('Ngày sinh không hợp lệ')
+                }
+            }
+            if( month == 2 ){
+                if( date == 31 || date == 30 || date == 29 ){
+                    e.preventDefault();
+                    toastr.warning('Ngày sinh không hợp lệ')
+                }
+            }
+        }
         
-    })*/
+    })
 </script>
 @endsection
 
