@@ -65,20 +65,31 @@ class PaymentController extends Controller
 
     public function return(Request $request)
     {
-        $url = route('user-profile',auth()->user()->id);
+        $url = route('payment-history');
         $noti1 = array(
             'message' => 'Nạp tiền thành công', 
             'alert-type' => 'success'
         );
         $noti2 = array(
-            'message' => 'Lỗi trong quá trình thanh toán phí dịch vụ', 
+            'message' => 'Giao dịch không thành công', 
             'alert-type' => 'error'
         );
         if($request->vnp_ResponseCode == "00") {
         	//Lưu vào db
+            $s = substr($request->vnp_PayDate,12,2);
+            $i = substr($request->vnp_PayDate,10,2);
+            $h = substr($request->vnp_PayDate,8,2);
+            $d  = substr($request->vnp_PayDate,6,2);
+            $m = substr($request->vnp_PayDate,4,2);
+            $y = substr($request->vnp_PayDate,0,4);
+            $date = $y.'-'.$m.'-'.$d.' '.$h.':'.$i.':'.$s;
         	$payment = Payment::create([
-        	    'user_id' => auth()->user()->id,
-        	    'amount'  => $request->vnp_Amount/100
+        	    'user_id'      => auth()->user()->id,
+                'bank_code'    => $request->vnp_BankCode,
+                'bank_trans_no'=>$request->vnp_BankTranNo,
+                'trade_code'   => $request->vnp_TransactionNo,
+        	    'amount'       => $request->vnp_Amount/100,
+                'datetime'     => $date,
         	]);
         	$user = User::find(auth()->user()->id);
 

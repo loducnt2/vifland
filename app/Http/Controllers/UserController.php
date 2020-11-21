@@ -9,7 +9,7 @@ use Illuminate\Database\Query\Builder;
 use Toastr;
 use Illuminate\Support\Carbon;
 use App\User;
-// use Input;
+use App\Models\Payment;
 use Illuminate\Auth\EloquentUserProvider;
 use Hash;
 class UserController extends Controller
@@ -67,6 +67,11 @@ class UserController extends Controller
     public function formaddmoney(){
         $id = auth()->user()->id;
         return view('/pages/user/add-money',compact('id'));
+    }
+    public function paymentHistory(){
+        $id = auth()->user()->id;
+        $payment = Payment::where('user_id',$id)->orderBy('created_at','desc')->get();
+        return view('/pages/user/payment-history',compact('payment'));
     }
     public function articleposted(){
         $user_id = auth()->user()->id;
@@ -289,7 +294,11 @@ class UserController extends Controller
             // form sinh nhật
 
         $user -> save();
-        return redirect()->back();
+        $noti = array(
+            'message' => 'Thay đổi thông tin thành công', 
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($noti);
     }
 
     public function changePassword(request $request ,$id)

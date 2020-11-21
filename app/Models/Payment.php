@@ -10,12 +10,10 @@ class Payment extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
     	'user_id',
-    	'fullname',
+    	'bank_code',
+    	'bank_trans_no',
+        'trade_code',
     	'amount',
-    	'phone',
-    	'trade_code',
     	'datetime',
-    	'type',
-    	'status',
     ];
 }

@@ -39,6 +39,7 @@
                     <li> <a id="thaydoimk-link" href="{{route('change-password')}}">Thay đổi mật khẩu</a></li>
                     <!-- <li> <a href="">Số dư tài khoản </a></li> -->
                     <li> <a href="{{route('add-money')}}">Nạp tiền</a></li>
+                    <li><a href="{{route('payment-history')}}">Lịch sử giao dịch</a></li>
                 </ul>
                 <div class="title-bl3">
                     <span class="material-icons">list_alt</span>
@@ -339,6 +340,7 @@
                             <li> <a href="{{route('profile')}}">Trang thay đổi thông tin cá nhân </a></li>
                             <li> <a href="{{route('change-password')}}">Thay đổi mật khẩu</a></li>
                             <li> <a href="{{route('add-money')}}">Nạp tiền</a></li>
+                            <li><a href="{{route('payment-history')}}">Lịch sử giao dịch</a></li>
                         </ul>
                         <div class="title-bl3"> <span class="material-icons">list_alt</span>
                             <p>Quản lý tin đăng</p>

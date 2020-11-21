@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/user/profile','UserController@profileUser')->name('profile');
 Route::get('/user/password','UserController@formpassword')->name('change-password');
 Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');
+Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history');
 Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');
 Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');
 Route::get('/user/article-expire','UserController@articlexpire')->name('article-expire');

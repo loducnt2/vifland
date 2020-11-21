@@ -1,9 +1,6 @@
 @extends('.pages.user.slidebar')
 @section('title','Thông tin cá nhan')
 @section('headerStyles')
-
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-
 @section('content_child')
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="active nav-link active" id="thaydoithongtin-tab" data-toggle="tab"
