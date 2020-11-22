@@ -241,15 +241,15 @@
                                     </div>
                                     <div class="checked">
                                         <input id="vip1" type="radio" value="1" name="type">
-                                        <label class="vip1" for="vip1">Tin VIP 1</label>
+                                        <label class="vip1" for="vip1">tin {{$prices[0]->name}}</label>
                                     </div>
                                     <div class="checked">
                                         <input id="vip2" type="radio" value="2" name="type">
-                                        <label class="vip2" for="vip2">Tin VIP 2</label>
+                                        <label class="vip2" for="vip2">tin {{$prices[1]->name}}</label>
                                     </div>
                                     <div class="checked">
                                         <input id="vip3" type="radio" value="3" name="type">
-                                        <label class="vip3" for="vip3">Tin VIP 3</label>
+                                        <label class="vip3" for="vip3">Tin {{$prices[2]->name}}</label>
                                     </div>
                                 </div>
                                 <div class="wrap-vip-mobile">
@@ -259,13 +259,11 @@
                                                     thường&nbsp;</strong>(Miễn phí)
                                             </option>
                                             <option class="vip1" value="vip1">
-                                                <p>TIN VIP 1&nbsp;</p>(15.000 ₫ tin/ngày)
+                                                <p>TIN {{$prices[0]->name}}&nbsp;</p>({{$prices[0]->price}} ₫ tin/ngày)
                                             </option>
-                                            <option class="vip2" value="vip2"> <span>TIN VIP
-                                                    2&nbsp;</span>(25.000 ₫
+                                            <option class="vip2" value="vip2"> <span>TIN {{$prices[1]->name}}&nbsp;</span>({{$prices[1]->price}} ₫
                                                 tin/ngày)</option>
-                                            <option class="vip3" value="vip3"> <span>TIN VIP
-                                                    3&nbsp;</span>(35.000 ₫
+                                            <option class="vip3" value="vip3"> <span>TIN {{$prices[2]->name}}&nbsp;</span>({{$prices[2]->price}} ₫
                                                 tin/ngày)</option>
                                         </select>
                                     </div>
@@ -313,7 +311,7 @@
                                             <table>
                                                 <tr>
                                                     <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>40.000 ₫
+                                                    <td class="mb-30"> <strong>{{$prices[0]->price}} ₫
                                                             tin/ngày</strong></td>
                                                 </tr>
                                                 <tr>
@@ -351,7 +349,7 @@
                                             <table>
                                                 <tr>
                                                     <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>25.000 ₫
+                                                    <td class="mb-30"> <strong>{{$prices[1]->price}} ₫
                                                             tin/ngày</strong></td>
                                                 </tr>
                                                 <tr>
@@ -391,7 +389,7 @@
                                             <table>
                                                 <tr>
                                                     <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>15.000 ₫
+                                                    <td class="mb-30"> <strong>{{$prices[2]->price}} ₫
                                                             tin/ngày</strong></td>
                                                 </tr>
                                                 <tr>

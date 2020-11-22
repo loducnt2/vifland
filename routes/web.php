@@ -165,6 +165,13 @@ Route::get('/admin/danh-sach-thong-bao/edit/{id}','NotificationController@edit')
 Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
 Route::get('/admin/danh-sach-thong-bao/delete/{id}','NotificationController@destroy')->name('del-noti');
 Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
+
+//Quản lí giá vip
+ Route::post('admin/danh-sach-gia-vip/update/{id}','PriceTypePostController@update')->name('update-price');
+ Route::get('/admin/danh-sach-gia-vip/edit/{id}','PriceTypePostController@edit')->name('edit-price');
+// Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
+ Route::get('/admin/danh-sach-gia-vip/delete/{id}','PriceTypePostController@destroy')->name('del-price');
+Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
 // Quản lý tin đăng
 
 

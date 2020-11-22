@@ -17,6 +17,7 @@ use App\Models\FilterPrice;
 use App\Models\FilterFacades;
 use App\Models\TypeProduct;
 use App\Models\Favorited;
+use App\PriceTypePost;
 use App\User;
 use Str;
 class ProductController extends Controller
@@ -44,6 +45,7 @@ class ProductController extends Controller
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $cate_1       = Category::where('slug',$cate)->first(); //Lấy id category thông qua slug
         $cate_2       = Category::where('parent_id',$cate_1->id)->get();//Lấy category con
+        $prices = PriceTypePost::orderBy('id','asc')->get();//vip
         if($cate == "cho-thue-nha-dat"){
             $units   = ProductUnit::where('type',2)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
         }elseif($cate == "mua-ban-nha-dat"){
@@ -52,7 +54,7 @@ class ProductController extends Controller
             $units   = ProductUnit::all();
         }
 
-        return view('/pages/article/article-form',compact('cate_2','units','provinces','districts','wards','product_cate'));
+        return view('/pages/article/article-form',compact('cate_2','units','provinces','districts','wards','product_cate','prices'));
     }
 
     /**
