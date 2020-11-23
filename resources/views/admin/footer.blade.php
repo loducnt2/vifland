@@ -156,41 +156,4 @@
     });
     </script>
 {{-- tag posts manager--}}
-<script>
-    $( document ).ready(function() {
-    console.log( "ready!" );
-    $("#tag").select2({
-    // theme:'bootstrap4',
-    tags: true,
-    selectOnClose: true,
-    tokenSeparators: [','],
-    placeholder: "Add your tags here",
-       /* the next 2 lines make sure the user can click away after typing and not lose the new tag */
-    });
-    $(".form-control").on("select2:select", function (e) {
 
-
-$.ajax({
-    // hàm tạo keyword Tag
-    type:'POST',
-    url: '/insert',
-    data:$('.form-control').serialize(),
-    success: function(data){
-    console.log('Gọi thành công');
-    var data = ($(".tag").val());
-    var x = data.toString();
-    var y = x.split(" , ");
-        console.log(y);
-    $(".result").val(y);
-
-    },
-    error: function(error){
-        console.log(error);
-    },
-
-}
-);
-
-});
-});
-</script>

@@ -32,32 +32,6 @@ li {
         font-size:13px;
         font-weight: bold;
 }
-
-</style>
-<style>
-
-    .select2-selection__choice{
-    margin-top: 0px!important;
-    padding-right: 5px!important;
-    padding-left: 5px!important;
-    background-color: transparent!important;
-    border:none!important;
-    border-radius: 4px!important;
-    background-color: rgba(0, 139, 139, 0.09) !important;
-}
-
-.select2-selection__choice__remove{
-    border: none!important;
-    border-radius: 0!important;
-    padding: 0 2px!important;
-}
-.select2-selection{
-    background-color:red;
-}
-.select2-selection__choice__remove:hover{
-    background-color: black !important;
-    color: #ef5454 !important;
-}
 </style>
 {{-- @extends('admin.sidebar') --}}
 @section('title','Quản lý tin tức')
@@ -141,7 +115,12 @@ li {
                             name="image" accept="image/*">
                     </div>
                 </div>
-
+                <script language="javascript">
+                $(".custom-file-input").on("change", function() {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                });
+                </script>
                 </li>
                 </ul>
             </div>
@@ -156,7 +135,14 @@ li {
                         <label for="text" class="error"></label>
                         <input type="text" class="w-full input-n input--lg box-n" id="title" onkeyup="ChangeToSlug();"
                             placeholder="Tiêu đề bài viết" value="" name="title">
+                        {{-- <span class="tag label label-info">Amsterdam<span data-role="remove"></span></span> --}}
                     </div>
+
+                    {{-- <input data-id="{{$user->id}}" data-style="ios" class="toggle-class"
+                    type="checkbox"
+                    data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios"
+                    data-on="On"
+                    data-off="Off" {{ $user->status ? 'checked' : '' }} > --}}
                     <div class="col-md-12 mb-3">
                         <label for="" class="section-title-small">Ngày đăng</label>
                         <div class="input-group">
@@ -189,12 +175,8 @@ li {
 
                     <div class="form-group">
                       {{-- <label for=""></label> --}}
-                      {{-- <input type="text" class="form-control" name="tag[]" id="tag" value="" multiple="multiple" hidden aria-describedby="helpId" placeholder=""> --}}
-                      <select class="form-control tag"name="tag[]" id="tag" multiple="multiple">
-                        @foreach ($tag_input as $item)
-                      <option value="{{$item->id}}" name="">{{$item->tag}}</option>
-                      @endforeach
-                      </select>
+                      <input type="text" class="form-control" name="tag" id="tag" value=""aria-describedby="helpId" placeholder="">
+                      {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
                     </div>
                 </div>
                 <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
@@ -206,7 +188,7 @@ li {
                         <textarea id="editor1" name="content" required></textarea>
                     </div>
                 </div>
-
+                {{$item->tag}}
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="slug" id="slug2" aria-describedby="helpId"
                         placeholder="" readonly>
@@ -231,6 +213,7 @@ function test() {
   "></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script type="text/javascript" src="https://frontbackend.com/storage/resources/jquery-amsify-suggestags/jquery.amsify.suggestags.js"></script>
 
 
 <script>
