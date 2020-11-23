@@ -11,7 +11,9 @@
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('js/ckeditor.js')}}"></script>
+<script src="{{asset('js/select2.full.js')}}"></script>
 {{-- script --}}
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -113,35 +115,7 @@
     });
     </script>
 {{-- form-table --}}
-<script>
-    //   insert record ajax
-      $('#myform').submit(function(e){
-          e.preventDefault();
-        let formData = {
-            category_name : $("#category_name").val(),
-            slug : $("#slug2").val()
-        };
-        $.ajax({
-            // setup ajax
-            type:'POST',
-            url: '/admin/danh-muc-tin-tuc/them-moi/',
-            data: formData,
-            success: function(data){
-                $('#myTable').prepend(`<tr>
-                <td>`+data.id+`</td>
-                <td>`+data.slug+`</td>
-                <td>`+data.category_name+`</td>
-                <td>`+data.status+`</td>
-                <td>`+`<a name="" id="" class="btn btn-primary" href="{{`data.id`}}" data-id="{{`data.id`}}"role="button">Xoá</a>`+`</td>
 
-                </tr>`);
-            },
-            error: function(error){
-                console.log(error);
-            },
-        })
-        })
-    </script>
     {{-- xoá danh mục --}}
     <script>
     function deletePost(event) {
@@ -162,6 +136,7 @@
       });
   }
     </script>
+
 <script>
     function refreshTable(){
         if ($(this).parent().hasClass("off")) {
@@ -173,4 +148,49 @@
     }
 
     }
+</script>
+<script language="javascript">
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    </script>
+{{-- tag posts manager--}}
+<script>
+    $( document ).ready(function() {
+    console.log( "ready!" );
+    $("#tag").select2({
+    // theme:'bootstrap4',
+    tags: true,
+    selectOnClose: true,
+    tokenSeparators: [','],
+    placeholder: "Add your tags here",
+       /* the next 2 lines make sure the user can click away after typing and not lose the new tag */
+    });
+    $(".form-control").on("select2:select", function (e) {
+
+
+$.ajax({
+    // hàm tạo keyword Tag
+    type:'POST',
+    url: '/insert',
+    data:$('.form-control').serialize(),
+    success: function(data){
+    console.log('Gọi thành công');
+    var data = ($(".tag").val());
+    var x = data.toString();
+    var y = x.split(" , ");
+        console.log(y);
+    $(".result").val(y);
+
+    },
+    error: function(error){
+        console.log(error);
+    },
+
+}
+);
+
+});
+});
 </script>

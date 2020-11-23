@@ -53,7 +53,7 @@ class NewsController extends Controller
         $news->slug = $request->slug;
         $news->content = $request->input('content');
         // $news->datepost = Carbon::now();
-        $news->tags= $request->tag;
+        $news->tags = implode(",",$request->tag);
         // slug tên danh mục khi input vào cột category_slug của news
         $news->category_slug = Str::slug($request->input('category_news_slug'));
         // dd($news->category_slug);
@@ -87,8 +87,9 @@ class NewsController extends Controller
     {
         // lấy tất cả các danh mục trong tin tức
         $news_cate = NewsCategory::all();
-        $tag = tag::all();
-        return view('admin.tintuc.quanlytintuc',compact('news_cate','tag'));
+        $tag_input = tag::all();
+
+        return view('admin.tintuc.quanlytintuc',compact('news_cate','tag_input'));
     }
     public function getNewsbyCate($slug)
     {
@@ -201,6 +202,13 @@ class NewsController extends Controller
                     'news3'=>$news3,
                     'latest'=>$latest,
                 ]);
+    }
+    public function insertTag(Request $request){
+        foreach ($request->input('tag') as $tag) {
+            tag::firstOrCreate([
+                'slug' => Str::slug($tag),
+                'tag' => $tag]);
+          }
     }
     // Tin get được từ các danh mục
 }

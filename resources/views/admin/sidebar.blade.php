@@ -4,6 +4,9 @@
 <link href="{{asset('css/profile.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
+{{-- <link rel="stylesheet" href="style.css"> --}}
+<link rel="stylesheet" href="{{asset('css/select2.css')}}">
+
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
     type="text/css" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
@@ -106,7 +109,7 @@
                                     <a class="nav-link" href="{{ url('admin/danh-sach-duyet-tin') }}">Duyệt tin</a>
                                 </nav>
                             </div>
-                            
+
                             <a class="nav-link" href="{{ url('admin/index/profiles') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý người dùng
@@ -199,7 +202,7 @@
     $(document).ready(function() {
         $(".breadcrumb-n .avatar").click(function() {
             $(".breadcrumb-n .list-menu-login").toggleClass("show")
-        }) 
+        })
     });
     </script>
     @extends('admin.footer')
