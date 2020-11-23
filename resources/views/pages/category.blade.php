@@ -212,6 +212,7 @@
                         <div id="products" class="row">
                             @if(count($products)>0)
                             @foreach($products as $product)
+                            @php $acreage = intval($product->depth)*intval($product->facades);  @endphp
                             <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
@@ -258,7 +259,7 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/dientich.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
+                                                        title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : $acreage}}
                                                         m²</span></div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
@@ -309,27 +310,26 @@
                                 <p>Không có bài đăng nào</p>
                             </div>
                             @endif
-                        </div>
+                            <div class="col-12">
+                                <div class="paginationSP">
+                                    <!-- <div class="paginationSP-box"><span
+                                            class="material-icons button-s mr-2">skip_previous</span>
+                                        <ul>
+                                            <li> <a class="active" href="">1</a></li>
+                                            <li> <a href="">2</a></li>
+                                            <li> <a href="">3</a></li>
+                                        </ul><span class="3cham">...</span><a class="last-pg" href="">4534</a><span
+                                            class="material-icons button-s ml-2">skip_next</span>
 
+                                    </div> -->
 
-
-                        <div class="col-12">
-                            <div class="paginationSP">
-                                <!-- <div class="paginationSP-box"><span
-                                        class="material-icons button-s mr-2">skip_previous</span>
-                                    <ul>
-                                        <li> <a class="active" href="">1</a></li>
-                                        <li> <a href="">2</a></li>
-                                        <li> <a href="">3</a></li>
-                                    </ul><span class="3cham">...</span><a class="last-pg" href="">4534</a><span
-                                        class="material-icons button-s ml-2">skip_next</span>
-
-                                </div> -->
-
-                                <?php echo $products->render(); ?>
-                                  
+                                    <?php echo $products->render(); ?>
+                                      
+                                </div>
                             </div>
+                            
                         </div>
+                        
                         <div class="col-12">
                             <div class="content-box">
                                 <div class="inner-content">
@@ -1180,8 +1180,13 @@ $(document).ready(function() {
             url: '{{ route("filter") }}',
             type: 'POST',
             data: $('#filter').serialize(),
+            success: function(data, status){
+                $('#products').html(data);
+            }
+            /*url: '{{ route("filter") }}',
+            type: 'POST',
+            data: $('#filter').serialize(),
             success: function(data, status) {
-
                 console.log(data)
                 let arr = [];
                 data.forEach(function(item, index, array) {
@@ -1226,7 +1231,7 @@ $(document).ready(function() {
                     arr.push(pr)
                 })
                 $('#products').html(arr)
-            }
+            }*/
         }).done(function() {
             if (!$('.btn__header').hasClass('login1')) {
                 $.ajax({

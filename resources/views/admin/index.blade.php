@@ -224,7 +224,7 @@
 
 <script>
 $(document).ready(function() {
-
+    //setTimeout(location.reload(),100000)
     const bcdt_1 = $('#bcdt').attr('data-1');
     var bcdtData = {
         labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',

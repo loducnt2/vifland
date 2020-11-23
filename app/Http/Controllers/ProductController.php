@@ -17,6 +17,7 @@ use App\Models\FilterPrice;
 use App\Models\FilterFacades;
 use App\Models\TypeProduct;
 use App\Models\Favorited;
+use App\PriceTypePost;
 use App\User;
 use Str;
 class ProductController extends Controller
@@ -44,6 +45,7 @@ class ProductController extends Controller
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $cate_1       = Category::where('slug',$cate)->first(); //Lấy id category thông qua slug
         $cate_2       = Category::where('parent_id',$cate_1->id)->get();//Lấy category con
+        $prices = PriceTypePost::orderBy('id','asc')->get();//vip
         if($cate == "cho-thue-nha-dat"){
             $units   = ProductUnit::where('type',2)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
         }elseif($cate == "mua-ban-nha-dat"){
@@ -52,7 +54,7 @@ class ProductController extends Controller
             $units   = ProductUnit::all();
         }
 
-        return view('/pages/article/article-form',compact('cate_2','units','provinces','districts','wards','product_cate'));
+        return view('/pages/article/article-form',compact('cate_2','units','provinces','districts','wards','product_cate','prices'));
     }
 
     /**
@@ -79,6 +81,7 @@ class ProductController extends Controller
         $filter_price = FilterPrice::where('min','<s',$price)->where('max','>=',$price)->value('id');
         $filter_facades = FilterFacades::where('min','<',$fa)->where('max','>=',$fa)->value('id');
         $product = new Product([
+            'price_post'     => $request->pricePost,
             'cate_id'        => $request->cate_id,
             'title'          => $request->title,
             'thumbnail'      => NULL,
@@ -87,7 +90,7 @@ class ProductController extends Controller
             'tags'           => $request->tags,
             'datetime_start' => date('Y-m-d H:i',strtotime($datetime_start)),
             'datetime_end'   => date('Y-m-d H:i',strtotime($datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
-            'content'        => $request->content,
+            'content'        => strip_tags($request->content,!'<a>'),
             'name_contact'   => $request->name_contact,
             'phone_contact'     => $request->phone_contact,
             'address_contact'   => $request->address_contact,
@@ -211,9 +214,13 @@ class ProductController extends Controller
             'wallet' => intval( $wallet )-intval($request->pricePost)  
         ]);
 
+        $notification = array(
+            'message' => 'Tin của bạn đã tạo thành công, vui lòng chờ duyệt', 
+            'alert-type' => 'success'
+        );
 
 
-        return redirect()->route('user-article',auth()->user()->id);
+        return redirect()->route('user-article',auth()->user()->id)->with($notification);
 
     }
 
@@ -244,8 +251,8 @@ class ProductController extends Controller
         )
         ->first();
 
-         $product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
-         ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();
+        /*$product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
+        ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();*/
 
         $acreage = doubleval( $product->depth*$product->facades );
         $total   = intval($product->price)*$acreage;
@@ -277,6 +284,7 @@ class ProductController extends Controller
             'product_extend.*',
             'product.*',
             'product_extend.id as productex_id',
+            'product_extend.product_cate as product_cate',
             'province.name as province',
             'district.name as district',
             'ward.name as ward',
@@ -289,7 +297,7 @@ class ProductController extends Controller
         ->limit(4)
         ->get();
 
-        return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image','product_related'));
+        return view('pages/article/article',compact('product','acreage','total','cate','image','product_related'));
     }
 
     /**
@@ -301,8 +309,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product_cate = ProductCate::all();
-        $wards        = Ward::orderBy('name','asc')->get();
-        $districts    = District::orderBy('name','asc')->get();
+        
+        
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
         $cate_1       = Product::leftJoin('category','product.cate_id','category.id')->value('category.parent_id');
@@ -317,14 +325,27 @@ class ProductController extends Controller
             $units   = ProductUnit::all();
         }
 
-        $product = Product::where('product.id',$id)->first();
-        return view('pages/article/article-form-edit',compact('product','cate_2','units','provinces','districts','wards','product_cate'));
+        $product   = Product::where('product.id',$id)
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->select('product.*','product.id as product_id','product_extend.*')
+        ->first();
+        $districts = District::orderBy('name','asc')->where('province_id',$product->province_id)->get();
+        $wards     = Ward::orderBy('name','asc')->where('district_id',$product->district_id)->get();
+        $img = Product::leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
+        ->where('product.id',$id)
+        ->select('product_image.name as img')
+        ->get();
+
+        return view('pages/article/article-form-edit',compact('product','cate_2','units','provinces','districts','wards','product_cate','img'));
     }
 
+    //form gia hạn
     public function addDateForm($id){
         $product_id = $id;
         return view('pages/article/article-form-add-date',compact('product_id'));
     }
+    //gia hạn
     public function addDate(Request $request){
         $datetime_start = $request->date_start." ".$request->time_start;
         $product = Product::find($request->product_id);
@@ -344,7 +365,11 @@ class ProductController extends Controller
         $user = User::find( auth()->user()->id )->update([
             'wallet' => intval( $wallet )-intval($request->pricePost)  
         ]);
-        return redirect()->route('user-article',auth()->user()->id);
+        $notification = array(
+            'message' => 'Gia hạn tin thành công', 
+            'alert-type' => 'success'
+        );
+        return redirect()->route('article-detail',$product->slug)->with($notification);
     }
 
     /**
@@ -356,7 +381,72 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $productex = ProductExtend::where('product_id',$id)->value('id');
+        $product = Product::where('product.id',$id)
+        ->leftJoin('product_extend','product.id','product_extend.product_id');
+        $product->update([
+            'product.cate_id' => $request->cate_id,
+            'product.title' => $request->title,
+            'product.content' =>strip_tags($request->content,!'<a>'),
+            'product.province_id' =>$request->province_id,
+            'product.district_id' =>$request->district_id,
+            'product.ward_id' =>$request->ward_id,
+            'product.address_contact'=>$request->address_contact,
+            'product.phone_contact'=>$request->phone_contact,
+            'product.name_contact'=>$request->name_contact,
+            'product.company_name'=>$request->company_name,
+            'product.website'=>$request->website,
+            'product.email'=>$request->email,
+            'product.facebook'=>$request->facebook,
+            'product_extend.address' =>$request->address,
+            'product_extend.product_cate' => $request->product_cate,
+            'product_extend.facades' => $request->facades,
+            'product_extend.depth' => $request->depth,
+            'product_extend.unit_id'=>$request->unit_id,
+            'product_extend.price' => $request->price,
+            'product_extend.floors' => $request->floors,
+            'product_extend.bedroom'=> $request->bedroom,
+            'product_extend.legal' => $request->legal,
+
+        ]);
+        if( $request->tags != NULL ){
+            $product->update(['tags' => $request->tags]);
+        }
+        if ($request->hasFile('img')){
+            $prd = ProductImg::leftJoin('product_extend','product_image.product_extend_id','product_extend.id')
+            ->leftJoin('product','product_extend.product_id','product.id')
+            ->where('product.id',$id)
+            ->delete();
+
+            $arrfile = [];
+            $file = $request->file('img');
+            foreach( $file as $img ){
+                $filetype = $img->getClientOriginalExtension('image');
+                $filename = date('Ymd',time()).'product'.$productex.Str::random(10).'.'.$filetype;
+                $img->move(public_path('/assets/product/detail'), $filename);
+                $arrfile[]= $filename;
+            }
+            foreach( $arrfile as $imgpro ){
+                $productimg = new ProductImg([
+                    'product_extend_id' => $productex,
+                    'name'              => $imgpro,
+                    'orders'            => NULL,
+                ]);
+                $productimg->save();
+            }
+            $product->update([
+                'thumbnail' => $arrfile[0]
+            ]);
+        }
+        
+        $notification = array(
+            'message' => 'Chỉnh sửa tin thành công', 
+            'alert-type' => 'success'
+        );
+        $slug = Product::where('id',$id)->value('slug');
+        //return $product;
+        return redirect(route('article-detail',$slug ))->with($notification);
     }
 
     /**
@@ -369,7 +459,12 @@ class ProductController extends Controller
     {
         $pro = Product::find($id);
         $pro->delete();
-        return redirect()->back();
+        $notification = array(
+            'message' => 'Xóa tin thành công', 
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+
     }
 
 
@@ -430,9 +525,9 @@ class ProductController extends Controller
         //các tin chờ xác nhận
         $product_wait1 = PostHistory::where('user_id',$user_id)
         ->where('post_history.status',0)
-        ->join('product','post_history.product_id','product.id')
-        ->join('product_extend','post_history.product_id','product_extend.product_id')
-        ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->orderBy('datetime_start','desc')
@@ -462,9 +557,9 @@ class ProductController extends Controller
         //Tin đang đăng
         $product_posted = PostHistory::where('user_id',$user_id)
         ->where('post_history.status',1)
-        ->join('product','post_history.product_id','product.id')
-        ->join('product_extend','post_history.product_id','product_extend.product_id')
-        ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->orderBy('datetime_start','desc')
@@ -493,9 +588,9 @@ class ProductController extends Controller
 
         //Tin hết hạn
         $product_expire = PostHistory::where('user_id',$user_id)
-        ->join('product','post_history.product_id','product.id')
-        ->join('product_extend','post_history.product_id','product_extend.product_id')
-        ->join('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('product','post_history.product_id','product.id')
+        ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->where('product.soft_delete',1)

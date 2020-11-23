@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\PriceTypePost;
 
 use Illuminate\Http\Request;
 
-class PricePostController extends Controller
+
+
+class PriceTypePostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,8 @@ class PricePostController extends Controller
      */
     public function index()
     {
-        //
+        $prices = PriceTypePost::orderBy('id','asc')->get();
+        return view('/admin/PriceTypeOfPost/danhsachPrice',compact('prices'));
     }
 
     /**
@@ -45,7 +49,7 @@ class PricePostController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -56,8 +60,10 @@ class PricePostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $price = PriceTypePost::find($id);
+        return view('/admin/PriceTypeOfPost/chinhsuaprice',compact('price'));
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -68,8 +74,15 @@ class PricePostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $price = PriceTypePost::find($id);
+       
+        $price->price = $request->get('price');
+       
+        $price->save();
+        return redirect('/admin/danh-sach-gia-vip');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -79,6 +92,8 @@ class PricePostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $price = PriceTypePost::find($id);
+        $price->delete();
+        return redirect('/admin/danh-sach-gia-vip');
     }
 }

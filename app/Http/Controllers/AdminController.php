@@ -44,7 +44,7 @@ class AdminController extends Controller
     	foreach( $total_cashs as $ps ){
     		$total_cash += intval($ps->amount);
     	}
-    	$cashs_by_month = Payment::select('amount')->whereMonth('created_at', '=', date('m'))->get(); //Tổng doanh thu tháng này
+    	$cashs_by_month = Payment::select('amount')->whereMonth('datetime', '=', date('m'))->get(); //Tổng doanh thu tháng này
     	$cash_by_month = 0;
     	foreach( $cashs_by_month as $ps ){
     		$cash_by_month += intval($ps->amount);

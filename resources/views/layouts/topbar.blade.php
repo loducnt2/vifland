@@ -31,30 +31,24 @@
             </div>
             <div class="bl-3">
                 <div class="title-bl3"> <span class="material-icons">portrait</span>
-                    <p>
-                        <a href="/user/profile/{{auth()->user()->id}}/"> Quản lý tài khoản cá nhân</a>
-                    </p>
+                    <p>Quản lý tài khoản cá nhân</p>
                 </div>
                 <ul>
-                    <li> <a href="/user/profile/{{auth()->user()->id}}">Trang thay đổi thông tin cá nhân
+                    <li> <a href="{{route('profile')}}">Trang thay đổi thông tin cá nhân
                         </a></li>
-                    <li> <a id="thaydoimk-link" href="#">Thay đổi mật khẩu</a></li>
+                    <li> <a id="thaydoimk-link" href="{{route('change-password')}}">Thay đổi mật khẩu</a></li>
                     <!-- <li> <a href="">Số dư tài khoản </a></li> -->
-                    <li> <a href="/user/profile/{{auth()->user()->id}}/nap-tien">Nạp tiền</a></li>
+                    <li> <a href="{{route('add-money')}}">Nạp tiền</a></li>
+                    <li><a href="{{route('payment-history')}}">Lịch sử giao dịch</a></li>
                 </ul>
                 <div class="title-bl3">
                     <span class="material-icons">list_alt</span>
-                    <a href="/user/my-article">
-                        <p>
-                            <a href="/user/my-article/{{auth()->user()->id}}">
-                                Quản lý tin đăng
-                            </a>
-
-                        </p>
+                        <p>Quản lý tin đăng</p>
                 </div>
                 <ul>
-                    <li> <a href="/user/my-article/{{auth()->user()->id}}/#tindadang">Tin đã đăng </a></li>
-                    <li> <a href="/user/my-article/{{auth()->user()->id}}/#tinchodang">Tin chờ đăng</a></li>
+                    <li> <a href="{{route('article-posted')}}">Tin hiện tại </a></li>
+                    <li> <a href="{{route('article-wait')}}">Tin chờ đăng</a></li>
+                    <li> <a href="{{route('article-expire')}}">Tin hết hạn</a></li>
                 </ul>
             </div>
             <div class="bl-4"> <span class="material-icons">exit_to_app</span>
@@ -329,13 +323,13 @@
                     </div>
                     <div class="bl-2">
                         <div class="row">
-                            <div class="col-6"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}"
-                                        alt="">VifPay</span></div>
-                            <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
+                            <div class="col-12"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}"
+                                        alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
+                            <!-- <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
                                             class="material-icons">keyboard_arrow_right</span></a></span></div>
                             <div class="col-12"><span class="lkvi"><img src="{{asset('assets/icon/warning.png')}}"
                                         alt="">Chưa liên kết ví</span><span class="text">Liên kết để hưởng khuyến mãi
-                                    với ưu đãi bạn nhé</span></div>
+                                    với ưu đãi bạn nhé</span></div> -->
                         </div>
                     </div>
                     <div class="bl-3">
@@ -343,18 +337,18 @@
                             <p>Quản lý tài khoản cá nhân</p>
                         </div>
                         <ul>
-                            <li> <a class="active" href="">Trang thay đổi thông tin cá nhân </a></li>
-                            <li> <a href="">Thay đổi mật khẩu</a></li>
-                            <li> <a href="">Số dư tài khoản </a></li>
-                            <li> <a href="">Nạp tiền</a></li>
+                            <li> <a href="{{route('profile')}}">Trang thay đổi thông tin cá nhân </a></li>
+                            <li> <a href="{{route('change-password')}}">Thay đổi mật khẩu</a></li>
+                            <li> <a href="{{route('add-money')}}">Nạp tiền</a></li>
+                            <li><a href="{{route('payment-history')}}">Lịch sử giao dịch</a></li>
                         </ul>
                         <div class="title-bl3"> <span class="material-icons">list_alt</span>
                             <p>Quản lý tin đăng</p>
                         </div>
                         <ul>
-                            <li> <a href="">Tin đã đăng</a></li>
-                            <li> <a href="">Tin chờ đăng</a></li>
-                            <li> <a href="">Chờ xác nhận </a></li>
+                            <li> <a href="{{route('article-posted')}}">Tin hiện tại</a></li>
+                            <li> <a href="{{route('article-wait')}}">Tin chờ đăng</a></li>
+                            <li> <a href="{{route('article-expire')}}">Tin hết hạn</a></li>
                         </ul>
                     </div>
                     <div class="bl-4"> <span class="material-icons">exit_to_app</span>
@@ -383,6 +377,80 @@
                         src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
                     <p>Sang Nhượng</p><em class="material-icons">double_arrow</em>
                 </a></div>
+        </div>
+    </div>
+</div>
+<div class="wrap-modal-post">
+    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h3 class="text-center">Nạp tiền vào tài khoản</h3>
+                <form action="{{route('create-payment')}}" id="create_form" method="post">
+                    @csrf       
+                    <div class="form-group">
+                        <!-- <label for="language">Loại hàng hóa </label> -->
+                        <select name="order_type" id="order_type" class="form-control" hidden="">
+                            <!-- <option value="topup">Nạp tiền điện thoại</option> -->
+                            <option value="billpayment" selected >Thanh toán hóa đơn</option>
+                            <!-- <option value="fashion">Thời trang</option> -->
+                            <!-- <option value="other">Khác - Xem thêm tại VNPAY</option> -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="order_id">Mã hóa đơn</label> -->
+                        <input hidden="" class="form-control" id="order_id" name="order_id" type="text" value="<?php echo date('YmdHis') ?>"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Số tiền</label>
+                        <input class="form-control" id="amount"
+                               name="amount" type="number" value="10000"/>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="order_desc">Nội dung thanh toán</label> -->
+                        <textarea hidden class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Noi dung thanh toan</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="bank_code">Ngân hàng</label>
+                        <select name="bank_code" id="bank_code" class="form-control">
+                            <option value="NCB" selected> Ngân hàng NCB</option>
+                           <!--  <option value="AGRIBANK"> Ngan hang Agribank</option>
+                            <option value="SCB"> Ngan hang SCB</option>
+                            <option value="SACOMBANK">Ngan hang SacomBank</option>
+                            <option value="EXIMBANK"> Ngan hang EximBank</option>
+                            <option value="MSBANK"> Ngan hang MSBANK</option>
+                            <option value="NAMABANK"> Ngan hang NamABank</option>
+                            <option value="VNMART"> Vi dien tu VnMart</option>
+                            <option value="VIETINBANK">Ngan hang Vietinbank</option>
+                            <option value="VIETCOMBANK"> Ngan hang VCB</option>
+                            <option value="HDBANK">Ngan hang HDBank</option>
+                            <option value="DONGABANK"> Ngan hang Dong A</option>
+                            <option value="TPBANK"> Ngân hàng TPBank</option>
+                            <option value="OJB"> Ngân hàng OceanBank</option>
+                            <option value="BIDV"> Ngân hàng BIDV</option>
+                            <option value="TECHCOMBANK"> Ngân hàng Techcombank</option>
+                            <option value="VPBANK"> Ngan hang VPBank</option>
+                            <option value="MBBANK"> Ngan hang MBBank</option>
+                            <option value="ACB"> Ngan hang ACB</option>
+                            <option value="OCB"> Ngan hang OCB</option>
+                            <option value="IVB"> Ngan hang IVB</option>
+                            <option value="VISA"> Thanh toan qua VISA/MASTER</option> -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="language">Ngôn ngữ</label> -->
+                        <select name="language" id="language" class="form-control" hidden="">
+                            <option value="vn" selected="">Tiếng Việt</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary mx-auto p-2" id="btnPopup">Thanh toán</button>
+                        <button disabled hidden type="submit" class="btn btn-default">Thanh toán Redirect</button>
+                    </div>
+                    
+                </form>
+            </div>
         </div>
     </div>
 </div>
