@@ -62,7 +62,7 @@
             <div class="row main-danh-muc">
                 <div class="col-lg-3 col-md-12">
                     <div class="box-left-form-muaban">
-                        <form id="filter">
+                        <form id="filter" >
                             @csrf
                             <div class="mdm-1">
                                 <div class="checked">
@@ -222,10 +222,10 @@
                                         <div class="tag-thuongluong">
                                             {{ $product->price == 0?$product->price="":$product->price}}
                                             {{$product->unit}}</div>
-                                        <div class="box-icon"><i class="fav ri-heart-line icons"
-                                                productid="{{$product->product_id}}"></i><a href=""
-                                                productid="{{$product->product_id}}" class="comp"><i
-                                                    class="ri-equalizer-line icons"></i></a></div>
+                                        <div class="box-icon">
+                                            <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
+                                            <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+                                        </div>
                                         <div class="overlay"></div>
                                         <div class="vip">
                                             <!-- {{$product->type}} -->
@@ -1183,56 +1183,9 @@ $(document).ready(function() {
             success: function(data, status){
                 $('#products').html(data);
             }
-            /*url: '{{ route("filter") }}',
-            type: 'POST',
-            data: $('#filter').serialize(),
-            success: function(data, status) {
-                console.log(data)
-                let arr = [];
-                data.forEach(function(item, index, array) {
-                    console.log(item)
-                    var acreage = 0
-                    var title = ""
-                    var vip = ""
-                    if (item.price == 0) {
-                        item.price = ""
-                    }
-                    if (item.floors == 0 || item.floors == null) {
-                        item.floors = ""
-                    }
-                    if (item.bedroom == 0 || item.bedroom == null) {
-                        item.bedroom = ""
-                    }
-                    if (item.facades > 0 && item.depth > 0) {
-                        acreage = parseInt(item.depth) * parseInt(item.facades)
-                    }
-                    let route_detail = "{{route('article-detail','"+item.slug+"')}}"
-                    switch (item.type) {
-                        case 1:
-                            title = '<h5 class="title-text lcl lcl-2 vip1">' + item.title + '</h5>'
-                            vip = '<div class="vip"><img src="{{asset('assets/icon/vip1.svg ')}}" alt=""></div>'
-                            break;
-                        case 2:
-                            title = '<h5 class="title-text lcl lcl-2 vip2">' + item.title + '</h5>'
-                            vip = '<div class="vip"><img src="{{asset('assets/icon/vip2.svg ')}}" alt=""></div>'
-                            break;
-                        case 3:
-                            title = '<h5 class="title-text lcl lcl-2 vip3">' + item.title + '</h5>'
-                            vip = '<div class="vip"><img src="{{asset('assets/icon/vip3.svg ')}}" alt=""></div>'
-                            break;
-                        default:
-                            title = '<h5 class="title-text lcl lcl-2 ">' + item.title + '</h5>'
-                            vip = ''
-                            break;
-                    }
-
-                    let pr =
-                        '<div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass"><div class="box-sp"><div class="box-sp-img"><a class="localstore" localstore="' +item.product_id + '" href="'+route_detail+'"><img src="{{asset('assets/product/detail/')}}/' + item.thumbnail +'" alt=""></a><div class="tag-thuongluong">' + item.price +' ' + item.unit +'</div><div class="box-icon"><i class="fav ri-heart-line icons" productid="' +item.product_id + '"></i><a href="" productid="' + item.product_id +'" class="comp" ><i class="ri-equalizer-line icons"></i></a></div><div class="overlay"></div>' + vip +'</div><div class="box-sp-text"> <a class="localstore" localstore="' +item.product_id + '" href="'+route_detail+'">' + title +'</a><div class="location"> <span class="material-icons">location_on</span><p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="' +item.district + ', ' + item.province + '">' + item.district + ', ' + item.province +'</p></div><div class="mota-place"><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' + acreage + ' m²">' + acreage + ' m²</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt đường</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +item.facades + '">' + item.facades +' m</span></div></div><div class="mota-place-1"><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' +item.floors + ' Tầng">' + item.floors +' Tầng</span></div><div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png ')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="' + item.bedroom + ' Phòng ngủ">' + item.bedroom +' Phòng ngủ</span></div><div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Tooltip on bottom"></span></div></div></div><div class="end-mota"><div class="mota-end-box"><div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>' + item.datetime_start +'</span></div><div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>' +item.view +'</span></div><div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div></div></div></div></div></div>'
-                    arr.push(pr)
-                })
-                $('#products').html(arr)
-            }*/
         }).done(function() {
+
+
             if (!$('.btn__header').hasClass('login1')) {
                 $.ajax({
                     url: '{{route("all-favorite")}}',
@@ -1366,7 +1319,7 @@ $(document).ready(function() {
                         if (listcomp.indexOf(productid) != -1) {
                             listcomp.splice(listcomp.indexOf(productid), 1)
 
-                            $(this).children().removeClass('active')
+                            $(this).removeClass('active')
                             if (listcomp.length == 0) {
                                 $('.number-ss').css('display', 'none')
                             } else {
@@ -1378,43 +1331,39 @@ $(document).ready(function() {
                             listcomp.push(productid);
                             console.log(listcomp.join())
 
-                            $(this).children().addClass('active')
+                            $(this).addClass('active')
                             $('.number-ss').css('display', 'flex')
                             $('.number-ss').text(listcomp.length)
-                            return false
+                            
                         }
                         $.cookie('compare', listcomp.join())
-                        return false
+                        
                     } else {
 
                         let listcomp = []
                         let productid = $(this).attr('productid')
                         listcomp.push(productid);
-                        $(this).children().addClass('active')
+                        $(this).addClass('active')
                         console.log(listcomp.join())
                         $.cookie('compare', listcomp.join())
 
                         $('.number-ss').text(listcomp.length)
                         $('.number-ss').css('display', 'flex')
 
-                        return false
                     }
-
                 })
-                if ($.cookie('compare')) {
-                    let listcomp = $.cookie('compare').split(',')
 
+                if($.cookie('compare')) {
+                    let listcomp = $.cookie('compare').split(',')
                     $('.number-ss').css('display', 'flex')
                     $('.number-ss').text(listcomp.length)
 
                     let productid = $(this).attr('productid')
                     if (listcomp.indexOf(productid) != -1) {
-                        $(this).children().addClass('active')
+                        $(this).addClass('active')
                     } else {
-                        $(this).children().removeClass('active')
+                        $(this).removeClass('active')
                     }
-
-
                 }
             })
         })

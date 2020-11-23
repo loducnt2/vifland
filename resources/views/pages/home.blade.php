@@ -92,7 +92,7 @@ $('#navId a').click(e => {
             </div>
 
             <div class="box-search-index">
-                <form action="{{route('search',$categories['0']->slug)}}" method="post" id="formsearch">
+                <form action="{{route('search2',$categories['0']->slug)}}" method="get" id="formsearch">
                     @csrf
                     <div class="row">
                         <div class="col-3">
@@ -272,9 +272,10 @@ $('#navId a').click(e => {
                                 <div class="tag-thuongluong">
                                     {{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}
                                 </div>
-                                <div class="box-icon"><i class="fav ri-heart-line icons"
-                                        productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}"
-                                        class="comp"><i class="ri-equalizer-line icons"></i></a></div>
+                                <div class="box-icon">
+                                    <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
+                                    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+                                </div>
                                 <div class="overlay"></div>
                                 <div class="vip">
                                     <!-- {{$product->type}} -->

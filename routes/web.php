@@ -44,8 +44,11 @@ Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cat
 
 Route::get('/{cate}','SearchController@getByCate')->name('cate');
 Route::post('/search/{cate}','SearchController@index')->name('search');
+Route::get('/search/{cate}','SearchController@index2')->name('search2');
 Route::post('/filter','SearchController@filter')->name('filter');
-Route::get('/filter','SearchController@filter');
+Route::get('/filter/','SearchController@filterPage');
+
+Route::get('/filter2','SearchController@filter2')->name('filter2');
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
