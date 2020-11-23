@@ -1,20 +1,20 @@
-  <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <script src="{{asset('js/core.min.js') }}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('js/ckeditor.js')}}"></script>
-<script src="{{asset('js/select2.full.js')}}"></script>
+{{-- <script src="{{asset('js/select2.full.js')}}"></script> --}}
 {{-- script --}}
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script>
@@ -156,4 +156,41 @@
     });
     </script>
 {{-- tag posts manager--}}
+<script>
+    $( document ).ready(function() {
+    console.log( "Select 2 ready!" );
+    $("#tag2").select2({
+    // theme:'bootstrap4',
+    // theme: "bootstrap4",
 
+    tags: true,
+    tokenSeparators: [','],
+    placeholder: "Thêm từ khoá",
+       /* the next 2 lines make sure the user can click away after typing and not lose the new tag */
+    });
+    $("#tag2").on("select2:select", function (e) {
+
+$.ajax({
+    // hàm tạo keyword Tag
+    type:'POST',
+    url: '/insert',
+    data:$('.form-control').serialize(),
+    success: function(data){
+    console.log('Gọi thành công');
+    // var data = ($(".tag").val());
+    // var x = data.toString();
+    // var y = x.split(" , ");
+    //     console.log(y);
+    // $(".result").val(y);
+
+    },
+    error: function(error){
+        console.log(error);
+    },
+
+}
+);
+
+});
+});
+</script>

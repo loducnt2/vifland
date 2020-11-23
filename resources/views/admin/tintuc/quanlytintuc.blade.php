@@ -2,6 +2,10 @@
 @extends('admin.sidebar')
 {{-- @extends('admin.footer') --}}
 @section('content')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet"> <!-- for live demo page -->
+<link rel="stylesheet" href="{{asset('css/select2-bootstrap4.min.css')}}">
+
 <style>
 .bootstrap-tagsinput {
     width: 100% !important;
@@ -33,6 +37,9 @@ li {
         font-weight: bold;
 }
 </style>
+<style>
+
+</style>
 {{-- @extends('admin.sidebar') --}}
 @section('title','Quản lý tin tức')
 
@@ -53,6 +60,7 @@ li {
         {{-- {{ csrf_field() }} --}}
         @csrf
 
+
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -62,7 +70,6 @@ li {
                 <ul class="list-group mb-3 box-n p-4">
                     <li class=" d-flex justify-content-between align-items-center lh-condensed mb-3">
                         <div>
-
                             <p class="my-0 section-title-small">Liên kết slug</p>
                             {{-- get slug --}}
                             <small class="text-muted">
@@ -157,28 +164,26 @@ li {
                 </div>
 
                 <div class="section-title-small">
-
+                    Danh mục tin tức
                 </div>
                 <div class="form-group">
                     <label for=""></label>
                     <?php $cate = \App\Models\NewsCategory::all()?>
                     <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
-                        onChange="test();" >
-                        <option value="" disable hidden>Lựa chọn danh mục</option>
+                        onChange="test();">
+                        <option value="">Lựa chọn danh mục</option>
                         @foreach ($cate as $item)
                         <option value="{{$item->id}}">{{$item->category_name}}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="" class="section-title-small">Từ khoá</label>
+                {{-- từ khoá select --}}
+                   <select class="form-control tag"name="tag[]" id="tag2" multiple="multiple">
+                      @foreach ($tag_input as $item)
+                    <option value="{{$item->id}}" name="">{{$item->tag}}</option>
+                    @endforeach
+                    </select>
 
-                    <div class="form-group">
-                      {{-- <label for=""></label> --}}
-                      <input type="text" class="form-control" name="tag" id="tag" value=""aria-describedby="helpId" placeholder="">
-                      {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
-                    </div>
-                </div>
                 <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
                     aria-describedby="helpId" placeholder="">
                 <div class="row">
@@ -188,17 +193,16 @@ li {
                         <textarea id="editor1" name="content" required></textarea>
                     </div>
                 </div>
-                {{$item->tag}}
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="slug" id="slug2" aria-describedby="helpId"
                         placeholder="" readonly>
                 </div>
-                <input type="submit" class="btn btn-primary" >Gửi tin</button>
+                <button class="button-n" type="submit">Đăng tin</button>
     </form>
 </div>
 </div>
-{{-- tag --}}
 
+@endsection
 {{-- @extends('admin.footer') --}}
 <script>
 function test() {
@@ -213,8 +217,6 @@ function test() {
   "></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-<script type="text/javascript" src="https://frontbackend.com/storage/resources/jquery-amsify-suggestags/jquery.amsify.suggestags.js"></script>
-
 
 <script>
 $(document).ready(function() {
@@ -261,5 +263,7 @@ $(document).ready(function() {
         },
     });
 });
-
 </script>
+
+{{-- tag --}}
+
