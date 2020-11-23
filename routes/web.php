@@ -214,9 +214,7 @@ Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/news/{slug}','NewsController@show');
 // quản lý tin tứcf
-Route::get('/admin/index/news',function(){
-    return view('admin.tintuc.quanlytintuc');
-});
+
 Route::POST('/admin/index/news/insert','NewsController@store'
 );
 // news list
@@ -234,9 +232,7 @@ Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/tin-tuc/{slug}','NewsController@show');
 // đăng tin tức
-Route::get('/admin/cap-nhat-tin-tuc',function(){
-    return view('admin.tintuc.quanlytintuc');
-});
+Route::get('/admin/cap-nhat-tin-tuc','NewsController@getcate');
 Route::POST('/admin/index/news/insert','NewsController@store');
 // get tất cả các tin đang có
 Route::get('/index/tin-tuc/','NewsController@listnews');
@@ -260,3 +256,8 @@ Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->nam
 Route::get('/admin/index/quan-ly-thu-tin-tuc/export','NewsLetterController@export')->name('table.export');
 // import
 Route::post('/admin/index/quan-ly-thu-tin-tuc/import', 'NewsLetterController@import')->name('table.import');
+// tag insert keyword
+Route::post('/insert','NewsController@insertTag')->name('tag.insert');
+
+#Insert từ khoá
+// Route::post('/admin/index/quan-ly-tu-khoa/insert','TagController@store')->name('tag.insert');

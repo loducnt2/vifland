@@ -2,6 +2,10 @@
 @extends('admin.sidebar')
 {{-- @extends('admin.footer') --}}
 @section('content')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet"> <!-- for live demo page -->
+<link rel="stylesheet" href="{{asset('css/select2-bootstrap4.min.css')}}">
+
 <style>
 .bootstrap-tagsinput {
     width: 100% !important;
@@ -32,6 +36,9 @@ li {
         font-size:13px;
         font-weight: bold;
 }
+</style>
+<style>
+
 </style>
 {{-- @extends('admin.sidebar') --}}
 @section('title','Quản lý tin tức')
@@ -170,11 +177,13 @@ li {
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="" class="section-title-small">Từ khoá</label>
-                    <input type="text" class="form-control typeahead input-n input--lg border" name="tags[]" id="tag"
-                        aria-describedby="helpId" placeholder="" data-role="tagsinput">
-                </div>
+                {{-- từ khoá select --}}
+                   <select class="form-control tag"name="tag[]" id="tag2" multiple="multiple">
+                      @foreach ($tag_input as $item)
+                    <option value="{{$item->id}}" name="">{{$item->tag}}</option>
+                    @endforeach
+                    </select>
+
                 <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
                     aria-describedby="helpId" placeholder="">
                 <div class="row">
@@ -192,6 +201,7 @@ li {
     </form>
 </div>
 </div>
+
 @endsection
 {{-- @extends('admin.footer') --}}
 <script>
@@ -254,3 +264,6 @@ $(document).ready(function() {
     });
 });
 </script>
+
+{{-- tag --}}
+
