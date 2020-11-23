@@ -1,5 +1,6 @@
   <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -13,12 +14,14 @@
 {{-- script --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script type="text/javascript" src="https://frontbackend.com/storage/resources/jquery-amsify-suggestags/jquery.amsify.suggestags.js"></script>
 
 <script>
     CKEDITOR.replace( 'editor1' );
 </script>
-{{-- slug --}}
+{{-- tag --}}
+
+
+{{-- end tag --}}
 <script>
     function ChangeToSlug()
     {
@@ -59,6 +62,10 @@
     }
 
 </script>
+
+
+
+
 
     {{-- <script>
         $( document ).ready(function() {
@@ -167,14 +174,3 @@
 
     }
 </script>
-
-{{-- tags --}}
-<script>
-    $( document ).ready(function() {
-      console.log( "ready!" );
-      $('input[name="country"]').amsifySuggestags({
-      suggestions: ['Covid-19', 'Tin-hau-covid', 'Nepal', 'UAE', 'Iran', 'Bangladesh']
-  });
-  });
-  //
-  </script>

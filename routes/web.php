@@ -257,3 +257,6 @@ Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->nam
 Route::get('/admin/index/quan-ly-thu-tin-tuc/export','NewsLetterController@export')->name('table.export');
 // import
 Route::post('/admin/index/quan-ly-thu-tin-tuc/import', 'NewsLetterController@import')->name('table.import');
+
+#Insert từ khoá
+// Route::post('/admin/index/quan-ly-tu-khoa/insert','TagController@store')->name('tag.insert');

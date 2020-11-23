@@ -53,7 +53,6 @@ li {
         {{-- {{ csrf_field() }} --}}
         @csrf
 
-
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -63,6 +62,7 @@ li {
                 <ul class="list-group mb-3 box-n p-4">
                     <li class=" d-flex justify-content-between align-items-center lh-condensed mb-3">
                         <div>
+
                             <p class="my-0 section-title-small">Liên kết slug</p>
                             {{-- get slug --}}
                             <small class="text-muted">
@@ -157,13 +157,13 @@ li {
                 </div>
 
                 <div class="section-title-small">
-                    Danh mục tin tức
+
                 </div>
                 <div class="form-group">
                     <label for=""></label>
                     <?php $cate = \App\Models\NewsCategory::all()?>
                     <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
-                        onChange="test();">
+                        onChange="test();" >
                         <option value="" disable hidden>Lựa chọn danh mục</option>
                         @foreach ($cate as $item)
                         <option value="{{$item->id}}">{{$item->category_name}}</option>
@@ -175,7 +175,7 @@ li {
 
                     <div class="form-group">
                       {{-- <label for=""></label> --}}
-                      <input type="text" class="form-control" name="country" id="" value=""aria-describedby="helpId" placeholder="">
+                      <input type="text" class="form-control" name="tag" id="tag" value=""aria-describedby="helpId" placeholder="">
                       {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
                     </div>
                 </div>
@@ -188,15 +188,17 @@ li {
                         <textarea id="editor1" name="content" required></textarea>
                     </div>
                 </div>
+                {{$item->tag}}
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="slug" id="slug2" aria-describedby="helpId"
                         placeholder="" readonly>
                 </div>
-                <submit type="submit" class="btn btn-primary">Gửi tin</button>
+                <input type="submit" class="btn btn-primary" >Gửi tin</button>
     </form>
 </div>
 </div>
-@endsection
+{{-- tag --}}
+
 {{-- @extends('admin.footer') --}}
 <script>
 function test() {
@@ -211,6 +213,8 @@ function test() {
   "></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script type="text/javascript" src="https://frontbackend.com/storage/resources/jquery-amsify-suggestags/jquery.amsify.suggestags.js"></script>
+
 
 <script>
 $(document).ready(function() {
@@ -257,4 +261,5 @@ $(document).ready(function() {
         },
     });
 });
+
 </script>

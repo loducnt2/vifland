@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -14,6 +15,10 @@ class TagController extends Controller
     public function index()
     {
         //
+
+        // return view('')
+        // show all tags
+
     }
 
     /**
@@ -35,6 +40,12 @@ class TagController extends Controller
     public function store(Request $request)
     {
         //
+        $tag = new tag();
+            // $tag->tag = $request->input('tag');
+
+        $tag->tag = $request->input('tag');
+
+        $tag->save();
     }
 
     /**
