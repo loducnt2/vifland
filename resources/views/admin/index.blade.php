@@ -217,6 +217,7 @@
             </div>
         </div>
     </main>
+    <div id="cash" hidden="" cash=""></div>
     @endsection
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -231,113 +232,108 @@ $(document).ready(function() {
         source.onmessage = function(event) {
           const result = JSON.parse(event.data)
           console.log(result)
-          
-          
+          $('#cash').attr('cash',result['cash'])
           $('#account').text(result['account'])
           $('#view').text(result['view'])
           $('#posted').text(result['product_posted'])
           $('#current').text(result['product_current'])
           $('#email').text(result['email'])
-          
+          //alert($('#cash').text())
         }
-        //const cash = result['cash']
-        //console.log(cash)
     }, 5000);
 
+        const bcdt_1 = $('#bcdt').attr('data-1');
+        var cash = $('#cash').attr('cash');
+        var bcdtData = {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
+                'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+            ],
+            datasets: [{
+                label: 'Tiền',
+                borderColor: "#3160D8",
+                backgroundColor: "#3160D8",
+                fill: false,
+                borderWidth: 2,
+                data: [@foreach ($cash as $cs){{$cs}}, @endforeach ],
+                //data: cash ,
 
-    const bcdt_1 = $('#bcdt').attr('data-1');
-    
-    var bcdtData = {
-        labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
-            'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
-        ],
-        datasets: [{
-            label: 'Tiền',
-            borderColor: "#3160D8",
-            backgroundColor: "#3160D8",
-            fill: false,
-            borderWidth: 2,
-            data: [  @foreach ($cash as $cs){{$cs}}, @endforeach  ],
-            //data: cash,
-
-        }]
-    };
-
-    
-
-    window.onload = function() {
-        var ctx = document.getElementById("bcdt").getContext("2d");
-        window.myLine = Chart.Line(ctx, {
-            data: bcdtData,
-            options: {
-                hover: {
-                    mode: 'index',
-                    intersect: false
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false
-                },
-                animation: {
-                    duration: 2000,
-                    easing: 'easeInOutCubic',
-                },
-                elements: {
-                    point: {
-                        radius: 0
-                    }
-                },
-                legend: {
-                    display: false,
-                },
-                responsive: true,
-                stacked: false,
-                title: {
-                    display: false,
-                    text: 'Chart.js Line Chart - Multi Axis'
-                },
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            drawBorder: false,
-                            borderDash: [3, 2],
-                            zeroLineBorderDash: [3, 2],
-                            zeroLineColor: 'rgba(225,225,225,0.8)'
-                        },
-                        type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                        display: true,
-                        stacked: true,
-                        ticks: {
-                            // Include a dollar sign in the ticks
-                            callback: function(value, index, values) {
-                                return value.toLocaleString('vi', {
-                                    style: 'currency',
-                                    currency: 'VND'
-                                }); + 'đ';
-                            }
+            }]
+        };
+        window.onload = function() {
+            var ctx = document.getElementById("bcdt").getContext("2d");
+            window.myLine = Chart.Line(ctx, {
+                data: bcdtData,
+                options: {
+                    hover: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutCubic',
+                    },
+                    elements: {
+                        point: {
+                            radius: 0
                         }
-                    }, ],
-                    xAxes: [{
-                        gridLines: {
-                            display: false,
-                            borderDash: [3, 2],
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    responsive: true,
+                    stacked: false,
+                    title: {
+                        display: false,
+                        text: 'Chart.js Line Chart - Multi Axis'
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                drawBorder: false,
+                                borderDash: [3, 2],
+                                zeroLineBorderDash: [3, 2],
+                                zeroLineColor: 'rgba(225,225,225,0.8)'
+                            },
+                            type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            stacked: true,
+                            ticks: {
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    return value.toLocaleString('vi', {
+                                        style: 'currency',
+                                        currency: 'VND'
+                                    }); + 'đ';
+                                }
+                            }
+                        }, ],
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                                borderDash: [3, 2],
 
-                        },
-                        ticks: {
-                            padding: 1,
-                        },
-                        stacked: true,
-                    }, ],
+                            },
+                            ticks: {
+                                padding: 1,
+                            },
+                            stacked: true,
+                        }, ],
+                    }
                 }
-            }
-        });
-    };
+            });
+        };
+    
+    
     // Chart 2
     var data = [{
         backgroundColor: ["#285FD3", "#FF8B26"],
         borderColor: "#fff",
         borderWidth: 2,
-        data: [{{-- $post_history_11 --}}, {{-- $post_history_00 --}}],
+        data: [{{ $post_history_11 }}, {{ $post_history_00 }}],
         hoverBorderWidth: 5,
         labels: ["Bài viết đã duyệt", "Bài viết chưa duyệt"],
     }, ];
