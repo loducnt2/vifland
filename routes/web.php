@@ -110,15 +110,15 @@ Route::get('/favorites/all','API\FavoriteController@allFavorite')->name('all-fav
 
 
 //  test
-Route::get('/demopusher', function () {
+Route::get('/dsds/demopusher', function () {
     return view('showNotification');
 });
-Route::get('getPusher', function (){
+Route::get('/dsds/getPusher', function (){
 	return view('form_pusher');
 });
-Route::get('/pusher', function(Illuminate\Http\Request $request) {
+Route::get('/dsds/pusher', function(Illuminate\Http\Request $request) {
     event(new App\Events\HelloPusherEvent($request));
-    return redirect('getPusher');
+    return redirect('/dsds/getPusher');
 });
 Route::get('/test',function(){return view('test/home');});
 
@@ -183,8 +183,10 @@ Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
 // Quản lý tin đăng
 
 
-// login admin
-Route::get('admin/index','AdminController@index')->middleware('admin.auth');
+//  admin
+Route::get('admin/index','AdminController@index')->middleware('admin.auth')->name('admin-dashboard');
+Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
+
 
 //Wallet
 Route::get('admin/wallet','WalletController@index')->name('wallet');

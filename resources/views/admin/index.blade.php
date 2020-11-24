@@ -31,7 +31,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount counter">{{number_format($product_posted)}}</div>
+                                    <div class="amount counter" id="posted">{{ number_format($product_posted) }}</div>
                                     <div class="text-smalls">Tin Đăng</div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount counter">{{number_format($product_current)}}</div>
+                                    <div class="amount counter" id="current">{{ number_format($product_current) }}</div>
                                     <div class="text-smalls">Tin Đăng</div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount">{{number_format($view)}}</div>
+                                    <div class="amount" id="view">{{ number_format($view) }}</div>
                                     <div class="text-smalls">Lượt Xem</div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount">{{number_format($user_count)}}</div>
+                                    <div class="amount" id="account">{{ number_format($user_count) }}</div>
                                     <div class="text-smalls">Tài Khoản</div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount">{{number_format($email)}}</div>
+                                    <div class="amount" id="email">{{ number_format($email) }}</div>
                                     <div class="text-smalls">Email</div>
                                 </div>
                             </div>
@@ -112,8 +112,8 @@
                         <div class="box-n p-5 bcdt">
                             <div class="title-money">
                                 <div class="money-now">
-                                    <span class="money-big">
-                                        {{number_format($cash_by_month)}} VNĐ
+                                    <span class="money-big" id="cash_by_month">
+                                        {{ number_format($cash_by_month) }} VNĐ
                                     </span>
                                     <span class="money-small">
                                         Tháng Này
@@ -121,8 +121,8 @@
                                 </div>
                                 <div class="line-dive"></div>
                                 <div class="money-total">
-                                    <span class="money-big">
-                                        {{number_format($total_cash)}} VNĐ
+                                    <span class="money-big" id="total_cash">
+                                        {{ number_format($total_cash) }} VNĐ
                                     </span>
                                     <span class="money-small">
                                         Tổng Doanh Thu
@@ -158,8 +158,8 @@
                                                 <p>Bài viết đã duyệt</p>
                                             </div>
                                             <div class="line-right xanh ">
-                                                <span>{{$post_history_1}}</span>
-                                                {{$post_history_11}} %
+                                                <span>{{ $post_history_1 }}</span>
+                                                {{ $post_history_11 }} %
                                             </div>
                                         </div>
                                         <div class="line-1">
@@ -168,8 +168,8 @@
                                                 <p>Bài viết chưa duyệt</p>
                                             </div>
                                             <div class="line-right cam">
-                                                <span>{{$post_history_0}}</span>
-                                                {{$post_history_00}} %
+                                                <span>{{ $post_history_0 }}</span>
+                                                {{ $post_history_00 }} %
                                             </div>
                                         </div>
 
@@ -188,7 +188,7 @@
                                 </div>
                                 <!-- Start -->
                                 <div class="wrap-list-bxh">
-                                    @foreach($user_by_cash as $user)
+                                     @foreach($user_by_cash as $user) 
                                     <div class="list-items-bxh">
                                         <div class="box-n px-4 py-3 item zoom-in">
                                             <div class="left-bxh">
@@ -196,16 +196,16 @@
                                                     <img src="{{asset('assets/avatar/user.png')}}" alt="">
                                                 </div>
                                                 <div class="text">
-                                                    <div class="title">{{$user->full_name == NULL ? $user->username : $user->full_name}}</div>
+                                                    <div class="title">{{ $user->full_name == NULL ? $user->username : $user->full_name }}</div>
                                                     <div class="ngaygianhap">12/07/2020</div>
                                                 </div>
                                             </div>
                                             <div class="right-bxh">
-                                                <span class="amount">{{number_format($user->total_cash) }}</span> VNĐ
+                                                <span class="amount">{{ number_format($user->total_cash) }}</span> VNĐ
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                     @endforeach 
                                     <!-- End list -->
                                 </div>
                                 <!-- End  -->
@@ -224,8 +224,29 @@
 
 <script>
 $(document).ready(function() {
-    //setTimeout(location.reload(),100000)
+
+
+    setTimeout(function(){
+        var source = new EventSource("/admin/dashboard");
+        source.onmessage = function(event) {
+          const result = JSON.parse(event.data)
+          console.log(result)
+          
+          
+          $('#account').text(result['account'])
+          $('#view').text(result['view'])
+          $('#posted').text(result['product_posted'])
+          $('#current').text(result['product_current'])
+          $('#email').text(result['email'])
+          
+        }
+        //const cash = result['cash']
+        //console.log(cash)
+    }, 5000);
+
+
     const bcdt_1 = $('#bcdt').attr('data-1');
+    
     var bcdtData = {
         labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
             'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
@@ -236,10 +257,13 @@ $(document).ready(function() {
             backgroundColor: "#3160D8",
             fill: false,
             borderWidth: 2,
-            data: [ @foreach ($cash as $cs){{$cs}}, @endforeach ],
+            data: [  @foreach ($cash as $cs){{$cs}}, @endforeach  ],
+            //data: cash,
 
         }]
     };
+
+    
 
     window.onload = function() {
         var ctx = document.getElementById("bcdt").getContext("2d");
@@ -313,7 +337,7 @@ $(document).ready(function() {
         backgroundColor: ["#285FD3", "#FF8B26"],
         borderColor: "#fff",
         borderWidth: 2,
-        data: [{{$post_history_11}}, {{$post_history_00}}],
+        data: [{{-- $post_history_11 --}}, {{-- $post_history_00 --}}],
         hoverBorderWidth: 5,
         labels: ["Bài viết đã duyệt", "Bài viết chưa duyệt"],
     }, ];
