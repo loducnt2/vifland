@@ -52,7 +52,10 @@
 										<div class="box-sp">
 											<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
 												<!-- <div class="tag-thuongluong">Thương lượng</div> -->
-												<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href="{{$product->product_id}}" class="comp"><i class="ri-equalizer-line icons"></i></a></div>
+												<div class="box-icon">
+												    <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
+												    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+												</div>
 												<div class="overlay"></div>
 											</div>
 											<div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">

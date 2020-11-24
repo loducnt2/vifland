@@ -1,24 +1,20 @@
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
-<link rel="stylesheet" href="{{asset('css/styles.css') }}">
 <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
 <link href="{{asset('css/profile.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
-    type="text/css" />
+{{-- <link rel="stylesheet" href="style.css"> --}}
+
+
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
     crossorigin="anonymous" />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.4.2/bootstrap-tagsinput.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
 <link href="{{asset('css/bootstrap-toggle.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+{{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> --}}
 
 <style>
 ::-webkit-scrollbar {
@@ -107,7 +103,7 @@
                                     <a class="nav-link" href="{{ url('admin/danh-sach-duyet-tin') }}">Duyệt tin</a>
                                 </nav>
                             </div>
-                            
+
                             <a class="nav-link" href="{{ url('admin/index/profiles') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý người dùng
@@ -139,12 +135,19 @@
                                     </span></div>
                                 Banner
                             </a>
+                            <a class="nav-link" href="{{ url('admin/index/quan-ly-tu-khoa') }}">
+                                <div class="sb-nav-link-icon"><span class="material-icons">
+                                        tag_active
+                                    </span></div>
+                                Từ khoá
+                            </a>
                             <a class="nav-link" href="{{ url('admin/danh-sach-thong-bao') }}">
                                 <div class="sb-nav-link-icon"><span class="material-icons">
                                         notifications_active
                                     </span></div>
                                 Thông báo
                             </a>
+
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Tài khoản đăng nhập</div>
@@ -193,7 +196,7 @@
     $(document).ready(function() {
         $(".breadcrumb-n .avatar").click(function() {
             $(".breadcrumb-n .list-menu-login").toggleClass("show")
-        }) 
+        })
     });
     </script>
     @extends('admin.footer')
