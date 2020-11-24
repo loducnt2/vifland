@@ -169,23 +169,27 @@
                                                 <div class="col-md-12 col-lg-10 form-group">
                                                     <div class="row">
                                                         <div class="col-4 form-group">
-                                                            <input type="number" value="<?php echo ''.$date[2]; ?>" min="0" placeholder="Ngày" name="date" id="date">
+                                                            <input type="number" value="<?php echo ''.$date[2]; ?>"
+                                                                min="0" placeholder="Ngày" name="date" id="date">
                                                         </div>
                                                         <div class="col-4 form-group">
                                                             <select class="input-select" name="month" id="month">
-                                                            <option hidden="" disabled="" selected value=""> <?php echo 'Tháng '.$date[1]; ?>
+                                                                <option hidden="" disabled="" selected value="">
+                                                                    <?php echo 'Tháng '.$date[1]; ?>
                                                                 </option>
-                                                                    @for ($i = 1; $i <= 12; $i++)
-
-                                                            {{-- <option value="{{$i}}" name="" id="">Tháng {{$i}}</option>
+                                                                @for ($i = 1; $i <= 12; $i++)
+                                                                    {{-- <option value="{{$i}}" name="" id="">Tháng
+                                                                    {{$i}}</option>
                                                                     @endfor --}}
-                                                            <option value="{{$i}}">Tháng {{$i}}</option>
+                                                                    <option value="{{$i}}">Tháng {{$i}}</option>
 
-                                                                        @endfor
+                                                                    @endfor
                                                             </select>
                                                         </div>
                                                         <div class="col-4 form-group">
-                                                            <input type="number" min="0" placeholder="Năm" value="<?php echo ''.$date[0]; ?>" name="year" id="year">
+                                                            <input type="number" min="0" placeholder="Năm"
+                                                                value="<?php echo ''.$date[0]; ?>" name="year"
+                                                                id="year">
                                                         </div>
 
                                                     </div>
@@ -310,31 +314,30 @@
 @endsection
 
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#upload-image').click(function (e) {
-                $('#upload').click(function (e) e.preventDefault();
-                        //    let formData = new FormData(this);
-                        //    $('#image-input-error').text('');
-                        $.ajax({
-                            type: 'post',
-                            url: 'google.com',
-                            data: formData,
-                            contentType: false,
-                            processData: false,
-                            success: (response) => {
-                                if (response) {
-                                    this.reset();
-                                    alert('Image has been uploaded successfully');
-                                }
-                            },
-                            error: function (response) {
-                                console.log(response);
-                                $('#image-input-error').text(response.responseJSON.errors.file);
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$('#upload-image').click(function(e) {
+            $('#upload').click(function(e) e.preventDefault();
+                    //    let formData = new FormData(this);
+                    //    $('#image-input-error').text('');
+                    $.ajax({
+                        type: 'post',
+                        url: 'google.com',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: (response) => {
+                            if (response) {
+                                this.reset();
+                                alert('Image has been uploaded successfully');
                             }
-                        });
-
+                        },
+                        error: function(response) {
+                            console.log(response);
+                            $('#image-input-error').text(response.responseJSON.errors.file);
+                        }
+                    });
 </script>

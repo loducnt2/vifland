@@ -2,7 +2,7 @@
     @if(Auth::check() && Auth::user()->user_type == "1")
     <div class="top-bar-admin">
         <div class="max-width-container">
-        <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a></div>
+            <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a></div>
 
             <div class="wrap-text-right">
                 <p>Xin chào mừng: {{auth()->user()->username}}</p>
@@ -21,10 +21,10 @@
                 <div class="content"> <b>{{auth()->user()->username}}</b>
                     @if(Auth::check() && Auth::user()->user_type == "1")
 
-                        <p>Quản trị viên</p>
+                    <p>Quản trị viên</p>
 
                     @else
-                        <p>Khách</p>
+                    <p>Khách</p>
 
                     @endif
                 </div>
@@ -153,37 +153,40 @@
                                         }
                                       ?>
                                     <div class="co-thong-bao">
-                                            @foreach($duedate as $due)
+                                        @foreach($duedate as $due)
                                         <div class="item">
                                             <div class="wrap-text products-duedate ">
-                                                <div class="thongbao post-expired">Thông báo</div><a href="{{route('article-detail',$due->slug)}}">Bài
+                                                <div class="thongbao post-expired">Thông báo</div><a
+                                                    href="{{route('article-detail',$due->slug)}}">Bài
                                                     viết của bạn sắp hết hạn</a>
                                                 <div class="date"> ngày hết hạn :{{$due->date}}</div>
                                                 <div>{{$due->id}}</div>
-                                             </div>
+                                            </div>
                                         </div>
                                         @endforeach
 
                                         @foreach($duedate1 as $due1)
                                         <div class="item">
                                             <div class="wrap-text products-duedate ">
-                                                <div class="thongbao post-due" style="background: red;">Thông báo</div><a href="{{route('article-detail',$due1->slug)}}">Bài
+                                                <div class="thongbao post-due" style="background: red;">Thông báo</div>
+                                                <a href="{{route('article-detail',$due1->slug)}}">Bài
                                                     viết của bạn đã hết hạn</a>
                                                 <div class="date"> ngày hết hạn : {{$due1->date}}</div>
                                                 <div>{{$due1->id}}</div>
-                                             </div>
+                                            </div>
                                         </div>
                                         @endforeach
 
 
-                                            @foreach($notis as $noti)
+                                        @foreach($notis as $noti)
                                         <div class="item">
                                             <div class="wrap-text">
-                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#">{{$noti->content}}</a>
-                                                <div class="date" > {{$noti->created_at}}</div>
+                                                <div class="thongbao thongbao-color">Thông báo</div><a
+                                                    href="#">{{$noti->content}}</a>
+                                                <div class="date"> {{$noti->created_at}}</div>
                                             </div>
                                         </div>
-                                             @endforeach
+                                        @endforeach
 
 
 
@@ -193,14 +196,15 @@
                                 </div>
                             </div>
                         </li>
-                    <li class="nav-item tin-tuc-icon"><a class="text" href="/index/tin-tuc"><em class="material-icons icon">list_alt</em>Tin tức</a></li>
+                        <li class="nav-item tin-tuc-icon"><a class="text" href="/index/tin-tuc"><em
+                                    class="material-icons icon">list_alt</em>Tin tức</a></li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
                                 data-target="#exampleModal">Đăng bài</a>
                         </li>
                         <li class="nav-item d-none user-logined">
-                            <img class="avatar-login"
-                                src="{{asset('assets/avatar/avatar.png')}}" alt=""></li>
+                            <img class="avatar-login" src="{{asset('assets/avatar/avatar.png')}}" alt="">
+                        </li>
                         <li class="nav-item">
                             @if(auth()->check())
                             <div class="avatar-user"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}"
@@ -232,7 +236,9 @@
                     <div class="img"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-res-white.png')}}"
                                 alt=""></a></div>
                     <div class="button-mobile-post">
-                        <button class="button-mbp"><i class="ri-chat-new-fill icon"></i><a style="color:#fff" class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal">Đăng bài</a></button>
+                        <button class="button-mbp"><i class="ri-chat-new-fill icon"></i><a style="color:#fff"
+                                class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
+                                data-target="#exampleModal">Đăng bài</a></button>
                         <div class="sosanh"><a href="/compares"><i class="ri-equalizer-line icon"></i></a></div>
                         <div class="yeuthich"><a href="{{route('favorites')}}"><i class="ri-heart-fill icon"></i></a>
                         </div>
@@ -388,14 +394,13 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-   var number_noti =0;
-   $(".item").each(function(){
-    number_noti+=1
-   })
-    if(number_noti == 0){
-        $(".number-tb").hide();
-    }
-    else{
-        $(".number-tb").text(number_noti);
-    }
+var number_noti = 0;
+$(".item").each(function() {
+    number_noti += 1
+})
+if (number_noti == 0) {
+    $(".number-tb").hide();
+} else {
+    $(".number-tb").text(number_noti);
+}
 </script>

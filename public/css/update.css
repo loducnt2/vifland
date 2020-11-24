@@ -255,3 +255,15 @@ a.cke_button {
 .user-admin {
     min-height: auto !important;
 }
+h2.section-under-title {
+    text-decoration: none !important;
+    font-size: 18px;
+    overflow: hidden;
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    padding: 0 !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
