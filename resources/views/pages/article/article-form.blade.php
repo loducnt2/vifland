@@ -28,8 +28,7 @@
                         <div class="box-left-form-muaban">
                             <div class="mdm-1">
                                 <div class="checked">
-                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id"
-                                        checked="">
+                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id" checked >
                                     <label for="luachonsearch1">{{$cate_2[0]->name}}</label>
                                 </div>
                                 <div class="checked">
@@ -82,8 +81,9 @@
                                     <div class="tab-pane fade" id="thongtin" role="tabpanel"
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate" multiple=  >
+                                            <label for="thanhpho">Loại nhà đất</label>
+                                            <select class="select1" name="product_cate" id="product_cate" >
+                                                <option value="">Chọn</option>
                                                 @foreach($product_cate as $prodcate)
                                                 <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
                                                 @endforeach
@@ -91,11 +91,11 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="text" min="0" name="facades">
+                                            <input type="number" min="0" name="facades">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="text" min="0" name="depth">
+                                            <input type="number" min="0" name="depth">
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -169,10 +169,10 @@
                     <div class="col-lg-9 col-md-12">
                         <div class="row">
                             <div class="col-12 form-group">
-                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title">
+                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title" requ>
                             </div>
                             <div class="col-12 form-group">
-                                <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
+                                <textarea class="form-control" id="summary-ckeditor" name="content" id="content"></textarea>
                             </div>
                             <!-- <div class="col-12 form-group">
                                 <span>Ảnh tiêu đề : &nbsp;</span>
@@ -186,7 +186,7 @@
                                 <div class="form-upload__field">
                                     <label class="form-upload__title" for="upload">Thêm ảnh
                                         <input class="form-upload__control js-form-upload-control" id="upload"
-                                            type="file" multiple="true" style="display:none" name="img[]" required>
+                                            type="file" multiple="true" style="display:none" name="img[]" >
                                     </label>
                                     <button class="btn btn-clear ml-3">Xóa ảnh</button>
                                 </div>
@@ -200,7 +200,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">person</span>
-                                <input type="text" placeholder="Tên liên lạc" name="name_contact">
+                                <input type="text" placeholder="Tên liên lạc" name="name_contact" id="name_contact">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">business</span>
@@ -208,7 +208,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">phone</span>
-                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact">
+                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact" id="phone_contact">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
                                 <input type="text" placeholder="Facebook cá nhân" name="facebook">
@@ -241,15 +241,15 @@
                                     </div>
                                     <div class="checked">
                                         <input id="vip1" type="radio" value="1" name="type">
-                                        <label class="vip1" for="vip1">Tin VIP 1</label>
+                                        <label class="vip1" for="vip1">tin {{$prices[0]->name}}</label>
                                     </div>
                                     <div class="checked">
                                         <input id="vip2" type="radio" value="2" name="type">
-                                        <label class="vip2" for="vip2">Tin VIP 2</label>
+                                        <label class="vip2" for="vip2">tin {{$prices[1]->name}}</label>
                                     </div>
                                     <div class="checked">
                                         <input id="vip3" type="radio" value="3" name="type">
-                                        <label class="vip3" for="vip3">Tin VIP 3</label>
+                                        <label class="vip3" for="vip3">Tin {{$prices[2]->name}}</label>
                                     </div>
                                 </div>
                                 <div class="wrap-vip-mobile">
@@ -259,13 +259,11 @@
                                                     thường&nbsp;</strong>(Miễn phí)
                                             </option>
                                             <option class="vip1" value="vip1">
-                                                <p>TIN VIP 1&nbsp;</p>(15.000 ₫ tin/ngày)
+                                                <p>TIN {{$prices[0]->name}}&nbsp;</p>({{$prices[0]->price}} ₫ tin/ngày)
                                             </option>
-                                            <option class="vip2" value="vip2"> <span>TIN VIP
-                                                    2&nbsp;</span>(25.000 ₫
+                                            <option class="vip2" value="vip2"> <span>TIN {{$prices[1]->name}}&nbsp;</span>({{$prices[1]->price}} ₫
                                                 tin/ngày)</option>
-                                            <option class="vip3" value="vip3"> <span>TIN VIP
-                                                    3&nbsp;</span>(35.000 ₫
+                                            <option class="vip3" value="vip3"> <span>TIN {{$prices[2]->name}}&nbsp;</span>({{$prices[2]->price}} ₫
                                                 tin/ngày)</option>
                                         </select>
                                     </div>
@@ -313,7 +311,7 @@
                                             <table>
                                                 <tr>
                                                     <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>40.000 ₫
+                                                    <td class="mb-30"> <strong>{{$prices[0]->price}} ₫
                                                             tin/ngày</strong></td>
                                                 </tr>
                                                 <tr>
@@ -351,7 +349,7 @@
                                             <table>
                                                 <tr>
                                                     <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>25.000 ₫
+                                                    <td class="mb-30"> <strong>{{$prices[1]->price}} ₫
                                                             tin/ngày</strong></td>
                                                 </tr>
                                                 <tr>
@@ -391,7 +389,7 @@
                                             <table>
                                                 <tr>
                                                     <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>15.000 ₫
+                                                    <td class="mb-30"> <strong>{{$prices[2]->price}} ₫
                                                             tin/ngày</strong></td>
                                                 </tr>
                                                 <tr>
@@ -777,8 +775,6 @@
     CKEDITOR.replace('summary-ckeditor');
     $(document).ready(function () {
 
-
-
         $('#unit').change(function () {
             if ($(this).val() == 13) {
                 $('#price').attr('disabled', true);
@@ -787,24 +783,104 @@
             }
         })
 
-        $('#province').change(function () {
-            var province = $(this).val();
-            var url = '/get-district/' + province;
-            $('#district').load(url, function () {
-                var district = $(this).val();
-                var url1 = '/get-ward/' + district;
-                $('#ward').load(url1);
-            });
-        });
-        $('#district').change(function () {
-            var district = $(this).val();
-            var url1 = '/get-ward/' + district;
-            $('#ward').load(url1);
-        });
+        $('#province').change(function() {
+                let province = $(this).val();
+                let url = '/get-district/' + province;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function(data, status) {
+                        data = '<option value="0" selected>Chọn</option>' + data
+                        $('#district').html(data)
+                    }
+                })
+                $.ajax({
+                    url: '/get-content-province/' + province,
+                    type: 'GET',
+                    success: function(data, status) {
+                        $('#content-province').html(data)
+                    }
+                })
 
-        //Validate 
+            })
+            $('#district').change(function() {
+                let district = $(this).val();
+                let url1 = '/get-ward/' + district;
+                $.ajax({
+                    url: url1,
+                    type: 'GET',
+                    success: function(data, status) {
+                        data = '<option value="0" selected>Chọn</option>' + data
+                        $('#ward').html(data)
+                    }
+                })
+            })
+
+        //Validate
+
+        $('.formDangBaiViet').on('submit',function(e){
+            function delay_submit(){
+                $('.button-luu').attr('disabled','disabled')
+                setTimeout(function(){ $('.button-luu').removeAttr('disabled') }, 5000);
+            }
+            if($('.form-upload__preview').children().length < 3){
+                toastr.warning("Vui lòng thêm ít nhất 3 ảnh");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#phone_contact').val()==""){
+                toastr.warning("Vui lòng nhập số điện thoại liên lạc");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#name_contact').val()==""){
+                toastr.warning("Vui lòng nhập tên liên lạc");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#price').val()==""){
+                toastr.warning("Vui lòng nhập đơn giá");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#unit option:selected').index()==0){
+                toastr.warning("Vui lòng chọn đơn vị");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#content').val()==""){
+                toastr.warning("Vui lòng nhập nội dung ");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#product_cate option:selected').index()==0){
+                toastr.warning("Vui lòng chọn loại nhà đất");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#ward option:selected').index()==0){
+                toastr.warning("Vui lòng chọn Phường/Xã");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#district option:selected').index()==0){
+                toastr.warning("Vui lòng chọn Quận/Huyện");
+                e.preventDefault();
+                delay_submit();
+            }
+            if($('#province option:selected').index()==0){
+                toastr.warning("Vui lòng chọn Tỉnh/Thành phố");
+                e.preventDefault();
+                delay_submit();
+            }
+            if( $('input[name="title"]').val() == ""){
+                toastr.warning("Vui lòng thêm tiêu đề");
+                e.preventDefault();
+                delay_submit();
+            }  
+        });
         $('.formDangBaiViet').submit(function () {
-
+            
             let wallet = {{ auth()->user()->wallet }};
             let pricepost = $('input[name="pricePost"]').val();
             //console.log(wallet + ' ' + pricepost)
@@ -812,72 +888,8 @@
                 alert( 'Ví không đủ tiền' )
                 return false
             }
-          })
-      /*$('.formDangBaiViet').validate({
-          ignore: [],
-          rules:{
-              province_id:{
-                required:true,
-              },
-              address:{
-                required:true,
-              },
-              title:{
-               required :true,
-              },
-              content:{
-                required:true,
-                lettersonly: true,
-                minlength:50
-              },
-              img:{
-                required:true,
-              },
-              name_contact:{
-               required :true,
-              },
-              phone_contact:{
-               required :true,
-              },
-              datetime_start:{
-                required:true,
-              },
-              tags:{
-                required:true,
-              },
-
-              legal:{
-                required:true,
-              },
-              unit_id:{
-                required:true,
-              },
-              price:{
-                required:true,
-              },
-            },
-            //Custom
-            errorPlacement: function(error, element) {
-                //Custom position: first name
-                if (element.attr("name") == "first" ) {
-                    $("#errNm1").text(error);
-                }
-                //Custom position: second name
-                else if (element.attr("name") == "second" ) {
-                    $("#errNm2").text(error);
-                }
-                // Default position: if no match is met (other fields)
-                else {
-                     error.append($('.errorTxt span'));
-                }
-            },
-            submitHandler: function (form) {
-                form.submit(function () {
-
-                });
-            }
-
-        });*/
+        });
+      
 
 
     });

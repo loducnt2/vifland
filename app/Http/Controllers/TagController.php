@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tag;
 use Illuminate\Http\Request;
 
-class PricePostController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,6 +15,10 @@ class PricePostController extends Controller
     public function index()
     {
         //
+
+        // return view('')
+        // show all tags
+
     }
 
     /**
@@ -35,6 +40,12 @@ class PricePostController extends Controller
     public function store(Request $request)
     {
         //
+        $tag = new tag();
+            // $tag->tag = $request->input('tag');
+
+        $tag->tag = $request->input('tag');
+
+        $tag->save();
     }
 
     /**

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Str;
+
+
+use App\Models\tag;
 use App\Models\News;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
@@ -46,12 +49,11 @@ class NewsController extends Controller
         // insert tin tức
         $news = new News();
         // tags
-
         $news->title=$request->input('title');
         $news->slug = $request->slug;
         $news->content = $request->input('content');
         // $news->datepost = Carbon::now();
-        $news->tags= implode(',',$request->tags);
+        $news->tags = implode(",",$request->tag);
         // slug tên danh mục khi input vào cột category_slug của news
         $news->category_slug = Str::slug($request->input('category_news_slug'));
         // dd($news->category_slug);
@@ -70,8 +72,8 @@ class NewsController extends Controller
             $news->img = "bds_1.jpg";
         }
         // $url = "/news/{{$news->slug}}";
+
         $news->save();
-        // chuyển về trang đã tạo
         return redirect("/tin-tuc/$news->slug");
     }
 
@@ -85,7 +87,9 @@ class NewsController extends Controller
     {
         // lấy tất cả các danh mục trong tin tức
         $news_cate = NewsCategory::all();
-        return view('admin.tintuc.quanlytintuc',compact('news_cate'));
+        $tag_input = tag::all();
+
+        return view('admin.tintuc.quanlytintuc',compact('news_cate','tag_input'));
     }
     public function getNewsbyCate($slug)
     {
@@ -198,6 +202,13 @@ class NewsController extends Controller
                     'news3'=>$news3,
                     'latest'=>$latest,
                 ]);
+    }
+    public function insertTag(Request $request){
+        foreach ($request->input('tag') as $tag) {
+            tag::firstOrCreate([
+                'slug' => Str::slug($tag),
+                'tag' => $tag]);
+          }
     }
     // Tin get được từ các danh mục
 }

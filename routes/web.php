@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-
+Route::get('/user/profile','UserController@profileUser')->name('profile');
+Route::get('/user/password','UserController@formpassword')->name('change-password');
+Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');
+Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history');
+Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');
+Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');
+Route::get('/user/article-expire','UserController@articlexpire')->name('article-expire');
 
 Route::get('/testform',function(){return view('pages/article/testform');} );
 
@@ -38,27 +44,34 @@ Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cat
 
 Route::get('/{cate}','SearchController@getByCate')->name('cate');
 Route::post('/search/{cate}','SearchController@index')->name('search');
+Route::get('/search/{cate}','SearchController@index2')->name('search2');
 Route::post('/filter','SearchController@filter')->name('filter');
+Route::get('/filter/','SearchController@filterPage');
+
+Route::get('/filter2','SearchController@filter2')->name('filter2');
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
-
+Route::post('/article/new/store','ProductController@store')->middleware('auth')->name('article-store');
+Route::post('/article/update/{id}','ProductController@update')->middleware('auth')->name('update-article');
 Route::get('/article/{slug}','ProductController@show')->name('article-detail');
 Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-article');
 Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
 Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
 Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
-
 Route::group(['middleware'=>'auth'],function(){
+	//Nạp tiền
+	Route::post('/user/create-payment','PaymentController@create')->name('create-payment');
+	Route::get('/user/return-payment','PaymentController@return')->name('return-payment');
 
 	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
-	Route::post('/article/new/store','ProductController@store')->name('article-store');   // Đăng tin
+	   // Đăng tin
 	Route::get('/user/my-article/{id}','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
 	Route::get('/user/favourites','ProductController@productUserFavorite')->name('favorites');				  // Yêu thích
 	Route::get('/user/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
 
 	//Profile
-	Route::get('/user/profile/{id}','UserController@profileDetail')->name('');
+	Route::get('/user/profile/{id}','UserController@profileDetail')->name('user-profile');
 	//Update profile
 	Route::post('/user/update/{id}','UserController@update')->name('user-update');
 	Route::post('/user/changepass/{id}','UserController@changePassword')->name('user-changePassword');
@@ -160,6 +173,13 @@ Route::get('/admin/danh-sach-thong-bao/edit/{id}','NotificationController@edit')
 Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
 Route::get('/admin/danh-sach-thong-bao/delete/{id}','NotificationController@destroy')->name('del-noti');
 Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
+
+//Quản lí giá vip
+ Route::post('admin/danh-sach-gia-vip/update/{id}','PriceTypePostController@update')->name('update-price');
+ Route::get('/admin/danh-sach-gia-vip/edit/{id}','PriceTypePostController@edit')->name('edit-price');
+// Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
+ Route::get('/admin/danh-sach-gia-vip/delete/{id}','PriceTypePostController@destroy')->name('del-price');
+Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
 // Quản lý tin đăng
 
 
@@ -194,9 +214,7 @@ Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/news/{slug}','NewsController@show');
 // quản lý tin tứcf
-Route::get('/admin/index/news',function(){
-    return view('admin.tintuc.quanlytintuc');
-});
+
 Route::POST('/admin/index/news/insert','NewsController@store'
 );
 // news list
@@ -214,9 +232,7 @@ Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/tin-tuc/{slug}','NewsController@show');
 // đăng tin tức
-Route::get('/admin/cap-nhat-tin-tuc',function(){
-    return view('admin.tintuc.quanlytintuc');
-});
+Route::get('/admin/cap-nhat-tin-tuc','NewsController@getcate');
 Route::POST('/admin/index/news/insert','NewsController@store');
 // get tất cả các tin đang có
 Route::get('/index/tin-tuc/','NewsController@listnews');
@@ -240,3 +256,8 @@ Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->nam
 Route::get('/admin/index/quan-ly-thu-tin-tuc/export','NewsLetterController@export')->name('table.export');
 // import
 Route::post('/admin/index/quan-ly-thu-tin-tuc/import', 'NewsLetterController@import')->name('table.import');
+// tag insert keyword
+Route::post('/insert','NewsController@insertTag')->name('tag.insert');
+
+#Insert từ khoá
+// Route::post('/admin/index/quan-ly-tu-khoa/insert','TagController@store')->name('tag.insert');

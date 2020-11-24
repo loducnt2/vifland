@@ -20,7 +20,7 @@
         </div>
     </div>
     <section class="dangbaiviet">
-        <form class="formDangBaiViet" action="{{route('article-store')}}" method="post" enctype="multipart/form-data">
+        <form class="formDangBaiViet" action="{{route('update-article',$product->product_id)}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="max-width-container">
                 <div class="row">
@@ -28,12 +28,11 @@
                         <div class="box-left-form-muaban">
                             <div class="mdm-1">
                                 <div class="checked">
-                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id"
-                                        checked="">
+                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id" {{$product->cate_id==$cate_2[0]->id?"checked":""}}>
                                     <label for="luachonsearch1">{{$cate_2[0]->name}}</label>
                                 </div>
                                 <div class="checked">
-                                    <input id="luachonsearch2" type="radio" value="{{$cate_2[1]->id}}" name="cate_id">
+                                    <input id="luachonsearch2" type="radio" value="{{$cate_2[1]->id}}" name="cate_id" {{$product->cate_id==$cate_2[1]->id?"checked":""}}>
                                     <label for="luachonsearch2">{{$cate_2[1]->name}}</label>
                                 </div>
                             </div>
@@ -57,25 +56,29 @@
                                             <select class="select1" name="province_id" id="province">
                                                 <option value="">Chọn</option>
                                                 @foreach($provinces as $province)
-                                                <option value="{{$province->id}}">{{$province->name}}</option>
+                                                <option value="{{$province->id}}" {{$product->province_id==$province->id?"selected":""}} >{{$province->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
                                             <select class="select1" name="district_id" id="district">
-                                                <option value="">Chọn</option>
+                                                @foreach($districts as $district)
+                                                <option value="{{$district->id}}" {{$product->district_id==$district->id?"selected":""}} >{{$district->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
                                             <select class="select1" name="ward_id" id="ward">
-                                                <option value="">Chọn</option>
+                                                @foreach($wards as $ward)
+                                                <option value="{{$ward->id}}" {{$product->ward_id==$ward->id?"selected":""}} >{{$ward->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="diachi">Địa chỉ</label>
-                                            <input type="text" name="address" id="diachi">
+                                            <input type="text" name="address" id="diachi" value="{{$product->address}}">
                                         </div>
 
                                     </div>
@@ -83,19 +86,20 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate" multiple=  >
+                                            <select class="select1" name="product_cate"  >
+                                                <option value="">Chọn</option>
                                                 @foreach($product_cate as $prodcate)
-                                                <option value="{{$prodcate->id}}">{{$prodcate->name}}</option>
+                                                <option value="{{$prodcate->id}}" {{$product->product_cate==$prodcate->id?"selected":""}}>{{$prodcate->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="text" min="0" name="facades">
+                                            <input type="text" min="0" name="facades" value="{{$product->facades}}">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="text" min="0" name="depth">
+                                            <input type="text" min="0" name="depth" value="{{$product->depth}}">
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -112,13 +116,13 @@
                                             <select class="select1" name="unit_id" id="unit">
                                                 <option value="">Chọn</option>
                                                 @foreach($units as $unit)
-                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
+                                                <option value="{{$unit->id}}" {{$product->unit_id == $unit->id?"selected":""}}>{{$unit->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price" id="price">
+                                            <input type="text" min="0" name="price" id="price" value="{{$product->price}}">
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
@@ -127,29 +131,27 @@
                                         aria-labelledby="khac-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số tầng</label>
-                                            <input type="text" min="0" name="floors">
+                                            <input type="text" min="0" name="floors" value="{{$product->floors}}">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số phòng ngủ </label>
-                                            <input type="text" min="0" name="bedroom">
+                                            <input type="text" min="0" name="bedroom" value="{{$product->bedroom}}">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="legal">Giấy tờ pháp lý</label>
                                             <select name="legal" class="select1" id="legal">
                                                 <option value="">Chọn</option>}
-                                                <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng">Giấy
+                                                <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng" {{$product->legal == "Giấy CN QSDĐ - Sổ đỏ - Sổ hồng"?"selected":""}}>Giấy
                                                     CN QSDĐ - Sổ đỏ - Sổ hồng</option>
-                                                <option value="Hợp đồng mua bán">Hợp đồng mua bán
+                                                <option value="Hợp đồng mua bán" {{$product->legal == "Hợp đồng mua bán"?"selected":""}}>Hợp đồng mua bán
                                                 </option>
-                                                <option value="Hợp đồng góp vốn">Hợp đồng góp vốn
+                                                <option value="Hợp đồng góp vốn" {{$product->legal == "Hợp đồng góp vốn"?"selected":""}}>Hợp đồng góp vốn
                                                 </option>
-                                                <option value="Hợp đồng góp vốn">Hợp đồng góp vốn
-                                                </option>
-                                                <option value="Đất giao - Đất phân">Đất giao - Đất
+                                                <option value="Đất giao - Đất phân" {{$product->legal == "Đất giao - Đất phân"?"selected":""}}>Đất giao - Đất
                                                     phân</option>
-                                                <option value="Đang làm giấy CN QSDĐ">Đang làm giấy
+                                                <option value="Đang làm giấy CN QSDĐ" {{$product->legal == "Đang làm giấy CN QSDĐ"?"selected":""}}>Đang làm giấy
                                                     CN QSDĐ</option>
-                                                <option value="Đã có giấy hẹn lấy số">Đã có giấy hẹn
+                                                <option value="Đã có giấy hẹn lấy số" {{$product->legal == "Đã có giấy hẹn lấy số"?"selected":""}}>Đã có giấy hẹn
                                                     lấy số</option>
                                             </select>
                                         </div>
@@ -172,21 +174,41 @@
                                 <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title" value="{{$product->title}}">
                             </div>
                             <div class="col-12 form-group">
-                                <textarea class="form-control" id="summary-ckeditor" name="content"></textarea>
+                                <textarea class="form-control" id="summary-ckeditor" name="content">{{$product->content}}</textarea>
                             </div>
                             <!-- <div class="col-12 form-group">
                                 <span>Ảnh tiêu đề : &nbsp;</span>
                                 <input type="file" name="thumbnail" disabled="">
                             </div> -->
                             <div class="col-12 form-group">
-                                <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags">
+                                <input type="text" value="" data-role="tagsinput" placeholder="Chỉnh sửa lại tag" name="tags" value="">
+                                @if($product->tags!=NULL)
+                                <?php 
+                                    if(strpos($product->tags,',')){
+                                        $tag = explode(",",$product->tags);
+                                        foreach( $tag as $tg ){
+                                            echo '<span class="badge badge-secondary">'.$tg.'<span data-role="remove"></span></span>&ensp;';
+                                        } 
+                                    }else{
+                                        echo '<span class="badge badge-secondary">'.$product->tags.'<span data-role="remove"></span></span>';
+                                    }
+                                ?>
+                                @endif
                             </div>
                             <div class="col-12 form-group wrap-input-img form-upload">
-                                <div class="form-upload__preview"></div>
+                                <div class="form-upload__preview">
+                                    <div class="mb-2" id="old-img">
+                                        @foreach($img as $ig)
+                                        <img style="" src="{{asset('assets/product/detail/'.$ig->img)}}" alt="" height="150px" width="150px">
+                                        @endforeach
+                                    </div>
+                                </div>
+                                
                                 <div class="form-upload__field">
-                                    <label class="form-upload__title" for="upload">Thêm ảnh
+                                    <label class="form-upload__title" for="upload">Thay đổi / thêm ảnh <br> <small>(Chọn nhiều ảnh cùng lúc)</small>
                                         <input class="form-upload__control js-form-upload-control" id="upload"
-                                            type="file" multiple="true" style="display:none" name="img[]" required>
+                                            type="file" multiple="true" style="display:none" name="img[]">
+                                    
                                     </label>
                                     <button class="btn btn-clear ml-3">Xóa ảnh</button>
                                 </div>
@@ -200,335 +222,38 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">person</span>
-                                <input type="text" placeholder="Tên liên lạc" name="name_contact">
+                                <input type="text" placeholder="Tên liên lạc" name="name_contact" value="{{$product->name_contact}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">business</span>
-                                <input type="text" placeholder="Tên Công ty" name="company_name">
+                                <input type="text" placeholder="Tên Công ty" name="company_name" value="{{$product->company}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">phone</span>
-                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact">
+                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact" value="{{$product->phone_contact}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
-                                <input type="text" placeholder="Facebook cá nhân" name="facebook">
+                                <input type="text" placeholder="Facebook cá nhân" name="facebook" value="{{$product->facebook}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">location_on</span>
-                                <input type="text" placeholder="Địa chỉ" name="address_contact">
+                                <input type="text" placeholder="Địa chỉ" name="address_contact" value="{{$product->address_contact}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">public</span>
-                                <input type="text" placeholder="Trang web" name="website">
+                                <input type="text" placeholder="Trang web" name="website" value="{{$product->website}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">email</span>
-                                <input type="text" placeholder="Hộp thư điện tử" name="email">
+                                <input type="text" placeholder="Hộp thư điện tử" name="email" value="{{$product->email}}">
                             </div>
                         </div>
-                        <div class="row loaitindang">
+                        <div class="row ">
                             <div class="col-12">
-                                <div class="title">
-                                    <h5>Loại tin đăng</h5><a href="" data-toggle="modal" data-target="#cacgoitin">So
-                                        sánh các gói tin </a>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="wrap-vip">
-                                    <div class="checked">
-                                        <input id="tinthuong" type="radio" value="4" name="type" checked>
-                                        <label for="tinthuong">Tin Thường</label>
-                                    </div>
-                                    <div class="checked">
-                                        <input id="vip1" type="radio" value="1" name="type">
-                                        <label class="vip1" for="vip1">Tin VIP 1</label>
-                                    </div>
-                                    <div class="checked">
-                                        <input id="vip2" type="radio" value="2" name="type">
-                                        <label class="vip2" for="vip2">Tin VIP 2</label>
-                                    </div>
-                                    <div class="checked">
-                                        <input id="vip3" type="radio" value="3" name="type">
-                                        <label class="vip3" for="vip3">Tin VIP 3</label>
-                                    </div>
-                                </div>
-                                <div class="wrap-vip-mobile">
-                                    <div class="form-group-sl1 sl-1 select-many">
-                                        <select class="select1" name="loainhadat">
-                                            <option value="tinthuong"> <strong>Tin
-                                                    thường&nbsp;</strong>(Miễn phí)
-                                            </option>
-                                            <option class="vip1" value="vip1">
-                                                <p>TIN VIP 1&nbsp;</p>(15.000 ₫ tin/ngày)
-                                            </option>
-                                            <option class="vip2" value="vip2"> <span>TIN VIP
-                                                    2&nbsp;</span>(25.000 ₫
-                                                tin/ngày)</option>
-                                            <option class="vip3" value="vip3"> <span>TIN VIP
-                                                    3&nbsp;</span>(35.000 ₫
-                                                tin/ngày)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="wrap-moTaVip active" id="tinthuong-ct">
+                                <div class="col-12 wrap-button-dbv">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <table>
-                                                <tr>
-                                                    <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>Miễn Phí</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="img"> <a href="{{asset('assets/icon/vips1.jpg')}}"
-                                                    data-fancybox="images"> <img
-                                                        src="{{asset('assets/icon/vips1.jpg')}}" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END -->
-                                <div class="wrap-moTaVip" id="vip1-ct">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <table>
-                                                <tr>
-                                                    <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>40.000 ₫
-                                                            tin/ngày</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Đứng đầu danh sách các tin đăng</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Có tiêu đề <em style="color:#993393">CHỮ
-                                                                IN HOA MÀU
-                                                                TÍM</em></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Hiển thị dưới tất các tin VIP</span></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="img"><a href="{{asset('assets/icon/vips2.jpg')}}"
-                                                    data-fancybox="images"> <img
-                                                        src="{{asset('assets/icon/vips2.jpg')}}" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wrap-moTaVip" id="vip2-ct">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <table>
-                                                <tr>
-                                                    <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>25.000 ₫
-                                                            tin/ngày</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Hiển thị dưới tin VIP 1, trên tin VIP 3
-                                                            và tin
-                                                            thường</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Có tiêu đề <em style="color: #dd8c43">CHỮ
-                                                                IN HOA MÀU
-                                                                CAM</em></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Được chèn link video vào trong tin
-                                                            đăng</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Được đăng tối đa 30 ảnh</span></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="img"><a href="{{asset('assets/icon/vips3.jpg')}}"
-                                                    data-fancybox="images"> <img
-                                                        src="{{asset('assets/icon/vips3.jpg')}}" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wrap-moTaVip" id="vip3-ct">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <table>
-                                                <tr>
-                                                    <td class="mb-30">Giá: </td>
-                                                    <td class="mb-30"> <strong>15.000 ₫
-                                                            tin/ngày</strong></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Hiển thị dưới tin VIP1, VIP2 và trên tin
-                                                            thường</span>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Có tiêu đề <em style="color: #b18734">Chữ
-                                                                thường màu vàng
-                                                                đồng</em></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Được chèn link video vào trong tin
-                                                            đăng</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td> <span class="material-icons">done</span></td>
-                                                    <td> <span>Được đăng tối đa 30 ảnh</span></td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="img"><a href="{{asset('assets/icon/vips4.jpg')}}"
-                                                    data-fancybox="images"> <img
-                                                        src="{{asset('assets/icon/vips4.jpg')}}" alt=""></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END -->
-                                <div class="col-12">
-                                    <div class="row wrap-lich">
-
-                                        <div class="col-4 form-group">
-                                            <label for="songayvip">Ngày đăng bài</label>
-                                            <input class="calendar" type="datetime" name="date_start" id="testdate">
-                                        </div>
-                                        <div class="col-4 form-group">
-                                            <label for="songayvip">Giờ đăng bài</label>
-                                            <input class="timepicker" type="text" name="time_start" id="timepicker" data-mintime="now" />
-                                        </div>
-                                        <div class="col-4 form-group">
-                                            <label for="songayvip">Số ngày</label>
-                                            <select class="selectNgay" name="songaydangbai">
-                                                <option value="7">7</option>
-                                                <option value="15">15</option>
-                                                <option value="30">30</option>
-                                                <option value="90">90</option>
-                                            </select>
-                                        </div>
-                                        <!-- <div class="col-6 form-group">
-                                            <label for="songayvip">Ngày kết thúc</label>
-                                            <input class="calendar" id="ngayktvip" type="datetime" name="datetime_end">
-                                        </div> -->
-                                    </div>
-                                    <div class="wrap-des-vip" id="sub-vip1">
-                                        <div class="wrap-left"><img src="{{asset('assets/icon/vip1.svg')}}" alt="">
-                                            <div class="wrap-text">
-                                                <p style="color:#993393">Tin VIP 1 - Gói 7 ngày</p><small>Từ
-                                                    ngày
-                                                    12/10/2020</small>
-                                            </div>
-                                        </div>
-                                        <div class="wrap-right">
-                                            <div class="wrap-text"><strong> <span class="total"></span></strong><span>
-                                                    <del class="priceBase">280.000đ</del>
-                                                    <p> <span>(-</span><span class="phantram"></span><span>%)</span>
-                                                    </p>
-                                                </span></div>
-                                        </div>
-                                    </div>
-                                    <div class="wrap-des-vip" id="sub-vip2">
-                                        <div class="wrap-left"><img src="{{asset('assets/icon/vip2.svg')}}" alt="">
-                                            <div class="wrap-text">
-                                                <p style="color:#dd8c43">Tin VIP 2 - Gói 7 ngày</p><small>Từ
-                                                    ngày
-                                                    12/10/2020</small>
-                                            </div>
-                                        </div>
-                                        <div class="wrap-right">
-                                            <div class="wrap-text"><span class="total"></span></strong><span>
-                                                    <del class="priceBase">280.000đ</del>
-                                                    <p><span>(-</span><span class="phantram"></span><span>%)</span></p>
-                                                </span></div>
-                                        </div>
-                                    </div>
-                                    <div class="wrap-des-vip" id="sub-vip3">
-                                        <div class="wrap-left"><img src="{{asset('assets/icon/vip3.svg')}}" alt="">
-                                            <div class="wrap-text">
-                                                <p style="color:#b18734">Tin VIP 3 - Gói 7 ngày</p><small>Từ
-                                                    ngày
-                                                    12/10/2020</small>
-                                            </div>
-                                        </div>
-                                        <div class="wrap-right">
-                                            <div class="wrap-text"><strong><span class="total"></span></strong><span>
-                                                    <del class="priceBase">280.000đ</del>
-                                                    <p><span>(-</span><span class="phantram"></span><span>%)</span></p>
-                                                </span></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="row wrap-tongthanhtoan">
-                                            <div class="tongThanhToan-box">
-                                                <div class="ttt-1">
-                                                    <p>Thành tiền (Gồm VAT)</p>
-                                                    <p> <span class="total">0</span></p>
-                                                </div>
-                                                <div class="ttt-2">
-                                                    <p>Khuyến mại</p>
-                                                    <p>0 ₫</p>
-                                                </div>
-                                                <hr>
-                                                <div class="ttt-3"><strong>Thanh toán</strong><strong>
-                                                        <span class="total">0</span>
-                                                        <input type="text" name="totalPriceVip" value="0" readonly
-                                                            style="display:none" disabled>
-
-                                                        <!-- HUY -->
-                                                        <input type="number" name="pricePost" value="0"
-                                                            style="display:none">
-                                                    </strong></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END -->
-
-                                    <!-- END -->
-                                    <div class="col-12 wrap-button-dbv">
-                                        <div class="row">
-                                            <!-- <button class="button-huy" type="submit">Hủy bỏ</button> -->
-                                            <button class="button-luu" type="submit">Đăng bài</button>
-                                        </div>
+                                        <!-- <button class="button-huy" type="submit">Hủy bỏ</button> -->
+                                        <button class="button-luu" type="submit">Cập nhật</button>
                                     </div>
                                 </div>
                             </div>
@@ -813,6 +538,11 @@
             return false
         }
       })
+    $('.form-upload__title').click(function(){
+        $('#old-img').css('display','none');
+    })
+
+
       /*$('.formDangBaiViet').validate({
           ignore: [],
           rules:{

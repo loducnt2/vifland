@@ -19,25 +19,19 @@
 @stop
 @section('content')
 <main>
-@if(Auth::check() && Auth::user()->user_type == "1")
-    <div class="delete-post">
-       <a href="">Xóa</a>
-    </div>
-    @endif
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán
                         <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
                 <li class="breadcrumb-item"><a href="#">
-                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
-                            gì hôm nay?</p>
+                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh </p>
                     </a></li>
-                <div class="search">
+                <!-- <div class="search">
                     <form action="">
                         <input type="text" placeholder="Bạn cần tìm hôm nay?">
                     </form>
-                </div>
+                </div> -->
             </ol>
         </div>
     </div>
@@ -52,7 +46,7 @@
                                 <div class="content">
                                     <div class="content-1">
                                         <div class="name">
-                                            <p class="section-content">{{$product->name_contact}}</p>
+                                            <p class="section-content">{{auth()->user()->full_name}}</p>
                                         </div>
                                         <div class="host">
                                             <p class="section-content">Nhà môi giới</p>
@@ -158,9 +152,7 @@
                                         <p class="section-content">Loại Nhà Đất</p>
                                         <div class="dashed-line"> </div>
                                         <p class="section-content active">
-                                            @foreach($product_cate as $cate)
-                                            {{$cate->name}},
-                                            @endforeach
+                                            {{ App\Models\ProductCate::where('id',$product->product_cate)->value('name')  }}
                                         </p>
                                     </div>
 
@@ -298,9 +290,10 @@
                                         <div class="tag-thuongluong">
                                             {{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}
                                         </div>
-                                        <div class="box-icon"><i class="fav ri-heart-line icons"
-                                                productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}"
-                                                class="comp"><i class="ri-equalizer-line icons"></i></a></div>
+                                        <div class="box-icon">
+                                            <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
+                                            <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+                                        </div>
                                         <div class="overlay"></div>
                                         <div class="vip">
                                             <!-- {{$product->type}} -->

@@ -16,7 +16,7 @@
     @section('content')
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered" id="table" width="100%" cellspacing="0">
+            <table class="table table-bordered box-n" id="table" width="100%" cellspacing="0">
                 <thead class="thead-dark">
                     <tr>
                         <th>Họ và tên</th>
