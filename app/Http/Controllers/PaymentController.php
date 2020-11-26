@@ -74,37 +74,69 @@ class PaymentController extends Controller
             'message' => 'Giao dịch không thành công', 
             'alert-type' => 'error'
         );
-        if($request->vnp_ResponseCode == "00") {
-        	//Lưu vào db
-            $s = substr($request->vnp_PayDate,12,2);
-            $i = substr($request->vnp_PayDate,10,2);
-            $h = substr($request->vnp_PayDate,8,2);
-            $d  = substr($request->vnp_PayDate,6,2);
-            $m = substr($request->vnp_PayDate,4,2);
-            $y = substr($request->vnp_PayDate,0,4);
-            $date = $y.'-'.$m.'-'.$d.' '.$h.':'.$i.':'.$s;
-        	$payment = Payment::create([
-        	    'user_id'      => auth()->user()->id,
-                'bank_code'    => $request->vnp_BankCode,
-                'bank_trans_no'=>$request->vnp_BankTranNo,
-                'trade_code'   => $request->vnp_TransactionNo,
-        	    'amount'       => $request->vnp_Amount/100,
-                'datetime'     => $date,
-        	]);
-        	$user = User::find(auth()->user()->id);
+        $noti3 = array(
+            'message' => 'Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP). Xin quý khách vui lòng thực hiện lại giao dịch', 
+            'alert-type' => 'error'
+        );
+        $noti4 = array(
+            'message' => 'Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch', 
+            'alert-type' => 'error'
+        );
+        $noti5 = array(
+            'message' => 'Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa', 
+            'alert-type' => 'error'
+        );
+        $noti6 = array(
+            'message' => 'Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch', 
+            'alert-type' => 'error'
+        );
+        switch ($request->vnp_ResponseCode) {
+            case '00':
+                    $s = substr($request->vnp_PayDate,12,2);
+                    $i = substr($request->vnp_PayDate,10,2);
+                    $h = substr($request->vnp_PayDate,8,2);
+                    $d  = substr($request->vnp_PayDate,6,2);
+                    $m = substr($request->vnp_PayDate,4,2);
+                    $y = substr($request->vnp_PayDate,0,4);
+                    $date = $y.'-'.$m.'-'.$d.' '.$h.':'.$i.':'.$s;
+                    $payment = Payment::create([
+                        'user_id'      => auth()->user()->id,
+                        'bank_code'    => $request->vnp_BankCode,
+                        'bank_trans_no'=>$request->vnp_BankTranNo,
+                        'trade_code'   => $request->vnp_TransactionNo,
+                        'amount'       => $request->vnp_Amount/100,
+                        'datetime'     => $date,
+                    ]);
+                    $user = User::find(auth()->user()->id);
 
-        	$wallet = $user->wallet;
-        	$total_cash = $user->total_cash;
+                    $wallet = $user->wallet;
+                    $total_cash = $user->total_cash;
 
-        	$user->wallet = $request->vnp_Amount/100 + $wallet;
-        	$user->total_cash = $request->vnp_Amount/100 + $total_cash;
-        	$user->save();
-        	//end
+                    $user->wallet = $request->vnp_Amount/100 + $wallet;
+                    $user->total_cash = $request->vnp_Amount/100 + $total_cash;
+                    $user->save();
+                    //end
 
-            return redirect($url)->with($noti1);
-        }else{
-        	return redirect($url)->with($noti2);
+                    return redirect($url)->with($noti1);
+                break;
+            case '13':
+                return redirect($url)->with($noti3);
+                break;
+            case '51    ':
+                return redirect($url)->with($noti4);
+                break;
+            case '12':
+                return redirect($url)->with($noti5);
+                break;
+            case '11':
+                  return redirect($url)->with($noti6);
+                  break;  
+            default:
+                return redirect($url)->with($noti2);
+                break;
+
         }
+        
         
     }
 }

@@ -286,6 +286,11 @@ class SearchController extends Controller
 
     }
 
+    public function filterPage(Request $req){
+        $page = $req->page;
+        
+    }
+
     public function filter2(Request $request)
     {
 

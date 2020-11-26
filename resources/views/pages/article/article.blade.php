@@ -46,7 +46,7 @@
                                 <div class="content">
                                     <div class="content-1">
                                         <div class="name">
-                                            <p class="section-content">{{auth()->user()->full_name}}</p>
+                                            <p class="section-content">{{$product->full_name}}</p>
                                         </div>
                                         <div class="host">
                                             <p class="section-content">Nhà môi giới</p>

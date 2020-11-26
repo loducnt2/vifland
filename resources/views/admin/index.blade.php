@@ -31,7 +31,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount counter">{{number_format($product_posted)}}</div>
+                                    <div class="amount counter" id="posted">{{ number_format($product_posted) }}</div>
                                     <div class="text-smalls">Tin Đăng</div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount counter">{{number_format($product_current)}}</div>
+                                    <div class="amount counter" id="current">{{ number_format($product_current) }}</div>
                                     <div class="text-smalls">Tin Đăng</div>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount">{{number_format($view)}}</div>
+                                    <div class="amount" id="view">{{ number_format($view) }}</div>
                                     <div class="text-smalls">Lượt Xem</div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount">{{number_format($user_count)}}</div>
+                                    <div class="amount" id="account">{{ number_format($user_count) }}</div>
                                     <div class="text-smalls">Tài Khoản</div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="wrap-sl">
-                                    <div class="amount">{{number_format($email)}}</div>
+                                    <div class="amount" id="email">{{ number_format($email) }}</div>
                                     <div class="text-smalls">Email</div>
                                 </div>
                             </div>
@@ -112,8 +112,8 @@
                         <div class="box-n p-5 bcdt">
                             <div class="title-money">
                                 <div class="money-now">
-                                    <span class="money-big">
-                                        {{number_format($cash_by_month)}} VNĐ
+                                    <span class="money-big" id="cash_by_month">
+                                        {{ number_format($cash_by_month) }} VNĐ
                                     </span>
                                     <span class="money-small">
                                         Tháng Này
@@ -121,8 +121,8 @@
                                 </div>
                                 <div class="line-dive"></div>
                                 <div class="money-total">
-                                    <span class="money-big">
-                                        {{number_format($total_cash)}} VNĐ
+                                    <span class="money-big" id="total_cash">
+                                        {{ number_format($total_cash) }} VNĐ
                                     </span>
                                     <span class="money-small">
                                         Tổng Doanh Thu
@@ -158,8 +158,8 @@
                                                 <p>Bài viết đã duyệt</p>
                                             </div>
                                             <div class="line-right xanh ">
-                                                <span>{{$post_history_1}}</span>
-                                                {{$post_history_11}} %
+                                                <span>{{ $post_history_1 }}</span>
+                                                {{ $post_history_11 }} %
                                             </div>
                                         </div>
                                         <div class="line-1">
@@ -168,8 +168,8 @@
                                                 <p>Bài viết chưa duyệt</p>
                                             </div>
                                             <div class="line-right cam">
-                                                <span>{{$post_history_0}}</span>
-                                                {{$post_history_00}} %
+                                                <span>{{ $post_history_0 }}</span>
+                                                {{ $post_history_00 }} %
                                             </div>
                                         </div>
 
@@ -188,7 +188,7 @@
                                 </div>
                                 <!-- Start -->
                                 <div class="wrap-list-bxh">
-                                    @foreach($user_by_cash as $user)
+                                     @foreach($user_by_cash as $user) 
                                     <div class="list-items-bxh">
                                         <div class="box-n px-4 py-3 item zoom-in">
                                             <div class="left-bxh">
@@ -196,16 +196,16 @@
                                                     <img src="{{asset('assets/avatar/user.png')}}" alt="">
                                                 </div>
                                                 <div class="text">
-                                                    <div class="title">{{$user->full_name == NULL ? $user->username : $user->full_name}}</div>
+                                                    <div class="title">{{ $user->full_name == NULL ? $user->username : $user->full_name }}</div>
                                                     <div class="ngaygianhap">12/07/2020</div>
                                                 </div>
                                             </div>
                                             <div class="right-bxh">
-                                                <span class="amount">{{number_format($user->total_cash) }}</span> VNĐ
+                                                <span class="amount">{{ number_format($user->total_cash) }}</span> VNĐ
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                     @endforeach 
                                     <!-- End list -->
                                 </div>
                                 <!-- End  -->
@@ -217,6 +217,7 @@
             </div>
         </div>
     </main>
+    <div id="cash" hidden="" cash=""></div>
     @endsection
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -224,96 +225,115 @@
 
 <script>
 $(document).ready(function() {
-    //setTimeout(location.reload(),100000)
-    const bcdt_1 = $('#bcdt').attr('data-1');
-    var bcdtData = {
-        labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
-            'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
-        ],
-        datasets: [{
-            label: 'Tiền',
-            borderColor: "#3160D8",
-            backgroundColor: "#3160D8",
-            fill: false,
-            borderWidth: 2,
-            data: [ @foreach ($cash as $cs){{$cs}}, @endforeach ],
 
-        }]
-    };
 
-    window.onload = function() {
-        var ctx = document.getElementById("bcdt").getContext("2d");
-        window.myLine = Chart.Line(ctx, {
-            data: bcdtData,
-            options: {
-                hover: {
-                    mode: 'index',
-                    intersect: false
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false
-                },
-                animation: {
-                    duration: 2000,
-                    easing: 'easeInOutCubic',
-                },
-                elements: {
-                    point: {
-                        radius: 0
-                    }
-                },
-                legend: {
-                    display: false,
-                },
-                responsive: true,
-                stacked: false,
-                title: {
-                    display: false,
-                    text: 'Chart.js Line Chart - Multi Axis'
-                },
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            drawBorder: false,
-                            borderDash: [3, 2],
-                            zeroLineBorderDash: [3, 2],
-                            zeroLineColor: 'rgba(225,225,225,0.8)'
-                        },
-                        type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-                        display: true,
-                        stacked: true,
-                        ticks: {
-                            // Include a dollar sign in the ticks
-                            callback: function(value, index, values) {
-                                return value.toLocaleString('vi', {
-                                    style: 'currency',
-                                    currency: 'VND'
-                                }); + 'đ';
-                            }
+    setTimeout(function(){
+        var source = new EventSource("/admin/dashboard");
+        source.onmessage = function(event) {
+          const result = JSON.parse(event.data)
+          console.log(result)
+          $('#cash').attr('cash',result['cash'])
+          $('#account').text(result['account'])
+          $('#view').text(result['view'])
+          $('#posted').text(result['product_posted'])
+          $('#current').text(result['product_current'])
+          $('#email').text(result['email'])
+          //alert($('#cash').text())
+        }
+    }, 5000);
+
+        const bcdt_1 = $('#bcdt').attr('data-1');
+        var cash = $('#cash').attr('cash');
+        var bcdtData = {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8',
+                'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+            ],
+            datasets: [{
+                label: 'Tiền',
+                borderColor: "#3160D8",
+                backgroundColor: "#3160D8",
+                fill: false,
+                borderWidth: 2,
+                data: [@foreach ($cash as $cs){{$cs}}, @endforeach ],
+                //data: cash ,
+
+            }]
+        };
+        window.onload = function() {
+            var ctx = document.getElementById("bcdt").getContext("2d");
+            window.myLine = Chart.Line(ctx, {
+                data: bcdtData,
+                options: {
+                    hover: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutCubic',
+                    },
+                    elements: {
+                        point: {
+                            radius: 0
                         }
-                    }, ],
-                    xAxes: [{
-                        gridLines: {
-                            display: false,
-                            borderDash: [3, 2],
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    responsive: true,
+                    stacked: false,
+                    title: {
+                        display: false,
+                        text: 'Chart.js Line Chart - Multi Axis'
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                drawBorder: false,
+                                borderDash: [3, 2],
+                                zeroLineBorderDash: [3, 2],
+                                zeroLineColor: 'rgba(225,225,225,0.8)'
+                            },
+                            type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            stacked: true,
+                            ticks: {
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    return value.toLocaleString('vi', {
+                                        style: 'currency',
+                                        currency: 'VND'
+                                    }); + 'đ';
+                                }
+                            }
+                        }, ],
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                                borderDash: [3, 2],
 
-                        },
-                        ticks: {
-                            padding: 1,
-                        },
-                        stacked: true,
-                    }, ],
+                            },
+                            ticks: {
+                                padding: 1,
+                            },
+                            stacked: true,
+                        }, ],
+                    }
                 }
-            }
-        });
-    };
+            });
+        };
+    
+    
     // Chart 2
     var data = [{
         backgroundColor: ["#285FD3", "#FF8B26"],
         borderColor: "#fff",
         borderWidth: 2,
-        data: [{{$post_history_11}}, {{$post_history_00}}],
+        data: [{{ $post_history_11 }}, {{ $post_history_00 }}],
         hoverBorderWidth: 5,
         labels: ["Bài viết đã duyệt", "Bài viết chưa duyệt"],
     }, ];
