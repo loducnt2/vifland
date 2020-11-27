@@ -53,7 +53,15 @@ class NewsController extends Controller
         $news->slug = $request->slug;
         $news->content = $request->input('content');
         // $news->datepost = Carbon::now();
-        $news->tags = implode(",",$request->tag);
+
+        $input_tag =$request->tag;
+        if($input_tag == "")
+        {
+            $input_tag = "";
+        }
+        else{
+            $news->tags = implode(",",$input_tag);
+        }
         // slug tên danh mục khi input vào cột category_slug của news
         $news->category_slug = Str::slug($request->input('category_news_slug'));
         // dd($news->category_slug);
