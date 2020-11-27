@@ -178,9 +178,9 @@ li {
                     </select>
                 </div>
                 {{-- từ khoá select --}}
-                   <select class="form-control tag"name="tag[]" id="tag2" multiple="multiple">
+                   <select class="form-control tag"name="tag[]" id="tag2" multiple>
                       @foreach ($tag_input as $item)
-                    <option value="{{$item->id}}" name="">{{$item->tag}}</option>
+                    <option value="{{$item->slug}}" name="">{{$item->tag}}</option>
                     @endforeach
                     </select>
 
@@ -229,7 +229,7 @@ $(document).ready(function() {
                 maxlength: 255
             },
 
-            'tags': {
+            'tag2': {
                 required: true,
             },
             'id_category': {
@@ -250,7 +250,7 @@ $(document).ready(function() {
 
             },
 
-            'tags[]': {
+            'tag2': {
                 required: "Từ khoá không được để trống",
             },
             'id_category': {
@@ -266,4 +266,3 @@ $(document).ready(function() {
 </script>
 
 {{-- tag --}}
-
