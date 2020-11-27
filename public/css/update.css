@@ -252,6 +252,13 @@ a.cke_button {
     background-color: hsl(0deg 0% 100% / 75%) !important;
     color: #e7843f !important;
 }
+
+.title-bl3 p {
+    color: #1a4bb7;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+}
 .user-admin {
     min-height: auto !important;
 }
