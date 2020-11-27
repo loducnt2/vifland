@@ -148,7 +148,7 @@
                 <td>`+data.slug+`</td>
                 <td>`+data.category_name+`</td>
                 <td>`+data.status+`</td>
-                <td>`+`<a name="" id="" class="btn btn-primary" href="{{`data.id`}}" data-id="{{`data.id`}}"role="button">Xoá</a>`+`</td>
+                <td>`+`<a name="" id="" class="btn btn-primary" href="/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{{`data.id`}}" data-id="{{`data.id`}}"role="button">Xoá</a>`+`</td>
 
                 </tr>`);
             },
@@ -157,4 +157,27 @@
             },
         })
         })
+    </script>
+
+    {{-- delete record --}}
+    <script>
+        // Delete record
+$(document).on("click", ".delete" , function() {
+  var delete_id = $(this).data('id');
+  var el = this;
+  $.ajax({
+    // url: 'google.com'
+    // type: 'get',
+    success: function(response){
+      $(el).closest( "tr" ).remove();
+      alert(response);
+    }
+  });
+});
+    </script>
+<script>
+
+    $("#tag2").select2({
+      tags: true
+    });
     </script>
