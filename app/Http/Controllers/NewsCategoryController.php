@@ -115,6 +115,6 @@ class NewsCategoryController extends Controller
         // $newsCategory = new NewsCategory();
         $newsCategory = NewsCategory::find($id);
         $newsCategory->delete();
-        return response()->json(['success'=>'Xoá thành công']);
+        return redirect()->back();
     }
 }

@@ -32,7 +32,7 @@ class AdminController extends Controller
     	}else{
     		$post_history_11 = 0;
     	}
-    	
+
     	$user_count = User::count();
 
     	$user_by_cash = User::orderBy('total_cash','desc')

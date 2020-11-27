@@ -173,13 +173,13 @@
                     <img src="{{asset('assets/icon/avatar.png')}}" alt="">
                     <div class="list-menu-login">
                         <div class="wrap-title">
-                            <div class="title">Lê Quang Nguyên</div>
-                            <p>Chủ tọa đàm</p>
+                        <div class="title">{{auth()->user()->full_name}}</div>
+                            <p>Quản trị viên</p>
                         </div>
                         <ul>
                             <li> <span class="material-icons">
                                     person_outline
-                                </span> Profile</li>
+                            </span> <a href="/admin/index/profile/{{auth()->user()->id}}">Hồ sơ</a></li>
                         </ul>
                         <div class="logout">
                             <span class="material-icons">
