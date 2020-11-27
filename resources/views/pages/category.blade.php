@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Danh Mục')
+@section('title',$title)
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop
@@ -19,7 +19,7 @@
     </div>
     <section class="danhmuc">
         <div class="max-width-container">
-            <div class="row bo-loc-1">
+            <!-- <div class="row bo-loc-1">
                 <div class="col-sm-12 col-md-3">
                     <div class="search">
                         <form action="">
@@ -58,22 +58,22 @@
                 <div class="col-sm-12 col-md-12 col-lg-1">
                     <button><span>Xóa bộ lọc</span></button>
                 </div>
-            </div>
+            </div> -->
             <div class="row main-danh-muc">
                 <div class="col-lg-3 col-md-12">
                     <div class="box-left-form-muaban">
-                        <form id="filter" >
-                            @csrf
+                        <form id="filter" method="get" action="{{route('search')}}">
+                            <input type="hidden" name="cate" value="{{$cate}}">
                             <div class="mdm-1">
                                 <div class="checked">
-                                    <input id="luachonsearch1" type="checkbox" value="{{$cate_child[0]->id}}"
-                                        name="cate_child[]" checked="">
-                                    <label for="luachonsearch1">{{$cate_child[0]->name}}</label>
+                                    <input id="luachonsearch1" type="checkbox" value="{{$cate_childs[0]->id}}"
+                                        name="cate_child[]" @if(in_array($cate_childs[0]->id,$cate_child)){{"checked"}} @endif>
+                                    <label for="luachonsearch1">{{$cate_childs[0]->name}}</label>
                                 </div>
                                 <div class="checked">
-                                    <input id="luachonsearch2" type="checkbox" value="{{$cate_child[1]->id}}"
-                                        name="cate_child[]" checked="">
-                                    <label for="luachonsearch2">{{$cate_child[1]->name}}</label>
+                                    <input id="luachonsearch2" type="checkbox" value="{{$cate_childs[1]->id}}"
+                                        name="cate_child[]" @if(in_array($cate_childs[1]->id,$cate_child)){{"checked"}} @endif>
+                                    <label for="luachonsearch2">{{$cate_childs[1]->name}}</label>
                                 </div>
                             </div>
                             <div class="mdm-2">
@@ -93,23 +93,33 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province" id="province">
-                                                <option value="0">Chọn</option>
-                                                @foreach($provinces as $province)
-                                                <option value="{{$province->id}}">{{$province->name}}</option>
+                                            <select class="select1" name="province" id="province" >
+                                                <option value="">Chọn</option>
+                                                @foreach($provinces as $prov)
+                                                <option province_id="{{$prov->id}}" value="{{$prov->name}}" {{$province == $prov->id?"selected":""}}>{{$prov->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district" id="district">
-                                                <option value="0" id="district_def">Chọn</option>
+                                            <select class="select1" name="district" id="district" >
+                                                <option value="" id="district_def">Chọn</option>
+                                                @if($districts != NULL)
+                                                @foreach($districts as $disct)
+                                                <option district_id="{{$disct->id}}" value="{{$disct->id}}" {{$district == $disct->id?"selected":""}}>{{$disct->name}}</option>
+                                                @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Phường/Xã</label>
                                             <select class="select1" name="ward" id="ward">
-                                                <option value="0" id="ward_def">Chọn</option>
+                                                <option value="" id="ward_def">Chọn</option>
+                                                @if($wards != NULL)
+                                                @foreach($wards as $wad)
+                                                <option ward_id="{{$wad->id}}" value="{{$wad->id}}" {{$ward == $wad->id?"selected":""}}>{{$wad->name}}</option>
+                                                @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
@@ -188,21 +198,22 @@
                                     <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số tầng</label>
-                                            <input type="number" value="floor" name="floors" min="0">
+                                            <input type="number" value="" name="floors" min="0">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số phòng ngủ</label>
-                                            <input type="number" value="bedroom" name="bedroom" min="0">
+                                            <input type="number" value="" name="bedroom" min="0">
                                         </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
+                                        <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Giấy tờ pháp lý</label>
                                             <select class="select1" name="loainhadat[]" multiple="multiple">
                                                 <option value="AL">Alabama</option>
                                                 <option value="WY">Wyoming</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
+                                <button class="btn btn-success bg-info">Lọc</button>
                             </div>
                         </form>
                     </div>
@@ -323,7 +334,7 @@
 
                                     </div> -->
 
-                                    <?php echo $products->render(); ?>
+                                    {{ $products->appends(request()->input())->links()}}
                                       
                                 </div>
                             </div>
@@ -1143,8 +1154,15 @@
 <!-- Thêm script cho trang này ở đây -->
 <script type="text/javascript">
 $(document).ready(function() {
+    $('input[name="cate_child[]"]').click(function(){
+        if($('input[name="cate_child[]"]:checked').length == 0){
+            return false
+        }
+    })
+    
+    
     $('#province').change(function() {
-        let province = $(this).val();
+        let province = $('#province option:selected').attr('province_id');
         let url = '/get-district/' + province;
         $.ajax({
             url: url,
@@ -1164,7 +1182,7 @@ $(document).ready(function() {
 
     })
     $('#district').change(function() {
-        let district = $(this).val();
+        let district = $('#district option:selected').attr('district_id');
         let url1 = '/get-ward/' + district;
         $.ajax({
             url: url1,
@@ -1175,207 +1193,12 @@ $(document).ready(function() {
             }
         })
     })
-    $('#filter').change(function() {
-        $.ajax({
-            url: '{{ route("filter") }}',
-            type: 'POST',
-            data: $('#filter').serialize(),
-            success: function(data, status){
-                $('#products').html(data);
-            }
-        }).done(function() {
-
-
-            if (!$('.btn__header').hasClass('login1')) {
-                $.ajax({
-                    url: '{{route("all-favorite")}}',
-                    type: 'GET',
-                    success: function(data, status) {
-                        let arr = [];
-                        data.forEach(function(item, index, array) {
-                            arr.push(item.id)
-                        })
-                        let countfav = arr.length;
-                        if (countfav == 0) {
-                            $('.number-yt').css('display', 'none')
-                        } else {
-                            $('.number-yt').text(countfav)
-                            $('.number-yt').css('display', 'flex')
-                        }
-                        $('.fav').each(function() {
-                            var productid = parseInt($(this).attr(
-                                'productid'));
-                            if (arr.indexOf(productid) != -1) {
-                                $(this).addClass('ri-heart-fill')
-                                $(this).addClass('active')
-                                $(this).removeClass('ri-heart-line')
-                            } else {
-                                $(this).removeClass('ri-heart-fill')
-                                $(this).removeClass('active')
-                                $(this).addClass('ri-heart-line')
-                            }
-                        })
-
-                    }
-                })
-            }
-            $.ajax({
-                url: '{{route("all-favorite")}}',
-                type: 'GET',
-                success: function(data, status) {
-                    console.log(data)
-                    let arr = [];
-                    data.forEach(function(item, index, array) {
-                        arr.push(item.id)
-                    })
-                    let countfav = arr.length;
-                    if (countfav == 0) {
-                        $('.number-yt').css('display', 'none')
-                    } else {
-                        $('.number-yt').text(countfav)
-                        $('.number-yt').css('display', 'flex')
-                    }
-
-                }
-            })
-            $('.number-yt').css('display', 'none')
-            $(".fav").click(function() {
-                if ($(this).hasClass("ri-heart-line")) {
-                    $(this).addClass("ri-heart-fill")
-                    $(this).addClass("active")
-                    $(this).removeClass("ri-heart-line");
-                    let productid = $(this).attr('productid');
-                    $.ajax({
-                        url: '{{ route("add-favorite") }}',
-                        type: 'POST',
-                        data: {
-                            productId: productid,
-                            _token: "{{ csrf_token() }}"
-                        },
-                        success: function(data, status) {
-                            //Chưa đăng nhập
-                            console.log(data)
-                            if (data == 0) {
-                                $("#dangnhapModal").modal("show");
-                                $('.fav').addClass("ri-heart-line");
-                                $('.fav').removeClass("ri-heart-fill");
-                                $('.fav').removeClass("active")
-                            }
-                            if (data == 1) {
-                                //Thích sản phẩm,
-                            }
-                            if (data == 2) {
-                                //Bỏ thích sản phẩm
-                            }
-                        }
-                    })
-                } else if ($(this).hasClass("ri-heart-fill")) {
-                    $(this).addClass("ri-heart-line");
-                    $(this).removeClass("ri-heart-fill");
-                    $(this).removeClass("active")
-                    let productid = $(this).attr('productid');
-                    $.ajax({
-                        url: '{{ route("add-favorite") }}',
-                        type: 'POST',
-                        data: {
-                            productId: productid,
-                            _token: "{{ csrf_token() }}"
-                        },
-                        success: function(data, status) {
-                            //Chưa đăng nhập
-                            console.log(data)
-                            if (data == 0) {
-                                /*$("#dangnhapModal").modal("show");
-                                $('.fav').addClass("ri-heart-line");
-                                $('.fav').removeClass("ri-heart-fill");
-                                $('.fav').removeClass("active")*/
-                            }
-                            if (data == 1) {
-                                //Thích sản phẩm,
-                            }
-                            if (data == 2) {
-                                //Bỏ thích sản phẩm
-                            }
-                        }
-                    })
-                }
-
-            })
-            if ($.cookie('compare') != null) {
-                let checkcookie = $.cookie('compare')
-                console.log(checkcookie.length)
-                if (checkcookie.length == 0) {
-                    $.removeCookie('compare')
-                }
-            }
-
-            $('.number-ss').css('display', 'none')
-            $('.comp').each(function() {
-                $(this).click(function() {
-                    if ($.cookie('compare')) {
-                        let listcomp = $.cookie('compare').split(',')
-                        let productid = $(this).attr('productid')
-                        console.log(listcomp)
-                        if (listcomp.indexOf(productid) != -1) {
-                            listcomp.splice(listcomp.indexOf(productid), 1)
-
-                            $(this).removeClass('active')
-                            if (listcomp.length == 0) {
-                                $('.number-ss').css('display', 'none')
-                            } else {
-                                $('.number-ss').css('display', 'flex')
-                                $('.number-ss').text(listcomp.length)
-                            }
-                        } else {
-
-                            listcomp.push(productid);
-                            console.log(listcomp.join())
-
-                            $(this).addClass('active')
-                            $('.number-ss').css('display', 'flex')
-                            $('.number-ss').text(listcomp.length)
-                            
-                        }
-                        $.cookie('compare', listcomp.join())
-                        
-                    } else {
-
-                        let listcomp = []
-                        let productid = $(this).attr('productid')
-                        listcomp.push(productid);
-                        $(this).addClass('active')
-                        console.log(listcomp.join())
-                        $.cookie('compare', listcomp.join())
-
-                        $('.number-ss').text(listcomp.length)
-                        $('.number-ss').css('display', 'flex')
-
-                    }
-                })
-
-                if($.cookie('compare')) {
-                    let listcomp = $.cookie('compare').split(',')
-                    $('.number-ss').css('display', 'flex')
-                    $('.number-ss').text(listcomp.length)
-
-                    let productid = $(this).attr('productid')
-                    if (listcomp.indexOf(productid) != -1) {
-                        $(this).addClass('active')
-                    } else {
-                        $(this).removeClass('active')
-                    }
-                }
-            })
-        })
-
-
-        //alert( $(this).serialize() )
-    });
+    /*$('#filter').change(function(){
+        $(this).submit()
+    })*/
 });
-$('#district').change(function() {
-    let district = $(this).val();
-    let url1 = '/get-ward/' + district;
-    $('#ward').load(url1);
-});
+
+
+
 </script>
 @endsection
