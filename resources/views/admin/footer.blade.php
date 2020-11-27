@@ -109,73 +109,38 @@
     </script>
 {{-- form-table --}}
     {{-- xoá danh mục --}}
+
     <script>
-    function deletePost(event) {
-   alert('Element ID');
-   var id  = $(event).data("id");
-    let _url = `/category/${id}`;
-    let _token   = $('meta[name="csrf-token"]').attr('content');
+        $(".btn-delete").click(function(e){
 
-      $.ajax({
-        url: _url,
-        type: 'DELETE',
-        data: {
-          _token: _token
-        },
-        success: function(response) {
-          $("#row_"+id).remove();
-        }
-      });
-  }
-    </script>
-<script>
-    //   insert record ajax
-      $('#myform').submit(function(e){
-          e.preventDefault();
-        let formData = {
-            category_name : $("#category_name").val(),
-            slug : $("#slug2").val()
-        };
-        $.ajax({
-            // setup ajax
-            type:'POST',
-            url: '/admin/danh-muc-tin-tuc/them-moi/',
-            data: formData,
-            success: function(data){
-                toastr.success('Nhập thành công','Thông báo');
-
-                $('#myTable').prepend(`<tr>
-                <td>`+data.id+`</td>
-                <td>`+data.slug+`</td>
-                <td>`+data.category_name+`</td>
-                <td>`+data.status+`</td>
-                <td>`+`<a name="" id="" class="btn btn-primary" href="/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{{`data.id`}}" data-id="{{`data.id`}}"role="button">Xoá</a>`+`</td>
-
-                </tr>`);
+       e.preventDefault();
+       var id = $(this).data("id");
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax(
+        {
+            url: "/admin/index/danh-muc-tin-tuc/xoa-danh-muc/"+id,
+            type: 'delete', // replaced from put
+            dataType: "JSON",
+            data: {
+                "id": id // method and token not needed in data
             },
-            error: function(error){
-                toastr.error('Lỗi trùng lặp dữ liệu','Thông báo');
+            success: function (response)
+            {
+                console.log(response);
             },
-        })
-        })
+            error: function(error) {
+             console.log("Thất bại");
+           }
+        });
+    });
     </script>
 
     {{-- delete record --}}
-    <script>
-        // Delete record
-$(document).on("click", ".delete" , function() {
-  var delete_id = $(this).data('id');
-  var el = this;
-  $.ajax({
-    // url: 'google.com'
-    // type: 'get',
-    success: function(response){
-      $(el).closest( "tr" ).remove();
-      alert(response);
-    }
-  });
-});
-    </script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
