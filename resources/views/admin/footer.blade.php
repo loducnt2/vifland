@@ -5,6 +5,7 @@
   crossorigin="anonymous"></script>
 <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 
@@ -175,9 +176,49 @@ $(document).on("click", ".delete" , function() {
   });
 });
     </script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        </script>
+
 <script>
 
     $("#tag2").select2({
       tags: true
     });
     </script>
+<script>
+    $( document ).ready(function() {
+    console.log( "ready!" );
+    $("#tag").select2({
+    // theme:'bootstrap4',
+    tags: true,
+    selectOnClose: true,
+    tokenSeparators: [','],
+    placeholder: "Add your tags here",
+    });
+    $(".form-control").on("select2:select", function (e) {
+$.ajax({
+    // hàm tạo keyword Tag
+    type:'POST',
+    url: '/insert',
+    data:$('.form-control').serialize(),
+    success: function(data){
+    toastr.success('Thêm từ khoá thành công','Thông báo');
+    var data = ($(".tag").val());
+    var x = data.toString();
+    var y = x.split(" , ");
+        console.log(y);
+    $(".result").val(y);
+    },
+    error: function(error){
+        console.log(error);
+    },
+}
+);
+});
+});
+</script>

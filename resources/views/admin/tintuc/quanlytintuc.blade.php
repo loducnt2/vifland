@@ -180,7 +180,7 @@ li {
                 {{-- từ khoá select --}}
                    <select class="form-control tag"name="tag[]" id="tag2" multiple="multiple">
                       @foreach ($tag_input as $item)
-                    <option value="{{$item->id}}" name="">{{$item->tag}}</option>
+                    <option value="{{$item->slug}}" name="">{{$item->tag}}</option>
                     @endforeach
                     </select>
 

@@ -204,10 +204,13 @@ class NewsController extends Controller
                 ]);
     }
     public function insertTag(Request $request){
+        $id = $request->id;
         foreach ($request->input('tag') as $tag) {
-            tag::firstOrCreate([
+            tag::updateOrcreate([
+                // 'id'=> $id,
                 'slug' => Str::slug($tag),
-                'tag' => $tag]);
+                'tag' => $tag
+                ]);
           }
     }
     // Tin get được từ các danh mục
