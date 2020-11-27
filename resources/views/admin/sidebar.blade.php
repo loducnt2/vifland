@@ -167,7 +167,9 @@
                         </li>
                     </ul>
                 </div>
+                
                 <div class="avatar">
+                    
                     <img src="{{asset('assets/icon/avatar.png')}}" alt="">
                     <div class="list-menu-login">
                         <div class="wrap-title">

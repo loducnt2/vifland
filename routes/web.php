@@ -185,7 +185,7 @@ Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
 
 //  admin
 Route::get('admin/index','AdminController@index')->middleware('admin.auth')->name('admin-dashboard');
-Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
+//Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
 
 
 //Wallet

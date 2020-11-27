@@ -187,7 +187,7 @@
                                     </div>
                                 </div>
                                 <!-- Start -->
-                                <div class="wrap-list-bxh">
+                                <div class="wrap-list-bxh" id="user_rank">
                                      @foreach($user_by_cash as $user) 
                                     <div class="list-items-bxh">
                                         <div class="box-n px-4 py-3 item zoom-in">
@@ -227,20 +227,24 @@
 $(document).ready(function() {
 
 
-    setTimeout(function(){
+    /*setTimeout(function(){
         var source = new EventSource("/admin/dashboard");
         source.onmessage = function(event) {
           const result = JSON.parse(event.data)
           console.log(result)
+          total_cash = result['total_cash']
+          cash_by_month = result['cash_by_month']
           $('#cash').attr('cash',result['cash'])
           $('#account').text(result['account'])
           $('#view').text(result['view'])
           $('#posted').text(result['product_posted'])
           $('#current').text(result['product_current'])
           $('#email').text(result['email'])
-          //alert($('#cash').text())
+          $('#total_cash').text(total_cash + " VNĐ")
+          $('#cash_by_month').text(cash_by_month + " VNĐ")
+
         }
-    }, 5000);
+    }, 5000);*/
 
         const bcdt_1 = $('#bcdt').attr('data-1');
         var cash = $('#cash').attr('cash');
