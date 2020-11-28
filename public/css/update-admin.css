@@ -120,6 +120,24 @@
     font-weight: 500!important;
 
 }
+
+.page-nap-tien table tr td  {
+    padding: 20px 0px 0px 10px!important
+
+}
+.page-nap-tien .wrap-button button  {
+    margin-left: 20px;
+    width: 18%;
+    margin-right: 20px;
+}
+.page-nap-tien .wrap-button input  {
+    height: 38px;
+    width: 80%;
+}
+.page-nap-tien .wrap-button {
+    display: flex;
+    align-items: center;
+}
 .section-title-big {
     font-size: 30px;
     font-weight: 700;
