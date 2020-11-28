@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class AdminController extends Controller
 {
     public function index(){
-    	$product_posted = Product::count();
+    	//$product_posted = Product::count();
     	$product_current = Product::where('soft_delete',0)->count();
     	$views = Product::select('view')->get();
     	$view = 0;
@@ -37,8 +37,8 @@ class AdminController extends Controller
 
     	$user_by_cash = User::orderBy('total_cash','desc')
     	->select('full_name','username','total_cash')
-    	->limit(7)
-    	->get();
+    	->limit(6)
+    	->get();   
 
     	$total_cashs = Payment::select('amount')->get(); //Tổng doanh thu
     	$total_cash = 0;
@@ -63,7 +63,7 @@ class AdminController extends Controller
     	}
     	//return $cash;
     	$email = DB::table('newsletters')->count();
-    	return view('admin/index',compact('product_posted','product_current','view','user_count','email','post_history_0','post_history_1','post_history_00','post_history_11','user_by_cash','total_cash','cash_by_month','cash'));
+    	return view('admin/index',compact('product_current','view','user_count','email','post_history_0','post_history_1','post_history_00','post_history_11','user_by_cash','total_cash','cash_by_month','cash'));
         //return view('admin/index');
     }
 

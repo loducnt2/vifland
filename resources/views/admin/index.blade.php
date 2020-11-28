@@ -21,22 +21,7 @@
             <div class="section-title">Báo Cáo Tổng Quan</div>
             <div class="wrap-db-1">
                 <div class="row">
-                    <div class="col-lg">
-                        <div class="report-box zoom-in">
-                            <div class="box-n p-5">
-                                <div class="wrap-db-head">
-                                    <i class="far fa-file fs-icon blue-n"></i>
-                                    <div class="badege">
-                                        Tin Đã Đăng
-                                    </div>
-                                </div>
-                                <div class="wrap-sl">
-                                    <div class="amount counter" id="posted">{{ number_format($product_posted) }}</div>
-                                    <div class="text-smalls">Tin Đăng</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-lg">
                         <div class="report-box zoom-in">
                             <div class="box-n p-5">

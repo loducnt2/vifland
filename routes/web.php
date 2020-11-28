@@ -37,18 +37,18 @@ Route::get('/compares','API\CompareController@index')->name('compare');		// So s
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 
 //Danh mục
-/*
-Route::get('/mua-ban-nha-dat','ProductController@getByCateSlug1')->name('cate1');
-Route::get('/cho-thue-nha-dat','ProductController@getByCateSlug2')->name('cate2');
-Route::get('/sang-nhuong-nha-dat','ProductController@getByCateSlug3')->name('cate3');*/
 
-Route::get('/{cate}','SearchController@getByCate')->name('cate');
-Route::post('/search/{cate}','SearchController@index')->name('search');
-Route::get('/search/{cate}','SearchController@index2')->name('search2');
-Route::post('/filter','SearchController@filter')->name('filter');
-Route::get('/filter/','SearchController@filterPage');
+Route::get('/mua-ban-nha-dat','SearchController@getByCate')->name('cate1');
+Route::get('/cho-thue-nha-dat','SearchController@getByCate')->name('cate2');
+Route::get('/sang-nhuong-nha-dat','SearchController@getByCate')->name('cate3');
 
-Route::get('/filter2','SearchController@filter2')->name('filter2');
+//Route::post('/search/{cate}','SearchController@index')->name('search');
+Route::get('/search/','SearchController@index')->name('search');
+//Route::get('/danh-muc/ds/{cate}','SearchController@getByCate')->name('cate');
+//Route::post('/filter','SearchController@filter')->name('filter');
+Route::get('/search/filter/','SearchController@filter')->name('filter');
+
+//Route::get('/filter2','SearchController@filter2')->name('filter2');
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
@@ -59,6 +59,7 @@ Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-art
 Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
 Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
 Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
+
 Route::group(['middleware'=>'auth'],function(){
 	//Nạp tiền
 	Route::post('/user/create-payment','PaymentController@create')->name('create-payment');

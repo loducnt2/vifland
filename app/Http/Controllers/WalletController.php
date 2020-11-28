@@ -9,7 +9,7 @@ class WalletController extends Controller
 {
     //Danh sách
     public function index(){
-        $users = User::orderBy('id','desc')->get();
+        $users = User::orderBy('id','desc')->paginate(10);
         return view('admin/wallet/index',compact('users')) ;
     }
     // Cộng tiền thủ công
