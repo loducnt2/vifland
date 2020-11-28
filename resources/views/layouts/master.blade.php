@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html  class="overflow-hidden">    
+<html class="overflow-hidden">
+
 <head>
     @section('title','Trang chủ')
     <title>@yield('title')</title>
@@ -18,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 </head>
+
 <body>
     @include('layouts.logo_animation')
     <div class="ov-h" id="wrapper">
@@ -88,6 +90,8 @@
                 }
             })
         }
+        // Header
+
         $('.number-yt').css('display', 'none')
         $(".fav").click(function() {
             if ($(this).hasClass("ri-heart-line")) {
@@ -169,8 +173,7 @@
                 }
             })
         });
-
-
+        // End Favorites
         if ($.cookie('compare') != null) {
             let checkcookie = $.cookie('compare')
             console.log(checkcookie.length)
@@ -204,10 +207,10 @@
                         $(this).addClass('active')
                         $('.number-ss').css('display', 'flex')
                         $('.number-ss').text(listcomp.length)
-                        
+
                     }
                     $.cookie('compare', listcomp.join())
-                    
+
                 } else {
 
                     let listcomp = []
@@ -223,7 +226,7 @@
                 }
             })
 
-            if($.cookie('compare')) {
+            if ($.cookie('compare')) {
                 let listcomp = $.cookie('compare').split(',')
                 $('.number-ss').css('display', 'flex')
                 $('.number-ss').text(listcomp.length)
@@ -236,27 +239,27 @@
                 }
             }
         })
-        
+
         @if(Session::has('message'))
-            var type = "{{ Session::get('alert-type', 'info') }}";
-            switch(type){
-                case 'info':
-                    toastr.info("{{ Session::get('message') }}");
-                    break;
-                
-                case 'warning':
-                    toastr.warning("{{ Session::get('message') }}");
-                    break;
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        switch (type) {
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
 
-                case 'success':
-                    toastr.success("{{ Session::get('message') }}");
-                    break;
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
 
-                case 'error':
-                    toastr.error("{{ Session::get('message') }}");
-                    break;
-            }
-          @endif
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+        @endif
 
     })
     </script>
