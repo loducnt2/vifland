@@ -49,15 +49,13 @@ class NewsCategoryController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        // $news_cate= NewsCategory::firstOrNew(['news_category'=>$request('news_category')]);
-        $news_cate = NewsCategory::firstOrNew(['category_name' =>  $request->category_name]);
-        //    $news_cate = new NewsCategory();
-       // $news_cate->id = $request->id;
-       $news_cate->id = $request->id;
-       $news_cate->category_name=$request->category_name;
-       $news_cate->slug = Str::slug($request->category_name);
-       $news_cate->status = "1";
-       $news_cate->save();
+        $news_cate = new NewsCategory();
+        // $news_cate->id = $request->id;
+        $news_cate->id = $request->id;
+        $news_cate->category_name=$request->category_name;
+        $news_cate->slug = Str::slug($request->category_name);
+        $news_cate->status = "1";
+        $news_cate->save();
         return response()->json(
             [
 
@@ -115,6 +113,6 @@ class NewsCategoryController extends Controller
         // $newsCategory = new NewsCategory();
         $newsCategory = NewsCategory::find($id);
         $newsCategory->delete();
-        return redirect()->back();
+        return response()->json(['success'=>'Xoá thành công']);
     }
 }

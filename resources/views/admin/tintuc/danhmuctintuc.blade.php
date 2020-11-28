@@ -40,7 +40,7 @@
                  {{-- <td>{{$user->birth_day}}</td> --}}
                  <td>{{$item->category_name}}</td>
                  <td>{{$item->status}}</td>
-                 <td><a href="#" data-id="{{ $item->id }}" class="btn btn-danger btn-delete">Xoá</a></td>
+                 <td><a href="" data-id="{{ $item->id }}" class="btn btn-danger btn-delete">Xoá</a></td>
 
                 </td>
                  @endforeach

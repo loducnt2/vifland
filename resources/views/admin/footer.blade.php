@@ -1,23 +1,19 @@
-{{-- <script src=""></script> --}}
-<script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
-<script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+  <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
   <script src="{{asset('js/core.min.js') }}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('js/ckeditor.js')}}"></script>
 {{-- script --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
     CKEDITOR.replace( 'editor1' );
 </script>
@@ -95,6 +91,9 @@
               data: {'status': status, 'id':id},
               success: function(data){
                 console.log(data.success)
+                location.reload();
+                // console.log('thực thi');
+
               }
           });
       })
@@ -108,82 +107,98 @@
     });
     </script>
 {{-- form-table --}}
+
     {{-- xoá danh mục --}}
-
     <script>
-        $(".btn-delete").click(function(e){
+    function deletePost(event) {
+   alert('Element ID');
+   var id  = $(event).data("id");
+    let _url = `/category/${id}`;
+    let _token   = $('meta[name="csrf-token"]').attr('content');
 
-       e.preventDefault();
-       var id = $(this).data("id");
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax(
-        {
-            url: "/admin/index/danh-muc-tin-tuc/xoa-danh-muc/"+id,
-            type: 'delete', // replaced from put
-            dataType: "JSON",
-            data: {
-                "id": id // method and token not needed in data
-            },
-            success: function (response)
-            {
-                console.log(response);
-            },
-            error: function(error) {
-             console.log("Thất bại");
-           }
-        });
-    });
-    </script>
-
-    {{-- delete record --}}
-
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        </script>
-
-<script>
-
-    $("#tag2").select2({
-      tags: true
-    });
+      $.ajax({
+        url: _url,
+        type: 'DELETE',
+        data: {
+          _token: _token
+        },
+        success: function(response) {
+          $("#row_"+id).remove();
+        }
+      });
+  }
     </script>
 <script>
-    $( document ).ready(function() {
-    console.log( "ready!" );
-    $("#tag").select2({
-    // theme:'bootstrap4',
-    tags: true,
-    selectOnClose: true,
-    tokenSeparators: [','],
-    placeholder: "Add your tags here",
-    });
-    $(".form-control").on("select2:select", function (e) {
-$.ajax({
-    // hàm tạo keyword Tag
-    type:'POST',
-    url: '/insert',
-    data:$('.form-control').serialize(),
-    success: function(data){
-    toastr.success('Thêm từ khoá thành công','Thông báo');
-    var data = ($(".tag").val());
-    var x = data.toString();
-    var y = x.split(" , ");
-        console.log(y);
-    $(".result").val(y);
-    },
-    error: function(error){
-        console.log(error);
-    },
-}
-);
-});
-});
+    function refreshTable(){
+        if ($(this).parent().hasClass("off")) {
+            toastr.error('Vô hiệu hoá User', 'title')
+
+    }else{
+        toastr.success('Cho phép user hoạt động', 'title')
+        this.fadeout();
+    }
+
+    }
 </script>
+<script>
+    //   insert record ajax
+      $('#myform').submit(function(e){
+          e.preventDefault();
+        let formData = {
+
+            category_name : $("#category_name").val(),
+            slug : $("#slug2").val()
+        };
+        $.ajax({
+            // setup ajax
+            type:'POST',
+            url: '/admin/danh-muc-tin-tuc/them-moi/',
+            data: formData,
+            success: function(data){
+                $('#myTable').prepend(`<tr>
+                <td>`+data.id+`</td>
+                <td>`+data.slug+`</td>
+                <td>`+data.category_name+`</td>
+                <td>`+data.status+`</td>
+                <td> <value={{`+data.id+`}} data-id="`+data.id+`" class="btn btn-danger btn-delete">Xoá</a></td>
+                </tr>`);
+            },
+            error: function(error){
+                console.log(error);
+            },
+        })
+        })
+    </script>
+{{-- Xoá --}}
+<script>
+$('#myTable').on("click", ".btn-delete", function(){
+    var id = $(this).data("id");
+    var $ele = $(this).parent().parent();
+
+    console.log(id);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax(
+    {
+        url: "/admin/index/danh-muc-tin-tuc/xoa-danh-muc/" +id,
+        type: 'delete', // replaced from put
+        dataType: "JSON",
+        data: {
+            "id": id // method and token not needed in data
+        },
+        success: function (response)
+        {
+
+            $ele.fadeOut().remove();
+            console.log("Thành ông"); // see the reponse sent
+        },
+        error: function(error) {
+         console.log(error); // this line will save you tons of hours while debugging
+        // do something here because of error
+       }
+    });
+});
+    </script>
