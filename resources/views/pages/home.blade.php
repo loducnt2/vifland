@@ -76,15 +76,15 @@ $('#navId a').click(e => {
         <div class="max-width-container">
             <div class="box-menu-mobile">
                 <div class="box-mobile-wrap">
-                    <div class="box-m"><a href="{{route('cate',$categories['0']->slug)}}"><img
+                    <div class="box-m"><a href="{{$categories['0']->slug}}"><img
                                 src="{{asset('assets/icon/house@3x.png')}}" alt="">
                             <p>{{$categories['0']->name}} </p>
                         </a></div>
-                    <div class="box-m"><a href="{{route('cate',$categories['1']->slug)}}"><img
+                    <div class="box-m"><a href="{{$categories['1']->slug}}"><img
                                 src="{{asset('assets/icon/rent@3x.png')}}" alt="">
                             <p>{{$categories['1']->name}}</p>
                         </a></div>
-                    <div class="box-m"><a href="{{route('cate',$categories['2']->slug)}}"><img
+                    <div class="box-m"><a href="{{$categories['2']->slug}}"><img
                                 src="{{asset('assets/icon/transfer-image-category.png')}}" alt="">
                             <p>{{$categories['2']->name}}</p>
                         </a></div>
@@ -92,8 +92,8 @@ $('#navId a').click(e => {
             </div>
 
             <div class="box-search-index">
-                <form action="{{route('search2',$categories['0']->slug)}}" method="get" id="formsearch">
-                    @csrf
+                <form action="{{route('search',$categories['0']->slug)}}" method="get" id="formsearch">
+                    
                     <div class="row">
                         <div class="col-3">
                             <div class="box-left">
@@ -135,7 +135,7 @@ $('#navId a').click(e => {
                                             <select class="select1 sltp" name="province">
                                                 <option value="">Tỉnh/ Thành phố</option>
                                                 @foreach($province as $prov)
-                                                <option value="{{$prov->id}}">{{$prov->name}}</option>
+                                                <option value="{{$prov->name}}">{{$prov->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -180,17 +180,17 @@ $('#navId a').click(e => {
                 <div class="row">
                     <div class="col-4">
                         <div class="box-cate">
-                            <a href="{{route('cate',$categories['0']->slug)}}">
+                            <a href="{{$categories['0']->slug}}">
                                 <div class="img"><img src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt=""></div>
                                 <div class="title-box">{{$categories[0]->name}}</div>
                             </a>
                             <div class="end-box">
-                                <a href="{{route('cate',$categories['0']->slug)}}">
+                                <a href="{{$categories['0']->slug}}">
                                     <div class="box-left"><span class="material-icons">list</span>
                                         <p>{{count($product_by_cate1)}} Tin đăng</p>
                                     </div>
                                 </a>
-                                <a href="{{route('new',$categories[0]->slug)}}">
+                                <a href="{{$categories[0]->slug}}">
                                     <div class="box-right"><span class="material-icons">playlist_add</span>
                                         <p>Đăng bài</p>
                                     </div>
@@ -201,17 +201,17 @@ $('#navId a').click(e => {
                     </div>
                     <div class="col-4">
                         <div class="box-cate">
-                            <a href="{{route('cate',$categories['1']->slug)}}">
+                            <a href="{{$categories['1']->slug}}">
                                 <div class="img"><img src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt=""></div>
                                 <div class="title-box">{{$categories[1]->name}}</div>
                             </a>
                             <div class="end-box">
-                                <a href="{{route('cate',$categories['1']->slug)}}">
+                                <a href="{{$categories['1']->slug}}">
                                     <div class="box-left"><span class="material-icons">list</span>
                                         <p>{{count($product_by_cate2)}} Tin đăng</p>
                                     </div>
                                 </a>
-                                <a href="{{route('new',$categories[1]->slug)}}">
+                                <a href="{{$categories[1]->slug}}">
                                     <div class="box-right"><span class="material-icons">playlist_add</span>
                                         <p>Đăng bài</p>
                                     </div>
@@ -222,18 +222,18 @@ $('#navId a').click(e => {
                     </div>
                     <div class="col-4">
                         <div class="box-cate">
-                            <a href="{{route('cate',$categories['2']->slug)}}">
+                            <a href="{{$categories['2']->slug}}">
                                 <div class="img"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
                                 </div>
                                 <div class="title-box">{{$categories[2]->name}}</div>
                             </a>
                             <div class="end-box">
-                                <a href="{{route('cate',$categories['2']->slug)}}">
+                                <a href="{{$categories['2']->slug}}">
                                     <div class="box-left"><span class="material-icons">list</span>
                                         <p>{{count($product_by_cate3)}} Tin đăng</p>
                                     </div>
                                 </a>
-                                <a href="{{route('new',$categories[2]->slug)}}">
+                                <a href="{{$categories[2]->slug}}">
                                     <div class="box-right"><span class="material-icons">playlist_add</span>
                                         <p>Đăng bài</p>
                                     </div>
@@ -248,10 +248,10 @@ $('#navId a').click(e => {
     <section class="index-sc4">
         <div class="max-width-container">
             <div class="text-title">
-                <div class="text-left"><a class="text-desktop" href="{{route('cate',$categories['0']->slug)}}">
+                <div class="text-left"><a class="text-desktop" href="{{$categories['0']->slug}}">
                         <h3>{{$categories[0]->name}}</h3>
                     </a></div>
-                <div class="text-right"><a class="text-desktop" href="{{route('cate',$categories['0']->slug)}}"><i
+                <div class="text-right"><a class="text-desktop" href="{{$categories['0']->slug}}"><i
                             class="ri-equalizer-line"></i>
                         <p>Xem tất cả &nbsp;<span>({{count($product_by_cate1)}} Tin đăng)</span></p>
                     </a></div>
