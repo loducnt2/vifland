@@ -240,15 +240,15 @@
                                         <label for="tinthuong">Tin Thường</label>
                                     </div>
                                     <div class="checked">
-                                        <input id="vip1" type="radio" value="1" name="type">
+                                        <input id="vip1" type="radio" value="{{$prices[0]->price}}" name="type">
                                         <label class="vip1" for="vip1">tin {{$prices[0]->name}}</label>
                                     </div>
                                     <div class="checked">
-                                        <input id="vip2" type="radio" value="2" name="type">
+                                        <input id="vip2" type="radio" value="{{$prices[1]->price}}" name="type">
                                         <label class="vip2" for="vip2">tin {{$prices[1]->name}}</label>
                                     </div>
                                     <div class="checked">
-                                        <input id="vip3" type="radio" value="3" name="type">
+                                        <input id="vip3" type="radio" value="{{$prices[2]->price}}" name="type">
                                         <label class="vip3" for="vip3">Tin {{$prices[2]->name}}</label>
                                     </div>
                                 </div>
