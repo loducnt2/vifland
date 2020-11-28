@@ -99,8 +99,55 @@
     border-radius: 6px !important;
     position: relative !important;
 }
+.box-n-big {
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.04) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
+    border-radius: 28px !important;
+    position: relative !important;
+    padding: 28px!important;
+}
+.wrap-input-b {
+    display: flex;
+    align-items: center;
+}
+.wrap-input-b button {
+    flex: 0 0 200px;
+    margin-left: 20px;
+}
+.button-color {
+    color: white!important;
+    background-color: #1D40AA!important;
+    font-weight: 500!important;
 
+}
 
+.page-nap-tien table tr td  {
+    padding: 20px 0px 0px 10px!important
+
+}
+.page-nap-tien .wrap-button button  {
+    margin-left: 20px;
+    width: 18%;
+    margin-right: 20px;
+}
+.page-nap-tien .wrap-button input  {
+    height: 38px;
+    width: 80%;
+}
+.page-nap-tien .wrap-button {
+    display: flex;
+    align-items: center;
+}
+.section-title-big {
+    font-size: 30px;
+    font-weight: 700;
+    color: #000;
+}
+.button-delete {
+    color: #fff!important;
+    background-color: #d32929!important;
+    font-weight: 500!important;
+}
 /* Ultilities */
 
 nav .sb-sidenav-menu {
@@ -510,4 +557,10 @@ table .thead-dark tr th {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.table-style-1 {
+    margin-top: 30px;
+}
+.table-style-1 table {
+    width: 100%;
 }
