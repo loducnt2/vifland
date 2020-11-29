@@ -27,4 +27,10 @@ class WalletController extends Controller
         return redirect()->back();
 
     }
+
+    public function Detail_payment($id){
+        $payment = Payment::where('user_id',$id)->orderBy('created_at','desc')->paginate(10);
+        return view('/admin/wallet/detail_wallet',compact('payment'));
+    }
+   
 }
