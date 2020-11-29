@@ -1,4 +1,3 @@
-  <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
@@ -14,9 +13,7 @@
 {{-- script --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<script>
-    CKEDITOR.replace( 'editor1' );
-</script>
+
 {{-- slug --}}
 <script>
     function ChangeToSlug()

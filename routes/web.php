@@ -266,4 +266,4 @@ Route::post('/insert','NewsController@insertTag')->name('tag.insert');
 #Insert từ khoá
 // Route::post('/admin/index/quan-ly-tu-khoa/insert','TagController@store')->name('tag.insert');
 // Email
-Route::get('/send-email','NewsLetterController@send_email');
+Route::post('/send-email','NewsLetterController@send_email');

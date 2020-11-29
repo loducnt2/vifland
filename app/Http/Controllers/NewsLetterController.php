@@ -12,8 +12,8 @@ use App\Imports\NewsLettersImport;
 use App\Mail\NewsLetter as MailNewsLetter;
 use Newsletter;
 use Mail;
-// use Spatie\Newsletter\Newsletter;
 use App\Newsletters2;
+use App\Models\News;
 
 // use App\Models\Newsletters2;
 // use Mailchimp;
@@ -115,7 +115,6 @@ class NewsLetterController extends Controller
     }
     public function export(){
         return Excel::download(new NewsLettersExport, 'NewsLetters.xlsx');
-        Toastr::success('Xuất file thàh công!  :)','Thông báo');
 
     }
     public function import(Request $request){
@@ -123,7 +122,7 @@ class NewsLetterController extends Controller
 
         // $request->file('import_file')->isValid(){
 	if ($request->file('import_file')) {
-        \Excel::import(new NewsLettersImport, request()->file('import_file'));
+        $import = \Excel::import(new NewsLettersImport, request()->file('import_file'));
         Toastr::success('Cập nhật file excel thành công!  :)','Thông báo');
         // dd('Có file');
         return redirect()->back()->with('success', 'Success!!!');
@@ -136,25 +135,20 @@ class NewsLetterController extends Controller
     }
     }
     // mail_manager
-    public function mail_management(){
-        $newsletter = Newsletters2::all();
-        return ('admin.email');
-    }
-    //
+
     public function send_email(Request $request){
         // thêm subject
 
         $mails = Newsletters2::pluck('email')->toArray();
-        // content
-        $content = $request->input('content');
-        $subject = $request->input("subject");
-        $from = $request->input("from");
-        Mail::send('email.newsletter', ['name' => 'Thọ', 'email' =>'buinguyenhoangtho1997', 'phone' => '0901165797'],
-        function ($message) use ($mails ,$subject,$from)
-        {
-            $message->from($from);
-            $message->to($mails);
-            $message->subject($subject);
+        // get những tin tức mới nhất trong tuần
+
+        $contents = $request->input("contents");
+        $news = News::all();
+        Mail::send('email.newsletter', ['contents' => $contents,'news'=>$news],function ($message) use($request,$mails) {
+
+            $message->from("buinguyenhoangtho1997@gmail.com");
+            $message->to($mails)->subject('Alt Support');
+
         });
     }
 
