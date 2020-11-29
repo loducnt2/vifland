@@ -1,23 +1,19 @@
-{{-- <script src=""></script> --}}
-<script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
-<script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+  <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
   <script src="{{asset('js/core.min.js') }}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('js/ckeditor.js')}}"></script>
 {{-- script --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
     CKEDITOR.replace( 'editor1' );
 </script>
@@ -95,6 +91,9 @@
               data: {'status': status, 'id':id},
               success: function(data){
                 console.log(data.success)
+                location.reload();
+                // console.log('thực thi');
+
               }
           });
       })
@@ -108,6 +107,7 @@
     });
     </script>
 {{-- form-table --}}
+
     {{-- xoá danh mục --}}
     <script>
     function deletePost(event) {
@@ -129,10 +129,23 @@
   }
     </script>
 <script>
+    function refreshTable(){
+        if ($(this).parent().hasClass("off")) {
+            toastr.error('Vô hiệu hoá User', 'title')
+
+    }else{
+        toastr.success('Cho phép user hoạt động', 'title')
+        this.fadeout();
+    }
+
+    }
+</script>
+<script>
     //   insert record ajax
       $('#myform').submit(function(e){
           e.preventDefault();
         let formData = {
+
             category_name : $("#category_name").val(),
             slug : $("#slug2").val()
         };
@@ -142,83 +155,115 @@
             url: '/admin/danh-muc-tin-tuc/them-moi/',
             data: formData,
             success: function(data){
-                toastr.success('Nhập thành công','Thông báo');
-
                 $('#myTable').prepend(`<tr>
                 <td>`+data.id+`</td>
                 <td>`+data.slug+`</td>
                 <td>`+data.category_name+`</td>
                 <td>`+data.status+`</td>
-                <td>`+`<a name="" id="" class="btn btn-primary" href="/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{{`data.id`}}" data-id="{{`data.id`}}"role="button">Xoá</a>`+`</td>
-
+                <td> <value={{`+data.id+`}} data-id="`+data.id+`" class="btn btn-danger btn-delete">Xoá</a></td>
                 </tr>`);
             },
             error: function(error){
-                toastr.error('Lỗi trùng lặp dữ liệu','Thông báo');
+                console.log(error);
             },
         })
         })
     </script>
+{{-- Xoá Record --}}
+<script>
+$('#myTable').on("click", ".btn-delete", function(){
+    var id = $(this).data("id");
+    var $ele = $(this).parent().parent();
 
-    {{-- delete record --}}
-    <script>
-        // Delete record
-$(document).on("click", ".delete" , function() {
-  var delete_id = $(this).data('id');
-  var el = this;
-  $.ajax({
-    // url: 'google.com'
-    // type: 'get',
-    success: function(response){
-      $(el).closest( "tr" ).remove();
-      alert(response);
-    }
-  });
+    console.log(id);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax(
+    {
+        url: "/admin/index/danh-muc-tin-tuc/xoa-danh-muc/" +id,
+        type: 'delete',
+        dataType: "JSON",
+        data: {
+            "id": id
+        },
+        success: function (response)
+        {
+
+            $ele.fadeOut().remove();
+            toastr.success('Xoá thành công','Quản trị viên');
+            },
+        error: function(error) {
+         console.log(error);
+
+       }
+    });
 });
     </script>
-    <script type="text/javascript">
+
+<script>
+   $('#myTable').on('click', '.btn-edit', function() {
+    // var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = $(this).data("id");
+//   var category_name = $(this).data("category_name");
+var category_name = $(this).data("id");
+  console.log(id);
+  console.log(category_name);
+  $('#id_edit').val(category_name);
+//   modal.find('#id_edit').val(id);
+  var modal = $(this);
+  $('#editModal').modal('show');
+  $('.modal-title').text('Edit');
+
+
+        });
+</script>
+<script>
+    $(document).on('change', '.custom-file-input', function (event) {
+$(this).next('.custom-file-label').html(event.target.files[0].name);
+})
+</script>
+{{-- savebtn = thay đổi thông tin tên danh mục --}}
+
+<script>
+    $('.save_btn').click(function (e) {
+        var id = $(this).data("id");
+
+        var category_name = $("#id_edit").val();
+        alert(category_name);
+        // console.log(update_id);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        </script>
+        $.ajax(
+        {
+            url: "/admin/index/danh-muc-tin-tuc/sua-danh-muc/" +id,
 
-<script>
+            type: 'POST',
+            dataType: "JSON",
+            // dataType: $('#myForm').serialize(),
 
-    $("#tag2").select2({
-      tags: true
+            data: {
+                "id": id,
+                "category_name" : category_name
+            },
+            success: function (response)
+            {
+                // alert(id);
+                console.log(response);
+                alert(id);
+                // console.log(category_name);
+                },
+            error: function(error) {
+
+             console.log(error);
+
+           }
+        });
     });
-    </script>
-<script>
-    $( document ).ready(function() {
-    console.log( "ready!" );
-    $("#tag").select2({
-    // theme:'bootstrap4',
-    tags: true,
-    selectOnClose: true,
-    tokenSeparators: [','],
-    placeholder: "Add your tags here",
-    });
-    $(".form-control").on("select2:select", function (e) {
-$.ajax({
-    // hàm tạo keyword Tag
-    type:'POST',
-    url: '/insert',
-    data:$('.form-control').serialize(),
-    success: function(data){
-    toastr.success('Thêm từ khoá thành công','Thông báo');
-    var data = ($(".tag").val());
-    var x = data.toString();
-    var y = x.split(" , ");
-        console.log(y);
-    $(".result").val(y);
-    },
-    error: function(error){
-        console.log(error);
-    },
-}
-);
-});
-});
 </script>
+

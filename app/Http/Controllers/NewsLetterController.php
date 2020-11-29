@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 // use Brian2694\Toastr\Toastr;
 // use Illuminate\Http\Request;
 use Toastr;
+use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Exports\NewsLettersExport;
 use App\Imports\NewsLettersImport;
-
+use App\Mail\NewsLetter as MailNewsLetter;
 use Newsletter;
+use Mail;
+// use Spatie\Newsletter\Newsletter;
 use App\Newsletters2;
 
 // use App\Models\Newsletters2;
@@ -97,20 +100,22 @@ class NewsLetterController extends Controller
         $newsletters = new Newsletters2();
 
         if ( ! Newsletter::isSubscribed($request->email) ) {
+            Newsletter::subscribe(filter_var($request->email, FILTER_VALIDATE_EMAIL));
             $newsletters->email = $request->email;
-            Newsletter::subscribe($request->email);
-            // dd(true);
+
             $newsletters->save();
             Toastr::success('Đăng kí thành công :)','Thông báo');
             // $user -> save();\
         }
         else{
+            Newsletter::getLastError();
             Toastr::success('Đăng kí thất bại :(','Thông báo');
         }
         return redirect()->back();
     }
     public function export(){
         return Excel::download(new NewsLettersExport, 'NewsLetters.xlsx');
+        Toastr::success('Xuất file thàh công!  :)','Thông báo');
 
     }
     public function import(Request $request){
@@ -118,7 +123,7 @@ class NewsLetterController extends Controller
 
         // $request->file('import_file')->isValid(){
 	if ($request->file('import_file')) {
-        $import = \Excel::import(new NewsLettersImport, request()->file('import_file'));
+        \Excel::import(new NewsLettersImport, request()->file('import_file'));
         Toastr::success('Cập nhật file excel thành công!  :)','Thông báo');
         // dd('Có file');
         return redirect()->back()->with('success', 'Success!!!');
@@ -129,45 +134,29 @@ class NewsLetterController extends Controller
         // dd('Có file');
         return redirect()->back()->with('success', 'Success!!!');
     }
-
-
-
-
     }
-    // send campaign
-    // public function send_email(Request $request){
+    // mail_manager
+    public function mail_management(){
+        $newsletter = Newsletters2::all();
+        return ('admin.email');
+    }
+    //
+    public function send_email(Request $request){
+        // thêm subject
 
-    //     //List ID from .env
-    //     $listId = env('MAILCHIMP_LIST_ID');
+        $mails = Newsletters2::pluck('email')->toArray();
+        // content
+        $content = $request->input('content');
+        $subject = $request->input("subject");
+        $from = $request->input("from");
+        Mail::send('email.newsletter', ['name' => 'Thọ', 'email' =>'buinguyenhoangtho1997', 'phone' => '0901165797'],
+        function ($message) use ($mails ,$subject,$from)
+        {
+            $message->from($from);
+            $message->to($mails);
+            $message->subject($subject);
+        });
+    }
 
-    //     //Mailchimp instantiation with Key
-    //     $mailchimp = new \Mailchimp(env('MAILCHIMP_APIKEY'));
-
-    //     //Thông tin thư gửi đến những khách hàng đã subscribe
-    //     $campaign = $mailchimp->campaigns->create('regular', [
-    //         'list_id' => $listId,
-
-    //         'campaign_content' => $request->input('content'),
-    //         'subject' => 'Laravel-quảng cáo',
-    //         'from_email' => $request->input('from_email'),
-    //         'from_name' => $request->input('from_name'),
-    //         // 'content' => $request->input('content'),
-    //         // 'template_id'=>''
-    //         // 'content'=>'Học asdasds',
-    //         // 'content' => $request->input('content'),
-    //         'template_id'=>'407832',
-    //         'subject'=>'Test',
-    //         'to_name' => 'Bùi Nguyễn Hoàng Thọ',
-    //     ],
-    //      [
-    //         'html' => $request->input('content'),
-    //         'text' => strip_tags($request->input('content')),
-    //     ]);
-    //     $mailchimp->campaigns->send($campaign['id']);
-    //     dd($campaign);
-    //     return response()->json([
-    //         'html'=> $request->input('content'),
-    //     ]);
-    // }
 }
 
