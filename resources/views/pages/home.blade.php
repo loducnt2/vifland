@@ -187,7 +187,7 @@ $('#navId a').click(e => {
                             <div class="end-box">
                                 <a href="{{$categories['0']->slug}}">
                                     <div class="box-left"><span class="material-icons">list</span>
-                                        <p>{{count($product_by_cate1)}} Tin đăng</p>
+                                        <p>{{$count_cate1}} Tin đăng</p>
                                     </div>
                                 </a>
                                 <a href="{{$categories[0]->slug}}">
@@ -208,7 +208,7 @@ $('#navId a').click(e => {
                             <div class="end-box">
                                 <a href="{{$categories['1']->slug}}">
                                     <div class="box-left"><span class="material-icons">list</span>
-                                        <p>{{count($product_by_cate2)}} Tin đăng</p>
+                                        <p>{{$count_cate2}} Tin đăng</p>
                                     </div>
                                 </a>
                                 <a href="{{$categories[1]->slug}}">
@@ -230,7 +230,7 @@ $('#navId a').click(e => {
                             <div class="end-box">
                                 <a href="{{$categories['2']->slug}}">
                                     <div class="box-left"><span class="material-icons">list</span>
-                                        <p>{{count($product_by_cate3)}} Tin đăng</p>
+                                        <p>{{$count_cate3}} Tin đăng</p>
                                     </div>
                                 </a>
                                 <a href="{{$categories[2]->slug}}">
@@ -253,7 +253,7 @@ $('#navId a').click(e => {
                     </a></div>
                 <div class="text-right"><a class="text-desktop" href="{{$categories['0']->slug}}"><i
                             class="ri-equalizer-line"></i>
-                        <p>Xem tất cả &nbsp;<span>({{count($product_by_cate1)}} Tin đăng)</span></p>
+                        <p>Xem tất cả &nbsp;<span>({{$count_cate1}} Tin đăng)</span></p>
                     </a></div>
             </div>
         </div>
@@ -370,7 +370,7 @@ $('#navId a').click(e => {
                     </a></div>
                 <div class="text-right"><a class="text-desktop" href="/cho-thue-nha-dat"><i
                             class="ri-equalizer-line"></i>
-                        <p>Xem tất cả &nbsp;<span>({{count($product_by_cate2)}} Tin đăng)</span></p>
+                        <p>Xem tất cả &nbsp;<span>({{$count_cate2}} Tin đăng)</span></p>
                     </a></div>
             </div>
         </div>
@@ -488,7 +488,7 @@ $('#navId a').click(e => {
                     </a></div>
                 <div class="text-right"><a class="text-desktop" href="/sang-nhuong-nha-dat"><i
                             class="ri-equalizer-line"></i>
-                        <p>Xem tất cả &nbsp;<span>({{count($product_by_cate3)}} Tin đăng)</span></p>
+                        <p>Xem tất cả &nbsp;<span>({{$count_cate3}} Tin đăng)</span></p>
                     </a></div>
             </div>
         </div>

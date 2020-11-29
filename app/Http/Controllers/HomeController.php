@@ -13,6 +13,7 @@ use App\Notification;
 use App\Models\ProductExtends;
 use App\Models\PostHistory;
 use App\Models\Favorited;
+use Carbon\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -181,8 +182,34 @@ class HomeController extends Controller
         ->get();
         session()->flash('noti',$noti);
         
+        $count_cate1 = Category::where('parent_id',1)
+        ->leftJoin('product','category.id','product.cate_id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->where('post_history.status',1)
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('product.status',1)
+        ->where('soft_delete',0)
+        ->count();
 
-         
+        $count_cate2 = Category::where('parent_id',2)
+        ->leftJoin('product','category.id','product.cate_id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->where('post_history.status',1)
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('product.status',1)
+        ->where('soft_delete',0)
+        ->count();
+
+        $count_cate3 = Category::where('parent_id',3)
+        ->leftJoin('product','category.id','product.cate_id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->where('post_history.status',1)
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+        ->where('product.status',1)
+        ->where('soft_delete',0)
+        ->count();
+        
+       //return $count_cate2;
        
         return view('/pages/home',compact(
             'categories',
@@ -191,8 +218,10 @@ class HomeController extends Controller
             'filter_price',
             'product_by_cate1',
             'product_by_cate2',
-            'product_by_cate3'
-
+            'product_by_cate3',
+            'count_cate1',
+            'count_cate2',
+            'count_cate3'
         ));
         
     }
