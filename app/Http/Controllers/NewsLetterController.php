@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 // use Brian2694\Toastr\Toastr;
 // use Illuminate\Http\Request;
 use Toastr;
+use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Exports\NewsLettersExport;
 use App\Imports\NewsLettersImport;
-
+use App\Mail\NewsLetter as MailNewsLetter;
 use Newsletter;
+use Mail;
 use App\Newsletters2;
+use App\Models\News;
 
 // use App\Models\Newsletters2;
 // use Mailchimp;
@@ -97,14 +100,15 @@ class NewsLetterController extends Controller
         $newsletters = new Newsletters2();
 
         if ( ! Newsletter::isSubscribed($request->email) ) {
+            Newsletter::subscribe(filter_var($request->email, FILTER_VALIDATE_EMAIL));
             $newsletters->email = $request->email;
-            Newsletter::subscribe($request->email);
-            // dd(true);
+
             $newsletters->save();
             Toastr::success('Đăng kí thành công :)','Thông báo');
             // $user -> save();\
         }
         else{
+            Newsletter::getLastError();
             Toastr::success('Đăng kí thất bại :(','Thông báo');
         }
         return redirect()->back();
@@ -129,45 +133,24 @@ class NewsLetterController extends Controller
         // dd('Có file');
         return redirect()->back()->with('success', 'Success!!!');
     }
-
-
-
-
     }
-    // send campaign
-    // public function send_email(Request $request){
+    // mail_manager
 
-    //     //List ID from .env
-    //     $listId = env('MAILCHIMP_LIST_ID');
+    public function send_email(Request $request){
+        // thêm subject
 
-    //     //Mailchimp instantiation with Key
-    //     $mailchimp = new \Mailchimp(env('MAILCHIMP_APIKEY'));
+        $mails = Newsletters2::pluck('email')->toArray();
+        // get những tin tức mới nhất trong tuần
 
-    //     //Thông tin thư gửi đến những khách hàng đã subscribe
-    //     $campaign = $mailchimp->campaigns->create('regular', [
-    //         'list_id' => $listId,
+        $contents = $request->input("contents");
+        $news = News::all();
+        Mail::send('email.newsletter', ['contents' => $contents,'news'=>$news],function ($message) use($request,$mails) {
 
-    //         'campaign_content' => $request->input('content'),
-    //         'subject' => 'Laravel-quảng cáo',
-    //         'from_email' => $request->input('from_email'),
-    //         'from_name' => $request->input('from_name'),
-    //         // 'content' => $request->input('content'),
-    //         // 'template_id'=>''
-    //         // 'content'=>'Học asdasds',
-    //         // 'content' => $request->input('content'),
-    //         'template_id'=>'407832',
-    //         'subject'=>'Test',
-    //         'to_name' => 'Bùi Nguyễn Hoàng Thọ',
-    //     ],
-    //      [
-    //         'html' => $request->input('content'),
-    //         'text' => strip_tags($request->input('content')),
-    //     ]);
-    //     $mailchimp->campaigns->send($campaign['id']);
-    //     dd($campaign);
-    //     return response()->json([
-    //         'html'=> $request->input('content'),
-    //     ]);
-    // }
+            $message->from("buinguyenhoangtho1997@gmail.com");
+            $message->to($mails)->subject('Alt Support');
+
+        });
+    }
+
 }
 

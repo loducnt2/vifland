@@ -1,27 +1,29 @@
-{{-- <script src=""></script> --}}
-<script
-  src="https://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
-<script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+  <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
   <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 
   <script src="{{asset('js/core.min.js') }}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('js/ckeditor.js')}}"></script>
+<script src="{{asset('js/select2.full.js')}}"></script>
 {{-- script --}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <script>
-    CKEDITOR.replace( 'editor1' );
+    CKEDITOR.replace( 'contents' );
 </script>
-{{-- slug --}}
+{{-- tag --}}
+
+
+{{-- end tag --}}
 <script>
     function ChangeToSlug()
     {
@@ -62,10 +64,12 @@
     }
 
 </script>
-{{-- </script> --}}
-{{-- danh mục --}}
-{{-- <script language="javascript"> --}}
-    <script>
+
+
+
+
+
+    {{-- <script>
         $( document ).ready(function() {
             $('input').on('itemAdded', function(event) {
         //   thêm item
@@ -79,7 +83,7 @@
         console.log($t);
         });
         });
-    </script>
+    </script> --}}
 
 {{-- toggle-bootstrap-bar --}}
 <script>
@@ -95,6 +99,9 @@
               data: {'status': status, 'id':id},
               success: function(data){
                 console.log(data.success)
+                location.reload();
+                // console.log('thực thi');
+
               }
           });
       })
@@ -108,6 +115,7 @@
     });
     </script>
 {{-- form-table --}}
+
     {{-- xoá danh mục --}}
     <script>
     function deletePost(event) {
@@ -128,97 +136,68 @@
       });
   }
     </script>
+
 <script>
-    //   insert record ajax
-      $('#myform').submit(function(e){
-          e.preventDefault();
-        let formData = {
-            category_name : $("#category_name").val(),
-            slug : $("#slug2").val()
-        };
-        $.ajax({
-            // setup ajax
-            type:'POST',
-            url: '/admin/danh-muc-tin-tuc/them-moi/',
-            data: formData,
-            success: function(data){
-                toastr.success('Nhập thành công','Thông báo');
+    function refreshTable(){
+        if ($(this).parent().hasClass("off")) {
+            toastr.error('Vô hiệu hoá User', 'title')
 
-                $('#myTable').prepend(`<tr>
-                <td>`+data.id+`</td>
-                <td>`+data.slug+`</td>
-                <td>`+data.category_name+`</td>
-                <td>`+data.status+`</td>
-                <td>`+`<a name="" id="" class="btn btn-primary" href="/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{{`data.id`}}" data-id="{{`data.id`}}"role="button">Xoá</a>`+`</td>
-
-                </tr>`);
-            },
-            error: function(error){
-                toastr.error('Lỗi trùng lặp dữ liệu','Thông báo');
-            },
-        })
-        })
-    </script>
-
-    {{-- delete record --}}
-    <script>
-        // Delete record
-$(document).on("click", ".delete" , function() {
-  var delete_id = $(this).data('id');
-  var el = this;
-  $.ajax({
-    // url: 'google.com'
-    // type: 'get',
-    success: function(response){
-      $(el).closest( "tr" ).remove();
-      alert(response);
+    }else{
+        toastr.success('Cho phép user hoạt động', 'title')
+        this.fadeout();
     }
-  });
-});
-    </script>
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        </script>
 
-<script>
-
-    $("#tag2").select2({
-      tags: true
+    }
+</script>
+<script language="javascript">
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
     </script>
+{{-- tag posts manager--}}
 <script>
     $( document ).ready(function() {
     console.log( "ready!" );
-    $("#tag").select2({
+    $("#tag2").select2({
     // theme:'bootstrap4',
     tags: true,
-    selectOnClose: true,
+    // selectOnClose: true,
     tokenSeparators: [','],
     placeholder: "Add your tags here",
+       /* the next 2 lines make sure the user can click away after typing and not lose the new tag */
     });
     $(".form-control").on("select2:select", function (e) {
-$.ajax({
+
+
+        $.ajax({
     // hàm tạo keyword Tag
     type:'POST',
     url: '/insert',
     data:$('.form-control').serialize(),
     success: function(data){
-    toastr.success('Thêm từ khoá thành công','Thông báo');
+    console.log('Gọi thành công');
     var data = ($(".tag").val());
     var x = data.toString();
     var y = x.split(" , ");
         console.log(y);
     $(".result").val(y);
+
     },
     error: function(error){
         console.log(error);
     },
+
 }
 );
+
 });
 });
+</script>
+{{-- fix lỗi không sử dụng được ảnh CKEditor trong modal --}}
+<script>
+    CKEDITOR.replace('contents');
+      $(document).on({'show.bs.modal': function () {
+                 $(this).removeAttr('tabindex');
+      } }, '.modal');
 </script>
