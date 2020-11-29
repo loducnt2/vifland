@@ -169,7 +169,7 @@
         })
         })
     </script>
-{{-- Xoá --}}
+{{-- Xoá Record --}}
 <script>
 $('#myTable').on("click", ".btn-delete", function(){
     var id = $(this).data("id");
@@ -184,21 +184,86 @@ $('#myTable').on("click", ".btn-delete", function(){
     $.ajax(
     {
         url: "/admin/index/danh-muc-tin-tuc/xoa-danh-muc/" +id,
-        type: 'delete', // replaced from put
+        type: 'delete',
         dataType: "JSON",
         data: {
-            "id": id // method and token not needed in data
+            "id": id
         },
         success: function (response)
         {
 
             $ele.fadeOut().remove();
-            console.log("Thành ông"); // see the reponse sent
-        },
+            toastr.success('Xoá thành công','Quản trị viên');
+            },
         error: function(error) {
-         console.log(error); // this line will save you tons of hours while debugging
-        // do something here because of error
+         console.log(error);
+
        }
     });
 });
     </script>
+
+<script>
+   $('#myTable').on('click', '.btn-edit', function() {
+    // var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = $(this).data("id");
+//   var category_name = $(this).data("category_name");
+var category_name = $(this).data("id");
+  console.log(id);
+  console.log(category_name);
+  $('#id_edit').val(category_name);
+//   modal.find('#id_edit').val(id);
+  var modal = $(this);
+  $('#editModal').modal('show');
+  $('.modal-title').text('Edit');
+
+
+        });
+</script>
+<script>
+    $(document).on('change', '.custom-file-input', function (event) {
+$(this).next('.custom-file-label').html(event.target.files[0].name);
+})
+</script>
+{{-- savebtn = thay đổi thông tin tên danh mục --}}
+
+<script>
+    $('.save_btn').click(function (e) {
+        var id = $(this).data("id");
+
+        var category_name = $("#id_edit").val();
+        alert(category_name);
+        // console.log(update_id);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax(
+        {
+            url: "/admin/index/danh-muc-tin-tuc/sua-danh-muc/" +id,
+
+            type: 'POST',
+            dataType: "JSON",
+            // dataType: $('#myForm').serialize(),
+
+            data: {
+                "id": id,
+                "category_name" : category_name
+            },
+            success: function (response)
+            {
+                // alert(id);
+                console.log(response);
+                alert(id);
+                // console.log(category_name);
+                },
+            error: function(error) {
+
+             console.log(error);
+
+           }
+        });
+    });
+</script>
+

@@ -248,6 +248,8 @@ Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news
 Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
 
 Route::delete('/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
+Route::post('/admin/index/danh-muc-tin-tuc/sua-danh-muc/{id}','NewsCategoryController@update')->name('news_category.update');
+
 Route::get('/admin/index/danh-muc-tin-tuc/xoa-het','NewsCategoryController@deleteall')->name('newsletter_deleteall');
 Route::get('/admin/index/tin-tuc/xoa-het','NewsController@deleteall')->name('news_deleteall');
 
@@ -263,3 +265,5 @@ Route::post('/insert','NewsController@insertTag')->name('tag.insert');
 
 #Insert từ khoá
 // Route::post('/admin/index/quan-ly-tu-khoa/insert','TagController@store')->name('tag.insert');
+// Email
+Route::get('/send-email','NewsLetterController@send_email');

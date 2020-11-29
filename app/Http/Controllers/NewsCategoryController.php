@@ -50,12 +50,12 @@ class NewsCategoryController extends Controller
     {
         // dd($request);
         $news_cate = new NewsCategory();
-        // $news_cate->id = $request->id;
         $news_cate->id = $request->id;
         $news_cate->category_name=$request->category_name;
         $news_cate->slug = Str::slug($request->category_name);
         $news_cate->status = "1";
         $news_cate->save();
+
         return response()->json(
             [
 
@@ -97,9 +97,25 @@ class NewsCategoryController extends Controller
      * @param  \App\NewsCategory  $newsCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NewsCategory $newsCategory)
+    public function update(Request $request, $id)
     {
-        //
+        //cập nhật danh mục
+        $newsCategory = NewsCategory::find($id);
+            $newsCategory->category_name = $request->input('category_name');
+            $newsCategory->slug = str::slug($request->input('category_name'));
+            $newsCategory->status = "1";
+            $newsCategory->update();
+            return response()->json(
+                [
+
+                    // 'status'=>$newsCategory->status,
+                    'id'=>$newsCategory->id,
+                    'category_name'=>$newsCategory->category_name,
+                    'slug'=>$newsCategory->slug,
+                    // 'created_at'=>$news_cate->created_at
+                ]
+            );
+
     }
 
     /**
