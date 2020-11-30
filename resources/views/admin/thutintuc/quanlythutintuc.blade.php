@@ -14,7 +14,7 @@ content: "Chọn tập tin " !important; }
 
     @extends('admin.sidebar')
     @section('content')
-    {!! Toastr::message() !!}
+
 
     <form action="/admin/index/quan-ly-thu-tin-tuc/export" method="get">
         <button type="submit" class="btn btn-primary" style="background-color:#7174E9;color:white" >Xuất file Excel</button>
@@ -102,6 +102,10 @@ content: "Chọn tập tin " !important; }
         </div>
     </div>
     @endsection
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
 
 </body>
 </html>

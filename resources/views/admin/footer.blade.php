@@ -14,8 +14,7 @@
 <script src="{{asset('js/select2.full.js')}}"></script>
 {{-- script --}}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 <script>
     CKEDITOR.replace( 'contents' );
@@ -201,3 +200,4 @@
                  $(this).removeAttr('tabindex');
       } }, '.modal');
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

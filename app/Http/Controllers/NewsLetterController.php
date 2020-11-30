@@ -150,6 +150,8 @@ class NewsLetterController extends Controller
             $message->to($mails)->subject('Alt Support');
 
         });
+        toastr::success('Gủi thư thành công','Hệ thống');
+        return redirect()->back();
     }
 
 }
