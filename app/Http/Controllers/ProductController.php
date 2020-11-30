@@ -220,7 +220,7 @@ class ProductController extends Controller
         );
 
 
-        return redirect()->route('user-article',auth()->user()->id)->with($notification);
+        return redirect()->route('article-wait')->with($notification);
 
     }
 

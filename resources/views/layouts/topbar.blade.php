@@ -140,10 +140,25 @@
                                                'product.slug as slug'
                                            )
                                            ->get();
+
+
+                                           $noAccept = DB::table('post_history')
+                                            ->leftJoin('product','post_history.product_id','product.id')
+                                           ->where('post_history.user_id',auth()->user()->id)
+                                           ->where('product.soft_delete',1)
+                                           ->where('post_history.status',2)
+                                           ->orderby('id', 'asc')
+                                           ->select(
+                                               'product.id as id',
+                                               'product.datetime_end as date',
+                                               'product.slug as slug'
+                                           )
+                                           ->get();
                                         }
                                         else {
                                             $duedate = [];
                                             $duedate1 = [];
+                                            $noAccept =[];
                                         }
                                       ?>
                                     <div class="co-thong-bao">
@@ -170,7 +185,17 @@
                                             </div>
                                         </div>
                                         @endforeach
-
+                                        
+                                        @foreach($noAccept as $post)
+                                        <div class="item">
+                                            <div class="wrap-text products-duedate ">
+                                                <div class="thongbao post-due" style="background: red;">Thông báo</div><a href="{{route('article-detail',$post->slug)}}">Bài
+                                                    viết của bạn không được duyệt </a>
+                                                <div class="date"> ngày hết hạn : {{$post->date}}</div>
+                                                <div>{{$post->id}}</div>
+                                             </div>
+                                        </div>
+                                        @endforeach
 
                                         @foreach($notis as $noti)
                                         <div class="item">

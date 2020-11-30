@@ -1,9 +1,10 @@
 @extends('admin.sidebar')
 @section('content')
-<div class="container">
+<div class="container-fluid box-n-big">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <a name="" id="" class="btn btn-primary" href="{{route('newsletter_deleteall')}}" role="button">Xoá tất cả danh mục</a>
-<form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
+    <a name="" id="" class="btn button-delete" href="{{route('newsletter_deleteall')}}" role="button">Xoá tất cả danh
+        mục</a>
+    <form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
         {{ csrf_field() }}
     <div class="row">
         <div class="col-md-8 mt-4 form-group">
@@ -82,9 +83,11 @@
                 </tbody>
             </table>
         </div>
-    </div>
 </div>
 </form>
+<<<<<<< HEAD
+@endsection
+=======
 
 </div>
 @endsection
@@ -97,3 +100,4 @@
    <!-- Modal -->
 
 
+>>>>>>> c13d67726b991973eebb9ad3e5356ea719df9c70

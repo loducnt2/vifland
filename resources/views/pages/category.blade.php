@@ -67,12 +67,12 @@
                             <div class="mdm-1">
                                 <div class="checked">
                                     <input id="luachonsearch1" type="checkbox" value="{{$cate_childs[0]->id}}"
-                                        name="cate_child[]" @if(in_array($cate_childs[0]->id,$cate_child)){{"checked"}} @endif>
+                                        name="cate_child[]" @if($cate_child!=NULL) @if(in_array($cate_childs[0]->id,$cate_child)){{"checked"}} @endif @endif>
                                     <label for="luachonsearch1">{{$cate_childs[0]->name}}</label>
                                 </div>
                                 <div class="checked">
                                     <input id="luachonsearch2" type="checkbox" value="{{$cate_childs[1]->id}}"
-                                        name="cate_child[]" @if(in_array($cate_childs[1]->id,$cate_child)){{"checked"}} @endif>
+                                        name="cate_child[]" @if($cate_child!=NULL) @if(in_array($cate_childs[1]->id,$cate_child)){{"checked"}} @endif @endif>
                                     <label for="luachonsearch2">{{$cate_childs[1]->name}}</label>
                                 </div>
                             </div>
@@ -347,10 +347,8 @@
 
                                     <h1 class="MsoNormal" align="center">Mua bán nhà đất bất động sản </h1>
                                     <div id="content-province">
-
-
                                         @if(isset($content_province) && $content_province != NULL)
-                                        <?php echo $content_province; ?>
+                                        <?php echo html_entity_decode($content_province)?>
                                         @else
                                         <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                             <font size="3"></font><i><a href="https://meeyland.com/mua-ban-nha-dat">Mua

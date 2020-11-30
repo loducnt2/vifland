@@ -208,7 +208,8 @@ class SearchController extends Controller
                 $district = "";
                 $province = "";
                 $ward     = "";
-                return view('pages/category',compact('cate','cate_childs','province','product_extend','title','products','wards','ward','districts','district','provinces','filter_price','product_cate','filter_facades'));
+                $cate_child =[13,14,18,19,20,21];
+                return view('pages/category',compact('cate','cate_childs','cate_child','province','product_extend','title','products','wards','ward','districts','district','provinces','filter_price','product_cate','filter_facades'));
             //}else{
             //    return redirect(route('home'));
             //}
