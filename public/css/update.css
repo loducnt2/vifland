@@ -20,6 +20,12 @@ header .nav-desktop .main-nav .nav-list .icon {
 .box-sp .box-sp-text .title-text {
     height: 38px;
 }
+.user-mobile {
+    width: 100%!important;
+}
+.menu-mobile {
+    width: 100%!important;
+}
 .form-group-sl1
     .select2-container
     .select2-selection--single
@@ -205,11 +211,19 @@ a.cke_button {
     justify-content: flex-end;
     padding-right: 10px;
 }
+.nav-link.active {
+    color: #1a237e!important;
+}
 .dangbaiviet .wrap-2 td p {
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.00714em;
     color: black;
+}
+.danhmuc .button-filter {
+    background-color: #223F91;
+    color: white;
+    border-radius: 0px 0px 10px 10px;
 }
 .dangbaiviet .wrap-2 td span {
     font-size: 0.875rem;
