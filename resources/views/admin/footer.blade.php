@@ -157,9 +157,14 @@
                 <td>`+data.id+`</td>
                 <td>`+data.slug+`</td>
                 <td>`+data.category_name+`</td>
-                <td>`+data.status+`</td>
+
                 <td> <value={{`+data.id+`}} data-id="`+data.id+`" class="btn btn-danger btn-delete">Xoá</a></td>
-                </tr>`);
+                <td> <value={{`+data.id+`}} data-id="`+data.id+`" class="btn btn-danger btn-edit" data-category_name=`+data.category_name+`>Sửa</a></td>
+                </tr>`
+
+                // edit record
+
+                );
             },
             error: function(error){
                 console.log(error);
@@ -200,40 +205,7 @@ $('#myTable').on("click", ".btn-delete", function(){
     });
 });
     </script>
-<script>
-    // event khi bấm vào nút .btn-edit để truyền value từ modal
 
-    $('#myTable').on("click", ".btn-edit", function(e){
-        e.preventDefault();
-        var category_id = $(this).data('id');
-        var category_name = $(this).data('category_name');
-     console.log(category_name);
-        $('#category_id').val(category_id);
-        alert(category_name);
-        $('input[name="category_name"]').val(category_name);
-          $('#modal-edit-form').modal('show');
-    });
-
-</script>
-
-
-<script>
-//event lưu vào database dữ liệu đã sửa va
-    $('body').on("click","#btn-save",function(e){
-        e.preventDefault();
-
-        // var category_name = $(this).data('category_name');
-        console.log(category_id);
-        // console.log(category_name);
-    });
-
-
-</script>
-
-
-
-
-{{-- fix lỗi modal không hoạt động được với ckeditor --}}
 <script>
     CKEDITOR.replace('contents');
 
@@ -247,4 +219,65 @@ $('#myTable').on("click", ".btn-delete", function(){
     tags: true,
     tokenSeparators: [',', ' ']
 })
+</script>
+<script>
+    $('.modal').on("click", "#save-button", function(e){
+        console.log('asdasdsad');
+    });
+
+</script>
+
+{{-- button edit record --}}
+
+<script>
+    $("#myTable").on('click','.btn-edit',function(e){
+        var id = $(this).data('id');
+        var category_name = $(this).data('category_name');
+
+        e.preventDefault();
+
+        $('.modal').modal('show');
+
+        $('input[name=category_name]').val(category_name);
+        $('input[name=category_id]').val(id);
+        console.log(id);
+        console.log(category_name);
+    })
+</script>
+
+
+<script>
+    $("body").on('click','.btn-save',function(e){
+        e.preventDefault();
+        var category_name = $('input[name=category_name]').val();
+        var id = $('input[name=category_id]').val();
+
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax(
+    {
+        url: "/admin/index/danh-muc-tin-tuc/sua-danh-muc/" +id,
+        type: 'PUT',
+        dataType: "JSON",
+        data: {
+            "id": id,
+            "category_name" : category_name
+        },
+        success: function (response)
+        {
+            console.log(response);
+            $('.modal').modal('hide');
+            // setInterval('location.reload()', 100);
+            $(this).fadeOut();
+            var refInterval = window.setTimeout('location.reload()',1);
+
+            },
+        error: function(error) {
+         console.log(error);
+        }
+    });
+});
 </script>
