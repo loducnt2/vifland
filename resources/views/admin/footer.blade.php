@@ -207,6 +207,7 @@ $('#myTable').on("click", ".btn-delete", function(){
         e.preventDefault();
         var category_id = $(this).data('id');
         var category_name = $(this).data('category_name');
+     console.log(category_name);
         $('#category_id').val(category_id);
         alert(category_name);
         $('input[name="category_name"]').val(category_name);
@@ -220,37 +221,10 @@ $('#myTable').on("click", ".btn-delete", function(){
 //event lưu vào database dữ liệu đã sửa va
     $('body').on("click","#btn-save",function(e){
         e.preventDefault();
-        var category_name = $('input[name="category_name"]').val(category_name);
-        // var category_name=$(this).data("category_name");
-        var category_id = $('input[name="category_id"]').val(category_id    );
-        console.log("READY");
+
+        // var category_name = $(this).data('category_name');
         console.log(category_id);
-        console.log(category_name);
-        // ajax
-        $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $.ajax(
-    {
-        url: "/admin/index/danh-muc-tin-tuc/sua-danh-muc/" +category_id,
-        type: 'POST',
-        dataType: "JSON",
-        data: {
-            "category_id": category_id,
-            "category_name": category_name
-        },
-        success: function (response)
-        {
-
-            console.log(response);
-            },
-        error: function(error) {
-         console.log(error);
-
-       }
-    });
+        // console.log(category_name);
     });
 
 

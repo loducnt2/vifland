@@ -48,7 +48,42 @@
                 </td>
 
                  @endforeach
-                            </form>
+                 <div class="modal fade" id="modal-edit-form" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h4 class="modal-title" id="userCrudModal"></h4>
+                          </div>
+                          <form id="userForm" name="userForm" class="form-horizontal">
+                            <div class="modal-body">
+                                {{-- <input type="hidden" name="user_id" id="user_id"> --}}
+                                <div class="form-group">
+                                  <label for="name" class="col-sm-2 control-label">Category_Name</label>
+                                  <div class="col-sm-12">
+                                  <input type="text" class="form-control" data-category_name="{{$item->category_name}}" id="category_name" name="category_name">
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                <label class="col-sm-2 control-label">ID</label>
+                                  <div class="col-sm-12">
+                                  <input type="text" class="form-control" data-id = "{{$item->id}}"id="category_id" name="category_id" disabled>
+
+                                      </p>
+                                      {{-- <input type="text" class="form-control" id="category_name" name="category_name"> --}}
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="btn-save" value="create">
+
+                                </button>
+                            </div>
+                          </form>
+                      </div>
+                    </div>
+                  </div>
                               </div>
 
                             </div>
@@ -60,41 +95,5 @@
             </table>
         </div>
 </div>
-<div class="modal fade" id="modal-edit-form" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h4 class="modal-title" id="userCrudModal"></h4>
-          </div>
-          <form id="userForm" name="userForm" class="form-horizontal">
-            <div class="modal-body">
-                {{-- <input type="hidden" name="user_id" id="user_id"> --}}
-                <div class="form-group">
-                  <label for="name" class="col-sm-2 control-label">Category_Name</label>
-                  <div class="col-sm-12">
-                      <input type="text" class="form-control" data-category_name="{{$item->category_name}} id="category_name" name="category_name">
 
-                    </div>
-                </div>
-
-                <div class="form-group">
-                <label class="col-sm-2 control-label">ID</label>
-                  <div class="col-sm-12">
-                  <input type="text" class="form-control" data-id = "{{$item->id}}"id="category_id" name="category_id" disabled>
-
-                      </p>
-                      {{-- <input type="text" class="form-control" id="category_name" name="category_name"> --}}
-                  </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="btn-save" value="create">
-                  Save changes
-                </button>
-            </div>
-          </form>
-      </div>
-    </div>
-  </div>
-</form>
 @endsection
