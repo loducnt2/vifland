@@ -2,6 +2,7 @@
 @section('title','Tin hết hạn')
 @section('headerStyles')
 @section('content_child')
+<section class="quanlytindang">
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="active nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
             role="tab" aria-controls="nav-profile" aria-selected="false">Tin hết hạn</a>
@@ -62,6 +63,9 @@
                                                     class="material-icons">visibility</span>
                                                 <p>{{$product->view}} lượt xem</p>
                                             </div>
+                                            <div class="t-4">
+                                                <p class="text-danger">{{$product->status==2?"Tin không được duyệt":""}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -71,7 +75,9 @@
                             <td>{{$product->depth}}</td>
                             <td>
                                 <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
-                                <a href="{{route('edit-article',$product->product_id)}}" class="text-danger">Chỉnh sửa</a>
+                                @if( $product->status!=2 )
+                                <a href="{{route('add-date-form',$product->product_id)}}" class="text-danger"> Gia hạn</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -86,6 +92,7 @@
             @endif
         </div>
     </div>
+</section>
 @endsection
 @section('footerScripts')
 
