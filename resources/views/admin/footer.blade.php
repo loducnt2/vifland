@@ -6,15 +6,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
   {{-- <script src="//cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="{{asset('js/core.min.js') }}"></script>
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('js/ckeditor.js')}}"></script>
 {{-- script --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 {{-- slug --}}
 <script>
