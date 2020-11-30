@@ -12,7 +12,6 @@
         <input type="text" class="form-control" name="category_name" id="category_name"  aria-describedby="helpId" placeholder="">
             <input type="hidden" class="form-control" name="slug2" id="slug2" aria-describedby="helpId" placeholder="">
 
-            {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
           </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -37,46 +36,23 @@
                  <tr id="row_{{$item->id}}">
                  <td>{{$item->id}}</td>
                  <td>{{$item->slug}}</td>
-                 {{-- <td>{{$user->birth_day}}</td> --}}
                  <td>{{$item->category_name}}</td>
                  <td>{{$item->status}}</td>
                  <td>
-                    <!-- Button trigger modal -->
+                 <a href="" data-id="{{ $item->id }}" data-category_name="{{$item->category_name}}" class="btn btn-danger btn-edit">Sửa</a></td>
 
-                 <button type="button" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#exampleModal{{$item->id}}" data-category_name="{{$item->category_name}}" data-id="{{$item->id}}">Open modal for {{$item->id}}</button>
+                 </td>
 
-
-                    <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn-delete">Xoá</a></td>
-
+                </button>
+                   <td> <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn-delete">Xoá</a></td>
                 </td>
-                {{-- inside modal --}}
-            <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId{{$item->id}}" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title">Sửa thông tin </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" method="POST" enctype="multipart/form-data" id="editForm">
-                                    {{ csrf_field() }}
-                                <div class="form-group">
-                                <input type="text" class="form-control" name="id" date-id="{{$item->value}}"value="{{$item->id}}">
-                                <input type="text" class="form-control" name="catergory_name" id="id_edit" aria-describedby="helpId" placeholder="">
-                                </div>
-                            </div>
-                        </form>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary save_btn">Lưu</button>
-                            </div>
 
-                        </div>
-                    </div>
                  @endforeach
+                            </form>
+                              </div>
 
+                            </div>
+                        </div>
                 </tr>
                 <tbody>
 
@@ -84,20 +60,41 @@
             </table>
         </div>
 </div>
+<div class="modal fade" id="modal-edit-form" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" id="userCrudModal"></h4>
+          </div>
+          <form id="userForm" name="userForm" class="form-horizontal">
+            <div class="modal-body">
+                {{-- <input type="hidden" name="user_id" id="user_id"> --}}
+                <div class="form-group">
+                  <label for="name" class="col-sm-2 control-label">Category_Name</label>
+                  <div class="col-sm-12">
+                      <input type="text" class="form-control" data-category_name="{{$item->category_name}} id="category_name" name="category_name">
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                <label class="col-sm-2 control-label">ID</label>
+                  <div class="col-sm-12">
+                  <input type="text" class="form-control" data-id = "{{$item->id}}"id="category_id" name="category_id" disabled>
+
+                      </p>
+                      {{-- <input type="text" class="form-control" id="category_name" name="category_name"> --}}
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="btn-save" value="create">
+                  Save changes
+                </button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
 </form>
-<<<<<<< HEAD
 @endsection
-=======
-
-</div>
-@endsection
-
-
-    <!-- Modal form to edit a form -->
-   <!-- Button trigger modal -->
-
-
-   <!-- Modal -->
-
-
->>>>>>> c13d67726b991973eebb9ad3e5356ea719df9c70
