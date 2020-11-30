@@ -101,8 +101,8 @@ class NewsCategoryController extends Controller
     {
         //cập nhật danh mục
         $newsCategory = NewsCategory::find($id);
-            $newsCategory->category_name = $request->input('category_name');
-            $newsCategory->slug = str::slug($request->input('category_name'));
+            $newsCategory->category_name = $request->category_name;
+            $newsCategory->slug = str::slug($request->category_name);
             $newsCategory->status = "1";
             $newsCategory->update();
             return response()->json(

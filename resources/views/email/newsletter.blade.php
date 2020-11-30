@@ -323,9 +323,10 @@ ul.social li{
             </table>
           </td>
           </tr><!-- end tr -->
-          {{!!$contents!! }}
+          <p> {! $contents !} </p>
+
           @foreach ($news as $item)
-              {{!!$item->id!! }}
+            {{$item->id}}
           @endforeach
 	      <tr>
 	      	<table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
