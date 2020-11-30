@@ -17,7 +17,7 @@
                         <th>Đơn giá </th>
                         <th>Mặt tiền (m)</th>
                         <th>Chiều sâu (m)</th>
-                        <th></th>
+                        <th>Diện Tích (m²)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,13 +62,32 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="edit-post-sub">
+                                <div class="edit">
+                                    <a href="{{route('edit-article',$product->product_id)}}" data-toggle="tooltip"
+                                        data-placement="bottom" title="Chỉnh sửa bài đăng">
+                                        <span class="material-icons">
+                                            create
+                                        </span>
+                                        Sửa
+                                    </a>
+                                </div>
+                                <div class="delete">
+                                    <a href="{{route('delete-article',$product->product_id)}}" data-toggle="tooltip"
+                                        data-placement="bottom" title="Xóa bài đăng">
+                                        <span class="material-icons">
+                                            delete_forever
+                                        </span>
+                                        Xóa
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                         <td>{{ $product->price}} {{$product->name}}</td>
                         <td>{{$product->facades}}</td>
                         <td>{{$product->depth}}</td>
                         <td>
-                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
-                            <a href="{{route('edit-article',$product->product_id)}}" class="text-danger">Chỉnh sửa</a>
+                            ---
                         </td>
                     </tr>
                     @endforeach
