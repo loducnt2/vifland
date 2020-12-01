@@ -82,7 +82,7 @@
                         <div class="box-right">
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <a class="active nav-link active" id="thaydoithongtin-tab" data-toggle="tab"
+                                    <a class="active nav-link" id="thaydoithongtin-tab" data-toggle="tab"
                                         href="#thaydoithongtin" role="tab" aria-controls="nav-home"
                                         aria-selected="true">Thay đổi thông tin cá nhân</a>
                                     <a class="nav-link" id="thaydoimk-tab" data-toggle="tab" href="#thaydoimk"

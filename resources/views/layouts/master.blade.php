@@ -93,6 +93,7 @@
         // Header
 
         $('.number-yt').css('display', 'none')
+        // Chức năng yêu thích
         $(".fav").click(function() {
             if ($(this).hasClass("ri-heart-line")) {
                 $(this).addClass("ri-heart-fill")

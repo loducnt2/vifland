@@ -37,7 +37,8 @@
                             <div class="bl-2">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span class="vifPay"><img src="{{asset('assets/icon/card.png')}}" alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span>
+                                        <span class="vifPay"><img src="{{asset('assets/icon/card.png')}}"
+                                                alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span>
                                     </div>
                                 </div>
                             </div>
@@ -53,10 +54,10 @@
                                     <li><a href="{{route('payment-history')}}">Lịch sử giao dịch</a></li>
                                 </ul>
                                 <div class="title-bl3"> <span class="material-icons">list_alt</span>
-                                        <p>Quản lý tin đăng</p>
+                                    <p>Quản lý tin đăng</p>
                                 </div>
                                 <ul>
-                                    <li> <a href="{{route('article-posted')}}">Tin hiện tại</a></li>
+                                    <li> <a href="{{route('article-posted')}}">Tin đã đăng</a></li>
                                     <li> <a href="{{route('article-wait')}}">Tin chờ đăng</a></li>
                                     <li> <a href="{{route('article-expire')}}">Tin hết hạn</a></li>
                                 </ul>
@@ -86,34 +87,31 @@
 {{-- Footer --}}
 @section('footerScripts')
 <script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#upload-image').click(function (e) {
-    $('#upload').click(function (e) e.preventDefault();
-            //    let formData = new FormData(this);
-            //    $('#image-input-error').text('');
-            $.ajax({
-                type: 'post',
-                url: 'google.com',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: (response) => {
-                    if (response) {
-                        this.reset();
-                        alert('Image has been uploaded successfully');
-                    }
-                },
-                error: function (response) {
-                    console.log(response);
-                    $('#image-input-error').text(response.responseJSON.errors.file);
-                }
-            });
-
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$('#upload-image').click(function(e) {
+            $('#upload').click(function(e) e.preventDefault();
+                    //    let formData = new FormData(this);
+                    //    $('#image-input-error').text('');
+                    $.ajax({
+                        type: 'post',
+                        url: 'google.com',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: (response) => {
+                            if (response) {
+                                this.reset();
+                                alert('Image has been uploaded successfully');
+                            }
+                        },
+                        error: function(response) {
+                            console.log(response);
+                            $('#image-input-error').text(response.responseJSON.errors.file);
+                        }
+                    });
 </script>
 @endsection
-
-

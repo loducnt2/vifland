@@ -67,12 +67,14 @@
                             <div class="mdm-1">
                                 <div class="checked">
                                     <input id="luachonsearch1" type="checkbox" value="{{$cate_childs[0]->id}}"
-                                        name="cate_child[]" @if(in_array($cate_childs[0]->id,$cate_child)){{"checked"}} @endif>
+                                        name="cate_child[]" @if($cate_child!=NULL)
+                                        @if(in_array($cate_childs[0]->id,$cate_child)){{"checked"}} @endif @endif>
                                     <label for="luachonsearch1">{{$cate_childs[0]->name}}</label>
                                 </div>
                                 <div class="checked">
                                     <input id="luachonsearch2" type="checkbox" value="{{$cate_childs[1]->id}}"
-                                        name="cate_child[]" @if(in_array($cate_childs[1]->id,$cate_child)){{"checked"}} @endif>
+                                        name="cate_child[]" @if($cate_child!=NULL)
+                                        @if(in_array($cate_childs[1]->id,$cate_child)){{"checked"}} @endif @endif>
                                     <label for="luachonsearch2">{{$cate_childs[1]->name}}</label>
                                 </div>
                             </div>
@@ -93,20 +95,22 @@
                                         aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
-                                            <select class="select1" name="province" id="province" >
+                                            <select class="select1" name="province" id="province">
                                                 <option value="">Chọn</option>
                                                 @foreach($provinces as $prov)
-                                                <option province_id="{{$prov->id}}" value="{{$prov->name}}" {{$province == $prov->id?"selected":""}}>{{$prov->name}}</option>
+                                                <option province_id="{{$prov->id}}" value="{{$prov->name}}"
+                                                    {{$province == $prov->id?"selected":""}}>{{$prov->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Quận/Huyện</label>
-                                            <select class="select1" name="district" id="district" >
+                                            <select class="select1" name="district" id="district">
                                                 <option value="" id="district_def">Chọn</option>
                                                 @if($districts != NULL)
                                                 @foreach($districts as $disct)
-                                                <option district_id="{{$disct->id}}" value="{{$disct->id}}" {{$district == $disct->id?"selected":""}}>{{$disct->name}}</option>
+                                                <option district_id="{{$disct->id}}" value="{{$disct->id}}"
+                                                    {{$district == $disct->id?"selected":""}}>{{$disct->name}}</option>
                                                 @endforeach
                                                 @endif
                                             </select>
@@ -117,7 +121,8 @@
                                                 <option value="" id="ward_def">Chọn</option>
                                                 @if($wards != NULL)
                                                 @foreach($wards as $wad)
-                                                <option ward_id="{{$wad->id}}" value="{{$wad->id}}" {{$ward == $wad->id?"selected":""}}>{{$wad->name}}</option>
+                                                <option ward_id="{{$wad->id}}" value="{{$wad->id}}"
+                                                    {{$ward == $wad->id?"selected":""}}>{{$wad->name}}</option>
                                                 @endforeach
                                                 @endif
                                             </select>
@@ -213,7 +218,7 @@
                                         </div> -->
                                     </div>
                                 </div>
-                                <button class="btn btn-success bg-info">Lọc</button>
+                                <button class="btn button-filter">Lọc</button>
                             </div>
                         </form>
                     </div>
@@ -223,7 +228,7 @@
                         <div id="products" class="row">
                             @if(count($products)>0)
                             @foreach($products as $product)
-                            @php $acreage = intval($product->depth)*intval($product->facades);  @endphp
+                            @php $acreage = intval($product->depth)*intval($product->facades); @endphp
                             <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
@@ -235,7 +240,8 @@
                                             {{$product->unit}}</div>
                                         <div class="box-icon">
                                             <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
-                                            <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+                                            <i class="ri-equalizer-line icons comp"
+                                                productid="{{$product->product_id}}"></i>
                                         </div>
                                         <div class="overlay"></div>
                                         <div class="vip">
@@ -335,22 +341,20 @@
                                     </div> -->
 
                                     {{ $products->appends(request()->input())->links()}}
-                                      
+
                                 </div>
                             </div>
-                            
+
                         </div>
-                        
+
                         <div class="col-12">
                             <div class="content-box">
                                 <div class="inner-content">
 
                                     <h1 class="MsoNormal" align="center">Mua bán nhà đất bất động sản </h1>
                                     <div id="content-province">
-
-
                                         @if(isset($content_province) && $content_province != NULL)
-                                        <?php echo $content_province; ?>
+                                        <?php echo html_entity_decode($content_province)?>
                                         @else
                                         <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                             <font size="3"></font><i><a href="https://meeyland.com/mua-ban-nha-dat">Mua
@@ -1154,13 +1158,13 @@
 <!-- Thêm script cho trang này ở đây -->
 <script type="text/javascript">
 $(document).ready(function() {
-    $('input[name="cate_child[]"]').click(function(){
-        if($('input[name="cate_child[]"]:checked').length == 0){
+    $('input[name="cate_child[]"]').click(function() {
+        if ($('input[name="cate_child[]"]:checked').length == 0) {
             return false
         }
     })
-    
-    
+
+
     $('#province').change(function() {
         let province = $('#province option:selected').attr('province_id');
         let url = '/get-district/' + province;
@@ -1197,8 +1201,5 @@ $(document).ready(function() {
         $(this).submit()
     })*/
 });
-
-
-
 </script>
 @endsection

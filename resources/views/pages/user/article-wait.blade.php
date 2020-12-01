@@ -4,7 +4,7 @@
 @section('content_child')
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="active nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-            role="tab" aria-controls="nav-profile" aria-selected="false">Tin đang đăng</a>
+            role="tab" aria-controls="nav-profile" aria-selected="false">Tin chờ đăng</a>
     </div>
     <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"

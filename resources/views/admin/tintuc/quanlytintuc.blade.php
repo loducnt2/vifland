@@ -190,7 +190,7 @@ li {
                     <div class="col-md-12 mb-3">
                         <label for="content">Nội dung</label>
                         <label for="text" class="error"></label>
-                        <textarea id="editor1" name="content" required></textarea>
+                        <textarea id="contents" name="content" required></textarea>
                     </div>
                 </div>
                 <div class="form-group">
