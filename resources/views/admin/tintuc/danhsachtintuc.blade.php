@@ -4,61 +4,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Danh sách tin tức</title>
+
 </head>
+
 
 <body>
 
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
     @section('content')
+
     <div class="container-fluid box-n-big">
+
+
         <h2 class="section-title-big">Danh sách tin tức</h2>
 
         <!-- table -->
         <a name="" id="" class="btn btn-primary" href="{{route('news_deleteall')}}" role="button">Xoá tất cả tin tức</a>
-        <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm tin..">
+
+
+    <div class="table-list-news_category">
+        <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm nhanh..">
         <br>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Mã</th>
-                    <th>Tiêu đề</th>
-                    <th>slug</th>
-                    <th>Ngôn ngữ</th>
-                    <th>Nội dung</th>
-                    <th>summary</th>
-                    <th>daypost</th>
-                    <th>hình</th>
-                    <th>tag</th>
-                    <th>trạng thái</th>
-                    <th>Action</th>
+                    <th>ID</th>
+                    <th>Tên tiêu đề</th>
+                    <th>Slug</th>
+                    <th>Tình trạng</th>
+                    <th>Thực thi</th>
                 </tr>
             </thead>
             <tbody id="myTable">
-                @foreach($news ?? '' as $new)
+                @foreach($news as $item)
                 <tr>
-                    <td>{{$new->id}}</td>
-                    <td>{{$new->title}}</td>
-                    <td>{{$new->slug}}</td>
-                    <td>{{$new->language}}</td>
-                    <td>{{$new->content}}</td>
-                    <td>{{$new->summary}}</td>
-                    <td>{{$new->datepost}}</td>
-                    <td><img class="img-tintuc" src="{{$new->img}}" alt=""></td>
-                    <td>{{$new->tag}}</td>
-                    <td>{{$new->status==1?'Đang hiện':'Đang ẩn'}}</td>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->title}}</td>
+                {{-- edit đường dẫn url --}}
+                <td><a href="/tin-tuc/{{$item->slug}}">{{$item->slug}}</a></td>
+                    <td>{{$item->status}}</td>
                     <td>
-                        <a href="{{route('edit-new',$new->id)}}"> <button class="btn btn-info">Xem chi tiết</button>
+                    <a href="" data-id="{{ $item->id }}" data-title="{{$item->title}} "data-content="{{$item->content}}" class="btn btn-danger btn-news-edit">Sửa</a> </td>
+                        <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn_news-delete">Xoá</a>
+                    </td>
+
                         </a>
-                        <a href="{{route('delete-new',$new->id)}}"> <button class="btn btn-danger">Xóa tin</button> </a>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        @endsection
+    </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+
+                <input type="text" class="form-control" name="title"  aria-describedby="helpId" placeholder="">
+                {{-- id --}}
+                <input type="text" class="form-control" name="id" aria-describedby="helpId" placeholder="" hidden>
+                <div class="form-group">
+                  {{-- <label for=""></label> --}}
+                  {{-- contents = ckeditors --}}
+                  <textarea class="mt-4 form-control" name="contents" id="contents" rows="3" name="content"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary btn-news_save" id="">Sửa</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 </html>
+<!-- Button trigger modal -->
+
+@endsection
+
+<!-- Button trigger modal -->
+

@@ -5,6 +5,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
   {{-- <script src="//cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script> --}}
+
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -13,10 +14,7 @@
 <script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{asset('js/bootstrap-toggle.js')}}"></script>
 <script src="{{asset('js/ckeditor.js')}}"></script>
-{{-- script --}}
 
-
-{{-- slug --}}
 <script>
     function ChangeToSlug()
     {
@@ -104,9 +102,8 @@
         }
     });
     </script>
-{{-- form-table --}}
-
-    {{-- xoá danh mục --}}
+{{-- quản lý danh mục --}}
+{{-- 1.1 Xoá danh mục khi bấm vào nút xoá --}}
     <script>
     function deletePost(event) {
    alert('Element ID');
@@ -138,8 +135,9 @@
 
     }
 </script>
+{{-- 1.2 Thêm danh mục --}}
 <script>
-    //   insert record ajax
+
       $('#myform').submit(function(e){
           e.preventDefault();
         let formData = {
@@ -157,9 +155,11 @@
                 <td>`+data.id+`</td>
                 <td>`+data.slug+`</td>
                 <td>`+data.category_name+`</td>
+                <td>`+data.status+`</td>
 
-                <td> <value={{`+data.id+`}} data-id="`+data.id+`" class="btn btn-danger btn-delete">Xoá</a></td>
-                <td> <value={{`+data.id+`}} data-id="`+data.id+`" class="btn btn-danger btn-edit" data-category_name=`+data.category_name+`>Sửa</a></td>
+                <td>
+                    <a href="" data-id="`+data.id+`" data-category_name="`+data.category_name+`"class="btn btn-danger btn-edit">Sửa</a>
+                        <a href="" data-id="`+data.id+`" class="btn btn-danger btn-delete">Xoá</a> </td>
                 </tr>`
 
                 // edit record
@@ -227,9 +227,10 @@ $('#myTable').on("click", ".btn-delete", function(){
 
 </script>
 
-{{-- button edit record --}}
 
+{{-- 1 - Event khi user click vào nút model --}}
 <script>
+
     $("#myTable").on('click','.btn-edit',function(e){
         var id = $(this).data('id');
         var category_name = $(this).data('category_name');
@@ -239,13 +240,14 @@ $('#myTable').on("click", ".btn-delete", function(){
         $('.modal').modal('show');
 
         $('input[name=category_name]').val(category_name);
+
         $('input[name=category_id]').val(id);
         console.log(id);
         console.log(category_name);
     })
 </script>
 
-
+{{-- 1-2 Khi user click vào nút save để lưu thông tin --}}
 <script>
     $("body").on('click','.btn-save',function(e){
         e.preventDefault();
@@ -281,3 +283,115 @@ $('#myTable').on("click", ".btn-delete", function(){
     });
 });
 </script>
+
+{{-- quản lý tin tức --}}
+{{-- 1 - Event khi user click vào nút model --}}
+
+<script>
+    $("#myTable").on('click','.btn-news-edit',function(e){
+        var id = $(this).data('id');
+        // id.find( '*:not(a,img)' ).remove();
+        var title = $(this).data('title');
+        var content = $(this).attr('data-content');
+        e.preventDefault();
+
+        $('.modal').modal('show');
+// truyền vào text input theo name
+        $('input[name=title]').val(title);
+        $('input[name=id]').val(id);
+        // CKEDITOR.instances[contents].setData(content);
+        CKEDITOR.instances.contents.setData("" +content);
+        // console.log(CKEDITOR.instances.contents.setData(content));
+
+        // $('textarea[name="contents"]').text(content);
+
+        console.log("ID =" + id);
+        console.log("Title =" +  title);
+        console.log("Content = "+content);
+    })
+    </script>
+    {{-- 1-2 Khi user click vào nút save để lưu thông tin --}}
+
+    <script>
+
+    $("body").on('click','.btn-news_save',function(e){
+        e.preventDefault();
+        var title = $('input[name=title]').val();
+        var id = $('input[name=id]').val();
+        // var content = $('input[name="content"]').val();
+        var  = CKEDITOR.instances['content'].getData();
+
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax(
+    {
+        url: "/admin/index/danh-muc-tin-tuc/sua-tin-tuc/" +id,
+        type: 'PUT',
+        dataType: "JSON",
+        data: {
+
+            "id": id,
+            "title":title,
+            "content" : content,
+            // "slug" :slug,
+        },
+        success: function (response)
+        {
+            console.log(response);
+            $('.modal').modal('hide');
+            $(this).fadeOut();
+            var refInterval = window.setTimeout('location.reload()',1);
+
+            },
+        error: function(error) {
+         console.log(error);
+        }
+    });
+});
+</script>
+
+<script>
+    $(document).ready(function() {
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
+</script>
+<script>
+    $('#myTable').on("click", ".btn_news-delete", function(){
+        var id = $(this).data("id");
+        var $ele = $(this).parent().parent();
+
+        console.log(id);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax(
+        {
+            url: "/admin/index/danh-muc-tin-tuc/xoa-tin-tuc/" +id,
+            type: 'delete',
+            dataType: "JSON",
+            data: {
+                "id": id
+            },
+            success: function (response)
+            {
+
+                $ele.fadeOut().remove();
+                toastr.success('Xoá thành công','Quản trị viên');
+                },
+            error: function(error) {
+             console.log(error);
+
+           }
+        });
+    });
+        </script>
