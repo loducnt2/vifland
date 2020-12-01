@@ -299,11 +299,8 @@ $('#myTable').on("click", ".btn-delete", function(){
 // truyền vào text input theo name
         $('input[name=title]').val(title);
         $('input[name=id]').val(id);
-        // CKEDITOR.instances[contents].setData(content);
         CKEDITOR.instances.contents.setData("" +content);
-        // console.log(CKEDITOR.instances.contents.setData(content));
 
-        // $('textarea[name="contents"]').text(content);
 
         console.log("ID =" + id);
         console.log("Title =" +  title);
@@ -319,7 +316,7 @@ $('#myTable').on("click", ".btn-delete", function(){
         var title = $('input[name=title]').val();
         var id = $('input[name=id]').val();
         // var content = $('input[name="content"]').val();
-        var  = CKEDITOR.instances['content'].getData();
+        var content = CKEDITOR.instances['content'].getData(html);
 
         $.ajaxSetup({
         headers: {
