@@ -13,7 +13,8 @@ class Payment extends Model
     	'bank_code',
     	'bank_trans_no',
         'trade_code',
-    	'amount',
+        'amount',
+        'noti_payment',
     	'datetime',
     ];
 }
