@@ -291,7 +291,7 @@ $('#myTable').on("click", ".btn-delete", function(){
         var title = $('input[name=title]').val();
         var id = $('input[name=id]').val();
         // var content = $('input[name="content"]').val();
-        var content = CKEDITOR.instances['contents'].getData(html);
+        var content = CKEDITOR.instances['contents'].getData();
 
         $.ajaxSetup({
         headers: {
@@ -496,20 +496,24 @@ $.validator.addMethod("check",
         }
     }
 </script>
+{{--  --}}
+
 <script>
-    // ẩn hiện tin tức
-    function refreshTableNews(){
-        var status = $('.toggle-class-news').prop('checked')
+    $('#myTable' ).on("change", ".toggle-class-news", function(){
+        // get id
+        var id = $(this).data('id');
+        var toggle = $('p[data-id]');
+        var status = $('.toggle-class-news').prop('checked');
         console.log(status);
         if(status === true){
 
             toastr.success("Hiện tin tức");
-            $('p').html("Hiện");
+            $("p").html("Hiện");
 
         }
         else{
             toastr.error("Ẩn tin tức");
-            $('p').html("Ẩn");
+            $("p").html("Hiện 2");
         }
-    }
-</script>
+    })
+        </script>
