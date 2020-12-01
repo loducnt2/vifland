@@ -169,13 +169,14 @@
                 </div>
 
                 <div class="avatar">
-
+                    @if(Auth::check() && Auth::user()->user_type == "1")
                     <img src="{{asset('assets/icon/avatar.png')}}" alt="">
                     <div class="list-menu-login">
                         <div class="wrap-title">
-                        <div class="title">{{auth()->user()->full_name}}</div>
+                        <div class="title">{{auth()->user()->username}}</div>
                             <p>Quản trị viên</p>
                         </div>
+                        @endif
                         <ul>
                             <li> <span class="material-icons">
                                     person_outline
@@ -185,7 +186,7 @@
                             <span class="material-icons">
                                 toggle_on
                             </span>
-                            <a href="">Logout</a>
+                            <a href="/logout">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -194,13 +195,13 @@
 
         </div>
     </div>
-    <script>
+    {{-- <script>
     $(document).ready(function() {
         $(".breadcrumb-n .avatar").click(function() {
             $(".breadcrumb-n .list-menu-login").toggleClass("show")
         })
     });
-    </script>
+    </script> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}

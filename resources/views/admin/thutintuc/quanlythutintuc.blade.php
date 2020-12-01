@@ -1,28 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quản lý thư tin tức</title>
 </head>
-
 <body>
     <style>
-    .custom-file-label::after {
-        content: "Chọn tập tin " !important;
-    }
+        .custom-file-label::after {
+content: "Chọn tập tin " !important; }
     </style>
 
     @extends('admin.sidebar')
     @section('content')
     {!! Toastr::message() !!}
-    <div class="container-fluid box-n-big">
-        <form action="/admin/index/quan-ly-thu-tin-tuc/export" method="get">
-            <button type="submit" class="btn btn-primary" style="background-color:#7174E9;color:white">Xuất file
-                Excel</button>
-        </form>
 
     <form action="/admin/index/quan-ly-thu-tin-tuc/export" method="get">
         <button type="submit" class="btn btn-primary" style="background-color:#7174E9;color:white" >Xuất file Excel</button>
@@ -90,8 +82,6 @@
                     </tr>
                 </thead>
 
-                        </tr>
-                    </thead>
 
                 <tr>
                  @foreach ($newsletter as $newsletter)
@@ -100,26 +90,18 @@
                  <td>{{$newsletter->email}}</td>
                  <td>{{$newsletter->created_at}}</td>
 
-                    <tr>
-                        @foreach ($newsletter as $newsletter)
-                    <tr>
-                        <td>{{$newsletter->id}}</td>
-                        {{-- <td>{{$newsletter->full_name}}</td> --}}
-                        {{-- <td>{{$newsletter->username}}</td> --}}
-                        <td>{{$newsletter->email}}</td>
-                        {{-- <td>{{$user->birth_day}}</td> --}}
-                        <td>{{$newsletter->created_at}}</td>
-                        @endforeach
+                <td>
 
-                    </tr>
-                    <tbody>
+                 @endforeach
 
-                    </tbody>
-                </table>
-            </div>
+                </tr>
+                <tbody>
+
+                </tbody>
+            </table>
         </div>
-        @endsection
+    </div>
+    @endsection
 
 </body>
-
 </html>
