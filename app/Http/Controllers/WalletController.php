@@ -16,7 +16,8 @@ class WalletController extends Controller
     public function addWallet(Request $request){
         $payment = Payment::create([
             'user_id' => $request->userid,
-            'amount'  => $request->wallet
+            'amount'  => $request->wallet,
+            'noti_payment' => 1,
         ]);
         $user = User::find($request->userid);
         $wallet = $user->wallet;

@@ -141,6 +141,13 @@
                                             )
                                             ->get();
 
+                                            $notiPayment = DB::table('payment')
+                                            ->where('user_id', auth()->user()->id)
+                                            ->where('created_at','>', date('Y-m-d', strtotime("-7 day")))
+                                             ->where('noti_payment', 1)
+                                            ->orderby('id', 'desc')
+                                            ->get();
+
 
                                         $noAccept = DB::table('post_history')
                                             ->leftJoin('product', 'post_history.product_id', 'product.id')
@@ -158,16 +165,27 @@
                                         $duedate = [];
                                         $duedate1 = [];
                                         $noAccept = [];
+                                        $notiPayment=[];
                                     }
                                     ?>
                                     <div class="co-thong-bao">
+
+                                    @foreach($notiPayment as $ad)
+                                    <div class="item">
+                                            <div class="wrap-text products-duedate ">
+                                                <div class="thongbao post-expired bg-success">Thông báo</div><a href=""> Đã nạp tiền thành công {{$ad->amount}} VND</a>
+                                                <div class="date">Vào ngày:{{$ad->created_at}}</div>
+                                               
+                                            </div>
+                                        </div>
+                                    @endforeach
                                         @foreach($duedate as $due)
                                         <div class="item">
                                             <div class="wrap-text products-duedate ">
                                                 <div class="thongbao post-expired">Thông báo</div><a href="{{route('article-detail',$due->slug)}}">Bài
                                                     viết của bạn sắp hết hạn</a>
-                                                <div class="date"> ngày hết hạn :{{$due->date}}</div>
-                                                <div>{{$due->id}}</div>
+                                                <div class="date"> ngày hết hạn: {{$due->date}}</div>
+                                               
                                             </div>
                                         </div>
                                         @endforeach
@@ -178,8 +196,8 @@
                                                 <div class="thongbao post-due" style="background: red;">Thông báo</div>
                                                 <a href="{{route('article-detail',$due1->slug)}}">Bài
                                                     viết của bạn đã hết hạn</a>
-                                                <div class="date"> ngày hết hạn : {{$due1->date}}</div>
-                                                <div>{{$due1->id}}</div>
+                                                <div class="date"> ngày hết hạn: {{$due1->date}}</div>
+                                               
                                             </div>
                                         </div>
                                         @endforeach
@@ -189,8 +207,8 @@
                                             <div class="wrap-text products-duedate ">
                                                 <div class="thongbao post-due" style="background: red;">Thông báo</div><a href="{{route('article-detail',$post->slug)}}">Bài
                                                     viết của bạn không được duyệt </a>
-                                                <div class="date"> ngày hết hạn : {{$post->date}}</div>
-                                                <div>{{$post->id}}</div>
+                                                <div class="date"> ngày hết hạn: {{$post->date}}</div>
+                                              
                                             </div>
                                         </div>
                                         @endforeach
@@ -204,6 +222,7 @@
                                         </div>
                                         @endforeach
 
+                               
 
 
 
