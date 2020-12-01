@@ -4,14 +4,31 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    .error{
+        width: 200px;
+        /* background-color:red; */
+        /* float:left; */
+        /* margin-top:80px; */
 
+        /* top:100px; */
+        width:600px;
+        color:tomato;
+        /* font-weight: bold; */
+        font-size:13px;
+        font-weight: bold;
+    }
+</style>
 <form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
     {{ csrf_field() }}
     <div class="row">
         <div class="col-md-8 mt-4 form-group">
             <label for="">Nhập tiêu đề</label>
+            <div class="error"></div>
             <input type="text" class="form-control" name="category_name" id="category_name"
                 aria-describedby="helpId" placeholder="">
+                <input type="text" class="form-control" name="category_name_hidden" hidden aria-describedby="helpId" placeholder="">
+
             <input type="hidden" class="form-control" name="slug2" id="slug2" aria-describedby="helpId"
                 placeholder="">
                 <br>
@@ -24,6 +41,8 @@
 <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm nhanh..">
 {{-- form input text --}}
 <table class=" table table-bordered" id="myTable" width="100%" cellspacing="0">
+
+
     <thead class="thead-dark">
 
         <tr>
@@ -43,6 +62,7 @@
             <td >{{$item->status}}</td>
             <td> <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn-delete">Xoá</a>
              <a href="" data-id="{{ $item->id }}" data-category_name={{$item->category_name}} class="btn btn-danger btn-edit">Sửa</a> </td>
+            </td>
             </tr>
         @endforeach
 
@@ -58,7 +78,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Sửa thông tin</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -66,6 +86,7 @@
             <div class="modal-body">
                 <div class="form-group">
                   {{-- <label for=""></label> --}}
+                  <div class="error"></div>
                 <input type="text" class="form-control" name="category_name" aria-describedby="helpId" placeholder="">
 
                 <input type="text" class="form-control" name="category_id" hidden aria-describedby="helpId" placeholder="">

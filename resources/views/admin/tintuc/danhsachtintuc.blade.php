@@ -44,15 +44,22 @@
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->title}}</td>
-                {{-- edit đường dẫn url --}}
-                <td><a href="/tin-tuc/{{$item->slug}}">{{$item->slug}}</a></td>
-                    <td>{{$item->status}}</td>
-                    <td>
-                    <a href="" data-id="{{ $item->id }}" data-title="{{$item->title}} "data-content="{{$item->content}}" class="btn btn-danger btn-news-edit">Sửa</a> </td>
-                        <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn_news-delete">Xoá</a>
-                    </td>
 
+                <td><a href="/tin-tuc/{{$item->slug}}">{{$item->slug}}</a></td>
+                    <td>
+                   <p> @if ($item->status == '1')
+                        Hiện
+                    @else
+                        Ẩn
+                    @endif
+                    </p>
+                  </td>
+                    <td>
+                    <a href="" data-id="{{ $item->id }}" data-title="{{$item->title}} "data-content="{{$item->content}}" class="btn btn-danger btn-news-edit">Sửa</a>
+                        <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn_news-delete">Xoá</a>
                         </a>
+                        <input data-id="{{$item->id}}" data-style="ios" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $item->status ? 'checked' : '' }} class="toggle-class-news" onchange="refreshTableNews()">
+
                     </td>
                 </tr>
                 @endforeach

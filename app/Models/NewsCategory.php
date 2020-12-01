@@ -9,7 +9,7 @@ class NewsCategory extends Model
     	'title',
     	'slug',
         'status',
-
+        'category_name',
     ];
     public function News()
     {

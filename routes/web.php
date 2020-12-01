@@ -276,3 +276,8 @@ Route::post('/send-email','NewsLetterController@send_email');
 // Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
 Route::DELETE('/admin/index/danh-muc-tin-tuc/xoa-tin-tuc/{id}','NewsController@destroy')->name('news.delet');
 Route::put('/admin/index/danh-muc-tin-tuc/sua-tin-tuc/{id}','NewsController@update')->name('news.update');
+
+Route::post('/admin/index/danh-muc-tin-tuc/checkunique={input}','NewsCategoryController@checkunique')->name('news_category.unique');
+
+
+Route::get('/admin/quan-li-tin-tuc/changestatus','NewsController@ChangeNewsStatus');

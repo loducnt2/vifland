@@ -256,7 +256,7 @@ class UserController extends Controller
     {
         //update hồ sơ cá nhân theo id
         $user = User::find($id);
-        
+
         if( $request->get('month') > 0 ){
             $month= $request->get('month');
         }else{
@@ -272,7 +272,7 @@ class UserController extends Controller
         }else{
             $year= 1970;
         }
-        
+
         $dateOfBirth =$date.'-'.$month.'-'.$year;
         $user->birthday = Carbon::parse($dateOfBirth);
         // dd($user->birthday);
@@ -295,7 +295,7 @@ class UserController extends Controller
 
         $user -> save();
         $noti = array(
-            'message' => 'Thay đổi thông tin thành công', 
+            'message' => 'Thay đổi thông tin thành công',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($noti);
@@ -350,10 +350,8 @@ class UserController extends Controller
     public function ChangeUserStatus(Request $request){
         $user = User::find($request->id);
         $user->status = $request->status;
-        // $request->session()->flash('success', 'Thay đổi successfully.');
 
         $user->save();
-        // Toastr::error('Thay đổi thất bại ! Vui lòng thử lại','Thông báo');
 
 
     }

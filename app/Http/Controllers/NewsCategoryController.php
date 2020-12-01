@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostsRequest;
 use Str;
 use Toastr;
 use Schema;
@@ -66,6 +67,13 @@ class NewsCategoryController extends Controller
                 'created_at'=>$news_cate->created_at
             ]
         );
+    }
+
+    public function checkunique(Request $request){
+        $check = DB::table('news_category')
+        ->where('category_name', $request->input("category_name_input"))
+        ->first();
+//     // Toastr::success('Hello','Thông báo');
     }
 
     /**

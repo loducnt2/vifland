@@ -1,6 +1,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
@@ -88,12 +92,29 @@
               success: function(data){
                 console.log(data.success)
                 location.reload();
+
                 // console.log('thực thi');
 
               }
           });
       })
     })
+</script>
+<script>
+    function refreshTable(){
+        var status = $('.toggle-class').prop('checked')
+        console.log(status);
+        if(status === true){
+
+            toastr.success("Người dùng có thể hoạt động");
+            $('p').html("Hoạt động");
+
+        }
+        else{
+            toastr.error("Người dùng bị dừng hoạt động");
+            $('p').html("Bị ban");
+        }
+    }
 </script>
 <script type="text/javascript">
     $.ajaxSetup({
@@ -123,55 +144,9 @@
       });
   }
     </script>
-<script>
-    function refreshTable(){
-        if ($(this).parent().hasClass("off")) {
-            toastr.error('Vô hiệu hoá User', 'title')
 
-    }else{
-        toastr.success('Cho phép user hoạt động', 'title')
-        this.fadeout();
-    }
+{{-- 1.2 Thêm danh mục mới--}}
 
-    }
-</script>
-{{-- 1.2 Thêm danh mục --}}
-<script>
-
-      $('#myform').submit(function(e){
-          e.preventDefault();
-        let formData = {
-
-            category_name : $("#category_name").val(),
-            slug : $("#slug2").val()
-        };
-        $.ajax({
-            // setup ajax
-            type:'POST',
-            url: '/admin/danh-muc-tin-tuc/them-moi/',
-            data: formData,
-            success: function(data){
-                $('#myTable').prepend(`<tr>
-                <td>`+data.id+`</td>
-                <td>`+data.slug+`</td>
-                <td>`+data.category_name+`</td>
-                <td>`+data.status+`</td>
-
-                <td>
-                    <a href="" data-id="`+data.id+`" data-category_name="`+data.category_name+`"class="btn btn-danger btn-edit">Sửa</a>
-                        <a href="" data-id="`+data.id+`" class="btn btn-danger btn-delete">Xoá</a> </td>
-                </tr>`
-
-                // edit record
-
-                );
-            },
-            error: function(error){
-                console.log(error);
-            },
-        })
-        })
-    </script>
 {{-- Xoá Record --}}
 <script>
 $('#myTable').on("click", ".btn-delete", function(){
@@ -316,7 +291,7 @@ $('#myTable').on("click", ".btn-delete", function(){
         var title = $('input[name=title]').val();
         var id = $('input[name=id]').val();
         // var content = $('input[name="content"]').val();
-        var content = CKEDITOR.instances['contents'].getData();
+        var content = CKEDITOR.instances['contents'].getData(html);
 
         $.ajaxSetup({
         headers: {
@@ -360,6 +335,7 @@ $('#myTable').on("click", ".btn-delete", function(){
     });
 });
 </script>
+{{-- delete record --}}
 <script>
     $('#myTable').on("click", ".btn_news-delete", function(){
         var id = $(this).data("id");
@@ -391,4 +367,149 @@ $('#myTable').on("click", ".btn-delete", function(){
            }
         });
     });
-        </script>
+</script>
+
+<script>
+$(document).ready(function() {
+
+$.validator.addMethod("check",
+
+    function(data,value) {
+        var category_name = $('#myform input[name="category_name"]').val();
+        $('input[name=category_name_hidden]').val(category_name);
+        var input = $('#myform input[name="category_name_hidden"]').val();
+        // console.log(category_name);
+        var result = true;
+        // false tức là có record trong database
+        // true là không có record
+        $.ajax({
+            type:"POST",
+            async: true,
+            url: "/admin/index/danh-muc-tin-tuc/checkunique=" + input,  // url check unique trong laravel
+
+            data: {input: input},
+            success: function(data) {
+                console.log("Thành công");
+            },
+            error:function(error){
+                    console.log(error);
+            },
+        });
+        return result;
+
+    },
+    "This username is already taken! Try another."
+);
+});
+</script>
+
+<script>
+    $('#myform').validate({
+        rules: {
+
+    'category_name': {
+         required: true,
+         check:false
+        },
+        },
+        messages: {
+            'category_name': {
+                required: "Tên danh mục không được để trống",
+                check:"Tên danh mục đã bị trùng "
+            },
+        },
+
+        submitHandler: function(e) {
+
+        let formData = {
+
+            category_name : $("#category_name").val(),
+            slug : $("#slug2").val()
+        };
+            $.ajax({
+            // setup ajax
+            type:'POST',
+            url: '/admin/danh-muc-tin-tuc/them-moi/',
+            data: formData,
+            success: function(data){
+                $('#myTable').prepend(`<tr>
+                <td>`+data.id+`</td>
+                <td>`+data.slug+`</td>
+                <td>`+data.category_name+`</td>
+                <td>`+data.status+`</td>
+
+                <td>
+                    <a href="" data-id="`+data.id+`" data-category_name="`+data.category_name+`"class="btn btn-danger btn-edit">Sửa</a>
+                        <a href="" data-id="`+data.id+`" class="btn btn-danger btn-delete">Xoá</a> </td>
+                </tr>`
+
+                // edit record
+
+                );
+            },
+            error: function(error){
+                alert("Lỗi");
+            },
+        });
+        }
+
+        });
+</script>
+
+{{-- check unique user thông qua url server --}}
+{{-- ẩn /hiện bài tin --}}
+<script>
+    $(function() {
+      $('.toggle-class-news').change(function() {
+          var status = $(this).prop('checked') == true ? 1 : 0;
+          var id = $(this).data('id');
+
+          $.ajax({
+              type: "GET",
+              dataType: "json",
+              url: '/admin/quan-li-tin-tuc/changestatus',
+              data: {'status': status, 'id':id},
+              success: function(data){
+                console.log(data.success)
+                location.reload();
+
+                // console.log('thực thi');
+
+              }
+          });
+      })
+    })
+</script>
+<script>
+    function refreshTable(){
+        var status = $('.toggle-class').prop('checked')
+        console.log(status);
+        if(status === true){
+
+            toastr.success("Người dùng có thể hoạt động");
+            $('p').html("Hoạt động");
+
+        }
+        else{
+            toastr.error("Người dùng bị dừng hoạt động");
+            $('p').html("Bị ban");
+        }
+    }
+</script>
+<script>
+    // ẩn hiện tin tức
+    function refreshTableNews(){
+        var status = $('.toggle-class-news').prop('checked')
+        console.log(status);
+        if(status === true){
+
+            toastr.success("Hiện tin tức");
+            $('p').html("Hiện");
+
+        }
+        else{
+            toastr.error("Ẩn tin tức");
+            $('p').html("Ẩn");
+        }
+    }
+</script>

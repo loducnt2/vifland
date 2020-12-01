@@ -10,8 +10,8 @@ use App\Models\tag;
 use App\Models\News;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PostsRequest;
+use Illuminate\Support\Facades\DB;
 use function Psy\debug;
 
 class NewsController extends Controller
@@ -237,6 +237,14 @@ class NewsController extends Controller
                 ]);
           }
     }
+    public function ChangeNewsStatus(Request $request){
+        $user = News::find($request->id);
+        $user->status = $request->status;
+        $user->save();
+
+    }
+
     // Tin get được từ các danh mục
 }
 
+// ẩn hiện bài viết

@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
 
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <title>Quản lý người dùng</title>
 
+    {!! Toastr::message() !!}
 </head>
 
 <body>
@@ -14,6 +22,7 @@
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
     @section('content')
+
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered box-n" id="table" width="100%" cellspacing="0">
@@ -42,17 +51,17 @@
                  {{-- <td>{{$user->birth_day}}</td> --}}
                  <td>{{$user->created_at}}</td>
                  <td>
-                    @if ($user->status == '1')
+                   <p> @if ($user->status == '1')
                         Hoạt động
                     @else
                         Bị ban
                     @endif
-
+                    </p>
                   </td>
 
                   <td>
                   {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
-                  <input data-id="{{$user->id}}" data-style="ios" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} class="toggle-class" onchange="refreshTable();">
+                  <input data-id="{{$user->id}}" data-style="ios" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} class="toggle-class" onchange="refreshTable()">
                 {{-- hồ sơ --}}
 
                 </td>
@@ -86,13 +95,8 @@
 
     @endsection
 {{-- @extends(') --}}
+
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 </body>
 
-{{--  $('#table').fadeOut(500);
-    setTimeout(function(){
-        $('#table').fadeOut(10, function(){
-
-            location.reload(true);
-        });
-    }, 10); --}}
 </html>
