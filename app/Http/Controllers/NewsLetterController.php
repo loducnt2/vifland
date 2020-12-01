@@ -104,12 +104,12 @@ class NewsLetterController extends Controller
             $newsletters->email = $request->email;
 
             $newsletters->save();
-            Toastr::success('Đăng kí thành công :)','Thông báo');
+            Toastr::success('Đăng kí thành công ','Thông báo');
             // $user -> save();\
         }
         else{
             Newsletter::getLastError();
-            Toastr::success('Đăng kí thất bại :(','Thông báo');
+            Toastr::success('Đăng kí thất bại','Thông báo');
         }
         return redirect()->back();
     }

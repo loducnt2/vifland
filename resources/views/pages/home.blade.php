@@ -93,7 +93,7 @@ $('#navId a').click(e => {
 
             <div class="box-search-index">
                 <form action="{{route('search',$categories['0']->slug)}}" method="get" id="formsearch">
-                    
+
                     <div class="row">
                         <div class="col-3">
                             <div class="box-left">
