@@ -316,7 +316,7 @@ $('#myTable').on("click", ".btn-delete", function(){
         var title = $('input[name=title]').val();
         var id = $('input[name=id]').val();
         // var content = $('input[name="content"]').val();
-        var content = CKEDITOR.instances['content'].getData(html);
+        var content = CKEDITOR.instances['contents'].getData(html);
 
         $.ajaxSetup({
         headers: {
