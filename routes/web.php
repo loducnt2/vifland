@@ -191,6 +191,7 @@ Route::get('admin/index','AdminController@index')->middleware('admin.auth')->nam
 
 //Wallet
 Route::get('admin/wallet','WalletController@index')->name('wallet');
+Route::get('admin/wallet/detail/{id}','WalletController@Detail_payment')->name('detail-wallet');
 Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');
 // ================= hồ sơ ==================
 
