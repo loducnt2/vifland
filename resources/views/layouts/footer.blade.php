@@ -26,7 +26,7 @@
 						<div class="footer-box list">
 							<h4 class="title-footer">Liên kết nhanh</h4>
 							<ul class="list-items">
-								<li class="list-item"> <a href="">Giới thiệu</a></li>
+								<li class="list-item"> <a href="/about">Giới thiệu</a></li>
 								<li class="list-item"> <a href="">Dự án </a></li>
 								<li class="list-item"> <a href="">Thư viện </a></li>
 								<li class="list-item"> <a href="">Tuyển dụng </a></li>

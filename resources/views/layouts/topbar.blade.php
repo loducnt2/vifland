@@ -17,7 +17,7 @@
         </div>
         <div class="wrap-2 user-admin">
             @if(auth()->check())
-            <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
+            <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}" alt="">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
                     @if(Auth::check() && Auth::user()->user_type == "1")
 
@@ -99,7 +99,7 @@
                                     <p>Thông báo mới</p><em class="material-icons close-tb">close</em>
                                 </div>
                                 <div class="wrap-2">
-                                    <div class="khong-thong-bao"> <img src="./assets/icon/icon-notification.png" alt="">
+                                    <div class="khong-thong-bao"> <img src="" alt="">
                                         <p>Không có thông báo nào</p>
                                     </div>
 
@@ -221,7 +221,7 @@
                         </li>
                         <li class="nav-item">
                             @if(auth()->check())
-                            <div class="avatar-user"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt=""></div>
+                            <div class="avatar-user"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}" alt=""></div>
                             @else
                             <a href="/login" class="btn btn__header login1" style="line-height:36px">Đăng Nhập</a>
                             @endif
@@ -245,8 +245,16 @@
                     <div class="img"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-res-white.png')}}" alt=""></a></div>
                     <div class="button-mobile-post">
                         <button class="button-mbp"><i class="ri-chat-new-fill icon"></i><a style="color:#fff" class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal">Đăng bài</a></button>
-                        <div class="sosanh"><a href="/compares"><i class="ri-equalizer-line icon"></i></a></div>
-                        <div class="yeuthich"><a href="{{route('favorites')}}"><i class="ri-heart-fill icon"></i></a>
+                        <div class="sosanh">
+                            <a href="/compares">
+                                <i class="ri-equalizer-line icon"></i>
+                            </a>
+                        </div>
+                        <div class="yeuthich">
+                            <a href="{{route('favorites')}}">
+                                <i class="ri-heart-fill icon"></i>
+                                <div class="number-yt"></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -335,7 +343,7 @@
                 </div>
                 <div class="wrap-2 user-admin">
                     @if(auth()->check())
-                    <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
+                    <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}" alt="">
                         <p>{{auth()->user()->username}}</p>
                     </div>
                     <div class="bl-2">

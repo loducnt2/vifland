@@ -24,8 +24,8 @@
                         <div class="col-md-12 col-lg-4 form-group">
                             <input type="text" placeholder="Nhập mật khẩu hiện tại" value=""
                                 name="password">
-                            <p class="notemk">Vì lý do an ninh, bạn phải xác minh mật khẩu hiện
-                                tại trước khi đặt mật khẩu mới.</p>
+                            <!-- <p class="notemk">Vì lý do an ninh, bạn phải xác minh mật khẩu hiện
+                                tại trước khi đặt mật khẩu mới.</p> -->
                         </div>
                     </div>
                     <div class="row form-wrap thongtinform">

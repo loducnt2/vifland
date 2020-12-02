@@ -15,8 +15,8 @@
                     <tr>
                         <th></th>
                         <th>Đơn giá </th>
-                        <th>Mặt tiền (m)</th>
-                        <th>Chiều sâu (m)</th>
+                        <th>Mặt tiền </th>
+                        <th>Chiều sâu </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@
                                         <img class="iconVip" src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                             alt="">
                                         @endif
-                                        <div class="tag">Thương lượng</div>
+                                        <div class="tag">{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
                                     </div>
                                 </div>
                                 <div class="col-8">
@@ -63,12 +63,12 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ $product->price}} {{$product->name}}</td>
-                        <td>{{$product->facades}}</td>
-                        <td>{{$product->depth}}</td>
+                        <td>{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
+                        <td>{{$product->facades != NULL ? $product->facades : ''}} m</td>
+                        <td>{{$product->depth !=NULL ? $product->depth : ''}} m</td>
                         <td>
-                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
-                            <a href="{{route('edit-article',$product->product_id)}}" class="text-danger">Chỉnh sửa</a>
+                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
+                            <a href="{{route('edit-article',$product->product_id)}}" class="text-primary">Chỉnh sửa</a>
                         </td>
                     </tr>
                     @endforeach

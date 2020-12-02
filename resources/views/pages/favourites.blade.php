@@ -110,7 +110,7 @@
 					<div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
 					    <p>Không có bài đăng nào.</p>
 					</div>
-					@else
+					@else 
 					@foreach($products as $product)
 					<div class="col-md-6">
 						<div class="box-sp m-0">

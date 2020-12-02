@@ -35,6 +35,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('home','HomeController@index');								// Trang chủ
 Route::get('/compares','API\CompareController@index')->name('compare');		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
+Route::get('/about',function(){return view('pages/about');}); //giới thiệu
 
 //Danh mục
 

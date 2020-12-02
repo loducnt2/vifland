@@ -20,6 +20,7 @@ use App\Models\Favorited;
 use App\PriceTypePost;
 use App\User;
 use Str;
+use File;
 class ProductController extends Controller
 {
     /**
@@ -219,7 +220,9 @@ class ProductController extends Controller
             'alert-type' => 'success'
         );
 
-
+        if(auth()->user()->user_type == 1){
+            return redirect()->route('article-posted')->with(['message'=>'Đăng tin thành công','alert-type'=>'success']);
+        }
         return redirect()->route('article-wait')->with($notification);
 
     }
@@ -460,6 +463,17 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        /*$prodex = ProductExtend::where('product_id',$id)->value('id'); 
+        $img = ProductImg::where('product_image.product_extend_id',$prodex)->select('name')->get();
+        $imgpath = '/assets/product/detail';
+        //$arr = [];
+        foreach( $img as $key => $im ){
+            if(File::exists($imgpath.'/'.$im[$key]['name'])){
+                File::delete($imgpath.'/'.$im[$key]['name']);
+            }
+        }*/
+
+
         $pro = Product::find($id);
         $pro->delete();
         $notification = array(
@@ -471,56 +485,6 @@ class ProductController extends Controller
     }
 
 
-    public function getByCate($slug){
-        $cate           = Category::where('slug',$slug)->first();
-        $cate_id        = $cate->id;
-        $cate_child     = Category::where('parent_id',$cate_id)->get();
-        $product_extend = Product::where('cate_id',$cate_id)->get();
-        $title          = 'Sang Nhượng Nhà Đất';
-
-        $wards        = Ward::orderBy('name','asc')->get();
-        $districts    = District::orderBy('name','asc')->get();
-        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
-
-        $products = Category::where('parent_id',3)
-        ->leftJoin('product','category.id','product.cate_id')
-        ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('post_history','product.id','post_history.product_id')
-        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
-        ->leftJoin('province','product.province_id','province.id')
-        ->leftJoin('district','product.district_id','district.id')
-        //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
-        //->leftJoin('ward','product.ward_id','ward.id')
-        ->where('post_history.status',1)
-        ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
-        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
-        ->where('soft_delete',0)
-        ->select(
-            //'product_image.name as img',
-            'product.id as product_id',
-            'product.thumbnail as thumbnail',
-            'product.slug as slug',
-            'product.view',
-            'product.datetime_start',
-            'product.title',
-            'product.soft_delete',
-            'product.datetime_end',
-            'product_extend.address',
-            'product_extend.price',
-            'product_extend.product_cate',
-            'product_extend.depth',
-            'product_extend.facades',
-            'province.name as province',
-            'district.name as district',
-            'product_unit.name as unit'
-            //'ward.name as ward'
-        )
-        ->orderBy('product.type','desc')
-        ->limit(5)
-        ->get();
-
-        return view('pages/category',compact('cate_child','product_extend','title','products','wards','districts','provinces'));
-    }
 
     public function getByUser(){
         $user_id = auth()->user()->id;

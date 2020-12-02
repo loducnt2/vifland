@@ -11,7 +11,7 @@
         <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
             aria-labelledby="nav-profile-tab">
             @if(count($product_expire) >0 )
-            <div class="box-content">
+            <div class="box-content-table">
                 <table>
                     <thead>
                         <tr>
@@ -27,7 +27,7 @@
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                             @if ($product->type == 4)
                                             @else
@@ -35,10 +35,10 @@
                                                 src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                                 alt="">
                                             @endif
-                                            <!-- <div class="tag">Thương lượng</div> -->
+                                            <div class="tag">{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
                                         </div>
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-8">
                                         <div class="text">
                                             <a
                                                 href="{{route('article-detail',$product->slug)}}">
@@ -70,13 +70,13 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $product->price}} {{$product->name}}</td>
+                            <td>{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
                             <td>{{$product->facades}}</td>
                             <td>{{$product->depth}}</td>
                             <td>
-                                <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
+                                <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
                                 @if( $product->status!=2 )
-                                <a href="{{route('add-date-form',$product->product_id)}}" class="text-danger"> Gia hạn</a>
+                                <a href="{{route('add-date-form',$product->product_id)}}" class="text-primary"> Gia hạn</a>
                                 @endif
                             </td>
                         </tr>

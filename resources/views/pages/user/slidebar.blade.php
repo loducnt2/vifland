@@ -1,4 +1,4 @@
-@extends('layouts/master')
+@extends('layouts.master')
 @section('title','Trang cá nhân ')
 @section('headerStyles')
 
@@ -31,7 +31,7 @@
                     <div class="col-md-12 col-lg-3">
                         <div class="box-left-admin">
 
-                            <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img}}" alt="">
+                            <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}" alt="">
                                 <p>{{auth()->user()->full_name}}</p>
                             </div>
                             <div class="bl-2">
@@ -56,7 +56,7 @@
                                         <p>Quản lý tin đăng</p>
                                 </div>
                                 <ul>
-                                    <li> <a href="{{route('article-posted')}}">Tin hiện tại</a></li>
+                                    <li> <a href="{{route('article-posted')}}">Tin đang đăng</a></li>
                                     <li> <a href="{{route('article-wait')}}">Tin chờ đăng</a></li>
                                     <li> <a href="{{route('article-expire')}}">Tin hết hạn</a></li>
                                 </ul>
@@ -85,7 +85,9 @@
 @endsection
 {{-- Footer --}}
 @section('footerScripts')
+
 <script>
+    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

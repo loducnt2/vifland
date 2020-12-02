@@ -308,7 +308,7 @@ $('#navId a').click(e => {
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
+                                                title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
@@ -426,7 +426,7 @@ $('#navId a').click(e => {
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
+                                                title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
@@ -540,7 +540,7 @@ $('#navId a').click(e => {
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
+                                                title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"

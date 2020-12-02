@@ -1,5 +1,5 @@
 @extends('.pages.user.slidebar')
-@section('title','Tin hết hạn')
+@section('title','Tin chờ đăng')
 @section('headerStyles')
 @section('content_child')
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -10,7 +10,7 @@
         <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
             aria-labelledby="nav-profile-tab">
             @if(count($product_wait) >0 )
-            <div class="box-content">
+            <div class="box-content-table">
                 <table>
                     <thead>
                         <tr>
@@ -26,7 +26,7 @@
                         <tr>
                             <td>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                             @if ($product->type == 4)
                                             @else
@@ -34,10 +34,10 @@
                                                 src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                                 alt="">
                                             @endif
-                                            <!-- <div class="tag">Thương lượng</div> -->
+                                            <div class="tag">{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
                                         </div>
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-8">
                                         <div class="text">
                                             <a
                                                 href="{{route('article-detail',$product->slug)}}">
@@ -66,12 +66,12 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $product->price}} {{$product->name}}</td>
+                            <td>{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
                             <td>{{$product->facades}}</td>
                             <td>{{$product->depth}}</td>
                             <td>
-                                <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
-                                <a href="{{route('edit-article',$product->product_id)}}" class="text-danger">Chỉnh sửa</a>
+                                <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
+                                <a href="{{route('edit-article',$product->product_id)}}" class="text-primary">Chỉnh sửa</a>
                             </td>
                         </tr>
                         @endforeach

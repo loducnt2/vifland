@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <!-- <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
     @yield('headerStyles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 </head>
 
@@ -54,8 +53,8 @@
     </div>
     <script type="text/javascript" src="{{asset('js/core.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/main.min.js')}}"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         if (!$('.btn__header').hasClass('login1')) {
@@ -177,7 +176,6 @@
         // End Favorites
         if ($.cookie('compare') != null) {
             let checkcookie = $.cookie('compare')
-            console.log(checkcookie.length)
             if (checkcookie.length == 0) {
                 $.removeCookie('compare')
             }

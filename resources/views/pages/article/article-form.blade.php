@@ -209,8 +209,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">phone</span>
-                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact"
-                                    id="phone_contact">
+                                <input type="tel" placeholder="Điện thoại cá nhân" name="phone_contact" id="phone_contact" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
                                 <input type="text" placeholder="Facebook cá nhân" name="facebook">
@@ -225,7 +224,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">email</span>
-                                <input type="text" placeholder="Hộp thư điện tử" name="email">
+                                <input type="email" placeholder="Hộp thư điện tử" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
                             </div>
                         </div>
                         <div class="row loaitindang">
@@ -757,10 +756,10 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
 <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script src="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.js"></script>
+
 <script>
 // var date = new Date();
 // date.setDate(date.getDate()-1);
@@ -834,22 +833,18 @@ $(document).ready(function() {
                 $('.button-luu').removeAttr('disabled')
             }, 5000);
         }
-        if ($('.form-upload__preview').children().length < 3) {
-            toastr.warning("Vui lòng thêm ít nhất 3 ảnh");
-            e.preventDefault();
-            delay_submit();
-        }
         if ($('#phone_contact').val() == "") {
             toastr.warning("Vui lòng nhập số điện thoại liên lạc");
             e.preventDefault();
             delay_submit();
         }
+    
         if ($('#name_contact').val() == "") {
             toastr.warning("Vui lòng nhập tên liên lạc");
             e.preventDefault();
             delay_submit();
         }
-        if ($('#price').val() == "") {
+        if ($('#price').val() == "" | $('#price').val() == 0 ) {
             toastr.warning("Vui lòng nhập đơn giá");
             e.preventDefault();
             delay_submit();
