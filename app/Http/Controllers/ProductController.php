@@ -303,7 +303,9 @@ class ProductController extends Controller
         ->limit(4)
         ->get();
 
-        return view('pages/article/article',compact('product','acreage','total','cate','image','product_related'));
+        $product_cate = ProductCate::orderBy('id','desc')->get();
+
+        return view('pages/article/article',compact('product','acreage','total','cate','image','product_related','product_cate'));
     }
 
     /**

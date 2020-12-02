@@ -138,6 +138,57 @@ class SearchController extends Controller
     	return view('pages.category',compact('products','title','cate','cate_childs','cate_child','provinces','province','content_province','districts','district','wards','ward','filter_price','product_cate','filter_facades'));
     }
 
+    public function searchMobile(Request $req){
+        $kyw = $req->kyw;
+        $product = Product::leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('type_of_product','product_extend.id','type_of_product.product_extend_id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->where('product.soft_delete',0)
+        //->where('category.parent_id',$cate)
+        ->where('post_history.status',1)
+        ->where('product.status',1)
+        ->when($kyw, function ($q) use ($kyw) {
+            return $q->where('product.title', 'like','%'.$kyw.'%');
+        })
+        ->select(
+            'product.id as product_id',
+            'product.thumbnail',
+            'product.title',
+            'product.type',
+            'product.slug',
+            'product.view',
+            'product.datetime_start',
+            'product_extend.filter_price',
+            'product_extend.filter_facades',
+            'product_extend.price',
+            'product_extend.floors',
+            'product_extend.bedroom',
+            'product.province_id',
+            'type_of_product.product_cate_id',
+            'province.name as province',
+            'district.name as district',
+            'product_unit.name as unit',
+            'product_extend.depth',
+            'product_extend.facades',
+            'product.view'
+        )
+        ->orderBy('product.type','asc')
+        ->paginate(12);
+        $title = "Tìm kiếm";
+        $cate_childs     = Category::where('parent_id',$cate)->get();
+        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get(); // all province
+        $content_province = Province::where('id',$province)->value('content'); // content province
+        $districts = District::where('province_id',$province)->orderBy('name','asc')->get();
+        $wards = Ward::where('district_id',$district)->orderBy('name','asc')->get();
+
+        $filter_price = FilterPrice::orderBy('id','asc')->get();
+        $filter_facades = FilterFacades::orderBy('id','asc')->get();
+        $product_cate = ProductCate::orderBy('id','desc')->get();
+        return view('pages.category',compact('products','title','cate','cate_childs','cate_child','provinces','province','content_province','districts','district','wards','ward','filter_price','product_cate','filter_facades'));
+    }
 
 
     public function getByCate(Request $req){

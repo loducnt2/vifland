@@ -270,7 +270,7 @@ $('#navId a').click(e => {
                                     href="{{route('article-detail',$product->slug)}}"><img
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                    {{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}
+                                   {{ $product->price == 0?$product->price="":number_format($product->price,2)}} {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -310,13 +310,15 @@ $('#navId a').click(e => {
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                 title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
+                                        
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
+                                        
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}}">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
@@ -387,7 +389,7 @@ $('#navId a').click(e => {
                                     href="{{route('article-detail',$product->slug)}}"><img
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                    {{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}
+                                    {{ $product->price == 0?$product->price="":number_format($product->price,2)}} {{$product->unit}}
                                 </div>
                                 <div class="box-icon"><i class="fav ri-heart-line icons"
                                         productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}"
@@ -430,11 +432,11 @@ $('#navId a').click(e => {
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}}">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
@@ -504,7 +506,7 @@ $('#navId a').click(e => {
                             <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                    {{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}
+                                    {{ $product->price == 0?$product->price="":number_format($product->price,2)}} {{$product->unit}}
                                 </div>
                                 <div class="box-icon"><i class="fav ri-heart-line icons"
                                         productid="{{$product->product_id}}"></i><a href="{{$product->product_id}}"
@@ -544,11 +546,11 @@ $('#navId a').click(e => {
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}}">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
@@ -611,6 +613,7 @@ $(document).ready(function() {
 
         }
     });
+
 })
 </script>
 @endsection

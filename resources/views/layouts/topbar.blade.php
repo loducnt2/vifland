@@ -280,7 +280,9 @@
                 <div class="nav-mobile-2">
                     <div class="toggle-menu"><i class="ri-grid-fill"></i></div>
                     <div class="search-menu">
-                        <input type="text" placeholder="Bạn tìm gì hôm nay?">
+                        <form action="{{-- route('search',$categories['0']->slug) --}}" method="get" id=>
+                            <input type="text" placeholder="Bạn tìm gì hôm nay?">
+                        </form>
                     </div>
                     @if(auth()->check())
                     <div class="user user-menu"><i class="ri-map-pin-user-fill"></i></div>

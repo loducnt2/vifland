@@ -236,7 +236,7 @@
                                                 src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         <div class="tag-thuongluong">
-                                            {{ $product->price == 0?$product->price="":$product->price}}
+                                            {{ $product->price == 0?$product->price="":number_format($product->price,2)}}
                                             {{$product->unit}}</div>
                                         <div class="box-icon">
                                             <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -281,7 +281,7 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"

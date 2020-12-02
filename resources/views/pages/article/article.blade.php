@@ -116,22 +116,22 @@
                                     <div class="line-text">
                                         <p class="section-content">Mặt Tiền</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->facades}} m</p>
+                                        <p class="section-content active">{{$product->facades>0?$product->facades:""}} m</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Chiều Sâu</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->depth}} m</p>
+                                        <p class="section-content active">{{$product->depth>0?$product->depth:""}} m</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Diện Tích </p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$acreage}} m²</p>
+                                        <p class="section-content active">{{$acreage>0?$acreage:""}} m²</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Đơn Giá</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->price}} {{$product->unit}}</p>
+                                        <p class="section-content active">{{ $product->price == 0?$product->price="":number_format($product->price)}} {{$product->unit}}</p>
                                     </div>
                                     <!-- <div class="line-text">
 										<p class="section-content">Tổng Giá</p>
@@ -166,12 +166,12 @@
                                     <div class="line-text">
                                         <p class="section-content">Số Tầng</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->floor}}</p>
+                                        <p class="section-content active">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Số Phòng Ngủ</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->bedroom}}</p>
+                                        <p class="section-content active">{{$product->bedroom>0?$product->bedroom.' '.'Phòng':""}}</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Giấy Tờ Pháp Lý</p>
@@ -288,7 +288,7 @@
                                             href="{{route('article-detail',$product->slug)}}"><img
                                                 src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                         <div class="tag-thuongluong">
-                                            {{ $product->price == 0?$product->price="":$product->price}} {{$product->unit}}
+                                            {{ $product->price == 0?$product->price="":number_format($product->price)}} {{$product->unit}}
                                         </div>
                                         <div class="box-icon">
                                             <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -326,11 +326,11 @@
                                             <div class="mota-place-1">
                                                 <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
+                                                        title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                         m²</span></div>
                                                 <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
+                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"

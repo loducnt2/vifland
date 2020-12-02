@@ -45,6 +45,7 @@ Route::get('/sang-nhuong-nha-dat','SearchController@getByCate')->name('cate3');
 
 //Route::post('/search/{cate}','SearchController@index')->name('search');
 Route::get('/search/','SearchController@index')->name('search');
+Route::get('/searchmobi','SearchController@searchMobile')->name('searchmob');
 //Route::get('/danh-muc/ds/{cate}','SearchController@getByCate')->name('cate');
 //Route::post('/filter','SearchController@filter')->name('filter');
 Route::get('/search/filter/','SearchController@filter')->name('filter');
@@ -69,7 +70,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/article/new/{cate}','ProductController@create')->name('new');            // Form Đăng tin
 	   // Đăng tin
 	Route::get('/user/my-article/{id}','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
-	Route::get('/user/favourites','ProductController@productUserFavorite')->name('favorites');				  // Yêu thích
+	Route::get('/favourites','ProductController@productUserFavorite')->name('favorites');				  // Yêu thích
 	Route::get('/user/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
 
 	//Profile

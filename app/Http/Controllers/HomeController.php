@@ -210,6 +210,7 @@ class HomeController extends Controller
         ->count();
         
        //return $count_cate2;
+        
        
         return view('/pages/home',compact(
             'categories',
