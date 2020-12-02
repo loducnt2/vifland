@@ -62,13 +62,37 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="edit-post-sub">
+                                <div class="edit">
+                                    <a href="{{route('edit-article',$product->product_id)}}" data-toggle="tooltip"
+                                        data-placement="bottom" title="Chỉnh sửa bài đăng">
+                                        <span class="material-icons">
+                                            create
+                                        </span>
+                                        Sửa
+                                    </a>
+                                </div>
+                                <div class="delete">
+                                    <a href="{{route('delete-article',$product->product_id)}}" data-toggle="tooltip"
+                                        data-placement="bottom" title="Xóa bài đăng">
+                                        <span class="material-icons">
+                                            delete_forever
+                                        </span>
+                                        Xóa
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                         <td>{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
                         <td>{{$product->facades != NULL ? $product->facades : ''}} m</td>
                         <td>{{$product->depth !=NULL ? $product->depth : ''}} m</td>
                         <td>
+<<<<<<< HEAD
                             <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
                             <a href="{{route('edit-article',$product->product_id)}}" class="text-primary">Chỉnh sửa</a>
+=======
+                            ---
+>>>>>>> 353dae56f29ddf67c1fd06291c61c5c0080bda10
                         </td>
                     </tr>
                     @endforeach

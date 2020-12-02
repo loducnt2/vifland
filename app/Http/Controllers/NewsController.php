@@ -10,8 +10,8 @@ use App\Models\tag;
 use App\Models\News;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PostsRequest;
+use Illuminate\Support\Facades\DB;
 use function Psy\debug;
 
 class NewsController extends Controller
@@ -49,6 +49,7 @@ class NewsController extends Controller
         // insert tin tức
         $news = new News();
         // tags
+
         $news->title=$request->input('title');
         $news->slug = $request->slug;
         $news->content = $request->input('content');
@@ -167,12 +168,27 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request,$id)
     {
-         //$new = News::find($id);
-        // $new->status = 1;
-        // $new->save();
-        return redirect('/admin/danh-sach-duyet-tin');
+        $news = News::find($id);
+        $news->title = $request->title;
+        $news->slug = str::slug($request->title);
+        $news->content = $request->content;
+        $news->status = "1";
+        $news->update();
+        return response()->json(
+            [
+
+                // 'status'=>$newsCategory->status,
+                'title'=>$news->title,
+                'id'=>$news->id,
+                'content'=>$news->content,
+                'slug'=>$news->slug,
+
+                // 'created_at'=>$news_cate->created_at
+            ]
+        );
+        // return redirect('/admin/danh-sach-duyet-tin');
     }
     public function deleteall(){
         // xoá hết tin tức
@@ -197,7 +213,7 @@ class NewsController extends Controller
     {
         $new = News::find($id);
         $new->delete();
-        return redirect('/admin/danh-sach-tin-tuc');
+
     }
     public function getpostsbytag($tags){
 // news3 = get tất cả các tin theo tags
@@ -221,6 +237,14 @@ class NewsController extends Controller
                 ]);
           }
     }
+    public function ChangeNewsStatus(Request $request){
+        $user = News::find($request->id);
+        $user->status = $request->status;
+        $user->save();
+
+    }
+
     // Tin get được từ các danh mục
 }
 
+// ẩn hiện bài viết

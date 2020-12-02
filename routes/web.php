@@ -192,6 +192,7 @@ Route::get('admin/index','AdminController@index')->middleware('admin.auth')->nam
 
 //Wallet
 Route::get('admin/wallet','WalletController@index')->name('wallet');
+Route::get('admin/wallet/detail/{id}','WalletController@Detail_payment')->name('detail-wallet');
 Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');
 // ================= hồ sơ ==================
 
@@ -268,3 +269,16 @@ Route::post('/insert','NewsController@insertTag')->name('tag.insert');
 // Route::post('/admin/index/quan-ly-tu-khoa/insert','TagController@store')->name('tag.insert');
 // Email
 Route::post('/send-email','NewsLetterController@send_email');
+
+// ====== Danh mục tin tức====================
+
+// Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsController@store')->name('news_category.add');
+
+// Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
+Route::DELETE('/admin/index/danh-muc-tin-tuc/xoa-tin-tuc/{id}','NewsController@destroy')->name('news.delet');
+Route::put('/admin/index/danh-muc-tin-tuc/sua-tin-tuc/{id}','NewsController@update')->name('news.update');
+
+Route::post('/admin/index/danh-muc-tin-tuc/checkunique={input}','NewsCategoryController@checkunique')->name('news_category.unique');
+
+
+Route::get('/admin/quan-li-tin-tuc/changestatus','NewsController@ChangeNewsStatus');

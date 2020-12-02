@@ -37,7 +37,8 @@
                             <div class="bl-2">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span class="vifPay"><img src="{{asset('assets/icon/card.png')}}" alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span>
+                                        <span class="vifPay"><img src="{{asset('assets/icon/card.png')}}"
+                                                alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +54,7 @@
                                     <li><a href="{{route('payment-history')}}">Lịch sử giao dịch</a></li>
                                 </ul>
                                 <div class="title-bl3"> <span class="material-icons">list_alt</span>
-                                        <p>Quản lý tin đăng</p>
+                                    <p>Quản lý tin đăng</p>
                                 </div>
                                 <ul>
                                     <li> <a href="{{route('article-posted')}}">Tin đang đăng</a></li>
@@ -117,5 +118,3 @@
 
 </script>
 @endsection
-
-

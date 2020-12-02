@@ -16,7 +16,8 @@ class WalletController extends Controller
     public function addWallet(Request $request){
         $payment = Payment::create([
             'user_id' => $request->userid,
-            'amount'  => $request->wallet
+            'amount'  => $request->wallet,
+            'noti_payment' => 1,
         ]);
         $user = User::find($request->userid);
         $wallet = $user->wallet;
@@ -27,4 +28,10 @@ class WalletController extends Controller
         return redirect()->back();
 
     }
+
+    public function Detail_payment($id){
+        $payment = Payment::where('user_id',$id)->orderBy('created_at','desc')->paginate(10);
+        return view('/admin/wallet/detail_wallet',compact('payment'));
+    }
+   
 }

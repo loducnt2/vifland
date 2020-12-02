@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Tag extends Migration
+class StatusPayment extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class Tag extends Migration
      */
     public function up()
     {
-        Schema::create('tag', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('tag')->nullable();
-            $table->timestamps();
+        Schema::table('payment', function (Blueprint $table) {
+            $table->integer('noti_payment')->default(0)->after("amount");
         });
     }
     /**
@@ -26,6 +24,8 @@ class Tag extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('payment', function (Blueprint $table) {
+            //
+        });
     }
 }

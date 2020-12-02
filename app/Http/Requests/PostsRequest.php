@@ -26,7 +26,7 @@ class PostsRequest extends FormRequest
         return [
             // dùng unique để hạn chế việc post bài trùng với bài đã có trong bảng news
             'title' => 'unique:news',
-
+            'category_name' =>'unique:news_category'
         ];
 
     }
@@ -34,6 +34,7 @@ class PostsRequest extends FormRequest
     {
     return [
         'title.unique' => 'Bài viết đã có, vui lòng sử dụng tiêu đề khác',
+        'category_unique'=> 'Bài viết đã có',
     ];
     }
 
