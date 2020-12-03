@@ -8,12 +8,22 @@
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán
-                        <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
-                <li class="breadcrumb-item"><a href="#">
-                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
-                            gì hôm nay?</p>
-                    </a></li>
+                <li class="breadcrumb-item">
+                    <a href="{{route('home')}}"><!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
+                    </a>
+                </li>
+                 <li class="breadcrumb-item"><a href="{{route('cate1')}}">
+                        <!-- <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
+                            gì hôm nay?</p> -->
+                            @switch($cate)
+                                @case(1)
+                                <p>Mua/ Bán</p>@break
+                                @case(2)
+                                <p>Thuê/ Cho thuê</p>@break
+                                @case(3)
+                                <p>Sang nhượng</p>@break
+                            @endswitch
+                    </a></li> 
             </ol>
         </div>
     </div>

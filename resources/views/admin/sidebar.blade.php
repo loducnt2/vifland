@@ -103,6 +103,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý người dùng
                             </a>
+                            <a class="nav-link" href="{{route('admin-list')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Quản lý quản trị viên
+                            </a>
                             <a class="nav-link" href="{{ url('admin/danh-sach-gia-vip') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
                                 Quản lý giá post

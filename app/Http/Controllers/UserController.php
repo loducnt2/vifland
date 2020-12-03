@@ -23,8 +23,23 @@ class UserController extends Controller
     {
         //get list all user
         // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
-        $users =User::get();
+        $users =User::where('user_type',0)->paginate(7);
+        
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
+    }
+
+    public function admin_list(){
+       $admin = User::where('user_type',1)->paginate(7);
+       $user = User::select('id','username')->where('user_type',0)->get();
+       return view('admin/admin-list/index',compact('admin','user'));
+    }
+    public function addAdmin($id){
+        User::find($id)->update(['user_type'=>1]);
+        return redirect()->back();
+    }
+    public function destroyAdmin($id){
+        User::find($id)->update(['user_type'=>0]);
+        return redirect()->back();
     }
 
     // profile_user

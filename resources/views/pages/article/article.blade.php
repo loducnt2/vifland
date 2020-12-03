@@ -22,16 +22,30 @@
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán
-                        <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
-                <li class="breadcrumb-item"><a href="#">
-                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh </p>
-                    </a></li>
-                <!-- <div class="search">
-                    <form action="">
-                        <input type="text" placeholder="Bạn cần tìm hôm nay?">
-                    </form>
-                </div> -->
+                <li class="breadcrumb-item">
+                    <a href="{{route('home')}}"><!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
+                        <!-- <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span> -->
+                    </a>
+                </li>
+                 <li class="breadcrumb-item">
+                    <a href="{{route('cate1')}}">
+                            @switch($cate_id)
+                                @case(13)
+                                <p>Mua/ Bán</p>@break
+                                @case(14)
+                                <p>Mua/ Bán</p>@break
+                                @case(18)
+                                @case(19)
+                                <p>Thuê/ Cho Thuê</p>@break
+                                @case(20)
+                                @case(21)
+                                <p>Sang nhượng</p>@break
+                            @endswitch
+                            &nbsp; > &nbsp;{{ $province}}
+                            &nbsp; > &nbsp;{{ $district}}
+                    </a>
+                    
+                </li>
             </ol>
         </div>
     </div>

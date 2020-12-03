@@ -8,11 +8,16 @@
 <main>
 	<div class="global-breadcrumb">
 		<div class="max-width-container">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
-				<li class="breadcrumb-item"><a href="#"> 
-						<p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm gì hôm nay?</p></a></li>
-			</ol>
+		    <ol class="breadcrumb">
+		        <li class="breadcrumb-item">
+		            <a href="{{route('home')}}"><!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
+		                <!-- <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span> -->
+		            </a>
+		        </li>
+		         <li class="breadcrumb-item"><a href="{{route('cate1')}}">
+		                    <p>So sánh</p>
+		            </a></li> 
+		    </ol>
 		</div>
 	</div>
 	<section class="pages-compare"> 
@@ -50,7 +55,7 @@
 								@foreach($products as $prod)
 									@foreach($prod as $product)
 										<div class="box-sp">
-											<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+											<div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
 												<!-- <div class="tag-thuongluong">Thương lượng</div> -->
 												<div class="box-icon">
 												    <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>

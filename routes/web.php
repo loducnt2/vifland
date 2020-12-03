@@ -155,6 +155,11 @@ Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')
 Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');
 Route::get('/admin/danh-sach-province','ProvinceController@index');
 
+//danh sách admin
+Route::get('/admin/admin-list','UserController@admin_list')->name('admin-list');
+Route::get('/admin/add-admin/{id}','UserController@addAdmin')->name('add-admin');
+Route::get('/admin/destroy-admin/{id}','UserController@destroyAdmin')->name('destroy-admin');
+
 //duyet tin
 
 Route::get('/admin/danh-sach-duyet-tin','HistoryPostController@index');

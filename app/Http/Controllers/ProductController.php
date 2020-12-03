@@ -264,7 +264,15 @@ class ProductController extends Controller
         $total   = intval($product->price)*$acreage;
         $product->update(['view'=> $product->view + 1 ]);
         $cate    = Category::where('id',$product->cate_id)->value('name');
-
+        $cate_id = Category::where('id',$product->cate_id)->value('id');
+        $province = "";
+        $district = "";
+        if($product->province_id != NULL ){
+           $province = Province::where('id',$product->province_id)->value('name');
+        }
+        if($product->district_id!= NULL){
+            $district = District::where('id',$product->district_id)->value('name'); 
+        }
         $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
 
         //Lịch sử xem sản phẩm
@@ -278,7 +286,6 @@ class ProductController extends Controller
                ]);
            }
         }
-
         $product_related  = Category::where('category.parent_id',$product->parent_id)
         ->leftJoin('product','product.cate_id','category.id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
@@ -305,7 +312,7 @@ class ProductController extends Controller
 
         $product_cate = ProductCate::orderBy('id','desc')->get();
 
-        return view('pages/article/article',compact('product','acreage','total','cate','image','product_related','product_cate'));
+        return view('pages/article/article',compact('product','acreage','total','cate','cate_id','province','district','image','product_related','product_cate'));
     }
 
     /**

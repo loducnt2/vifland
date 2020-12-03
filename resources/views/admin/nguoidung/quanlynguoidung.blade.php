@@ -22,6 +22,8 @@
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
     @section('content')
+    
+    
 
     <div class="card-body">
         <div class="table-responsive">
@@ -88,11 +90,13 @@
                 <tbody>
 
                 </tbody>
+
             </table>
-            <button type="submit" class="btn btn-primary">Lưu thông tin </button>
+            {{$users->links()}}
+            <!-- <button type="submit" class="btn btn-primary">Lưu thông tin </button> -->
         </div>
     </div>
-
+    
     @endsection
 {{-- @extends(') --}}
 

@@ -1,14 +1,16 @@
 @extends('admin.sidebar')
 @section('title','Nạp tiền')
 @section('content')
-<div>
-    <button class="btn btn-primary btn-change-table">Cộng tiền</button>
-    <button class="btn btn-danger btn-change-table">Thống kê</button>
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <button class="btn btn-primary btn-change-table">Cộng tiền</button>
+            <button class="btn btn-danger btn-change-table">Thống kê</button>
+        </div>
+    </div>
 </div>
 <div id="wallet">
     <div class="container">
-        <h2>Danh sách người dùng </h2>
-
         <!-- table -->
         <div class="row">
             <div class="col-5">
@@ -18,8 +20,6 @@
                 </div>
             </div>
         </div>
-
-        <br>
 
         <table class="table table-bordered table-striped">
             <thead>
@@ -54,9 +54,14 @@
 </div>
 <div  class="d-none" id="statistical">
     <div class="container">
-
-        <h2>Thống kê  giao dịch</h2>
-       
+       <div class="row">
+           <div class="col-5">
+               <div class="form-group">
+                   <label for=""></label>
+                   <input class="form-control" id="myInput2" type="text" placeholder="Tìm kiếm..">
+               </div>
+           </div>
+       </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -67,7 +72,7 @@
                     <th scope="col">Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="mytable2">
                 @foreach($users as $user)
                 <tr>
                     <td>{{$user->id}}</td>
@@ -90,6 +95,12 @@
         $("#myInput").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        $("#myInput2").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#mytable2 tr").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
