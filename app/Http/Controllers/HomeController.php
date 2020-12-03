@@ -34,6 +34,8 @@ class HomeController extends Controller
     public function index()
     {
         Product::where( 'datetime_start','<=', date('Y-m-d H:i',strtotime('now')) )->update(['status'=>1]);
+        Product::where( 'datetime_end','<=', date('Y-m-d H:i',strtotime('now')) )->update(['soft_delete'=>1]);
+        Product::where('datetime_delete','<=',date('Y-m-d H:i',strtotime('now') ))->delete();
 
         $filter_price = FilterPrice::orderBy('id','asc')->get();
         $product_cate = ProductCate::orderBy('id','desc')->get();
@@ -160,8 +162,7 @@ class HomeController extends Controller
         ->limit(5)
         ->get();
 
-        Product::where( 'datetime_end','<=', date('Y-m-d H:i',strtotime('now')) )->update(['soft_delete'=>1]);
-        Product::where('datetime_delete','<=',date('Y-m-d H:i',strtotime('now') ))->delete();
+        
         
         if( auth()->check() ){
             $Duedate = PostHistory::leftJoin('product','post_history.product_id','product.id')
@@ -189,6 +190,8 @@ class HomeController extends Controller
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->where('product.status',1)
         ->where('soft_delete',0)
+        /*->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))*/
         ->count();
 
         $count_cate2 = Category::where('parent_id',2)
@@ -198,6 +201,8 @@ class HomeController extends Controller
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->where('product.status',1)
         ->where('soft_delete',0)
+        /*->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))*/
         ->count();
 
         $count_cate3 = Category::where('parent_id',3)
@@ -207,6 +212,8 @@ class HomeController extends Controller
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
         ->where('product.status',1)
         ->where('soft_delete',0)
+        /*->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))*/
         ->count();
         
        //return $count_cate2;

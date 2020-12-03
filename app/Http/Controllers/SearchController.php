@@ -51,6 +51,7 @@ class SearchController extends Controller
 	    //->where('category.parent_id',$cate)
         ->where('post_history.status',1)
         ->where('product.status',1)
+
         ->when($cate_child, function ($q) use ($cate_child) {
             return $q->whereIn('category.id',$cate_child);
         })
@@ -215,8 +216,8 @@ class SearchController extends Controller
                 //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
                 //->leftJoin('ward','product.ward_id','ward.id')
                 ->where('post_history.status',1)
-                ->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
-                ->where('datetime_end','>',date('Y-m-d',strtotime('now')))
+                //->where('product.datetime_start','<=',date('Y-m-d',strtotime('now')))
+                //->where('product.datetime_end','>',date('Y-m-d',strtotime('now')))
                 ->where('product.status',1)
                 ->where('soft_delete',0)
                 ->select(
@@ -260,6 +261,8 @@ class SearchController extends Controller
                 $province = "";
                 $ward     = "";
                 $cate_child =[13,14,18,19,20,21];
+
+                //return count($products);
                 return view('pages/category',compact('cate','cate_childs','cate_child','province','product_extend','title','products','wards','ward','districts','district','provinces','filter_price','product_cate','filter_facades'));
             //}else{
             //    return redirect(route('home'));

@@ -859,6 +859,11 @@ $(document).ready(function() {
             e.preventDefault();
             delay_submit();
         }
+        if($('.form-upload__preview').children().length < 3 ){
+            toastr.warning("Vui lòng nhập ít nhất 3 hình ");
+            e.preventDefault();
+            delay_submit();
+        }
         if ($('#product_cate option:selected').index() == 0) {
             toastr.warning("Vui lòng chọn loại nhà đất");
             e.preventDefault();

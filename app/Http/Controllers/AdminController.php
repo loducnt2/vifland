@@ -7,13 +7,22 @@ use App\Models\Product;
 use App\Models\PostHistory;
 use App\User;
 use App\Models\Payment;
+use App\Models\Category;
 use DB;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 class AdminController extends Controller
 {
     public function index(){
     	//$product_posted = Product::count();
-    	$product_current = Product::where('soft_delete',0)->count();
+    	$product_current = Category::leftJoin('product','category.id','product.cate_id')
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->whereIn('parent_id',[1,2,3])
+        ->where('product.soft_delete',0)
+        ->where('product.status',1)
+        ->where('post_history.status',1)
+        /*->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
+        ->where('datetime_end','>',date('Y-m-d',strtotime('now')))*/
+        ->count();
     	$views = Product::select('view')->get();
     	$view = 0;
     	foreach( $views as $vs ){

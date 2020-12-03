@@ -87,12 +87,8 @@
                         <td>{{$product->facades != NULL ? $product->facades : ''}} m</td>
                         <td>{{$product->depth !=NULL ? $product->depth : ''}} m</td>
                         <td>
-<<<<<<< HEAD
                             <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
                             <a href="{{route('edit-article',$product->product_id)}}" class="text-primary">Chỉnh sửa</a>
-=======
-                            ---
->>>>>>> 353dae56f29ddf67c1fd06291c61c5c0080bda10
                         </td>
                     </tr>
                     @endforeach
