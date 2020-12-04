@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-5">
-            <button class="btn btn-primary btn-change-table">Cộng tiền</button>
+            <button class="btn btn-primary btn-change-table">Thêm/ trừ tiền</button>
             <button class="btn btn-danger btn-change-table">Thống kê</button>
         </div>
     </div>
@@ -24,7 +24,6 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Mã người dùng</th>
                     <th>Tên truy cập</th>
                     <th>Ví hiện tại</th>
                     <th colspan="2" ></th>
@@ -33,7 +32,6 @@
             <tbody id="myTable">
                 @foreach($users as $user)
                 <tr>
-                    <td>{{$user->id}}</td>
                     <td>{{$user->username}}</td>
                     <td>{{number_format($user->wallet)}}</td>
                     <td class="text-left">

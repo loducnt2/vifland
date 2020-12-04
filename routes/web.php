@@ -17,13 +17,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/user/profile','UserController@profileUser')->name('profile');
-Route::get('/user/password','UserController@formpassword')->name('change-password');
-Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');
-Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history');
-Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');
-Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');
-Route::get('/user/article-expire','UserController@articlexpire')->name('article-expire');
+
 
 Route::get('/testform',function(){return view('pages/article/testform');} );
 
@@ -79,6 +73,31 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('/user/update/{id}','UserController@update')->name('user-update');
 	Route::post('/user/changepass/{id}','UserController@changePassword')->name('user-changePassword');
     //Change password
+
+    //danh sách admin
+    Route::get('/admin/admin-list','UserController@admin_list')->name('admin-list');
+    Route::get('/admin/add-admin/{id}','UserController@addAdmin')->name('add-admin');
+    Route::get('/admin/destroy-admin/{id}','UserController@destroyAdmin')->name('destroy-admin');
+
+    //  admin
+    Route::get('admin/index','AdminController@index')->middleware('admin.auth')->name('admin-dashboard');
+    //Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
+
+
+    //Wallet
+    Route::get('admin/wallet','WalletController@index')->name('wallet');
+    Route::get('admin/wallet/detail/{id}','WalletController@Detail_payment')->name('detail-wallet');
+    Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');
+    Route::post('admin/wallet/sub','WalletController@subWallet')->name('sub-wallet');
+
+    //User
+    Route::get('/user/profile','UserController@profileUser')->name('profile');
+    Route::get('/user/password','UserController@formpassword')->name('change-password');
+    Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');
+    Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history');
+    Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');
+    Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');
+    Route::get('/user/article-expire','UserController@articlexpire')->name('article-expire');
 
 
 });
@@ -155,10 +174,7 @@ Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')
 Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');
 Route::get('/admin/danh-sach-province','ProvinceController@index');
 
-//danh sách admin
-Route::get('/admin/admin-list','UserController@admin_list')->name('admin-list');
-Route::get('/admin/add-admin/{id}','UserController@addAdmin')->name('add-admin');
-Route::get('/admin/destroy-admin/{id}','UserController@destroyAdmin')->name('destroy-admin');
+
 
 //duyet tin
 
@@ -191,16 +207,7 @@ Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
 // Quản lý tin đăng
 
 
-//  admin
-Route::get('admin/index','AdminController@index')->middleware('admin.auth')->name('admin-dashboard');
-//Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
 
-
-//Wallet
-Route::get('admin/wallet','WalletController@index')->name('wallet');
-Route::get('admin/wallet/detail/{id}','WalletController@Detail_payment')->name('detail-wallet');
-Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');
-Route::post('admin/wallet/sub','WalletController@subWallet')->name('sub-wallet');
 // ================= hồ sơ ==================
 
 // update thông tin hồ sơ cá nhân

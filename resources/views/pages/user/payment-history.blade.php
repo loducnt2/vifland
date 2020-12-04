@@ -19,6 +19,7 @@
                       <th scope="col">Số Hóa Đơn</th>
                       <th scope="col">Ngân Hàng</th>
                       <th scope="col">Số Tiền (VND)</th>
+                      <th scope="col">Nội dung</th>
                       <th scope="col">Thời gian</th>
                     </tr>
                   </thead>
@@ -40,6 +41,7 @@
                         <td>
                             <span class="float-left" >{{number_format($pmt->amount)}}</span>
                         </td>
+                        <td>{{$pmt->content}}</td>
                         <td>{{$pmt->datetime}}</td>
                     </tr>
                     @endforeach

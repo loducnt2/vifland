@@ -16,5 +16,6 @@ class Payment extends Model
         'amount',
         'noti_payment',
     	'datetime',
+        'content',
     ];
 }

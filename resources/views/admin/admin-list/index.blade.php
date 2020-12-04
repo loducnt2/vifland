@@ -27,7 +27,7 @@
                 <td>
                     {{$ad->username}}
                     <?php
-                     $date = date('d',strtotime('now'))-date('d',strtotime($pmt->datetime)) ;
+                     $date = date('d',strtotime('now'))-date('d',strtotime($ad->datetime)) ;
                      if( intval(date('d',strtotime($date))) <=1 ){
                         echo '<span class="badge badge-pill badge-success">Mới</span>';
                      }

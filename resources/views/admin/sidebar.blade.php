@@ -113,7 +113,7 @@
                             </a>
                             <a class="nav-link" href="{{ route('wallet')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
-                                Nạp tiền
+                                Quản lý ví tiền
                             </a>
                             <a class="nav-link" href="{{ url('admin/danh-sach-province') }}">
                                 <div class="sb-nav-link-icon"><span class="material-icons">

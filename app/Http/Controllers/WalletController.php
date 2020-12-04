@@ -19,7 +19,9 @@ class WalletController extends Controller
             'amount'  => $request->wallet,
             'datetime'=> date('Y-m-d H:i:s',strtotime('now')),
             'bank_trans_no' => '#############',
+            'bank_code' => '###',
             'trade_code' => 0,
+            'content' => 'Cộng tiền',
             'noti_payment' => 1,
         ]);
         $user = User::find($request->userid);
@@ -32,6 +34,16 @@ class WalletController extends Controller
     }
 
     public function subWallet(Request $request){
+        $payment = Payment::create([
+            'user_id' => $request->userid,
+            'amount'  => $request->wallet,
+            'datetime'=> date('Y-m-d H:i:s',strtotime('now')),
+            'bank_trans_no' => '#############',
+            'bank_code' => '###',
+            'trade_code' => 0,
+            'content' => 'Trừ tiền',
+            'noti_payment' => 2,
+        ]);
         $user = User::find($request->userid);
         $wallet = $user->wallet;
         $total_cash = $user->total_cash;
