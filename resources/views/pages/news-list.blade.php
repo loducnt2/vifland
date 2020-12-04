@@ -4,22 +4,6 @@
 <!-- Thêm styles cho trang này ở đây-->
 @stop
 @section('content')
-<main>
-	<section class="banner-top">
-		<div class="img"> </div>
-	</section>
-	<div class="global-breadcrumb">
-		<div class="max-width-container">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
-				<li class="breadcrumb-item"><a href="#">
-						<p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm gì hôm nay?</p>
-					</a></li>
-			</ol>
-		</div>
-	</div>
-	<section class="pages-news-list">
-		<div class="container">
 
 			<h1 class="section-title text-uppercase">tin tức mới nhất </h1>
 			<div class="row sec-1">
