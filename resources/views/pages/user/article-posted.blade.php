@@ -17,7 +17,7 @@
                         <th>Đơn giá </th>
                         <th>Mặt tiền </th>
                         <th>Chiều sâu </th>
-                        <th></th>
+                        <th>Nhu cầu</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,8 +87,9 @@
                         <td>{{$product->facades != NULL ? round($product->facades,2) : ''}} m</td>
                         <td>{{$product->depth !=NULL ? round($product->depth,2) : ''}} m</td>
                         <td>
-                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
-                            <a href="{{route('edit-article',$product->product_id)}}" class="text-primary">Chỉnh sửa</a>
+                            <!-- <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
+                            <a href="{{route('edit-article',$product->product_id)}}" class="text-primary">Chỉnh sửa</a> -->
+                            @foreach($cate as $cat) {{$cat->id == $product->cate_id? $cat->name:""}} @endforeach
                         </td>
                     </tr>
                     @endforeach

@@ -92,11 +92,11 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="number" min="0" name="facades">
+                                            <input type="text"  name="facades" id="facades">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="number" min="0" name="depth">
+                                            <input type="text"  name="depth" id="depth">
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price" id="price">
+                                            <input type="text"  name="price" id="price">
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
@@ -849,6 +849,22 @@ $(document).ready(function() {
             e.preventDefault();
             delay_submit();
         }
+        if ( isNaN($('#price').val()) ) {
+            toastr.warning("Đơn giá không xác định");
+            e.preventDefault();
+            delay_submit();
+        }
+        if ( isNaN($('#facades').val()) ) {
+            toastr.warning("Mặt tiền không xác định");
+            e.preventDefault();
+            delay_submit();
+        }
+        if ( isNaN($('#depth').val()) ) {
+            toastr.warning("Chiều sâu không xác định");
+            e.preventDefault();
+            delay_submit();
+        }
+
         if ($('#unit option:selected').index() == 0) {
             toastr.warning("Vui lòng chọn đơn vị");
             e.preventDefault();

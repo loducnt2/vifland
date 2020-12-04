@@ -28,21 +28,30 @@
                     </a>
                 </li>
                  <li class="breadcrumb-item">
-                    <a href="{{route('cate1')}}">
-                            @switch($cate_id)
-                                @case(13)
-                                <p>Mua/ Bán</p>@break
-                                @case(14)
-                                <p>Mua/ Bán</p>@break
-                                @case(18)
-                                @case(19)
-                                <p>Thuê/ Cho Thuê</p>@break
-                                @case(20)
-                                @case(21)
-                                <p>Sang nhượng</p>@break
-                            @endswitch
+                    <?php
+                        switch ($cate_id) {
+                            case 13:
+                            case 14:
+                                $cate = 'cate1';
+                                $tt = 'Mua/ Bán';
+                                break;
+                            case 18:
+                            case 19:
+                                $cate = 'cate2';
+                                $tt = 'Thuê/ Cho thuê';
+                                break;
+                            case 20:
+                            case 21:
+                                $cate = 'cate3';
+                                $tt = 'Sang nhượng';
+                                break;
+                        }
+                    ?>
+                    <a href="{{route($cate)}}">
+                            <p>{{$tt}}</p>
                             &nbsp; > &nbsp;{{ $province}}
                             &nbsp; > &nbsp;{{ $district}}
+                            &nbsp; > &nbsp;{{ $product->title}}
                     </a>
                     
                 </li>
@@ -354,17 +363,17 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</span>
+                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                                 </div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}
+                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}
                                                     </span></div>
                                                 <div class="mota-place-tt"><span
                                                         class="material-icons icons-15">group</span><span data-toggle="tooltip"
                                                         data-placement="bottom" title=""
-                                                        data-original-title="Tooltip on bottom"></span></div>
+                                                        data-original-title="">---</span></div>
                                             </div>
                                         </div>
                                         <div class="end-mota">

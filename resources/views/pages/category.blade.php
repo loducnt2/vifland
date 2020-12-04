@@ -302,17 +302,17 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}
+                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}
                                                         Tầng</span></div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}</span>
+                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
                                                 </div>
                                                 <div class="mota-place-tt"><span
                                                         class="material-icons icons-15">group</span><span
                                                         data-toggle="tooltip" data-placement="bottom" title=""
-                                                        data-original-title="Tooltip on bottom"></span></div>
+                                                        data-original-title="">---</span></div>
                                             </div>
                                         </div>
                                         <div class="end-mota">
