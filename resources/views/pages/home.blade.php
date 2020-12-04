@@ -318,7 +318,7 @@ $('#navId a').click(e => {
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
@@ -435,7 +435,7 @@ $('#navId a').click(e => {
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
@@ -553,7 +553,7 @@ $('#navId a').click(e => {
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img

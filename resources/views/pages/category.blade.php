@@ -286,7 +286,7 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/dientich.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : $acreage}}
+                                                        title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : round($acreage,2)}}
                                                         m²</span></div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
@@ -295,7 +295,7 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->facades}}">{{$product->facades}} m</span>
+                                                        title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}} m</span>
                                                 </div>
                                             </div>
                                             <div class="mota-place-1">
