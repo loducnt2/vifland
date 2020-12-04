@@ -141,7 +141,8 @@ class SearchController extends Controller
 
     public function searchMobile(Request $req){
         $kyw = $req->kyw;
-        $product = Product::leftJoin('product_extend','product.id','product_extend.product_id')
+        $products = Category::leftJoin('product','category.id','product.cate_id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('type_of_product','product_extend.id','type_of_product.product_extend_id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
@@ -179,11 +180,19 @@ class SearchController extends Controller
         ->orderBy('product.type','asc')
         ->paginate(12);
         $title = "Tìm kiếm";
-        $cate_childs     = Category::where('parent_id',$cate)->get();
+        $cate_childs     = Category::where('parent_id',1)->get();
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get(); // all province
-        $content_province = Province::where('id',$province)->value('content'); // content province
-        $districts = District::where('province_id',$province)->orderBy('name','asc')->get();
-        $wards = Ward::where('district_id',$district)->orderBy('name','asc')->get();
+        //$content_province = Province::where('id',$province)->value('content'); // content province
+        //$districts = District::where('province_id',$province)->orderBy('name','asc')->get();
+        //$wards = Ward::where('district_id',$district)->orderBy('name','asc')->get();
+        $province = "";
+        $content_province = "";
+        $districts="";
+        $district = "";
+        $ward = "";
+        $wards="";
+        $cate = "";
+        $cate_child = "";
 
         $filter_price = FilterPrice::orderBy('id','asc')->get();
         $filter_facades = FilterFacades::orderBy('id','asc')->get();

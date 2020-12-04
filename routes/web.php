@@ -71,7 +71,7 @@ Route::group(['middleware'=>'auth'],function(){
 	   // Đăng tin
 	Route::get('/user/my-article/{id}','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
 	Route::get('/favourites','ProductController@productUserFavorite')->name('favorites');				  // Yêu thích
-	Route::get('/user/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
+	Route::get('/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
 
 	//Profile
 	Route::get('/user/profile/{id}','UserController@profileDetail')->name('user-profile');
@@ -200,6 +200,7 @@ Route::get('admin/index','AdminController@index')->middleware('admin.auth')->nam
 Route::get('admin/wallet','WalletController@index')->name('wallet');
 Route::get('admin/wallet/detail/{id}','WalletController@Detail_payment')->name('detail-wallet');
 Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');
+Route::post('admin/wallet/sub','WalletController@subWallet')->name('sub-wallet');
 // ================= hồ sơ ==================
 
 // update thông tin hồ sơ cá nhân

@@ -37,8 +37,8 @@
                         <th>Thời gian đăng kí</th>
                         {{-- <th>Salary</th> --}}
                         <th>Hoạt động</th>
-                        <th>Chi tiết</th>
                         <th>Hành động</th>
+                        <th>Chi tiết</th>
                         <th></th>
                     </tr>
                 </thead>

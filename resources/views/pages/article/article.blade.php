@@ -130,12 +130,12 @@
                                     <div class="line-text">
                                         <p class="section-content">Mặt Tiền</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->facades>0?$product->facades:""}} m</p>
+                                        <p class="section-content active">{{$product->facades>0?round($product->facades,2):""}} m</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Chiều Sâu</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->depth>0?$product->depth:""}} m</p>
+                                        <p class="section-content active">{{$product->depth>0?round($product->depth,2):""}} m</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Diện Tích </p>
@@ -145,7 +145,7 @@
                                     <div class="line-text">
                                         <p class="section-content">Đơn Giá</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{ $product->price == 0?$product->price="":number_format($product->price)}} {{$product->unit}}</p>
+                                        <p class="section-content active">{{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}</p>
                                     </div>
                                     <!-- <div class="line-text">
 										<p class="section-content">Tổng Giá</p>

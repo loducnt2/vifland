@@ -17,6 +17,9 @@ class WalletController extends Controller
         $payment = Payment::create([
             'user_id' => $request->userid,
             'amount'  => $request->wallet,
+            'datetime'=> date('Y-m-d H:i:s',strtotime('now')),
+            'bank_trans_no' => '#############',
+            'trade_code' => 0,
             'noti_payment' => 1,
         ]);
         $user = User::find($request->userid);
@@ -25,8 +28,17 @@ class WalletController extends Controller
         $user->wallet = $request->wallet + $wallet;
         $user->total_cash = $request->wallet + $total_cash;
         $user->save();
-        return redirect()->back();
+        return redirect()->back()->with(['message'=>'Thêm tiền thành công','alert-type'=>'success']);
+    }
 
+    public function subWallet(Request $request){
+        $user = User::find($request->userid);
+        $wallet = $user->wallet;
+        $total_cash = $user->total_cash;
+        $user->wallet =  $wallet - $request->wallet;
+        $user->total_cash = $total_cash - $request->wallet ;
+        $user->save();
+        return redirect()->back()->with(['message'=>'Trừ tiền thành công','alert-type'=>'success']);
     }
 
     public function Detail_payment($id){

@@ -26,7 +26,15 @@
                     @foreach($payment as $key => $pmt)
                     <tr>
                         <th scope="row">{{$key+1}}</th>
-                        <td>{{$pmt->trade_code}}</td>
+                        <td>
+                          {{$pmt->trade_code}}
+                          <?php
+                           $date = date('d',strtotime('now'))-date('d',strtotime($pmt->datetime)) ;
+                           if( intval(date('d',strtotime($date))) <=1 ){
+                              echo '<span class="badge badge-pill badge-success">Mới</span>';
+                           }
+                          ?>
+                        </td>
                         <td>{{$pmt->bank_trans_no}}</td>
                         <td>{{$pmt->bank_code}}</td>
                         <td>

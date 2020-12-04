@@ -44,8 +44,12 @@
 							<td> 
 								<div class="box-sp m-0">
 									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
-										<div class="tag-thuongluong d-none d-xl-block">Thương lượng</div>
-										<div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
+
+										<div class="tag-thuongluong d-none d-xl-block">{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
+										<div class="box-icon">
+										    <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
+										    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+										</div>
 									</div>
 									<div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
 											<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
@@ -63,16 +67,16 @@
 								</div>
 							</td>
 							<td> 
-								<p data-toggle="tooltip" data-placement="bottom" title="Tổng gia: {{$product->price}} {{$product->unit}}">{{$product->price == 0?$product->price="":$product->price}} {{$product->unit}}</p>
+								<p data-toggle="tooltip" data-placement="bottom" title="Tổng gia: {{$product->price}} {{$product->unit}}">{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</p>
 							</td>
 							<td> 
 								<p data-toggle="tooltip" data-placement="bottom" title="Diện tích: {{intval($product->depth)*intval($product->facades)}} m²">{{doubleval($product->depth*$product->facades)==0?" ":doubleval($product->depth*$product->facades)}} m² </p>
 							</td>
 							<td> 
-								<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: {{$product->facades}} m">{{$product->facades}} m </p>
+								<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: {{$product->facades}} m">{{$product->facades != NULL ? round($product->facades,2) : ''}} m </p>
 							</td>
 							<td> 
-								<p data-toggle="tooltip" data-placement="bottom" title="Chiều sâu: {{$product->depth}}">{{$product->depth}} </p>
+								<p data-toggle="tooltip" data-placement="bottom" title="Chiều sâu: {{$product->depth}}">{{$product->depth !=NULL ? round($product->depth,2) : ''}} m</p>
 							</td>
 							<!-- <td> 
 								<p data-toggle="tooltip" data-placement="bottom" title="Đối tượng: Nhà đầu tư">NĐT</p>
@@ -113,12 +117,12 @@
 									<div class="content"> 
 										<p class="title">Đơn Giá	</p>
 										<div class="dashed-line"></div>
-										<p data-toggle="tooltip" data-placement="bottom" title="Tổng gia: 5,5 Tỷ">{{$product->price == 0?$product->price="":$product->price}} {{$product->unit}} </p>
+										<p data-toggle="tooltip" data-placement="bottom" title="Tổng gia: 5,5 Tỷ">{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}} </p>
 									</div>
 									<div class="content"> 
 										<p class="title">Diện Tích</p>
 										<div class="dashed-line"></div>
-										<p data-toggle="tooltip" data-placement="bottom" title="Diện tích: 147,6m²">{{doubleval($product->depth*$product->facades)==0?" ":doubleval($product->depth*$product->facades)}} m² </p>
+										<p data-toggle="tooltip" data-placement="bottom" title="Diện tích: 147,6m²">{{doubleval($product->depth*$product->facades)==0?" ":round(doubleval($product->depth*$product->facades),2) }} m² </p>
 									</div>
 									<!-- <div class="content"> 
 										<p class="title">Đường Rộng</p>
@@ -128,12 +132,12 @@
 									<div class="content"> 
 										<p class="title">Mặt Tiền</p>
 										<div class="dashed-line"></div>
-										<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: 11,2m">{{$product->facades}} m </p>
+										<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: 11,2m">{{$product->facades != NULL ? round($product->facades,2) : ''}} m </p>
 									</div>
 									<div class="content"> 
 										<p class="title">Chiều Sâu</p>
 										<div class="dashed-line"></div>
-										<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: 11,2m">{{$product->depths}} m </p>
+										<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: 11,2m">{{$product->depth !=NULL ? round($product->depth,2) : ''}} m </p>
 									</div>
 									<!-- <div class="content"> 
 										<p class="title">Hướng</p>

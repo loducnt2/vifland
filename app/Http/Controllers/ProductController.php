@@ -260,7 +260,7 @@ class ProductController extends Controller
         /*$product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
         ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();*/
 
-        $acreage = doubleval( $product->depth*$product->facades );
+        $acreage = round(doubleval( $product->depth*$product->facades ),2);
         $total   = intval($product->price)*$acreage;
         $product->update(['view'=> $product->view + 1 ]);
         $cate    = Category::where('id',$product->cate_id)->value('name');

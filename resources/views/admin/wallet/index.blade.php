@@ -27,7 +27,7 @@
                     <th>Mã người dùng</th>
                     <th>Tên truy cập</th>
                     <th>Ví hiện tại</th>
-                    <th></th>
+                    <th colspan="2" ></th>
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -36,12 +36,24 @@
                     <td>{{$user->id}}</td>
                     <td>{{$user->username}}</td>
                     <td>{{number_format($user->wallet)}}</td>
-                    <td>
-                        <form action="{{route('add-wallet')}}" method="post">
+                    <td class="text-left">
+                        <form action="{{route('add-wallet')}}" method="post" class="form-inline">
                             @csrf
-                            <input type="hidden" name="userid" value="{{$user->id}}">
-                            <input type="number" name="wallet" value="">
-                            <button type="submit btn-success">Thêm</button>
+                            <div class="form-group mx-sm-3">
+                                <input type="hidden" name="userid" value="{{$user->id}}" class="">
+                                <input type="number" name="wallet" value="" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-success form-control">Thêm</button>
+                        </form>
+                    </td>
+                    <td class="text-left">
+                        <form action="{{route('sub-wallet')}}" method="post" class="form-inline">
+                            @csrf
+                            <div class="form-group mx-sm-3">
+                                <input type="hidden" name="userid" value="{{$user->id}}" class="">
+                                <input type="number" name="wallet" value="" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-danger form-control">Trừ</button>
                         </form>
                     </td>
                 </tr>
@@ -89,6 +101,7 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
     $(document).ready(function() {
 
@@ -122,6 +135,26 @@
         $("#wallet").toggleClass("d-none");
         $("#statistical").toggleClass("d-none");
     })
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch (type) {
+        case 'info':
+            toastr.info("{{ Session::get('message') }}");
+            break;
+
+        case 'warning':
+            toastr.warning("{{ Session::get('message') }}");
+            break;
+
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+    @endif
 </script>
 <style>
     th,
