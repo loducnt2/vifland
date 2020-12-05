@@ -85,6 +85,7 @@ content: "Chọn tập tin " !important; }
                         <th>ID</th>
                         <th>Email</th>
                         <th>Thời gian đăng kí</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <!-- Button trigger modal -->
@@ -98,10 +99,10 @@ content: "Chọn tập tin " !important; }
                  <td>{{$newsletter->email}}</td>
                  <td>{{$newsletter->created_at}}</td>
                  <td><!-- Button trigger modal -->
-                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sendEmail{{$newsletter->id}} ">
-                   Launch
+                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sendEmail{{$newsletter->id}} ">
+                   Gửi thư
                  </button>
-
+                </td>
                  <!-- Modal -->
                  <!-- Button trigger modal -->
 
