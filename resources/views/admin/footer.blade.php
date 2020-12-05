@@ -9,7 +9,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
   {{-- <script src="//cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script> --}}
-
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -192,7 +191,7 @@ $('#myTable').on("click", ".btn-delete", function(){
 <script>
     $("#tag2").select2({
     tags: true,
-    tokenSeparators: [',', ' ']
+    tokenSeparators: [',']
 })
 </script>
 <script>
@@ -517,3 +516,33 @@ $.validator.addMethod("check",
         }
     })
         </script>
+<script>
+    $.ajax({
+        // hàm tạo keyword Tag
+        type:'POST',
+        url: '/insert',
+        data:$('.form-control').serialize(),
+        success: function(data){
+        console.log('Gọi thành công');
+        var data = $(".tag").val();
+        var x = data.toString();
+        var y = x.split(" , ");
+            console.log(y);
+        $(".result").val(y);
+
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+    </script>
+
+{{-- newslettertab --}}
+<script>
+    $(document).ready(function(){
+        $("#myTab a").click(function(e){
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+</script>

@@ -95,7 +95,7 @@ Route::get('/new-list/index',function(){
 	return view('pages/new-list');}
 );
 
-Route::get('/index/forgot-password',function(){
+Route::get('/forgot-password',function(){
 	return view('auth/passwords/email');}
 );
 Route::get('/san-pham',function(){
@@ -241,7 +241,7 @@ Route::get('/tin-tuc/{slug}','NewsController@show');
 Route::get('/admin/cap-nhat-tin-tuc','NewsController@getcate');
 Route::POST('/admin/index/news/insert','NewsController@store');
 // get tất cả các tin đang có
-Route::get('/index/tin-tuc/','NewsController@listnews');
+Route::get('tin-tuc','NewsController@listnews');
 // get những bài tin tức bằng tag
 Route::get('/index/tin-tuc/tu-khoa/{tags}','NewsController@getpostsbytag');
 // quản lí tin tức

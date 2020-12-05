@@ -323,7 +323,7 @@ ul.social li{
             </table>
           </td>
           </tr><!-- end tr -->
-          <p> {! $contents !} </p>
+          <p> {!! $contents !!} </p>
 
           @foreach ($news as $item)
             {{$item->id}}

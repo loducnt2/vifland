@@ -137,17 +137,20 @@ class NewsLetterController extends Controller
     // mail_manager
 
     public function send_email(Request $request){
+        // method: gửi thư cho tất cả thư có trong list newsletter
         // thêm subject
 
         $mails = Newsletters2::pluck('email')->toArray();
         // get những tin tức mới nhất trong tuần
+        // tiêu đề thư quảng cáo
 
         $contents = $request->input("contents");
+
         $news = News::all();
         Mail::send('email.newsletter', ['contents' => $contents,'news'=>$news],function ($message) use($request,$mails) {
-
-            $message->from("buinguyenhoangtho1997@gmail.com");
-            $message->to($mails)->subject('Alt Support');
+            $subject = $request->input("subject");
+            $message->from("vifland.com");
+            $message->to($mails)->subject($subject);
 
         });
         toastr::success('Gủi thư thành công','Hệ thống');

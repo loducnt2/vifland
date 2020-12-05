@@ -44,22 +44,27 @@ content: "Chọn tập tin " !important; }
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Gửi thư quảng cáo</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                            <h5 class="modal-title">Form gửi thư quảng cáo cho tất cả</h5>
+
                         </div>
                         <div class="modal-body">
                             <form action="/send-email" method="POST" enctype="multipart/form-data" >
                                 {{ csrf_field() }}
+                                <div class="form-group">
+                                  <label for="">Tiêu đề thư</label>
+                                  <input type="text" class="form-control" name="subject" id="subject" aria-describedby="helpId" placeholder="">
+                                  {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+                                </div>
                                 <textarea type="textarea" name="contents" id="contents" class="form-control" rows="15" placeholder=""></textarea>
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <br>
+                                <button type="submit" class="btn btn-primary">Gửi thư</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+
                             </form>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save</button>
+
                         </div>
                     </div>
                 </div>
@@ -89,7 +94,34 @@ content: "Chọn tập tin " !important; }
                  <td>{{$newsletter->id}}</td>
                  <td>{{$newsletter->email}}</td>
                  <td>{{$newsletter->created_at}}</td>
+                 <td><!-- Button trigger modal -->
+                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-backdrop="static" data-target="#sendEmail{{$newsletter->id}} ">
+                   Launch
+                 </button>
 
+                 <!-- Modal -->
+                 <div class="modal fade" id="sendEmail{{$newsletter->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                     <div class="modal-dialog" role="document">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                <form action="/send-email" method="POST" enctype="multipart/form-data" >
+                                    {{ csrf_field() }}
+                             <h5 class="modal-title"> {{$newsletter->id}}</h5>
+
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                     </button>
+                             </div>
+                             <div class="modal-body">
+                                 Body
+                             </div>
+                             <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn btn-primary text" data-dismiss="modal" onclick="alert('OK')">Save</button>
+                             </div>
+                         </div>
+                     </div>
+                 </div></td>
                 <td>
 
                  @endforeach
@@ -102,6 +134,11 @@ content: "Chọn tập tin " !important; }
         </div>
     </div>
     @endsection
-
+<script>
+  $('#sendEmail').modal({
+    backdrop: 'static',
+    keyboard: false  // to prevent closing with Esc button (if you want this too)
+})
+</script>
 </body>
 </html>

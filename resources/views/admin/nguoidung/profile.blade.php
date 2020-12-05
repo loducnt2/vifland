@@ -237,7 +237,7 @@ ul.timeline>li:before {
                                     <li>
                                         <?php
                              \Carbon\Carbon::setLocale('vi');
-                                $now = \Carbon\Carbon::now()->format('Y-m-d');
+                                $now = \Carbon\Carbon::now()->format('d-m-Y');
                                 // $diff = $now->
                                 $end_date = \Carbon\Carbon::parse($posts2->datetime);
                                 $diff = $end_date->diffForHumans($now);
