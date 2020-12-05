@@ -180,8 +180,11 @@ $('#myTable').on("click", ".btn-delete", function(){
 });
     </script>
 
+
+
+
 <script>
-    CKEDITOR.replace('contents');
+    CKEDITOR.replaceAll();
 
       $(document).on({'show.bs.modal': function () {
                  $(this).removeAttr('tabindex');

@@ -283,3 +283,4 @@ Route::post('/admin/index/danh-muc-tin-tuc/checkunique={input}','NewsCategoryCon
 
 
 Route::get('/admin/quan-li-tin-tuc/changestatus','NewsController@ChangeNewsStatus');
+Route::post('/guithu','NewsLetterController@guithu');
