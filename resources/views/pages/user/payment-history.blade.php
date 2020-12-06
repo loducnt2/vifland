@@ -41,7 +41,10 @@
                         <td>
                             <span class="float-left" >{{number_format($pmt->amount)}}</span>
                         </td>
-                        <td>{{$pmt->content}}</td>
+                        <td>
+                            @if($pmt->content == "Cộng tiền")<span class="text-success">Cộng tiền</span>@endif 
+                            @if($pmt->content == "Trừ tiền")<span class="text-danger">Trừ tiền</span> @endif
+                        </td>
                         <td>{{$pmt->datetime}}</td>
                     </tr>
                     @endforeach

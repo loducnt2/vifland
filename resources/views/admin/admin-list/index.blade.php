@@ -17,6 +17,7 @@
             <thead>
               <tr>
                 <th scope="col">Tên truy cập</th>
+                <th scope="col">Email/ Số điện thoại</th>
                 <th scope="col">Lần cuối đăng nhập</th>
                 <th scope="col"></th>
               </tr>
@@ -32,6 +33,13 @@
                         echo '<span class="badge badge-pill badge-success">Mới</span>';
                      }
                     ?>
+                </td>
+                <td>
+                  @if($ad->email != NULL)
+                    {{$ad->email}}
+                  @elseif($ad->phone != NULL)
+                    {{'---'}}
+                  @endif
                 </td>
                 <td>{{$ad->last_login}}</td>
                 <td><a href="{{route('destroy-admin',$ad->id)}}" class="btn btn-danger">Hủy quyền</a></td>

@@ -43,6 +43,7 @@ class WalletController extends Controller
             'trade_code' => 0,
             'content' => 'Trừ tiền',
             'noti_payment' => 2,
+            
         ]);
         $user = User::find($request->userid);
         $wallet = $user->wallet;

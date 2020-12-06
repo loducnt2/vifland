@@ -77,9 +77,9 @@
                 <tr>
                     
                     <th scope="col">id</th>
-                    <th scope="col">User Name</th>
-                    <th scope="col">Sum</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Tên truy cập</th>
+                    <th scope="col">Tổng ví</th>
+                    <th scope="col">Hành động</th>
                 </tr>
             </thead>
             <tbody id="mytable2">
@@ -87,7 +87,7 @@
                 <tr>
                     <td>{{$user->id}}</td>
                     <td>{{$user->username}}</td>
-                    <td>{{$user->total_cash}}</td>
+                    <td>{{number_format($user->total_cash)}} VND</td>
                     <td><a href="{{route('detail-wallet',$user->id)}}"><button class="btn btn-primary">Xem chi tiết</button></a></td>
                 </tr>
             @endforeach

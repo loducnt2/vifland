@@ -270,7 +270,7 @@ $('#navId a').click(e => {
                                     href="{{route('article-detail',$product->slug)}}"><img
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                   {{ $product->price == 0?$product->price="---":round($product->price,2)}} {{$product->unit}}
+                                   {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -389,7 +389,7 @@ $('#navId a').click(e => {
                                     href="{{route('article-detail',$product->slug)}}"><img
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                    {{ $product->price == 0?$product->price="---":round($product->price,2)}} {{$product->unit}}
+                                    {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
