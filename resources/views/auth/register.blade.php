@@ -141,7 +141,13 @@ function showpass() {
 <script>
 
 $(document).ready(function() {
-    // thêm validate end with
+    // validate text validate username
+    $.validator.addMethod("validUsername", function (value, element) {
+    return /^[a-zA-Z0-9_.-]+$/.test(value);
+}, "Please enter a valid username");
+
+    // thêm validate end with email
+
     jQuery.validator.addMethod("end_with", function(value, element) {
 
 if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
@@ -159,6 +165,7 @@ if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value
                 required: true,
                 maxlength: 60,
                 minlength: 5,
+                validUsername:true,
             },
 
             'email': {
@@ -182,7 +189,8 @@ if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value
             'username': {
                 required: "Tên đăng nhập không được để trống",
                 minlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự",
-                maxlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự"
+                maxlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự",
+                validUsername:"Vui lòng nhập tên người dùng đúng định dạng"
             },
             'email': {
                 required: "Emal không được để trống",

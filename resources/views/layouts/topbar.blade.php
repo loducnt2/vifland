@@ -178,7 +178,7 @@
                                             <div class="wrap-text products-duedate ">
                                                 <div class="thongbao post-expired bg-success">Nạp tiền</div><a href="">Tài khoản: +{{number_format($ad->amount)}} VND</a>
                                                 <div class="date">Vào ngày:{{$ad->created_at}}</div>
-                                               
+
                                             </div>
                                         </div>
                                         @endif
@@ -199,7 +199,7 @@
                                                 <div class="thongbao post-expired">Thông báo</div><a href="{{route('article-detail',$due->slug)}}">Bài
                                                     viết của bạn sắp hết hạn</a>
                                                 <div class="date"> ngày hết hạn: {{$due->date}}</div>
-                                               
+
                                             </div>
                                         </div>
                                         @endforeach
@@ -211,7 +211,7 @@
                                                 <a href="{{route('article-detail',$due1->slug)}}">Bài
                                                     viết của bạn đã hết hạn</a>
                                                 <div class="date"> ngày hết hạn: {{$due1->date}}</div>
-                                               
+
                                             </div>
                                         </div>
                                         @endforeach
@@ -222,7 +222,7 @@
                                                 <div class="thongbao post-due" style="background: red;">Thông báo</div><a href="{{route('article-detail',$post->slug)}}">Bài
                                                     viết của bạn không được duyệt </a>
                                                 <div class="date"> ngày hết hạn: {{$post->date}}</div>
-                                              
+
                                             </div>
                                         </div>
                                         @endforeach
@@ -236,7 +236,7 @@
                                         </div>
                                         @endforeach
 
-                               
+
 
 
 
@@ -245,7 +245,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item tin-tuc-icon"><a class="text" href="/index/tin-tuc"><em class="material-icons icon">list_alt</em>Tin tức</a></li>
+                        <li class="nav-item tin-tuc-icon"><a class="text" href="/tin-tuc"><em class="material-icons icon">list_alt</em>Tin tức</a></li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
                             <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal">Đăng bài</a>
                         </li>

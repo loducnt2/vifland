@@ -31,13 +31,12 @@
 				<div class="col-xl-9 col-md-9">
 					<div class="article-container">
 						<div class="date">
-							<p>{{$news->datepost}}</p>
+                        <p>{{$news->datepost}}</p>
                         </div>
 
-                        @foreach(explode(",",$news->tags) as $tags)
-                            <a href="/index/tin-tuc/tu-khoa/{{$tags}}">
-                        <span class="badge badge-secondary badge-pill">{{$tags}}</span></a>
-                        @endforeach
+
+                        <br>
+
                         <hr class="my-4">
 						<div class="title">
         			<h1 class="section-under-title">{{$news->title}}</h1>
