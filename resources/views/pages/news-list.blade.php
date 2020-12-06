@@ -27,7 +27,7 @@
                     <ul class="nav-list">
                         @foreach ($news_cate as $item)
 
-                    <li class="nav-item active"><a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->category_name}}</a></li>
+                    <li class="nav-item "><a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->category_name}}</a></li>
                         @endforeach
                     </ul>
                 </nav>
