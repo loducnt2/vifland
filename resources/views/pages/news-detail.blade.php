@@ -36,10 +36,7 @@
 
 
                         <br>
-                        @foreach(explode(",",$news->tags) as $tags)
-                            <a href="/index/tin-tuc/tu-khoa/{{$tags}}">
-                        <span class="badge badge-secondary badge-pill">{{$tags}}</span></a>
-                        @endforeach
+
                         <hr class="my-4">
 						<div class="title">
         			<h1 class="section-under-title">{{$news->title}}</h1>

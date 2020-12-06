@@ -242,8 +242,7 @@ Route::get('/admin/cap-nhat-tin-tuc','NewsController@getcate');
 Route::POST('/admin/index/news/insert','NewsController@store');
 // get tất cả các tin đang có
 Route::get('tin-tuc','NewsController@listnews');
-// get những bài tin tức bằng tag
-Route::get('/index/tin-tuc/tu-khoa/{tags}','NewsController@getpostsbytag');
+
 // quản lí tin tức
 
 // ===================danh mục tin tức======================
@@ -263,11 +262,9 @@ Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->nam
 Route::get('/admin/index/quan-ly-thu-tin-tuc/export','NewsLetterController@export')->name('table.export');
 // import
 Route::post('/admin/index/quan-ly-thu-tin-tuc/import', 'NewsLetterController@import')->name('table.import');
-// tag insert keyword
-Route::post('/insert','NewsController@insertTag')->name('tag.insert');
+
 
 #Insert từ khoá
-// Route::post('/admin/index/quan-ly-tu-khoa/insert','TagController@store')->name('tag.insert');
 // Email
 Route::post('/send-email','NewsLetterController@send_email');
 

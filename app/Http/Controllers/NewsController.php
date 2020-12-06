@@ -217,28 +217,7 @@ class NewsController extends Controller
                     'latest'=>$latest,
                 ]);
     }
-    public function insertTag(Request $request){
-        $news = new News();
-        $input_tag =$request->input("tukhoa");
 
-        if($input_tag == "")
-        {
-            $input_tag = "";
-        }
-        else{
-            $news->tags = implode(",",$input_tag);
-        }
-        // $id = $request->id;
-
-        // $tag = $request->input('tukhoa');
-        foreach ($input_tag as $tukhoa) {
-            tag::updateOrcreate([
-                // 'id'=> $id,
-                'slug' => Str::slug($tukhoa),
-                'tag' => $tukhoa
-                ]);
-          }
-    }
     public function ChangeNewsStatus(Request $request){
         $user = News::find($request->id);
         $user->status = $request->status;

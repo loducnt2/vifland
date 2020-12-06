@@ -184,11 +184,7 @@ li {
                     <div class="form-group">
                       {{-- <label for=""></label> --}}
                       {{-- <input type="text" class="form-control" name="tag[]" id="tag" value="" multiple="multiple" hidden aria-describedby="helpId" placeholder=""> --}}
-                      <select class="form-control tag"name="tukhoa[]" id="tag2" multiple="multiple">
-                        @foreach ($tag_input as $item)
-                      <option value="{{$item->id}}" name="">{{$item->tag}}</option>
-                      @endforeach
-                      </select>
+
                     </div>
                 </div>
                 <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
