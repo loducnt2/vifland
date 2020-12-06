@@ -49,21 +49,30 @@ class AdminController extends Controller
     	->limit(6)
     	->get();   
 
-    	$total_cashs = Payment::select('amount')->get(); //Tổng doanh thu
+    	$total_cashs = User::select('total_cash')->get(); //Tổng doanh thu
     	$total_cash = 0;
     	foreach( $total_cashs as $ps ){
-    		$total_cash += intval($ps->amount);
+    		$total_cash += intval($ps->total_cash);
     	}
-    	$cashs_by_month = Payment::select('amount')->whereMonth('datetime', '=', date('m'))->get(); //Tổng doanh thu tháng này
-    	$cash_by_month = 0;
-    	foreach( $cashs_by_month as $ps ){
-    		$cash_by_month += intval($ps->amount);
-    	}
-
+        $adds = Payment::select('amount')->where('noti_payment',1)->whereMonth('datetime', '=', date('m'))->get();
+        $subs = Payment::select('amount')->where('noti_payment',2)->whereMonth('datetime', '=', date('m'))->get();
+        $add = 0;
+        $sub = 0;
+    	if( $adds != NULL){
+            foreach( $adds as $ad ){
+                $add += intval($ad->amount);
+            }
+        }
+        if($subs !=NULL){
+            foreach( $subs as $sb ){
+                $sub += intval($sb->amount);
+            }
+        }
+        $cash_by_month = $add - $sub;
     	$cash = [];
     	for($i = 1; $i <= 12; $i++){
     		$cash_month = 0;
-    		$cash_months = Payment::select('amount')->whereMonth('created_at', '=',$i)->get();
+    		$cash_months = Payment::select('amount')->where('noti_payment',1)->whereMonth('created_at', '=',$i)->get();
     		foreach( $cash_months as $ps ){
     			$cash_month += intval($ps->amount);
     		}
