@@ -1,5 +1,6 @@
 @extends('layouts.master')
-@section('title','Tin tức theo danh mục')
+{{-- @section('title','Tin tức theo danh mục') --}}
+<title>{{$news_cate->category_name}}</title>
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop
@@ -20,8 +21,12 @@
 	<section class="pages-news-list">
 		<div class="container">
 {{-- --}}
+
+<h1 class="section-title text-uppercase">tin tức theo danh mục {{$news_cate->category_name}} </h1>
+
 			<div class="row sec-2">
                 {{-- foreach --}}
+
                 @foreach ($posts as $posts2)
                 <div class="col-xl-4 col-md-4 col-sm-6 wrapper">
 					<div class="article-wrapper">

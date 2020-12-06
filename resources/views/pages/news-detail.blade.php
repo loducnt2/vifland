@@ -28,19 +28,21 @@
 	<section class="pages-news-detail">
 		<div class="container">
 			<div class="row">
+
 				<div class="col-xl-9 col-md-9">
 					<div class="article-container">
 						<div class="date">
                         <p>{{$news->datepost}}</p>
                         </div>
-
-
                         <br>
-
+                        <a href="/tin-tuc/danh-muc/{{$news_cate->slug}}">{{$news_cate->category_name}}</a>
                         <hr class="my-4">
 						<div class="title">
+
         			<h1 class="section-under-title">{{$news->title}}</h1>
                         </div>
+
+                    <p>Tác giả: <a href="/user/profile/{{$id_nguoidang->id}}">{{$id_nguoidang->username}}</a></p>
 						<div class="content">
                         {!!$news->content!!}
 

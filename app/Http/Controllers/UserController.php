@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
 use Toastr;
+use App;
 use Illuminate\Support\Carbon;
 use App\User;
 use App\Models\Payment;
@@ -44,21 +45,28 @@ class UserController extends Controller
     }
 
     // profile_user
-    public function profileDetail(){
-        $id = auth()->user()->id;
-        $profile = DB::table('user')->find($id);
-       //history post trong trang admin
-        $posts = PostHistory::where('user_id',$profile->id)
-        ->join('product', 'product.id', '=', 'product_id')
+    public function profileDetail($id){
+        {
 
-        ->get();
-        // dd($posts);
-        return view('pages/hoso')->with(
-        [
-            'profile'=>$profile,
-            'posts'=>$posts
-        ]);
+            $profile = User::where('id', '=' , $id);
 
+            if($profile->count()) {
+                $profile = $profile->first();
+                $posts = PostHistory::where('user_id',$profile->id)
+                ->join('product', 'product.id', '=', 'product_id')
+
+                    ->get();
+
+                return view('pages/hoso')->with(
+                    [
+                        'profile'=>$profile,
+                        'posts'=>$posts
+                    ]);
+
+            }
+
+            return App::abort(404);
+            }
     }
     public function profileUser(){
         $id = auth()->user()->id;
