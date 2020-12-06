@@ -48,13 +48,7 @@ Route::get('/search/filter/','SearchController@filter')->name('filter');
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
-Route::post('/article/new/store','ProductController@store')->middleware('auth')->name('article-store');
-Route::post('/article/update/{id}','ProductController@update')->middleware('auth')->name('update-article');
-Route::get('/article/{slug}','ProductController@show')->name('article-detail');
-Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-article');
-Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
-Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
-Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
+
 
 Route::group(['middleware'=>'auth'],function(){
 	//Nạp tiền
@@ -99,6 +93,13 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');
     Route::get('/user/article-expire','UserController@articlexpire')->name('article-expire');
 
+    Route::post('/article/new/store','ProductController@store')->name('article-store');
+    Route::post('/article/update/{id}','ProductController@update')->name('update-article');
+    Route::get('/article/{slug}','ProductController@show')->name('article-detail');
+    Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-article');
+    Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
+    Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
+    Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
 
 });
 
@@ -202,7 +203,7 @@ Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
  Route::post('admin/danh-sach-gia-vip/update/{id}','PriceTypePostController@update')->name('update-price');
  Route::get('/admin/danh-sach-gia-vip/edit/{id}','PriceTypePostController@edit')->name('edit-price');
 // Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
- Route::get('/admin/danh-sach-gia-vip/delete/{id}','PriceTypePostController@destroy')->name('del-price');
+Route::get('/admin/danh-sach-gia-vip/delete/{id}','PriceTypePostController@destroy')->name('del-price');
 Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
 // Quản lý tin đăng
 
@@ -218,7 +219,6 @@ Route::get('admin/index/profile/{id}','UserController@getprofileDetail');
 Route::get('/admin/list-product',function(){
     return view('admin/sanpham/danhsachsanpham');
 });
-Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
 // User: thay đổi trạng thái user

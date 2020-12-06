@@ -461,7 +461,7 @@ class ProductController extends Controller
         );
         $slug = Product::where('id',$id)->value('slug');
         //return $product;
-        return redirect(route('article-detail',$slug ))->with($notification);
+        return redirect()->back()->with($notification);
     }
 
     /**
