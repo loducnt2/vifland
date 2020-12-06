@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Str;
 
 
-use App\Models\tag;
 use App\Models\News;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
@@ -89,9 +88,9 @@ class NewsController extends Controller
     {
         // lấy tất cả các danh mục trong tin tức
         $news_cate = NewsCategory::all();
-        $tag_input = tag::all();
 
-        return view('admin.tintuc.quanlytintuc',compact('news_cate','tag_input'));
+
+        return view('admin.tintuc.quanlytintuc',compact('news_cate'));
     }
     public function getNewsbyCate($slug)
     {
@@ -207,38 +206,16 @@ class NewsController extends Controller
     }
     public function getpostsbytag($tags){
 // news3 = get tất cả các tin theo tags
-        $news3 = DB::table('news')->where(
-            'tags','like','%'.$tags.'%')->paginate(3);
+
             $latest = DB::table('news')->orderBy('created_at','desc')->get();
             return view('pages/postsbytags')->with(
                 [
                     // 'tags'=>$tags,
-                    'news3'=>$news3,
+
                     'latest'=>$latest,
                 ]);
     }
-    public function insertTag(Request $request){
-        $news = new News();
-        $input_tag =$request->input("tukhoa");
 
-        if($input_tag == "")
-        {
-            $input_tag = "";
-        }
-        else{
-            $news->tags = implode(",",$input_tag);
-        }
-        // $id = $request->id;
-
-        // $tag = $request->input('tukhoa');
-        foreach ($input_tag as $tukhoa) {
-            tag::updateOrcreate([
-                // 'id'=> $id,
-                'slug' => Str::slug($tukhoa),
-                'tag' => $tukhoa
-                ]);
-          }
-    }
     public function ChangeNewsStatus(Request $request){
         $user = News::find($request->id);
         $user->status = $request->status;
