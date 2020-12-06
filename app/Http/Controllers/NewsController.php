@@ -55,14 +55,7 @@ class NewsController extends Controller
         $news->content = $request->input('content');
         // $news->datepost = Carbon::now();
 
-        $input_tag =$request->tag;
-        if($input_tag == "")
-        {
-            $input_tag = "";
-        }
-        else{
-            $news->tags = implode(",",$input_tag);
-        }
+
         // slug tên danh mục khi input vào cột category_slug của news
         $news->category_slug = Str::slug($request->input('category_news_slug'));
         // dd($news->category_slug);
@@ -149,14 +142,11 @@ class NewsController extends Controller
     // }
     // get những tin trong db
     public function listnews(){
-
-        $news_cate = NewsCategory::all();
-        $news = News::paginate(3);
+            $news = News::paginate(3);
         // tin mới nhất theo create_at
         $latest = DB::table('news')->orderBy('created_at','desc')->get();
         return view('pages/news-list')->with(
             [
-                // 'news_cate'=>$news_cate,
                 'news'=>$news,
                 'latest'=>$latest
             ]);
@@ -228,12 +218,24 @@ class NewsController extends Controller
                 ]);
     }
     public function insertTag(Request $request){
-        $id = $request->id;
-        foreach ($request->input('tag') as $tag) {
+        $news = new News();
+        $input_tag =$request->input("tukhoa");
+
+        if($input_tag == "")
+        {
+            $input_tag = "";
+        }
+        else{
+            $news->tags = implode(",",$input_tag);
+        }
+        // $id = $request->id;
+
+        // $tag = $request->input('tukhoa');
+        foreach ($input_tag as $tukhoa) {
             tag::updateOrcreate([
                 // 'id'=> $id,
-                'slug' => Str::slug($tag),
-                'tag' => $tag
+                'slug' => Str::slug($tukhoa),
+                'tag' => $tukhoa
                 ]);
           }
     }

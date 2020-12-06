@@ -14,7 +14,7 @@ use Newsletter;
 use Mail;
 use App\Newsletters2;
 use App\Models\News;
-
+use App\User;
 // use App\Models\Newsletters2;
 // use Mailchimp;
 class NewsLetterController extends Controller
@@ -117,6 +117,7 @@ class NewsLetterController extends Controller
         return Excel::download(new NewsLettersExport, 'NewsLetters.xlsx');
 
     }
+
     public function import(Request $request){
 
 
@@ -133,21 +134,45 @@ class NewsLetterController extends Controller
         // dd('Có file');
         return redirect()->back()->with('success', 'Success!!!');
     }
-    }
+}
     // mail_manager
+    public function guithu(Request $request){
+        // gửi thư từng người
+
+        $contents = $request->input("contents");
+        $mails = $request->input("email");
+        // $news = get tin bds
+        $news = News::all();
+
+        // lấy họ tên người gửi đầy đủ và bỏ vào view newsletter
+        $user = User::where('email',$mails)->first();
+        $nguoinhan = $user->full_name;
+
+        Mail::send('email.newsletter', ['contents' => $contents,'news'=>$news,'nguoinhan' =>$nguoinhan],function ($message) use($request,$mails) {
+            // $subject = $request->input("subject");
+            $message->from("vifland.fpt@gmail.com");
+            $message->to($mails);
+
+        });
+        toastr::success('Gủi thư thành công','Hệ thống');
+        return redirect()->back();
+    }
 
     public function send_email(Request $request){
+        // method: gửi thư cho tất cả thư có trong list newsletter
         // thêm subject
 
         $mails = Newsletters2::pluck('email')->toArray();
-        // get những tin tức mới nhất trong tuần
-
+        $nguoinhan = User::pluck('full_name');
+        $result = implode(",",$nguoinhan->all());
+        // dd($result);
         $contents = $request->input("contents");
-        $news = News::all();
-        Mail::send('email.newsletter', ['contents' => $contents,'news'=>$news],function ($message) use($request,$mails) {
 
-            $message->from("buinguyenhoangtho1997@gmail.com");
-            $message->to($mails)->subject('Alt Support');
+        $news = News::all();
+        Mail::send('email.newsletter', ['contents' => $contents,'news'=>$news,'result'=>$result],function ($message) use($request,$mails) {
+            $subject = $request->input("subject");
+            $message->from("vifland.fpt@gmail.com");
+            $message->to($mails)->subject($subject);
 
         });
         toastr::success('Gủi thư thành công','Hệ thống');
