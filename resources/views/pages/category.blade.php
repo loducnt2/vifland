@@ -243,6 +243,7 @@
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
                                             href="{{route('article-detail',$product->slug)}}"><img
+                                            onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
                                                 src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         <div class="tag-thuongluong">

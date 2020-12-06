@@ -27,7 +27,7 @@
                             <td>
                                 <div class="row">
                                     <div class="col-4">
-                                        <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                                        <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img  onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' " src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                             @if ($product->type == 4)
                                             @else
                                             <img class="iconVip"

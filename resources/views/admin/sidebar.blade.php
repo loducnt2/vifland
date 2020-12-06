@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{asset('css/dashboard-admin.css')}}">
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <title>@yield('title','Thống kê dữ liệu')</title>
+    <script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+
+</head>
+
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
 <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
 <link href="{{asset('css/profile.css') }}" rel="stylesheet" />
@@ -89,7 +103,7 @@
                                 <div class="sb-nav-link-icon"><span class="material-icons">
                                         post_add
                                     </span></i></div>
-                                Quản lý tin bds
+                                Quản lý tin đăng
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapsePages4" aria-labelledby="headingFour"
@@ -162,7 +176,7 @@
                             <a href="">Bảng điều khiển</a>
                         </li>
                         <li>
-                            <a href="">Quản lý tin</a>
+                            @yield('breadcum')
                         </li>
                     </ul>
                 </div>

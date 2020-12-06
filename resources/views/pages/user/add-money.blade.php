@@ -2,6 +2,7 @@
 @section('title','Nạp tiền')
 @section('headerStyles')
 @section('content_child')
+<?php $money=""; ?>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
         <a class="active nav-link active" id="addmoney-tab" data-toggle="tab"
             href="#addmoney" role="tab" aria-controls="nav-home"

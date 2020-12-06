@@ -43,7 +43,7 @@
 						<tr>
 							<td> 
 								<div class="box-sp m-0">
-									<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+									<div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' " src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
 
 										<div class="tag-thuongluong d-none d-xl-block">{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
 										<div class="box-icon">
@@ -54,7 +54,7 @@
 									<div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
 											<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
 										<div class="location"> <span class="material-icons">location_on</span>
-											<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
+											<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">{{$product->district}}, {{$product->province}}</p>
 										</div>
 										<div class="end-mota"> 
 											<div class="mota-end-box">
@@ -97,18 +97,18 @@
 					@foreach($products as $product)
 					<div class="col-md-6">
 						<div class="box-sp m-0">
-							<div class="box-sp-img"><a href=""><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+							<div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' " src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
 								<div class="tag-thuongluong d-none d-xl-block">Thương lượng</div>
 								<div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i class="ri-equalizer-line icons"></i></a></div>
 							</div>
-							<div class="box-sp-text"> <a href="">
-									<h5 class="title-text lcl lcl-2">Mở bán shophouse, nhà phố, biệt thự view sông dự án Aqua City phân khu River Park 1 khu River Park 1</h5></a>
+							<div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
+									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
 								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">Quận cầu giấy, Thành Phố Hà Nội</p>
+									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">{{$product->district}}, {{$product->province}}</p>
 								</div>
 								<div class="end-mota"> 
 									<div class="mota-end-box">
-										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span data-toggle="tooltip" data-placement="bottom" title="Ngày đăng bài: 22.09.2020">22/09/2020</span></div>
+										<div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span data-toggle="tooltip" data-placement="bottom" title="Ngày đăng bài: {{date('d-m-Y',strtotime($product->datetime_start) )}}">{{date('d-m-Y',strtotime($product->datetime_start) )}}</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span data-toggle="tooltip" data-placement="bottom" title="Lượt xem: 320">320</span></div>
 										<div class="end-box-tt"><span class="material-icons icons-15 chat">chat</span><span class="chat">chat ngay</span></div>
 									</div>
@@ -117,12 +117,12 @@
 									<div class="content"> 
 										<p class="title">Đơn Giá	</p>
 										<div class="dashed-line"></div>
-										<p data-toggle="tooltip" data-placement="bottom" title="Tổng gia: 5,5 Tỷ">{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}} </p>
+										<p data-toggle="tooltip" data-placement="bottom" title="{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}">{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}} </p>
 									</div>
 									<div class="content"> 
 										<p class="title">Diện Tích</p>
 										<div class="dashed-line"></div>
-										<p data-toggle="tooltip" data-placement="bottom" title="Diện tích: 147,6m²">{{doubleval($product->depth*$product->facades)==0?" ":round(doubleval($product->depth*$product->facades),2) }} m² </p>
+										<p data-toggle="tooltip" data-placement="bottom" title='{{doubleval($product->depth*$product->facades)==0?" ":round(doubleval($product->depth*$product->facades),2) }} m²'>{{doubleval($product->depth*$product->facades)==0?" ":round(doubleval($product->depth*$product->facades),2) }} m² </p>
 									</div>
 									<!-- <div class="content"> 
 										<p class="title">Đường Rộng</p>
@@ -132,12 +132,12 @@
 									<div class="content"> 
 										<p class="title">Mặt Tiền</p>
 										<div class="dashed-line"></div>
-										<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: 11,2m">{{$product->facades != NULL ? round($product->facades,2) : ''}} m </p>
+										<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: {{$product->facades != NULL ? round($product->facades,2) : ''}} m">{{$product->facades != NULL ? round($product->facades,2) : ''}} m </p>
 									</div>
 									<div class="content"> 
 										<p class="title">Chiều Sâu</p>
 										<div class="dashed-line"></div>
-										<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: 11,2m">{{$product->depth !=NULL ? round($product->depth,2) : ''}} m </p>
+										<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: {{$product->depth !=NULL ? round($product->depth,2) : ''}} m">{{$product->depth !=NULL ? round($product->depth,2) : ''}} m </p>
 									</div>
 									<!-- <div class="content"> 
 										<p class="title">Hướng</p>

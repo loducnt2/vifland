@@ -21,6 +21,9 @@
 
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
+    @section('breadcum')
+    Quản lý người dùng
+    @endsection
     @section('content')
     
     

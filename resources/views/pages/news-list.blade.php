@@ -12,9 +12,9 @@
 	<div class="global-breadcrumb">
 		<div class="max-width-container">
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
-				<li class="breadcrumb-item"><a href="#">
-						<p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm gì hôm nay?</p>
+				<li class="breadcrumb-item"><a href="{{route('home')}}">Trang chủ</a></li>
+				<li class="breadcrumb-item"><a href="/tin-tuc">
+						<p>Tin tức</p>
 					</a></li>
 			</ol>
 		</div>

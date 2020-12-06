@@ -1,4 +1,7 @@
 @extends('admin.sidebar')
+@section('breadcum')
+Quản lý tin đăng > Duyệt tin
+@endsection
 @section('content')
 <div class="container-fluid box-n-big">
     <h2>Danh sách tin duyệt</h2>

@@ -10,7 +10,7 @@
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('home')}}"> <i class="ri-arrow-left-line icons-breadcrum"></i>Trang chủ</span></a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Trang chủ</span></a></li>
                 <li class="breadcrumb-item"><a href="#">
                         @if(isset($product_posted))
                         <p>Tin hiện tại</p>
@@ -18,6 +18,14 @@
                         <p>Tin đang chờ</p>
                         @elseif(isset($product_expire))
                         <p>Tin hết hạn</p>
+                        @elseif(isset($payment))
+                        <p>Lịch sử giao dịch</p>
+                        @elseif(isset($profile))
+                        <p>Thay đổi thông tin cá nhân</p>
+                        @elseif(isset($pass))
+                        <p>Thay đổi mật khẩu</p>
+                        @elseif(isset($money))
+                        <p>Nạp tiền</p>
                         @endif
                     </a></li>
                 <div class="search">

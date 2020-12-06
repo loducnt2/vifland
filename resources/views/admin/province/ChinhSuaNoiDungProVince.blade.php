@@ -1,4 +1,8 @@
 @extends('admin.sidebar')
+@section('title','Quản lý tỉnh/ thành phố')
+@section('breadcum')
+Quản lý tỉnh/ thành phố
+@endsection
 @section('content')
 <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.3.1021/styles/kendo.default-v2.min.css" />
 

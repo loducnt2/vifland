@@ -36,9 +36,7 @@
 								<p>Mặt tiền</p>
 								<p>Chiều sâu</p>
 								<p>Diện Tích</p>
-								<p>Đơn Giá</p>
 								<p>Tổng Giá</p>
-								<p>Hướng</p>
 							</div>
 						</div>
 					</section>
@@ -55,7 +53,7 @@
 								@foreach($products as $prod)
 									@foreach($prod as $product)
 										<div class="box-sp">
-											<div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+											<div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
 												<!-- <div class="tag-thuongluong">Thương lượng</div> -->
 												<div class="box-icon">
 												    <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -77,23 +75,23 @@
 												</div>
 												<div class="info"> 
 													<div class="cover"> 
-														<p data-toggle="tooltip" data-placement="bottom" title="Loại hình: Đất dự án">Đất dự án </p>
+														<p data-toggle="tooltip" data-placement="bottom" title="Loại hình: Đất dự án">{{$product->product_cate}} </p>
 														<div class="dashed-line"></div>
 													</div>
 													<div class="cover"> 
-														<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: {{$product->facades}} m">{{$product->facades}} m</p>
+														<p data-toggle="tooltip" data-placement="bottom" title="Mặt tiền: {{round($product->facades,2)}} m">{{round($product->facades,2)}} m</p>
 														<div class="dashed-line"></div>
 													</div>
 													<div class="cover"> 
-														<p data-toggle="tooltip" data-placement="bottom" title="Chiều sâu: {{$product->depth}} m">{{$product->depth}} m</p>
+														<p data-toggle="tooltip" data-placement="bottom" title="Chiều sâu: {{round($product->depth,2)}} m">{{round($product->depth,2)}} m</p>
 														<div class="dashed-line"></div>
 													</div>
 													<div class="cover"> 
-														<p data-toggle="tooltip" data-placement="bottom" title="Diện Tích: {{doubleval( $product->depth*$product->facades )}} m²"> {{doubleval( $product->depth*$product->facades )}} m²</p>
+														<p data-toggle="tooltip" data-placement="bottom" title="Diện Tích: {{round(doubleval( $product->depth*$product->facades ),2 ) }} m²"> {{round(doubleval( $product->depth*$product->facades ),2 ) }} m²</p>
 														<div class="dashed-line"></div>
 													</div>
 													<div class="cover"> 
-														<p data-toggle="tooltip" data-placement="bottom" title="Đơn Giá: {{$product->price}} {{$product->unit}}"> {{$product->price}} {{$product->unit}}</p>
+														<p data-toggle="tooltip" data-placement="bottom" title="Đơn Giá: {{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}"> {{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</p>
 														<div class="dashed-line"></div>
 													</div>
 													<!-- <div class="cover"> 

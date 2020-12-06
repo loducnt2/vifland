@@ -1,5 +1,8 @@
 @extends('admin.sidebar')
-@section('title','Nạp tiền')
+@section('title','Quản lý quản trị viên')
+@section('breadcum')
+Quản lý quản trị viên
+@endsection
 @section('content')
 <div id="wallet">
     <div class="container">

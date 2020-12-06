@@ -267,7 +267,7 @@ $('#navId a').click(e => {
                     <div class="swiper-slide">
                         <div class="box-sp">
                             <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                    href="{{route('article-detail',$product->slug)}}"><img
+                                    href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
                                    {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
@@ -313,7 +313,7 @@ $('#navId a').click(e => {
                                         
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                         
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
@@ -386,7 +386,7 @@ $('#navId a').click(e => {
                     <div class="swiper-slide">
                         <div class="box-sp">
                             <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                    href="{{route('article-detail',$product->slug)}}"><img
+                                    href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
                                     {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
@@ -431,7 +431,7 @@ $('#navId a').click(e => {
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
@@ -502,7 +502,7 @@ $('#navId a').click(e => {
                     @foreach($product_by_cate3 as $product)
                     <div class="swiper-slide">
                         <div class="box-sp">
-                            <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img
+                            <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
                                     {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
@@ -546,7 +546,7 @@ $('#navId a').click(e => {
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">
                                                 @foreach( $product_cate as $prod_cate )
                                                 {{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}
                                                 @endforeach</span></div>

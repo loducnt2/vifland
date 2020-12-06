@@ -1,5 +1,8 @@
 @extends('admin.sidebar')
-@section('title','Nạp tiền')
+@section('title','Quản lý ví tiền')
+@section('breadcum')
+Quản lý ví tiền
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
