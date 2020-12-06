@@ -22,6 +22,16 @@
 	<section class="pages-news-list">
 		<div class="container">
 
+            <div class="nav-news-list">
+                <nav>
+                    <ul class="nav-list">
+                        @foreach ($news_cate as $item)
+
+                    <li class="nav-item active"><a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->category_name}}</a></li>
+                        @endforeach
+                    </ul>
+                </nav>
+            </div>
 			<h1 class="section-title text-uppercase">tin tức mới nhất </h1>
 			<div class="row sec-1">
 				<div class="col-xl-6 col-md-6 col-12">

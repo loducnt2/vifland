@@ -224,7 +224,7 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // User: thay đổi trạng thái user
 Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 // Tin tức theo danh mục
-Route::get('/index/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
+Route::get('/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
 Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');

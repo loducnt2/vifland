@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Str;
-
-
+use Illuminate\Support\Facades\Auth;
+use App\User;
 use App\Models\News;
 use App\Models\NewsCategory;
 use Carbon\Carbon;
@@ -48,7 +48,9 @@ class NewsController extends Controller
         // insert tin tức
         $news = new News();
         // tags
-
+        $id = Auth::user()->id;
+        // get id_user của người đăng nhập
+        $news->Id_user = $id;
         $news->title=$request->input('title');
         $news->slug = $request->slug;
         $news->content = $request->input('content');
@@ -88,32 +90,36 @@ class NewsController extends Controller
     {
         // lấy tất cả các danh mục trong tin tức
         $news_cate = NewsCategory::all();
-
-
         return view('admin.tintuc.quanlytintuc',compact('news_cate'));
     }
     public function getNewsbyCate($slug)
     {
-        $cate = NewsCategory::where('slug',$slug)->first();
+        $news_cate = NewsCategory::where('slug',$slug)->first();
         // lấy category_slug
-        $posts = News::where('category_slug',$cate->slug)->paginate(3);
+        $posts = News::where('category_slug',$news_cate->slug)->paginate(3);
         // truyền category_slug và tìm post
         return view('pages/new-by-category')->with(
             [
+
                 'posts'=>$posts,
-                // 'cate'=> $cate
+                'news_cate'=> $news_cate
             ]);
     }
-    public function show($slug)
+    public function show( Request $request,$slug)
     {
         //get chi tiết bài đăng
         $news = DB::table('news')->where('slug',$slug)->first();
-
+        // bài đăng chi tiết hiện tin tên danh mục và slug
+        $news_cate = NewsCategory::where('slug',$news->category_slug)->first();
         // get list bài đăng
         $posts= DB::table('news')->get();
-        //
+
+         $id_nguoidang = DB::table('user')->where('id',$news->Id_user)->first();
+
         return view('pages/news-detail')->with(
             [
+                'id_nguoidang'=>$id_nguoidang,
+                'news_cate'=>$news_cate,
                 'news'=>$news,
                 'posts'=>$posts,
                 'slug'=> $slug
@@ -141,11 +147,13 @@ class NewsController extends Controller
     // }
     // get những tin trong db
     public function listnews(){
+        $news_cate = NewsCategory::all();
             $news = News::paginate(3);
         // tin mới nhất theo create_at
         $latest = DB::table('news')->orderBy('created_at','desc')->get();
         return view('pages/news-list')->with(
             [
+                'news_cate'=>$news_cate,
                 'news'=>$news,
                 'latest'=>$latest
             ]);
