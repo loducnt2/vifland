@@ -1,9 +1,9 @@
 {{-- @extends('layouts.app') --}}
-@extends('layouts.master')
+@extends('layouts.app')
+
 @section('title','Quên mật khẩu')
 @section('headerStyles')
-<!-- Thêm styles cho trang này ở đây-->
-@stop
+
 @section('content')
 <main>
     @if (session('status'))
@@ -13,7 +13,8 @@
 @endif
     <section class="quenmk login">
         <form action="{{ route('password.email') }}" method="POST">
-            @csrf
+            {{ csrf_field() }}
+
             <div class="login-wrap">
                 <div class="logo"><img src="./assets/logo/logo-footer-300.png" alt=""></div>
                 <div class="box-login">
@@ -29,7 +30,7 @@
                     </div>
                     <div class="button-submit">
                         <input type="submit" value="Đặt lại mật khẩu">
-                    </input>
+
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
     </section>
     <div class="index-page" id="js-page-verify" hidden></div>
 </main>
-@stop
+
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
 @endsection

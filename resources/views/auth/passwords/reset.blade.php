@@ -1,7 +1,8 @@
 
 
-{{-- @extends('layouts.app') --}}
-@extends('layouts.master')
+@extends('layouts.app')
+
+@section('title','Đổi mật khẩu')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
