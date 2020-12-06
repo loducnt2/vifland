@@ -158,7 +158,7 @@ li {
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                             </div>
                             <input class="form-control" id="email" name="datepost" type="text" readonly
-                                value="{{ \Carbon\Carbon::now()->format('Y-m-d H:i:s') }}" />
+                                value="{{ \Carbon\Carbon::now() }}" />
                         </div>
                     </div>
 

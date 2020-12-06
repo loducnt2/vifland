@@ -26,16 +26,21 @@
 			<div class="row sec-1">
 				<div class="col-xl-6 col-md-6 col-12">
 
-					<div class="article-big"><a class="bg" href="/news/{{$latest[0]->slug}}"><img src="{{asset('assets/news/' .$latest[0]->img)}}" alt=""></a>
-						<div class="content"> <a href="">
-								{{-- Tin mới nhất :{{$latest->title}} --}}
-								<h2 class="section-under-title">{{$latest[0]->title}}</h2></a>
-                                <?php// convert data từ ckeditor qua text bình thường
-                                $plaintext = strip_tags($latest[0]->content);
-                                ?>
-                                <p><?php echo ($plaintext); ?></p>
+					<div class="article-big"><a class="bg" href="/news/{{$latest[0]->slug}}"><img src="{{asset('assets/news/' .$latest[0]->img)}}" alt="">
+						<div class="content">
+                            	<h2 class="section-under-title">{{$latest[0]->title}}</h2></a>
+
+<?php
+                               // convert data từ ckeditor qua text bình thường
+                               $plaintext = strip_tags($latest[0]->content);
+
+                               ?>
+                               <p><?php echo ($plaintext); ?></p>
+
+                        </p>
 						</div>
-					</div>
+                    </div>
+                </a>
 				</div>
 				<div class="col-xl-6 col-md-6 col-12 wrapper">
 					<div class="article-wrapper">
