@@ -183,10 +183,10 @@ class NewsController extends Controller
                 'content'=>$news->content,
                 'slug'=>$news->slug,
 
-                // 'created_at'=>$news_cate->created_at
+
             ]
         );
-        // return redirect('/admin/danh-sach-duyet-tin');
+        // return redirect('/');
     }
     public function deleteall(){
         // xoá hết tin tức
@@ -224,7 +224,6 @@ class NewsController extends Controller
                     'latest'=>$latest,
                 ]);
     }
-
     public function ChangeNewsStatus(Request $request){
         $user = News::find($request->id);
         $user->status = $request->status;

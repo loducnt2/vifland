@@ -5,6 +5,7 @@
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="active nav-link active" id="thaydoithongtin-tab" data-toggle="tab" href="#thaydoithongtin" role="tab"
         aria-controls="nav-home" aria-selected="true">Thay đổi thông tin cá nhân</a>
+
 </div>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="thaydoithongtin" role="tabpanel" aria-labelledby="thaydoithongtin-tab">

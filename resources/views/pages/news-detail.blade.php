@@ -42,7 +42,7 @@
         			<h1 class="section-under-title">{{$news->title}}</h1>
                         </div>
 
-                    <p>Tác giả: <a href="/user/profile/{{$id_nguoidang->id}}">{{$id_nguoidang->username}}</a></p>
+                    <p>Tác giả: <a href="/user/profile/{{$id_nguoidang->id}}">{{$id_nguoidang->username}} <span class="badge badge-primary">Quản trị viên</span></h6></a></p>
 						<div class="content">
                         {!!$news->content!!}
 

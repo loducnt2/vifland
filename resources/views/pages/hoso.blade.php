@@ -86,9 +86,7 @@
                                     <a class="nav-link" id="thaydoithongtin-tab" data-toggle="tab"
                                         href="#thaydoithongtin" role="tab" aria-controls="nav-home"
                                         aria-selected="true">Thay đổi thông tin cá nhân</a>
-                                    <a class="nav-link" id="thaydoimk-tab" data-toggle="tab" href="#thaydoimk"
-                                        role="tab" aria-controls="thaydoimk" aria-selected="false">Thay đổi mật
-                                        khẩu</a>
+
                                 </div>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="thaydoithongtin" role="tabpanel"

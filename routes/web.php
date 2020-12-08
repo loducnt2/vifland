@@ -229,11 +229,12 @@ Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
 // User: thay đổi trạng thái user
-Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/news/{slug}','NewsController@show');
 // quản lý tin tứcf
 
+Route::get('/admin/danh-sach-tin-tuc/changestatus', 'NewsController@ChangeNewsStatus');
+// ẩn hiện tin tức
 Route::POST('/admin/index/news/insert','NewsController@store'
 );
 // news list
