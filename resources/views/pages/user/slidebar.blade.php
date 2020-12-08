@@ -10,11 +10,23 @@
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán
-                        <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Trang chủ</span></a></li>
                 <li class="breadcrumb-item"><a href="#">
-                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
-                            gì hôm nay?</p>
+                        @if(isset($product_posted))
+                        <p>Tin hiện tại</p>
+                        @elseif(isset($product_wait))
+                        <p>Tin đang chờ</p>
+                        @elseif(isset($product_expire))
+                        <p>Tin hết hạn</p>
+                        @elseif(isset($payment))
+                        <p>Lịch sử giao dịch</p>
+                        @elseif(isset($profile))
+                        <p>Thay đổi thông tin cá nhân</p>
+                        @elseif(isset($pass))
+                        <p>Thay đổi mật khẩu</p>
+                        @elseif(isset($money))
+                        <p>Nạp tiền</p>
+                        @endif
                     </a></li>
                 <div class="search">
                     <!-- <form action="">
@@ -57,7 +69,7 @@
                                     <p>Quản lý tin đăng</p>
                                 </div>
                                 <ul>
-                                    <li> <a href="{{route('article-posted')}}">Tin đang đăng</a></li>
+                                    <li> <a href="{{route('article-posted')}}">Tin hiện tại</a></li>
                                     <li> <a href="{{route('article-wait')}}">Tin chờ đăng</a></li>
                                     <li> <a href="{{route('article-expire')}}">Tin hết hạn</a></li>
                                 </ul>

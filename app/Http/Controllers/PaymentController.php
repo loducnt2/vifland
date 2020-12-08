@@ -105,7 +105,9 @@ class PaymentController extends Controller
                         'bank_trans_no'=>$request->vnp_BankTranNo,
                         'trade_code'   => $request->vnp_TransactionNo,
                         'amount'       => $request->vnp_Amount/100,
+                        'content'      =>'Cộng tiền',
                         'datetime'     => $date,
+                        'noti_payment' => 1,
                     ]);
                     $user = User::find(auth()->user()->id);
 

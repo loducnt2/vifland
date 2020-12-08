@@ -28,14 +28,14 @@
                             <td>
                                 <div class="row">
                                     <div class="col-4">
-                                        <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                                        <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img  onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' " src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                             @if ($product->type == 4)
                                             @else
                                             <img class="iconVip"
                                                 src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                                 alt="">
                                             @endif
-                                            <div class="tag">{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
+                                            <div class="tag">{{ $product->price != 0 | $product->price != NULL ? round($product->price,2) : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
                                         </div>
                                     </div>
                                     <div class="col-8">
@@ -70,9 +70,9 @@
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
-                            <td>{{$product->facades}}</td>
-                            <td>{{$product->depth}}</td>
+                            <td>{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
+                            <td>{{$product->facades != NULL ? round($product->facades,2) : ''}}</td>
+                            <td>{{$product->depth !=NULL ? round($product->depth,2) : ''}}</td>
                             <td>
                                 <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
                                 @if( $product->status!=2 )

@@ -17,13 +17,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/user/profile','UserController@profileUser')->name('profile');
-Route::get('/user/password','UserController@formpassword')->name('change-password');
-Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');
-Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history');
-Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');
-Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');
-Route::get('/user/article-expire','UserController@articlexpire')->name('article-expire');
+
 
 Route::get('/testform',function(){return view('pages/article/testform');} );
 
@@ -54,13 +48,7 @@ Route::get('/search/filter/','SearchController@filter')->name('filter');
 /*Route::get('/mua-ban-nha-dat/{slug}','ProductController@getDetailByCate1')->name('article-detail-1');
 Route::get('/cho-thue-nha-dat/{slug}','ProductController@getDetailByCate2')->name('article-detail-2');
 Route::get('/sang-nhuong-nha-dat/{slug}','ProductController@getDetailByCate3')->name('article-detail-3');*/
-Route::post('/article/new/store','ProductController@store')->middleware('auth')->name('article-store');
-Route::post('/article/update/{id}','ProductController@update')->middleware('auth')->name('update-article');
-Route::get('/article/{slug}','ProductController@show')->name('article-detail');
-Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-article');
-Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
-Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
-Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
+
 
 Route::group(['middleware'=>'auth'],function(){
 	//Nạp tiền
@@ -71,7 +59,7 @@ Route::group(['middleware'=>'auth'],function(){
 	   // Đăng tin
 	Route::get('/user/my-article/{id}','ProductController@getByUser')->name('user-article');  // Quản lý tin của user
 	Route::get('/favourites','ProductController@productUserFavorite')->name('favorites');				  // Yêu thích
-	Route::get('/user/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
+	Route::get('/history','ProductController@productUserHistory')->name('history');					  // Lịch sử xem tin
 
 	//Profile
 	Route::get('/user/profile/{id}','UserController@profileDetail')->name('user-profile');
@@ -80,6 +68,38 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('/user/changepass/{id}','UserController@changePassword')->name('user-changePassword');
     //Change password
 
+    //danh sách admin
+    Route::get('/admin/admin-list','UserController@admin_list')->name('admin-list');
+    Route::get('/admin/add-admin/{id}','UserController@addAdmin')->name('add-admin');
+    Route::get('/admin/destroy-admin/{id}','UserController@destroyAdmin')->name('destroy-admin');
+
+    //  admin
+    Route::get('admin/index','AdminController@index')->middleware('admin.auth')->name('admin-dashboard');
+    //Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
+
+
+    //Wallet
+    Route::get('admin/wallet','WalletController@index')->name('wallet');
+    Route::get('admin/wallet/detail/{id}','WalletController@Detail_payment')->name('detail-wallet');
+    Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');
+    Route::post('admin/wallet/sub','WalletController@subWallet')->name('sub-wallet');
+
+    //User
+    Route::get('/user/profile','UserController@profileUser')->name('profile');
+    Route::get('/user/password','UserController@formpassword')->name('change-password');
+    Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');
+    Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history');
+    Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');
+    Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');
+    Route::get('/user/article-expire','UserController@articlexpire')->name('article-expire');
+
+    Route::post('/article/new/store','ProductController@store')->name('article-store');
+    Route::post('/article/update/{id}','ProductController@update')->name('update-article');
+    Route::get('/article/{slug}','ProductController@show')->name('article-detail');
+    Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-article');
+    Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');
+    Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
+    Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
 
 });
 
@@ -155,6 +175,8 @@ Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')
 Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');
 Route::get('/admin/danh-sach-province','ProvinceController@index');
 
+
+
 //duyet tin
 
 Route::get('/admin/danh-sach-duyet-tin','HistoryPostController@index');
@@ -181,20 +203,12 @@ Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
  Route::post('admin/danh-sach-gia-vip/update/{id}','PriceTypePostController@update')->name('update-price');
  Route::get('/admin/danh-sach-gia-vip/edit/{id}','PriceTypePostController@edit')->name('edit-price');
 // Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
- Route::get('/admin/danh-sach-gia-vip/delete/{id}','PriceTypePostController@destroy')->name('del-price');
+Route::get('/admin/danh-sach-gia-vip/delete/{id}','PriceTypePostController@destroy')->name('del-price');
 Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
 // Quản lý tin đăng
 
 
-//  admin
-Route::get('admin/index','AdminController@index')->middleware('admin.auth')->name('admin-dashboard');
-//Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
 
-
-//Wallet
-Route::get('admin/wallet','WalletController@index')->name('wallet');
-Route::get('admin/wallet/detail/{id}','WalletController@Detail_payment')->name('detail-wallet');
-Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');
 // ================= hồ sơ ==================
 
 // update thông tin hồ sơ cá nhân
@@ -205,7 +219,6 @@ Route::get('admin/index/profile/{id}','UserController@getprofileDetail');
 Route::get('/admin/list-product',function(){
     return view('admin/sanpham/danhsachsanpham');
 });
-Route::get('admin/index/profile/delete/{id}','UserController@destroy');
 // Route quản lí tin đã đăng của user
 // Route::get('/my-article/{id}','UserControllers@getPostbyID');
 // User: thay đổi trạng thái user

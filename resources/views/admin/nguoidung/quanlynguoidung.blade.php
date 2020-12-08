@@ -21,7 +21,12 @@
 
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
+    @section('breadcum')
+    Quản lý người dùng
+    @endsection
     @section('content')
+    
+    
 
     <div class="card-body">
         <div class="table-responsive">
@@ -35,8 +40,8 @@
                         <th>Thời gian đăng kí</th>
                         {{-- <th>Salary</th> --}}
                         <th>Hoạt động</th>
-                        <th>Chi tiết</th>
                         <th>Hành động</th>
+                        <th>Chi tiết</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -88,11 +93,13 @@
                 <tbody>
 
                 </tbody>
+
             </table>
-            <button type="submit" class="btn btn-primary">Lưu thông tin </button>
+            {{$users->links()}}
+            <!-- <button type="submit" class="btn btn-primary">Lưu thông tin </button> -->
         </div>
     </div>
-
+    
     @endsection
 {{-- @extends(') --}}
 

@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quản lý thư tin tức</title>
-</head>
-<body>
+@section('title','Quản lý thư tin tức')
     <style>
         .custom-file-label::after {
 content: "Chọn tập tin " !important; }
@@ -14,6 +6,9 @@ content: "Chọn tập tin " !important; }
 
     @extends('admin.sidebar')
     @section('content')
+    @section('breadcum')
+    Quản lý thư tin tức
+    @endsection
     {!! Toastr::message() !!}
 
     <form action="/admin/index/quan-ly-thu-tin-tuc/export" method="get">
@@ -156,5 +151,4 @@ content: "Chọn tập tin " !important; }
         </div>
     </div>
     @endsection
-</body>
-</html>
+

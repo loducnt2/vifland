@@ -267,10 +267,10 @@ $('#navId a').click(e => {
                     <div class="swiper-slide">
                         <div class="box-sp">
                             <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                    href="{{route('article-detail',$product->slug)}}"><img
+                                    href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                   {{ $product->price == 0?$product->price="":number_format($product->price,2)}} {{$product->unit}}
+                                   {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -313,28 +313,28 @@ $('#navId a').click(e => {
                                         
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                         
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</span>
+                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                         </div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}
+                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}
                                             </span></div>
                                         <div class="mota-place-tt"><span
                                                 class="material-icons icons-15">group</span><span data-toggle="tooltip"
                                                 data-placement="bottom" title=""
-                                                data-original-title="Tooltip on bottom"></span></div>
+                                                data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">
@@ -386,10 +386,10 @@ $('#navId a').click(e => {
                     <div class="swiper-slide">
                         <div class="box-sp">
                             <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                    href="{{route('article-detail',$product->slug)}}"><img
+                                    href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                    {{ $product->price == 0?$product->price="":number_format($product->price,2)}} {{$product->unit}}
+                                    {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -431,27 +431,27 @@ $('#navId a').click(e => {
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</span>
+                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                         </div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}</span>
+                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
                                         </div>
                                         <div class="mota-place-tt"><span
                                                 class="material-icons icons-15">group</span><span data-toggle="tooltip"
                                                 data-placement="bottom" title=""
-                                                data-original-title="Tooltip on bottom"></span></div>
+                                                data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">
@@ -502,10 +502,10 @@ $('#navId a').click(e => {
                     @foreach($product_by_cate3 as $product)
                     <div class="swiper-slide">
                         <div class="box-sp">
-                            <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img
+                            <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                    {{ $product->price == 0?$product->price="":number_format($product->price,2)}} {{$product->unit}}
+                                    {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -546,27 +546,30 @@ $('#navId a').click(e => {
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">
+                                                @foreach( $product_cate as $prod_cate )
+                                                {{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}
+                                                @endforeach</span></div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades}} m">{{$product->facades}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</span>
+                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                         </div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}</span>
+                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
                                         </div>
                                         <div class="mota-place-tt"><span
                                                 class="material-icons icons-15">group</span><span data-toggle="tooltip"
                                                 data-placement="bottom" title=""
-                                                data-original-title="Tooltip on bottom"></span></div>
+                                                data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">

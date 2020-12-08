@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Danh sách tin tức</title>
-
-</head>
 
 
-<body>
 
-    {{-- @extends('layouts.master') --}}
+
     @extends('admin.sidebar')
+    @section('title','Danh sách tin tức')
+    @section('breadcum')
+    Quản lý tin tức > Danh sách tin tức
+    @endsection
     @section('content')
 
     <div class="container-fluid box-n-big">
@@ -98,7 +90,6 @@
     </div>
 </div>
 
-</body>
 
 </html>
 <!-- Button trigger modal -->

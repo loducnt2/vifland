@@ -4,7 +4,7 @@
 @section('content_child')
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-        aria-controls="nav-profile" aria-selected="false">Tin đang đăng</a>
+        aria-controls="nav-profile" aria-selected="false">Tin hiện tại</a>
 </div>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -17,7 +17,7 @@
                         <th>Đơn giá </th>
                         <th>Mặt tiền </th>
                         <th>Chiều sâu </th>
-                        <th></th>
+                        <th>Nhu cầu</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +27,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img
+                                        onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
                                                 src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         @if ($product->type == 4)
@@ -34,7 +35,7 @@
                                         <img class="iconVip" src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                             alt="">
                                         @endif
-                                        <div class="tag">{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
+                                        <div class="tag">{{ $product->price != 0 | $product->price != NULL ? round($product->price,2) : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
                                     </div>
                                 </div>
                                 <div class="col-8">
@@ -83,12 +84,13 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ $product->price != 0 | $product->price != NULL ? $product->price : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
-                        <td>{{$product->facades != NULL ? $product->facades : ''}} m</td>
-                        <td>{{$product->depth !=NULL ? $product->depth : ''}} m</td>
+                        <td>{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
+                        <td>{{$product->facades != NULL ? round($product->facades,2) : ''}} m</td>
+                        <td>{{$product->depth !=NULL ? round($product->depth,2) : ''}} m</td>
                         <td>
-                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
-                            <a href="{{route('edit-article',$product->product_id)}}" class="text-primary">Chỉnh sửa</a>
+                            <!-- <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br><br>
+                            <a href="{{route('edit-article',$product->product_id)}}" class="text-primary">Chỉnh sửa</a> -->
+                            @foreach($cate as $cat) {{$cat->id == $product->cate_id? $cat->name:""}} @endforeach
                         </td>
                     </tr>
                     @endforeach

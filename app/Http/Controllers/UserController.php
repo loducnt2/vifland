@@ -11,6 +11,7 @@ use App;
 use Illuminate\Support\Carbon;
 use App\User;
 use App\Models\Payment;
+use App\Models\Category;
 use Illuminate\Auth\EloquentUserProvider;
 use Hash;
 class UserController extends Controller
@@ -24,11 +25,30 @@ class UserController extends Controller
     {
         //get list all user
         // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
-        $users =User::get();
+        $users =User::where('user_type',0)->paginate(7);
+        
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
 
+<<<<<<< HEAD
     //XEM THÔNG TIN NGƯỜI KHÁC
+=======
+    public function admin_list(){
+       $admin = User::where('user_type',1)->paginate(7);
+       $user = User::select('id','username')->where('user_type',0)->get();
+       return view('admin/admin-list/index',compact('admin','user'));
+    }
+    public function addAdmin($id){
+        User::find($id)->update(['user_type'=>1]);
+        return redirect()->back();
+    }
+    public function destroyAdmin($id){
+        User::find($id)->update(['user_type'=>0]);
+        return redirect()->back();
+    }
+
+    // profile_user
+>>>>>>> d96f21531f39f5384d32e919975e4bedfcf183a2
     public function profileDetail($id){
         {
 
@@ -84,6 +104,7 @@ class UserController extends Controller
     }
     public function articleposted(){
         $user_id = auth()->user()->id;
+        $cate = Category::get();
         $product_posted = PostHistory::where('user_id',$user_id)
         ->where('post_history.status',1)
         ->leftJoin('product','post_history.product_id','product.id')
@@ -95,6 +116,7 @@ class UserController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.cate_id',
             'product.thumbnail',
             'product.slug as slug',
             'product.view',
@@ -114,10 +136,11 @@ class UserController extends Controller
             //'ward.name as ward'
         )
         ->get();
-        return  view('/pages/user/article-posted',compact('product_posted'));
+        return  view('/pages/user/article-posted',compact('cate','product_posted'));
     }
     public function articlewait(){
         $user_id = auth()->user()->id;
+        $cate = Category::get();
         $product_wait = PostHistory::where('user_id',$user_id)
         ->where('post_history.status',0)
         ->leftJoin('product','post_history.product_id','product.id')
@@ -129,6 +152,7 @@ class UserController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.cate_id',
             'product.thumbnail',
             'product.slug as slug',
             'product.view',
@@ -148,10 +172,11 @@ class UserController extends Controller
             //'ward.name as ward'
         )
         ->get();
-        return  view('/pages/user/article-wait',compact('product_wait'));
+        return  view('/pages/user/article-wait',compact('cate','product_wait'));
     }
     public function articlexpire(){
         $user_id = auth()->user()->id;
+        $cate = Category::get();
         $product_expire = PostHistory::where('user_id',$user_id)
         ->leftJoin('product','post_history.product_id','product.id')
         ->leftJoin('product_extend','post_history.product_id','product_extend.product_id')
@@ -163,6 +188,7 @@ class UserController extends Controller
         ->select(
             //'product_image.name as img',
             'product.id as product_id',
+            'product.cate_id',
             'product.thumbnail',
             'product.slug as slug',
             'product.view',
@@ -183,7 +209,7 @@ class UserController extends Controller
             //'ward.name as ward'
         )
         ->get();
-        return  view('/pages/user/article-expire',compact('product_expire'));
+        return  view('/pages/user/article-expire',compact('cate','product_expire'));
     }
 
 

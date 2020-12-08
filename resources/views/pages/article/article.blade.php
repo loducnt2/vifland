@@ -22,16 +22,39 @@
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán
-                        <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
-                <li class="breadcrumb-item"><a href="#">
-                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh </p>
-                    </a></li>
-                <!-- <div class="search">
-                    <form action="">
-                        <input type="text" placeholder="Bạn cần tìm hôm nay?">
-                    </form>
-                </div> -->
+                <li class="breadcrumb-item">
+                    <a href="{{route('home')}}"><!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
+                        <!-- <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span> -->
+                    </a>
+                </li>
+                 <li class="breadcrumb-item">
+                    <?php
+                        switch ($cate_id) {
+                            case 13:
+                            case 14:
+                                $cate = 'cate1';
+                                $tt = 'Mua/ Bán';
+                                break;
+                            case 18:
+                            case 19:
+                                $cate = 'cate2';
+                                $tt = 'Thuê/ Cho thuê';
+                                break;
+                            case 20:
+                            case 21:
+                                $cate = 'cate3';
+                                $tt = 'Sang nhượng';
+                                break;
+                        }
+                    ?>
+                    <a href="{{route($cate)}}">
+                            <p>{{$tt}}</p>
+                            &nbsp; > &nbsp;{{ $province}}
+                            &nbsp; > &nbsp;{{ $district}}
+                            &nbsp; > &nbsp;{{ $product->title}}
+                    </a>
+                    
+                </li>
             </ol>
         </div>
     </div>
@@ -116,12 +139,12 @@
                                     <div class="line-text">
                                         <p class="section-content">Mặt Tiền</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->facades>0?$product->facades:""}} m</p>
+                                        <p class="section-content active">{{$product->facades>0?round($product->facades,2):""}} m</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Chiều Sâu</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->depth>0?$product->depth:""}} m</p>
+                                        <p class="section-content active">{{$product->depth>0?round($product->depth,2):""}} m</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Diện Tích </p>
@@ -131,7 +154,7 @@
                                     <div class="line-text">
                                         <p class="section-content">Đơn Giá</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{ $product->price == 0?$product->price="":number_format($product->price)}} {{$product->unit}}</p>
+                                        <p class="section-content active">{{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}</p>
                                     </div>
                                     <!-- <div class="line-text">
 										<p class="section-content">Tổng Giá</p>
@@ -208,11 +231,11 @@
                                     <div class="swiper-slide">
                                         <div class="img-box">
                                             <a href="{{asset('assets/product/detail/')}}/{{$img->name}}" data-fancybox>
-                                                <img src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
+                                                <img  onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' " src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
                                             </a>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    @endforeach 
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
@@ -340,17 +363,17 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</span>
+                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                                 </div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}
+                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}
                                                     </span></div>
                                                 <div class="mota-place-tt"><span
                                                         class="material-icons icons-15">group</span><span data-toggle="tooltip"
                                                         data-placement="bottom" title=""
-                                                        data-original-title="Tooltip on bottom"></span></div>
+                                                        data-original-title="">---</span></div>
                                             </div>
                                         </div>
                                         <div class="end-mota">

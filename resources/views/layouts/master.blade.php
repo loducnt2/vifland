@@ -13,6 +13,8 @@
     <link rel="shortcut icon" href="{{asset('assets/favicon.ico')}}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <!-- <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
     @yield('headerStyles')
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
@@ -96,6 +98,7 @@
 
         $('.number-yt').css('display', 'none')
         // Chức năng yêu thích
+        
         $(".fav").click(function() {
             if ($(this).hasClass("ri-heart-line")) {
                 $(this).addClass("ri-heart-fill")

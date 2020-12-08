@@ -8,12 +8,22 @@
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#"> <i class="ri-arrow-left-line icons-breadcrum"></i>Mua/ Bán
-                        <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span></a></li>
-                <li class="breadcrumb-item"><a href="#">
-                        <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
-                            gì hôm nay?</p>
-                    </a></li>
+                <li class="breadcrumb-item">
+                    <a href="{{route('home')}}"><!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
+                    </a>
+                </li>
+                 <li class="breadcrumb-item"><a href="{{route('cate1')}}">
+                        <!-- <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
+                            gì hôm nay?</p> -->
+                            @switch($cate)
+                                @case(1)
+                                <p>Mua/ Bán</p>@break
+                                @case(2)
+                                <p>Thuê/ Cho thuê</p>@break
+                                @case(3)
+                                <p>Sang nhượng</p>@break
+                            @endswitch
+                    </a></li> 
             </ol>
         </div>
     </div>
@@ -233,10 +243,11 @@
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
                                             href="{{route('article-detail',$product->slug)}}"><img
+                                            onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
                                                 src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         <div class="tag-thuongluong">
-                                            {{ $product->price == 0?$product->price="":number_format($product->price,2)}}
+                                            {{ $product->price == 0?$product->price="":round($product->price,2)}}
                                             {{$product->unit}}</div>
                                         <div class="box-icon">
                                             <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -276,7 +287,7 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/dientich.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : $acreage}}
+                                                        title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : round($acreage,2)}}
                                                         m²</span></div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
@@ -285,24 +296,24 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->facades}}">{{$product->facades}} m</span>
+                                                        title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}} m</span>
                                                 </div>
                                             </div>
                                             <div class="mota-place-1">
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}
+                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}
                                                         Tầng</span></div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}</span>
+                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
                                                 </div>
                                                 <div class="mota-place-tt"><span
                                                         class="material-icons icons-15">group</span><span
                                                         data-toggle="tooltip" data-placement="bottom" title=""
-                                                        data-original-title="Tooltip on bottom"></span></div>
+                                                        data-original-title="">---</span></div>
                                             </div>
                                         </div>
                                         <div class="end-mota">
