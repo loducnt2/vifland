@@ -22,6 +22,7 @@ class NewsController extends Controller
      */
     public function index()
     {
+
         $news = News::orderBy('id','asc')->get();
         // $newsHidden = News::select('select * from news where id = 1')->get();
         return view('/admin/tintuc/danhsachtintuc',compact('news'));
@@ -230,6 +231,7 @@ class NewsController extends Controller
         $user->save();
 
     }
+
 
     // Tin get được từ các danh mục
 }

@@ -28,7 +28,7 @@ class UserController extends Controller
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
 
-    // profile_user
+    //XEM THÔNG TIN NGƯỜI KHÁC
     public function profileDetail($id){
         {
 
@@ -52,6 +52,7 @@ class UserController extends Controller
             return App::abort(404);
             }
     }
+    // hiện thông tin USER ĐANG ĐĂNG NHẬP
     public function profileUser(){
         $id = auth()->user()->id;
         $profile = DB::table('user')->find($id);

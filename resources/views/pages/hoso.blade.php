@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 @section('content')
+
 {{-- trước khi đăng nhập --}}
 <main>
     <div class="global-breadcrumb">
@@ -55,10 +56,10 @@
                                     <p>Quản lý tài khoản cá nhân</p>
                                 </div>
                                 <ul>
-                                    <li> <a class="active" href="">Trang thay đổi thông tin cá nhân </a></li>
-                                    <li> <a href="">Thay đổi mật khẩu</a></li>
-                                    <li> <a href="">Số dư tài khoản </a></li>
-                                    <li> <a href="">Nạp tiền</a></li>
+                                    <li> <a class="#" href="">Trang thay đổi thông tin cá nhân </a></li>
+                                    <li> <a href="#">Thay đổi mật khẩu</a></li>
+                                    <li> <a href="#">Số dư tài khoản </a></li>
+                                    <li> <a href="#">Nạp tiền</a></li>
                                 </ul>
                                 <div class="title-bl3"> <span class="material-icons">list_alt</span>
                                     <a href="/user/my-article">
@@ -66,9 +67,9 @@
                                     </a>
                                 </div>
                                 <ul>
-                                    <li> <a href="">Tin đã đăng</a></li>
-                                    <li> <a href="">Tin chờ đăng</a></li>
-                                    <li> <a href="">Chờ xác nhận </a></li>
+                                    <li> <a href="#" >Tin đã đăng</a></li>
+                                    <li> <a href="#">Tin chờ đăng</a></li>
+                                    <li> <a href="#">Chờ xác nhận </a></li>
                                 </ul>
                             </div>
                             <div class="bl-4"> <span class="material-icons">exit_to_app</span>
@@ -82,7 +83,7 @@
                         <div class="box-right">
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <a class="active nav-link" id="thaydoithongtin-tab" data-toggle="tab"
+                                    <a class="nav-link" id="thaydoithongtin-tab" data-toggle="tab"
                                         href="#thaydoithongtin" role="tab" aria-controls="nav-home"
                                         aria-selected="true">Thay đổi thông tin cá nhân</a>
                                     <a class="nav-link" id="thaydoimk-tab" data-toggle="tab" href="#thaydoimk"
@@ -312,7 +313,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 {!! Toastr::message() !!}
 </body>
-
+@if(Auth::check() && Auth::user()->id != $profile->id)
+<script>
+    $("#form-profile :input").prop("disabled", true);
+</script>
+@endif
 </html>
 @endsection
 {{-- Footer --}}
@@ -326,25 +331,25 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-$('#upload-image').click(function(e) {
-            $('#upload').click(function(e) e.preventDefault();
-                    //    let formData = new FormData(this);
-                    //    $('#image-input-error').text('');
-                    $.ajax({
-                        type: 'post',
-                        url: 'google.com',
-                        data: formData,
-                        contentType: false,
-                        processData: false,
-                        success: (response) => {
-                            if (response) {
-                                this.reset();
-                                alert('Image has been uploaded successfully');
-                            }
-                        },
-                        error: function(response) {
-                            console.log(response);
-                            $('#image-input-error').text(response.responseJSON.errors.file);
-                        }
-                    });
-</script>
+// $('#upload-image').click(function(e) {
+//             $('#upload').click(function(e) e.preventDefault();
+//                     //    let formData = new FormData(this);
+//                     //    $('#image-input-error').text('');
+//                     $.ajax({
+//                         type: 'post',
+//                         url: 'google.com',
+//                         data: formData,
+//                         contentType: false,
+//                         processData: false,
+//                         success: (response) => {
+//                             if (response) {
+//                                 this.reset();
+//                                 alert('Image has been uploaded successfully');
+//                             }
+//                         },
+//                         error: function(response) {
+//                             console.log(response);
+//                             $('#image-input-error').text(response.responseJSON.errors.file);
+//                         }
+//                     });
+// </script>

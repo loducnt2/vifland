@@ -22,6 +22,9 @@ class NewsCategoryController extends Controller
         $news_cate = NewsCategory::all();
         return view('admin.tintuc.danhmuctintuc',compact('news_cate'));
     }
+
+
+
     public function deleteall(){
         Toastr::success('Xoá hết thành công','Thông báo');
         Schema::disableForeignKeyConstraints();
