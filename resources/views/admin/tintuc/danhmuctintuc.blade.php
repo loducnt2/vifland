@@ -5,40 +5,54 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-    .error{
-        width: 200px;
-        /* background-color:red; */
-        /* float:left; */
-        /* margin-top:80px; */
+.error {
+    width: 200px;
+    /* background-color:red; */
+    /* float:left; */
+    /* margin-top:80px; */
 
-        /* top:100px; */
-        width:600px;
-        color:tomato;
-        /* font-weight: bold; */
-        font-size:13px;
-        font-weight: bold;
-    }
+    /* top:100px; */
+    width: 600px;
+    color: tomato;
+    /* font-weight: bold; */
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.form-group-flex {
+    display: flex;
+    align-items: center;
+
+}
+
+.form-group-flex button {
+    flex: 0 0 136px;
+}
 </style>
 <form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
     {{ csrf_field() }}
     <div class="row">
-        <div class="col-md-8 mt-4 form-group">
+        <div class="col-md-12 mt-4 form-group">
             <label for="">Nhập tiêu đề</label>
             <div class="error"></div>
-            <input type="text" class="form-control" name="category_name" id="category_name"
-                aria-describedby="helpId" placeholder="">
-                <input type="text" class="form-control" name="category_name_hidden" hidden aria-describedby="helpId" placeholder="">
-
-            <input type="hidden" class="form-control" name="slug2" id="slug2" aria-describedby="helpId"
+            <div class="form-group-flex">
+                <input type="text" class="form-control" name="category_name" id="category_name"
+                    aria-describedby="helpId" placeholder="">
+                <button type="submit" class="btn btn-primary">Tạo danh mục</button>
+            </div>
+            <input type="text" class="form-control" name="category_name_hidden" hidden aria-describedby="helpId"
                 placeholder="">
-                <br>
-                <a name="" id="" class="btn button-delete" href="{{route('newsletter_deleteall')}}" role="button">Xoá tất cả danh
-                    mục</a>
+
+            <input type="hidden" class="form-control" name="slug2" id="slug2" aria-describedby="helpId" placeholder="">
+
+            <br>
+            <a name="" id="" class="btn button-delete" href="{{route('newsletter_deleteall')}}" role="button">Xoá tất cả
+                danh
+                mục</a>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm nhanh..">
+<input class="form-control mb-4" id="myInput" type="text" placeholder="Tìm kiếm nhanh..">
 {{-- form input text --}}
 <table class=" table table-bordered" id="myTable" width="100%" cellspacing="0">
 
@@ -57,13 +71,15 @@
         @foreach ($news_cate as $item)
         <tr>
             <td>{{$item->id}}</td>
-             <td >{{$item->slug}}</td>
+            <td>{{$item->slug}}</td>
             <td>{{$item->category_name}}</td>
-            <td >{{$item->status}}</td>
+            <td>{{$item->status}}</td>
             <td> <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn-delete">Xoá</a>
-             <a href="" data-id="{{ $item->id }}" data-category_name={{$item->category_name}} class="btn btn-danger btn-edit">Sửa</a> </td>
+                <a href="" data-id="{{ $item->id }}" data-category_name={{$item->category_name}}
+                    class="btn btn-danger btn-edit">Sửa</a>
             </td>
-            </tr>
+            </td>
+        </tr>
         @endforeach
 
 
@@ -79,23 +95,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Sửa thông tin</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                  {{-- <label for=""></label> --}}
-                  <div class="error"></div>
-                <input type="text" class="form-control" name="category_name" aria-describedby="helpId" placeholder="">
+                    {{-- <label for=""></label> --}}
+                    <div class="error"></div>
+                    <input type="text" class="form-control" name="category_name" aria-describedby="helpId"
+                        placeholder="">
 
-                <input type="text" class="form-control" name="category_id" hidden aria-describedby="helpId" placeholder="">
+                    <input type="text" class="form-control" name="category_id" hidden aria-describedby="helpId"
+                        placeholder="">
 
-            </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary btn-save" >Save</button>
+                <button type="button" class="btn btn-primary btn-save">Save</button>
             </div>
         </div>
     </div>

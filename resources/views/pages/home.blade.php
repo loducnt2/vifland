@@ -30,7 +30,7 @@ $('#navId a').click(e => {
 <!-- @include('layouts.logo_animation') -->
 
 <main>
-    {{--  --}}
+    {{-- --}}
 
     <section class="index-s1" id="home">
         <div class="max-width-container">
@@ -44,11 +44,11 @@ $('#navId a').click(e => {
                     </div>
                 </div>
                 <?php
-				$banners = DB::table('image')
-				->where('status',1)
-				->orderby('position', 'asc')
-				->get();
-				?>
+                $banners = DB::table('image')
+                    ->where('status', 1)
+                    ->orderby('position', 'asc')
+                    ->get();
+                ?>
                 <div class="col-xs-8 col-md-8 col-lg-9">
                     <div class="slide-banner">
                         <div class="swiper-container">
@@ -130,7 +130,7 @@ $('#navId a').click(e => {
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="form-group-sl1 sl-1">
                                             <select class="select1 sltp" name="province">
                                                 <option value="">Tỉnh/ Thành phố</option>
@@ -140,7 +140,7 @@ $('#navId a').click(e => {
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="form-group-sl1 sl-2 select-many">
                                             <select class="select1 slnhadat" name="product_cate[]" multiple="multiple">
                                                 @foreach($product_cate as $prodcate)
@@ -149,20 +149,13 @@ $('#navId a').click(e => {
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="form-group-sl1 sl-3 select-many">
                                             <select class="select1 slgia" name="price[]" multiple="multiple">
                                                 @foreach($filter_price as $price)
                                                 <option value="{{$price->id}}">{{$price->name}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-3">
-                                        <div class="form-group-select">
-                                            <div class="box-left-se"><i class="ri-filter-line"></i></div>
-                                            <div class="box-mid-se"><span class="timnangcao">Tìm Nâng Cao</span></div>
-                                            <div class="box-right-se"><i class="ri-arrow-down-s-fill"></i></div>
                                         </div>
                                     </div>
                                 </div>
@@ -270,11 +263,12 @@ $('#navId a').click(e => {
                                     href="{{route('article-detail',$product->slug)}}"><img
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                   {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
+                                    {{ $product->price == 0?$product->price="":round($product->price,2)}}
+                                    {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
-                                    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+                                    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}"></i>
                                 </div>
                                 <div class="overlay"></div>
                                 <div class="vip">
@@ -310,15 +304,19 @@ $('#navId a').click(e => {
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                 title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
-                                        
+
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
-                                        
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
+                                                $product_cate as $prod_cate
+                                                ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
+                                        </div>
+
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
+                                                m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
@@ -333,8 +331,7 @@ $('#navId a').click(e => {
                                             </span></div>
                                         <div class="mota-place-tt"><span
                                                 class="material-icons icons-15">group</span><span data-toggle="tooltip"
-                                                data-placement="bottom" title=""
-                                                data-original-title="">---</span></div>
+                                                data-placement="bottom" title="" data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">
@@ -345,9 +342,11 @@ $('#navId a').click(e => {
                                         <div class="end-box-tt"><span
                                                 class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                         </div>
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15 chat">chat</span><span class="chat">chat
-                                                ngay</span></div>
+                                        <div class="end-box-tt">
+                                            <a href="{{route('article-detail',$product->slug)}}"><span
+                                                    class="material-icons icons-15 chat">input</span><span
+                                                    class="chat">Xem chi tiết</span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -389,11 +388,12 @@ $('#navId a').click(e => {
                                     href="{{route('article-detail',$product->slug)}}"><img
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                    {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
+                                    {{ $product->price == 0?$product->price="":round($product->price,2)}}
+                                    {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
-                                    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+                                    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}"></i>
                                 </div>
                                 <div class="overlay"></div>
                                 <div class="vip">
@@ -431,11 +431,15 @@ $('#navId a').click(e => {
                                                 m²</span></div>
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
+                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
+                                                $product_cate as $prod_cate
+                                                ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
+                                        </div>
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
+                                                m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
@@ -450,8 +454,7 @@ $('#navId a').click(e => {
                                         </div>
                                         <div class="mota-place-tt"><span
                                                 class="material-icons icons-15">group</span><span data-toggle="tooltip"
-                                                data-placement="bottom" title=""
-                                                data-original-title="">---</span></div>
+                                                data-placement="bottom" title="" data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">
@@ -462,9 +465,12 @@ $('#navId a').click(e => {
                                         <div class="end-box-tt"><span
                                                 class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                         </div>
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15 chat">chat</span><span class="chat">chat
-                                                ngay</span></div>
+                                        <div class="end-box-tt">
+                                            <a href="{{route('article-detail',$product->slug)}}"><span
+                                                    class="material-icons icons-15 chat">input</span><span
+                                                    class="chat">Xem
+                                                    chi tiết</span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -505,11 +511,12 @@ $('#navId a').click(e => {
                             <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img
                                         src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
-                                    {{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}
+                                    {{ $product->price == 0?$product->price="":round($product->price,2)}}
+                                    {{$product->unit}}
                                 </div>
                                 <div class="box-icon">
                                     <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
-                                    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+                                    <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}"></i>
                                 </div>
                                 <div class="overlay"></div>
                                 <div class="vip">
@@ -553,7 +560,8 @@ $('#navId a').click(e => {
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}} m</span></div>
+                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
+                                                m</span></div>
                                     </div>
                                     <div class="mota-place-1">
                                         <div class="mota-place-tt"><img
@@ -568,8 +576,7 @@ $('#navId a').click(e => {
                                         </div>
                                         <div class="mota-place-tt"><span
                                                 class="material-icons icons-15">group</span><span data-toggle="tooltip"
-                                                data-placement="bottom" title=""
-                                                data-original-title="">---</span></div>
+                                                data-placement="bottom" title="" data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">
@@ -580,9 +587,12 @@ $('#navId a').click(e => {
                                         <div class="end-box-tt"><span
                                                 class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                         </div>
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15 chat">chat</span><span class="chat">chat
-                                                ngay</span></div>
+                                        <div class="end-box-tt">
+                                            <a href="{{route('article-detail',$product->slug)}}"><span
+                                                    class="material-icons icons-15 chat">input</span><span
+                                                    class="chat">Xem
+                                                    chi tiết</span></a>
+                                        </div>
 
                                     </div>
                                 </div>

@@ -6,46 +6,47 @@
 <meta name="author" content="">
 <title>Tạo mới đơn hàng</title>
 <!-- Bootstrap core CSS -->
-<link href="{{asset('vnpay_php/bootstrap.min.css')}}" rel="stylesheet"/>
+<link href="{{asset('vnpay_php/bootstrap.min.css')}}" rel="stylesheet" />
 <!-- Custom styles for this template -->
-<link href="{{asset('vnpay_php/jumbotron-narrow.css')}}" rel="stylesheet">  
+<link href="{{asset('vnpay_php/jumbotron-narrow.css')}}" rel="stylesheet">
 <script src="{{asset('vnpay_php/jquery-1.11.3.min.js')}}"></script>
 @endsection
 @section('content')
-<main >
-    <section class="pages-favourites" style="height:700px"> 
-        <div class="container"> 
+<main>
+    <section class="pages-favourites" style="height:700px">
+        <div class="container">
             <h3 class="text-center">Nạp Tiền</h3>
             <div class="table-responsive">
                 <form action="{{route('create-payment')}}" id="create_form" method="post">
-                    @csrf       
+                    @csrf
                     <div class="form-group">
                         <!-- <label for="language">Loại hàng hóa </label> -->
                         <select name="order_type" id="order_type" class="form-control" hidden="">
                             <!-- <option value="topup">Nạp tiền điện thoại</option> -->
-                            <option value="billpayment" selected >Thanh toán hóa đơn</option>
+                            <option value="billpayment" selected>Thanh toán hóa đơn</option>
                             <!-- <option value="fashion">Thời trang</option> -->
                             <!-- <option value="other">Khác - Xem thêm tại VNPAY</option> -->
                         </select>
                     </div>
                     <div class="form-group">
                         <!-- <label for="order_id">Mã hóa đơn</label> -->
-                        <input hidden="" class="form-control" id="order_id" name="order_id" type="text" value="<?php echo date('YmdHis') ?>"/>
+                        <input hidden="" class="form-control" id="order_id" name="order_id" type="text"
+                            value="<?php echo date('YmdHis') ?>" />
                     </div>
                     <div class="form-group">
                         <label for="amount">Số tiền</label>
-                        <input class="form-control" id="amount"
-                               name="amount" type="number" value="10000"/>
+                        <input class="form-control" id="amount" name="amount" type="number" value="10000" />
                     </div>
                     <div class="form-group">
                         <!-- <label for="order_desc">Nội dung thanh toán</label> -->
-                        <textarea hidden class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Noi dung thanh toan</textarea>
+                        <textarea hidden class="form-control" cols="20" id="order_desc" name="order_desc"
+                            rows="2">Noi dung thanh toan</textarea>
                     </div>
                     <div class="form-group">
                         <label for="bank_code">Ngân hàng</label>
                         <select name="bank_code" id="bank_code" class="form-control">
                             <option value="NCB" selected> Ngân hàng NCB</option>
-                           <!--  <option value="AGRIBANK"> Ngan hang Agribank</option>
+                            <!--  <option value="AGRIBANK"> Ngan hang Agribank</option>
                             <option value="SCB"> Ngan hang SCB</option>
                             <option value="SACOMBANK">Ngan hang SacomBank</option>
                             <option value="EXIMBANK"> Ngan hang EximBank</option>
@@ -87,10 +88,10 @@
 @endsection
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
-<link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet"/>
+<link href="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.css" rel="stylesheet" />
 <script src="https://sandbox.vnpayment.vn/paymentv2/lib/vnpay/vnpay.js"></script>
 <script type="text/javascript">
-    /*$("#btnPopup").click(function () {
+/*$("#btnPopup").click(function () {
         var postData = $("#create_form").serialize();
         var submitUrl = $("#create_form").attr("action");
         $.ajax({

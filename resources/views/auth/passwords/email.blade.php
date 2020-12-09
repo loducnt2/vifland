@@ -10,7 +10,7 @@
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
     </div>
-@endif
+    @endif
     <section class="quenmk login">
         <form action="{{ route('password.email') }}" method="POST">
             {{ csrf_field() }}
@@ -25,7 +25,9 @@
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
                         <div class="box-mid-se">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email"
+                                placeholder="Hãy nhập email của bạn" autofocus>
                         </div>
                     </div>
                     <div class="button-submit">

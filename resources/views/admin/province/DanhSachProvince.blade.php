@@ -2,7 +2,7 @@
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="container-fluid box-n-big">
-    <h2 class="section-title-big">Province</h2>
+    <h2 class="section-title-big">Quản lý tỉnh/thành phố</h2>
 
     <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm nhanh..">
     <br>

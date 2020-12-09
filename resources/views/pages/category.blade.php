@@ -9,21 +9,22 @@
         <div class="max-width-container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{route('home')}}"><!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
+                    <a href="{{route('home')}}">
+                        <!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
                     </a>
                 </li>
-                 <li class="breadcrumb-item"><a href="{{route('cate1')}}">
+                <li class="breadcrumb-item"><a href="{{route('cate1')}}">
                         <!-- <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
                             gì hôm nay?</p> -->
-                            @switch($cate)
-                                @case(1)
-                                <p>Mua/ Bán</p>@break
-                                @case(2)
-                                <p>Thuê/ Cho thuê</p>@break
-                                @case(3)
-                                <p>Sang nhượng</p>@break
-                            @endswitch
-                    </a></li> 
+                        @switch($cate)
+                        @case(1)
+                        <p>Mua/ Bán</p>@break
+                        @case(2)
+                        <p>Thuê/ Cho thuê</p>@break
+                        @case(3)
+                        <p>Sang nhượng</p>@break
+                        @endswitch
+                    </a></li>
             </ol>
         </div>
     </div>
@@ -234,112 +235,116 @@
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-12">
-                    <div class="row box-right">
-                        <div id="products" class="row">
-                            @if(count($products)>0)
-                            @foreach($products as $product)
-                            @php $acreage = intval($product->depth)*intval($product->facades); @endphp
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
-                                <div class="box-sp">
-                                    <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                            href="{{route('article-detail',$product->slug)}}"><img
-                                                src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-                                                alt=""></a>
-                                        <div class="tag-thuongluong">
-                                            {{ $product->price == 0?$product->price="":round($product->price,2)}}
-                                            {{$product->unit}}</div>
-                                        <div class="box-icon">
-                                            <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
-                                            <i class="ri-equalizer-line icons comp"
-                                                productid="{{$product->product_id}}"></i>
-                                        </div>
-                                        <div class="overlay"></div>
-                                        <div class="vip">
-                                            <!-- {{$product->type}} -->
+                    <div class="row box-right" id="product">
+                        @if(count($products)>0)
+                        @foreach($products as $product)
+                        @php $acreage = intval($product->depth)*intval($product->facades); @endphp
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
+                            <div class="box-sp">
+                                <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
+                                        href="{{route('article-detail',$product->slug)}}"><img
+                                            src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+                                            alt=""></a>
+                                    <div class="tag-thuongluong">
+                                        {{ $product->price == 0?$product->price="":round($product->price,2)}}
+                                        {{$product->unit}}</div>
+                                    <div class="box-icon">
+                                        <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
+                                        <i class="ri-equalizer-line icons comp"
+                                            productid="{{$product->product_id}}"></i>
+                                    </div>
+                                    <div class="overlay"></div>
+                                    <div class="vip">
+                                        <!-- {{$product->type}} -->
 
-                                            @if ($product->type != 4)
-                                            <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
-                                            @else
-                                            @endif
+                                        @if ($product->type != 4)
+                                        <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
+                                        @else
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="box-sp-text">
+                                    <a class="localstore" localstore="{{$product->product_id}}"
+                                        href="{{route('article-detail',$product->slug)}}">
+                                        @if($product->type == 1)
+                                        <h5 class="title-text lcl lcl-2 vip1">{{$product->title}}</h5>
+                                        @elseif($product->type == 2)
+                                        <h5 class="title-text lcl lcl-2 vip2">{{$product->title}}</h5>
+                                        @elseif($product->type == 3)
+                                        <h5 class="title-text lcl lcl-2 vip3">{{$product->title}}</h5>
+                                        @else
+                                        <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
+                                        @endif
+                                    </a>
+                                    <div class="location"> <span class="material-icons">location_on</span>
+                                        <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
+                                            title="{{$product->district}}, {{$product->province}}">
+                                            {{$product->district}}, {{$product->province}}</p>
+                                    </div>
+                                    <div class="mota-place">
+                                        <div class="mota-place-1">
+                                            <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
+                                                    alt=""><span data-toggle="tooltip" data-placement="bottom"
+                                                    title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : round($acreage,2)}}
+                                                    m²</span></div>
+                                            <div class="mota-place-tt"><img
+                                                    src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
+                                                    $product_cate as $prod_cate
+                                                    ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
+                                            </div>
+                                            <div class="mota-place-tt"><img
+                                                    src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}}
+                                                    m</span>
+                                            </div>
+                                        </div>
+                                        <div class="mota-place-1">
+                                            <div class="mota-place-tt"><img
+                                                    src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}
+                                                    Tầng</span></div>
+                                            <div class="mota-place-tt"><img
+                                                    src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
+                                                    data-toggle="tooltip" data-placement="bottom"
+                                                    title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
+                                            </div>
+                                            <div class="mota-place-tt"><span
+                                                    class="material-icons icons-15">group</span><span
+                                                    data-toggle="tooltip" data-placement="bottom" title=""
+                                                    data-original-title="">---</span></div>
                                         </div>
                                     </div>
-                                    <div class="box-sp-text">
-                                        <a class="localstore" localstore="{{$product->product_id}}"
-                                            href="{{route('article-detail',$product->slug)}}">
-                                            @if($product->type == 1)
-                                            <h5 class="title-text lcl lcl-2 vip1">{{$product->title}}</h5>
-                                            @elseif($product->type == 2)
-                                            <h5 class="title-text lcl lcl-2 vip2">{{$product->title}}</h5>
-                                            @elseif($product->type == 3)
-                                            <h5 class="title-text lcl lcl-2 vip3">{{$product->title}}</h5>
-                                            @else
-                                            <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
-                                            @endif
-                                        </a>
-                                        <div class="location"> <span class="material-icons">location_on</span>
-                                            <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->district}}, {{$product->province}}">
-                                                {{$product->district}}, {{$product->province}}</p>
-                                        </div>
-                                        <div class="mota-place">
-                                            <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/dientich.png')}}" alt=""><span
-                                                        data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : round($acreage,2)}}
-                                                        m²</span></div>
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
-                                                        data-toggle="tooltip" data-placement="bottom"
-                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
-                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}} m</span>
-                                                </div>
+                                    <div class="end-mota">
+                                        <div class="mota-end-box">
+                                            <div class="end-box-tt"><span
+                                                    class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
                                             </div>
-                                            <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
-                                                        data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}
-                                                        Tầng</span></div>
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
-                                                        data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
-                                                </div>
-                                                <div class="mota-place-tt"><span
-                                                        class="material-icons icons-15">group</span><span
-                                                        data-toggle="tooltip" data-placement="bottom" title=""
-                                                        data-original-title="">---</span></div>
+                                            <div class="end-box-tt"><span
+                                                    class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                             </div>
-                                        </div>
-                                        <div class="end-mota">
-                                            <div class="mota-end-box">
-                                                <div class="end-box-tt"><span
-                                                        class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
-                                                </div>
-                                                <div class="end-box-tt"><span
-                                                        class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
-                                                </div>
-                                                <div class="end-box-tt"><span
-                                                        class="material-icons icons-15 chat">chat</span><span
-                                                        class="chat">chat ngay</span></div>
-                                            </div>
+                                            <div class="end-box-tt"><a
+                                                    href="{{route('article-detail',$product->slug)}}"><span
+                                                        class="material-icons icons-15 chat">input</span><span
+                                                        class="chat">Xem
+                                                        chi tiết</span></a></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
-                            @else
-                            <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
-                                <p>Không có bài đăng nào</p>
-                            </div>
-                            @endif
-                            <div class="col-12">
-                                <div class="paginationSP">
-                                    <!-- <div class="paginationSP-box"><span
+                        </div>
+                        @endforeach
+                        @else
+                        <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                            <p>Không có bài đăng nào</p>
+                        </div>
+                        @endif
+                        <div class="col-12">
+                            <div class="paginationSP">
+                                <!-- <div class="paginationSP-box"><span
                                             class="material-icons button-s mr-2">skip_previous</span>
                                         <ul>
                                             <li> <a class="active" href="">1</a></li>
@@ -350,12 +355,11 @@
 
                                     </div> -->
 
-                                    {{ $products->appends(request()->input())->links()}}
+                                {{ $products->appends(request()->input())->links()}}
 
-                                </div>
                             </div>
-
                         </div>
+
 
                         <div class="col-12">
                             <div class="content-box">
@@ -364,7 +368,7 @@
                                     <h1 class="MsoNormal" align="center">Mua bán nhà đất bất động sản </h1>
                                     <div id="content-province">
                                         @if(isset($content_province) && $content_province != NULL)
-                                        <?php echo html_entity_decode($content_province)?>
+                                        <?php echo html_entity_decode($content_province) ?>
                                         @else
                                         <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                             <font size="3"></font><i><a href="https://meeyland.com/mua-ban-nha-dat">Mua

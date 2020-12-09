@@ -17,7 +17,9 @@
         </div>
         <div class="wrap-2 user-admin">
             @if(auth()->check())
-            <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}" alt="">
+            <div class="bl-1"><img
+                    src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                    alt="">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
                     @if(Auth::check() && Auth::user()->user_type == "1")
 
@@ -141,14 +143,14 @@
                                             )
                                             ->get();
 
-                                            $notiPayment = DB::table('payment')
+                                        $notiPayment = DB::table('payment')
                                             ->where('user_id', auth()->user()->id)
-                                            ->where('created_at','>', date('Y-m-d', strtotime("-7 day")))
-                                             ->whereIn('noti_payment',[1,2])
+                                            ->where('created_at', '>', date('Y-m-d', strtotime("-7 day")))
+                                            ->whereIn('noti_payment', [1, 2])
                                             ->orderby('id', 'desc')
                                             ->get();
 
-                                            
+
 
 
                                         $noAccept = DB::table('post_history')
@@ -167,16 +169,17 @@
                                         $duedate = [];
                                         $duedate1 = [];
                                         $noAccept = [];
-                                        $notiPayment=[];
+                                        $notiPayment = [];
                                     }
                                     ?>
                                     <div class="co-thong-bao">
 
-                                    @foreach($notiPayment as $ad)
+                                        @foreach($notiPayment as $ad)
                                         @if($ad->noti_payment == 1)
                                         <div class="item">
                                             <div class="wrap-text products-duedate ">
-                                                <div class="thongbao post-expired bg-success">Nạp tiền</div><a href="">Tài khoản: +{{number_format($ad->amount)}} VND</a>
+                                                <div class="thongbao post-expired bg-success">Nạp tiền</div><a
+                                                    href="">Tài khoản: +{{number_format($ad->amount)}} VND</a>
                                                 <div class="date">Vào ngày:{{$ad->created_at}}</div>
 
                                             </div>
@@ -184,19 +187,21 @@
                                         @endif
                                         @if($ad->noti_payment == 2)
                                         <div class="item">
-                                                <div class="wrap-text products-duedate ">
-                                                    <div class="thongbao post-expired bg-danger">Trừ tiền</div><a href=""> Tài khoản: -{{number_format($ad->amount)}} VND</a>
-                                                    <div class="date">Vào ngày:{{$ad->created_at}}</div>
-                                                   
-                                                </div>
+                                            <div class="wrap-text products-duedate ">
+                                                <div class="thongbao post-expired bg-danger">Trừ tiền</div><a href="">
+                                                    Tài khoản: -{{number_format($ad->amount)}} VND</a>
+                                                <div class="date">Vào ngày:{{$ad->created_at}}</div>
+
                                             </div>
+                                        </div>
                                         @endif
-                                    @endforeach
-                                    
+                                        @endforeach
+
                                         @foreach($duedate as $due)
                                         <div class="item">
                                             <div class="wrap-text products-duedate ">
-                                                <div class="thongbao post-expired">Thông báo</div><a href="{{route('article-detail',$due->slug)}}">Bài
+                                                <div class="thongbao post-expired">Thông báo</div><a
+                                                    href="{{route('article-detail',$due->slug)}}">Bài
                                                     viết của bạn sắp hết hạn</a>
                                                 <div class="date"> ngày hết hạn: {{$due->date}}</div>
 
@@ -219,7 +224,8 @@
                                         @foreach($noAccept as $post)
                                         <div class="item">
                                             <div class="wrap-text products-duedate ">
-                                                <div class="thongbao post-due" style="background: red;">Thông báo</div><a href="{{route('article-detail',$post->slug)}}">Bài
+                                                <div class="thongbao post-due" style="background: red;">Thông báo</div>
+                                                <a href="{{route('article-detail',$post->slug)}}">Bài
                                                     viết của bạn không được duyệt </a>
                                                 <div class="date"> ngày hết hạn: {{$post->date}}</div>
 
@@ -230,7 +236,8 @@
                                         @foreach($notis as $noti)
                                         <div class="item">
                                             <div class="wrap-text">
-                                                <div class="thongbao thongbao-color">Thông báo</div><a href="#">{{$noti->content}}</a>
+                                                <div class="thongbao thongbao-color">Thông báo</div><a
+                                                    href="#">{{$noti->content}}</a>
                                                 <div class="date"> {{$noti->created_at}}</div>
                                             </div>
                                         </div>
@@ -245,26 +252,34 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item tin-tuc-icon"><a class="text" href="/tin-tuc"><em class="material-icons icon">list_alt</em>Tin tức</a></li>
+                        <li class="nav-item tin-tuc-icon"><a class="text" href="/tin-tuc"><em
+                                    class="material-icons icon">list_alt</em>Tin tức</a></li>
                         <li class="post-new"><i class="ri-chat-new-fill icon"></i>
-                            <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal">Đăng bài</a>
+                            <a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
+                                data-target="#exampleModal">Đăng bài</a>
                         </li>
                         <li class="nav-item d-none user-logined">
                             <img class="avatar-login" src="{{asset('assets/avatar/avatar.png')}}" alt="">
                         </li>
                         <li class="nav-item">
                             @if(auth()->check())
-                            <div class="avatar-user"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}" alt=""></div>
+                            <div class="avatar-user"><img
+                                    src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                                    alt=""></div>
                             @else
                             <a href="/login" class="btn btn__header login1" style="line-height:36px">Đăng Nhập</a>
                             @endif
                         </li>
-                        <li class="nav-item change-lang"><span class="button-change-lang"><img src="{{asset('assets/icon/icon-vn.png')}}" alt=""><i class="ri-arrow-down-s-fill"></i>
+                        <li class="nav-item change-lang"><span class="button-change-lang"><img
+                                    src="{{asset('assets/icon/icon-vn.png')}}" alt=""><i
+                                    class="ri-arrow-down-s-fill"></i>
                                 <div class="list-change-lang">
-                                    <div class="list-change-lang-row"><img src="{{asset('assets/icon/icon-vn.png')}}" alt="">
+                                    <div class="list-change-lang-row"><img src="{{asset('assets/icon/icon-vn.png')}}"
+                                            alt="">
                                         <p>Tiếng việt</p>
                                     </div>
-                                    <div class="list-change-lang-row"><img src="{{asset('assets/icon/icon-usa.png')}}" alt="">
+                                    <div class="list-change-lang-row"><img src="{{asset('assets/icon/icon-usa.png')}}"
+                                            alt="">
                                         <p>English</p>
                                     </div>
                                 </div>
@@ -275,9 +290,12 @@
             </div>
             <div class="nav-mobile">
                 <div class="nav-mobile-1">
-                    <div class="img"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-res-white.png')}}" alt=""></a></div>
+                    <div class="img"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-res-white.png')}}"
+                                alt=""></a></div>
                     <div class="button-mobile-post">
-                        <button class="button-mbp"><i class="ri-chat-new-fill icon"></i><a style="color:#fff" class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal">Đăng bài</a></button>
+                        <button class="button-mbp"><i class="ri-chat-new-fill icon"></i><a style="color:#fff"
+                                class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
+                                data-target="#exampleModal">Đăng bài</a></button>
                         <div class="sosanh">
                             <a href="/compares">
                                 <i class="ri-equalizer-line icon"></i>
@@ -291,28 +309,29 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{route('searchmob')}}" method="get" id="">
-                <div class="nav-mobile-2">
-                    <div class="toggle-menu"><i class="ri-grid-fill"></i></div>
+                <form action="{{route('searchmob')}}" method="get" id="" style="margin-bottom:0px">
+                    <div class="nav-mobile-2">
+                        <div class="toggle-menu"><i class="ri-grid-fill"></i></div>
 
-                    <div class="search-menu">
-                        
+                        <div class="search-menu">
+
                             <input type="text" placeholder="Bạn tìm gì hôm nay?" name="kyw">
 
+                        </div>
+
+                        @if(auth()->check())
+                        <div class="user user-menu"><i class="ri-map-pin-user-fill"></i></div>
+                        @else
+                        <div class="user"><a href="/login"><i class="ri-map-pin-user-fill"></i></a></div>
+                        @endif
                     </div>
-                    
-                    @if(auth()->check())
-                    <div class="user user-menu"><i class="ri-map-pin-user-fill"></i></div>
-                    @else
-                    <div class="user"><a href="/login"><i class="ri-map-pin-user-fill"></i></a></div>
-                    @endif
-                </div>
                 </form>
 
             </div>
             <div class="menu-mobile">
                 <div class="wrap-1">
-                    <div class="logo"> <a href=""><img src="{{asset('assets/logo/logo-s.png')}}" alt=""></a></div><i class="ri-close-line close-button"></i>
+                    <div class="logo"> <a href=""><img src="{{asset('assets/logo/logo-s.png')}}" alt=""></a></div><i
+                        class="ri-close-line close-button"></i>
                 </div>
                 <div class="wrap-2">
                     <div class="change-lang">
@@ -343,24 +362,16 @@
                     <div class="title">
                         Công ty <i class="ri-arrow-down-s-fill"></i></div>
                     <ul>
-                        <li><a href="">Tuyển dụng</a></li>
-                        <li><a href="">Quy chế hoạt động</a></li>
-                        <li><a href="">Về Vifland</a></li>
-                        <li><a href="">Điều khoản thỏa thuận</a></li>
-                        <li><a href="">Tin tức cổ đông</a></li>
+                        <li><a href="/about">Về Vifland</a></li>
                     </ul>
                     <div class="title">
                         Hỗ trợ<i class="ri-arrow-down-s-fill"></i></div>
                     <ul>
-                        <li><a href="">Tuyển dụng</a></li>
-                        <li><a href="">Quy chế hoạt động</a></li>
-                        <li><a href="">Về Vifland</a></li>
-                        <li><a href="">Điều khoản thỏa thuận</a></li>
-                        <li><a href="">Tin tức cổ đông</a></li>
+                        <li><a href="/contact">Liên hệ</a></li>
                     </ul>
                 </div>
                 <div class="wrap-4">
-                    <div class="title">Công ty Cổ phần Tập đoàn Meey Land</div>
+                    <div class="title">Công ty Cổ phần Tập đoàn Vifland</div>
                     <ul>
                         <li><span class="material-icons">location_on</span>
                             <p>Tầng 5 Tòa nhà 97 - 99 Láng Hạ, Phường Láng Hạ, Quận Đống Đa, Thành phố Hà Nội</p>
@@ -369,7 +380,7 @@
                             <p>0869 092 929</p>
                         </li>
                         <li><span class="material-icons">email</span>
-                            <p>contact@meeyland.com</p>
+                            <p>contact@vifland.com</p>
                         </li>
                     </ul>
                 </div>
@@ -383,12 +394,15 @@
                 </div>
                 <div class="wrap-2 user-admin">
                     @if(auth()->check())
-                    <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}" alt="">
+                    <div class="bl-1"><img
+                            src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                            alt="">
                         <p>{{auth()->user()->username}}</p>
                     </div>
                     <div class="bl-2">
                         <div class="row">
-                            <div class="col-12"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}" alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
+                            <div class="col-12"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}"
+                                        alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
                             <!-- <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
                                             class="material-icons">keyboard_arrow_right</span></a></span></div>
                             <div class="col-12"><span class="lkvi"><img src="{{asset('assets/icon/warning.png')}}"
@@ -428,13 +442,17 @@
     </div>
 </header>
 <div class="wrap-modal-post">
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"><a class="box" href="/article/new/mua-ban-nha-dat"><img src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt="">
+            <div class="modal-content"><a class="box" href="/article/new/mua-ban-nha-dat"><img
+                        src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt="">
                     <p>Mua/ Bán</p><em class="material-icons">double_arrow</em>
-                </a><a class="box" href="/article/new/cho-thue-nha-dat"><img src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt="">
+                </a><a class="box" href="/article/new/cho-thue-nha-dat"><img
+                        src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt="">
                     <p>Thuê/ Cho Thuê</p><em class="material-icons">double_arrow</em>
-                </a><a class="box" href="/article/new/sang-nhuong-nha-dat"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
+                </a><a class="box" href="/article/new/sang-nhuong-nha-dat"><img
+                        src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
                     <p>Sang Nhượng</p><em class="material-icons">double_arrow</em>
                 </a></div>
         </div>
@@ -442,13 +460,13 @@
 </div>
 
 <script>
-    var number_noti = 0;
-    $(".item").each(function() {
-        number_noti += 1
-    })
-    if (number_noti == 0) {
-        $(".number-tb").hide();
-    } else {
-        $(".number-tb").text(number_noti);
-    }
+var number_noti = 0;
+$(".item").each(function() {
+    number_noti += 1
+})
+if (number_noti == 0) {
+    $(".number-tb").hide();
+} else {
+    $(".number-tb").text(number_noti);
+}
 </script>

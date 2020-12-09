@@ -1,16 +1,16 @@
 @extends('admin.sidebar')
 @section('title','Nạp tiền')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-5">
-            <button class="btn btn-primary btn-change-table">Thêm/ trừ tiền</button>
+            <button class="btn button-color btn-change-table">Thêm/ trừ tiền</button>
             <button class="btn btn-danger btn-change-table">Thống kê</button>
         </div>
     </div>
 </div>
 <div id="wallet">
-    <div class="container">
+    <div class="container-fluid">
         <!-- table -->
         <div class="row">
             <div class="col-5">
@@ -26,7 +26,7 @@
                 <tr>
                     <th>Tên truy cập</th>
                     <th>Ví hiện tại</th>
-                    <th colspan="2" ></th>
+                    <th colspan="2"></th>
                 </tr>
             </thead>
             <tbody id="myTable">
@@ -62,20 +62,20 @@
 
     </div>
 </div>
-<div  class="d-none" id="statistical">
-    <div class="container">
-       <div class="row">
-           <div class="col-5">
-               <div class="form-group">
-                   <label for=""></label>
-                   <input class="form-control" id="myInput2" type="text" placeholder="Tìm kiếm..">
-               </div>
-           </div>
-       </div>
+<div class="d-none" id="statistical">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-5">
+                <div class="form-group">
+                    <label for=""></label>
+                    <input class="form-control" id="myInput2" type="text" placeholder="Tìm kiếm..">
+                </div>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    
+
                     <th scope="col">id</th>
                     <th scope="col">Tên truy cập</th>
                     <th scope="col">Tổng ví</th>
@@ -88,10 +88,11 @@
                     <td>{{$user->id}}</td>
                     <td>{{$user->username}}</td>
                     <td>{{number_format($user->total_cash)}} VND</td>
-                    <td><a href="{{route('detail-wallet',$user->id)}}"><button class="btn btn-primary">Xem chi tiết</button></a></td>
+                    <td><a href="{{route('detail-wallet',$user->id)}}"><button class="btn btn-primary">Xem chi
+                                tiết</button></a></td>
                 </tr>
-            @endforeach
-                
+                @endforeach
+
             </tbody>
         </table>
         {{ $users->links() }}
@@ -101,64 +102,64 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
-    $(document).ready(function() {
+$(document).ready(function() {
 
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-        $("#myInput2").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#mytable2 tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-        $("#status").on("change", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr td[id='valueStatus']").filter(function() {
-                $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-
-        $("#type").on("change", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr td[id='productType']").filter(function() {
-                $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
-    $(".btn-change-table").click(function(){
-        $("#wallet").toggleClass("d-none");
-        $("#statistical").toggleClass("d-none");
-    })
-    @if(Session::has('message'))
-    var type = "{{ Session::get('alert-type', 'info') }}";
-    switch (type) {
-        case 'info':
-            toastr.info("{{ Session::get('message') }}");
-            break;
+    $("#myInput2").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#mytable2 tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+    $("#status").on("change", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr td[id='valueStatus']").filter(function() {
+            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 
-        case 'warning':
-            toastr.warning("{{ Session::get('message') }}");
-            break;
+    $("#type").on("change", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr td[id='productType']").filter(function() {
+            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
+$(".btn-change-table").click(function() {
+    $("#wallet").toggleClass("d-none");
+    $("#statistical").toggleClass("d-none");
+})
+@if(Session::has('message'))
+var type = "{{ Session::get('alert-type', 'info') }}";
+switch (type) {
+    case 'info':
+        toastr.info("{{ Session::get('message') }}");
+        break;
 
-        case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
+    case 'warning':
+        toastr.warning("{{ Session::get('message') }}");
+        break;
 
-        case 'error':
-            toastr.error("{{ Session::get('message') }}");
-            break;
-    }
-    @endif
+    case 'success':
+        toastr.success("{{ Session::get('message') }}");
+        break;
+
+    case 'error':
+        toastr.error("{{ Session::get('message') }}");
+        break;
+}
+@endif
 </script>
 <style>
-    th,
-    tr {
-        margin: 0 auto;
-        text-align: center;
-    }
+th,
+tr {
+    margin: 0 auto;
+    text-align: center;
+}
 </style>
 @endsection

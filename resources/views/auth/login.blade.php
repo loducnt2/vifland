@@ -2,33 +2,32 @@
 @section('title','Đăng nhập')
 @section('content')
 <style>
-    label{
-        font-weight: bold;
-        width: 200px;
-        /* background-color:red; */
-        /* float:left; */
-        /* margin-top:80px; */
-        position: absolute;
-        left:40px;
-        margin-top:80px;
-        /* top:100px; */
-        width:600px;
-        color:tomato;
-        /* font-weight: bold; */
-        font-size:13px;
-    }
-
+label {
+    font-weight: bold;
+    width: 200px;
+    /* background-color:red; */
+    /* float:left; */
+    /* margin-top:80px; */
+    position: absolute;
+    left: 40px;
+    margin-top: 80px;
+    /* top:100px; */
+    width: 600px;
+    color: tomato;
+    /* font-weight: bold; */
+    font-size: 13px;
+}
 </style>
 <div class="ov-h" id="wrapper">
     <main>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
 "></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-{!! Toastr::message() !!}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        {!! Toastr::message() !!}
         <section class="login">
             <form method="POST" action="{{ route('login') }} " id="dangnhap">
 
@@ -48,8 +47,7 @@
                             <div class="box-left-se"><span class="material-icons">person</span></div>
                             <div class="box-mid-se">
 
-                                <input id="username" type="text"
-                                    class="form-control" name="username"
+                                <input id="username" type="text" class="form-control" name="username"
                                     value="{{ old('username') }}" autocomplete="username" autofocus
                                     placeholder="Tên đăng nhập">
 
@@ -78,13 +76,6 @@
                         <div class="button-submit">
                             <input type="submit" value="Đăng nhập">
                         </div>
-                        <p class="logindef">Hoặc đăng nhập bằng</p>
-                        <div class="button-loginSocial"><a href=""><img src="{{asset('assets/icon/gmail.svg')}}" alt="">
-                                <p class="m-0">Đăng nhập bằng Gmail</p>
-                            </a></div>
-                        <div class="button-loginSocial"><a href=""><img src="{{asset('assets/icon/facebook.svg')}}" alt="">
-                                <p class="m-0">Đăng nhập bằng Facebook</p>
-                            </a></div>
                     </div>
                 </div>
             </form>
@@ -103,44 +94,42 @@
     </div>
 </div>
 <script>
-    $(document).ready(function() {
-        $('#dangnhap').validate({
+$(document).ready(function() {
+    $('#dangnhap').validate({
 
-            rules: {
+        rules: {
 
-                'username': {
-                    required: true,
-                    maxlength: 60,
-                    minlength: 5,
-                },
-
-
-                'password': {
-                    required: true,
-                    maxlength: 255,
-                    minlength: 8,
-                },
-
-            },
-            messages: {
-                'username': {
-                    required: "Tên đăng nhập không được để trống",
-                    minlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự",
-                    maxlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự"
-                },
-
-                'password': {
-                    required: "Mật khẩu không được để trống",
-                    minlength: "Vui lòng nhập mật khẩu khoản  giữa 8 đến 255 kí tự",
-                    maxlength: "Vui lòng nhập tên tài khoản giữa 8 đến 255 kí tự"
-                },
+            'username': {
+                required: true,
+                maxlength: 60,
+                minlength: 5,
             },
 
-        });
+
+            'password': {
+                required: true,
+                maxlength: 255,
+                minlength: 8,
+            },
+
+        },
+        messages: {
+            'username': {
+                required: "Tên đăng nhập không được để trống",
+                minlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự",
+                maxlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự"
+            },
+
+            'password': {
+                required: "Mật khẩu không được để trống",
+                minlength: "Vui lòng nhập mật khẩu khoản  giữa 8 đến 255 kí tự",
+                maxlength: "Vui lòng nhập tên tài khoản giữa 8 đến 255 kí tự"
+            },
+        },
+
     });
-    </script>
+});
+</script>
 
 @endsection
 {{-- form validate-login --}}
-
-

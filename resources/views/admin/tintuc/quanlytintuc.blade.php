@@ -3,7 +3,8 @@
 {{-- @extends('admin.footer') --}}
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet"> <!-- for live demo page -->
+<link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css"
+    rel="stylesheet"> <!-- for live demo page -->
 <link rel="stylesheet" href="{{asset('css/select2-bootstrap4.min.css')}}">
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 
@@ -31,11 +32,12 @@ li {
 .my-0 {
     font-weight: bold;
 }
-.error{
-    color:tomato;
-        /* font-weight: bold; */
-        font-size:13px;
-        font-weight: bold;
+
+.error {
+    color: tomato;
+    /* font-weight: bold; */
+    font-size: 13px;
+    font-weight: bold;
 }
 </style>
 <style>
@@ -136,7 +138,7 @@ li {
                 <div class="row">
                     <label for="text" class="error">
                         <?php echo $errors->first('title'); ?>
-                        </label>
+                    </label>
                     <div class="col-md-12 mb-3">
 
                         <label for="title" class="section-title-small">Tiêu đề bài viết</label>
@@ -154,7 +156,7 @@ li {
                     <div class="col-md-12 mb-3">
                         <label for="" class="section-title-small">Ngày đăng</label>
                         <div class="input-group">
-                            <div class="input-group-addon">
+                            <div class="input-group-addon ngayShow">
                                 <i class="fa fa-calendar" aria-hidden="true"></i>
                             </div>
                             <input class="form-control" id="email" name="datepost" type="text" readonly
@@ -169,7 +171,7 @@ li {
                 </div>
                 <div class="form-group">
                     <label for=""></label>
-                    <?php $cate = \App\Models\NewsCategory::all()?>
+                    <?php $cate = \App\Models\NewsCategory::all() ?>
                     <select class="input-n input--lg border select-n" id="category_dropdown" name="id_category"
                         onChange="test();">
                         <option value="">Lựa chọn danh mục</option>
@@ -177,15 +179,6 @@ li {
                         <option value="{{$item->id}}">{{$item->category_name}}</option>
                         @endforeach
                     </select>
-                </div>
-                <div class="form-group">
-                    <label for="" class="section-title-small">Từ khoá</label>
-
-                    <div class="form-group">
-                      {{-- <label for=""></label> --}}
-                      {{-- <input type="text" class="form-control" name="tag[]" id="tag" value="" multiple="multiple" hidden aria-describedby="helpId" placeholder=""> --}}
-
-                    </div>
                 </div>
                 <input type="hidden" class="form-control" name="category_news_slug" id="category_news_slug"
                     aria-describedby="helpId" placeholder="">
