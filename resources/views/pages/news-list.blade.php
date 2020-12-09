@@ -5,7 +5,11 @@
 <!-- Thêm styles cho trang này ở đây-->
 @stop
 @section('content')
+<style>
+
+</style>
 <main>
+
 	<section class="banner-top">
 		<div class="img"> </div>
 	</section>
@@ -108,15 +112,14 @@
 					</div>
 				</div>
 				@endforeach
+
 			</div>
-			<div class="paginationSP mx-auto">
-				<div class="paginationSP-box mx-auto"><span class="material-icons button-s">skip_previous</span>
-					<div class="paginationSP mx-auto">
+					<div class="paginationSP ">
 						{{ $news->links() }}
+
 						{{-- phân trang --}}
 					</div>
-				</div>
-			</div>
+
 		</div>
 	</section>
 	<div id="js-page-verify" hidden></div>

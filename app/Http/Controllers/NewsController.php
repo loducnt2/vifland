@@ -149,7 +149,7 @@ class NewsController extends Controller
     // get những tin trong db
     public function listnews(){
         $news_cate = NewsCategory::all();
-            $news = News::paginate(3);
+            $news = News::where('status','1')->paginate(3);
         // tin mới nhất theo create_at
         $latest = DB::table('news')->orderBy('created_at','desc')->get();
         return view('pages/news-list')->with(
