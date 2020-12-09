@@ -1,4 +1,4 @@
-<title>Nhập tin tức</title>
+@section('title','Cập nhập tin tức')
 @extends('admin.sidebar')
 {{-- @extends('admin.footer') --}}
 @section('content')
@@ -44,6 +44,10 @@ li {
 
 </style>
 {{-- @extends('admin.sidebar') --}}
+@section('breadcum')
+Quản lý tin tức > Cập nhật tin tức
+@endsection
+
 @section('title','Quản lý tin tức')
 
 

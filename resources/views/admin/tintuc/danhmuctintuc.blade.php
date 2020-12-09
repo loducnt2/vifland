@@ -1,4 +1,8 @@
 @extends('admin.sidebar')
+@section('title','Danh mục tin tức')
+@section('breadcum')
+Quản lý tin tức > Danh mục tin tức
+@endsection
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 

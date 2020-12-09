@@ -36,7 +36,7 @@
                     <p>Quản lý tài khoản cá nhân</p>
                 </div>
                 <ul>
-                    <li> <a href="{{route('profile')}}">Trang thay đổi thông tin cá nhân
+                    <li> <a href="{{route('profile')}}">Thay đổi thông tin cá nhân
                         </a></li>
                     <li> <a id="thaydoimk-link" href="{{route('change-password')}}">Thay đổi mật khẩu</a></li>
                     <!-- <li> <a href="">Số dư tài khoản </a></li> -->
@@ -342,20 +342,20 @@
                     </div>
                     <ul class="list-items">
                         <li class="list-item">
-                            <a href="/favorites">
+                            <a href="/favourites">
                                 <i class="ri-heart-fill icon"></i>
                                 <p class="text">Yêu thích</p>
                             </a>
                         </li>
                         <li class="list-item">
-                            <a href="/compares">
+                            <a href="/history">
                                 <i class="ri-time-line icon"></i>
                                 <p class="text">Lịch sử</p>
                             </a>
                         </li>
-                        <li class="list-item"> <a href=""><i class="fas fa-bell icon"></i>
+                        <!-- <li class="list-item"> <a href=""><i class="fas fa-bell icon"></i>
                                 <p class="text">Thông báo</p>
-                            </a></li>
+                            </a></li> -->
                     </ul>
                 </div>
                 <div class="wrap-3">

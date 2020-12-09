@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 @section('content_child')
+<?php $pass=""; ?>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="active nav-link active" id="thaydoimk-tab" data-toggle="tab" href="#thaydoimk"

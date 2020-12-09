@@ -21,10 +21,10 @@
 </div>
 
 <script>
-$('#navId a').click(e => {
-    e.preventDefault();
-    $(this).tab('show');
-});
+    $('#navId a').click(e => {
+        e.preventDefault();
+        $(this).tab('show');
+    });
 </script>
 {{-- @endif --}}
 <!-- @include('layouts.logo_animation') -->
@@ -55,8 +55,7 @@ $('#navId a').click(e => {
                             <div class="swiper-wrapper">
                                 @foreach($banners as $banner)
                                 <div class="swiper-slide">
-                                    <div class="img-banner"><img src="{{asset('assets/banner')}}/{{$banner->name}}"
-                                            alt=""></div>
+                                    <div class="img-banner"><img src="{{asset('assets/banner')}}/{{$banner->name}}" alt=""></div>
                                 </div>
                                 @endforeach
                                 <!-- <div class="swiper-slide">
@@ -76,16 +75,13 @@ $('#navId a').click(e => {
         <div class="max-width-container">
             <div class="box-menu-mobile">
                 <div class="box-mobile-wrap">
-                    <div class="box-m"><a href="{{$categories['0']->slug}}"><img
-                                src="{{asset('assets/icon/house@3x.png')}}" alt="">
+                    <div class="box-m"><a href="{{$categories['0']->slug}}"><img src="{{asset('assets/icon/house@3x.png')}}" alt="">
                             <p>{{$categories['0']->name}} </p>
                         </a></div>
-                    <div class="box-m"><a href="{{$categories['1']->slug}}"><img
-                                src="{{asset('assets/icon/rent@3x.png')}}" alt="">
+                    <div class="box-m"><a href="{{$categories['1']->slug}}"><img src="{{asset('assets/icon/rent@3x.png')}}" alt="">
                             <p>{{$categories['1']->name}}</p>
                         </a></div>
-                    <div class="box-m"><a href="{{$categories['2']->slug}}"><img
-                                src="{{asset('assets/icon/transfer-image-category.png')}}" alt="">
+                    <div class="box-m"><a href="{{$categories['2']->slug}}"><img src="{{asset('assets/icon/transfer-image-category.png')}}" alt="">
                             <p>{{$categories['2']->name}}</p>
                         </a></div>
                 </div>
@@ -99,18 +95,15 @@ $('#navId a').click(e => {
                             <div class="box-left">
                                 <div class="warp-form">
                                     <div class="checked">
-                                        <input id="idgiaohang1" slug="{{$categories['0']->slug}}" type="radio"
-                                            value="{{$categories['0']->id}}" name="cate" checked="">
+                                        <input id="idgiaohang1" slug="{{$categories['0']->slug}}" type="radio" value="{{$categories['0']->id}}" name="cate" checked="">
                                         <label for="idgiaohang1">{{$categories['0']->name}}</label>
                                     </div>
                                     <div class="checked">
-                                        <input id="idgiaohang2" slug="{{$categories['1']->slug}}" type="radio"
-                                            value="{{$categories['1']->id}}" name="cate">
+                                        <input id="idgiaohang2" slug="{{$categories['1']->slug}}" type="radio" value="{{$categories['1']->id}}" name="cate">
                                         <label for="idgiaohang2">{{$categories['1']->name}}</label>
                                     </div>
                                     <div class="checked">
-                                        <input id="idgiaohang3" slug="{{$categories['2']->slug}}" type="radio"
-                                            value="{{$categories['2']->id}}" name="cate">
+                                        <input id="idgiaohang3" slug="{{$categories['2']->slug}}" type="radio" value="{{$categories['2']->id}}" name="cate">
                                         <label for="idgiaohang3">{{$categories['2']->name}}</label>
                                         <!-- <input id="idgiaohang3" type="radio" value="{{$categories['2']->id}}" name="cate">
 									<label for="idgiaohang3">{{$categories['2']->name}}</label> -->
@@ -122,8 +115,7 @@ $('#navId a').click(e => {
                             <div class="box-right">
                                 <div class="row">
                                     <div class="col-9">
-                                        <input class="search" type="text" name="keyword"
-                                            placeholder="Bạn tìm gì hôm nay?">
+                                        <input class="search" type="text" name="keyword" placeholder="Bạn tìm gì hôm nay?">
                                     </div>
                                     <div class="col-3">
                                         <button class="timkiem-1"> <span>Tìm Kiếm</span></button>
@@ -244,8 +236,7 @@ $('#navId a').click(e => {
                 <div class="text-left"><a class="text-desktop" href="{{$categories['0']->slug}}">
                         <h3>{{$categories[0]->name}}</h3>
                     </a></div>
-                <div class="text-right"><a class="text-desktop" href="{{$categories['0']->slug}}"><i
-                            class="ri-equalizer-line"></i>
+                <div class="text-right"><a class="text-desktop" href="{{$categories['0']->slug}}"><i class="ri-equalizer-line"></i>
                         <p>Xem tất cả &nbsp;<span>({{$count_cate1}} Tin đăng)</span></p>
                     </a></div>
             </div>
@@ -259,9 +250,7 @@ $('#navId a').click(e => {
                     @foreach($product_by_cate1 as $product)
                     <div class="swiper-slide">
                         <div class="box-sp">
-                            <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                    href="{{route('article-detail',$product->slug)}}"><img
-                                        src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                            <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'" src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
                                     {{ $product->price == 0?$product->price="":round($product->price,2)}}
                                     {{$product->unit}}
@@ -281,8 +270,7 @@ $('#navId a').click(e => {
                                 </div>
                             </div>
                             <div class="box-sp-text">
-                                <a class="localstore" localstore="{{$product->product_id}}"
-                                    href="{{route('article-detail',$product->slug)}}">
+                                <a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
                                     @if($product->type == 1)
                                     <h5 class="title-text lcl lcl-2 vip1">{{$product->title}}</h5>
                                     @elseif($product->type == 2)
@@ -294,58 +282,35 @@ $('#navId a').click(e => {
                                     @endif
                                 </a>
                                 <div class="location"> <span class="material-icons">location_on</span>
-                                    <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
-                                        title="{{$product->district}}, {{$product->province}}">{{$product->district}},
+                                    <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}},
                                         {{$product->province}}</p>
                                 </div>
                                 <div class="mota-place">
                                     <div class="mota-place-1">
-                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
-                                                alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
 
-                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
-                                                alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
-                                                $product_cate as $prod_cate
-                                                ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
-                                        </div>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
 
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
                                                 m</span></div>
                                     </div>
                                     <div class="mota-place-1">
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                         </div>
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}
                                             </span></div>
-                                        <div class="mota-place-tt"><span
-                                                class="material-icons icons-15">group</span><span data-toggle="tooltip"
-                                                data-placement="bottom" title="" data-original-title="">---</span></div>
+                                        <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">
                                     <div class="mota-end-box">
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
+                                        <div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
                                         </div>
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
+                                        <div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                         </div>
                                         <div class="end-box-tt">
-                                            <a href="{{route('article-detail',$product->slug)}}"><span
-                                                    class="material-icons icons-15 chat">input</span><span
-                                                    class="chat">Xem chi tiết</span></a>
+                                            <a href="{{route('article-detail',$product->slug)}}"><span class="material-icons icons-15 chat">input</span><span class="chat">Xem chi tiết</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -369,8 +334,7 @@ $('#navId a').click(e => {
                 <div class="text-left"><a class="text-desktop" href="/cho-thue-nha-dat">
                         <h3>{{$categories[1]->name}}</h3>
                     </a></div>
-                <div class="text-right"><a class="text-desktop" href="/cho-thue-nha-dat"><i
-                            class="ri-equalizer-line"></i>
+                <div class="text-right"><a class="text-desktop" href="/cho-thue-nha-dat"><i class="ri-equalizer-line"></i>
                         <p>Xem tất cả &nbsp;<span>({{$count_cate2}} Tin đăng)</span></p>
                     </a></div>
             </div>
@@ -384,9 +348,7 @@ $('#navId a').click(e => {
                     @foreach($product_by_cate2 as $product)
                     <div class="swiper-slide">
                         <div class="box-sp">
-                            <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                    href="{{route('article-detail',$product->slug)}}"><img
-                                        src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                            <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'" src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
                                     {{ $product->price == 0?$product->price="":round($product->price,2)}}
                                     {{$product->unit}}
@@ -406,8 +368,7 @@ $('#navId a').click(e => {
                                 </div>
                             </div>
                             <div class="box-sp-text">
-                                <a class="localstore" localstore="{{$product->product_id}}"
-                                    href="{{route('article-detail',$product->slug)}}">
+                                <a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
                                     @if($product->type == 1)
                                     <h5 class="title-text lcl lcl-2 vip1">{{$product->title}}</h5>
                                     @elseif($product->type == 2)
@@ -419,56 +380,33 @@ $('#navId a').click(e => {
                                     @endif
                                 </a>
                                 <div class="location"> <span class="material-icons">location_on</span>
-                                    <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
-                                        title="{{$product->district}}, {{$product->province}}">{{$product->district}},
+                                    <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}},
                                         {{$product->province}}</p>
                                 </div>
                                 <div class="mota-place">
                                     <div class="mota-place-1">
-                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
-                                                alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
-                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
-                                                alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
-                                                $product_cate as $prod_cate
-                                                ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
-                                        </div>
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
                                                 m</span></div>
                                     </div>
                                     <div class="mota-place-1">
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                         </div>
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
                                         </div>
-                                        <div class="mota-place-tt"><span
-                                                class="material-icons icons-15">group</span><span data-toggle="tooltip"
-                                                data-placement="bottom" title="" data-original-title="">---</span></div>
+                                        <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">
                                     <div class="mota-end-box">
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15">event_note</span><span>22/09/2020</span>
+                                        <div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>22/09/2020</span>
                                         </div>
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
+                                        <div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                         </div>
                                         <div class="end-box-tt">
-                                            <a href="{{route('article-detail',$product->slug)}}"><span
-                                                    class="material-icons icons-15 chat">input</span><span
-                                                    class="chat">Xem
+                                            <a href="{{route('article-detail',$product->slug)}}"><span class="material-icons icons-15 chat">input</span><span class="chat">Xem
                                                     chi tiết</span></a>
                                         </div>
                                     </div>
@@ -493,8 +431,7 @@ $('#navId a').click(e => {
                 <div class="text-left"><a class="text-desktop" href="/sang-nhuong-nha-dat">
                         <h3>{{$categories[2]->name}}</h3>
                     </a></div>
-                <div class="text-right"><a class="text-desktop" href="/sang-nhuong-nha-dat"><i
-                            class="ri-equalizer-line"></i>
+                <div class="text-right"><a class="text-desktop" href="/sang-nhuong-nha-dat"><i class="ri-equalizer-line"></i>
                         <p>Xem tất cả &nbsp;<span>({{$count_cate3}} Tin đăng)</span></p>
                     </a></div>
             </div>
@@ -508,8 +445,7 @@ $('#navId a').click(e => {
                     @foreach($product_by_cate3 as $product)
                     <div class="swiper-slide">
                         <div class="box-sp">
-                            <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img
-                                        src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                            <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'" src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                 <div class="tag-thuongluong">
                                     {{ $product->price == 0?$product->price="":round($product->price,2)}}
                                     {{$product->unit}}
@@ -540,57 +476,37 @@ $('#navId a').click(e => {
                                     @endif
                                 </a>
                                 <div class="location"> <span class="material-icons">location_on</span>
-                                    <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
-                                        title="{{$product->district}}, {{$product->province}}">
+                                    <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">
                                         {{$product->district}},
                                         {{$product->province}}</p>
                                 </div>
                                 <div class="mota-place">
                                     <div class="mota-place-1">
-                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
-                                                alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
-                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
-                                                alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">
                                                 @foreach( $product_cate as $prod_cate )
                                                 {{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}
                                                 @endforeach</span></div>
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->facades==0?'':round($product->facades,2)}} m">{{$product->facades==0?"":round($product->facades,2)}}
                                                 m</span></div>
                                     </div>
                                     <div class="mota-place-1">
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                         </div>
-                                        <div class="mota-place-tt"><img
-                                                src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
-                                                data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
+                                        <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
                                         </div>
-                                        <div class="mota-place-tt"><span
-                                                class="material-icons icons-15">group</span><span data-toggle="tooltip"
-                                                data-placement="bottom" title="" data-original-title="">---</span></div>
+                                        <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">---</span></div>
                                     </div>
                                 </div>
                                 <div class="end-mota">
                                     <div class="mota-end-box">
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
+                                        <div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
                                         </div>
-                                        <div class="end-box-tt"><span
-                                                class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
+                                        <div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                         </div>
                                         <div class="end-box-tt">
-                                            <a href="{{route('article-detail',$product->slug)}}"><span
-                                                    class="material-icons icons-15 chat">input</span><span
-                                                    class="chat">Xem
+                                            <a href="{{route('article-detail',$product->slug)}}"><span class="material-icons icons-15 chat">input</span><span class="chat">Xem
                                                     chi tiết</span></a>
                                         </div>
 
@@ -615,18 +531,18 @@ $('#navId a').click(e => {
 @stop
 @section('footerScripts')
 <script type="text/javascript">
-$(document).ready(function() {
+    $(document).ready(function() {
 
-    $('input[name="cate"]').click(function() {
-        if ($(this).is(':checked')) {
-            let cate = $(this).attr('slug')
-            let route = '/search/' + cate
-            let action = $('#formsearch').attr('action', route)
-            console.log($('#formsearch').attr('action'))
+        $('input[name="cate"]').click(function() {
+            if ($(this).is(':checked')) {
+                let cate = $(this).attr('slug')
+                let route = '/search/' + cate
+                let action = $('#formsearch').attr('action', route)
+                console.log($('#formsearch').attr('action'))
 
-        }
-    });
+            }
+        });
 
-})
+    })
 </script>
 @endsection

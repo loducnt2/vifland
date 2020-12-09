@@ -21,9 +21,12 @@
 
     {{-- @extends('layouts.master') --}}
     @extends('admin.sidebar')
+    @section('breadcum')
+    Quản lý người dùng
+    @endsection
     @section('content')
-    
-    
+
+
 
     <div class="card-body">
         <div class="table-responsive">
@@ -53,7 +56,7 @@
                  {{-- <td>{{$user->birth_day}}</td> --}}
                  <td>{{$user->created_at}}</td>
                  <td>
-                   <p> @if ($user->status == '1')
+                 <p id="status-{{$user->id}}"> @if ($user->status == '1')
                         Hoạt động
                     @else
                         Bị ban
@@ -63,7 +66,10 @@
 
                   <td>
                   {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
-                  <input data-id="{{$user->id}}" data-style="ios" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $user->status ? 'checked' : '' }} class="toggle-class" onchange="refreshTable()">
+                  <input data-id="{{$user->id}}"  class="btn-user" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Mở" data-off="Khoá" {{ $user->status ? 'checked' : '' }}>
+
+                  {{-- <input type="checkbox" checked data-toggle="toggle" data-id="{{$user->id}}" class="test"> --}}
+                  <div id="console-event-{{$user->id}}"></div>
                 {{-- hồ sơ --}}
 
                 </td>
@@ -96,7 +102,7 @@
             <!-- <button type="submit" class="btn btn-primary">Lưu thông tin </button> -->
         </div>
     </div>
-    
+
     @endsection
 {{-- @extends(') --}}
 

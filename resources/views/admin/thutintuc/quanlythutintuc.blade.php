@@ -17,6 +17,9 @@
 
     @extends('admin.sidebar')
     @section('content')
+    @section('breadcum')
+    Quản lý thư tin tức
+    @endsection
     {!! Toastr::message() !!}
 
     <form action="/admin/index/quan-ly-thu-tin-tuc/export" method="get">
@@ -168,6 +171,3 @@
         </div>
     </div>
     @endsection
-</body>
-
-</html>

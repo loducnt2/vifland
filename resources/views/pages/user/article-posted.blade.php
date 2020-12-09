@@ -4,7 +4,7 @@
 @section('content_child')
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-        aria-controls="nav-profile" aria-selected="false">Tin đang đăng</a>
+        aria-controls="nav-profile" aria-selected="false">Tin hiện tại</a>
 </div>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -27,6 +27,7 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img
+                                        onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
                                                 src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         @if ($product->type == 4)

@@ -461,7 +461,7 @@ class ProductController extends Controller
         );
         $slug = Product::where('id',$id)->value('slug');
         //return $product;
-        return redirect(route('article-detail',$slug ))->with($notification);
+        return redirect()->back()->with($notification);
     }
 
     /**
@@ -503,6 +503,8 @@ class ProductController extends Controller
         ->leftJoin('product','favorited.product_extend_id','product.id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
         ->where('product.soft_delete',0)
         ->select(
             'product.*',
@@ -512,7 +514,9 @@ class ProductController extends Controller
             'product.title as title',
             'product_extend.price as price',
             'product_extend.facades as facades',
-            'product_extend.depth as depth'
+            'product_extend.depth as depth',
+            'province.name as province',
+            'district.name as district'
         )
         ->get();
 
@@ -526,6 +530,8 @@ class ProductController extends Controller
         ->leftJoin('product','favorited.product_extend_id','product.id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
         ->where('product.datetime_end','>',date('Y-m-d H:i:s',strtotime('now')))
         ->select(
             'product.*',
@@ -534,7 +540,9 @@ class ProductController extends Controller
             'product.title as title',
             'product_extend.price as price',
             'product_extend.facades as facades',
-            'product_extend.depth as depth'
+            'product_extend.depth as depth',
+            'province.name as province',
+            'district.name as district'
         )
         ->get();
         return view('pages/favourites',compact('products'));

@@ -241,11 +241,11 @@
                                     <div class="swiper-slide">
                                         <div class="img-box">
                                             <a href="{{asset('assets/product/detail/')}}/{{$img->name}}" data-fancybox>
-                                                <img src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
+                                                <img  onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' " src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
                                             </a>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    @endforeach 
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>

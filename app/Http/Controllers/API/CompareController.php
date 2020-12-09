@@ -16,14 +16,16 @@ class CompareController extends Controller
             $compare = explode( ',',$arr);
             foreach( $compare as $comp ){
                 $product = Product::where('product.id',intval($comp))
-                ->join('product_extend','product.id','product_extend.product_id')
-                ->join('product_unit','product_extend.unit_id','product_unit.id')
-                ->join('province','product.province_id','province.id')
-                ->join('district','product.district_id','district.id')
+                ->leftJoin('product_extend','product.id','product_extend.product_id')
+                ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+                ->leftJoin('province','product.province_id','province.id')
+                ->leftJoin('district','product.district_id','district.id')
+                ->leftJoin('product_cate','product_extend.product_cate','product_cate.id')
                 ->select([
                     'product_unit.name as unit',
                     'product.*',
                     'product_extend.*',
+                    'product_cate.name as product_cate',
                     'province.name as province',
                     'district.name as district'
                 ])
