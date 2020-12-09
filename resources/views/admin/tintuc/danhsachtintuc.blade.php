@@ -1,10 +1,26 @@
 
 
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+</head>
+<body>
+<style>
+    .disabled{
+        color:gray !important;
+    }
+</style>
 
     @extends('admin.sidebar')
     @section('title','Danh sách tin tức')
     @section('breadcum')
+
+
     Quản lý tin tức > Danh sách tin tức
     @endsection
     @section('content')
@@ -21,8 +37,8 @@
     <div class="table-list-news_category">
         <input class="form-control" id="myInput" type="text" placeholder="Tìm kiếm nhanh..">
         <br>
-        <table class="table table-bordered table-striped">
-            <thead>
+        <table class="table table-bordered table-striped thead-dark">
+            <thead class="thead-dark" >
                 <tr>
                     <th>ID</th>
                     <th>Tên tiêu đề</th>
@@ -33,24 +49,31 @@
             </thead>
             <tbody id="myTable">
                 @foreach($news as $item)
-                <tr>
-                    <td>{{$item->id}}</td>
+                @if ($item->status == '1')
+                <?php $class="enabled";?>
+                @else
+                <?php $class="disabled";?>
+                @endif
+            <tr id="table-{{$item->id}}" class="{{$class}}">
+
+                <td>{{$item->id}}</td>
                     <td>{{$item->title}}</td>
 
                 <td><a href="/tin-tuc/{{$item->slug}}">{{$item->slug}}</a></td>
                     <td>
-                   <p> @if ($item->status == '1')
-                        Hiện
-                    @else
-                        Ẩn
-                    @endif
+                    <p id="status-{{$item->id}}">
+                        @if ($item->status == '1')
+                            Hiện
+
+                        @else Ẩn
+                        @endif
                     </p>
                   </td>
                     <td>
                     <a href="" data-id="{{ $item->id }}" data-title="{{$item->title}} "data-content="{{$item->content}}" class="btn btn-danger btn-news-edit">Sửa</a>
                         <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn_news-delete">Xoá</a>
                         </a>
-                        <input data-id="{{$item->id}}" data-style="ios" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="On" data-off="Off" {{ $item->status ? 'checked' : '' }} class="toggle-class-news" onchange="refreshTableNews()">
+                        <input data-id="{{$item->id}}" data-style="ios" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-style="ios" data-on="Hiện" data-off="Ẩn" {{ $item->status ? 'checked' : '' }} class="btn-news">
 
                     </td>
                 </tr>

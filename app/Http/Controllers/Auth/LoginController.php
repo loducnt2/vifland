@@ -65,50 +65,45 @@ class LoginController extends Controller
     $username = $request->input('username');
     // tìm username và password trong database
     $query = DB::table('user')->where('username',$username)->first();
+
     if(!$query){
         // nếu user không có mặt trong database thì sẽ thông báo "Không thấy người dùng"
         Toastr::error('Tài khoản không tồn tại,vui lòng kiểm tra lại','Thông báo');
         return redirect()->back();
+    }
+
+    elseif(($query->status == 0 )){
+        Toastr::warning('Tài khoản đã bị khoá,vui lòng kiểm tra lại','Thông báo');
+            return redirect()->back()->withErrors(['Tài khoản đã bị khoá']);;
     }
     else{
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'status' => '1'])){
             // nếu đúng mật khẩu
             return $this->sendLoginResponse($request);
         }
+
+        elseif (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'status' => '1'])){
+            Toastr::error('Tài khoản không tồn tại,vui lòng kiểm tra lại','Thông báo');
+            return redirect()->back();
+        }
+
         else{
 
             Toastr::error('Sai mật khẩu,vui lòng kiểm tra lại','Thông báo');
             return redirect()->back();
         }
     }
-    // {
-    //     dd('Có tồn tại trong Database');
-    //     // Updated this line
-    //     // dd(true);
-    //
-    //     // OR this one
-    //     // return $this->authenticated($request, auth()->user());
-    // }
-    // else
-    // {
-    //     dd('Không tồn tại trong Database');
-    //
-    //
 
-    // }
 }
 
 
     public function authenticated(Request $request, $user)
     {
         $user = Auth::user();
-        // Kiểm tra dữ liệu nhập vào
-        // tài khoản bị ban
+
         $username = $request->input('username');
         $password = $request->input('password');
-        if ($user->status == 0 ) {
-            return redirect ('/login')->with(Auth::logout())->with('msg','Tài khoản đã bị ban ! ');
-        }
+
         $user->update([
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
         ]);

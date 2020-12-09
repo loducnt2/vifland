@@ -22,6 +22,7 @@ class NewsController extends Controller
      */
     public function index()
     {
+
         $news = News::orderBy('id','asc')->get();
         // $newsHidden = News::select('select * from news where id = 1')->get();
         return view('/admin/tintuc/danhsachtintuc',compact('news'));
@@ -148,9 +149,9 @@ class NewsController extends Controller
     // get những tin trong db
     public function listnews(){
         $news_cate = NewsCategory::all();
-            $news = News::paginate(3);
+            $news = News::where('status','1')->paginate(3);
         // tin mới nhất theo create_at
-        $latest = DB::table('news')->orderBy('created_at','desc')->get();
+        $latest = DB::table('news')->where('status','1')->orderBy('created_at','desc')->get();
         return view('pages/news-list')->with(
             [
                 'news_cate'=>$news_cate,
@@ -182,10 +183,10 @@ class NewsController extends Controller
                 'content'=>$news->content,
                 'slug'=>$news->slug,
 
-                // 'created_at'=>$news_cate->created_at
+
             ]
         );
-        // return redirect('/admin/danh-sach-duyet-tin');
+        // return redirect('/');
     }
     public function deleteall(){
         // xoá hết tin tức
@@ -223,13 +224,13 @@ class NewsController extends Controller
                     'latest'=>$latest,
                 ]);
     }
-
     public function ChangeNewsStatus(Request $request){
         $user = News::find($request->id);
         $user->status = $request->status;
         $user->save();
 
     }
+
 
     // Tin get được từ các danh mục
 }

@@ -17,7 +17,11 @@
         /* font-weight: bold; */
         font-size:13px;
     }
-
+    .error{
+        text-align: center;
+        margin-top:5px;
+        color:tomato;
+    }
 </style>
 <div class="ov-h" id="wrapper">
     <main>
@@ -35,14 +39,18 @@
                 {{-- hiện session thông tin nếu --}}
                 @csrf
                 <div class="login-wrap">
+
+
                     <div class="logo"><a href="{{route('home')}}"><img src="./assets/logo/logo-footer-300.png"
                                 alt=""></a></div>
 
 
                     <div class="box-login">
+
                         <div class="title">Đăng nhập</div>
-
-
+                        @if($errors->any())
+                        <h6 class="error">{{$errors->first()}}</h6>
+                        @endif
                         <div class="form-group-input">
                             <label for="text" class="error"></label>
                             <div class="box-left-se"><span class="material-icons">person</span></div>

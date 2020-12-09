@@ -26,7 +26,7 @@ class UserController extends Controller
         //get list all user
         // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
         $users =User::where('user_type',0)->paginate(7);
-        
+
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
 
@@ -40,8 +40,10 @@ class UserController extends Controller
         return redirect()->back();
     }
     public function destroyAdmin($id){
+        // huỷ quyền
         User::find($id)->update(['user_type'=>0]);
-        return redirect()->back();
+        Toastr::success('Huỷ quyền thành công','Thông báo');
+         return redirect('/login');
     }
 
     // profile_user
@@ -68,6 +70,7 @@ class UserController extends Controller
             return App::abort(404);
             }
     }
+    // hiện thông tin USER ĐANG ĐĂNG NHẬP
     public function profileUser(){
         $id = auth()->user()->id;
         $profile = DB::table('user')->find($id);
