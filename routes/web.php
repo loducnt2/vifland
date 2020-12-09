@@ -101,6 +101,121 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');
     Route::post('/article/add-date','ProductController@addDate')->name('add-date-article');
 
+    Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
+    Route::post('/admin/danh-sach-danh-muc/update/{id}','CategoryController@update')->name('update-cate');
+    Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');
+    Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');
+    Route::get('/admin/danh-sach-danh-muc','CategoryController@index');
+
+    Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
+    Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
+    Route::get('/admin/danh-sach-tin-tuc','NewsController@index')->name('newscate-index');
+    // province
+    Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')->name('update-province');
+    Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');
+    Route::get('/admin/danh-sach-province','ProvinceController@index');
+
+    //duyet tin
+
+    Route::get('/admin/danh-sach-duyet-tin','HistoryPostController@index');
+    //Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
+    Route::get('/admin/danh-sach-duyet-tin/show/{id}','HistoryPostController@show')->name('show-tintuc');
+    Route::get('/admin/danh-sach-duyet-tin/cancel/{id}','HistoryPostController@cancelPost')->name('cancel-post');
+    Route::get('/admin/danh-sach-duyet-tin/delete/{id}','HistoryPostController@destroy')->name('del-post');
+    Route::get('/admin/post-history/update/dsds/{id}','HistoryPostController@updatePost')->name('update-post');
+
+
+    //Banner
+    Route::post('/admin/danh-sach-banner/create','ImgController@store')->name('create-banner');
+    Route::post('/admin/danh-sach-banner/update/{id}','ImgController@update')->name('update-banner');
+    Route::get('/admin/danh-sach-banner/edit/{id}','ImgController@edit')->name('edit-banner');
+    Route::get('/admin/danh-sach-banner/delete/{id}','ImgController@destroy')->name('del-banner');
+    Route::get('/admin/danh-sach-banner','ImgController@index');
+    //thông báo chung
+    Route::post('/danh-sach-thong-bao/update/{id}','NotificationController@update')->name('update-noti');
+    Route::get('/admin/danh-sach-thong-bao/edit/{id}','NotificationController@edit')->name('edit-noti');
+    Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
+    Route::get('/admin/danh-sach-thong-bao/delete/{id}','NotificationController@destroy')->name('del-noti');
+    Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
+
+    //Quản lí giá vip
+     Route::post('admin/danh-sach-gia-vip/update/{id}','PriceTypePostController@update')->name('update-price');
+     Route::get('/admin/danh-sach-gia-vip/edit/{id}','PriceTypePostController@edit')->name('edit-price');
+    // Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
+    Route::get('/admin/danh-sach-gia-vip/delete/{id}','PriceTypePostController@destroy')->name('del-price');
+    Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
+    // Quản lý tin đăng
+
+
+    // ================= hồ sơ ==================
+
+    // update thông tin hồ sơ cá nhân
+    // Route admin - user
+    Route::get('admin/index/profiles','UserController@index');
+    Route::get('admin/index/profile/{id}','UserController@getprofileDetail');
+    // route admin- sản phẩm
+    Route::get('/admin/list-product',function(){
+        return view('admin/sanpham/danhsachsanpham');
+    });
+    // Route quản lí tin đã đăng của user
+    // Route::get('/my-article/{id}','UserControllers@getPostbyID');
+    // User: thay đổi trạng thái user
+    Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
+    // Tin tức theo danh mục
+    Route::get('/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
+    Route::get('admin/index/profile/delete/{id}','UserController@destroy');
+    // Route quản lí tin đã đăng của user
+    // Route::get('/my-article/{id}','UserControllers@getPostbyID');
+    // User: thay đổi trạng thái user
+    Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
+
+    Route::POST('/admin/index/news/insert','NewsController@store'
+    );
+    // news list
+
+    // route admin- danh muc
+    // Route::get('/admin/danh-sach-danh-muc',function(){
+    //     return view('/admin/danhmuc/danhsachdanhmuc');
+    // });
+    // Tin tức theo danh mục
+    Route::get('admin/index/profile/delete/{id}','UserController@destroy');
+    // Route quản lí tin đã đăng của user
+    // Route::get('/my-article/{id}','UserControllers@getPostbyID');
+    // User: thay đổi trạng thái user
+    Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
+    Route::get('/admin/cap-nhat-tin-tuc','NewsController@getcate');
+    Route::POST('/admin/index/news/insert','NewsController@store');
+
+    Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news_category.index');
+    Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
+
+    Route::delete('/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
+    Route::put('/admin/index/danh-muc-tin-tuc/sua-danh-muc/{id}','NewsCategoryController@update')->name('news_category.update');
+
+    Route::get('/admin/index/danh-muc-tin-tuc/xoa-het','NewsCategoryController@deleteall')->name('newsletter_deleteall');
+    Route::get('/admin/index/tin-tuc/xoa-het','NewsController@deleteall')->name('news_deleteall');
+    Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->name('newsletter.admin.index');
+    #export
+    Route::get('/admin/index/quan-ly-thu-tin-tuc/export','NewsLetterController@export')->name('table.export');
+    // import
+    Route::post('/admin/index/quan-ly-thu-tin-tuc/import', 'NewsLetterController@import')->name('table.import');
+
+    Route::DELETE('/admin/index/danh-muc-tin-tuc/xoa-tin-tuc/{id}','NewsController@destroy')->name('news.delet');
+    Route::put('/admin/index/danh-muc-tin-tuc/sua-tin-tuc/{id}','NewsController@update')->name('news.update');
+
+    Route::post('/admin/index/danh-muc-tin-tuc/checkunique={input}','NewsCategoryController@checkunique')->name('news_category.unique');
+
+
+    Route::get('/admin/quan-li-tin-tuc/changestatus','NewsController@ChangeNewsStatus');
+
+    Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
+    Route::get('/get-content-province/{id}','API\GetZone@contentProvince');
+    Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
+    Route::post('/add-favorited','API\FavoriteController@addFavorite')->name('add-favorite');
+    Route::get('/favorites/all','API\FavoriteController@allFavorite')->name('all-favorite');
+
+
+
 });
 
 // Đăng kí
@@ -124,11 +239,7 @@ Route::get('/san-pham',function(){
 
 
 //API
-Route::get('/get-district/{id}','API\GetZone@getDistrictByProvince');
-Route::get('/get-content-province/{id}','API\GetZone@contentProvince');
-Route::get('/get-ward/{id}','API\GetZone@getWardByDistrict');
-Route::post('/add-favorited','API\FavoriteController@addFavorite')->name('add-favorite');
-Route::get('/favorites/all','API\FavoriteController@allFavorite')->name('all-favorite');
+
 //Route::post('/add-compare','API\CompareController@addCompare')->name('add-compare');
 
 
@@ -143,138 +254,30 @@ Route::get('/dsds/pusher', function(Illuminate\Http\Request $request) {
     event(new App\Events\HelloPusherEvent($request));
     return redirect('/dsds/getPusher');
 });
-Route::get('/test',function(){return view('test/home');});
 
-Route::post('/test/product-unit/create','ProductUnitController@store')->name('create-product-unit');
-Route::post('/test/product-unit/update/{id}','ProductUnitController@update')->name('update-product-unit');
-Route::get('/test/product-unit/delete/{id}','ProductUnitController@destroy')->name('delete-product-unit');
-Route::get('/test/product-unit/edit/{id}','ProductUnitController@edit')->name('edit-product-unit');
-Route::get('/test/product-unit/home','ProductUnitController@index');
-
-
-
-Route::post('/test/product-cate/create','ProductCateController@store')->name('create-product-cate');
-Route::post('/test/product-cate/update/{id}','ProductCateController@update')->name('update-product-cate');
-Route::get('/test/product-cate/delete/{id}','ProductCateController@destroy')->name('delete-product-cate');
-Route::get('/test/product-cate/edit/{id}','ProductCateController@edit')->name('edit-product-cate');
-Route::get('/test/product-cate/home','ProductCateController@index');
 //CRUD danh mục
-Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
-Route::post('/admin/danh-sach-danh-muc/update/{id}','CategoryController@update')->name('update-cate');
-Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');
-Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');
-Route::get('/admin/danh-sach-danh-muc','CategoryController@index');
-/////////////////////////////////////////
-// Route::post('/admin/danh-sach-danh-muc/create','CategoryController@store')->name('create-cate');
-// Route::post('/admin/danh-sach-duyet-tin/update/{id}','NewsController@update')->name('update-new');
-Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
-Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
-Route::get('/admin/danh-sach-tin-tuc','NewsController@index')->name('newscate-index');
-// province
-Route::post('/admin/danh-sach-province/update/{id}','ProvinceController@update')->name('update-province');
-Route::get('/admin/danh-sach-province/edit/{id}','ProvinceController@edit')->name('edit-province');
-Route::get('/admin/danh-sach-province','ProvinceController@index');
 
 
 
-//duyet tin
 
-Route::get('/admin/danh-sach-duyet-tin','HistoryPostController@index');
-//Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
-Route::get('/admin/danh-sach-duyet-tin/show/{id}','HistoryPostController@show')->name('show-tintuc');
-Route::get('/admin/danh-sach-duyet-tin/cancel/{id}','HistoryPostController@cancelPost')->name('cancel-post');
-Route::get('/admin/danh-sach-duyet-tin/delete/{id}','HistoryPostController@destroy')->name('del-post');
-Route::get('/admin/post-history/update/dsds/{id}','HistoryPostController@updatePost')->name('update-post');
-
-//Banner
-Route::post('/admin/danh-sach-banner/create','ImgController@store')->name('create-banner');
-Route::post('/admin/danh-sach-banner/update/{id}','ImgController@update')->name('update-banner');
-Route::get('/admin/danh-sach-banner/edit/{id}','ImgController@edit')->name('edit-banner');
-Route::get('/admin/danh-sach-banner/delete/{id}','ImgController@destroy')->name('del-banner');
-Route::get('/admin/danh-sach-banner','ImgController@index');
-//thông báo chung
-Route::post('/danh-sach-thong-bao/update/{id}','NotificationController@update')->name('update-noti');
-Route::get('/admin/danh-sach-thong-bao/edit/{id}','NotificationController@edit')->name('edit-noti');
-Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
-Route::get('/admin/danh-sach-thong-bao/delete/{id}','NotificationController@destroy')->name('del-noti');
-Route::get('/admin/danh-sach-thong-bao','NotificationController@index');
-
-//Quản lí giá vip
- Route::post('admin/danh-sach-gia-vip/update/{id}','PriceTypePostController@update')->name('update-price');
- Route::get('/admin/danh-sach-gia-vip/edit/{id}','PriceTypePostController@edit')->name('edit-price');
-// Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
-Route::get('/admin/danh-sach-gia-vip/delete/{id}','PriceTypePostController@destroy')->name('del-price');
-Route::get('/admin/danh-sach-gia-vip','PriceTypePostController@index');
-// Quản lý tin đăng
-
-
-
-// ================= hồ sơ ==================
-
-// update thông tin hồ sơ cá nhân
-// Route admin - user
-Route::get('admin/index/profiles','UserController@index');
-Route::get('admin/index/profile/{id}','UserController@getprofileDetail');
-// route admin- sản phẩm
-Route::get('/admin/list-product',function(){
-    return view('admin/sanpham/danhsachsanpham');
-});
-// Route quản lí tin đã đăng của user
-// Route::get('/my-article/{id}','UserControllers@getPostbyID');
-// User: thay đổi trạng thái user
-Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
-// Tin tức theo danh mục
-Route::get('/tin-tuc/danh-muc/{slug}','NewsController@getNewsbyCate');
-Route::get('admin/index/profile/delete/{id}','UserController@destroy');
-// Route quản lí tin đã đăng của user
-// Route::get('/my-article/{id}','UserControllers@getPostbyID');
-// User: thay đổi trạng thái user
-Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/news/{slug}','NewsController@show');
 // quản lý tin tứcf
 
-Route::POST('/admin/index/news/insert','NewsController@store'
-);
-// news list
-
-// route admin- danh muc
-// Route::get('/admin/danh-sach-danh-muc',function(){
-//     return view('/admin/danhmuc/danhsachdanhmuc');
-// });
-// Tin tức theo danh mục
-Route::get('admin/index/profile/delete/{id}','UserController@destroy');
-// Route quản lí tin đã đăng của user
-// Route::get('/my-article/{id}','UserControllers@getPostbyID');
-// User: thay đổi trạng thái user
-Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
-
 Route::get('/tin-tuc/{slug}','NewsController@show');
 // đăng tin tức
-Route::get('/admin/cap-nhat-tin-tuc','NewsController@getcate');
-Route::POST('/admin/index/news/insert','NewsController@store');
+
 // get tất cả các tin đang có
 Route::get('tin-tuc','NewsController@listnews');
 
 // quản lí tin tức
 
 // ===================danh mục tin tức======================
-Route::get('/admin/danh-muc-tin-tuc','NewsCategoryController@index')->name('news_category.index');
-Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsCategoryController@store')->name('news_category.add');
 
-Route::delete('/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
-Route::put('/admin/index/danh-muc-tin-tuc/sua-danh-muc/{id}','NewsCategoryController@update')->name('news_category.update');
-
-Route::get('/admin/index/danh-muc-tin-tuc/xoa-het','NewsCategoryController@deleteall')->name('newsletter_deleteall');
-Route::get('/admin/index/tin-tuc/xoa-het','NewsController@deleteall')->name('news_deleteall');
 
 // Newsletter
 Route::post('/sub','NewsLetterController@subscribe')->name('newsletter.subscribe');
-Route::get('/admin/index/quan-ly-thu-tin-tuc','NewsLetterController@index')->name('newsletter.admin.index');
-#export
-Route::get('/admin/index/quan-ly-thu-tin-tuc/export','NewsLetterController@export')->name('table.export');
-// import
-Route::post('/admin/index/quan-ly-thu-tin-tuc/import', 'NewsLetterController@import')->name('table.import');
+
 
 
 #Insert từ khoá
@@ -286,11 +289,5 @@ Route::post('/send-email','NewsLetterController@send_email');
 // Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsController@store')->name('news_category.add');
 
 // Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
-Route::DELETE('/admin/index/danh-muc-tin-tuc/xoa-tin-tuc/{id}','NewsController@destroy')->name('news.delet');
-Route::put('/admin/index/danh-muc-tin-tuc/sua-tin-tuc/{id}','NewsController@update')->name('news.update');
 
-Route::post('/admin/index/danh-muc-tin-tuc/checkunique={input}','NewsCategoryController@checkunique')->name('news_category.unique');
-
-
-Route::get('/admin/quan-li-tin-tuc/changestatus','NewsController@ChangeNewsStatus');
 Route::post('/guithu','NewsLetterController@guithu');

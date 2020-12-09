@@ -54,7 +54,7 @@
 									<div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
 											<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
 										<div class="location"> <span class="material-icons">location_on</span>
-											<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">{{$product->district}}, {{$product->province}}</p>
+											<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
 										</div>
 										<div class="end-mota"> 
 											<div class="mota-end-box">
@@ -104,7 +104,7 @@
 							<div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
 									<h5 class="title-text lcl lcl-2">{{$product->title}}</h5></a>
 								<div class="location"> <span class="material-icons">location_on</span>
-									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="Quận cầu giấy, Thành Phố Hà Nội">{{$product->district}}, {{$product->province}}</p>
+									<p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">{{$product->district}}, {{$product->province}}</p>
 								</div>
 								<div class="end-mota"> 
 									<div class="mota-end-box">
