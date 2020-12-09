@@ -151,7 +151,7 @@ class NewsController extends Controller
         $news_cate = NewsCategory::all();
             $news = News::where('status','1')->paginate(3);
         // tin mới nhất theo create_at
-        $latest = DB::table('news')->orderBy('created_at','desc')->get();
+        $latest = DB::table('news')->where('status','1')->orderBy('created_at','desc')->get();
         return view('pages/news-list')->with(
             [
                 'news_cate'=>$news_cate,
