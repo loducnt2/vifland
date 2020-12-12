@@ -27,7 +27,7 @@ Route::get('home','HomeController@index');								// Trang chủ
 Route::get('/compares','API\CompareController@index')->name('compare');		// So sánh
 Route::get('/contact',function(){return view('pages/contact');});		// liên hệ
 Route::get('/about',function(){return view('pages/about');}); //giới thiệu
-
+Route::get('/article/{slug}','ProductController@show')->name('article-detail');               // Chi tiết tin đăng
 //Danh mục
 
 Route::get('/mua-ban-nha-dat','SearchController@getByCate')->name('cate1'); // Danh mục 1
@@ -81,7 +81,7 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::post('/article/new/store','ProductController@store')->name('article-store');           // User Đăng tin
     Route::post('/article/update/{id}','ProductController@update')->name('update-article');       // User chỉnh sửa tin đã đăng
-    Route::get('/article/{slug}','ProductController@show')->name('article-detail');               // Chi tiết tin đăng
+
     Route::get('/article/delete/{id}','ProductController@destroy')->name('delete-article');       // Xóa tin đăng
     Route::get('/article/edit/{id}','ProductController@edit')->name('edit-article');              // Form chỉnh sửa
     Route::get('/article/add-date/{id}','ProductController@addDateForm')->name('add-date-form');  // Form Gia hạn tin
