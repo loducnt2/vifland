@@ -86,7 +86,7 @@
 .bcdt {
     height: 501px;
 }
-.bcdt-chart::before {
+/* .bcdt-chart::before {
     content: "";
     height: 90%;
     background: linear-gradient(
@@ -100,7 +100,7 @@
     top: 0;
     margin-left: 60px;
     position: absolute;
-}
+} */
 .bcdt-chart::after {
     content: "";
     height: 90%;
@@ -110,7 +110,7 @@
         hsla(0, 0%, 100%, 0.87),
         #fff
     );
-    width: 50px;
+    width: 15px;
     right: 0;
     top: 0;
     position: absolute;

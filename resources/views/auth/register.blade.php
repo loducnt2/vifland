@@ -8,44 +8,45 @@
 @section('title','Đăng ký')
 @section('content')
 <style>
-    label{
-        width: 200px;
-        /* background-color:red; */
-        /* float:left; */
-        /* margin-top:80px; */
-        position: absolute;
-        left:40px;
-        margin-top:80px;
-        /* top:100px; */
-        width:600px;
-        color:tomato;
-        /* font-weight: bold; */
-        font-size:13px;
-        font-weight: bold;
-    }
+label {
+    width: 200px;
+    /* background-color:red; */
+    /* float:left; */
+    /* margin-top:80px; */
+    position: absolute;
+    left: 40px;
+    margin-top: 80px;
+    /* top:100px; */
+    width: 600px;
+    color: tomato;
+    /* font-weight: bold; */
+    font-size: 13px;
+    font-weight: bold;
+}
 </style>
 <main>
 
     <section class="dangky login">
 
         <form action="{{ route('createUser') }}" method="POST" id="dangki">
-            <?php //Hiển thị thông báo lỗi?>
+            <?php //Hiển thị thông báo lỗi
+            ?>
 
             @if ( Session::has('error') )
 
-                <div class="alert alert-danger alert-dismissible" role="alert">
+            <div class="alert alert-danger alert-dismissible" role="alert">
 
-                    <strong>{{ Session::get('error') }}</strong>
+                <strong>{{ Session::get('error') }}</strong>
 
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 
-                        <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
 
-                        <span class="sr-only">Close</span>
+                    <span class="sr-only">Close</span>
 
-                    </button>
+                </button>
 
-                </div>
+            </div>
 
             @endif
             @csrf
@@ -68,7 +69,8 @@
                         <div class="box-left-se"><span class="material-icons">person</span></div>
                         <div class="box-mid-se">
 
-                            <input type="text" placeholder="Tên Đăng Nhập" name="username" value="{{ old('username') }}">
+                            <input type="text" placeholder="Tên Đăng Nhập" name="username"
+                                value="{{ old('username') }}">
                         </div>
 
                     </div>
@@ -78,7 +80,8 @@
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">lock</span></div>
                         <div class="box-mid-se">
-                            <input type="password" placeholder="Mật khẩu" name="password" id="password" value="{{ old('password') }}">
+                            <input type="password" placeholder="Mật khẩu" name="password" id="password"
+                                value="{{ old('password') }}">
                             {{-- <label for="text" class="error"></label> --}}
                         </div>
                         <div class="box-right-se"><span class="material-icons mk-icons"
@@ -90,7 +93,8 @@
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>
                         <div class="box-mid-se">
 
-                            <input type="email" placeholder="Email hoặc Số điện thoại" name="email" value="{{ old('email') }}"  aria-required="true" aria-invalid="false">
+                            <input type="email" placeholder="Hãy nhập email" name="email" value="{{ old('email') }}"
+                                aria-required="true" aria-invalid="false">
                             <label for="text" class="error">
                                 <?php echo $errors->first('email'); ?>
                             </label>
@@ -100,22 +104,15 @@
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id" value="{{ old('card_id') }}">
+                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id"
+                                value="{{ old('card_id') }}">
                             <label for="text" class="error"></label>
                         </div>
                     </div>
-                    <p class="dieukhoan">Bằng việc đăng ký tài khoản bạn đồng ý với <a href="">điều khoản dịch vụ</a>
                     </p>
                     <div class="button-submit">
                         <input type="submit" value="Đăng Ký">
                     </div>
-                    <p class="logindef">Hoặc đăng ký bằng</p>
-                    <div class="button-loginSocial"><a href=""><img src="./assets/icon/gmail.svg" alt="">
-                            <p>Đăng ký bằng Gmail</p>
-                        </a></div>
-                    <div class="button-loginSocial"><a href=""><img src="./assets/icon/facebook.svg" alt="">
-                            <p>Đăng ký bằng Facebook</p>
-                        </a></div>
                 </div>
             </div>
         </form>
@@ -137,25 +134,24 @@ function showpass() {
 <script>
 
 </script>
- {{-- form đăng ki --}}
+{{-- form đăng ki --}}
 <script>
-
 $(document).ready(function() {
     // validate text validate username
-    $.validator.addMethod("validUsername", function (value, element) {
-    return /^[a-zA-Z0-9_.-]+$/.test(value);
-}, "Please enter a valid username");
+    $.validator.addMethod("validUsername", function(value, element) {
+        return /^[a-zA-Z0-9_.-]+$/.test(value);
+    }, "Please enter a valid username");
 
     // thêm validate end with email
 
     jQuery.validator.addMethod("end_with", function(value, element) {
 
-if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
-    return true;
-} else {
-    return false;
-}
-}, "Email không đúng định dạng!.");
+        if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }, "Email không đúng định dạng!.");
 
     $('#dangki').validate({
 
@@ -165,7 +161,7 @@ if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value
                 required: true,
                 maxlength: 60,
                 minlength: 5,
-                validUsername:true,
+                validUsername: true,
             },
 
             'email': {
@@ -190,12 +186,12 @@ if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value
                 required: "Tên đăng nhập không được để trống",
                 minlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự",
                 maxlength: "Vui lòng nhập tên tài khoản giữa 5 đến 60 kí tự",
-                validUsername:"Vui lòng nhập tên người dùng đúng định dạng"
+                validUsername: "Vui lòng nhập tên người dùng đúng định dạng"
             },
             'email': {
                 required: "Emal không được để trống",
                 email: "Nhập đúng định dạng Email",
-                end_with:"Email phải có sau nút @"
+                end_with: "Email phải có sau nút @"
 
             },
 

@@ -20,13 +20,14 @@
         </div>
     </div>
     <section class="dangbaiviet">
-        <form class="formDangBaiViet" action="{{route('add-date-article')}}" method="post" enctype="multipart/form-data">
+        <form class="formDangBaiViet" action="{{route('add-date-article')}}" method="post"
+            enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="product_id" value="{{$product_id}}">
             <div class="max-width-container">
                 <div class="row">
                     <div class="col-lg-9 col-md-12 mx-auto">
-                    <h3 class="text-center">Gia Hạn Tin</h3>
+                        <h3 class="text-center">Gia Hạn Tin</h3>
 
                         <div class="row loaitindang">
                             <div class="col-12">
@@ -231,15 +232,16 @@
                                 <div class="col-12">
                                     <div class="row wrap-lich">
 
-                                        <div class="col-4 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="songayvip">Ngày đăng bài</label>
                                             <input class="calendar" type="datetime" name="date_start" id="testdate">
                                         </div>
-                                        <div class="col-4 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="songayvip">Giờ đăng bài</label>
-                                            <input class="timepicker" type="text" name="time_start" id="timepicker" data-mintime="now" />
+                                            <input class="timepicker" type="text" name="time_start" id="timepicker"
+                                                data-mintime="now" />
                                         </div>
-                                        <div class="col-4 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="songayvip">Số ngày</label>
                                             <select class="selectNgay" name="songaydangbai">
                                                 <option value="7">7</option>
@@ -557,40 +559,40 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script src="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.js"></script>
 <script>
-    // var date = new Date();
-    // date.setDate(date.getDate()-1);
-    // var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    var now = new Date();
-    var formatted = now.getHours() + ":" + now.getMinutes();
-    $('#timepicker').mdtimepicker({
-        format: 'hh:mm'
-    });
-    $('#timepicker').mdtimepicker('setValue', formatted);
+// var date = new Date();
+// date.setDate(date.getDate()-1);
+// var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+var now = new Date();
+var formatted = now.getHours() + ":" + now.getMinutes();
+$('#timepicker').mdtimepicker({
+    format: 'hh:mm'
+});
+$('#timepicker').mdtimepicker('setValue', formatted);
 
-    var date = new Date();
-    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    $("#testdate").datepicker({
-        startDate: today,
-        todayHighlight: true,
-        language: 'vi',
-        format: 'mm/dd/yyyy',
-    }).attr('readonly', 'readonly');
-    $('#testdate').datepicker('setDate', today);
-    $(document).ready(function () {
-        $('.formDangBaiViet').submit(function () {
+var date = new Date();
+var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+$("#testdate").datepicker({
+    startDate: today,
+    todayHighlight: true,
+    language: 'vi',
+    format: 'mm/dd/yyyy',
+}).attr('readonly', 'readonly');
+$('#testdate').datepicker('setDate', today);
+$(document).ready(function() {
+    $('.formDangBaiViet').submit(function() {
 
-            let wallet = {{ auth()->user()->wallet }};
-            let pricepost = $('input[name="pricePost"]').val();
-            //console.log(wallet + ' ' + pricepost)
-            if( parseInt(wallet) < parseInt(pricepost)  ){
-                alert( 'Ví không đủ tiền' )
-                return false
+        let wallet = {
+            {
+                auth() - > user() - > wallet
             }
-        })
+        };
+        let pricepost = $('input[name="pricePost"]').val();
+        //console.log(wallet + ' ' + pricepost)
+        if (parseInt(wallet) < parseInt(pricepost)) {
+            alert('Ví không đủ tiền')
+            return false
+        }
     })
-
-
-    
-
+})
 </script>
 @endsection

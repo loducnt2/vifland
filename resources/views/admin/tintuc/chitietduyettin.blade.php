@@ -5,7 +5,7 @@
 @stop
 @section('content')
 <main>
-  <h2 class="text-center">Chi Tiết Tin</h2>
+    <h2 class="text-center">Chi Tiết Tin</h2>
     <section class="pages-sanpham pt-30">
         <h3 class="text-right"></h3>
         <div class="max-width-container">
@@ -215,16 +215,16 @@
                                     <h2>mô tả</h2>
                                 </div>
 
-                                <?php echo $product->content ; ?>
+                                <?php echo $product->content; ?>
                             </div>
-                            <div class="share">
+                            <!-- <div class="share">
                                 <button class="btn btn-share">
                                     <p>Chia sẻ Facebook</p>
                                 </button>
                                 <button class="btn btn-share">
                                     <p>Chia sẻ Zalo</p>
                                 </button>
-                            </div>
+                            </div> -->
                             <div class="contact-info" id="info">
                                 <div class="title">
                                     <h2>thông tin liên hệ</h2>
@@ -248,7 +248,7 @@
                     </section>
                 </div>
             </div>
-            
+
             <div class="button-sm d-block d-md-none">
                 <div class="btn"><a href="#mota">Mô tả</a></div>
                 <div class="btn"><a href="#info">Thông tin </a></div>
@@ -256,12 +256,12 @@
             </div>
         </div>
         <div class="">
-        @if($new->status==0)
-        <a href="{{route('update-post',$new->id)}}"> <button class="btn btn-success "> Duyệt tin </button> </a>
-        <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
-        @else
-        <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
-        @endif
+            @if($new->status==0)
+            <a href="{{route('update-post',$new->id)}}"> <button class="btn btn-success "> Duyệt tin </button> </a>
+            <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
+            @else
+            <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
+            @endif
         </div>
     </section>
     <div class="index-page" id="js-page-verify" hidden></div>

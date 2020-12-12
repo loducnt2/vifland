@@ -72,7 +72,7 @@ Quản lý tin đăng > Duyệt tin
                         class="btn {{$new->status == 1 ? 'btn-success':'btn-warning'}}">{{$new->status == 1 ? 'Đã duyệt':'Chờ duyệt'}}</button>
                 </td>
                 <td style="width:30%">
-                    <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn btn-primary">
+                    <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn button-color">
                             Detail</button></a>
                     @if($new->status == 1)
                     <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger"> Xóa </button></a>

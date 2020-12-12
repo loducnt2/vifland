@@ -68,7 +68,7 @@
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion " id="sidenavAccordion">
-                <a class="navbar-brand" href="">VIFLAND</a>
+                <a class="navbar-brand" href="{{url('')}}">VIFLAND</a>
                 <nav class="sb-sidenav accordion " id="sidenavAccordion">
                     <!-- <a class="sidebar-title" href="/admin/index">Trang quản trị</a> -->
                     <div class="sb-sidenav-menu">
@@ -93,8 +93,9 @@
                             <div class="collapse" id="collapsePages3" aria-labelledby="headingFour"
                                 data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="{{ url('admin/cap-nhat-tin-tuc') }}">Cập nhật tin tức</a>
-                                    <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Danh mục tin tức</a>
+                                    <a class="nav-link" href="{{ url('admin/cap-nhat-tin-tuc') }}">Đăng tin tức</a>
+                                    <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Tạo danh mục tin
+                                        tức</a>
                                     <a class="nav-link" href="{{ url('admin/danh-sach-tin-tuc') }}">Danh sách tin
                                         tức</a>
                                 </nav>
@@ -102,7 +103,7 @@
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"
                                 aria-expanded="false" aria-controls="collapsePages">
                                 <div class="sb-nav-link-icon"><span class="material-icons">
-                                        post_add
+                                        wysiwyg
                                     </span></i></div>
                                 Quản lý tin đăng
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -119,15 +120,17 @@
                                 Quản lý người dùng
                             </a>
                             <a class="nav-link" href="{{route('admin-list')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
                                 Quản lý quản trị viên
                             </a>
                             <a class="nav-link" href="{{ url('admin/danh-sach-gia-vip') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                <div class="sb-nav-link-icon"><span class="material-icons">
+                                        request_quote
+                                    </span></div>
                                 Quản lý giá post
                             </a>
                             <a class="nav-link" href="{{ route('wallet')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-wallet"></i></div>
                                 Quản lý ví tiền
                             </a>
                             <a class="nav-link" href="{{ url('admin/danh-sach-province') }}">
@@ -148,12 +151,6 @@
                                         add_to_photos
                                     </span></div>
                                 Banner
-                            </a>
-                            <a class="nav-link" href="{{ url('admin/index/quan-ly-tu-khoa') }}">
-                                <div class="sb-nav-link-icon"><span class="material-icons">
-                                        tag_active
-                                    </span></div>
-                                Từ khoá
                             </a>
                             <a class="nav-link" href="{{ url('admin/danh-sach-thong-bao') }}">
                                 <div class="sb-nav-link-icon"><span class="material-icons">
@@ -186,14 +183,14 @@
                     <img src="{{asset('assets/icon/avatar.png')}}" alt="">
                     <div class="list-menu-login">
                         <div class="wrap-title">
-                        <div class="title">{{auth()->user()->username}}</div>
+                            <div class="title">{{auth()->user()->username}}</div>
                             <p>Quản trị viên</p>
                         </div>
 
                         <ul>
                             <li> <span class="material-icons">
                                     person_outline
-                            </span> <a href="/admin/index/profile/{{auth()->user()->id}}">Hồ sơ</a></li>
+                                </span> <a href="/admin/index/profile/{{auth()->user()->id}}">Hồ sơ</a></li>
                         </ul>
                         <div class="logout">
                             <span class="material-icons">
@@ -202,20 +199,20 @@
                             <a href="/logout">Logout</a>
                         </div>
                     </div>
-                     </div>
-                      </div>
-                      @yield('content')
+                </div>
+            </div>
+            @yield('content')
 
-                      </div>
-                 </div>
-                @endif
-    {{-- <script>
+        </div>
+    </div>
+    @endif
+    <script>
     $(document).ready(function() {
         $(".breadcrumb-n .avatar").click(function() {
             $(".breadcrumb-n .list-menu-login").toggleClass("show")
         })
     });
-    </script> --}}
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 

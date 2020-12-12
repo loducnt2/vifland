@@ -89,11 +89,11 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Mặt tiền</label>
-                                            <input type="text"  name="facades" id="facades">
+                                            <input type="text" name="facades" id="facades">
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Chiều sâu</label>
-                                            <input type="text"  name="depth" id="depth">
+                                            <input type="text" name="depth" id="depth">
                                         </div>
                                         <!-- <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Diện tích</label>
@@ -116,7 +116,7 @@
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text"  name="price" id="price">
+                                            <input type="text" name="price" id="price">
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
@@ -206,7 +206,8 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">phone</span>
-                                <input type="tel" placeholder="Điện thoại cá nhân" name="phone_contact" id="phone_contact" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
+                                <input type="tel" placeholder="Điện thoại cá nhân" name="phone_contact"
+                                    id="phone_contact" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
                                 <input type="text" placeholder="Facebook cá nhân" name="facebook">
@@ -221,7 +222,8 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">email</span>
-                                <input type="email" placeholder="Hộp thư điện tử" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" >
+                                <input type="email" placeholder="Hộp thư điện tử" name="email" id="email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                             </div>
                         </div>
                         <div class="row loaitindang">
@@ -431,16 +433,16 @@
                                 <div class="col-12">
                                     <div class="row wrap-lich">
 
-                                        <div class="col-4 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="songayvip">Ngày đăng bài</label>
                                             <input class="calendar" type="datetime" name="date_start" id="testdate">
                                         </div>
-                                        <div class="col-4 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="songayvip">Giờ đăng bài</label>
                                             <input class="timepicker" type="text" name="time_start" id="timepicker"
                                                 data-mintime="now" />
                                         </div>
-                                        <div class="col-4 form-group">
+                                        <div class="col-md-4 form-group">
                                             <label for="songayvip">Số ngày</label>
                                             <select class="selectNgay" name="songaydangbai">
                                                 <option value="7">7</option>
@@ -835,28 +837,28 @@ $(document).ready(function() {
             e.preventDefault();
             delay_submit();
         }
-    
+
         if ($('#name_contact').val() == "") {
             toastr.warning("Vui lòng nhập tên liên lạc");
             e.preventDefault();
             delay_submit();
         }
-        if ($('#price').val() == "" | $('#price').val() == 0 ) {
+        if ($('#price').val() == "" | $('#price').val() == 0) {
             toastr.warning("Vui lòng nhập đơn giá");
             e.preventDefault();
             delay_submit();
         }
-        if ( isNaN($('#price').val()) ) {
+        if (isNaN($('#price').val())) {
             toastr.warning("Đơn giá không xác định");
             e.preventDefault();
             delay_submit();
         }
-        if ( isNaN($('#facades').val()) ) {
+        if (isNaN($('#facades').val())) {
             toastr.warning("Mặt tiền không xác định");
             e.preventDefault();
             delay_submit();
         }
-        if ( isNaN($('#depth').val()) ) {
+        if (isNaN($('#depth').val())) {
             toastr.warning("Chiều sâu không xác định");
             e.preventDefault();
             delay_submit();
@@ -872,7 +874,7 @@ $(document).ready(function() {
             e.preventDefault();
             delay_submit();
         }
-        if($('.form-upload__preview').children().length < 3 ){
+        if ($('.form-upload__preview').children().length < 3) {
             toastr.warning("Vui lòng nhập ít nhất 3 hình ");
             e.preventDefault();
             delay_submit();

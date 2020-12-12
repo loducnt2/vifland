@@ -3,17 +3,17 @@
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 <style>
-    .delete-post{
-        position: fixed;
-        top: 30%;
-        right: 0;
-        width: 50px;
-        height: 50px;
-        background: red;
-        line-height: 50px;
-        text-align: center;
-        color: #fff;
-    }
+.delete-post {
+    position: fixed;
+    top: 30%;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: red;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+}
 </style>
 
 @stop
@@ -23,37 +23,38 @@
         <div class="max-width-container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{route('home')}}"><!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
+                    <a href="{{route('home')}}">
+                        <!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
                         <!-- <span class="sll-breadcrum">&nbsp; (1.475.822 tin đăng)</span> -->
                     </a>
                 </li>
-                 <li class="breadcrumb-item">
+                <li class="breadcrumb-item">
                     <?php
-                        switch ($cate_id) {
-                            case 13:
-                            case 14:
-                                $cate = 'cate1';
-                                $tt = 'Mua/ Bán';
-                                break;
-                            case 18:
-                            case 19:
-                                $cate = 'cate2';
-                                $tt = 'Thuê/ Cho thuê';
-                                break;
-                            case 20:
-                            case 21:
-                                $cate = 'cate3';
-                                $tt = 'Sang nhượng';
-                                break;
-                        }
+                    switch ($cate_id) {
+                        case 13:
+                        case 14:
+                            $cate = 'cate1';
+                            $tt = 'Mua/ Bán';
+                            break;
+                        case 18:
+                        case 19:
+                            $cate = 'cate2';
+                            $tt = 'Thuê/ Cho thuê';
+                            break;
+                        case 20:
+                        case 21:
+                            $cate = 'cate3';
+                            $tt = 'Sang nhượng';
+                            break;
+                    }
                     ?>
                     <a href="{{route($cate)}}">
-                            <p>{{$tt}}</p>
-                            &nbsp; > &nbsp;{{ $province}}
-                            &nbsp; > &nbsp;{{ $district}}
-                            &nbsp; > &nbsp;{{ $product->title}}
+                        <p>{{$tt}}</p>
+                        &nbsp; > &nbsp;{{ $province}}
+                        &nbsp; > &nbsp;{{ $district}}
+                        &nbsp; > &nbsp;{{ $product->title}}
                     </a>
-                    
+
                 </li>
             </ol>
         </div>
@@ -80,7 +81,10 @@
                                     </div>
                                     <div class="content-3">
                                         <p> <span class="material-icons">call </span>{{$product->phone_contact}}</p>
-                                        <p> <span class="material-icons">chat </span>Gửi tin nhắn </p>
+                                        <a href="tel: {{$product->phone_contact}}">
+                                            <p> <span class="material-icons">chat </span>Gửi điện thoại
+                                            </p>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -139,12 +143,14 @@
                                     <div class="line-text">
                                         <p class="section-content">Mặt Tiền</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->facades>0?round($product->facades,2):""}} m</p>
+                                        <p class="section-content active">
+                                            {{$product->facades>0?round($product->facades,2):""}} m</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Chiều Sâu</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->depth>0?round($product->depth,2):""}} m</p>
+                                        <p class="section-content active">
+                                            {{$product->depth>0?round($product->depth,2):""}} m</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Diện Tích </p>
@@ -154,7 +160,9 @@
                                     <div class="line-text">
                                         <p class="section-content">Đơn Giá</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{ $product->price == 0?$product->price="":round($product->price,2)}} {{$product->unit}}</p>
+                                        <p class="section-content active">
+                                            {{ $product->price == 0?$product->price="":round($product->price,2)}}
+                                            {{$product->unit}}</p>
                                     </div>
                                     <!-- <div class="line-text">
 										<p class="section-content">Tổng Giá</p>
@@ -189,12 +197,14 @@
                                     <div class="line-text">
                                         <p class="section-content">Số Tầng</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->floors>0?$product->floors.' '.'Tầng':""}}</p>
+                                        <p class="section-content active">
+                                            {{$product->floors>0?$product->floors.' '.'Tầng':""}}</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Số Phòng Ngủ</p>
                                         <div class="dashed-line"> </div>
-                                        <p class="section-content active">{{$product->bedroom>0?$product->bedroom.' '.'Phòng':""}}</p>
+                                        <p class="section-content active">
+                                            {{$product->bedroom>0?$product->bedroom.' '.'Phòng':""}}</p>
                                     </div>
                                     <div class="line-text">
                                         <p class="section-content">Giấy Tờ Pháp Lý</p>
@@ -231,11 +241,12 @@
                                     <div class="swiper-slide">
                                         <div class="img-box">
                                             <a href="{{asset('assets/product/detail/')}}/{{$img->name}}" data-fancybox>
-                                                <img  onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' " src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
+                                                <img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                    src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
                                             </a>
                                         </div>
                                     </div>
-                                    @endforeach 
+                                    @endforeach
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
@@ -264,16 +275,16 @@
                                     <h2>mô tả</h2>
                                 </div>
 
-                                <?php echo $product->content ; ?>
+                                <?php echo $product->content; ?>
                             </div>
-                            <div class="share">
+                            <!-- <div class="share">
                                 <button class="btn btn-share">
                                     <p>Chia sẻ Facebook</p>
                                 </button>
                                 <button class="btn btn-share">
                                     <p>Chia sẻ Zalo</p>
                                 </button>
-                            </div>
+                            </div> -->
                             <div class="contact-info" id="info">
                                 <div class="title">
                                     <h2>thông tin liên hệ</h2>
@@ -309,13 +320,16 @@
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
                                             href="{{route('article-detail',$product->slug)}}"><img
-                                                src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                                                src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+                                                alt=""></a>
                                         <div class="tag-thuongluong">
-                                            {{ $product->price == 0?$product->price="":number_format($product->price)}} {{$product->unit}}
+                                            {{ $product->price == 0?$product->price="":number_format($product->price)}}
+                                            {{$product->unit}}
                                         </div>
                                         <div class="box-icon">
                                             <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
-                                            <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}" ></i>
+                                            <i class="ri-equalizer-line icons comp"
+                                                productid="{{$product->product_id}}"></i>
                                         </div>
                                         <div class="overlay"></div>
                                         <div class="vip">
@@ -342,22 +356,29 @@
                                         </a>
                                         <div class="location"> <span class="material-icons">location_on</span>
                                             <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->district}}, {{$product->province}}">{{$product->district}},
+                                                title="{{$product->district}}, {{$product->province}}">
+                                                {{$product->district}},
                                                 {{$product->province}}</p>
                                         </div>
                                         <div class="mota-place">
                                             <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
-                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
+                                                <div class="mota-place-tt"><img
+                                                        src="{{asset('assets/icon/dientich.png')}}" alt=""><span
+                                                        data-toggle="tooltip" data-placement="bottom"
                                                         title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                         m²</span></div>
-                                                <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
-                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
                                                 <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
+                                                        src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->facades}}">{{$product->facades}} m</span></div>
+                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
+                                                        $product_cate as $prod_cate
+                                                        ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
+                                                </div>
+                                                <div class="mota-place-tt"><img
+                                                        src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
+                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
+                                                        title="{{$product->facades}}">{{$product->facades}} m</span>
+                                                </div>
                                             </div>
                                             <div class="mota-place-1">
                                                 <div class="mota-place-tt"><img
@@ -371,8 +392,8 @@
                                                         title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}
                                                     </span></div>
                                                 <div class="mota-place-tt"><span
-                                                        class="material-icons icons-15">group</span><span data-toggle="tooltip"
-                                                        data-placement="bottom" title=""
+                                                        class="material-icons icons-15">group</span><span
+                                                        data-toggle="tooltip" data-placement="bottom" title=""
                                                         data-original-title="">---</span></div>
                                             </div>
                                         </div>
@@ -384,9 +405,12 @@
                                                 <div class="end-box-tt"><span
                                                         class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                                 </div>
-                                                <div class="end-box-tt"><span
-                                                        class="material-icons icons-15 chat">chat</span><span class="chat">chat
-                                                        ngay</span></div>
+                                                <div class="end-box-tt">
+                                                    <a href="{{route('article-detail',$product->slug)}}"><span
+                                                            class="material-icons icons-15 chat">input</span><span
+                                                            class="chat">Xem
+                                                            chi tiết</span></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
