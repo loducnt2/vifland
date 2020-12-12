@@ -29,30 +29,8 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <?php
-                    switch ($cate_id) {
-                        case 13:
-                        case 14:
-                            $cate = 'cate1';
-                            $tt = 'Mua/ Bán';
-                            break;
-                        case 18:
-                        case 19:
-                            $cate = 'cate2';
-                            $tt = 'Thuê/ Cho thuê';
-                            break;
-                        case 20:
-                        case 21:
-                            $cate = 'cate3';
-                            $tt = 'Sang nhượng';
-                            break;
-                    }
-                    ?>
-                    <a href="{{route($cate)}}">
-                        <p>{{$tt}}</p>
-                        &nbsp; > &nbsp;{{ $province}}
-                        &nbsp; > &nbsp;{{ $district}}
-                        &nbsp; > &nbsp;{{ $product->title}}
+                    <a href="{{route('article-detail',$product->slug)}}">
+                         &nbsp;{{ $product->title}}
                     </a>
 
                 </li>
