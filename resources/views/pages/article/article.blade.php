@@ -241,11 +241,12 @@
                                     <div class="swiper-slide">
                                         <div class="img-box">
                                             <a href="{{asset('assets/product/detail/')}}/{{$img->name}}" data-fancybox>
-                                                <img  onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' " src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
+                                                <img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                    src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
                                             </a>
                                         </div>
                                     </div>
-                                    @endforeach 
+                                    @endforeach
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
@@ -404,10 +405,12 @@
                                                 <div class="end-box-tt"><span
                                                         class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                                 </div>
-                                                <div class="end-box-tt"><span
-                                                        class="material-icons icons-15 chat">chat</span><span
-                                                        class="chat">chat
-                                                        ngay</span></div>
+                                                <div class="end-box-tt">
+                                                    <a href="{{route('article-detail',$product->slug)}}"><span
+                                                            class="material-icons icons-15 chat">input</span><span
+                                                            class="chat">Xem
+                                                            chi tiết</span></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
