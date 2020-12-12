@@ -54,6 +54,7 @@
                                         <input id="vip3" type="radio" value="3" name="type">
                                         <label class="vip3" for="vip3">Tin VIP 3</label>
                                     </div>
+                                    <input id="money-wallet" type="number" value="{{auth()->user()->wallet}}" hidden>
                                 </div>
                                 <div class="wrap-vip-mobile">
                                     <div class="form-group-sl1 sl-1 select-many">
@@ -581,18 +582,14 @@ $('#testdate').datepicker('setDate', today);
 $(document).ready(function() {
     $('.formDangBaiViet').submit(function() {
 
-        let wallet = {
-            {
-                auth() - > user() - > wallet
-            }
-        };
+        let wallet = $("#money-wallet").val()
         let pricepost = $('input[name="pricePost"]').val();
         //console.log(wallet + ' ' + pricepost)
         if (parseInt(wallet) < parseInt(pricepost)) {
             alert('Ví không đủ tiền')
             return false
         }
-    })
+    });
 })
 </script>
 @endsection

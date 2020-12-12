@@ -37,6 +37,9 @@ Route::get('/search/', 'SearchController@index')->name('search');               
 Route::get('/searchmobi', 'SearchController@searchMobile')->name('searchmob');   // Tìm kiếm giao diện mobile
 //Route::get('/search/filter/','SearchController@filter')->name('filter');
 
+Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
+Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+
 Route::group(['middleware' => 'auth'], function () {
     //Nạp tiền
     Route::post('/user/create-payment', 'PaymentController@create')->name('create-payment'); // Nạp tiền
@@ -196,8 +199,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/get-district/{id}', 'API\GetZone@getDistrictByProvince');
     Route::get('/get-content-province/{id}', 'API\GetZone@contentProvince');
     Route::get('/get-ward/{id}', 'API\GetZone@getWardByDistrict');
-    Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
-    Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+
 
 
     Route::post('/admin/danh-sach-danh-muc/create', 'CategoryController@store')->name('create-cate');
