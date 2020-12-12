@@ -114,7 +114,6 @@
                     },
                     success: function(data, status) {
                         //Chưa đăng nhập
-                        console.log(data)
                         if (data == 0) {
                             $("#dangnhapModal").modal("show");
                             $('.fav').addClass("ri-heart-line");
@@ -143,12 +142,8 @@
                     },
                     success: function(data, status) {
                         //Chưa đăng nhập
-                        console.log(data)
                         if (data == 0) {
-                            /*$("#dangnhapModal").modal("show");
-                            $('.fav').addClass("ri-heart-line");
-                            $('.fav').removeClass("ri-heart-fill");
-                            $('.fav').removeClass("active")*/
+
                         }
                         if (data == 1) {
                             //Thích sản phẩm,
@@ -163,7 +158,6 @@
                 url: '{{route("all-favorite")}}',
                 type: 'GET',
                 success: function(data, status) {
-                    console.log(data)
                     let arr = [];
                     data.forEach(function(item, index, array) {
                         arr.push(item.id)
@@ -193,7 +187,6 @@
                 if ($.cookie('compare')) {
                     let listcomp = $.cookie('compare').split(',')
                     let productid = $(this).attr('productid')
-                    console.log(listcomp)
                     if (listcomp.indexOf(productid) != -1) {
                         listcomp.splice(listcomp.indexOf(productid), 1)
 
@@ -207,7 +200,6 @@
                     } else {
 
                         listcomp.push(productid);
-                        console.log(listcomp.join())
 
                         $(this).addClass('active')
                         $('.number-ss').css('display', 'flex')
@@ -222,7 +214,6 @@
                     let productid = $(this).attr('productid')
                     listcomp.push(productid);
                     $(this).addClass('active')
-                    console.log(listcomp.join())
                     $.cookie('compare', listcomp.join())
 
                     $('.number-ss').text(listcomp.length)

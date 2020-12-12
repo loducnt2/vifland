@@ -506,6 +506,7 @@ class ProductController extends Controller
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->where('product.soft_delete',0)
+        ->orderBy('favorited.id','desc')
         ->select(
             'product.*',
             'product.id as product_id',
@@ -533,6 +534,7 @@ class ProductController extends Controller
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
         ->where('product.datetime_end','>',date('Y-m-d H:i:s',strtotime('now')))
+        ->orderBy('favorited.id','desc')
         ->select(
             'product.*',
             'product.id as product_id',
