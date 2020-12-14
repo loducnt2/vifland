@@ -30,7 +30,7 @@
                 </li>
                 <li class="breadcrumb-item">
                     <a href="{{route('article-detail',$product->slug)}}">
-                         &nbsp;{{ $product->title}}
+                        &nbsp;{{ $product->title}}
                     </a>
 
                 </li>

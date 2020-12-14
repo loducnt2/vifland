@@ -15,8 +15,8 @@ Quản lý tỉnh/ thành phố
             <tr>
                 <th>Id</th>
                 <th>Tỉnh</th>
-                <th>Status Content</th>
-                <th>Action</th>
+                <th>Trạng thái nội dung</th>
+                <th>Hành động</th>
             </tr>
         </thead>
         <tbody id="myTable">

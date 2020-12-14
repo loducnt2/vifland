@@ -35,5 +35,22 @@
 </table>
 {{ $payment->links() }}
 
-    </div>
+            @foreach($payment as $key => $pmt)
+            <tr>
+                <th scope="row">{{$key+1}}</th>
+                <td>{{$pmt->trade_code}}</td>
+                <td>{{$pmt->bank_trans_no}}</td>
+                <td>{{$pmt->bank_code}}</td>
+                <td>
+                    <span class="float-left">{{number_format($pmt->amount)}}</span>
+                </td>
+                <td>{{$pmt->datetime}}</td>
+            </tr>
+            @endforeach
+
+        </tbody>
+    </table>
+    {{ $payment->links() }}
+
+</div>
 @endsection
