@@ -49,9 +49,6 @@
                     }
                     ?>
                     <a href="{{route($cate)}}">
-                        <p>{{$tt}}</p>
-                        &nbsp; > &nbsp;{{ $province}}
-                        &nbsp; > &nbsp;{{ $district}}
                         &nbsp; > &nbsp;{{ $product->title}}
                     </a>
 

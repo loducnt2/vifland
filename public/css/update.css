@@ -291,3 +291,34 @@ h2.section-under-title {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.wrap-modal-dangnhap .modal-dialog {
+    margin-left: auto;
+    margin-right: auto;
+}
+label.error {
+    color: tomato;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    bottom: -31px;
+}
+
+.form-group-input {
+    position: relative;
+}
+.select2-container .select2-selection--multiple {
+    min-height: 40px;
+}
+header .thong-bao .wrap-list-thongbao .wrap-2 {
+    height: 285px;
+    overflow: auto;
+}
+header .thong-bao .wrap-list-thongbao .wrap-2::-webkit-scrollbar {
+    width: 2px;
+}
+header .thong-bao .wrap-list-thongbao .wrap-2::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+header .thong-bao .wrap-list-thongbao .wrap-2::-webkit-scrollbar-thumb {
+    background: #888;
+}

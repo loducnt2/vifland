@@ -270,7 +270,7 @@
                             <a href="/login" class="btn btn__header login1" style="line-height:36px">Đăng Nhập</a>
                             @endif
                         </li>
-                        <li class="nav-item change-lang"><span class="button-change-lang"><img
+                        <!-- <li class="nav-item change-lang"><span class="button-change-lang"><img
                                     src="{{asset('assets/icon/icon-vn.png')}}" alt=""><i
                                     class="ri-arrow-down-s-fill"></i>
                                 <div class="list-change-lang">
@@ -284,7 +284,7 @@
                                     </div>
                                 </div>
                             </span>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
@@ -334,12 +334,12 @@
                         class="ri-close-line close-button"></i>
                 </div>
                 <div class="wrap-2">
-                    <div class="change-lang">
+                    <!-- <div class="change-lang">
                         <div class="left"><img src="{{asset('assets/icon/icon-vn.png')}}" alt="">
                             <p>Tiếng việt</p>
                         </div>
                         <div class="right"><i class="ri-arrow-down-s-fill"></i></div>
-                    </div>
+                    </div> -->
                     <ul class="list-items">
                         <li class="list-item">
                             <a href="/favourites">

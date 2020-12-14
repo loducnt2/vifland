@@ -11,11 +11,11 @@
             @csrf
 
             <div class="form-group">
-                <label for="">name</label>
+                <label for="">Tiêu đề</label>
                 <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group">
-                <label for="">content</label>
+                <label for="">Nội dung</label>
                 <input type="text" name="content" class="form-control">
             </div>
             <div class="form-group">
@@ -37,7 +37,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Tạo</button>
             </div>
         </form>
 
@@ -48,13 +48,13 @@
         <table class="table table-bordered table-striped">
             <thead id="myTable">
                 <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>content</th>
+                    <th>Id</th>
+                    <th>Tiêu đề</th>
+                    <th>Nội dung</th>
                     <th>Ngày hết hạn</th>
                     <th>ngôn ngữ</th>
-                    <th>status</th>
-                    <th>action</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
 
 
                 </tr>
