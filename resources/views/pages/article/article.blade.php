@@ -51,7 +51,7 @@
                                             <p class="section-content">{{$product->full_name}}</p>
                                         </div>
                                         <div class="host">
-                                            <p class="section-content">Nhà môi giới</p>
+                                            <p class="section-content">{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}</p>
                                         </div>
                                     </div>
                                     <div class="content-2">
@@ -245,7 +245,7 @@
                                     <p>{{$product->view}}</p>
                                 </div>
                                 <div class="cover"> <span class="material-icons">loyalty </span>
-                                    <p>Nhà môi giới</p>
+                                    <p></p>
                                 </div>
                             </div>
                             <div class="article-content">
@@ -297,7 +297,7 @@
                             <div class="swiper-slide">
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                            href="{{route('article-detail',$product->slug)}}"><img
+                                            href="{{route('article-detail',$product->slug)}}"><img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                                 src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         <div class="tag-thuongluong">
@@ -348,14 +348,14 @@
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
-                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
+                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach(
                                                         $product_cate as $prod_cate
                                                         ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
                                                 </div>
                                                 <div class="mota-place-tt"><img
                                                         src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->facades}}">{{$product->facades}} m</span>
+                                                        title="{{$product->facades}} m">{{$product->facades}} m</span>
                                                 </div>
                                             </div>
                                             <div class="mota-place-1">
@@ -371,8 +371,8 @@
                                                     </span></div>
                                                 <div class="mota-place-tt"><span
                                                         class="material-icons icons-15">group</span><span
-                                                        data-toggle="tooltip" data-placement="bottom" title=""
-                                                        data-original-title="">---</span></div>
+                                                        data-toggle="tooltip" data-placement="bottom" title="{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}"
+                                                        data-original-title="">{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}</span></div>
                                             </div>
                                         </div>
                                         <div class="end-mota">

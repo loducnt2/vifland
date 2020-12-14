@@ -49,8 +49,7 @@ class HomeController extends Controller
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
         ->leftJoin('district','product.district_id','district.id')
-        //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
-        //->leftJoin('ward','product.ward_id','ward.id')
+        ->leftJoin('user','post_history.user_id','user_id')
         ->where('post_history.status',1)
         ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d H:i',strtotime('now')))
@@ -75,7 +74,8 @@ class HomeController extends Controller
             'product_extend.bedroom',
             'province.name as province',
             'district.name as district',
-            'product_unit.name as unit'
+            'product_unit.name as unit',
+            'user.user_type as user_type'
             //'ward.name as ward'
         )
         ->orderBy('product.type','asc')
