@@ -29,7 +29,8 @@ Quản lý ví tiền
                 <tr>
                     <th>Tên truy cập</th>
                     <th>Ví hiện tại</th>
-                    <th colspan="2"></th>
+                    <th>Cộng tiền</th>
+                    <th>Trừ tiền</th>
                 </tr>
             </thead>
             <tbody id="myTable">
