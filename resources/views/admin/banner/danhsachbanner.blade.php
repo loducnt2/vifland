@@ -45,11 +45,11 @@
              <thead>
                  <tr>
                      <th>Id</th>
-                     <th>name</th>
+                     <th>Tên hình ảnh</th>
                      <th>Ảnh</th>
-                     <th>Position</th>
-                     <th>status</th>
-                     <th>Action</th>
+                     <th>Vị trí ưu tiên</th>
+                     <th>Ẩn/hiện</th>
+                     <th>Hành động</th>
                  </tr>
              </thead>
              <tbody id="myTable">

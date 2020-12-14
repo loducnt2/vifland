@@ -16,10 +16,10 @@ Quản lý giá post
             <thead>
                 <tr>
                     <th>Id</th>
-                    <th>name</th>
-                    <th>price</th>
-                    <th>status</th>
-                    <th>Action</th>
+                    <th>Loại giá trị</th>
+                    <th>Giá</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody id="myTable">
