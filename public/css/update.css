@@ -50,8 +50,11 @@ header .nav-desktop .main-nav .nav-list .icon {
     z-index: 1;
 }
 .mdtp__wrapper {
-    bottom: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    overflow: visible !important;
 }
+
 a.active {
     color: #eac688 !important;
 }
