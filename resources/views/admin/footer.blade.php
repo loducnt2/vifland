@@ -12,14 +12,15 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
   {{-- <script src="//cdn.ckeditor.com/4.15.1/full/ckeditor.js"></script> --}}
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script> --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   <script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
   <script src="{{asset('js/core.min.js') }}"></script>
   <script src="{{asset('js/scripts.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"></script> --}}
   <script src="{{asset('js/ckeditor.js')}}"></script>
 {{-- Style --}}
 <style>
@@ -74,26 +75,12 @@
       }
 
   </script>
-  {{-- </script> --}}
-  {{-- danh mục --}}
+
+  <!-- Danh mục -->
+
   <script>
-      $(document).ready(function () {
-          $('input').on('itemAdded', function (event) {
-              //   thêm item
+   </script>
 
-              var t = $("#tag").val();
-              $('#tags').html(t);
-
-          });
-          $('input').on('itemRemoved', function (event) {
-              $t = $("#tag").val()
-              console.log($t);
-          });
-      });
-
-  </script>
-
-  {{-- toggle-bootstrap-bar --}}
   <script>
       $(function () {
           $('.toggle-class').change(function () {
@@ -129,8 +116,8 @@
       });
 
   </script>
-  {{-- quản lý danh mục --}}
-  {{-- 1.1 Xoá danh mục khi bấm vào nút xoá --}}
+  <!-- {{-- quản lý danh mục --}}
+  {{-- 1.1 Xoá danh mục khi bấm vào nút xoá --}} -->
   <script>
       function deletePost(event) {
           alert('Element ID');
@@ -152,9 +139,9 @@
 
   </script>
 
-  {{-- 1.2 Thêm danh mục mới--}}
+  <!-- {{-- 1.2 Thêm danh mục mới--}}
 
-  {{-- Xoá Record --}}
+  {{-- Xoá Record --}} -->
   <script>
       $('#myTable').on("click", ".btn-delete", function () {
 
@@ -187,13 +174,8 @@
       });
 
   </script>
-
-
-
-
   <script>
       CKEDITOR.replaceAll();
-
       $(document).on({
           'show.bs.modal': function () {
               $(this).removeAttr('tabindex');
@@ -201,23 +183,11 @@
       }, '.modal');
 
   </script>
-  {{-- select2 --}}
-  <script>
-      $("#tag2").select2({
-          tags: true,
-          tokenSeparators: [',']
-      })
-
-  </script>
-  <script>
-      $('.modal').on("click", "#save-button", function (e) {
-          console.log('asdasdsad');
-      });
-
-  </script>
+  <!-- {{-- select2 --}} -->
 
 
-  {{-- 1 - Event khi user click vào nút model --}}
+
+  <!-- {{-- 1 - Event khi user click vào nút model --}} -->
   <script>
       $("#myTable").on('click', '.btn-edit', function (e) {
           var id = $(this).data('id');
@@ -236,7 +206,7 @@
 
   </script>
 
-  {{-- 1-2 Khi user click vào nút save để lưu thông tin --}}
+  <!-- {{-- 1-2 Khi user click vào nút save để lưu thông tin --}} -->
   <script>
       $("body").on('click', '.btn-save', function (e) {
           e.preventDefault();
@@ -271,9 +241,9 @@
       });
 
   </script>
-
+<!--
   {{-- quản lý tin tức --}}
-  {{-- 1 - Event khi user click vào nút model --}}
+  {{-- 1 - Event khi user click vào nút model --}} -->
 
   <script>
       $("#myTable").on('click', '.btn-news-edit', function (e) {
@@ -297,7 +267,7 @@
       })
 
   </script>
-  {{-- 1-2 Khi user click vào nút save để lưu thông tin --}}
+  <!-- {{-- 1-2 Khi user click vào nút save để lưu thông tin --}} -->
 
   <script>
       $("body").on('click', '.btn-news_save', function (e) {
@@ -509,7 +479,7 @@
           })
 </script>
 
-{{-- ẩn hiện tin tức --}}
+
 <script>
     $(function () {
       $('#myTable').on("change", ".btn-news", function (){
@@ -544,3 +514,82 @@
 
             })
   </script>
+
+    <script>
+        function getDataSelect(id,id_city){
+            $.ajax({
+                url: "/admin/index/quan-ly-thu-tin-tuc/products/"+id+ "/"+id_city,
+                type: 'GET',
+                dataType: 'JSON',
+                success: function(result){
+                    if(result.length > 0){
+                        let option_html = '';
+                        $.each(result, function(key,product){
+                            option_html += `<option id="${product.id}">${product.title}</option>`;
+                        });
+                        $('#productFilter').html(option_html);
+                        $('#productFilter').trigger('click');
+                    }else{
+                        alert('Null');
+                    }
+                },
+                error: function(errors){
+                    console.log(errors);
+                }
+            });
+        }
+        $('#myTable').on("click", ".btn-sendmail-one", function (e) {
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            e.preventDefault();
+            var idcity = $(this).data('id_city');
+            var id = $(this).data('id');
+            var email = $(this).data('email');
+
+            console.log(id);
+            console.log(idcity);
+            $('input[name=email]').val(email);
+            $('#modelId_one').modal('show');
+            $('#productFilter').select2({
+                theme :'bootstrap4'
+
+                            });
+            getDataSelect(id,idcity);
+
+        });
+
+    </script>
+<script>
+
+$('#productFilter').select2().on('select2:open', function() {
+    $('.select2-search__field').attr('maxlength', 10);
+});
+</script>
+{{-- patch xoá tag bằng nút backspace --}}
+<script>
+    $.fn.select2.amd.require(['select2/selection/search'], function (Search) {
+    var oldRemoveChoice = Search.prototype.searchRemoveChoice;
+    Search.prototype.searchRemoveChoice = function () {
+        oldRemoveChoice.apply(this, arguments);
+        this.$search.val('');
+    };
+});
+</script>
+{{-- thay đổi cấu trúc CSS khi chọn kết quả trong select2 --}}
+<script>
+    $("#productFilter").on({
+  "select2:select": function(e) {
+      $("li[aria-selected='true']").addClass("customclass");
+      $("li[aria-selected='false']").removeClass("customclass");
+    },
+    "select2:opening": function(e) {
+        setTimeout(function(){
+          $("li[aria-selected='true']").addClass("customclass");
+          $("li[aria-selected='false']").removeClass("customclass");
+        },0)
+    },
+    "select2:unselect" : function(e) {
+        $("li[aria-selected='false']").removeClass("customclass");
+    }
+});
+
+</script>

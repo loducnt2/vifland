@@ -35,4 +35,5 @@ class Product extends Model
     	'ward_id',
         'soft_delete',
     ];
+ 
 }

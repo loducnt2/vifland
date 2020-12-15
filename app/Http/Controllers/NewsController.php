@@ -231,8 +231,6 @@ class NewsController extends Controller
 
     }
 
-
-    // Tin get được từ các danh mục
 }
 
 // ẩn hiện bài viết
