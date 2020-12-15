@@ -43,7 +43,7 @@
                 @endforeach
 			</div>
             <div class="paginationSP ">
-                {{ $posts2->links() }}
+                {{ $posts->links() }}
 
 
             </div>

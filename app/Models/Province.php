@@ -13,4 +13,17 @@ class Province extends Model
     	'type',
     	'orders',
     ];
+    public function newsletters()
+{
+    return $this->hasMany('App\Models\Newsletters2');
+}
+protected $searchable = [
+    // 'email',
+    'name'
+];
+ 
+public function product()
+{
+    return $this->belongsTo('App\Models\province');
+}
 }

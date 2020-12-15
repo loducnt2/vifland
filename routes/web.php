@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     //User
     Route::get('/user/profile','UserController@profileUser')->name('profile');                    //Thông tin userr
     Route::get('/user/password','UserController@formpassword')->name('change-password');          // Thay đổi mật khẩu
-    Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');               // 
+    Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');               //
     Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history'); // Lịch sử nạp tiền user
     Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');    // Danh sách tin đã đăng của user
     Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');          // Danh sách tin đang chờ của user
@@ -94,7 +94,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/admin/danh-sach-danh-muc/update/{id}','CategoryController@update')->name('update-cate');  // Cập nhật danh mục
     Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');  // Xóa danh mục
     Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');         // Form chỉnh sửa danh mục
-    Route::get('/admin/danh-sach-danh-muc','CategoryController@index');                                     // 
+    Route::get('/admin/danh-sach-danh-muc','CategoryController@index');                                     //
 
     Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
     Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
