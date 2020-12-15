@@ -42,45 +42,45 @@ class HomeController extends Controller
         $province = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
         $categories = Category::where('parent_id',NULL)->get();
 
-        $product_by_cate1 = Category::where('parent_id',1)
-        ->leftJoin('product','category.id','product.cate_id')
-        ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('post_history','product.id','post_history.product_id')
-        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
-        ->leftJoin('province','product.province_id','province.id')
-        ->leftJoin('district','product.district_id','district.id')
-        ->leftJoin('user','post_history.user_id','user_id')
-        ->where('post_history.status',1)
-        ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
-        ->where('datetime_end','>',date('Y-m-d H:i',strtotime('now')))
-        ->where('soft_delete',0)
-        ->select(
-            //'product_image.name as img',
-            'product.id as product_id',
-            'product.thumbnail',
-            'product.slug as slug',
-            'product.view',
-            'product.datetime_start',
-            'product.title',
-            'product.type',
-            'product.soft_delete',
-            'product.datetime_end',
-            'product_extend.address',
-            'product_extend.price',
-            'product_extend.product_cate',
-            'product_extend.depth',
-            'product_extend.facades',
-            'product_extend.floors',
-            'product_extend.bedroom',
-            'province.name as province',
-            'district.name as district',
-            'product_unit.name as unit',
-            'user.user_type as user_type'
-            //'ward.name as ward'
-        )
-        ->orderBy('product.type','asc')
-        ->limit(5)
-        ->get();
+       $product_by_cate1 = Category::where('parent_id',1)
+       ->leftJoin('product','category.id','product.cate_id')
+       ->leftJoin('product_extend','product.id','product_extend.product_id')
+       ->leftJoin('post_history','product.id','post_history.product_id')
+       ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+       ->leftJoin('province','product.province_id','province.id')
+       ->leftJoin('district','product.district_id','district.id')
+       //->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
+       //->leftJoin('ward','product.ward_id','ward.id')
+       ->where('post_history.status',1)
+       ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
+       ->where('datetime_end','>',date('Y-m-d H:i',strtotime('now')))
+       ->where('soft_delete',0)
+       ->select(
+           //'product_image.name as img',
+           'product.id as product_id',
+           'product.thumbnail',
+           'product.slug as slug',
+           'product.view',
+           'product.datetime_start',
+           'product.title',
+           'product.type',
+           'product.soft_delete',
+           'product.datetime_end',
+           'product_extend.address',
+           'product_extend.price',
+           'product_extend.product_cate',
+           'product_extend.depth',
+           'product_extend.facades',
+           'product_extend.floors',
+           'product_extend.bedroom',
+           'province.name as province',
+           'district.name as district',
+           'product_unit.name as unit'
+           //'ward.name as ward'
+       )
+       ->orderBy('product.type','asc')
+       ->limit(5)
+       ->get();
 
         $product_by_cate2 = Category::where('parent_id',2)
         ->leftJoin('product','category.id','product.cate_id')

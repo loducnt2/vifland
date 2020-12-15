@@ -558,7 +558,7 @@ class ProductController extends Controller
     public function productUserFavorite(){
         $products = Favorited::where('favorited.type',2)
         ->where('user_id',auth()->user()->id)
-        ->leftJoin('product','favorited.product_extend_id','product.id')
+        ->leftJoin('product','favorited.product_id','product.id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
