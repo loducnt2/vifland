@@ -21,6 +21,9 @@ use App\PriceTypePost;
 use App\User;
 use Str;
 use File;
+
+use function GuzzleHttp\json_decode;
+
 class ProductController extends Controller
 {
     /**
@@ -216,7 +219,7 @@ class ProductController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Tin của bạn đã tạo thành công, vui lòng chờ duyệt', 
+            'message' => 'Tin của bạn đã tạo thành công, vui lòng chờ duyệt',
             'alert-type' => 'success'
         );
 
@@ -271,7 +274,7 @@ class ProductController extends Controller
            $province = Province::where('id',$product->province_id)->value('name');
         }
         if($product->district_id!= NULL){
-            $district = District::where('id',$product->district_id)->value('name'); 
+            $district = District::where('id',$product->district_id)->value('name');
         }
         $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
 
@@ -324,8 +327,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product_cate = ProductCate::all();
-        
-        
+
+
         $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
 
         $cate_1       = Product::leftJoin('category','product.cate_id','category.id')->value('category.parent_id');
@@ -381,7 +384,7 @@ class ProductController extends Controller
             'wallet' => intval( $wallet )-intval($request->pricePost)
         ]);
         $notification = array(
-            'message' => 'Gia hạn tin thành công', 
+            'message' => 'Gia hạn tin thành công',
             'alert-type' => 'success'
         );
         return redirect()->route('article-detail',$product->slug)->with($notification);
@@ -454,9 +457,9 @@ class ProductController extends Controller
                 'thumbnail' => $arrfile[0]
             ]);
         }
-        
+
         $notification = array(
-            'message' => 'Chỉnh sửa tin thành công', 
+            'message' => 'Chỉnh sửa tin thành công',
             'alert-type' => 'success'
         );
         $slug = Product::where('id',$id)->value('slug');
@@ -472,7 +475,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        /*$prodex = ProductExtend::where('product_id',$id)->value('id'); 
+        /*$prodex = ProductExtend::where('product_id',$id)->value('id');
         $img = ProductImg::where('product_image.product_extend_id',$prodex)->select('name')->get();
         $imgpath = '/assets/product/detail';
         //$arr = [];
@@ -486,7 +489,7 @@ class ProductController extends Controller
         $pro = Product::find($id);
         $pro->delete();
         $notification = array(
-            'message' => 'Xóa tin thành công', 
+            'message' => 'Xóa tin thành công',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
@@ -524,7 +527,31 @@ class ProductController extends Controller
 
         return view('pages/history',compact('products'));
     }
+    public function Productbyprovince (Request $request ,$id,$idcity){
+        if(empty($request->id)){
+            return false;
+        }else{
+            $id_input = $request->idcity;
+            $province_info = Province::find($id_input);
+            if(empty($province_info)){
+                return false;
+            }else{
 
+                $products = Product::where('province_id',$province_info->id)->get();
+                return json_decode($products);
+            }
+        }
+
+        $id = Province::find($request->idcity);
+        $products = Product::where('province_id',$id)->get();
+        return response()->json([
+            'id' => $products->id,
+            'title' => $products->title,
+        ]
+
+        );
+
+    }
     public function productUserFavorite(){
         $products = Favorited::where('favorited.type',2)
         ->where('user_id',auth()->user()->id)

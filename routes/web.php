@@ -31,7 +31,7 @@ Route::get('/about',function(){return view('pages/about');}); //giới thiệu
 //Danh mục
 
 Route::get('/mua-ban-nha-dat','SearchController@getByCate')->name('cate1'); // Danh mục 1
-Route::get('/cho-thue-nha-dat','SearchController@getByCate')->name('cate2'); // Danh mục 2 
+Route::get('/cho-thue-nha-dat','SearchController@getByCate')->name('cate2'); // Danh mục 2
 Route::get('/sang-nhuong-nha-dat','SearchController@getByCate')->name('cate3'); // Danh mục 3
 Route::get('/search/','SearchController@index')->name('search');                // Tìm kiếm, lọc tin
 Route::get('/searchmobi','SearchController@searchMobile')->name('searchmob');   // Tìm kiếm giao diện mobile
@@ -50,7 +50,7 @@ Route::group(['middleware'=>'auth'],function(){
 
 	//Profile
 	//Update profile
-	Route::post('/user/update/{id}','UserController@update')->name('user-update');   // cập nhật thông tin user  
+	Route::post('/user/update/{id}','UserController@update')->name('user-update');   // cập nhật thông tin user
 	Route::post('/user/changepass/{id}','UserController@changePassword')->name('user-changePassword');  // Thay đổi mật khẩu
     //Change password
 
@@ -69,11 +69,11 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('admin/wallet/detail/{id}','WalletController@Detail_payment')->name('detail-wallet');  // Chi tiết tiền user
     Route::post('admin/wallet/add','WalletController@addWallet')->name('add-wallet');                 // Thêm tiền user
     Route::post('admin/wallet/sub','WalletController@subWallet')->name('sub-wallet');                 // Trừ tiiền user
- 
+
     //User
     Route::get('/user/profile','UserController@profileUser')->name('profile');                    //Thông tin userr
     Route::get('/user/password','UserController@formpassword')->name('change-password');          // Thay đổi mật khẩu
-    Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');               // 
+    Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');               //
     Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history'); // Lịch sử nạp tiền user
     Route::get('/user/article-posted','UserController@articleposted')->name('article-posted');    // Danh sách tin đã đăng của user
     Route::get('/user/article-wait','UserController@articlewait')->name('article-wait');          // Danh sách tin đang chờ của user
@@ -91,7 +91,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/admin/danh-sach-danh-muc/update/{id}','CategoryController@update')->name('update-cate');  // Cập nhật danh mục
     Route::get('/admin/danh-sach-danh-muc/delete/{id}','CategoryController@destroy')->name('delete-cate');  // Xóa danh mục
     Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');         // Form chỉnh sửa danh mục
-    Route::get('/admin/danh-sach-danh-muc','CategoryController@index');                                     // 
+    Route::get('/admin/danh-sach-danh-muc','CategoryController@index');                                     //
 
     Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
     Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
@@ -351,3 +351,4 @@ Route::post('/send-email','NewsLetterController@send_email');
 // Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
 
 Route::post('/guithu','NewsLetterController@guithu');
+Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}','ProductController@Productbyprovince');

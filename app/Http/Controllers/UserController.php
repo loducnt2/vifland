@@ -26,7 +26,6 @@ class UserController extends Controller
         //get list all user
         // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
         $users =User::where('user_type',0)->paginate(7);
-
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
 
@@ -209,13 +208,6 @@ class UserController extends Controller
         ->get();
         return  view('/pages/user/article-expire',compact('cate','product_expire'));
     }
-
-
-
-
-
-
-
     // user admin
     public function getprofileDetail($id){
         $profile = DB::table('user')->find($id);
