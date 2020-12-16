@@ -346,11 +346,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="">Thời gian vay (Tháng)</label>
-                                            <input type="text" id="thoigianvay">
+                                            <input type="text" id="thoigianvay" value="12">
                                         </div>
                                         <div class="form-group">
                                             <label for="">Lãi suất (%/Năm)<br><span>Ví dụ: 7.50</span></label>
-                                            <input type="text" id="laisuat">
+                                            <input type="text" id="laisuat" value="8">
                                         </div>
                                     </div>
                                     <div class="wrap-2">
@@ -360,11 +360,11 @@
                                         </div>
                                         <div class="show-kq">
                                             <div class="text">Lãi cần trả</div>
-                                            <div class="price-1 nau">21,666,667</div>
+                                            <div class="price-1 nau" id="laiCanTra">21,666,667</div>
                                         </div>
                                         <div class="show-kq">
                                             <div class="text cam">Số tiền gốc và lãi<br>trả tháng đầu</div>
-                                            <div class="price-1 cam">45,000,000</div>
+                                            <div class="price-1 cam" id="gocLai">45,000,000</div>
                                         </div>
                                     </div>
                                 </div>
