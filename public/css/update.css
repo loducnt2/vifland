@@ -1,130 +1,157 @@
 .danhmuc .search form {
     width: 100%;
 }
+
 .article-none {
     width: 100%;
 }
+
 .user-mobile {
     right: -120%;
 }
+
 .menu-mobile {
     left: -120%;
 }
+
 .dangbaiviet .wrap-moTaVip .img a {
     display: flex;
     justify-content: flex-end;
 }
+
 header .nav-desktop .main-nav .nav-list .icon {
     margin-bottom: 8px;
 }
+
 .box-sp .box-sp-text .title-text {
     height: 38px;
 }
+
 #btnPopup {
     width: 100%;
 }
+
 .user-mobile {
     width: 100% !important;
 }
+
 .menu-mobile {
     width: 100% !important;
 }
-.form-group-sl1
-    .select2-container
-    .select2-selection--single
-    .select2-selection__rendered {
+
+.form-group-sl1 .select2-container .select2-selection--single .select2-selection__rendered {
     padding-left: 10px;
 }
+
 .wrap-button-dbv {
     margin-top: 30px;
     display: flex;
     justify-content: flex-end;
 }
+
 #cke_1_contents {
     height: 370px !important;
 }
+
 .vip {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
 }
+
 .mdtp__wrapper {
     bottom: 50% !important;
 }
+
 a.active {
     color: #eac688 !important;
 }
+
 .nav-list .active .text {
     color: #eac688 !important;
 }
+
 header .nav-desktop .main-nav .nav-list .text {
     display: flex;
     flex-direction: column;
 }
+
 .tdmk-s {
     display: flex;
     align-items: center;
 }
+
 .box-sp {
     width: 100%;
 }
+
 .vip1 {
     text-transform: uppercase;
     color: #993393 !important;
 }
+
 .vip2 {
     text-transform: uppercase;
     color: #dd8c43 !important;
 }
+
 .vip3 {
     text-transform: uppercase;
     color: #b18734 !important;
 }
+
 .timepicker {
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-8h4v2h-6V7h2v5z' fill='rgba(113,113,113,1)'/%3E%3C/svg%3E")
-        no-repeat;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm1-8h4v2h-6V7h2v5z' fill='rgba(113,113,113,1)'/%3E%3C/svg%3E") no-repeat;
     background-position: right 10px center;
 }
+
 .cke_chrome {
     border-radius: 5px;
     overflow: hidden;
 }
+
 .box-sp .box-sp-text .title-text {
     font-weight: 500;
     letter-spacing: 0.5px;
 }
+
 #products {
     width: 100%;
 }
+
 section.sanpham-s-2 .article-content p {
     font-size: 1rem;
 }
+
 .dangbaiviet .select2-selection__rendered {
     padding-left: 10px !important;
 }
-.index-s2
-    .sl-1
-    .select2-container
-    .select2-selection--single
-    .select2-selection__rendered {
+
+.index-s2 .sl-1 .select2-container .select2-selection--single .select2-selection__rendered {
     padding-left: 40px;
 }
+
 a.cke_button {
     height: auto !important;
 }
+
 .dangbaiviet .modal-dialog {
     max-width: 913px;
     padding: 0 20px;
 }
+
 .datepicker td,
 .datepicker th {
     width: 40px !important;
     height: 30px !important;
 }
-.datepicker table tr td.active {
+
+.datepicker table tr td.active,
+.datepicker table tr td span.active {
     background-image: linear-gradient(to bottom, #d3ad7a, #c8a074) !important;
 }
+
 .dangbaiviet .modal-content {
     background-color: white;
     padding: 72px;
@@ -132,23 +159,27 @@ a.cke_button {
     padding-bottom: 50px;
     overflow: auto;
 }
+
 .dangbaiviet .box-tin {
     border: 1px solid rgba(43, 43, 43, 0.15);
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 16px;
 }
+
 .dangbaiviet .section-title {
     color: #000;
     font-size: 20px !important;
     text-align: center;
 }
+
 .dangbaiviet .wrap-1 {
     padding: 16px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgba(43, 43, 43, 0.15);
 }
+
 .dangbaiviet .button-vip {
     background: rgb(153, 51, 147);
     color: white;
@@ -162,21 +193,24 @@ a.cke_button {
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px, rgba(0, 0, 0, 0.14) 0px 2px 2px,
-        rgba(0, 0, 0, 0.12) 0px 3px 1px -2px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px, rgba(0, 0, 0, 0.14) 0px 2px 2px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px;
     transition: 0.25s ease;
 }
+
 .dangbaiviet .button-vip:hover {
     transform: translateY(-3px);
 }
+
 .dangbaiviet .button-vip:active {
     transform: translateY(-1px);
 }
+
 .dangbaiviet .wrap-text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
+
 .dangbaiviet .box-tin .wrap-text h4 {
     font-size: 18px;
     font-weight: 700;
@@ -187,15 +221,18 @@ a.cke_button {
     text-align: right;
     color: #2b2b2b;
 }
+
 .dangbaiviet .box-tin .wrap-text p {
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.00714em;
 }
+
 .dangbaiviet .wrap-2 {
     padding: 16px;
     border-bottom: 1px solid rgba(43, 43, 43, 0.15);
 }
+
 .dangbaiviet .wrap-2 table {
     width: 100%;
 }
@@ -203,8 +240,9 @@ a.cke_button {
 .dangbaiviet .wrap-2 tr:nth-of-type(2n-1) {
     background-color: #f7f7f7;
 }
-.dangbaiviet .wrap-2 tr:nth-of-type(2n) {
-}
+
+.dangbaiviet .wrap-2 tr:nth-of-type(2n) {}
+
 .dangbaiviet .wrap-2 td:last-child {
     text-align: right;
     height: 46px;
@@ -214,20 +252,24 @@ a.cke_button {
     justify-content: flex-end;
     padding-right: 10px;
 }
+
 .nav-link.active {
     color: #1a237e !important;
 }
+
 .dangbaiviet .wrap-2 td p {
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.00714em;
     color: black;
 }
+
 .danhmuc .button-filter {
     background-color: #223f91;
     color: white;
     border-radius: 0px 0px 10px 10px;
 }
+
 .dangbaiviet .wrap-2 td span {
     font-size: 0.875rem;
     font-weight: 300;
@@ -238,14 +280,17 @@ a.cke_button {
 .dangbaiviet .wrap-2 td:first-child {
     padding-left: 10px;
 }
+
 .dangbaiviet .wrap-3 {
     padding-top: 15px;
     padding-bottom: 20px;
 }
+
 .dangbaiviet .wrap-3 ul {
     padding: 0;
     padding-left: 15px;
 }
+
 .dangbaiviet .wrap-3 ul li {
     list-style: none;
     color: #2b2b2b;
@@ -255,6 +300,7 @@ a.cke_button {
     display: flex;
     align-items: center;
 }
+
 .dangbaiviet .wrap-3 ul li span {
     font-weight: 800;
 }
@@ -265,6 +311,7 @@ a.cke_button {
     display: inline-block;
     padding-right: 5px;
 }
+
 .icons.active {
     background-color: hsl(0deg 0% 100% / 75%) !important;
     color: #e7843f !important;
@@ -276,9 +323,11 @@ a.cke_button {
     font-size: 18px;
     font-weight: 600;
 }
+
 .user-admin {
     min-height: auto !important;
 }
+
 h2.section-under-title {
     text-decoration: none !important;
     font-size: 18px;
@@ -291,10 +340,12 @@ h2.section-under-title {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 .wrap-modal-dangnhap .modal-dialog {
     margin-left: auto;
     margin-right: auto;
 }
+
 label.error {
     color: tomato;
     font-weight: bold;
@@ -306,19 +357,24 @@ label.error {
 .form-group-input {
     position: relative;
 }
+
 .select2-container .select2-selection--multiple {
     min-height: 40px;
 }
+
 header .thong-bao .wrap-list-thongbao .wrap-2 {
     height: 285px;
     overflow: auto;
 }
+
 header .thong-bao .wrap-list-thongbao .wrap-2::-webkit-scrollbar {
     width: 2px;
 }
+
 header .thong-bao .wrap-list-thongbao .wrap-2::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
+
 header .thong-bao .wrap-list-thongbao .wrap-2::-webkit-scrollbar-thumb {
     background: #888;
 }

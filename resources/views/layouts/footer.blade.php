@@ -7,7 +7,8 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="footer-box">
-                            <div class="img"><img src="{{asset('assets/logo/logo-footer-300.png')}}" alt=""></div>
+                            <div class="img"><img class="lazyload"
+                                    data-src="{{asset('assets/logo/logo-footer-300.png')}}" alt=""></div>
                             <ul class="list-items">
                                 <li class="list-item"><span class="material-icons">location_on</span>
                                     <p>152/1A Nguyễn Văn Thương, Phường 25, Quận Bình Thạnh, Tphcm</p>

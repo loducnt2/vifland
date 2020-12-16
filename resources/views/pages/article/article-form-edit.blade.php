@@ -20,7 +20,8 @@
         </div>
     </div>
     <section class="dangbaiviet">
-        <form class="formDangBaiViet" action="{{route('update-article',$product->product_id)}}" method="post" enctype="multipart/form-data">
+        <form class="formDangBaiViet" action="{{route('update-article',$product->product_id)}}" method="post"
+            enctype="multipart/form-data">
             @csrf
             <div class="max-width-container">
                 <div class="row">
@@ -28,11 +29,13 @@
                         <div class="box-left-form-muaban">
                             <div class="mdm-1">
                                 <div class="checked">
-                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id" {{$product->cate_id==$cate_2[0]->id?"checked":""}}>
+                                    <input id="luachonsearch1" type="radio" value="{{$cate_2[0]->id}}" name="cate_id"
+                                        {{$product->cate_id==$cate_2[0]->id?"checked":""}}>
                                     <label for="luachonsearch1">{{$cate_2[0]->name}}</label>
                                 </div>
                                 <div class="checked">
-                                    <input id="luachonsearch2" type="radio" value="{{$cate_2[1]->id}}" name="cate_id" {{$product->cate_id==$cate_2[1]->id?"checked":""}}>
+                                    <input id="luachonsearch2" type="radio" value="{{$cate_2[1]->id}}" name="cate_id"
+                                        {{$product->cate_id==$cate_2[1]->id?"checked":""}}>
                                     <label for="luachonsearch2">{{$cate_2[1]->name}}</label>
                                 </div>
                             </div>
@@ -56,7 +59,9 @@
                                             <select class="select1" name="province_id" id="province">
                                                 <option value="">Chọn</option>
                                                 @foreach($provinces as $province)
-                                                <option value="{{$province->id}}" {{$product->province_id==$province->id?"selected":""}} >{{$province->name}}</option>
+                                                <option value="{{$province->id}}"
+                                                    {{$product->province_id==$province->id?"selected":""}}>
+                                                    {{$province->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -64,7 +69,9 @@
                                             <label for="thanhpho">Quận/Huyện</label>
                                             <select class="select1" name="district_id" id="district">
                                                 @foreach($districts as $district)
-                                                <option value="{{$district->id}}" {{$product->district_id==$district->id?"selected":""}} >{{$district->name}}</option>
+                                                <option value="{{$district->id}}"
+                                                    {{$product->district_id==$district->id?"selected":""}}>
+                                                    {{$district->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -72,7 +79,9 @@
                                             <label for="thanhpho">Phường/Xã</label>
                                             <select class="select1" name="ward_id" id="ward">
                                                 @foreach($wards as $ward)
-                                                <option value="{{$ward->id}}" {{$product->ward_id==$ward->id?"selected":""}} >{{$ward->name}}</option>
+                                                <option value="{{$ward->id}}"
+                                                    {{$product->ward_id==$ward->id?"selected":""}}>{{$ward->name}}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -86,10 +95,12 @@
                                         aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại hình</label>
-                                            <select class="select1" name="product_cate"  >
+                                            <select class="select1" name="product_cate">
                                                 <option value="">Chọn</option>
                                                 @foreach($product_cate as $prodcate)
-                                                <option value="{{$prodcate->id}}" {{$product->product_cate==$prodcate->id?"selected":""}}>{{$prodcate->name}}</option>
+                                                <option value="{{$prodcate->id}}"
+                                                    {{$product->product_cate==$prodcate->id?"selected":""}}>
+                                                    {{$prodcate->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -116,19 +127,21 @@
                                             <select class="select1" name="unit_id" id="unit">
                                                 <option value="">Chọn</option>
                                                 @foreach($units as $unit)
-                                                <option value="{{$unit->id}}" {{$product->unit_id == $unit->id?"selected":""}}>{{$unit->name}}</option>
+                                                <option value="{{$unit->id}}"
+                                                    {{$product->unit_id == $unit->id?"selected":""}}>{{$unit->name}}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" min="0" name="price" id="price" value="{{$product->price}}">
+                                            <input type="text" min="0" name="price" id="price"
+                                                value="{{$product->price}}">
                                             <!-- <em class="notedongia">Mặc
                                                 định 0 là thương lượng</em> -->
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="khac" role="tabpanel"
-                                        aria-labelledby="khac-tab">
+                                    <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Số tầng</label>
                                             <input type="text" min="0" name="floors" value="{{$product->floors}}">
@@ -141,17 +154,29 @@
                                             <label for="legal">Giấy tờ pháp lý</label>
                                             <select name="legal" class="select1" id="legal">
                                                 <option value="">Chọn</option>}
-                                                <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng" {{$product->legal == "Giấy CN QSDĐ - Sổ đỏ - Sổ hồng"?"selected":""}}>Giấy
+                                                <option value="Giấy CN QSDĐ - Sổ đỏ - Sổ hồng"
+                                                    {{$product->legal == "Giấy CN QSDĐ - Sổ đỏ - Sổ hồng"?"selected":""}}>
+                                                    Giấy
                                                     CN QSDĐ - Sổ đỏ - Sổ hồng</option>
-                                                <option value="Hợp đồng mua bán" {{$product->legal == "Hợp đồng mua bán"?"selected":""}}>Hợp đồng mua bán
+                                                <option value="Hợp đồng mua bán"
+                                                    {{$product->legal == "Hợp đồng mua bán"?"selected":""}}>Hợp đồng mua
+                                                    bán
                                                 </option>
-                                                <option value="Hợp đồng góp vốn" {{$product->legal == "Hợp đồng góp vốn"?"selected":""}}>Hợp đồng góp vốn
+                                                <option value="Hợp đồng góp vốn"
+                                                    {{$product->legal == "Hợp đồng góp vốn"?"selected":""}}>Hợp đồng góp
+                                                    vốn
                                                 </option>
-                                                <option value="Đất giao - Đất phân" {{$product->legal == "Đất giao - Đất phân"?"selected":""}}>Đất giao - Đất
+                                                <option value="Đất giao - Đất phân"
+                                                    {{$product->legal == "Đất giao - Đất phân"?"selected":""}}>Đất giao
+                                                    - Đất
                                                     phân</option>
-                                                <option value="Đang làm giấy CN QSDĐ" {{$product->legal == "Đang làm giấy CN QSDĐ"?"selected":""}}>Đang làm giấy
+                                                <option value="Đang làm giấy CN QSDĐ"
+                                                    {{$product->legal == "Đang làm giấy CN QSDĐ"?"selected":""}}>Đang
+                                                    làm giấy
                                                     CN QSDĐ</option>
-                                                <option value="Đã có giấy hẹn lấy số" {{$product->legal == "Đã có giấy hẹn lấy số"?"selected":""}}>Đã có giấy hẹn
+                                                <option value="Đã có giấy hẹn lấy số"
+                                                    {{$product->legal == "Đã có giấy hẹn lấy số"?"selected":""}}>Đã có
+                                                    giấy hẹn
                                                     lấy số</option>
                                             </select>
                                         </div>
@@ -171,27 +196,30 @@
                     <div class="col-lg-9 col-md-12">
                         <div class="row">
                             <div class="col-12 form-group">
-                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title" value="{{$product->title}}">
+                                <input class="input-100" type="text" placeholder="Tiêu đề bài viết" name="title"
+                                    value="{{$product->title}}">
                             </div>
                             <div class="col-12 form-group">
-                                <textarea class="form-control" id="summary-ckeditor" name="content">{{$product->content}}</textarea>
+                                <textarea class="form-control" id="summary-ckeditor"
+                                    name="content">{{$product->content}}</textarea>
                             </div>
                             <!-- <div class="col-12 form-group">
                                 <span>Ảnh tiêu đề : &nbsp;</span>
                                 <input type="file" name="thumbnail" disabled="">
                             </div> -->
                             <div class="col-12 form-group">
-                                <input type="text" value="" data-role="tagsinput" placeholder="Chỉnh sửa lại tag" name="tags" value="">
+                                <input type="text" value="" data-role="tagsinput" placeholder="Chỉnh sửa lại tag"
+                                    name="tags" value="">
                                 @if($product->tags!=NULL)
-                                <?php 
-                                    if(strpos($product->tags,',')){
-                                        $tag = explode(",",$product->tags);
-                                        foreach( $tag as $tg ){
-                                            echo '<span class="badge badge-secondary">'.$tg.'<span data-role="remove"></span></span>&ensp;';
-                                        } 
-                                    }else{
-                                        echo '<span class="badge badge-secondary">'.$product->tags.'<span data-role="remove"></span></span>';
+                                <?php
+                                if (strpos($product->tags, ',')) {
+                                    $tag = explode(",", $product->tags);
+                                    foreach ($tag as $tg) {
+                                        echo '<span class="badge badge-secondary">' . $tg . '<span data-role="remove"></span></span>&ensp;';
                                     }
+                                } else {
+                                    echo '<span class="badge badge-secondary">' . $product->tags . '<span data-role="remove"></span></span>';
+                                }
                                 ?>
                                 @endif
                             </div>
@@ -199,16 +227,18 @@
                                 <div class="form-upload__preview">
                                     <div class="mb-2" id="old-img">
                                         @foreach($img as $ig)
-                                        <img style="" src="{{asset('assets/product/detail/'.$ig->img)}}" alt="" height="150px" width="150px">
+                                        <img class="lazyload" data-src="{{asset('assets/product/detail/'.$ig->img)}}"
+                                            alt="" height="150px" width="150px">
                                         @endforeach
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-upload__field">
-                                    <label class="form-upload__title" for="upload">Thay đổi / thêm ảnh <br> <small>(Chọn nhiều ảnh cùng lúc)</small>
+                                    <label class="form-upload__title" for="upload">Thay đổi / thêm ảnh <br> <small>(Chọn
+                                            nhiều ảnh cùng lúc)</small>
                                         <input class="form-upload__control js-form-upload-control" id="upload"
                                             type="file" multiple="true" style="display:none" name="img[]">
-                                    
+
                                     </label>
                                     <button class="btn btn-clear ml-3">Xóa ảnh</button>
                                 </div>
@@ -222,22 +252,27 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">person</span>
-                                <input type="text" placeholder="Tên liên lạc" name="name_contact" value="{{$product->name_contact}}">
+                                <input type="text" placeholder="Tên liên lạc" name="name_contact"
+                                    value="{{$product->name_contact}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">business</span>
-                                <input type="text" placeholder="Tên Công ty" name="company_name" value="{{$product->company}}">
+                                <input type="text" placeholder="Tên Công ty" name="company_name"
+                                    value="{{$product->company}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">phone</span>
-                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact" value="{{$product->phone_contact}}">
+                                <input type="text" placeholder="Điện thoại cá nhân" name="phone_contact"
+                                    value="{{$product->phone_contact}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><i class="ri-facebook-circle-fill"></i>
-                                <input type="text" placeholder="Facebook cá nhân" name="facebook" value="{{$product->facebook}}">
+                                <input type="text" placeholder="Facebook cá nhân" name="facebook"
+                                    value="{{$product->facebook}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">location_on</span>
-                                <input type="text" placeholder="Địa chỉ" name="address_contact" value="{{$product->address_contact}}">
+                                <input type="text" placeholder="Địa chỉ" name="address_contact"
+                                    value="{{$product->address_contact}}">
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">public</span>
@@ -245,7 +280,8 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 form-group"><span
                                     class="material-icons">email</span>
-                                <input type="text" placeholder="Hộp thư điện tử" name="email" value="{{$product->email}}">
+                                <input type="text" placeholder="Hộp thư điện tử" name="email"
+                                    value="{{$product->email}}">
                             </div>
                         </div>
                         <div class="row ">
@@ -480,137 +516,140 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script src="https://cdn.jsdelivr.net/gh/dmuy/MDTimePicker@v1.0.2-rc2/mdtimepicker.min.js"></script>
 <script>
-    // var date = new Date();
-    // date.setDate(date.getDate()-1);
-    // var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    var now = new Date();
-    var formatted = now.getHours() + ":" + now.getMinutes();
-    $('#timepicker').mdtimepicker({
-        format: 'hh:mm'
-    });
-    $('#timepicker').mdtimepicker('setValue', formatted);
+// var date = new Date();
+// date.setDate(date.getDate()-1);
+// var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+var now = new Date();
+var formatted = now.getHours() + ":" + now.getMinutes();
+$('#timepicker').mdtimepicker({
+    format: 'hh:mm'
+});
+$('#timepicker').mdtimepicker('setValue', formatted);
 
-    var date = new Date();
-    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    $("#testdate").datepicker({
-        startDate: today,
-        todayHighlight: true,
-        language: 'vi',
-        format: 'mm/dd/yyyy',
-    }).attr('readonly', 'readonly');
-    $('#testdate').datepicker('setDate', today);
-    CKEDITOR.replace('summary-ckeditor');
-    $(document).ready(function () {
+var date = new Date();
+var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+$("#testdate").datepicker({
+    startDate: today,
+    todayHighlight: true,
+    language: 'vi',
+    format: 'mm/dd/yyyy',
+}).attr('readonly', 'readonly');
+$('#testdate').datepicker('setDate', today);
+CKEDITOR.replace('summary-ckeditor');
+$(document).ready(function() {
 
 
 
-        $('#unit').change(function () {
-            if ($(this).val() == 13) {
-                $('#price').attr('disabled', true);
-            } else {
-                $('#price').attr('disabled', false);
-            }
-        })
+    $('#unit').change(function() {
+        if ($(this).val() == 13) {
+            $('#price').attr('disabled', true);
+        } else {
+            $('#price').attr('disabled', false);
+        }
+    })
 
-        $('#province').change(function () {
-            var province = $(this).val();
-            var url = '/get-district/' + province;
-            $('#district').load(url, function () {
-                var district = $(this).val();
-                var url1 = '/get-ward/' + district;
-                $('#ward').load(url1);
-            });
-        });
-        $('#district').change(function () {
+    $('#province').change(function() {
+        var province = $(this).val();
+        var url = '/get-district/' + province;
+        $('#district').load(url, function() {
             var district = $(this).val();
             var url1 = '/get-ward/' + district;
             $('#ward').load(url1);
         });
+    });
+    $('#district').change(function() {
+        var district = $(this).val();
+        var url1 = '/get-ward/' + district;
+        $('#ward').load(url1);
+    });
 
-        //Validate 
-        $('.formDangBaiViet').submit(function () {
+    //Validate 
+    $('.formDangBaiViet').submit(function() {
 
-        let wallet = {{ auth()->user()->wallet }};
+        let wallet = {
+            {
+                auth() - > user() - > wallet
+            }
+        };
         let pricepost = $('input[name="pricePost"]').val();
         //console.log(wallet + ' ' + pricepost)
-        if( parseInt(wallet) < parseInt(pricepost)  ){
-            alert( ' k đủ tiền' )
+        if (parseInt(wallet) < parseInt(pricepost)) {
+            alert(' k đủ tiền')
             return false
         }
-      })
-    $('.form-upload__title').click(function(){
-        $('#old-img').css('display','none');
+    })
+    $('.form-upload__title').click(function() {
+        $('#old-img').css('display', 'none');
     })
 
 
-      /*$('.formDangBaiViet').validate({
-          ignore: [],
-          rules:{
-              province_id:{
-                required:true,
-              },
-              address:{
-                required:true,
-              },
-              title:{
-               required :true,
-              },
-              content:{
-                required:true,
-                lettersonly: true,
-                minlength:50
-              },
-              img:{
-                required:true,
-              },
-              name_contact:{
-               required :true,
-              },
-              phone_contact:{
-               required :true,
-              },
-              datetime_start:{
-                required:true,
-              },
-              tags:{
-                required:true,
-              },
-
-              legal:{
-                required:true,
-              },
-              unit_id:{
-                required:true,
-              },
-              price:{
-                required:true,
-              },
+    /*$('.formDangBaiViet').validate({
+        ignore: [],
+        rules:{
+            province_id:{
+              required:true,
             },
-            //Custom
-            errorPlacement: function(error, element) {
-                //Custom position: first name
-                if (element.attr("name") == "first" ) {
-                    $("#errNm1").text(error);
-                }
-                //Custom position: second name
-                else if (element.attr("name") == "second" ) {
-                    $("#errNm2").text(error);
-                }
-                // Default position: if no match is met (other fields)
-                else {
-                     error.append($('.errorTxt span'));
-                }
+            address:{
+              required:true,
             },
-            submitHandler: function (form) {
-                form.submit(function () {
+            title:{
+             required :true,
+            },
+            content:{
+              required:true,
+              lettersonly: true,
+              minlength:50
+            },
+            img:{
+              required:true,
+            },
+            name_contact:{
+             required :true,
+            },
+            phone_contact:{
+             required :true,
+            },
+            datetime_start:{
+              required:true,
+            },
+            tags:{
+              required:true,
+            },
 
-                });
-            }
+            legal:{
+              required:true,
+            },
+            unit_id:{
+              required:true,
+            },
+            price:{
+              required:true,
+            },
+          },
+          //Custom
+          errorPlacement: function(error, element) {
+              //Custom position: first name
+              if (element.attr("name") == "first" ) {
+                  $("#errNm1").text(error);
+              }
+              //Custom position: second name
+              else if (element.attr("name") == "second" ) {
+                  $("#errNm2").text(error);
+              }
+              // Default position: if no match is met (other fields)
+              else {
+                   error.append($('.errorTxt span'));
+              }
+          },
+          submitHandler: function (form) {
+              form.submit(function () {
 
-        });*/
+              });
+          }
+
+      });*/
 
 
-    });
-
+});
 </script>
 @endsection

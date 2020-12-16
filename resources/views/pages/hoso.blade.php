@@ -35,13 +35,14 @@
 
                             {{-- var_dump($user->full_name); --}}
 
-                            <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
+                            <div class="bl-1"><img class="lazyload"
+                                    data-src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
                                 <p>{{$profile->full_name}}</p>
                             </div>
                             <div class="bl-2">
                                 <div class="row">
-                                    <div class="col-12"><span class="vifPay"> <img
-                                                src="{{asset('assets/icon/card.png')}}"
+                                    <div class="col-12"><span class="vifPay"> <img class="lazyload"
+                                                data-src="{{asset('assets/icon/card.png')}}"
                                                 alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
                                     <!-- <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
                                                     class="material-icons">keyboard_arrow_right</span></a></span></div> -->
@@ -67,7 +68,7 @@
                                     </a>
                                 </div>
                                 <ul>
-                                    <li> <a href="#" >Tin đã đăng</a></li>
+                                    <li> <a href="#">Tin đã đăng</a></li>
                                     <li> <a href="#">Tin chờ đăng</a></li>
                                     <li> <a href="#">Chờ xác nhận </a></li>
                                 </ul>
@@ -99,8 +100,9 @@
                                                     <p class="text-f">Ảnh đại diện</p>
                                                 </div>
                                                 <div class="col-md-12 col-lg-10 form-group hinhdd">
-                                                    <div class="wrap-img"> <img class="img"
-                                                            src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
+                                                    <div class="wrap-img"> <img class="img lazyload"
+                                                            data-src="{{asset('assets/avatar')}}/{{$profile->img}}"
+                                                            alt="">
                                                         <label class="wrap-input" for="upload"> <em
                                                                 class="material-icons">add_a_photo</em>
                                                             <input id="upload" name="image" type="file"
@@ -156,16 +158,15 @@
                                             <div class="row form-wrap thongtinform">
                                                 <div class="col-md-12 col-lg-2 form-group">
                                                     <?php
-                                                    $birthday=$profile->birthday;
-                                                        $date=explode("-",$birthday);
-                                                        if($birthday=="")
-                                                        {
-                                                            $date[0]="";
-                                                            $date[1]="";
-                                                            $date[2]="";
-                                                        }
-                                                        // echo(''.$fdate);
-                                                        ?>
+                                                    $birthday = $profile->birthday;
+                                                    $date = explode("-", $birthday);
+                                                    if ($birthday == "") {
+                                                        $date[0] = "";
+                                                        $date[1] = "";
+                                                        $date[2] = "";
+                                                    }
+                                                    // echo(''.$fdate);
+                                                    ?>
                                                     <p class="text-f">Ngày sinh</p>
                                                     {{-- cắt chuỗi ngày sinh--}}
 
@@ -173,15 +174,19 @@
                                                 <div class="col-md-12 col-lg-10 form-group">
                                                     <div class="row">
                                                         <div class="col-4 form-group">
-                                                            <input type="number"
-                                                                value="<?php if(isset($date)){ echo ''.$date[2];} ?>"
-                                                                min="0" placeholder="Ngày" name="date" id="date">
+                                                            <input type="number" value="<?php if (isset($date)) {
+                                                                                            echo '' . $date[2];
+                                                                                        } ?>" min="0"
+                                                                placeholder="Ngày" name="date" id="date">
                                                             <!-- "Tạm đóng để sử dụng" -->
                                                         </div>
                                                         <div class="col-4 form-group">
                                                             <select class="input-select" name="month" id="month">
-                                                                <option hidden="" disabled="" selected value=""> <?php
-                                                            if(isset($date)){ echo 'Tháng '.$date[1];} ?>
+                                                                <option hidden="" disabled="" selected value="">
+                                                                    <?php
+                                                                                                                    if (isset($date)) {
+                                                                                                                        echo 'Tháng ' . $date[1];
+                                                                                                                    } ?>
                                                                 </option>
                                                                 @for ($i = 1; $i <= 12; $i++)
                                                                     {{-- <option value="{{$i}}" name="" id="">Tháng
@@ -194,8 +199,9 @@
                                                         </div>
                                                         <div class="col-4 form-group">
                                                             <input type="number" min="0" placeholder="Năm"
-                                                                value="<?php if(isset($date)){echo ''.$date[0];} ?>"
-                                                                name="year" id="year">
+                                                                value="<?php if (isset($date)) {
+                                                                                                                        echo '' . $date[0];
+                                                                                                                    } ?>" name="year" id="year">
                                                         </div>
 
                                                     </div>
@@ -313,9 +319,10 @@
 </body>
 @if(Auth::check() && Auth::user()->id != $profile->id)
 <script>
-    $("#form-profile :input").prop("disabled", true);
+$("#form-profile :input").prop("disabled", true);
 </script>
 @endif
+
 </html>
 @endsection
 {{-- Footer --}}
@@ -350,4 +357,5 @@ $.ajaxSetup({
 //                             $('#image-input-error').text(response.responseJSON.errors.file);
 //                         }
 //                     });
-// </script>
+// 
+</script>

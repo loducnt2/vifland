@@ -103,7 +103,7 @@ Quản lý tin tức > Cập nhật tin tức
                             {{-- <small class="text-muted"></small> --}}
                         </div>
                         <span class="text-muted">
-                            <img src="../../../assets/news/vn.png" alt="">
+                            <img class="lazyload" data-src="../../../assets/news/vn.png" alt="">
                         </span>
                     </li>
 
@@ -125,8 +125,8 @@ Quản lý tin tức > Cập nhật tin tức
 
                     <div class="show-img">
                         {{-- <input type="file" name="image" id="" > --}}
-                        <img src="{{asset('assets/news/bds_1.jpg')}}" alt="" id="output" class="images-preview"
-                            name="image" accept="image/*">
+                        <img data-src="{{asset('assets/news/bds_1.jpg')}}" alt="" id="output"
+                            class="images-preview lazyload" name="image" accept="image/*">
                     </div>
                 </div>
                 <script language="javascript">

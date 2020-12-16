@@ -211,8 +211,8 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12">
                             <div class="box-sp">
                                 <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                        href="{{route('article-detail',$product->slug)}}"><img
-                                            src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+                                        href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
+                                            data-src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
                                     <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
                                     <div class="box-icon">
                                         <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
@@ -233,17 +233,18 @@
                                     </div>
                                     <div class="mota-place">
                                         <div class="mota-place-1">
-                                            <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
-                                                    alt=""><span data-toggle="tooltip" data-placement="bottom"
+                                            <div class="mota-place-tt"><img class="lazyload"
+                                                    data-src="{{asset('assets/icon/dientich.png')}}" alt=""><span
+                                                    data-toggle="tooltip" data-placement="bottom"
                                                     title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
                                                     m²</span></div>
-                                            <div class="mota-place-tt"><img
-                                                    src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
+                                            <div class="mota-place-tt"><img class="lazyload"
+                                                    data-src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
                                                     data-toggle="tooltip" data-placement="bottom"
                                                     title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-                                            <div class="mota-place-tt"><img
-                                                    src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
-                                                    data-toggle="tooltip" data-placement="bottom"
+                                            <div class="mota-place-tt"><img class="lazyload"
+                                                    data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
+                                                    alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                     title="{{$product->facades}}">{{$product->facades}} m</span></div>
                                         </div>
                                         <!-- <div class="mota-place-1">
@@ -271,7 +272,8 @@
                         </div>
                         @endforeach
                         @else
-                        <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                        <div class="article-none"> <img class="lazyload"
+                                data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
                             <p>Không có bài đăng nào</p>
                         </div>
                         @endif
@@ -320,8 +322,8 @@
                                         mảnh đất như nhà ở, kiến trúc và những gì dưới mặt đất như dầu mỏ, khoáng chất…
                                     </span>
                                     <p class="MsoNormal" style="text-align: center;"></p><span
-                                        style="line-height: 107%; font-family: Roboto;"><img
-                                            src="https://news.meeycdn.com/uploads/2020/06/Quy-trinh-xay-dung-nha-2-tang-dep-1.jpg"
+                                        style="line-height: 107%; font-family: Roboto;"><img class="lazyload"
+                                            data-src="https://news.meeycdn.com/uploads/2020/06/Quy-trinh-xay-dung-nha-2-tang-dep-1.jpg"
                                             alt="Nhà 2 tầng đẹp">
                                         <font size="3"></font><br>
                                     </span>
@@ -527,8 +529,8 @@
                                         dung của bài viết sau:
                                     </span>
                                     <p class="MsoNormal" style="text-align: center;"></p><span
-                                        style="line-height: 107%; font-family: Roboto;"><img
-                                            src="https://news.meeycdn.com/uploads/2020/06/Phong-cach-thiet-ke-dau-tien-la-nha-o-truyen-thong-.jpg"
+                                        style="line-height: 107%; font-family: Roboto;"><img class="lazyload"
+                                            data-src="https://news.meeycdn.com/uploads/2020/06/Phong-cach-thiet-ke-dau-tien-la-nha-o-truyen-thong-.jpg"
                                             alt="Phong cach thiet ke dau tien la nha o truyen thong  - [ Chia Sẻ ] 99+ mẫu thiết kế nhà 2 tầng đẹp nhất 2020 - thu-vien-mau-nha">
                                         <font size="3"></font><br>
                                     </span>
@@ -830,8 +832,8 @@
                                         thành điểm nóng.
                                     </span>
                                     <p class="MsoNormal" style="text-align: center;"></p><span
-                                        style="line-height: 107%; font-family: Roboto;"><img
-                                            src="https://news.meeycdn.com/uploads/2020/07/Cac-chuyen-gia-dau-nganh-se-ho-tro-ban-khi-lam-hop-dong-dat-coc-dat.jpg"
+                                        style="line-height: 107%; font-family: Roboto;"><img class="lazyload"
+                                            data-src="https://news.meeycdn.com/uploads/2020/07/Cac-chuyen-gia-dau-nganh-se-ho-tro-ban-khi-lam-hop-dong-dat-coc-dat.jpg"
                                             alt="Các chuyên gia đầu ngành sẽ hỗ trợ bạn khi làm hợp đồng đặt cọc mua đất"></span>
                                     <p class="MsoNormal" style="text-align: center;"></p><span
                                         style="line-height: 107%; font-family: Roboto;"><i></i><span
