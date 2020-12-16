@@ -1,7 +1,12 @@
 @extends('.pages.user.slidebar')
-@section('title','Thông tin cá nhan')
+@section('title','Thông tin cá nhân')
 @section('headerStyles')
 @section('content_child')
+@if(Auth::check() && Auth::user()->username != $profile->username)
+<script>
+    $("#form-profile :input").prop("disabled", true);
+</script>
+@endif
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="active nav-link active" id="thaydoithongtin-tab" data-toggle="tab" href="#thaydoithongtin" role="tab"
         aria-controls="nav-home" aria-selected="true">Thay đổi thông tin cá nhân</a>

@@ -317,8 +317,8 @@
                                                 </div>
                                                 <div class="mota-place-tt"><span
                                                         class="material-icons icons-15">group</span><span
-                                                        data-toggle="tooltip" data-placement="bottom" title=""
-                                                        data-original-title="">---</span></div>
+                                                        data-toggle="tooltip" data-placement="bottom" title="{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}"
+                                                        data-original-title="">{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}</span></div>
                                             </div>
                                         </div>
                                         <div class="end-mota">

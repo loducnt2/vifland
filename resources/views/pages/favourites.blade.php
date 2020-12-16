@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Lịch sử')
+@section('title','Yêu thích')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
 @stop

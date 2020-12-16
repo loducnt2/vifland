@@ -10,7 +10,7 @@ class Favorited extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
     	'user_id',
-    	'product_extend_id',
+    	'product_id',
     	'status',
     	'type',
     ];

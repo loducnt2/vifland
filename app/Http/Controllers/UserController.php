@@ -45,11 +45,11 @@ class UserController extends Controller
          return redirect('/login');
     }
 
-    // profile_user
-    public function profileDetail($id){
+    // profile_user người dùng khác
+    public function profileDetail($username){
         {
 
-            $profile = User::where('id', '=' , $id);
+            $profile = User::where('username', '=' , $username);
 
             if($profile->count()) {
                 $profile = $profile->first();
@@ -58,7 +58,7 @@ class UserController extends Controller
 
                     ->get();
 
-                return view('pages/hoso')->with(
+                return view('pages.hoso')->with(
                     [
                         'profile'=>$profile,
                         'posts'=>$posts

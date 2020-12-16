@@ -104,22 +104,32 @@ div#u_0_0 {
                                 return $pageURL;
                             }
 
-                            ?>
-                            <div class="fb-comments" data-href="{{getCurURL()}}" data-width="100%" data-numposts="5">
-                            </div>
+				<div class="col-xl-9 col-md-9">
+					<div class="article-container">
+						<div class="date">
+							<p>{{$news->datepost}}</p>
+						</div>
+						<div class="title">
+
+        			<h1 class="section-under-title">{{$news->title}}</h1>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-3">
-                    <div class="orther-news">
-                        <div class="title">
-                            <h2 class="section-des">Các tin khác</h2>
-                        </div>
-                        @foreach ($posts as $news2)
-                        @if($news->slug == $news2->slug)
-                        {{-- ẩn tin --}}
-                        @else
-                        <div class="news-content">
+
+                    <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}} <span class="badge badge-primary">Quản trị viên</span></h6></a></p>
+						<div class="content">
+							{!!$news->content!!}
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-md-3">
+					<div class="orther-news">
+						<div class="title">
+							<h2 class="section-des">Các tin khác</h2>
+						</div>
+						@foreach ($posts as $news2)
+						@if($news->slug == $news2->slug)
+						{{-- ẩn tin --}}
+						@else
+						<div class="news-content">
 
                             <div class="img"> <img src="{{asset('assets/news')}}/{{$news2->img}}" alt=""></div>
                             <div class="content">

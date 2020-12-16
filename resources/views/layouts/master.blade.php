@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
     <!-- <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css"> -->
     @yield('headerStyles')
@@ -23,7 +26,7 @@
 </head>
 
 <body>
-    {!! Toastr::message() !!}
+
 
     @include('layouts.logo_animation')
     <div class="ov-h" id="wrapper">
@@ -98,7 +101,7 @@
 
         $('.number-yt').css('display', 'none')
         // Chức năng yêu thích
-        
+
         $(".fav").click(function() {
             if ($(this).hasClass("ri-heart-line")) {
                 $(this).addClass("ri-heart-fill")
@@ -140,18 +143,6 @@
                         productId: productid,
                         _token: "{{ csrf_token() }}"
                     },
-                    success: function(data, status) {
-                        //Chưa đăng nhập
-                        if (data == 0) {
-
-                        }
-                        if (data == 1) {
-                            //Thích sản phẩm,
-                        }
-                        if (data == 2) {
-                            //Bỏ thích sản phẩm
-                        }
-                    }
                 })
             }
             $.ajax({
