@@ -41,6 +41,9 @@ Route::get('/search/', 'SearchController@index')->name('search');               
 Route::get('/searchmobi', 'SearchController@searchMobile')->name('searchmob');   // Tìm kiếm giao diện mobile
 //Route::get('/search/filter/','SearchController@filter')->name('filter');
 
+Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
+Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+
 Route::group(['middleware' => 'auth'], function () {
     //Nạp tiền
     Route::post('/user/create-payment', 'PaymentController@create')->name('create-payment'); // Nạp tiền
@@ -341,4 +344,3 @@ Route::post('/send-email', 'NewsLetterController@send_email');
 // Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
 
 Route::post('/guithu', 'NewsLetterController@guithu');
-Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}', 'ProductController@Productbyprovince');

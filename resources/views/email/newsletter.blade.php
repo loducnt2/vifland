@@ -20,7 +20,6 @@
         width: 100% !important;
         background: #f1f1f1;
     }
-
     /* What it does: Stops email clients resizing small text. */
     * {
         -ms-text-size-adjust: 100%;

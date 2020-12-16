@@ -325,3 +325,9 @@ header .thong-bao .wrap-list-thongbao .wrap-2::-webkit-scrollbar-track {
 header .thong-bao .wrap-list-thongbao .wrap-2::-webkit-scrollbar-thumb {
     background: #888;
 }
+div#u_0_0 {
+    width: 100% !important;
+}
+.mdtp__clock_holder {
+    height: 100%;
+}
