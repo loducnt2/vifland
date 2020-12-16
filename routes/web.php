@@ -74,7 +74,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('admin/wallet/sub', 'WalletController@subWallet')->name('sub-wallet');                 // Trừ tiiền user
 
     //User
-    Route::get('/user/profile','UserController@profileUser')->name('profile');                    //Thông tin userr
+    Route::get('/user/profile','UserController@profileUser')->name('profile');           // thông tin user của người login1
+    Route::get('/profile/{username}','UserController@profileDetail')->name('profile_username');                 //Thông tin userr khác
     Route::get('/user/password','UserController@formpassword')->name('change-password');          // Thay đổi mật khẩu
     Route::get('/user/add-money','UserController@formaddmoney')->name('add-money');               //
     Route::get('/user/payment-history','UserController@paymentHistory')->name('payment-history'); // Lịch sử nạp tiền user
@@ -339,4 +340,8 @@ Route::post('/send-email', 'NewsLetterController@send_email');
 
 // Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
 
-Route::post('/guithu', 'NewsLetterController@guithu');
+Route::post('/guithu','NewsLetterController@guithu');
+Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}','ProductController@Productbyprovince');
+
+Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}','NewsLetterController@unsubscribe');
+// Route::get()

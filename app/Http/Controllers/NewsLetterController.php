@@ -40,105 +40,44 @@ class NewsLetterController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     public function subscribe(Request $request){
         // get thông tin thành phố thông qua IP
-        $ip = '171.255.119.75';
+        $ip = '113.172.249.204';
         // hàm data ở đây là dùng để get thông tin nơi đăng nhập của người dùng
         $data = \Location::get($ip)->regionName;
         //hàm strpos để kiểm tra xem dữ liệu nhập vào có khoảng trắng hay không
         if(strpos($data, " ") == false)
         {
                 // không có khoẳng trắng
-                $value = Province::whereRaw("REPLACE(`name`, ' ' ,'') LIKE ?", ['%'.str_replace(' ', '', $data).'%'])->value("name");
+                $location = Province::whereRaw("REPLACE(`name`, ' ' ,'') LIKE ?", ['%'.str_replace(' ', '', $data).'%'])->value("name");
             }
         else{
             // có khoảng trắng
-            $value = Province::WhereRaw("MATCH(name) AGAINST('.$data.')")->value('name');
+            $location = Province::WhereRaw("MATCH(name) AGAINST('.$data.')")->value('name');
         }
-            // get id của province ( mượn bảng Province )
-            $id = Province::where('name',$value)->value('id');
+            // get thông tin location của thành phố của province ( mượn bảng Province )
+            $id = Province::where('name',$location)->value('id');
             $newsletters = new Newsletters2();
-        if ( ! Newsletter::isSubscribed($request->email) ) {
-            Newsletter::subscribe(filter_var($request->email, FILTER_VALIDATE_EMAIL));
+        if ( !Newsletter::isSubscribed($request->email) ) {
+
+            Newsletter::subscribeOrUpdate(filter_var($request->email, FILTER_VALIDATE_EMAIL));
             $newsletters->email = $request->email;
             $newsletters->ID_City = $id;
             //  so sánh nếu trùng định danh IP( không khoảng trắng) , lấy tên đầy đủ của định danh ( có dấu);
             // dd($Location_IP);
-            $newsletters->IP_Location = $value;
+            $newsletters->IP_Location = $location;
             $newsletters->save();
             Toastr::success('Đăng kí thành công ','Thông báo');
-
+            return redirect()->back();
         }
         else{
+            // dd("False");
             Newsletter::getLastError();
-            Toastr::success('Đăng kí thất bại','Thông báo');
+            Toastr::error('Email đã được đăng kí','Thông báo');
+            return redirect()->back();
         }
-        return redirect()->back();
+
     }
     public function export(){
         return Excel::download(new NewsLettersExport, 'NewsLetters.xlsx');
@@ -146,20 +85,17 @@ class NewsLetterController extends Controller
     }
 
     public function import(Request $request){
-
-
-
 	if ($request->file('import_file')) {
-        $import = \Excel::import(new NewsLettersImport, request()->file('import_file'));
+       $test= \Excel::import(new NewsLettersImport, request()->file('import_file'));
         Toastr::success('Cập nhật file excel thành công!  :)','Thông báo');
-        // dd('Có file');
+
         return redirect()->back()->with('success', 'Success!!!');
 
     }
     else{
-        Toastr::error('Không thành công! Vui lòng làm lại !  :)','Thông báo');
+        Toastr::error('Không có dữ liệu! Vui lòng kiểm tra lại !','Thông báo');
 
-        return redirect()->back()->with('success', 'Success!!!');
+        return redirect()->back();
     }
 }
     // mail_manager
@@ -168,16 +104,13 @@ class NewsLetterController extends Controller
     // show các tin tức bất động sản theo vùng miền
         $products = Product::whereIn('title',$request->input("productFilter"))->get();
         $date =Carbon::now()->format('d-m-yy');
+        // khu vực
 
-    // dd($query);
         $contents = $request->input("contents");
         $mails = $request->input("email");
-
-        // $product = Product::where('id_province',$id_city)->get();
         $news = News::all();
-        // $products = Product::where('id_province',$id)->get();
         $user = User::where('email',$mails)->first();
-        // làm query để hiện thị thông tin người đăng kí
+        // hàm query để hiện thị thông tin người đăng kí
         $query = DB::table('user')->where('email',$mails)->first();
         if(!$query){
             // nếu user không có mặt trong database thì sẽ tên họ sẽ để rỗng"
@@ -195,7 +128,9 @@ class NewsLetterController extends Controller
             $message->from("vifland.fpt@gmail.com");
             $message->to($mails);
             $date =Carbon::now()->format('d-m-yy');
-            $message->subject("Tin bất động sản ngày ". $date);
+            $location = $request->input("city");
+            // dd($location);
+           $message->subject("Tin bất động sản ngày ". $date ." Khu vực ".$location );
 
         });
         toastr::success('Gửi thư thành công','Hệ thống');
@@ -224,6 +159,16 @@ class NewsLetterController extends Controller
         toastr::success('Gủi thư thành công','Hệ thống');
         return redirect()->back();
     }
+    // unsubscribe user theo Username
+    public function unsubscribe(Request $request, $email)
+    {
+        // $newsletter = new Newsletters2();
+        $email = $request->email;
+        // dd($email);
+        Newsletter::unsubscribe($email);
+        $newsletter = Newsletters2::where('email',$email)->first();
+        $newsletter->delete();
 
+    }
 }
 

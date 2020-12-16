@@ -36,10 +36,11 @@
 							<p>{{$news->datepost}}</p>
 						</div>
 						<div class="title">
-							<h1 class="section-under-title">{{$news->title}}</h1>
-						</div>
-						<p>Tác giả: <a href="/user/profile/{{$id_nguoidang->id}}">{{$id_nguoidang->username}} <span class="badge badge-primary">Quản trị viên</span></h6></a></p>
-						<a href="/tin-tuc/danh-muc/{{$news_cate->slug}}">{{$news_cate->category_name}}</a>
+
+        			<h1 class="section-under-title">{{$news->title}}</h1>
+                        </div>
+
+                    <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}} <span class="badge badge-primary">Quản trị viên</span></h6></a></p>
 						<div class="content">
 							{!!$news->content!!}
 						</div>

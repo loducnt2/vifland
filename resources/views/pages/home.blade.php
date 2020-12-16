@@ -9,7 +9,7 @@
 
 @endif
 @section('content')
-
+{!! Toastr::message() !!}
 
 <!-- Tab panes -->
 <div class="tab-content">
