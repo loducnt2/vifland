@@ -9,7 +9,7 @@
 
 @endif
 @section('content')
-
+{!! Toastr::message() !!}
 
 <!-- Tab panes -->
 <div class="tab-content">
@@ -310,11 +310,11 @@ $('#navId a').click(e => {
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                 title="{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                 m²</span></div>
-                                        
+
                                         <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                 alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                 title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span></div>
-                                        
+
                                         <div class="mota-place-tt"><img
                                                 src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                                 data-toggle="tooltip" data-placement="bottom"

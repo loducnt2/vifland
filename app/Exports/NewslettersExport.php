@@ -15,7 +15,8 @@ class NewslettersExport implements FromCollection,WithHeadings
     {
         return Newsletters2::all();
     }
+
     public function headings() :array {
-    	return ["id", "email","created_at"];
+    	return ["id", "email","created_at","updated_at","location","cityid"];
     }
 }

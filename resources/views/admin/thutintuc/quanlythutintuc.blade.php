@@ -24,7 +24,9 @@
     }
 </style>
 @extends('admin.sidebar') @section('content') @section('breadcum') Quản lý thư
-tin tức @endsection {!! Toastr::message() !!}
+tin tức
+
+@endsection
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -53,6 +55,7 @@ tin tức @endsection {!! Toastr::message() !!}
                 accept=".xlsx, .xls, .csv, .ods">
             <label class="custom-file-label" for="customFile">Chọn tập tin</label>
         </div>
+
         <button
             type="submit"
             class="mt-4 btn btn-primary"
@@ -83,7 +86,7 @@ tin tức @endsection {!! Toastr::message() !!}
 
                         </div>
                         <div class="modal-body">
-                            <form action="/send-email" method="POST" enctype="multipart/form-data">
+                            <form action="/send-email" method="POST" enctype="multipart/form-data" id="myForm">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="">Tiêu đề thư</label>
@@ -132,6 +135,7 @@ tin tức @endsection {!! Toastr::message() !!}
                     <th>Thời gian đăng kí</th>
                     <th>Nơi đăng kí</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -141,15 +145,22 @@ tin tức @endsection {!! Toastr::message() !!}
                     <td>{{$newsletter->id}}</td>
                     <td>{{$newsletter->email}}</td>
                     <td>{{$newsletter->created_at}}</td>
-                    <td>{{$newsletter->IP_Location}}</td>
+                    <td class="city">{{$newsletter->IP_Location}}</td>
                     {{-- button modal  --}}
                     <td>
                         <a
                             href=""
                             data-id="{{$newsletter->id }}"
                             data-id_city="{{$newsletter->ID_City}} "
+                            data-city="{{$newsletter->IP_Location}} "
                             data-email="{{$newsletter->email}}"
                             class="btn btn-primary btn-sendmail-one">Gửi thư</a>
+                    </td>
+                    <td id="row-{{$newsletter->id}}">
+                        <a href=""
+                            data-id="{{$newsletter->id }}"
+                            data-email="{{$newsletter->email}}"
+                            class="btn btn-danger btn-unsub">Huỷ quảng cáo</a>
                     </td>
                     @endforeach
 
@@ -174,7 +185,7 @@ tin tức @endsection {!! Toastr::message() !!}
                     </button>
                 </div>
                 {{-- form content --}}
-                <form action="/guithu" method="post" enctype="multipart/form-data">
+                <form action="/guithu" method="post" enctype="multipart/form-data" id="letter-form">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="form-group">
@@ -184,9 +195,22 @@ tin tức @endsection {!! Toastr::message() !!}
                                 class="form-control"
                                 name="email"
                                 id="email"
+                                readonly="true"
+                                aria-describedby="helpId"
+                                placeholder="">
+                                {{-- city --}}
+
+                                <input
+                                type="text"
+                                class="mt-2 form-control"
+                                name="city"
+                                id="city"
+                                hidden
+                                readonly="true"
                                 aria-describedby="helpId"
                                 placeholder="">
                             {{-- sản phẩm --}}
+
                             <div class="mt-4 input-group col-sm-12">
                                 <select
                                     class="js-example-basic-multiple"
@@ -195,7 +219,11 @@ tin tức @endsection {!! Toastr::message() !!}
                                     multiple="multiple"
                                     style="width: 100%"></select>
                             </div>
+                            <div class="form-group">
 
+
+                              {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+                            </div>
                         </div>
                     </form>
                     <div class="modal-footer">

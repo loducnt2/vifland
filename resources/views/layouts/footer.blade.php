@@ -1,5 +1,4 @@
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <form action="/sub" method="post" enctype="multipart/form-data">
 	{{ csrf_field() }}
 	<footer>

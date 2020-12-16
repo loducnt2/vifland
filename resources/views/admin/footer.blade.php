@@ -35,6 +35,7 @@
         font-size:14px;
     }
 </style>
+{!! Toastr::message() !!}
 {{-- end style --}}
   <script>
       function ChangeToSlug() {
@@ -525,7 +526,7 @@
                     if(result.length > 0){
                         let option_html = '';
                         $.each(result, function(key,product){
-                            option_html += `<option id="${product.id}">${product.title}</option>`;
+                            option_html += `<option id="${product.id}" class="products">${product.title}</option>`;
                         });
                         $('#productFilter').html(option_html);
                         $('#productFilter').trigger('click');
@@ -544,10 +545,12 @@
             var idcity = $(this).data('id_city');
             var id = $(this).data('id');
             var email = $(this).data('email');
-
+            var city = $(this).data('city');
             console.log(id);
             console.log(idcity);
+            console.log(city);
             $('input[name=email]').val(email);
+            $('#city').val(city);
             $('#modelId_one').modal('show');
             $('#productFilter').select2({
                 theme :'bootstrap4'
@@ -557,6 +560,19 @@
 
         });
 
+    </script>
+    <script>
+        $('#letter-form').on('submit', function(){
+     var minimum = 1;
+
+     if($("#productFilter").select2('data').length>=minimum){
+        toastr.success('Hợp lệ! ','Thông báo');
+         return true;
+     }else {
+        toastr.warning('Vui lòng chọn ít nhất 1 tin bất động sản ','Thông báo');
+         return false;
+     }
+})
     </script>
 <script>
 
@@ -591,5 +607,46 @@ $('#productFilter').select2().on('select2:open', function() {
         $("li[aria-selected='false']").removeClass("customclass");
     }
 });
+
+</script>
+
+
+<script>
+    $(document).on('change', '.custom-file-input', function (event) {
+    $(this).next('.custom-file-label').html(event.target.files[0].name);
+})
+</script>
+
+{{-- unsub --}}
+<script>
+    $('#myTable').on("click", ".btn-unsub", function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        var email = $(this).data("email");
+        var $ele = $(this).parent().parent();
+        console.log(id);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "/admin/index/quan-ly-thu-tin-tuc/unsub/" + email,
+            type: 'DELETE',
+            data: {
+                "id": id,
+                "email":email
+            },
+            success: function (response) {
+                $ele.fadeOut().remove();
+                toastr.success('Huỷ đăng kí thành công', 'Quản trị viên');
+
+            },
+            error: function (error) {
+                console.log(error);
+
+            }
+        });
+    });
 
 </script>
