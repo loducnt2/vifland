@@ -710,12 +710,19 @@ $('#productFilter').select2().on('select2:open', function() {
                 "id": id
             },
             success: function (response) {
-                 var number = JSON.stringify(response);
-                if(number.length > 0){
-                    toastr.warning("Bạn còn " + number + "bài viết chưa xoá");
-                    console.log('Không thể xoá được bài viết');
-                }else if(number.length = null ){
-                    alert("asdasdasdasd");
+                 var number = JSON.parse(response);
+                 console.log(typeof(number));
+                // typeof của number = number
+                if(number > 0){
+
+                    toastr.warning("Bạn còn " + number + " bài viết chưa xoá");
+                    console.log('Không thể xoá được danh mục');
+                }
+                // nếu không còn tin
+                else {
+                    $ele.fadeOut().remove();
+                    toastr.success("Xoá thành công!");
+                    console.log('Có thể xoá được danh mục');
                 }
 
             },

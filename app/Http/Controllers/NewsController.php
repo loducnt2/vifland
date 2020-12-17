@@ -114,11 +114,14 @@ class NewsController extends Controller
         $news_cate = NewsCategory::where('slug',$news->category_slug)->first();
         // get list bài đăng
         $posts= DB::table('news')->get();
+        // bài đăng liên quan
+        $news_related = DB::table('news')->where('id_category',$news->id_category)->get();
 
          $id_nguoidang = DB::table('user')->where('id',$news->Id_user)->first();
 
         return view('pages/news-detail')->with(
             [
+                'news_related'=>$news_related,
                 'id_nguoidang'=>$id_nguoidang,
                 'news_cate'=>$news_cate,
                 'news'=>$news,
