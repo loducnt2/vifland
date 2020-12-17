@@ -44,21 +44,21 @@ class ProductController extends Controller
     public function create($cate)
     {
         $product_cate = ProductCate::all();
-        $wards        = Ward::orderBy('name','asc')->get();
-        $districts    = District::orderBy('name','asc')->get();
-        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
-        $cate_1       = Category::where('slug',$cate)->first(); //Lấy id category thông qua slug
-        $cate_2       = Category::where('parent_id',$cate_1->id)->get();//Lấy category con
-        $prices = PriceTypePost::orderBy('id','asc')->get();//vip
-        if($cate == "cho-thue-nha-dat"){
-            $units   = ProductUnit::where('type',2)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
-        }elseif($cate == "mua-ban-nha-dat"){
-            $units   = ProductUnit::where('type',1)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
-        }else{
+        $wards        = Ward::orderBy('name', 'asc')->get();
+        $districts    = District::orderBy('name', 'asc')->get();
+        $provinces    = Province::orderBy('orders', 'desc')->orderBy('name', 'asc')->get();
+        $cate_1       = Category::where('slug', $cate)->first(); //Lấy id category thông qua slug
+        $cate_2       = Category::where('parent_id', $cate_1->id)->get(); //Lấy category con
+        $prices = PriceTypePost::orderBy('id', 'asc')->get(); //vip
+        if ($cate == "cho-thue-nha-dat") {
+            $units   = ProductUnit::where('type', 2)->orwhere('type', 0)->get(); //Lấy đơn vị theo category cha
+        } elseif ($cate == "mua-ban-nha-dat") {
+            $units   = ProductUnit::where('type', 1)->orwhere('type', 0)->get(); //Lấy đơn vị theo category cha
+        } else {
             $units   = ProductUnit::all();
         }
 
-        return view('/pages/article/article-form',compact('cate_2','units','provinces','districts','wards','product_cate','prices'));
+        return view('/pages/article/article-form', compact('cate_2', 'units', 'provinces', 'districts', 'wards', 'product_cate', 'prices'));
     }
 
     /**
@@ -69,21 +69,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $datetime_start = $request->date_start." ".$request->time_start;
-        $unit = ProductUnit::where('id',$request->unit_id)->value('description');
-        if( $request->price == NULL ){
+        $datetime_start = $request->date_start . " " . $request->time_start;
+        $unit = ProductUnit::where('id', $request->unit_id)->value('description');
+        if ($request->price == NULL) {
             $pr = 0;
-        }else{
+        } else {
             $pr = $request->price;
         }
-        if( $request->facades == NULL ){
+        if ($request->facades == NULL) {
             $fa = 0;
-        }else{
+        } else {
             $fa = $request->facades;
         }
-        $price = doubleval($pr)*intval($unit);
-        $filter_price = FilterPrice::where('min','<s',$price)->where('max','>=',$price)->value('id');
-        $filter_facades = FilterFacades::where('min','<',$fa)->where('max','>=',$fa)->value('id');
+        $price = doubleval($pr) * intval($unit);
+        $filter_price = FilterPrice::where('min', '<s', $price)->where('max', '>=', $price)->value('id');
+        $filter_facades = FilterFacades::where('min', '<', $fa)->where('max', '>=', $fa)->value('id');
         $product = new Product([
             'price_post'     => $request->pricePost,
             'cate_id'        => $request->cate_id,
@@ -92,9 +92,9 @@ class ProductController extends Controller
             'slug'           => NULL,
             'view'           => 1,
             'tags'           => $request->tags,
-            'datetime_start' => date('Y-m-d H:i',strtotime($datetime_start)),
-            'datetime_end'   => date('Y-m-d H:i',strtotime($datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
-            'content'        => strip_tags($request->content,!'<a>'),
+            'datetime_start' => date('Y-m-d H:i', strtotime($datetime_start)),
+            'datetime_end'   => date('Y-m-d H:i', strtotime($datetime_start . ' ' . '+' . ' ' . $request->songaydangbai . ' ' . 'days')),
+            'content'        => strip_tags($request->content, !'<a>'),
             'name_contact'   => $request->name_contact,
             'phone_contact'     => $request->phone_contact,
             'address_contact'   => $request->address_contact,
@@ -112,36 +112,36 @@ class ProductController extends Controller
         ]);
         $product->save();
         $productup = Product::find($product->id)->update([
-            'slug' => Str::slug($request->title).'-'.date('Ymd',strtotime($request->datetime_start)).str_pad($product->id,5,rand(10000,99999),STR_PAD_LEFT),
-            'datetime_delete'=> date('Y-m-d H:i',strtotime($product->datetime_end.' '.'+'.' '. 7 .' '.'days') ),
+            'slug' => Str::slug($request->title) . '-' . date('Ymd', strtotime($request->datetime_start)) . str_pad($product->id, 5, rand(10000, 99999), STR_PAD_LEFT),
+            'datetime_delete' => date('Y-m-d H:i', strtotime($product->datetime_end . ' ' . '+' . ' ' . 7 . ' ' . 'days')),
         ]);
 
 
-        if($request->facades!=null){
+        if ($request->facades != null) {
             if (str_contains($request->facades, ',')) {
-                $facades = str_replace(",",".",$request->facades);
-            }else{
+                $facades = str_replace(",", ".", $request->facades);
+            } else {
                 $facades = $request->facades;
             }
-        }else{
+        } else {
             $facades = $request->facades;
         }
-        if($request->depth!=null){
+        if ($request->depth != null) {
             if (str_contains($request->depth, ',')) {
-                $depth = str_replace(",",".",$request->depth);
-            }else{
+                $depth = str_replace(",", ".", $request->depth);
+            } else {
                 $depth = $request->depth;
             }
-        }else{
+        } else {
             $depth = $request->depth;
         }
-        if($request->price!=null){
+        if ($request->price != null) {
             if (str_contains($request->price, ',')) {
-                $price = str_replace(",",".",$request->price);
-            }else{
+                $price = str_replace(",", ".", $request->price);
+            } else {
                 $price = $request->price;
             }
-        }else{
+        } else {
             $price = $request->price;
         }
 
@@ -154,7 +154,7 @@ class ProductController extends Controller
             'product_id'   => $product->id,
             'product_cate' => $request->product_cate,
             'filter_price' => $filter_price,
-            'filter_facades'=>$filter_facades,
+            'filter_facades' => $filter_facades,
             'address'      => $request->address_product,
             'facades'      => $facades,
             'depth'        => $depth,
@@ -166,16 +166,16 @@ class ProductController extends Controller
         ]);
         $productex->save();
         //Image Detail
-        if ($request->hasFile('img')){
+        if ($request->hasFile('img')) {
             $arrfile = [];
             $file = $request->file('img');
-            foreach( $file as $img ){
+            foreach ($file as $img) {
                 $filetype = $img->getClientOriginalExtension('image');
-                $filename = date('Ymd',time()).'product'.$productex->id.Str::random(10).'.'.$filetype;
+                $filename = date('Ymd', time()) . 'product' . $productex->id . Str::random(10) . '.' . $filetype;
                 $img->move(public_path('/assets/product/detail'), $filename);
-                $arrfile[]= $filename;
+                $arrfile[] = $filename;
             }
-            foreach( $arrfile as $imgpro ){
+            foreach ($arrfile as $imgpro) {
                 $productimg = new ProductImg([
                     'product_extend_id' => $productex->id,
                     'name'              => $imgpro,
@@ -187,35 +187,35 @@ class ProductController extends Controller
                 'thumbnail' => $arrfile[0]
             ]);
         }
-        if( $request->product_cate != NULL ){
-           /*foreach($request->product_cate as $prodcate){*/
-               $product_cate = new TypeProduct([
-                   'product_extend_id' => $productex->id,
-                   'product_cate_id'   => $request->product,
-               ]);
-               $product_cate->save();
-           /*} */
+        if ($request->product_cate != NULL) {
+            /*foreach($request->product_cate as $prodcate){*/
+            $product_cate = new TypeProduct([
+                'product_extend_id' => $productex->id,
+                'product_cate_id'   => $request->product,
+            ]);
+            $product_cate->save();
+            /*} */
         }
 
 
         //Lưu vào lịch sử đăng
         $post_status = 0;
-        if(auth()->user()->user_type == 1){
+        if (auth()->user()->user_type == 1) {
             $post_status = 1;
         }
         $post_history = new PostHistory([
             'user_id'        => auth()->user()->id,
             'product_id'     => $product->id,
             'status'         => $post_status,
-            'datetime'       => date('Y-m-d H:i:s',strtotime('now')),
+            'datetime'       => date('Y-m-d H:i:s', strtotime('now')),
         ]);
         $post_history->save();
 
 
         //Trừ tiền vào ví
-        $wallet = User::where('user.id',auth()->user()->id)->value('wallet');
-        $user = User::find( auth()->user()->id )->update([
-            'wallet' => intval( $wallet )-intval($request->pricePost)
+        $wallet = User::where('user.id', auth()->user()->id)->value('wallet');
+        $user = User::find(auth()->user()->id)->update([
+            'wallet' => intval($wallet) - intval($request->pricePost)
         ]);
 
         $notification = array(
@@ -223,11 +223,10 @@ class ProductController extends Controller
             'alert-type' => 'success'
         );
 
-        if(auth()->user()->user_type == 1){
-            return redirect()->route('article-posted')->with(['message'=>'Đăng tin thành công','alert-type'=>'success']);
+        if (auth()->user()->user_type == 1) {
+            return redirect()->route('article-posted')->with(['message' => 'Đăng tin thành công', 'alert-type' => 'success']);
         }
         return redirect()->route('article-wait')->with($notification);
-
     }
 
     /**
@@ -238,87 +237,87 @@ class ProductController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::where('product.slug',$slug)
-        ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
-        ->leftJoin('province','product.province_id','province.id')
-        ->leftJoin('district','product.district_id','district.id')
-        ->leftJoin('ward','product.ward_id','ward.id')
-        ->leftJoin('category','product.cate_id','category.id')
-        ->leftJoin('post_history','product.id','post_history.product_id')
-        ->leftJoin('user','post_history.user_id','user_id')
-        ->select(
-            'user.*',
-            'product_extend.*',
-            'product.*',
-            'product_extend.id as productex_id',
-            'province.name as province',
-            'district.name as district',
-            'ward.name as ward',
-            'product_unit.name as unit',
-            'category.parent_id'
-        )
-        ->first();
+        $product = Product::where('product.slug', $slug)
+            ->leftJoin('product_extend', 'product.id', 'product_extend.product_id')
+            ->leftJoin('product_unit', 'product_extend.unit_id', 'product_unit.id')
+            ->leftJoin('province', 'product.province_id', 'province.id')
+            ->leftJoin('district', 'product.district_id', 'district.id')
+            ->leftJoin('ward', 'product.ward_id', 'ward.id')
+            ->leftJoin('category', 'product.cate_id', 'category.id')
+            ->leftJoin('post_history', 'product.id', 'post_history.product_id')
+            ->leftJoin('user', 'post_history.user_id', 'user_id')
+            ->select(
+                'user.*',
+                'product_extend.*',
+                'product.*',
+                'product_extend.id as productex_id',
+                'province.name as province',
+                'district.name as district',
+                'ward.name as ward',
+                'product_unit.name as unit',
+                'category.parent_id'
+            )
+            ->first();
 
         /*$product_cate = TypeProduct::where('product_extend_id',$product->productex_id)
         ->leftJoin('product_cate','type_of_product.product_cate_id','product_cate.id')->get();*/
 
-        $acreage = round(doubleval( $product->depth*$product->facades ),2);
-        $total   = intval($product->price)*$acreage;
-        $product->update(['view'=> $product->view + 1 ]);
-        $cate    = Category::where('id',$product->cate_id)->value('name');
-        $cate_id = Category::where('id',$product->cate_id)->value('id');
+        $acreage = round(doubleval($product->depth * $product->facades), 2);
+        $total   = intval($product->price) * $acreage;
+        $product->update(['view' => $product->view + 1]);
+        $cate    = Category::where('id', $product->cate_id)->value('name');
+        $cate_id = Category::where('id', $product->cate_id)->value('id');
         $province = "";
         $district = "";
-        if($product->province_id != NULL ){
-           $province = Province::where('id',$product->province_id)->value('name');
+        if ($product->province_id != NULL) {
+            $province = Province::where('id', $product->province_id)->value('name');
         }
-        if($product->district_id!= NULL){
-            $district = District::where('id',$product->district_id)->value('name');
+        if ($product->district_id != NULL) {
+            $district = District::where('id', $product->district_id)->value('name');
         }
-        $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
+        $image     = ProductImg::where('product_extend_id', $product->productex_id)->select('name')->get();
 
         //Lịch sử xem sản phẩm
-        if(auth()->check()){
-           $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
-           if( count($histories) == 0 ){
-               $history = Favorited::create([
-                   'user_id'       => auth()->user()->id,
-                   'product_extend_id' => $product->product_id,
-                   'type'       => 1,
-               ]);
-           }
+        if (auth()->check()) {
+            $histories = Favorited::where('user_id', auth()->user()->id)->where('product_extend_id', $product->product_id)->get();
+            if (count($histories) == 0) {
+                $history = Favorited::create([
+                    'user_id'       => auth()->user()->id,
+                    'product_extend_id' => $product->product_id,
+                    'type'       => 1,
+                ]);
+            }
         }
-        $product_related  = Category::where('category.parent_id',$product->parent_id)
-        ->leftJoin('product','product.cate_id','category.id')
-        ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
-        ->leftJoin('province','product.province_id','province.id')
-        ->leftJoin('district','product.district_id','district.id')
-        ->leftJoin('ward','product.ward_id','ward.id')
-        ->leftJoin('post_history','product.id','post_history.product_id')
-        ->leftJoin('user','post_history.user_id','user_id')
-        ->select(
-            'user.user_type as user_type',
-            'product_extend.*',
-            'product.*',
-            'product_extend.id as productex_id',
-            'product_extend.product_cate as product_cate',
-            'province.name as province',
-            'district.name as district',
-            'ward.name as ward',
-            'product_unit.name as unit',
-            'category.parent_id'
-        )
-        ->where('product.province_id',$product->province_id)
-        ->orderBy('type','asc')
-        ->inRandomOrder()
-        ->limit(4)
-        ->get();
+        $product_related  = Category::where('category.parent_id', $product->parent_id)
+            ->leftJoin('product', 'product.cate_id', 'category.id')
+            ->leftJoin('product_extend', 'product.id', 'product_extend.product_id')
+            ->leftJoin('product_unit', 'product_extend.unit_id', 'product_unit.id')
+            ->leftJoin('province', 'product.province_id', 'province.id')
+            ->leftJoin('district', 'product.district_id', 'district.id')
+            ->leftJoin('ward', 'product.ward_id', 'ward.id')
+            ->leftJoin('post_history', 'product.id', 'post_history.product_id')
+            ->leftJoin('user', 'post_history.user_id', 'user_id')
+            ->select(
+                'user.user_type as user_type',
+                'product_extend.*',
+                'product.*',
+                'product_extend.id as productex_id',
+                'product_extend.product_cate as product_cate',
+                'province.name as province',
+                'district.name as district',
+                'ward.name as ward',
+                'product_unit.name as unit',
+                'category.parent_id'
+            )
+            ->where('product.province_id', $product->province_id)
+            ->orderBy('type', 'asc')
+            ->inRandomOrder()
+            ->limit(1)
+            ->get();
 
-        $product_cate = ProductCate::orderBy('id','desc')->get();
+        $product_cate = ProductCate::orderBy('id', 'desc')->get();
 
-        return view('pages/article/article',compact('product','acreage','total','cate','cate_id','province','district','image','product_related','product_cate'));
+        return view('pages/article/article', compact('product', 'acreage', 'total', 'cate', 'cate_id', 'province', 'district', 'image', 'product_related', 'product_cate'));
     }
 
     /**
@@ -332,65 +331,67 @@ class ProductController extends Controller
         $product_cate = ProductCate::all();
 
 
-        $provinces    = Province::orderBy('orders','desc')->orderBy('name','asc')->get();
+        $provinces    = Province::orderBy('orders', 'desc')->orderBy('name', 'asc')->get();
 
-        $cate_1       = Product::leftJoin('category','product.cate_id','category.id')->value('category.parent_id');
-        $cate_2       = Category::where('parent_id',$cate_1)->get();//Lấy category con
+        $cate_1       = Product::leftJoin('category', 'product.cate_id', 'category.id')->value('category.parent_id');
+        $cate_2       = Category::where('parent_id', $cate_1)->get(); //Lấy category con
 
-        $cate         = Category::where('category.id',$cate_1)->value('slug');
-        if($cate == "cho-thue-nha-dat"){
-            $units   = ProductUnit::where('type',2)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
-        }elseif($cate == "mua-ban-nha-dat"){
-            $units   = ProductUnit::where('type',1)->orwhere('type',0)->get();//Lấy đơn vị theo category cha
-        }else{
+        $cate         = Category::where('category.id', $cate_1)->value('slug');
+        if ($cate == "cho-thue-nha-dat") {
+            $units   = ProductUnit::where('type', 2)->orwhere('type', 0)->get(); //Lấy đơn vị theo category cha
+        } elseif ($cate == "mua-ban-nha-dat") {
+            $units   = ProductUnit::where('type', 1)->orwhere('type', 0)->get(); //Lấy đơn vị theo category cha
+        } else {
             $units   = ProductUnit::all();
         }
 
-        $product   = Product::where('product.id',$id)
-        ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->select('product.*','product.id as product_id','product_extend.*')
-        ->first();
-        $districts = District::orderBy('name','asc')->where('province_id',$product->province_id)->get();
-        $wards     = Ward::orderBy('name','asc')->where('district_id',$product->district_id)->get();
-        $img = Product::leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('product_image','product_extend.id','product_image.product_extend_id')
-        ->where('product.id',$id)
-        ->select('product_image.name as img')
-        ->get();
+        $product   = Product::where('product.id', $id)
+            ->leftJoin('product_extend', 'product.id', 'product_extend.product_id')
+            ->select('product.*', 'product.id as product_id', 'product_extend.*')
+            ->first();
+        $districts = District::orderBy('name', 'asc')->where('province_id', $product->province_id)->get();
+        $wards     = Ward::orderBy('name', 'asc')->where('district_id', $product->district_id)->get();
+        $img = Product::leftJoin('product_extend', 'product.id', 'product_extend.product_id')
+            ->leftJoin('product_image', 'product_extend.id', 'product_image.product_extend_id')
+            ->where('product.id', $id)
+            ->select('product_image.name as img')
+            ->get();
 
-        return view('pages/article/article-form-edit',compact('product','cate_2','units','provinces','districts','wards','product_cate','img'));
+        return view('pages/article/article-form-edit', compact('product', 'cate_2', 'units', 'provinces', 'districts', 'wards', 'product_cate', 'img'));
     }
 
     //form gia hạn
-    public function addDateForm($id){
+    public function addDateForm($id)
+    {
         $product_id = $id;
-        return view('pages/article/article-form-add-date',compact('product_id'));
+        return view('pages/article/article-form-add-date', compact('product_id'));
     }
     //gia hạn
-    public function addDate(Request $request){
-        $datetime_start = $request->date_start." ".$request->time_start;
+    public function addDate(Request $request)
+    {
+        $datetime_start = $request->date_start . " " . $request->time_start;
         $product = Product::find($request->product_id);
         $product->update([
-            'datetime_start' => date('Y-m-d H:i',strtotime($datetime_start)),
-            'datetime_end'   => date('Y-m-d H:i',strtotime($datetime_start.' '.'+'.' '. $request->songaydangbai.' '.'days') ),
+            'datetime_start' => date('Y-m-d H:i', strtotime($datetime_start)),
+            'datetime_end'   => date('Y-m-d H:i', strtotime($datetime_start . ' ' . '+' . ' ' . $request->songaydangbai . ' ' . 'days')),
             'soft_delete'    => 0,
             'type'           => $request->type,
         ]);
         $product->update([
-            'datetime_delete'=> date('Y-m-d H:i',strtotime($product->datetime_end.' '.'+'.' '. 7 .' '.'days') ),
+            'datetime_delete' => date('Y-m-d H:i', strtotime($product->datetime_end . ' ' . '+' . ' ' . 7 . ' ' . 'days')),
         ]);
 
 
 
-        $wallet = User::where('user.id',auth()->user()->id)->value('wallet');
-        $user = User::find( auth()->user()->id )->update([
-            'wallet' => intval( $wallet )-intval($request->pricePost)
+        $wallet = User::where('user.id', auth()->user()->id)->value('wallet');
+        $user = User::find(auth()->user()->id)->update([
+            'wallet' => intval($wallet) - intval($request->pricePost)
         ]);
         $notification = array(
             'message' => 'Gia hạn tin thành công',
             'alert-type' => 'success'
         );
-        return redirect()->route('article-detail',$product->slug)->with($notification);
+        return redirect()->route('article-detail', $product->slug)->with($notification);
     }
 
     /**
@@ -403,52 +404,52 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
 
-        $productex = ProductExtend::where('product_id',$id)->value('id');
-        $product = Product::where('product.id',$id)
-        ->leftJoin('product_extend','product.id','product_extend.product_id');
+        $productex = ProductExtend::where('product_id', $id)->value('id');
+        $product = Product::where('product.id', $id)
+            ->leftJoin('product_extend', 'product.id', 'product_extend.product_id');
         $product->update([
             'product.cate_id' => $request->cate_id,
             'product.title' => $request->title,
-            'product.content' =>strip_tags($request->content,!'<a>'),
-            'product.province_id' =>$request->province_id,
-            'product.district_id' =>$request->district_id,
-            'product.ward_id' =>$request->ward_id,
-            'product.address_contact'=>$request->address_contact,
-            'product.phone_contact'=>$request->phone_contact,
-            'product.name_contact'=>$request->name_contact,
-            'product.company_name'=>$request->company_name,
-            'product.website'=>$request->website,
-            'product.email'=>$request->email,
-            'product.facebook'=>$request->facebook,
-            'product_extend.address' =>$request->address,
+            'product.content' => strip_tags($request->content, !'<a>'),
+            'product.province_id' => $request->province_id,
+            'product.district_id' => $request->district_id,
+            'product.ward_id' => $request->ward_id,
+            'product.address_contact' => $request->address_contact,
+            'product.phone_contact' => $request->phone_contact,
+            'product.name_contact' => $request->name_contact,
+            'product.company_name' => $request->company_name,
+            'product.website' => $request->website,
+            'product.email' => $request->email,
+            'product.facebook' => $request->facebook,
+            'product_extend.address' => $request->address,
             'product_extend.product_cate' => $request->product_cate,
             'product_extend.facades' => $request->facades,
             'product_extend.depth' => $request->depth,
-            'product_extend.unit_id'=>$request->unit_id,
+            'product_extend.unit_id' => $request->unit_id,
             'product_extend.price' => $request->price,
             'product_extend.floors' => $request->floors,
-            'product_extend.bedroom'=> $request->bedroom,
+            'product_extend.bedroom' => $request->bedroom,
             'product_extend.legal' => $request->legal,
 
         ]);
-        if( $request->tags != NULL ){
+        if ($request->tags != NULL) {
             $product->update(['tags' => $request->tags]);
         }
-        if ($request->hasFile('img')){
-            $prd = ProductImg::leftJoin('product_extend','product_image.product_extend_id','product_extend.id')
-            ->leftJoin('product','product_extend.product_id','product.id')
-            ->where('product.id',$id)
-            ->delete();
+        if ($request->hasFile('img')) {
+            $prd = ProductImg::leftJoin('product_extend', 'product_image.product_extend_id', 'product_extend.id')
+                ->leftJoin('product', 'product_extend.product_id', 'product.id')
+                ->where('product.id', $id)
+                ->delete();
 
             $arrfile = [];
             $file = $request->file('img');
-            foreach( $file as $img ){
+            foreach ($file as $img) {
                 $filetype = $img->getClientOriginalExtension('image');
-                $filename = date('Ymd',time()).'product'.$productex.Str::random(10).'.'.$filetype;
+                $filename = date('Ymd', time()) . 'product' . $productex . Str::random(10) . '.' . $filetype;
                 $img->move(public_path('/assets/product/detail'), $filename);
-                $arrfile[]= $filename;
+                $arrfile[] = $filename;
             }
-            foreach( $arrfile as $imgpro ){
+            foreach ($arrfile as $imgpro) {
                 $productimg = new ProductImg([
                     'product_extend_id' => $productex,
                     'name'              => $imgpro,
@@ -465,7 +466,7 @@ class ProductController extends Controller
             'message' => 'Chỉnh sửa tin thành công',
             'alert-type' => 'success'
         );
-        $slug = Product::where('id',$id)->value('slug');
+        $slug = Product::where('id', $id)->value('slug');
         //return $product;
         return redirect()->back()->with($notification);
     }
@@ -496,89 +497,86 @@ class ProductController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
-
     }
 
 
 
 
 
-    public function productUserHistory(){
-        $products = Favorited::where('favorited.type',1)
-        ->where('user_id',auth()->user()->id)
-        ->leftJoin('product','favorited.product_extend_id','product.id')
-        ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
-        ->leftJoin('province','product.province_id','province.id')
-        ->leftJoin('district','product.district_id','district.id')
-        ->where('product.soft_delete',0)
-        ->orderBy('favorited.id','desc')
-        ->select(
-            'product.*',
-            'product.id as product_id',
-            'product.thumbnail',
-            'product_unit.name as unit',
-            'product.title as title',
-            'product_extend.price as price',
-            'product_extend.facades as facades',
-            'product_extend.depth as depth',
-            'province.name as province',
-            'district.name as district'
-        )
-        ->get();
+    public function productUserHistory()
+    {
+        $products = Favorited::where('favorited.type', 1)
+            ->where('user_id', auth()->user()->id)
+            ->leftJoin('product', 'favorited.product_extend_id', 'product.id')
+            ->leftJoin('product_extend', 'product.id', 'product_extend.product_id')
+            ->leftJoin('product_unit', 'product_extend.unit_id', 'product_unit.id')
+            ->leftJoin('province', 'product.province_id', 'province.id')
+            ->leftJoin('district', 'product.district_id', 'district.id')
+            ->where('product.soft_delete', 0)
+            ->orderBy('favorited.id', 'desc')
+            ->select(
+                'product.*',
+                'product.id as product_id',
+                'product.thumbnail',
+                'product_unit.name as unit',
+                'product.title as title',
+                'product_extend.price as price',
+                'product_extend.facades as facades',
+                'product_extend.depth as depth',
+                'province.name as province',
+                'district.name as district'
+            )
+            ->get();
 
 
-        return view('pages/history',compact('products'));
+        return view('pages/history', compact('products'));
     }
-    public function Productbyprovince (Request $request ,$id,$idcity){
-        if(empty($request->id)){
+    public function Productbyprovince(Request $request, $id, $idcity)
+    {
+        if (empty($request->id)) {
             return false;
-        }else{
+        } else {
             $id_input = $request->idcity;
             $province_info = Province::find($id_input);
-            if(empty($province_info)){
+            if (empty($province_info)) {
                 return false;
-            }else{
+            } else {
 
-                $products = Product::where('province_id',$province_info->id)->get();
+                $products = Product::where('province_id', $province_info->id)->get();
                 return json_decode($products);
             }
         }
 
         $id = Province::find($request->idcity);
-        $products = Product::where('province_id',$id)->get();
+        $products = Product::where('province_id', $id)->get();
         return response()->json([
             'id' => $products->id,
             'title' => $products->title,
-        ]
-
-        );
-
+        ]);
     }
-    public function productUserFavorite(){
-        $products = Favorited::where('favorited.type',2)
-        ->where('user_id',auth()->user()->id)
-        ->leftJoin('product','favorited.product_id','product.id')
-        ->leftJoin('product_extend','product.id','product_extend.product_id')
-        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
-        ->leftJoin('province','product.province_id','province.id')
-        ->leftJoin('district','product.district_id','district.id')
-        ->where('product.datetime_end','>',date('Y-m-d H:i:s',strtotime('now')))
-        ->orderBy('favorited.id','desc')
-        ->select(
-            'product.*',
-            'product.id as product_id',
-            'product_unit.name as unit',
-            'product.title as title',
-            'product_extend.price as price',
-            'product_extend.facades as facades',
-            'product_extend.depth as depth',
-            'province.name as province',
-            'district.name as district'
-        )
-        ->get();
-        return view('pages/favourites',compact('products'));
+    public function productUserFavorite()
+    {
+        $products = Favorited::where('favorited.type', 2)
+            ->where('user_id', auth()->user()->id)
+            ->leftJoin('product', 'favorited.product_id', 'product.id')
+            ->leftJoin('product_extend', 'product.id', 'product_extend.product_id')
+            ->leftJoin('product_unit', 'product_extend.unit_id', 'product_unit.id')
+            ->leftJoin('province', 'product.province_id', 'province.id')
+            ->leftJoin('district', 'product.district_id', 'district.id')
+            ->where('product.datetime_end', '>', date('Y-m-d H:i:s', strtotime('now')))
+            ->orderBy('favorited.id', 'desc')
+            ->select(
+                'product.*',
+                'product.id as product_id',
+                'product_unit.name as unit',
+                'product.title as title',
+                'product_extend.price as price',
+                'product_extend.facades as facades',
+                'product_extend.depth as depth',
+                'province.name as province',
+                'district.name as district'
+            )
+            ->get();
+        return view('pages/favourites', compact('products'));
     }
-
-
 }

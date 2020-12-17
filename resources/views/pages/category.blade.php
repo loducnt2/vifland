@@ -235,7 +235,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-12">
-                    <div class="row box-right">
+                    <div class="box-right">
                         <div id="products" class="row">
                             @if(count($products)>0)
                             @foreach($products as $product)
