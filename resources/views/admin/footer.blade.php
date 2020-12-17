@@ -702,15 +702,20 @@ $('#productFilter').select2().on('select2:open', function() {
         });
         $.ajax({
             url: "/admin/index/danh-muc-tin-tuc/xoa-danh-muc/" + id,
-            type: 'delete',
-            dataType: "JSON",
+            type: 'get',
+            dataType: "json",
             data: {
                 "id": id
             },
             success: function (response) {
+                 var number = JSON.stringify(response);
+                if(number.length > 0){
+                    toastr.warning("Bạn còn " + number + "bài viết chưa xoá");
+                    console.log('Không thể xoá được bài viết');
+                }else if(number.length = null ){
+                    alert("asdsa");
+                }
 
-                $ele.fadeOut().remove();
-                toastr.success('Xoá danh mục thành công', 'Quản trị viên');
             },
             error: function (error) {
                 console.log(error);

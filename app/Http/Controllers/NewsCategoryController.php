@@ -140,7 +140,8 @@ class NewsCategoryController extends Controller
         // đếm số lượng bài viết có trong danh mục
         $number = (News::where('id_category',$id)->count());
         if($number > 0 ){
-            toastr::warning("Bạn còn " . $number. "tin chưa xoá còn lại" ,"Thông báo");
+            return json_encode($number);
+            // return response()->json(['error'=>'False']);
         }
         else{
             // nếu không còn tin thì sẽ xoá thành công
@@ -149,6 +150,6 @@ class NewsCategoryController extends Controller
         }
         // $newsCategory = new NewsCategory();
 
-        return response()->json(['success'=>'Xoá thành công']);
+
     }
 }
