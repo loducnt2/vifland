@@ -23,7 +23,7 @@
     <section class="pages-favourites">
         <div class="max-width-container">
             @if(count($products)==0)
-            <div class="article-none"> <img src="./assets/san_pham/no-documents.png" alt="">
+            <div class="article-none"> <img class="lazyload" data-src="./assets/san_pham/no-documents.png" alt="">
                 <p>Không có bài đăng nào.</p>
             </div>
             @else
@@ -45,8 +45,9 @@
                             <td>
                                 <div class="box-sp m-0">
                                     <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img
-                                                onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
-                                                src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+                                                class="lazyload"
+                                                onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
 
                                         <div class="tag-thuongluong d-none d-xl-block">
@@ -119,7 +120,8 @@
             <div class="box-favourites d-block d-xl-none">
                 <div class="row">
                     @if(count($products)==0)
-                    <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                    <div class="article-none"> <img class="lazyload"
+                            data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
                         <p>Không có bài đăng nào.</p>
                     </div>
                     @else
@@ -127,8 +129,10 @@
                     <div class="col-md-6">
                         <div class="box-sp m-0">
                             <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img
-                                        onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
-                                        src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                                        class="lazyload"
+                                        onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
+                                        data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+                                        alt=""></a>
                                 <div class="tag-thuongluong d-none d-xl-block">Thương lượng</div>
                                 <div class="box-icon"><a href=""><i class="ri-heart-line icons"></i></a><a href=""><i
                                             class="ri-equalizer-line icons"></i></a></div>

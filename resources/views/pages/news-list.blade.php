@@ -44,7 +44,8 @@
 
                                 @else
                                 <div class="article-big"><a class="bg" href="/news/{{$latest[0]->slug}}"><img
-                                            src="{{asset('assets/news/' .$latest[0]->img)}}" alt="">
+                                            class="lazyload" data-src="{{asset('assets/news/' .$latest[0]->img)}}"
+                                            alt="">
                                         <div class="content">
                                             <h2 class="section-under-title">{{$latest[0]->title}}</h2>
                                     </a>
@@ -69,7 +70,8 @@
                             <div class="article-small">
                                 <div class="img">
                                     <a href="/news/{{$latest[1]->slug}}">
-                                        <img src="{{asset('assets/news/'.$latest[1]->img)}}" alt="">
+                                        <img class="lazyload" data-src="{{asset('assets/news/'.$latest[1]->img)}}"
+                                            alt="">
                                     </a>
                                 </div>
                                 <div class="content"> <a href="">
@@ -84,8 +86,8 @@
                                 <p>{{$latest[2]->datepost}}</p>
                             </div>
                             <div class="article-small">
-                                <div class="img"><a href="/news/{{$latest[2]->slug}}"><img
-                                            src="{{asset('assets/news/' .$latest[2]->img)}}" alt=""></a></div>
+                                <div class="img"><a href="/news/{{$latest[2]->slug}}"><img class="lazyload"
+                                            data-src="{{asset('assets/news/' .$latest[2]->img)}}" alt=""></a></div>
                                 <div class="content"> <a href="">
                                         <h2 class="section-under-title">{{$latest[2]->title}}</h2>
                                     </a>
@@ -98,6 +100,7 @@
                 </div>
 
                 @endif
+                <h1 class="section-title text-uppercase">Tất cả các tin </h1>
                 <div class="row sec-2">
                     {{-- foreach --}}
 
@@ -109,8 +112,8 @@
                             </div>
 
                             <div class="article-small">
-                                <div class="img"><a href="/tin-tuc/{{$posts->slug}}"><img
-                                            src="{{asset('assets/news/' .$posts->img)}}" alt=""></a></div>
+                                <div class="img"><a href="/tin-tuc/{{$posts->slug}}"><img class="lazyload"
+                                            data-src="{{asset('assets/news/' .$posts->img)}}" alt=""></a></div>
                                 <div class="content"><a href="/tin-tuc/{{$posts->slug}}">
                                         <h2 class="section-under-title">{{$posts->title}}</h2>
                                     </a>

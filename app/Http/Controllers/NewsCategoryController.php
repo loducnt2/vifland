@@ -8,7 +8,7 @@ use App\Http\Requests\PostsRequest;
 use Str;
 use Toastr;
 use Schema;
-
+use App\Models\News;
 class NewsCategoryController extends Controller
 {
     /**
@@ -137,9 +137,18 @@ class NewsCategoryController extends Controller
      */
     public function destroy($id)
     {
+        // đếm số lượng bài viết có trong danh mục
+        $number = (News::where('id_category',$id)->count());
+        if($number > 0 ){
+            toastr::warning("Bạn còn " . $number. "tin chưa xoá còn lại" ,"Thông báo");
+        }
+        else{
+            // nếu không còn tin thì sẽ xoá thành công
+            $newsCategory = NewsCategory::find($id);
+             $newsCategory->delete();
+        }
         // $newsCategory = new NewsCategory();
-        $newsCategory = NewsCategory::find($id);
-        $newsCategory->delete();
+
         return response()->json(['success'=>'Xoá thành công']);
     }
 }

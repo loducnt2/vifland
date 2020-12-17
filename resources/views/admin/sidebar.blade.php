@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
 <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
 <link href="{{asset('css/profile.css') }}" rel="stylesheet" />
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
 {{-- <link rel="stylesheet" href="style.css"> --}}
@@ -22,12 +23,15 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+    rel="stylesheet">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.4.0/dist/select2-bootstrap4.css">
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.4.0/dist/select2-bootstrap4.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.css">
 <style>
 ::-webkit-scrollbar {
     width: 5px;
@@ -95,7 +99,7 @@
                                 data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link" href="{{ url('admin/cap-nhat-tin-tuc') }}">Đăng tin tức</a>
-                                    <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Tạo danh mục tin
+                                    <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Quản lý danh mục tin
                                         tức</a>
                                     <a class="nav-link" href="{{ url('admin/danh-sach-tin-tuc') }}">Danh sách tin
                                         tức</a>
@@ -181,7 +185,7 @@
                 </div>
                 @if(Auth::check() && Auth::user()->user_type == "1")
                 <div class="avatar">
-                    <img src="{{asset('assets/icon/avatar.png')}}" alt="">
+                    <img class="lazyload" data-src="{{asset('assets/icon/avatar.png')}}" alt="">
                     <div class="list-menu-login">
                         <div class="wrap-title">
                             <div class="title">{{auth()->user()->username}}</div>

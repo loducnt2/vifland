@@ -4,7 +4,7 @@
 @section('content_child')
 @if(Auth::check() && Auth::user()->username != $profile->username)
 <script>
-    $("#form-profile :input").prop("disabled", true);
+$("#form-profile :input").prop("disabled", true);
 </script>
 @endif
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -22,7 +22,8 @@
                     <p class="text-f">Ảnh đại diện</p>
                 </div>
                 <div class="col-md-12 col-lg-10 form-group hinhdd">
-                    <div class="wrap-img"> <img class="img" src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
+                    <div class="wrap-img"> <img class="lazyload img" data-src
+                            src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="">
                         <label class="wrap-input" for="upload"> <em class="material-icons">add_a_photo</em>
                             <input id="upload" name="image" type="file" style="display:none">
                         </label>
@@ -77,51 +78,21 @@
                 <div class="col-md-12 col-lg-2 form-group">
                     <p class="text-f">Ngày sinh</p>
                     <?php
-                            if( $profile->birthday != NULL ){  //:))))))))))))))))))
-                                $birthday = explode('-',$profile->birthday);
-                                $year = $birthday[0];
-                                $month = $birthday[1];
-                                $day = $birthday[2];
-
-                            }else{
-                                $year = 0;
-                                $month = 0;
-                                $day = 0;
-                                //  $day1 = 0;
-                            }
-                        ?>
+                    if ($profile->birthday != NULL) {  //:))))))))))))))))))
+                        $birthday = explode('-', $profile->birthday);
+                        $year = $birthday[0];
+                        $month = $birthday[1];
+                        $day = $birthday[2];
+                    } else {
+                        $year = 0;
+                        $month = 0;
+                        $day = 0;
+                        //  $day1 = 0;
+                    }
+                    ?>
                 </div>
-                <div class="col-md-12 col-lg-10 form-group">
-                    <div class="row">
-                        <div class="col-4 form-group">
-                            <!-- <input type="number" value="<?php if(isset($date)){ echo ''.$date[2];} ?>" min="0" placeholder="Ngày" name="date" id="date"> -->
-                            <select class="input-select" name="date" id="date">
-                                <option value="">Ngày</option>
-                                @for( $i = 1; $i <= 31; $i++ ) <option value="{{$i}}" {{$i==$day?'selected':''}}>{{$i}}
-                                    </option>
-                                    @endfor
-
-                            </select>
-                        </div>
-                        <div class="col-4 form-group">
-                            <select class="input-select" name="month" id="month">
-                                <option value="">Tháng</option>
-                                @for ($i = 1; $i <= 12; $i++) <option value="{{$i}}" {{$i==$month?'selected':''}}>Tháng
-                                    {{$i}}</option>
-                                    @endfor
-                            </select>
-                        </div>
-                        <div class="col-4 form-group">
-                            <!-- <input type="number" min="0" placeholder="Năm" value="<?php if(isset($date)){echo ''.$date[0];} ?>" name="year" id="year"> -->
-                            <select class="input-select" name="year" id="year">
-                                <option value="">Năm</option>
-                                @for ($i = 2020; $i >= 1930; $i--)
-                                <option value="{{$i}}" {{$i==$year?'selected':''}}>{{$i}}</option>
-                                @endfor
-                            </select>
-                        </div>
-
-                    </div>
+                <div class="col-sm-5 form-group">
+                    <input class="calendar" type="datetime" id="borndate">
                 </div>
             </div>
             <div class="row form-wrap thongtinform">
@@ -139,7 +110,7 @@
                                 value="{{$profile->card_id}}">
                         </div>
                         <div class="col-sm-12 col-md-6 form-group">
-                            <input class="phone" type="number" placeholder="Số điện thoại" name="phone"
+                            <input class="phone" type="text" placeholder="Số điện thoại" name="phone"
                                 value="{{$profile->phone}}">
                         </div>
                         <div class="col-sm-12 col-md-6 form-group">
@@ -172,39 +143,56 @@
 </div>
 @endsection
 @section('footerScripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ asset('js/bootstrap-datepicker.vi.min.js') }}"></script>
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 <script type="text/javascript">
-$('#form-profile').submit(function(e) {
-    let year = $('#year').val()
-    let month = $('#month').val()
-    let date = $('#date').val()
-    if (year % 4 == 0) {
-        if (month.indexOf(4, 6, 9, 11)) {
-            if (date == 31) {
-                e.preventDefault();
-                toastr.warning('Ngày sinh không hợp lệ')
-            }
-        }
-        if (month == 2) {
-            if (date == 31 || date == 30) {
-                e.preventDefault();
-                toastr.warning('Ngày sinh không hợp lệ')
-            }
-        }
-    } else {
-        if (month.indexOf(4, 6, 9, 11)) {
-            if (date == 31) {
-                e.preventDefault();
-                toastr.warning('Ngày sinh không hợp lệ')
-            }
-        }
-        if (month == 2) {
-            if (date == 31 || date == 30 || date == 29) {
-                e.preventDefault();
-                toastr.warning('Ngày sinh không hợp lệ')
-            }
-        }
-    }
+var date = new Date();
+var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+$("#borndate").datepicker({
+    language: 'vi',
+    format: 'mm/dd/yyyy',
+    changeMonth: true,
+    changeYear: true,
+    yearRange: '1930:2010',
+    defaultDate: null
+}).on('change', function() {
+    $(this).valid(); // triggers the validation test
+    // '$(this)' refers to '$("#datepicker")'
+});
+// $('#form-profile').submit(function(e) {
+//     let year = $('#year').val()
+//     let month = $('#month').val()
+//     let date = $('#date').val()
+//     if (year % 4 == 0) {
+//         if (month.indexOf(4, 6, 9, 11)) {
+//             if (date == 31) {
+//                 e.preventDefault();
+//                 toastr.warning('Ngày sinh không hợp lệ')
+//             }
+//         }
+//         if (month == 2) {
+//             if (date == 31 || date == 30) {
+//                 e.preventDefault();
+//                 toastr.warning('Ngày sinh không hợp lệ')
+//             }
+//         }
+//     } else {
+//         if (month.indexOf(4, 6, 9, 11)) {
+//             if (date == 31) {
+//                 e.preventDefault();
+//                 toastr.warning('Ngày sinh không hợp lệ')
+//             }
+//         }
+//         if (month == 2) {
+//             if (date == 31 || date == 30 || date == 29) {
+//                 e.preventDefault();
+//                 toastr.warning('Ngày sinh không hợp lệ')
+//             }
+//         }
+//     }
 
-})
+// });
 </script>
 @endsection

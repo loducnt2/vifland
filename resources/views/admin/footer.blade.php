@@ -20,6 +20,7 @@
   <script src="{{asset('js/core.min.js') }}"></script>
   <script src="{{asset('js/scripts.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.js"></script>
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"></script> --}}
   <script src="{{asset('js/ckeditor.js')}}"></script>
 {{-- Style --}}
@@ -35,6 +36,7 @@
         font-size:14px;
     }
 </style>
+
 {!! Toastr::message() !!}
 {{-- end style --}}
   <script>
@@ -143,38 +145,7 @@
   <!-- {{-- 1.2 Thêm danh mục mới--}}
 
   {{-- Xoá Record --}} -->
-  <script>
-      $('#myTable').on("click", ".btn-delete", function () {
 
-          var id = $(this).data("id");
-          var $ele = $(this).parent().parent();
-
-          console.log(id);
-          $.ajaxSetup({
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              }
-          });
-          $.ajax({
-              url: "/admin/index/danh-muc-tin-tuc/xoa-danh-muc/" + id,
-              type: 'delete',
-              dataType: "JSON",
-              data: {
-                  "id": id
-              },
-              success: function (response) {
-
-                  $ele.fadeOut().remove();
-                  toastr.success('Xoá thành công', 'Quản trị viên');
-              },
-              error: function (error) {
-                  console.log(error);
-
-              }
-          });
-      });
-
-  </script>
   <script>
       CKEDITOR.replaceAll();
       $(document).on({
@@ -322,38 +293,7 @@
 
   </script>
   {{-- delete record --}}
-  <script>
-      $('#myTable').on("click", ".btn_news-delete", function () {
-        alert("Xoá");
-        var id = $(this).data("id");
-          var $ele = $(this).parent().parent();
 
-          console.log(id);
-          $.ajaxSetup({
-              headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-              }
-          });
-          $.ajax({
-              url: "/admin/index/danh-muc-tin-tuc/xoa-tin-tuc/" + id,
-              type: 'delete',
-              dataType: "JSON",
-              data: {
-                  "id": id
-              },
-              success: function (response) {
-
-                  $ele.fadeOut().remove();
-                  toastr.success('Xoá thành công', 'Quản trị viên');
-              },
-              error: function (error) {
-                  console.log(error);
-
-              }
-          });
-      });
-
-  </script>
 
   <script>
       $(document).ready(function () {
@@ -553,9 +493,7 @@
             $('#city').val(city);
             $('#modelId_one').modal('show');
             $('#productFilter').select2({
-                theme :'bootstrap4'
-
-                            });
+                theme :'bootstrap4'});
             getDataSelect(id,idcity);
 
         });
@@ -617,14 +555,11 @@ $('#productFilter').select2().on('select2:open', function() {
 })
 </script>
 
-{{-- unsub --}}
+{{-- function Unsub --}}
 <script>
-    $('#myTable').on("click", ".btn-unsub", function (e) {
-        e.preventDefault();
-        var id = $(this).data("id");
-        var email = $(this).data("email");
-        var $ele = $(this).parent().parent();
-        console.log(id);
+    function unsub(email,$ele) {
+            // var $ele = $(this).parent.parent();
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -634,19 +569,153 @@ $('#productFilter').select2().on('select2:open', function() {
             url: "/admin/index/quan-ly-thu-tin-tuc/unsub/" + email,
             type: 'DELETE',
             data: {
-                "id": id,
+
                 "email":email
             },
             success: function (response) {
+                     // success
+
                 $ele.fadeOut().remove();
                 toastr.success('Huỷ đăng kí thành công', 'Quản trị viên');
+            },
+            error: function (error) {
+                console.log(error);
+                // error.preventDefault();
+            }
+    });
+     }
+</script>
+{{-- unsub --}}
+<script>
+    $('#myTable').on("click", ".btn-unsub", function (e) {
+        e.preventDefault();
+        var $ele = $(this).parent().parent();
+        var idcity = $(this).data('id_city');
+            var id = $(this).data('id');
+            var email = $(this).data('email');
+            var city = $(this).data('city');
+        console.log(id);
+        console.log(email);
+        // then sweet alert fire
+        Swal.fire({
+            title: 'Thông báo?',
+            text: "Bạn muốn huỷ đăng kí?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#8072EA',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Huỷ đăng kí'
+            }).then((result) => {
+            if (result.isConfirmed) {
 
+                unsub(email,$ele);
+            }
+        })
+    })
+
+</script>
+{{-- xoá tin tức --}}
+<script>
+    $('#myTable').on("click", ".btn_news-delete", function (e) {
+        e.preventDefault();
+      var id = $(this).data("id");
+        var $ele = $(this).parent().parent();
+        console.log(id);
+        Swal.fire({
+            title: 'Thông báo',
+            text: "Bạn muốn xoá bài viết này?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#8072EA',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xoá bài'
+            }).then((result) => {
+            if (result.isConfirmed) {
+
+                delete_post(id,$ele);
+            }
+        })
+    });
+
+</script>
+
+<script>
+     function delete_post(id,$ele) {
+ $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "/admin/index/danh-muc-tin-tuc/xoa-tin-tuc/" + id,
+            type: 'DELETE',
+            // dataType: "Json",
+            data: {
+                "id": id
+            },
+            success: function (response) {
+
+                $ele.fadeOut().remove();
+                toastr.success('Xoá thành công bài viết thành công', 'Quản trị viên');
             },
             error: function (error) {
                 console.log(error);
 
             }
         });
+        }
+</script>
+{{-- danh mục --}}
+<script>
+    $('#myTable').on("click", ".btn-delete", function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        var category =$(this).data("category_name");
+        console.log(category);
+        var $ele = $(this).parent().parent();
+        console.log(id);
+        console.log(id);
+        Swal.fire({
+            title: 'Thông báo',
+            text: "Bạn muốn xoá danh mục  "+ category,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#8072EA',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xoá danh mục'
+            }).then((result) => {
+            if (result.isConfirmed) {
+
+                delete_Category(id,$ele);
+            }
+        })
     });
 
+</script>
+
+<script>
+    function delete_Category (id,$ele) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "/admin/index/danh-muc-tin-tuc/xoa-danh-muc/" + id,
+            type: 'delete',
+            dataType: "JSON",
+            data: {
+                "id": id
+            },
+            success: function (response) {
+
+                $ele.fadeOut().remove();
+                toastr.success('Xoá danh mục thành công', 'Quản trị viên');
+            },
+            error: function (error) {
+                console.log(error);
+
+            }
+        });
+    }
 </script>

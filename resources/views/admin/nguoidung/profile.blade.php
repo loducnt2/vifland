@@ -111,8 +111,8 @@ ul.timeline>li:before {
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="Admin" class="rounded-circle"
-                                width="150">
+                            <img data-src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="Admin"
+                                class="rounded-circle lazyload" width="150">
                             <div class="mt-3">
                                 <h4>
                                     <p>{{$profile->full_name}}</p>
@@ -236,12 +236,12 @@ ul.timeline>li:before {
                                     @foreach ($posts as $posts2)
                                     <li>
                                         <?php
-                             \Carbon\Carbon::setLocale('vi');
-                                $now = \Carbon\Carbon::now()->format('d-m-Y');
-                                // $diff = $now->
-                                $end_date = \Carbon\Carbon::parse($posts2->datetime);
-                                $diff = $end_date->diffForHumans($now);
-                                ?>
+                                        \Carbon\Carbon::setLocale('vi');
+                                        $now = \Carbon\Carbon::now()->format('d-m-Y');
+                                        // $diff = $now->
+                                        $end_date = \Carbon\Carbon::parse($posts2->datetime);
+                                        $diff = $end_date->diffForHumans($now);
+                                        ?>
                                         <p>{{$diff}}</p>
                                         <b>
                                             <a href="#">

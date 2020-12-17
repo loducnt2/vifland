@@ -14,7 +14,8 @@
                     <section class="sanpham-s1">
                         <div class="sec-1">
                             <div class="sec-1-box">
-                                <div class="avatar"> <img src="{{asset('assets/icon/avatar.png')}}" alt=""></div>
+                                <div class="avatar"> <img class="lazyload"
+                                        data-src="{{asset('assets/icon/avatar.png')}}" alt=""></div>
                                 <div class="content">
                                     <div class="content-1">
                                         <div class="name">
@@ -182,7 +183,8 @@
                                     <div class="swiper-slide">
                                         <div class="img-box">
                                             <a href="{{asset('assets/product/detail/')}}/{{$img->name}}" data-fancybox>
-                                                <img src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
+                                                <img class="lazyload"
+                                                    data-src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
                                             </a>
                                         </div>
                                     </div>

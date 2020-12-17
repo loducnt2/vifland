@@ -17,8 +17,8 @@
         </div>
         <div class="wrap-2 user-admin">
             @if(auth()->check())
-            <div class="bl-1"><img
-                    src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+            <div class="bl-1"><img class="lazyload"
+                    data-src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
                     alt="">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
                     @if(Auth::check() && Auth::user()->user_type == "1")
@@ -64,7 +64,8 @@
     <div class="max-width-container container-mb">
         <nav>
             <div class="nav-desktop">
-                <div class="logo"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-s.png')}}" alt=""></a>
+                <div class="logo"><a href="{{route('home')}}"><img class="lazyload"
+                            data-src="{{asset('assets/logo/logo-s.png')}}" alt=""></a>
                 </div>
                 <div class="main-nav">
                     <ul class="nav-list">
@@ -259,12 +260,12 @@
                                 data-target="#exampleModal">Đăng bài</a>
                         </li>
                         <li class="nav-item d-none user-logined">
-                            <img class="avatar-login" src="{{asset('assets/avatar/avatar.png')}}" alt="">
+                            <img class="avatar-login lazyload" data-src="{{asset('assets/avatar/avatar.png')}}" alt="">
                         </li>
                         <li class="nav-item">
                             @if(auth()->check())
-                            <div class="avatar-user"><img
-                                    src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                            <div class="avatar-user"><img class="lazyload"
+                                    data-src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
                                     alt=""></div>
                             @else
                             <a href="/login" class="btn btn__header login1" style="line-height:36px">Đăng Nhập</a>
@@ -290,8 +291,8 @@
             </div>
             <div class="nav-mobile">
                 <div class="nav-mobile-1">
-                    <div class="img"><a href="{{route('home')}}"><img src="{{asset('assets/logo/logo-res-white.png')}}"
-                                alt=""></a></div>
+                    <div class="img"><a href="{{route('home')}}"><img class="lazyload"
+                                data-src="{{asset('assets/logo/logo-res-white.png')}}" alt=""></a></div>
                     <div class="button-mobile-post">
                         <button class="button-mbp"><i class="ri-chat-new-fill icon"></i><a style="color:#fff"
                                 class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
@@ -330,8 +331,8 @@
             </div>
             <div class="menu-mobile">
                 <div class="wrap-1">
-                    <div class="logo"> <a href=""><img src="{{asset('assets/logo/logo-s.png')}}" alt=""></a></div><i
-                        class="ri-close-line close-button"></i>
+                    <div class="logo"> <a href=""><img class="lazyload" data-src="{{asset('assets/logo/logo-s.png')}}"
+                                alt=""></a></div><i class="ri-close-line close-button"></i>
                 </div>
                 <div class="wrap-2">
                     <!-- <div class="change-lang">
@@ -394,14 +395,15 @@
                 </div>
                 <div class="wrap-2 user-admin">
                     @if(auth()->check())
-                    <div class="bl-1"><img
-                            src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                    <div class="bl-1"><img class="lazyload"
+                            data-src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
                             alt="">
                         <p>{{auth()->user()->username}}</p>
                     </div>
                     <div class="bl-2">
                         <div class="row">
-                            <div class="col-12"><span class="vifPay"> <img src="{{asset('assets/icon/card.png')}}"
+                            <div class="col-12"><span class="vifPay"> <img class="lazyload"
+                                        data-src="{{asset('assets/icon/card.png')}}"
                                         alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
                             <!-- <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
                                             class="material-icons">keyboard_arrow_right</span></a></span></div>
@@ -445,14 +447,14 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content"><a class="box" href="/article/new/mua-ban-nha-dat"><img
-                        src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt="">
+            <div class="modal-content"><a class="box" href="/article/new/mua-ban-nha-dat"><img class="lazyload"
+                        data-src="{{asset('assets/index/mua-ban-nha-dat.png')}}" alt="">
                     <p>Mua/ Bán</p><em class="material-icons">double_arrow</em>
-                </a><a class="box" href="/article/new/cho-thue-nha-dat"><img
-                        src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt="">
+                </a><a class="box" href="/article/new/cho-thue-nha-dat"><img class="lazyload"
+                        data-src="{{asset('assets/index/cho-thue-nha-dat.png')}}" alt="">
                     <p>Thuê/ Cho Thuê</p><em class="material-icons">double_arrow</em>
-                </a><a class="box" href="/article/new/sang-nhuong-nha-dat"><img
-                        src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
+                </a><a class="box" href="/article/new/sang-nhuong-nha-dat"><img class="lazyload"
+                        data-src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
                     <p>Sang Nhượng</p><em class="material-icons">double_arrow</em>
                 </a></div>
         </div>

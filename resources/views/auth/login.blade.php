@@ -33,8 +33,8 @@ label.error {
                 <div class="login-wrap">
 
 
-                    <div class="logo"><a href="{{route('home')}}"><img src="./assets/logo/logo-footer-300.png"
-                                alt=""></a></div>
+                    <div class="logo"><a href="{{route('home')}}"><img class="lazyload"
+                                data-src="./assets/logo/logo-footer-300.png" alt=""></a></div>
 
 
                     <div class="box-login">

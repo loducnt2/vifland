@@ -27,15 +27,18 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img
-                                        onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
-                                                src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+                                                class="lazyload"
+                                                onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         @if ($product->type == 4)
                                         @else
-                                        <img class="iconVip" src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
-                                            alt="">
+                                        <img class="iconVip lazyload" data class="lazyload"
+                                            -src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                         @endif
-                                        <div class="tag">{{ $product->price != 0 | $product->price != NULL ? round($product->price,2) : ''}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
+                                        <div class="tag">
+                                            {{ $product->price != 0 | $product->price != NULL ? round($product->price,2) : ''}}
+                                            {{$product->unit != NULL?$product->unit:'Thương lượng'}}</div>
                                     </div>
                                 </div>
                                 <div class="col-8">
@@ -84,7 +87,8 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}} {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
+                        <td>{{ $product->price == 0 | $product->price == NULL ?'':round($product->price,2)}}
+                            {{$product->unit != NULL?$product->unit:'Thương lượng'}}</td>
                         <td>{{$product->facades != NULL ? round($product->facades,2) : ''}} m</td>
                         <td>{{$product->depth !=NULL ? round($product->depth,2) : ''}} m</td>
                         <td>
@@ -98,7 +102,8 @@
             </table>
         </div>
         @else
-        <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+        <div class="article-none"> <img class="lazyload" data-src="{{asset('assets/san_pham/no-documents.png')}}"
+                alt="">
             <p>Không có bài đăng nào</p>
         </div>
         @endif

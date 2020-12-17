@@ -11,8 +11,11 @@
         <div class="max-width-container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}"></i>Trang chủ
-                        </a></li>
-                <li class="breadcrumb-item"><a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal" data-target="#exampleModal"><p>Đăng bài</p></a></li>
+                    </a></li>
+                <li class="breadcrumb-item"><a class="text" href="/article/new/mua-ban-nha-dat" data-toggle="modal"
+                        data-target="#exampleModal">
+                        <p>Đăng bài</p>
+                    </a></li>
             </ol>
         </div>
     </div>
@@ -304,8 +307,8 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="img"> <a href="{{asset('assets/icon/vips1.jpg')}}"
-                                                    data-fancybox="images"> <img
-                                                        src="{{asset('assets/icon/vips1.jpg')}}" alt=""></a>
+                                                    data-fancybox="images"> <img class="lazyload"
+                                                        data-src="{{asset('assets/icon/vips1.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
@@ -343,8 +346,8 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="img"><a href="{{asset('assets/icon/vips2.jpg')}}"
-                                                    data-fancybox="images"> <img
-                                                        src="{{asset('assets/icon/vips2.jpg')}}" alt=""></a>
+                                                    data-fancybox="images"> <img class="lazyload"
+                                                        data-src="{{asset('assets/icon/vips2.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
@@ -383,8 +386,8 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="img"><a href="{{asset('assets/icon/vips3.jpg')}}"
-                                                    data-fancybox="images"> <img
-                                                        src="{{asset('assets/icon/vips3.jpg')}}" alt=""></a>
+                                                    data-fancybox="images"> <img class="lazyload"
+                                                        data-src="{{asset('assets/icon/vips3.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
@@ -423,8 +426,8 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="img"><a href="{{asset('assets/icon/vips4.jpg')}}"
-                                                    data-fancybox="images"> <img
-                                                        src="{{asset('assets/icon/vips4.jpg')}}" alt=""></a>
+                                                    data-fancybox="images"> <img class="lazyload"
+                                                        data-src="{{asset('assets/icon/vips4.jpg')}}" alt=""></a>
                                             </div>
                                         </div>
                                     </div>
@@ -457,7 +460,8 @@
                                         </div> -->
                                     </div>
                                     <div class="wrap-des-vip" id="sub-vip1">
-                                        <div class="wrap-left"><img src="{{asset('assets/icon/vip1.svg')}}" alt="">
+                                        <div class="wrap-left"><img class="lazyload"
+                                                data-src="{{asset('assets/icon/vip1.svg')}}" alt="">
                                             <div class="wrap-text">
                                                 <p style="color:#993393">Tin VIP 1 - Gói 7 ngày</p><small>Từ
                                                     ngày
@@ -473,7 +477,8 @@
                                         </div>
                                     </div>
                                     <div class="wrap-des-vip" id="sub-vip2">
-                                        <div class="wrap-left"><img src="{{asset('assets/icon/vip2.svg')}}" alt="">
+                                        <div class="wrap-left"><img class="lazyload"
+                                                data-src="{{asset('assets/icon/vip2.svg')}}" alt="">
                                             <div class="wrap-text">
                                                 <p style="color:#dd8c43">Tin VIP 2 - Gói 7 ngày</p><small>Từ
                                                     ngày
@@ -488,7 +493,8 @@
                                         </div>
                                     </div>
                                     <div class="wrap-des-vip" id="sub-vip3">
-                                        <div class="wrap-left"><img src="{{asset('assets/icon/vip3.svg')}}" alt="">
+                                        <div class="wrap-left"><img class="lazyload"
+                                                data-src="{{asset('assets/icon/vip3.svg')}}" alt="">
                                             <div class="wrap-text">
                                                 <p style="color:#b18734">Tin VIP 3 - Gói 7 ngày</p><small>Từ
                                                     ngày

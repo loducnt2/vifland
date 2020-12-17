@@ -47,7 +47,8 @@
                     <section class="sanpham-s1">
                         <div class="sec-1">
                             <div class="sec-1-box">
-                                <div class="avatar"> <img src="{{asset('assets/icon/avatar.png')}}" alt=""></div>
+                                <div class="avatar"> <img class="lazyload"
+                                        data-src="{{asset('assets/icon/avatar.png')}}" alt=""></div>
                                 <div class="content">
                                     <div class="content-1">
                                         <div class="name">
@@ -223,8 +224,9 @@
                                     <div class="swiper-slide">
                                         <div class="img-box">
                                             <a href="{{asset('assets/product/detail/')}}/{{$img->name}}" data-fancybox>
-                                                <img onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
-                                                    src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
+                                                <img class="lazyload"
+                                                    onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                    data-src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -392,9 +394,15 @@
                             <div class="swiper-slide">
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
+<<<<<<< HEAD
                                             href="{{route('article-detail',$product->slug)}}"><img
                                                 onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                                 src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+=======
+                                            href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
+                                                onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png'"
+                                                data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+>>>>>>> a98a0ee1e486c554a7562625594a15cfd842924f
                                                 alt=""></a>
                                         <div class="tag-thuongluong">
                                             {{ $product->price == 0?$product->price="":number_format($product->price)}}
@@ -410,7 +418,8 @@
                                             <!-- {{$product->type}} -->
 
                                             @if ($product->type != 4)
-                                            <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
+                                            <img class="lazyload"
+                                                data-src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                             @else
                                             @endif
                                         </div>
@@ -436,33 +445,33 @@
                                         </div>
                                         <div class="mota-place">
                                             <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/dientich.png')}}" alt=""><span
+                                                <div class="mota-place-tt"><img class="lazyload"
+                                                        data-src="{{asset('assets/icon/dientich.png')}}" alt=""><span
                                                         data-toggle="tooltip" data-placement="bottom"
                                                         title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades)==0?'':intval($product->depth)*intval($product->facades) }}
                                                         m²</span></div>
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
-                                                        data-toggle="tooltip" data-placement="bottom"
+                                                <div class="mota-place-tt"><img class="lazyload"
+                                                        data-src="{{asset('assets/icon/icon-road@3x.png')}}"
+                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                         title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach(
                                                         $product_cate as $prod_cate
                                                         ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
                                                 </div>
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
+                                                <div class="mota-place-tt"><img class="lazyload"
+                                                        data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                         title="{{$product->facades}} m">{{$product->facades}} m</span>
                                                 </div>
                                             </div>
                                             <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
-                                                        data-toggle="tooltip" data-placement="bottom"
+                                                <div class="mota-place-tt"><img class="lazyload"
+                                                        data-src="{{asset('assets/icon/rectangle-2@3x.png')}}"
+                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                         title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}</span>
                                                 </div>
-                                                <div class="mota-place-tt"><img
-                                                        src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
-                                                        data-toggle="tooltip" data-placement="bottom"
+                                                <div class="mota-place-tt"><img class="lazyload"
+                                                        data-src="{{asset('assets/icon/rectangle-3@3x.png')}}"
+                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                         title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}
                                                     </span></div>
                                                 <div class="mota-place-tt"><span

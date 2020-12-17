@@ -28,13 +28,14 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="box-left-admin">
-                            <div class="bl-1"><img src="{{asset('assets/avatar/avatar-girl.png')}}" alt="">
+                            <div class="bl-1"><img class="lazyload" src="{{asset('assets/avatar/avatar-girl.png')}}"
+                                    alt="">
                                 <p>{{auth()->user()->full_name}} </p>
                             </div>
                             <div class="bl-2">
                                 <div class="row">
-                                    <div class="col-6"><span class="vifPay"> <img
-                                                src="{{asset('assets/icon/card.png')}}"
+                                    <div class="col-6"><span class="vifPay"> <img class="lazyload"
+                                                data-src="{{asset('assets/icon/card.png')}}"
                                                 alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span></div>
                                     <div class="col-6"><span class="lkngay"><a href="">Liên kết ngay <span
                                                     class="material-icons">keyboard_arrow_right</span></a></span></div>
@@ -106,12 +107,16 @@
                                                             <div class="row">
                                                                 <div class="col-3">
                                                                     <div class="img">
-                                                                        <a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
-                                                                        
+                                                                        <a
+                                                                            href="{{route('article-detail',$product->slug)}}"><img
+                                                                                class="lazyload"
+                                                                                data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+                                                                                alt=""></a>
+
                                                                         @if ($product->type == 4)
                                                                         @else
-                                                                        <img class="iconVip"
-                                                                            src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
+                                                                        <img class="iconVip lazyload"
+                                                                            data-src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                                                             alt="">
                                                                         @endif
                                                                         <!-- <div class="tag">Thương lượng</div> -->
@@ -150,7 +155,8 @@
                                                         <td>{{$product->facades}}</td>
                                                         <td>{{$product->depth}}</td>
                                                         <td>
-                                                                <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a>
+                                                            <a href="{{route('delete-article',$product->product_id)}}"
+                                                                class="text-danger">Xóa</a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -159,8 +165,8 @@
                                         </div>
 
                                         @else
-                                        <div class="article-none"> <img
-                                                src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                                        <div class="article-none"> <img class="lazyload"
+                                                data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
                                             <p>Không có bài đăng nào</p>
                                         </div>
                                         @endif
@@ -188,11 +194,15 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-3">
-                                                                    <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                                                                    <div class="img"><a
+                                                                            href="{{route('article-detail',$product->slug)}}"><img
+                                                                                class="lazyload"
+                                                                                data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+                                                                                alt=""></a>
                                                                         @if ($product->type == 4)
                                                                         @else
-                                                                        <img class="iconVip"
-                                                                            src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
+                                                                        <img class="iconVip lazyload"
+                                                                            data-src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                                                             alt="">
                                                                         @endif
                                                                         <!-- <div class="tag">Thương lượng</div> -->
@@ -231,8 +241,10 @@
                                                         <td>{{$product->facades}}</td>
                                                         <td>{{$product->depth}}</td>
                                                         <td>
-                                                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
-                                                            <a href="{{route('edit-article',$product->product_id)}}" class="text-danger">Chỉnh sửa</a>
+                                                            <a href="{{route('delete-article',$product->product_id)}}"
+                                                                class="text-danger">Xóa</a><br>
+                                                            <a href="{{route('edit-article',$product->product_id)}}"
+                                                                class="text-danger">Chỉnh sửa</a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -240,8 +252,8 @@
                                             </table>
                                         </div>
                                         @else
-                                        <div class="article-none"> <img
-                                                src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                                        <div class="article-none"> <img class="lazyload"
+                                                data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
                                             <p>Không có bài đăng nào</p>
                                         </div>
                                         @endif
@@ -255,7 +267,7 @@
 												</div>
 											</div>
 										</div> -->
-                                        
+
                                         @if(count($product_expire) >0 )
                                         <span>*Tin sẽ tự động xóa sau 7 ngày</span>
                                         <div class="box-content">
@@ -275,11 +287,15 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-3">
-                                                                    <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                                                                    <div class="img"><a
+                                                                            href="{{route('article-detail',$product->slug)}}"><img
+                                                                                class="lazyload"
+                                                                                data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
+                                                                                alt=""></a>
                                                                         @if ($product->type == 4)
                                                                         @else
-                                                                        <img class="iconVip"
-                                                                            src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
+                                                                        <img class="iconVip lazyload"
+                                                                            data-src="{{asset('assets/icon/vip'.$product->type.'.svg')}}"
                                                                             alt="">
                                                                         @endif
                                                                         <!-- <div class="tag">Thương lượng</div> -->
@@ -311,7 +327,9 @@
                                                                             <p>{{$product->view}} lượt xem</p>
                                                                         </div>
                                                                         <div class="t-4">
-                                                                            <p class="text-danger">{{$product->status==2?"Tin không được duyệt":""}}</p>
+                                                                            <p class="text-danger">
+                                                                                {{$product->status==2?"Tin không được duyệt":""}}
+                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -321,19 +339,21 @@
                                                         <td>{{$product->facades}}</td>
                                                         <td>{{$product->depth}}</td>
                                                         <td>
-                                                            <a href="{{route('delete-article',$product->product_id)}}" class="text-danger">Xóa</a><br>
+                                                            <a href="{{route('delete-article',$product->product_id)}}"
+                                                                class="text-danger">Xóa</a><br>
                                                             @if( $product->status!=2 )
-                                                            <a href="{{route('add-date-form',$product->product_id)}}" class="text-danger"> Gia hạn</a>
+                                                            <a href="{{route('add-date-form',$product->product_id)}}"
+                                                                class="text-danger"> Gia hạn</a>
                                                             @endif
                                                         </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                        </div>                                        
+                                        </div>
                                         @else
-                                        <div class="article-none"> <img
-                                                src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                                        <div class="article-none"> <img class="lazyload"
+                                                data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
                                             <p>Không có bài đăng nào</p>
                                         </div>
                                         @endif
@@ -349,23 +369,23 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal32" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Gian hạn</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Gian hạn</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     <div class="index-page" id="js-page-verify" hidden></div>
 </main>

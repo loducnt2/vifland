@@ -61,77 +61,34 @@ div#u_0_0 {
 
                 <div class="col-xl-9 col-md-9">
                     <div class="article-container">
-                        <div class="article-title">
-
-                            <div class="title">
-                                <h1 class="section-under-title">{{$news->title}}</h1>
-                            </div>
-                            <div class="wrapper">
-                                <div class="tag">
-                                    <a href="/tin-tuc/danh-muc/{{$news_cate->slug}}">{{$news_cate->category_name}},</a>
-                                </div>
-                                <div class="date">
-                                    <p>{{$news->datepost}}</p>
-                                </div>
-
-
-                                <div class="author">
-                                    <p>Tác giả: <a
-                                            href="/user/profile/{{$id_nguoidang->id}}">{{$id_nguoidang->username}}
-                                            <span class="badge badge-primary">Quản trị viên</span></h6></a></p>
-                                </div>
-                            </div>
+                        <div class="date">
+                            <p>{{$news->datepost}}</p>
                         </div>
-                        <div class="article-content">
-                            <div class="content">
-                                {!!$news->content!!}
-                            </div>
-                        </div>
-                        <div class="binh-luan-facebook">
-                            <?php
-                            function getCurURL()
-                            {
-                                if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
-                                    $pageURL = "https://";
-                                } else {
-                                    $pageURL = 'http://';
-                                }
-                                if (isset($_SERVER["SERVER_PORT"]) && $_SERVER["SERVER_PORT"] != "80") {
-                                    $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
-                                } else {
-                                    $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-                                }
-                                return $pageURL;
-                            }
+                        <div class="title">
 
-				<div class="col-xl-9 col-md-9">
-					<div class="article-container">
-						<div class="date">
-							<p>{{$news->datepost}}</p>
-						</div>
-						<div class="title">
-
-        			<h1 class="section-under-title">{{$news->title}}</h1>
+                            <h1 class="section-under-title">{{$news->title}}</h1>
                         </div>
 
-                    <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}} <span class="badge badge-primary">Quản trị viên</span></h6></a></p>
-						<div class="content">
-							{!!$news->content!!}
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-3 col-md-3">
-					<div class="orther-news">
-						<div class="title">
-							<h2 class="section-des">Các tin khác</h2>
-						</div>
-						@foreach ($posts as $news2)
-						@if($news->slug == $news2->slug)
-						{{-- ẩn tin --}}
-						@else
-						<div class="news-content">
+                        <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}} <span
+                                    class="badge badge-primary">Quản trị viên</span></h6></a></p>
+                        <div class="content">
+                            {!!$news->content!!}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3">
+                    <div class="orther-news">
+                        <div class="title">
+                            <h2 class="section-des">Các tin khác</h2>
+                        </div>
+                        @foreach ($posts as $news2)
+                        @if($news->slug == $news2->slug)
+                        {{-- ẩn tin --}}
+                        @else
+                        <div class="news-content">
 
-                            <div class="img"> <img src="{{asset('assets/news')}}/{{$news2->img}}" alt=""></div>
+                            <div class="img"> <img class="lazyload" data-src="{{asset('assets/news')}}/{{$news2->img}}"
+                                    alt=""></div>
                             <div class="content">
                                 <div class="date">
                                     <p>{{$news2->datepost}}</p>

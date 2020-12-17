@@ -70,8 +70,8 @@
         <div class="col-md-6">
             <div class="box-reset">
                 <div class="logo">
-                    <a href="{{route('home')}}"><img src="http://127.0.0.1:8000/assets/logo/logo-footer-300.png"
-                            alt=""></a>
+                    <a href="{{route('home')}}"><img class="lazyload"
+                            data-src="http://127.0.0.1:8000/assets/logo/logo-footer-300.png" alt=""></a>
                 </div>
                 <div class="title-reset">{{ __('Đặt lại mật khẩu') }}</div>
                 <div class="card-body">

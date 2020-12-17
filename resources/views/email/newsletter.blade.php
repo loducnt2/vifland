@@ -20,6 +20,7 @@
         width: 100% !important;
         background: #f1f1f1;
     }
+
     /* What it does: Stops email clients resizing small text. */
     * {
         -ms-text-size-adjust: 100%;
@@ -350,7 +351,7 @@
                         </table>
                     </td>
                 </tr><!-- end tr -->
-                <h1>XIN CHÀO ! {{ $result}}</h1>
+                <h1>XIN CHÀO ! {{ $nguoinhan}}</h1>
                 <p> {!! $contents !!} </p>
 
                 @foreach ($news as $item)
@@ -367,7 +368,7 @@
                         <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
                             <td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
                                 <div class="product-entry">
-                                    <img src="images/prod-1.jpg" alt=""
+                                    <img class="lazyload" data-src="images/prod-1.jpg" alt=""
                                         style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
                                     <div class="text">
                                         <h3>Analog Wrest Watch</h3>
@@ -390,49 +391,6 @@
                     </table>
                 </tr><!-- end tr -->
                 <!-- 1 Column Text + Button : END -->
-            </table>
-            </td>
-            </tr><!-- end tr -->
-            <h1>XIN CHÀO ! {{ $nguoinhan}}</h1>
-            <p> {!! $contents !!} </p>
-
-            @foreach ($news as $item)
-            {{$item->id}}
-            @endforeach
-            <tr>
-                <table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-                        <th width="80%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">
-                            Item</th>
-                        <th width="20%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">
-                            Price</th>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-                        <td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
-                            <div class="product-entry">
-                                <img src="images/prod-1.jpg" alt=""
-                                    style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-                                <div class="text">
-                                    <h3>Analog Wrest Watch</h3>
-                                    <span>Small</span>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                        regelialia.</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td valign="middle" width="20%" style="text-align:left; padding: 0 2.5em;">
-                            <span class="price" style="color: #000; font-size: 20px;">$120</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td valign="middle" style="text-align:left; padding: 1em 2.5em;">
-                            <!-- <p><a href="#" class="btn btn-primary">Continur your order</a></p> -->
-                        </td>
-                    </tr>
-                </table>
-            </tr><!-- end tr -->
-            <!-- 1 Column Text + Button : END -->
             </table>
             <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
                 style="margin: auto;">

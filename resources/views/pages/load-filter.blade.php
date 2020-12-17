@@ -4,8 +4,8 @@
 <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
     <div class="box-sp">
         <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                href="{{route('article-detail',$product->slug)}}"><img
-                    src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
+                href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
+                    data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
             <div class="tag-thuongluong">
                 {{ $product->price == 0?$product->price="":$product->price}}
                 {{$product->unit}}</div>
@@ -18,7 +18,7 @@
                 <!-- {{$product->type}} -->
 
                 @if ($product->type != 4)
-                <img src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
+                <img class="lazyload" data-src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                 @else
                 @endif
             </div>
@@ -43,25 +43,29 @@
             </div>
             <div class="mota-place">
                 <div class="mota-place-1">
-                    <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}" alt=""><span
-                            data-toggle="tooltip" data-placement="bottom"
+                    <div class="mota-place-tt"><img class="lazyload" data-src="{{asset('assets/icon/dientich.png')}}"
+                            alt=""><span data-toggle="tooltip" data-placement="bottom"
                             title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : $acreage}}
                             m²</span></div>
-                    <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
-                            data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt
+                    <div class="mota-place-tt"><img class="lazyload"
+                            data-src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip"
+                            data-placement="bottom" title="Tooltip on bottom">Mặt phố - mặt
                             đường</span></div>
-                    <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
+                    <div class="mota-place-tt"><img class="lazyload"
+                            data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                             data-toggle="tooltip" data-placement="bottom"
                             title="{{$product->facades}}">{{$product->facades}} m</span>
                     </div>
                 </div>
                 <div class="mota-place-1">
-                    <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span
-                            data-toggle="tooltip" data-placement="bottom"
+                    <div class="mota-place-tt"><img class="lazyload"
+                            data-src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip"
+                            data-placement="bottom"
                             title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':""}}
                             Tầng</span></div>
-                    <div class="mota-place-tt"><img src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span
-                            data-toggle="tooltip" data-placement="bottom"
+                    <div class="mota-place-tt"><img class="lazyload"
+                            data-src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip"
+                            data-placement="bottom"
                             title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':""}}</span>
                     </div>
                     <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span
@@ -87,7 +91,7 @@
 </div>
 @endforeach
 @else
-<div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+<div class="article-none"> <img class="lazyload" data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
     <p>Không có bài đăng nào</p>
 </div>
 @endif
