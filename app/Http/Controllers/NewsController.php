@@ -209,6 +209,9 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
+        // nếu số tin tức của danh mục > 0 -> không dc xoá
+
+        // find theo id
         $new = News::find($id);
         $new->delete();
 

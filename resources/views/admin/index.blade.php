@@ -233,13 +233,8 @@ $(document).ready(function() {
             backgroundColor: "#3160D8",
             fill: false,
             borderWidth: 2,
-            data: [@foreach($cash as $cs) {
-                {
-                    $cs
-                }
-            }, @endforeach],
+            data: [@foreach($cash as $cs) {{$cs}}, @endforeach],
             //data: cash ,
-
         }]
     };
     window.onload = function() {
@@ -316,15 +311,7 @@ $(document).ready(function() {
         backgroundColor: ["#285FD3", "#FF8B26"],
         borderColor: "#fff",
         borderWidth: 2,
-        data: [{
-            {
-                $post_history_11
-            }
-        }, {
-            {
-                $post_history_00
-            }
-        }],
+        data: [{{$post_history_11}},{{$post_history_00}}],
         hoverBorderWidth: 5,
         labels: ["Bài viết đã duyệt", "Bài viết chưa duyệt"],
     }, ];

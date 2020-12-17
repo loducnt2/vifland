@@ -368,8 +368,8 @@ class UserController extends Controller
         //xoá tài khoản
         $user = User::find($id);
         $user->delete();
-        // return redirect()->back();
-        return redirect('/admin/index/profiles');
+        // // return redirect()->back();
+        // return redirect('/admin/index/profiles');
     }
     // khoá- mở khoá
     public function ChangeUserStatus(Request $request){

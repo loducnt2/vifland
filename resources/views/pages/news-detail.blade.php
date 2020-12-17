@@ -11,11 +11,37 @@
 <title>{{$news->title}}</title>
 @endif
 @section('headerStyles')
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0&appId=1108629442905255&autoLogAppEvents=1"
+    nonce="lpCr0s3t"></script>
+<style>
+.fb-comments,
+.fb-comments iframe[style],
+.fb-like-box,
+.fb-like-box iframe[style] {
+    width: 100% !important;
+}
 
+.fb-comments span,
+.fb-comments iframe span[style],
+.fb-like-box span,
+.fb-like-box iframe span[style] {
+    width: 100% !important;
+}
+
+#u_0_0 {
+    width: 100% !important;
+}
+</style>
 <!-- Thêm styles cho trang này ở đây-->
 @stop
 @section('content')
-
+<style>
+div#u_0_0 {
+    width: 100% !important;
+}
+</style>
 <main>
     <div class="global-breadcrumb">
         <div class="max-width-container">

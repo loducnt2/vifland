@@ -55,30 +55,34 @@
                             <p>Quý khách vui lòng điền thông tin vào mẫu bên dưới và gửi những góp ý, thắc mắc cho chúng
                                 tôi</p>
                             <div class="form-wrap">
-                                <div class="row">
+                            <form action="{{route('up-contact')}}" method="POST">
+                            {{csrf_field()}}
+                            <div class="row">
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                        <input type="text" placeholder="Họ và Tên" id="name">
+                                        <input type="text" placeholder="Họ và Tên" id="name" name="name">
                                     </div>
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                        <input type="mail" placeholder="Email" id="email">
+                                        <input type="mail" placeholder="Email" id="email" name="email">
                                     </div>
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                        <input type="text" placeholder="Số điện thoại" id="sdt">
+                                        <input type="text" placeholder="Số điện thoại" id="sdt" name="phone">
                                     </div>
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                        <input type="text" placeholder="Địa chỉ" id="address">
+                                        <input type="text" placeholder="Địa chỉ" id="address " name="address">
                                     </div>
                                     <div class="col-xl-12 form-group">
-                                        <input type="text" placeholder="Tiêu đề" id="title">
+                                        <input type="text" placeholder="Tiêu đề" id="title"  name="title">
                                     </div>
                                     <div class="col-xl-12 form-group">
                                         <textarea name="content" rows="5" placeholder="Nội dung..."></textarea>
                                     </div>
                                 </div>
                                 <div class="button">
-                                    <button class="btn btn-return" type="submit">Quay lại</button>
-                                    <button class="btn btn-submit" type="submit">Gửi</button>
+                                    <!-- <input type="reset" class="btn btn-return" type="submit">Quay lại</button> -->
+                                    <button  class="btn btn-submit" type="submit">Gửi</button>
                                 </div>
+                            </form>
+                                
                             </div>
                         </div>
                     </div>

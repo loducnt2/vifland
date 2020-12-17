@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{{asset('css/admin_styles.css') }}">
 <link href="{{asset('css/update-admin.css') }}" rel="stylesheet" />
 <link href="{{asset('css/profile.css') }}" rel="stylesheet" />
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
 {{-- <link rel="stylesheet" href="style.css"> --}}
@@ -30,6 +31,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.4.0/dist/select2-bootstrap4.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.css">
 <style>
 ::-webkit-scrollbar {
     width: 5px;
@@ -97,7 +99,7 @@
                                 data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                     <a class="nav-link" href="{{ url('admin/cap-nhat-tin-tuc') }}">Đăng tin tức</a>
-                                    <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Tạo danh mục tin
+                                    <a class="nav-link" href="{{ url('admin/danh-muc-tin-tuc') }}">Quản lý danh mục tin
                                         tức</a>
                                     <a class="nav-link" href="{{ url('admin/danh-sach-tin-tuc') }}">Danh sách tin
                                         tức</a>
@@ -134,7 +136,7 @@
                             </a>
                             <a class="nav-link" href="{{ route('wallet')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-wallet"></i></div>
-                                Quản lý ví tiền
+                                Nạp tiền thủ công
                             </a>
                             <a class="nav-link" href="{{ url('admin/danh-sach-province') }}">
                                 <div class="sb-nav-link-icon"><span class="material-icons">
@@ -147,6 +149,12 @@
                                         forward_to_inbox
                                     </span></div>
                                 Quản lý thư tin tức
+                            </a>
+                            <a class="nav-link" href="{{ url('admin/danh-sach-contact') }}">
+                                <div class="sb-nav-link-icon"><span class="material-icons">
+                                        forward_to_inbox
+                                    </span></div>
+                                Quản lý liên hệ
                             </a>
 
                             <a class="nav-link" href="{{ url('admin/danh-sach-banner') }}">
