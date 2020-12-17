@@ -394,15 +394,9 @@
                             <div class="swiper-slide">
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-<<<<<<< HEAD
-                                            href="{{route('article-detail',$product->slug)}}"><img
-                                                onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
-                                                src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-=======
                                             href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
                                                 onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png'"
                                                 data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
->>>>>>> a98a0ee1e486c554a7562625594a15cfd842924f
                                                 alt=""></a>
                                         <div class="tag-thuongluong">
                                             {{ $product->price == 0?$product->price="":number_format($product->price)}}
