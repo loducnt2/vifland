@@ -30,7 +30,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered box-n" id="table" width="100%" cellspacing="0">
+            <table class="table table-bordered box-n" id="userTable" width="100%" cellspacing="0">
                 <thead class="thead-dark">
                     <tr>
                         <th>Họ và tên</th>
@@ -41,8 +41,8 @@
                         {{-- <th>Salary</th> --}}
                         <th>Hoạt động</th>
                         <th>Hành động</th>
-                        <th>Chi tiết</th>
-                        <th></th>
+                        {{-- <th>Chi tiết</th> --}}
+
                     </tr>
                 </thead>
 
@@ -66,30 +66,15 @@
 
                   <td>
                   {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
-                  <input data-id="{{$user->id}}"  class="btn-user" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Mở" data-off="Khoá" {{ $user->status ? 'checked' : '' }}>
-
+                  {{-- <input data-id="{{$user->id}}" data-username={{$user->username}}  class="btn-user" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Mở" data-off="Khoá" {{ $user->status ? 'checked' : '' }}> --}}
+                  <a href="" data-id="{{ $user->id }}" data-username="{{$user->username}}" class="btn btn-danger btn-user-delete">Xoá user</a>
                   {{-- <input type="checkbox" checked data-toggle="toggle" data-id="{{$user->id}}" class="test"> --}}
-                  <div id="console-event-{{$user->id}}"></div>
+
                 {{-- hồ sơ --}}
 
                 </td>
-                <td>
-                  <button type="submit" class="btn btn-primary">
-                      <a href="/admin/index/profile/{{$user->id}}">
-                        <i class="fa fa-search" style="font-size:12px;color:white"></i>
-                        </a>
-                        {{-- Xoá --}}
 
-                  </button>
 
-                </td>
-                <td>
-                    <button type="button" class="btn btn-danger">
-                    <a href="profile/delete/{{$user->id}}">
-                        <i class="fas fa-trash" style="color:white" ></i>
-                    </a>
-                   </button>
-                  </td>
                 @endforeach
 
                 </tr>

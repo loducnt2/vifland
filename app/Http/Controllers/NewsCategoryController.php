@@ -158,5 +158,6 @@ class NewsCategoryController extends Controller
         //     return json_decode($products);
         // }
 
-    }
+
+    }}
 }

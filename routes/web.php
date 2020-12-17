@@ -97,7 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/danh-sach-danh-muc/edit/{id}','CategoryController@edit')->name('edit-cate');         // Form chỉnh sửa danh mục
     Route::get('/admin/danh-sach-danh-muc','CategoryController@index');                                     //
 
-    Route::get('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
+    Route::delete('/admin/danh-sach-tin-tuc/delete/{id}','NewsController@destroy')->name('delete-new');
     Route::get('/admin/danh-sach-tin-tuc/edit/{id}','NewsController@edit')->name('edit-new');
     Route::get('/admin/danh-sach-tin-tuc','NewsController@index')->name('newscate-index');
     // province
@@ -153,7 +153,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
     // Tin tức theo danh mục
     Route::get('/tin-tuc/danh-muc/{slug}', 'NewsController@getNewsbyCate');
-    Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
+    // xoa nguoi dung
+    Route::get('/admin/index/profile/delete/{id}', 'UserController@destroy');
     // Route quản lí tin đã đăng của user
     // Route::get('/my-article/{id}','UserControllers@getPostbyID');
     // User: thay đổi trạng thái user
@@ -227,7 +228,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
     Route::get('/admin/danh-sach-duyet-tin/show/{id}', 'HistoryPostController@show')->name('show-tintuc');
     Route::get('/admin/danh-sach-duyet-tin/cancel/{id}', 'HistoryPostController@cancelPost')->name('cancel-post');
-    Route::get('/admin/danh-sach-duyet-tin/delete/{id}', 'HistoryPostController@destroy')->name('del-post');
+    Route::GET('/admin/danh-sach-duyet-tin/delete/{id}', 'HistoryPostController@destroy')->name('del-post');
     Route::get('/admin/post-history/update/dsds/{id}', 'HistoryPostController@updatePost')->name('update-post');
 
     //Banner
