@@ -45,36 +45,6 @@
                     </tr>
                 </thead>
                 <tr>
-<<<<<<< HEAD
-                 @foreach ($users as $user)
-                 <tr>
-                 <td>{{$user->full_name}}</td>
-                 <td>{{$user->username}}</td>
-                 <td>{{$user->email}}</td>
-                 {{-- <td>{{$user->birth_day}}</td> --}}
-                 <td>{{$user->created_at}}</td>
-                 <td>
-                 <p id="status-{{$user->id}}"> @if ($user->status == '1')
-                        Hoạt động
-                    @else
-                        Bị ban
-                    @endif
-                    </p>
-                  </td>
-
-                  <td>
-                  {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
-                  {{-- <input data-id="{{$user->id}}" data-username={{$user->username}}  class="btn-user" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Mở" data-off="Khoá" {{ $user->status ? 'checked' : '' }}> --}}
-                  <a href="" data-id="{{ $user->id }}" data-username="{{$user->username}}" class="btn btn-danger btn-user-delete">Xoá user</a>
-                  {{-- <input type="checkbox" checked data-toggle="toggle" data-id="{{$user->id}}" class="test"> --}}
-
-                {{-- hồ sơ --}}
-
-                </td>
-
-
-                @endforeach
-=======
                     @foreach ($users as $user)
                 <tr>
                     <td>{{$user->full_name}}</td>
@@ -122,7 +92,6 @@
                         </button>
                     </td>
                     @endforeach
->>>>>>> d375fec58046fe2cd9b0e115998cf65af20647df
 
                 </tr>
                 <tbody>
