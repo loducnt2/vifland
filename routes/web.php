@@ -255,6 +255,10 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
     Route::get('/admin/danh-sach-gia-vip/delete/{id}', 'PriceTypePostController@destroy')->name('del-price');
     Route::get('/admin/danh-sach-gia-vip', 'PriceTypePostController@index');
+
+    //Quản lí contact
+    Route::get('/admin/danh-sach-contact', 'ContactController@index');
+     Route::post('/contact/create','ContactController@store')->name('up-contact');
 });
 
 // Đăng kí
