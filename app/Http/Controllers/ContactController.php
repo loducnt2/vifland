@@ -46,7 +46,7 @@ class ContactController extends Controller
             'content'=> $request->get("content") ,
         ]);
         $contact->save();
-        return redirect('/'); 
+        return redirect('/');
     }
 
     /**
@@ -57,7 +57,7 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-      
+
     }
 
     /**
@@ -68,7 +68,7 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-       
+
     }
 
     /**
@@ -80,7 +80,7 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-      
+
     }
 
     /**
@@ -91,6 +91,6 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        
+
     }
 }
