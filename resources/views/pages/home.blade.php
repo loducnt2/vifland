@@ -218,7 +218,8 @@ $('#navId a').click(e => {
                     <div class="col-4">
                         <div class="box-cate">
                             <a href="{{$categories['2']->slug}}">
-                                <div class="img"><img src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
+                                <div class="img"><img class="lazyload"
+                                        data-src="{{asset('assets/index/sang-nhuong-nha-dat.png')}}" alt="">
                                 </div>
                                 <div class="title-box">{{$categories[2]->name}}</div>
                             </a>
