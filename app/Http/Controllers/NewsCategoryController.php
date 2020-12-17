@@ -144,12 +144,19 @@ class NewsCategoryController extends Controller
             // return response()->json(['error'=>'False']);
         }
         else{
-            // nếu không còn tin thì sẽ xoá thành công
-            $newsCategory = NewsCategory::find($id);
-             $newsCategory->delete();
-        }
-        // $newsCategory = new NewsCategory();
+        //     // nếu không còn tin thì sẽ xoá thành công
+        //     $newsCategory = NewsCategory::find($id);
+        //      $newsCategory->delete();
+        //      return json
+        // }
+        // // $newsCategory = new NewsCategory();
+        // if(empty($province_info)){
+        //     return false;
+        // }else{
 
+        //     $products = Product::where('province_id',$province_info->id)->get();
+        //     return json_decode($products);
+        // }
 
     }
 }

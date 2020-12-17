@@ -713,7 +713,7 @@ $('#productFilter').select2().on('select2:open', function() {
                     toastr.warning("Bạn còn " + number + "bài viết chưa xoá");
                     console.log('Không thể xoá được bài viết');
                 }else if(number.length = null ){
-                    alert("asdsa");
+                    alert("asdasdasdasd");
                 }
 
             },
