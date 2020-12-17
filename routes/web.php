@@ -348,3 +348,5 @@ Route::post('/send-email', 'NewsLetterController@send_email');
 Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}','ProductController@Productbyprovince');
 Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}', 'NewsLetterController@unsubscribe');
 // Route::get()
+Route::post('/guithu','NewsLetterController@guithu');
+// gửi thư
