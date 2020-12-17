@@ -5,20 +5,20 @@ Quản lý giá post
 @endsection
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<div class="container">
-    <div class="col-6">
+<div class="container-fluid">
+    <div class="col-lg-12">
         <form action="{{route('update-price',$price->id)}}" method="post">
             @csrf
             <div class="form-group">
-                <label for=""> id</label>
+                <label for="">Id</label>
                 <input class="form-control" type="text" value="{{$price->id}}" disabled>
             </div>
             <div class="form-group">
-                <label for=""> Loại giá trị</label>
+                <label for="">Loại giá trị</label>
                 <input class="form-control" type="text" value="{{$price->name}}" disabled>
             </div>
             <div class="form-group">
-                <label for=""> Giá tiền (VNĐ)</label>
+                <label for="">Giá tiền (VNĐ)</label>
                 <input class="form-control" name="price" type="number" value="{{$price->price}}">
             </div>
             <div class="form-group">

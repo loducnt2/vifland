@@ -37,7 +37,7 @@
                             <ul class="list-items">
                                 <li class="list-item"> <a href="">Tin doanh nghiệp </a></li>
                                 <li class="list-item"> <a href="">Tin dự án </a></li>
-                                 <li class="list-item"> <a href="">Tin thị trường</a></li>
+                                <li class="list-item"> <a href="">Tin thị trường</a></li>
                                 <li class="list-item"> <a href="">Tin sự kiện</a></li>
                                 <li class="list-item"> <a href="">Tin cộng đồng</a></li>
                             </ul>

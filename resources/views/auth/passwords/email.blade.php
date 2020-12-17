@@ -20,7 +20,7 @@
                 <div class="box-login">
                     <div class="title"><a href="{{route('login')}}"><span
                                 class="material-icons">keyboard_backspace</span></a>
-                        <p> Đặt lại mật khẩu</p>
+                        <p>Quên mật khẩu</p>
                     </div>
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">contact_phone</span></div>

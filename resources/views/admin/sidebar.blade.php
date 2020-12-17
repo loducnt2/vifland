@@ -136,7 +136,7 @@
                             </a>
                             <a class="nav-link" href="{{ route('wallet')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-wallet"></i></div>
-                                Quản lý ví tiền
+                                Nạp tiền thủ công
                             </a>
                             <a class="nav-link" href="{{ url('admin/danh-sach-province') }}">
                                 <div class="sb-nav-link-icon"><span class="material-icons">
