@@ -150,6 +150,12 @@
                                     </span></div>
                                 Quản lý thư tin tức
                             </a>
+                            <a class="nav-link" href="{{ url('admin/danh-sach-contact') }}">
+                                <div class="sb-nav-link-icon"><span class="material-icons">
+                                        forward_to_inbox
+                                    </span></div>
+                                Quản lý liên hệ
+                            </a>
 
                             <a class="nav-link" href="{{ url('admin/danh-sach-banner') }}">
                                 <div class="sb-nav-link-icon"><span class="material-icons">
