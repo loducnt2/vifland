@@ -312,7 +312,7 @@ class ProductController extends Controller
             ->where('product.province_id', $product->province_id)
             ->orderBy('type', 'asc')
             ->inRandomOrder()
-            ->limit(4)
+            ->limit(1)
             ->get();
 
         $product_cate = ProductCate::orderBy('id', 'desc')->get();
