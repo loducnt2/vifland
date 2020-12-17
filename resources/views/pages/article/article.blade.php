@@ -328,7 +328,7 @@
                                 <div class="title">
                                     <h2>Tính lãi suất vay</h2>
                                 </div>
-                                <div class="wrap-check">
+                                <!-- <div class="wrap-check">
                                     <div class="checked">
                                         <input id="calcMoney1" type="radio" value="0" name="calcMoney" checked>
                                         <label for="calcMoney1">Số tiền trả theo dư nợ giảm dần</label>
@@ -337,21 +337,23 @@
                                         <input id="calcMoney2" type="radio" value="1" name="calcMoney">
                                         <label for="calcMoney2">Số tiền trả đều hàng tháng</label>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="wrap-form-calc">
                                     <div class="wrap-1">
-                                        <div class="form-group">
-                                            <label for="">Số tiền vay (VNĐ)</label>
-                                            <input id="sotienvay" class="money" type="text" value="20000">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Thời gian vay (Tháng)</label>
-                                            <input type="text" id="thoigianvay" value="12">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Lãi suất (%/Năm)<br><span>Ví dụ: 7.50</span></label>
-                                            <input type="text" id="laisuat" value="8">
-                                        </div>
+                                        <form action="" method="POST">
+                                            <div class="form-group">
+                                                <label for="">Số tiền vay (VNĐ)</label>
+                                                <input id="sotienvay" class="money" type="text" value="20000">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Thời gian vay (Tháng)</label>
+                                                <input type="text" id="thoigianvay" name="thoigianvay" value="12">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Lãi suất (%/Năm)<br><span>Ví dụ: 7.50</span></label>
+                                                <input type="text" id="laisuat" value="8">
+                                            </div>
+                                        </form>
                                     </div>
                                     <div class="wrap-2">
                                         <div class="show-kq">
@@ -363,14 +365,16 @@
                                             <div class="price-1 nau" id="laiCanTra">21,666,667</div>
                                         </div>
                                         <div class="show-kq">
-                                            <div class="text cam">Số tiền gốc và lãi<br>trả tháng đầu</div>
+                                            <div class="text cam">Số tiền gốc và lãi<br>phải trả</div>
                                             <div class="price-1 cam" id="gocLai">45,000,000</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="note">
-                                    <p>(*) Công cụ tính toán trên website chỉ mang tính chất tham khảo</p><a href="">Xem
-                                        lịch trả nợ hằng tháng</a>
+                                    <p>(*) Công cụ tính toán trên website chỉ mang tính chất tham khảo</p>
+                                    <!-- <a href=""
+                                        data-toggle="modal" data-target="#lichTraNo">Xem
+                                        lịch trả nợ hằng tháng</a> -->
                                 </div>
                             </div>
                         </div>
@@ -502,6 +506,49 @@
         </div>
     </section>
     <div class="index-page" id="js-page-verify" hidden></div>
+    <!-- <div class="modal fade" id="lichTraNo" tabindex="-1" role="dialog" aria-labelledby="lichTraNo">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="wrap-title">
+                    <h1>Xem lịch trả nợ hàng tháng</h1>
+                    <div class="close-button-modal"></div>
+                </div>
+                <div class="wrap-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Số kỳ</th>
+                                <th scope="col">Dư nợ đầu kỳ (VNĐ)</th>
+                                <th scope="col">Gốc phải trả (VNĐ)</th>
+                                <th scope="col">Lãi phải trả (VNĐ)</th>
+                                <th scope="col">Gốc + Lãi (VNĐ)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $thoiGianVay = 2
+                            ?>
+                            @for ($i = 1; $i <= $thoiGianVay; $i++) <tr>
+                                <td>{{$i}}</td>
+                                <td>100,000,000 </td>
+                                <td>20,000,000 </td>
+                                <td>666,667 </td>
+                                <td>20,666,667</td>
+                                </tr>
+                                @endfor
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" style="text-align: right;padding-right: 16px;">Tổng</td>
+                                <td id="lsp_total_interest_paid">21,666,667</td>
+                                <td id="lsp_total_paid">521,666,667</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </main>
 <script>
 $(document).ready(function() {

@@ -104,8 +104,7 @@ label {
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id"
-                                value="{{ old('card_id') }}">
+                            <input type="text" placeholder="Chứng minh thư" name="card_id" value="{{ old('card_id') }}">
                             <label for="text" class="error"></label>
                         </div>
                     </div>
