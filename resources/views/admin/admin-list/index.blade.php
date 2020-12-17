@@ -8,10 +8,10 @@ Quản lý quản trị viên
     <div class="container-fluid">
         <!-- table -->
         <div class="row">
-            <div class="col-4">
+            <div class="col-md-12">
                 <h3>Danh sách quản trị viên</h3>
             </div>
-            <div class="col-2 float-left">
+            <div class="col-12">
                 <button type="button" class=" btn btn-success" data-toggle="modal" data-target="#exampleModal">Thêm
                     admin</button>
             </div>
@@ -32,11 +32,11 @@ Quản lý quản trị viên
                     <td>
                         {{$ad->username}}
                         <?php
-            $date = date('d', strtotime('now')) - date('d', strtotime($ad->datetime));
-            if (intval(date('d', strtotime($date))) <= 1) {
-              echo '<span class="badge badge-pill badge-success">Mới</span>';
-            }
-            ?>
+                        $date = date('d', strtotime('now')) - date('d', strtotime($ad->datetime));
+                        if (intval(date('d', strtotime($date))) <= 1) {
+                            echo '<span class="badge badge-pill badge-success">Mới</span>';
+                        }
+                        ?>
                     </td>
                     <td>
                         @if($ad->email != NULL)

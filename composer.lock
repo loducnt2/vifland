@@ -3813,6 +3813,13 @@
                 "mail",
                 "mailer"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/swiftmailer/swiftmailer/issues",
+                "source": "https://github.com/swiftmailer/swiftmailer/tree/v6.2.4"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/fabpot",
@@ -3903,6 +3910,12 @@
                 "console",
                 "terminal"
             ],
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/console/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -3965,6 +3978,12 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4095,6 +4114,12 @@
             ],
             "description": "Symfony ErrorHandler Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/error-handler/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4177,6 +4202,12 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/event-dispatcher/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4311,6 +4342,12 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/finder/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4457,6 +4494,12 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/http-foundation/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4566,6 +4609,12 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/http-kernel/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4643,6 +4692,12 @@
                 "mime",
                 "mime-type"
             ],
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/mime/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5404,6 +5459,12 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/process/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5491,6 +5552,12 @@
                 "uri",
                 "url"
             ],
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/routing/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5647,6 +5714,12 @@
                 "utf-8",
                 "utf8"
             ],
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/string/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5737,6 +5810,12 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/translation/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5897,6 +5976,12 @@
                 "debug",
                 "dump"
             ],
+<<<<<<< HEAD
+            "support": {
+                "source": "https://github.com/symfony/var-dumper/tree/v5.2.0"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -6303,6 +6388,15 @@
                 "laravel",
                 "page"
             ],
+<<<<<<< HEAD
+            "support": {
+                "docs": "https://flareapp.io/docs/ignition-for-laravel/introduction",
+                "forum": "https://twitter.com/flareappio",
+                "issues": "https://github.com/facade/ignition/issues",
+                "source": "https://github.com/facade/ignition"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "time": "2020-12-09T20:25:45+00:00"
         },
         {
@@ -6463,6 +6557,13 @@
                 "faker",
                 "fixtures"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/fzaninotto/Faker/issues",
+                "source": "https://github.com/fzaninotto/Faker/tree/v1.9.2"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "abandoned": true,
             "time": "2020-12-11T09:56:16+00:00"
         },
@@ -6773,6 +6874,13 @@
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/phar-io/manifest/issues",
+                "source": "https://github.com/phar-io/manifest/tree/master"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "time": "2020-06-27T14:33:11+00:00"
         },
         {
@@ -6820,6 +6928,13 @@
                 }
             ],
             "description": "Library for handling version information and constraints",
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/phar-io/version/issues",
+                "source": "https://github.com/phar-io/version/tree/3.0.4"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "time": "2020-12-13T23:18:30+00:00"
         },
         {
@@ -7092,6 +7207,13 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/7.0.14"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7148,6 +7270,13 @@
                 "filesystem",
                 "iterator"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
+                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/2.0.3"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7244,6 +7373,13 @@
             "keywords": [
                 "timer"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/php-timer/issues",
+                "source": "https://github.com/sebastianbergmann/php-timer/tree/2.1.3"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7299,6 +7435,13 @@
             "keywords": [
                 "tokenizer"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/php-token-stream/issues",
+                "source": "https://github.com/sebastianbergmann/php-token-stream/tree/master"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7389,6 +7532,13 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/phpunit/issues",
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/8.5.13"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://phpunit.de/donate.html",
@@ -7444,6 +7594,13 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/issues",
+                "source": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/tree/1.0.2"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7514,6 +7671,13 @@
                 "compare",
                 "equality"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/comparator/issues",
+                "source": "https://github.com/sebastianbergmann/comparator/tree/3.0.3"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7576,6 +7740,13 @@
                 "unidiff",
                 "unified diff"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/diff/issues",
+                "source": "https://github.com/sebastianbergmann/diff/tree/3.0.3"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7635,6 +7806,13 @@
                 "environment",
                 "hhvm"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/environment/issues",
+                "source": "https://github.com/sebastianbergmann/environment/tree/4.2.4"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7708,6 +7886,13 @@
                 "export",
                 "exporter"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/exporter/issues",
+                "source": "https://github.com/sebastianbergmann/exporter/tree/3.1.3"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7768,6 +7953,13 @@
             "keywords": [
                 "global state"
             ],
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/global-state/issues",
+                "source": "https://github.com/sebastianbergmann/global-state/tree/3.0.1"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7821,6 +8013,13 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/object-enumerator/issues",
+                "source": "https://github.com/sebastianbergmann/object-enumerator/tree/3.0.4"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7872,6 +8071,13 @@
             ],
             "description": "Allows reflection of object attributes, including inherited and non-public ones",
             "homepage": "https://github.com/sebastianbergmann/object-reflector/",
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/object-reflector/issues",
+                "source": "https://github.com/sebastianbergmann/object-reflector/tree/1.1.2"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7931,6 +8137,13 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/recursion-context/issues",
+                "source": "https://github.com/sebastianbergmann/recursion-context/tree/3.0.1"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -7979,6 +8192,13 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/resource-operations/issues",
+                "source": "https://github.com/sebastianbergmann/resource-operations/tree/2.0.2"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
@@ -8031,6 +8251,13 @@
             ],
             "description": "Collection of value objects that represent the types of the PHP type system",
             "homepage": "https://github.com/sebastianbergmann/type",
+<<<<<<< HEAD
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/type/issues",
+                "source": "https://github.com/sebastianbergmann/type/tree/1.1.4"
+            },
+=======
+>>>>>>> d78ffc04d388429241240bd0b8ad5045cc4b4d07
             "funding": [
                 {
                     "url": "https://github.com/sebastianbergmann",
