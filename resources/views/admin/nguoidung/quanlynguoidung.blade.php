@@ -29,7 +29,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-bordered box-n" id="table" width="100%" cellspacing="0">
+            <table class="table table-bordered box-n" id="userTable" width="100%" cellspacing="0">
                 <thead class="thead-dark">
                     <tr>
                         <th>Họ và tên</th>
@@ -40,8 +40,8 @@
                         {{-- <th>Salary</th> --}}
                         <th>Hoạt động</th>
                         <th>Hành động</th>
-                        <th>Chi tiết</th>
-                        <th></th>
+                        {{-- <th>Chi tiết</th> --}}
+
                     </tr>
                 </thead>
                 <tr>

@@ -30,9 +30,9 @@ class HistoryPostController extends Controller
             'product.id as product_id',
             'product.type as product_type',
         )
-       
+
         ->paginate(10);
-       
+
         return view('/admin/tintuc/danhsachduyettin',compact('news'));
     }
 
@@ -91,10 +91,10 @@ class HistoryPostController extends Controller
 
        $image     = ProductImg::where('product_extend_id',$product->productex_id)->select('name')->get();
        $new = PostHistory:: where('product_id',$id)
-       
+
        ->first();
-      
-       
+
+
 
         return view('/admin/tintuc/chitietduyettin',compact('product','acreage','total','product_cate','cate','image','new'));
     //return view('pages/article/article',compact('product','acreage','total','product_cate','cate','image'));
@@ -125,7 +125,7 @@ class HistoryPostController extends Controller
         ->update(
             [
             "status" => 1
-        ]); 
+        ]);
     return redirect('/admin/danh-sach-duyet-tin');
     }
 
@@ -151,12 +151,12 @@ class HistoryPostController extends Controller
     }
 
     public function cancelPost($id){
-        
+
         //ví tiền của user
         $wallet = PostHistory::where('post_history.product_id',$id)
         ->leftJoin('user','post_history.user_id','user.id')
         ->value('user.wallet');
-        
+
         //giá tiền đăng bài
         $price_post = Product::where('product.id',$id)
         ->value('product.price_post');

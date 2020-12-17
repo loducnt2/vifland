@@ -724,3 +724,122 @@ $('#productFilter').select2().on('select2:open', function() {
         });
     }
 </script>
+
+{{-- user  --}}
+<script>
+    function deleteUser(id,$ele,username) {
+            // var $ele = $(this).parent.parent();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "/admin/index/profile/delete/" + username,
+            type: 'DELETE',
+            data: {
+                "id" :id,
+                "username":username
+
+            },
+            success: function (response) {
+                     // success
+
+                $ele.fadeOut().remove();
+                toastr.success('Xoa user thành công', 'Quản trị viên');
+            },
+            error: function (error) {
+                console.log(error);
+                // error.preventDefault();
+            }
+    });
+     }
+</script>
+
+<script>
+    $('#userTable').on("click", ".btn-user-delete", function (e) {
+        e.preventDefault();
+        var $ele = $(this).parent().parent();
+        var username = $(this).data('username');
+            var id = $(this).data('id');
+            // var city = $(this).data('city');
+        console.log(id);
+
+        // then sweet alert fire
+        Swal.fire({
+            title: 'Thông báo?',
+            text: "Bạn muốn xoa' username ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#8072EA',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Huỷ đăng kí'
+            }).then((result) => {
+            if (result.isConfirmed) {
+
+                deleteUser(username,id,$ele);
+            }
+        })
+    })
+
+</script>
+
+{{-- xoá tin duyệt bằng tin --}}
+<script>
+  function  deleteDuyettin(productid,$ele) {
+    $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+   $.ajax({
+
+       url: "/admin/danh-sach-duyet-tin/delete/" + productid,
+    //    data: "data",
+    type: 'DELETE',
+    dataType: "Content-Type: application/javascript",
+    data: {
+                // "id" :id,
+                "productid":productid
+
+            },
+
+       success: function (response) {
+                     // success
+                $ele.fadeOut().remove();
+                toastr.success('Xoá tin duyệt thành công', 'Thông báo');
+            },
+            error: function (error) {
+                console.log(error);
+                // error.preventDefault();
+            }
+   });
+  }
+</script>
+<script>
+    $('#duyettinTable').on("click", ".btn-delete-duyettin", function (e) {
+        e.preventDefault();
+            var $ele = $(this).parent().parent();
+            // var id = $(this).data('id');
+            var productid = $(this).data('productid');
+        console.log(productid);
+
+        // then sweet alert fire
+        Swal.fire({
+            title: 'Thông báo?',
+            text: "Bạn muốn xoá duyệt tin ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#8072EA',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xoá tin duyệt'
+            }).then((result) => {
+            if (result.isConfirmed) {
+
+                deleteDuyettin(productid,$ele);
+            }
+        })
+    })
+
+</script>

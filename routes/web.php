@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsLetterController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\NewsCategory;
 use Illuminate\Support\Facades\Route;
@@ -157,7 +158,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
     // Tin tức theo danh mục
     Route::get('/tin-tuc/danh-muc/{slug}', 'NewsController@getNewsbyCate');
-    Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
+    // xoa nguoi dung
+    Route::get('/admin/index/profile/delete/{id}', 'UserController@destroy');
     // Route quản lí tin đã đăng của user
     // Route::get('/my-article/{id}','UserControllers@getPostbyID');
     // User: thay đổi trạng thái user
@@ -231,7 +233,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
     Route::get('/admin/danh-sach-duyet-tin/show/{id}', 'HistoryPostController@show')->name('show-tintuc');
     Route::get('/admin/danh-sach-duyet-tin/cancel/{id}', 'HistoryPostController@cancelPost')->name('cancel-post');
-    Route::get('/admin/danh-sach-duyet-tin/delete/{id}', 'HistoryPostController@destroy')->name('del-post');
+    Route::GET('/admin/danh-sach-duyet-tin/delete/{id}', 'HistoryPostController@destroy')->name('del-post');
     Route::get('/admin/post-history/update/dsds/{id}', 'HistoryPostController@updatePost')->name('update-post');
 
     //Banner
@@ -347,6 +349,6 @@ Route::post('/send-email', 'NewsLetterController@send_email');
 // Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsController@store')->name('news_category.add');
 
 // Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
-
+Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}','ProductController@Productbyprovince');
 Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}', 'NewsLetterController@unsubscribe');
 // Route::get()
