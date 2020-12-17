@@ -21,6 +21,8 @@
   <script src="{{asset('js/scripts.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+  {{-- thêm validate --}}
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"></script> --}}
   <script src="{{asset('js/ckeditor.js')}}"></script>
 {{-- Style --}}
@@ -334,7 +336,7 @@
   </script>
 
   <script>
-      $('#myform').validate({
+      $('#category_form').validate({
           rules: {
 
               'category_name': {
