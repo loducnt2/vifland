@@ -140,15 +140,23 @@ class NewsCategoryController extends Controller
         // đếm số lượng bài viết có trong danh mục
         $number = (News::where('id_category',$id)->count());
         if($number > 0 ){
-            toastr::warning("Bạn còn " . $number. "tin chưa xoá còn lại" ,"Thông báo");
+            return json_encode($number);
+            // return response()->json(['error'=>'False']);
         }
         else{
-            // nếu không còn tin thì sẽ xoá thành công
-            $newsCategory = NewsCategory::find($id);
-             $newsCategory->delete();
-        }
-        // $newsCategory = new NewsCategory();
+        //     // nếu không còn tin thì sẽ xoá thành công
+        //     $newsCategory = NewsCategory::find($id);
+        //      $newsCategory->delete();
+        //      return json
+        // }
+        // // $newsCategory = new NewsCategory();
+        // if(empty($province_info)){
+        //     return false;
+        // }else{
 
-        return response()->json(['success'=>'Xoá thành công']);
+        //     $products = Product::where('province_id',$province_info->id)->get();
+        //     return json_decode($products);
+        // }
+
     }
 }

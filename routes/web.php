@@ -182,7 +182,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/danh-muc-tin-tuc', 'NewsCategoryController@index')->name('news_category.index');
     Route::post('/admin/danh-muc-tin-tuc/them-moi/', 'NewsCategoryController@store')->name('news_category.add');
 
-    Route::delete('/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{id}', 'NewsCategoryController@destroy')->name('news_category.destroy');
+    Route::get('/admin/index/danh-muc-tin-tuc/xoa-danh-muc/{id}', 'NewsCategoryController@destroy')->name('news_category.destroy');
     Route::put('/admin/index/danh-muc-tin-tuc/sua-danh-muc/{id}', 'NewsCategoryController@update')->name('news_category.update');
 
     Route::get('/admin/index/danh-muc-tin-tuc/xoa-het', 'NewsCategoryController@deleteall')->name('newsletter_deleteall');
