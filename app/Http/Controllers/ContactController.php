@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Toastr;
+// use Brian2694\Toastr\Toastr;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use Str;
@@ -46,6 +47,7 @@ class ContactController extends Controller
             'content'=> $request->get("content") ,
         ]);
         $contact->save();
+        // Toastr::success('Thành công','Thông báo');
         return redirect('/');
     }
 

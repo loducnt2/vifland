@@ -56,6 +56,7 @@
                                 tôi</p>
                             <div class="form-wrap">
                             <form id="form-contact" action="{{route('up-contact')}}" method="POST">
+                            
                             {{csrf_field()}}
                             <div class="row">
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
@@ -82,6 +83,44 @@
                                     <button  class="btn btn-submit" type="submit">Gửi</button>
                                 </div>
                             </form>
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
+"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script>
+    $().ready(function() {
+	$("#form-contact").validate({
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		rules: {
+			"email": {
+				required: true,
+				email:true
+			},
+			"phone": {
+				required: true,
+                number:true,
+                maxlength: 15
+			},
+			
+		},
+		messages: {
+			"email": {
+				email: "vui lòng nhập đúng mail",
+			
+			},
+			"phone": {
+				number: "vui lòng nhập đúng số điện thoại",
+                
+				
+			},
+			
+		}
+	});
+});
+</script>
                             
                                 
                             </div>
@@ -105,20 +144,5 @@
 </main>
 @endsection
 @section('footerScripts')
-<script   src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js?fbclid=IwAR3hLbWz1Pq6CUgkxmqeAOBOuO3QY13gWNiGFIcjXEmdLs3od_UV1nC4zMs"></script>
-    <script>
-    $().ready(function() {
-	$("#form-contact").validate({
-		onfocusout: false,
-		onkeyup: false,
-		onclick: false,
-		rules: {
-			"email": {
-				required: true,
-				email: true,
-			},
-			
-		}
-	});
-});</script>
+
 @stop
