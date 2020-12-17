@@ -33,7 +33,7 @@ Quản lý tin tức > Danh mục tin tức
     flex: 0 0 136px;
 }
 </style>
-<form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
+<form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="category_form">
     {{ csrf_field() }}
     <div class="row">
         <div class="col-md-12 mt-4 form-group">

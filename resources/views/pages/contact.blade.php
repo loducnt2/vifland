@@ -55,26 +55,26 @@
                             <p>Quý khách vui lòng điền thông tin vào mẫu bên dưới và gửi những góp ý, thắc mắc cho chúng
                                 tôi</p>
                             <div class="form-wrap">
-                            <form action="{{route('up-contact')}}" method="POST">
+                            <form id="form-contact" action="{{route('up-contact')}}" method="POST">
                             {{csrf_field()}}
                             <div class="row">
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                        <input type="text" placeholder="Họ và Tên" id="name" name="name">
+                                        <input type="text" placeholder="Họ và Tên" id="name" name="name" required>
                                     </div>
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                        <input type="mail" placeholder="Email" id="email" name="email">
+                                        <input type="mail" placeholder="Email" id="email" name="email" required>
                                     </div>
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                        <input type="text" placeholder="Số điện thoại" id="sdt" name="phone">
+                                        <input type="text" placeholder="Số điện thoại" id="sdt" name="phone" required>
                                     </div>
                                     <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                        <input type="text" placeholder="Địa chỉ" id="address " name="address">
+                                        <input type="text" placeholder="Địa chỉ" id="address " name="address" required>
                                     </div>
                                     <div class="col-xl-12 form-group">
-                                        <input type="text" placeholder="Tiêu đề" id="title"  name="title">
+                                        <input type="text" placeholder="Tiêu đề" id="title"  name="title" required>
                                     </div>
                                     <div class="col-xl-12 form-group">
-                                        <textarea name="content" rows="5" placeholder="Nội dung..."></textarea>
+                                        <textarea name="content" rows="5" placeholder="Nội dung..." required></textarea>
                                     </div>
                                 </div>
                                 <div class="button">
@@ -82,6 +82,7 @@
                                     <button  class="btn btn-submit" type="submit">Gửi</button>
                                 </div>
                             </form>
+                            
                                 
                             </div>
                         </div>
@@ -104,5 +105,20 @@
 </main>
 @endsection
 @section('footerScripts')
-<!-- Thêm script cho trang này ở đây -->
+<script   src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js?fbclid=IwAR3hLbWz1Pq6CUgkxmqeAOBOuO3QY13gWNiGFIcjXEmdLs3od_UV1nC4zMs"></script>
+    <script>
+    $().ready(function() {
+	$("#form-contact").validate({
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		rules: {
+			"email": {
+				required: true,
+				email: true,
+			},
+			
+		}
+	});
+});</script>
 @stop
