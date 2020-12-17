@@ -105,6 +105,7 @@
 </main>
 @endsection
 @section('footerScripts')
+<script   src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js?fbclid=IwAR3hLbWz1Pq6CUgkxmqeAOBOuO3QY13gWNiGFIcjXEmdLs3od_UV1nC4zMs"></script>
     <script>
     $().ready(function() {
 	$("#form-contact").validate({
