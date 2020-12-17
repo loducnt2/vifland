@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsLetterController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\NewsCategory;
 use Illuminate\Support\Facades\Route;
@@ -344,6 +345,6 @@ Route::post('/send-email', 'NewsLetterController@send_email');
 // Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsController@store')->name('news_category.add');
 
 // Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
-
+Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}','ProductController@Productbyprovince');
 Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}', 'NewsLetterController@unsubscribe');
 // Route::get()
