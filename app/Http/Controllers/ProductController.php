@@ -327,8 +327,9 @@ class ProductController extends Controller
             ->distinct('product.id')
             ->inRandomOrder()
             ->orderBy('type', 'asc')
-            ->limit(4)
+            ->limit(5)
             ->get();
+        return $product_related;
         $product_cate = ProductCate::orderBy('id', 'desc')->get();
         return view('pages/article/article', compact('product', 'acreage', 'total', 'cate', 'cate_id', 'province', 'district', 'image', 'product_related', 'product_cate'));
     }
