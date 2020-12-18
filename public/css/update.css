@@ -129,7 +129,9 @@ section.sanpham-s-2 .article-content p {
 .dangbaiviet .select2-selection__rendered {
     padding-left: 10px !important;
 }
-
+main {
+    min-height: 70vh;
+}
 .index-s2
     .sl-1
     .select2-container

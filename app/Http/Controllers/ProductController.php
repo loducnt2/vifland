@@ -329,7 +329,7 @@ class ProductController extends Controller
             ->orderBy('type', 'asc')
             ->limit(5)
             ->get();
-        return $product_related;
+        // return $product_related;
         $product_cate = ProductCate::orderBy('id', 'desc')->get();
         return view('pages/article/article', compact('product', 'acreage', 'total', 'cate', 'cate_id', 'province', 'district', 'image', 'product_related', 'product_cate'));
     }
