@@ -354,4 +354,4 @@ Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}', 'NewsLetterContr
 // Route::get()
 Route::post('/guithu','NewsLetterController@guithu');
 // gửi thư
-Route::get('/test','ContactController@index');
+Route::post('/admin/danh-sach-contact/phanhoi/{id}','ContactController@phanhoi');

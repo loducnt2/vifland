@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 use Toastr;
-// use Brian2694\Toastr\Toastr;
 use Illuminate\Http\Request;
 use App\Models\Contact;
-use Str;
-
+use Mail;
 class ContactController extends Controller
 {
     /**
@@ -36,6 +34,32 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function phanhoi(Request $request, $id ){
+        $contacts = new Contact();
+        $email = $request->input("email");
+        // dd($email);
+        $nguoinhan = $request->input("name");
+        // ?dd($nguoinhan);
+        $content = $request->input("content_send");
+
+        Mail::send('email.contact-email',
+                [
+                'content' =>$content,
+                'nguoinhan' =>$nguoinhan],
+                function ($message) use($request,$email) {
+                $subject = $request->input("subject");
+                $message->from("vifland.fpt@gmail.com");
+               $message->subject("Thư hồi đáp - ".$subject)->to($email);
+            });
+             // sau khi gửi thư , mail sẽ chuyển sang status = 1;
+             $test=$contacts::find($id);
+             $test->status = "1";
+             $test->save();
+            return redirect()->back();
+
+        }
+
+        // thư hồi âm
     public function store(Request $request)
     {
         $contact = new Contact([
@@ -47,7 +71,7 @@ class ContactController extends Controller
             'content'=> $request->get("content") ,
         ]);
         $contact->save();
-        // Toastr::success('Thành công','Thông báo');
+        Toastr::success('Gửi thành công','Thông báo');
         return redirect('/');
     }
 

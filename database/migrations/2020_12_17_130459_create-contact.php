@@ -21,6 +21,7 @@ class CreateContact extends Migration
             $table->string("address");
             $table->string("title");
             $table->string("content");
+            $table->integer("status")->default(0);
             $table->timestamps();
         });
     }

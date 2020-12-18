@@ -26,6 +26,7 @@ class NewsCategoryController extends Controller
 
 
     public function deleteall(){
+        // không cần kiểm tra khoá ngoại
         Toastr::success('Xoá hết thành công','Thông báo');
         Schema::disableForeignKeyConstraints();
         DB::table('news_category')->truncate();

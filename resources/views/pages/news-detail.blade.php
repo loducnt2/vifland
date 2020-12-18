@@ -71,14 +71,14 @@ div#u_0_0 {
 
                             <h1 class="section-under-title">{{$news->title}}</h1>
                         </div>
-                        Tin cùng danh mục
+
                         <br>
                         @foreach ($news_related as $item)
 
                         @if($item->id== $news->id)
                         @else
-                        <li style="  list-style-type: square;
-                        font-size:12px;">{{$item->title}}</li>
+                        <a href="{{$item->slug}}"><li style="  list-style-type: square;
+                            font-size:12px;">{{$item->title}}</li></a>
                         @endif
                          @endforeach
                         <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}} <span

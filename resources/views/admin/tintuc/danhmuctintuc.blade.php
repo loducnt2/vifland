@@ -78,9 +78,10 @@ Quản lý tin tức > Danh mục tin tức
             <td>{{$item->slug}}</td>
             <td>{{$item->category_name}}</td>
             <td>{{$item->status}}</td>
-            <td> <a href="" data-id="{{ $item->id }}" data-category_name={{$item->category_name}} class="btn btn-danger btn-delete">Xoá</a>
-                <a href="" data-id="{{ $item->id }}" data-category_name={{$item->category_name}}
-                    class="btn btn-danger btn-edit">Sửa</a>
+            <td>
+                <a href="" data-id="{{ $item->id }}" data-category_name="{{$item->category_name}}" class="btn btn-danger btn-delete">Xoá</a>
+                <a href="" data-id="{{$item->id}}" data-category_name="{{$item->category_name}}" class="btn btn-danger btn-edit">Sửa</a>
+
             </td>
             </td>
         </tr>
@@ -109,6 +110,7 @@ Quản lý tin tức > Danh mục tin tức
                     <div class="error"></div>
                     <input type="text" class="form-control" name="category_name" aria-describedby="helpId"
                         placeholder="">
+                        {{-- <input type="text" class="form-control" name="content" id="" aria-describedby="helpId" placeholder=""> --}}
 
                     <input type="text" class="form-control" name="category_id" hidden aria-describedby="helpId"
                         placeholder="">
@@ -117,7 +119,7 @@ Quản lý tin tức > Danh mục tin tức
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btn-save">Save</button>
+                <button type="button" class="btn btn-primary btn-save">Sửa modal</button>
             </div>
         </div>
     </div>
