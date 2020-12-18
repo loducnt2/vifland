@@ -481,7 +481,9 @@
             $('#city').val(city);
             $('#modelId_one').modal('show');
             $('#productFilter').select2({
-                theme :'bootstrap4'});
+                theme :'bootstrap4',
+                maximumSelectionSize: '4'});
+
             getDataSelect(id,idcity);
 
         });

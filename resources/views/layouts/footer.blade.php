@@ -58,7 +58,7 @@ label.error {
                                 $danhmuc = App\Models\NewsCategory::all();
                                 ?>
                                 @foreach ($danhmuc as $item)
-                                <li class="list-item"> <a href="/danh-muc/{{$item->slug}}">{{$item->category_name}} </a></li>
+                                <li class="list-item"> <a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->category_name}} </a></li>
                                 @endforeach
 
                             </ul>
@@ -101,7 +101,7 @@ label.error {
                         {{ csrf_field() }}
                     <div class="form-group">
                         <input class="email form-control " type="text" name="email3" id="email3" placeholder ="Nhập địa chỉ email...">
-                        <br>
+
                         <label for="text" class="error4"></label>
                         <select class="form-control" name="location" id="location" required>
 
@@ -143,7 +143,7 @@ $('#newsletterform').on("click",".input-footer",function(e){
     // validate email phải có đuôi @gmail đằng sau
     jQuery.validator.addMethod("end_with", function(value, element) {
 
-if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
+if (/^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i.test(value)) {
     return true;
 } else {
     return false;
