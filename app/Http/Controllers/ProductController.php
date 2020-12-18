@@ -492,24 +492,20 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        /*$prodex = ProductExtend::where('product_id',$id)->value('id');
-        $img = ProductImg::where('product_image.product_extend_id',$prodex)->select('name')->get();
-        $imgpath = '/assets/product/detail';
-        //$arr = [];
-        foreach( $img as $key => $im ){
-            if(File::exists($imgpath.'/'.$im[$key]['name'])){
-                File::delete($imgpath.'/'.$im[$key]['name']);
-            }
-        }*/
 
-
-        $pro = Product::find($id);
-        $pro->delete();
-        $notification = array(
-            'message' => 'Xóa tin thành công',
-            'alert-type' => 'success'
-        );
-        return redirect()->back()->with($notification);
+        $pro = Product::where('product.id',$id)
+        ->leftJoin('post_history','product.id','post_history.product_id')
+        ->select('product.id','post_history.user_id','post_history.product_id')
+        ->first();
+        if($pro->user_id == auth()->user()->id || auth()->user()->user_type==1){
+            $pro->delete();
+            $notification = array(
+                'message' => 'Xóa tin thành công',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
+        return abort('404');
     }
 
 

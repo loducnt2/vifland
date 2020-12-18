@@ -42,7 +42,7 @@ class UserController extends Controller
         // huỷ quyền
         User::find($id)->update(['user_type'=>0]);
         Toastr::success('Huỷ quyền thành công','Thông báo');
-         return redirect('/login');
+        return redirect()->back();
     }
 
     // profile_user người dùng khác

@@ -252,6 +252,9 @@
                             @else
                             <h1 class="section-under-title text-uppercase">{{$product->title}}</h1>
                             @endif
+                            @if($product->soft_delete==1)
+                                <span class="text-danger">(Tin đã hết hạn)</span>
+                            @endif
                             <div class="info">
                                 <div class="cover"> <span class="material-icons">calendar_today </span>
                                     <p>{{date('d-m-Y',strtotime($product->datetime_start))}}</p>
