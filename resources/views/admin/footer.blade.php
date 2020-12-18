@@ -459,7 +459,7 @@
                         $('#productFilter').html(option_html);
                         $('#productFilter').trigger('click');
                     }else{
-                        alert('Null');
+                        toastr.error('Dữ liệu không có','Thông báo');
                     }
                 },
                 error: function(errors){
@@ -885,4 +885,10 @@ $('#productFilter').select2().on('select2:open', function() {
             $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
+</script>
+{{-- <script>
+    CKEDITOR.replaceAll();
+</script> --}}
+<script>
+    CKEDITOR.replace('content');
 </script>
