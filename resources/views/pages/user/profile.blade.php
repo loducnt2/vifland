@@ -77,22 +77,10 @@ $("#form-profile :input").prop("disabled", true);
             <div class="row form-wrap thongtinform">
                 <div class="col-md-12 col-lg-2 form-group">
                     <p class="text-f">Ngày sinh</p>
-                    <?php
-                    if ($profile->birthday != NULL) {  //:))))))))))))))))))
-                        $birthday = explode('-', $profile->birthday);
-                        $year = $birthday[0];
-                        $month = $birthday[1];
-                        $day = $birthday[2];
-                    } else {
-                        $year = 0;
-                        $month = 0;
-                        $day = 0;
-                        //  $day1 = 0;
-                    }
-                    ?>
+                    
                 </div>
                 <div class="col-sm-5 form-group">
-                    <input class="calendar" type="datetime" id="borndate">
+                    <input class="calendar" type="datetime" id="borndate" value="{{date('d/m/Y',strtotime($profile->birthday))}}" name="birthday">
                 </div>
             </div>
             <div class="row form-wrap thongtinform">
@@ -152,7 +140,7 @@ var date = new Date();
 var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 $("#borndate").datepicker({
     language: 'vi',
-    format: 'mm/dd/yyyy',
+    format: 'dd/mm/yyyy',
     changeMonth: true,
     changeYear: true,
     yearRange: '1930:2010',

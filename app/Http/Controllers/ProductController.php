@@ -300,7 +300,12 @@ class ProductController extends Controller
             ->select(
                 'user.user_type as user_type',
                 'product_extend.*',
-                'product.*',
+                'product.thumbnail',
+                'product.view',
+                'product.slug',
+                'product.datetime_start',
+                'product.type',
+                'product.title',
                 'product_extend.id as productex_id',
                 'product_extend.product_cate as product_cate',
                 'province.name as province',
@@ -309,14 +314,13 @@ class ProductController extends Controller
                 'product_unit.name as unit',
                 'category.parent_id'
             )
-            ->where('product.province_id', $product->province_id)
+            ->orWhere('product.province_id', $product->province_id)
+            ->orWhere('product_extend.product_cate',$product->product_cate)
             ->orderBy('type', 'asc')
             ->inRandomOrder()
-            ->limit(1)
+            ->take(4)
             ->get();
-
         $product_cate = ProductCate::orderBy('id', 'desc')->get();
-
         return view('pages/article/article', compact('product', 'acreage', 'total', 'cate', 'cate_id', 'province', 'district', 'image', 'product_related', 'product_cate'));
     }
 
@@ -506,7 +510,7 @@ class ProductController extends Controller
     public function productUserHistory(){
         $products = Favorited::where('favorited.type',1)
         ->where('user_id',auth()->user()->id)
-        ->leftJoin('product','favorited.product_id','product.id')
+        ->leftJoin('<p></p>roduct','favorited.product_id','product.id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
