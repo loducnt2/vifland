@@ -279,18 +279,25 @@ class ProductController extends Controller
 
         //Lịch sử xem sản phẩm
         if(auth()->check()){
-           $histories = Favorited::where('user_id',auth()->user()->id)->where('product_id',$product->product_id)->get();
-           if( count($histories) == 0 ){
+           $histories = Favorited::where('user_id',auth()->user()->id)->where('product_id',$product->id)->first();
+           if( $histories != NULL ){
+                $histories->delete();
+
                $history = Favorited::create([
                    'user_id'       => auth()->user()->id,
-                   'product_ids' => $product->product_id,
+                   'product_id' => $product->id,
                    'type'       => 1,
                ]);
+           }else{
+                $history = Favorited::create([
+                    'user_id'       => auth()->user()->id,
+                    'product_id' => $product->id,
+                    'type'       => 1,
+                ]);
            }
         }
-        $product_related  = Category::where('category.parent_id', $product->parent_id)
-            ->leftJoin('product', 'product.cate_id', 'category.id')
-            ->leftJoin('product_extend', 'product.id', 'product_extend.product_id')
+        $product_related  = Product::leftJoin('product_extend', 'product.id', 'product_extend.product_id')
+            ->leftJoin('category','product.cate_id','category.id')
             ->leftJoin('product_unit', 'product_extend.unit_id', 'product_unit.id')
             ->leftJoin('province', 'product.province_id', 'province.id')
             ->leftJoin('district', 'product.district_id', 'district.id')
@@ -302,7 +309,7 @@ class ProductController extends Controller
                 'product_extend.*',
                 'product.thumbnail',
                 'product.view',
-                'product.slug',
+                'product.slug as slug',
                 'product.datetime_start',
                 'product.type',
                 'product.title',
@@ -315,10 +322,12 @@ class ProductController extends Controller
                 'category.parent_id'
             )
             ->orWhere('product.province_id', $product->province_id)
+            ->orWhere('product.district_id',$product->district_id)
             ->orWhere('product_extend.product_cate',$product->product_cate)
-            ->orderBy('type', 'asc')
+            ->distinct('product.id')
             ->inRandomOrder()
-            ->take(4)
+            ->orderBy('type', 'asc')
+            ->limit(4)
             ->get();
         $product_cate = ProductCate::orderBy('id', 'desc')->get();
         return view('pages/article/article', compact('product', 'acreage', 'total', 'cate', 'cate_id', 'province', 'district', 'image', 'product_related', 'product_cate'));
@@ -510,7 +519,7 @@ class ProductController extends Controller
     public function productUserHistory(){
         $products = Favorited::where('favorited.type',1)
         ->where('user_id',auth()->user()->id)
-        ->leftJoin('<p></p>roduct','favorited.product_id','product.id')
+        ->leftJoin('product','favorited.product_id','product.id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
@@ -518,7 +527,9 @@ class ProductController extends Controller
         ->where('product.soft_delete',0)
         ->orderBy('favorited.id','desc')
         ->select(
-            'product.*',
+            'product.slug',
+            'product.view',
+            'product.datetime_start',
             'product.id as product_id',
             'product.thumbnail',
             'product_unit.name as unit',
