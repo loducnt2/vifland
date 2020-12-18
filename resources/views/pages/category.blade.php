@@ -71,46 +71,45 @@
                 </div>
             </div> -->
             <div class="row main-danh-muc">
-                <div class="col-lg-3 col-md-12">
+                <div class="col-xl-3 col-md-12">
+                    <div class="button-mobile-filter">
+                        <div class="locSanPham">
+                            Lọc sản phẩm
+                        </div>
+                    </div>
                     <div class="box-left-form-muaban">
+                        <div class="close-tab-mb">
+                            <span class="material-icons close-mb">
+                                arrow_back
+                            </span>
+                            <p>Lọc tin</p>
+                        </div>
                         <form id="filter" method="get" action="{{route('search')}}">
                             <input type="hidden" name="cate" value="{{$cate}}">
                             <div class="mdm-1">
                                 <div class="checked">
-                                    <input id="luachonsearch1" type="checkbox" value="{{$cate_childs[0]->id}}"
-                                        name="cate_child[]" @if($cate_child!=NULL)
-                                        @if(in_array($cate_childs[0]->id,$cate_child)){{"checked"}} @endif @endif>
+                                    <input id="luachonsearch1" type="checkbox" value="{{$cate_childs[0]->id}}" name="cate_child[]" @if($cate_child!=NULL) @if(in_array($cate_childs[0]->id,$cate_child)){{"checked"}} @endif @endif>
                                     <label for="luachonsearch1">{{$cate_childs[0]->name}}</label>
                                 </div>
                                 <div class="checked">
-                                    <input id="luachonsearch2" type="checkbox" value="{{$cate_childs[1]->id}}"
-                                        name="cate_child[]" @if($cate_child!=NULL)
-                                        @if(in_array($cate_childs[1]->id,$cate_child)){{"checked"}} @endif @endif>
+                                    <input id="luachonsearch2" type="checkbox" value="{{$cate_childs[1]->id}}" name="cate_child[]" @if($cate_child!=NULL) @if(in_array($cate_childs[1]->id,$cate_child)){{"checked"}} @endif @endif>
                                     <label for="luachonsearch2">{{$cate_childs[1]->name}}</label>
                                 </div>
                             </div>
                             <div class="mdm-2">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation"><a class="nav-link active" id="vitri-tab"
-                                            data-toggle="tab" href="#vitri" role="tab" aria-controls="vitri"
-                                            aria-selected="true">Vị trí</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" id="thongtin-tab"
-                                            data-toggle="tab" href="#thongtin" role="tab" aria-controls="thongtin"
-                                            aria-selected="false">Thông tin </a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" id="khac-tab"
-                                            data-toggle="tab" href="#khac" role="tab" aria-controls="khac"
-                                            aria-selected="false">Khác</a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link active" id="vitri-tab" data-toggle="tab" href="#vitri" role="tab" aria-controls="vitri" aria-selected="true">Vị trí</a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link" id="thongtin-tab" data-toggle="tab" href="#thongtin" role="tab" aria-controls="thongtin" aria-selected="false">Thông tin </a></li>
+                                    <li class="nav-item" role="presentation"><a class="nav-link" id="khac-tab" data-toggle="tab" href="#khac" role="tab" aria-controls="khac" aria-selected="false">Khác</a></li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="vitri" role="tabpanel"
-                                        aria-labelledby="vitri-tab">
+                                    <div class="tab-pane fade show active" id="vitri" role="tabpanel" aria-labelledby="vitri-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Tỉnh/Thành phố</label>
                                             <select class="select1" name="province" id="province">
                                                 <option value="">Chọn</option>
                                                 @foreach($provinces as $prov)
-                                                <option province_id="{{$prov->id}}" value="{{$prov->name}}"
-                                                    {{$province == $prov->id?"selected":""}}>{{$prov->name}}</option>
+                                                <option province_id="{{$prov->id}}" value="{{$prov->name}}" {{$province == $prov->id?"selected":""}}>{{$prov->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -120,8 +119,7 @@
                                                 <option value="" id="district_def">Chọn</option>
                                                 @if($districts != NULL)
                                                 @foreach($districts as $disct)
-                                                <option district_id="{{$disct->id}}" value="{{$disct->id}}"
-                                                    {{$district == $disct->id?"selected":""}}>{{$disct->name}}</option>
+                                                <option district_id="{{$disct->id}}" value="{{$disct->id}}" {{$district == $disct->id?"selected":""}}>{{$disct->name}}</option>
                                                 @endforeach
                                                 @endif
                                             </select>
@@ -132,8 +130,7 @@
                                                 <option value="" id="ward_def">Chọn</option>
                                                 @if($wards != NULL)
                                                 @foreach($wards as $wad)
-                                                <option ward_id="{{$wad->id}}" value="{{$wad->id}}"
-                                                    {{$ward == $wad->id?"selected":""}}>{{$wad->name}}</option>
+                                                <option ward_id="{{$wad->id}}" value="{{$wad->id}}" {{$ward == $wad->id?"selected":""}}>{{$wad->name}}</option>
                                                 @endforeach
                                                 @endif
                                             </select>
@@ -153,8 +150,7 @@
                                             </select>
                                         </div> -->
                                     </div>
-                                    <div class="tab-pane fade" id="thongtin" role="tabpanel"
-                                        aria-labelledby="thongtin-tab">
+                                    <div class="tab-pane fade" id="thongtin" role="tabpanel" aria-labelledby="thongtin-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
                                             <label for="thanhpho">Loại nhà đất</label>
                                             <select class="select1" name="product_cate[]" multiple="multiple">
@@ -234,41 +230,34 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-12">
+                <div class="col-xl-9 col-md-12">
                     <div class="box-right">
                         <div id="products" class="row">
                             @if(count($products)>0)
                             @foreach($products as $product)
                             @php $acreage = intval($product->depth)*intval($product->facades); @endphp
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
+                            <div class="col-xl-3 col-lg-4 col-sm-6 col-sx-12 vass">
                                 <div class="box-sp">
-                                    <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                            href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
-                                                onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
-                                                data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
-                                                alt=""></a>
+                                    <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}"><img class="lazyload" onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' " data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}" alt=""></a>
                                         <div class="tag-thuongluong">
                                             {{ $product->price == 0?$product->price="":round($product->price,2)}}
                                             {{$product->unit}}</div>
                                         <div class="box-icon">
                                             <i class="fav ri-heart-line icons" productid="{{$product->product_id}}"></i>
-                                            <i class="ri-equalizer-line icons comp"
-                                                productid="{{$product->product_id}}"></i>
+                                            <i class="ri-equalizer-line icons comp" productid="{{$product->product_id}}"></i>
                                         </div>
                                         <div class="overlay"></div>
                                         <div class="vip">
                                             <!-- {{$product->type}} -->
 
                                             @if ($product->type != 4)
-                                            <img class="lazyload"
-                                                data-src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
+                                            <img class="lazyload" data-src="{{asset('assets/icon/vip'.$product->type.'.svg')}}" alt="">
                                             @else
                                             @endif
                                         </div>
                                     </div>
                                     <div class="box-sp-text">
-                                        <a class="localstore" localstore="{{$product->product_id}}"
-                                            href="{{route('article-detail',$product->slug)}}">
+                                        <a class="localstore" localstore="{{$product->product_id}}" href="{{route('article-detail',$product->slug)}}">
                                             @if($product->type == 1)
                                             <h5 class="title-text lcl lcl-2 vip1">{{$product->title}}</h5>
                                             @elseif($product->type == 2)
@@ -280,62 +269,37 @@
                                             @endif
                                         </a>
                                         <div class="location"> <span class="material-icons">location_on</span>
-                                            <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
-                                                title="{{$product->district}}, {{$product->province}}">
+                                            <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom" title="{{$product->district}}, {{$product->province}}">
                                                 {{$product->district}}, {{$product->province}}</p>
                                         </div>
                                         <div class="mota-place">
                                             <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img class="lazyload"
-                                                        data-src="{{asset('assets/icon/dientich.png')}}" alt=""><span
-                                                        data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : round($acreage,2)}}
+                                                <div class="mota-place-tt"><img class="lazyload" data-src="{{asset('assets/icon/dientich.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : round($acreage,2)}}
                                                         m²</span></div>
-                                                <div class="mota-place-tt"><img class="lazyload"
-                                                        data-src="{{asset('assets/icon/icon-road@3x.png')}}"
-                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
+                                                <div class="mota-place-tt"><img class="lazyload" data-src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
                                                         $product_cate as $prod_cate
                                                         ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
                                                 </div>
-                                                <div class="mota-place-tt"><img class="lazyload"
-                                                        data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
-                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}}
+                                                <div class="mota-place-tt"><img class="lazyload" data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}}
                                                         m</span>
                                                 </div>
                                             </div>
                                             <div class="mota-place-1">
-                                                <div class="mota-place-tt"><img class="lazyload"
-                                                        data-src="{{asset('assets/icon/rectangle-2@3x.png')}}"
-                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}
+                                                <div class="mota-place-tt"><img class="lazyload" data-src="{{asset('assets/icon/rectangle-2@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->floors}} Tầng">{{$product->floors>0?$product->floors.' '.'Tầng':"---"}}
                                                         Tầng</span></div>
-                                                <div class="mota-place-tt"><img class="lazyload"
-                                                        data-src="{{asset('assets/icon/rectangle-3@3x.png')}}"
-                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
+                                                <div class="mota-place-tt"><img class="lazyload" data-src="{{asset('assets/icon/rectangle-3@3x.png')}}" alt=""><span data-toggle="tooltip" data-placement="bottom" title="{{$product->bedroom}} Phòng ngủ">{{$product->bedroom > 0 ? $product->bedroom.' '.'Phòng ngủ':"---"}}</span>
                                                 </div>
-                                                <div class="mota-place-tt"><span
-                                                        class="material-icons icons-15">group</span><span
-                                                        data-toggle="tooltip" data-placement="bottom"
-                                                        title="{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}"
-                                                        data-original-title="">{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}</span>
+                                                <div class="mota-place-tt"><span class="material-icons icons-15">group</span><span data-toggle="tooltip" data-placement="bottom" title="{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}" data-original-title="">{{$product->user_type == 1 ? 'Sàn bất động sản' : 'Nhà môi giới'}}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="end-mota">
                                             <div class="mota-end-box">
-                                                <div class="end-box-tt"><span
-                                                        class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
+                                                <div class="end-box-tt"><span class="material-icons icons-15">event_note</span><span>{{date('d/m/Y',strtotime($product->datetime_start))}}</span>
                                                 </div>
-                                                <div class="end-box-tt"><span
-                                                        class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
+                                                <div class="end-box-tt"><span class="material-icons icons-15">visibility</span><span>{{$product->view}}</span>
                                                 </div>
-                                                <div class="end-box-tt"><a
-                                                        href="{{route('article-detail',$product->slug)}}"><span
-                                                            class="material-icons icons-15 chat">input</span><span
-                                                            class="chat">Xem
+                                                <div class="end-box-tt"><a href="{{route('article-detail',$product->slug)}}"><span class="material-icons icons-15 chat">input</span><span class="chat">Xem
                                                             chi tiết</span></a></div>
                                             </div>
                                         </div>
@@ -344,8 +308,7 @@
                             </div>
                             @endforeach
                             @else
-                            <div class="article-none"> <img class="lazyload"
-                                    data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                            <div class="article-none"> <img class="lazyload" data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
                                 <p>Không có bài đăng nào</p>
                             </div>
                             @endif
@@ -378,10 +341,8 @@
                                             @if(isset($content_province) && $content_province != NULL)
                                             <?php echo html_entity_decode($content_province) ?>
                                             @else
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
-                                                <font size="3"></font><i><a
-                                                        href="https://meeyland.com/mua-ban-nha-dat">Mua
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
+                                                <font size="3"></font><i><a href="https://meeyland.com/mua-ban-nha-dat">Mua
                                                         bán
                                                         nhà đất</a> hay còn gọi là mua bán bất động sản được coi là cuộc
                                                     giao
@@ -392,21 +353,18 @@
                                                     sự
                                                     thức thời đúng đắn của mình.</i>
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font><i>
                                                     Với những chia sẻ dưới đây mà MeeyLand mang tới, hi vọng sẽ giúp quý
                                                     độc
                                                     giả có được những thông tin quý giá nhất.</i>
                                             </span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Nhà đất là
                                                     gì?<span style="mso-spacerun:yes">                </span></font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Theo như<span style="mso-spacerun:yes"> 
                                                 </span>định
                                                 nghĩa
@@ -418,22 +376,16 @@
                                                 khoáng
                                                 chất…
                                             </span>
-                                            <p class="MsoNormal" style="text-align: center;"></p><span
-                                                style="line-height: 107%; font-family: Roboto;"><img class="lazyload"
-                                                    data-src="https://news.meeycdn.com/uploads/2020/06/Quy-trinh-xay-dung-nha-2-tang-dep-1.jpg"
-                                                    alt="Nhà 2 tầng đẹp">
+                                            <p class="MsoNormal" style="text-align: center;"></p><span style="line-height: 107%; font-family: Roboto;"><img class="lazyload" data-src="https://news.meeycdn.com/uploads/2020/06/Quy-trinh-xay-dung-nha-2-tang-dep-1.jpg" alt="Nhà 2 tầng đẹp">
                                                 <font size="3"></font><br>
                                             </span>
-                                            <p class="MsoNormal" style="text-align: center;"></p><span
-                                                style="line-height: 107%; font-family: Roboto;"><i></i><span
-                                                    style="font-size: medium; text-align: start;">Nhà đất hay còn gọi là
+                                            <p class="MsoNormal" style="text-align: center;"></p><span style="line-height: 107%; font-family: Roboto;"><i></i><span style="font-size: medium; text-align: start;">Nhà đất hay còn gọi là
                                                     bất
                                                     động sản được coi là tài sản lớn nhất của đời người theo quan điểm
                                                     của
                                                     người
                                                     Việt</span><br></span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Nhà đất không bao gồm những thứ có thể tách rời
                                                 được
                                                 như
@@ -446,16 +398,14 @@
                                                 mình, hoàn toàn có thể kinh doanh cho thuê lại bán lại thế chấp cho
                                                 vay….
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Hiểu một cách nôm na là đơn giản và dễ hiểu nhất
                                                 thì
                                                 chúng
                                                 ta có thể hiểu
                                                 nhà đất thuộc hai dạng như sau:
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span><b style="mso-bidi-font-weight:									normal">Động sản</b>:
                                                 Động sản là
@@ -463,8 +413,7 @@
                                                 cả những tài sản có thể di dịch được như
                                                 tivi, tủ lạnh, bàn ghế, tủ, tiền…
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span><b style="mso-bidi-font-weight:									normal">Bất động sản</b>:
                                                 Bất động
@@ -472,15 +421,13 @@
                                                 bao gồm tất cả những gì gắn liền với mặt
                                                 đất và không thể tách rời
                                             </span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     15 loại hình nhà đất
                                                     phổ biến<span style="mso-spacerun:yes">                </span>
                                                 </font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Tại Việt Nam khi mà nhà đất đang trở thành một
                                                 trong
                                                 những
@@ -494,12 +441,10 @@
                                                 mục
                                                 đích sử dụng của mình đáng kể nhất phải nói đến.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Căn hộ chung cư</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Căn hộ chung cư là một loại hình bất động sản cho
                                                 phép
                                                 rất
@@ -510,8 +455,7 @@
                                                 dụng
                                                 chung, khá phổ biến tại các thành phố lớn đô thị.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Căn hộ chung cư cho phép người sử dụng hoàn toàn
                                                 có
                                                 thể
@@ -521,12 +465,10 @@
                                                 hợp
                                                 với đặc thù sống cũng như điều kiện của gia đình.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Nhà phố liên kề</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Nhà phố liền kề là một loại hình bất động sản được
                                                 sử
                                                 dụng
@@ -537,12 +479,10 @@
                                                 nhau theo quy hoạch có thể phục vụ cho việc làm văn phòng kinh doanh mua
                                                 bán.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Nhà riêng</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Nhà riêng được xây dựng trên một mảnh đất chính
                                                 chủ,
                                                 toàn
@@ -550,12 +490,10 @@
                                                 của tổ chức và hộ gia đình nhà riêng bao gồm các loại biệt thự, nhà độc
                                                 lập…
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Đất nền</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Đất nền là một phần trong nhà đất, nó được coi là
                                                 phân
                                                 húc
@@ -565,12 +503,10 @@
                                                 đất
                                                 chưa chịu sự tác động của con người.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Biệt thự</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Biệt thự là những ngôi nhà có diện tích lớn thiết
                                                 kế
                                                 hiện
@@ -578,24 +514,20 @@
                                                 đầy đủ tiện ích tiện nghi có tường rào bao quanh là kiểu nhà có sân
                                                 vườn..
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Condotel</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Condotel là loại hình nhà đất kết hợp với lưu trú
                                                 du
                                                 lịch
                                                 mới được phát
                                                 triển mạnh mẽ trong thời gian gần đây được khá nhiều người yêu thích.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Biệt thự nghỉ dưỡng</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Các loại biệt thự được xây dựng tại các khu vực có
                                                 không
                                                 gian thoáng
@@ -603,12 +535,10 @@
                                                 ngơi
                                                 thư giãn và cho thuê của chủ sở hữu.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Bungalow</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Bungalow là những ngôi nhà được xây dựng thiết kế
                                                 đơn
                                                 giản, thường chỉ
@@ -618,12 +548,10 @@
                                                 dưỡng, mới được du nhập từ Ấn Độ vào Việt Nam trong một khoảng thời gian
                                                 ngắn.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Nhà xưởng</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Nhà xưởng là 1 tổ hợp được xây dựng trong một
                                                 không
                                                 gian
@@ -632,12 +560,10 @@
                                                 người,
                                                 hàng hóa, quy trình sản xuất trong mọi lĩnh vực khác nhau.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Tòa nhà văn phòng</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Tòa nhà văn phòng thiết kế vô cùng hiện đại với
                                                 quy mô
                                                 lớn
@@ -647,12 +573,10 @@
                                                 động
                                                 văn phòng của mình.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Tòa nhà khách sạn</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Là một công trình kiên cố, được xây dựng nhiều
                                                 tầng,
                                                 tòa
@@ -662,14 +586,12 @@
                                                 vụ
                                                 thiết yếu dành cho con người. Nó phục vụ cho mục đích kinh doanh.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Trung tâm thương mại
                                                     dịch vụ</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Trung tâm thương mại dịch vụ được thiết kế kiên cố
                                                 để
                                                 phục
@@ -678,12 +600,10 @@
                                                 văn
                                                 phòng cho thuê cửa hàng cơ sở hoạt động dịch vụ.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Shophouse</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Còn được gọi với một cái tên gọi khác đó chính là
                                                 nhà
                                                 phố
@@ -693,12 +613,10 @@
                                                 kết
                                                 hợp làm cửa hàng kinh doanh.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Officetel</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Đây là một trong những loại nhà đất vừa làm nhà ở
                                                 vừa
                                                 có
@@ -708,12 +626,10 @@
                                                 Loại
                                                 nhà đất này có đầy đủ những tiện ích tiện nghi.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Loại Khác</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Đặc biệt với sự đa dạng của nhà đất còn rất nhiều
                                                 các
                                                 loại
@@ -725,37 +641,29 @@
                                                 nội
                                                 dung của bài viết sau:
                                             </span>
-                                            <p class="MsoNormal" style="text-align: center;"></p><span
-                                                style="line-height: 107%; font-family: Roboto;"><img class="lazyload"
-                                                    data-src="https://news.meeycdn.com/uploads/2020/06/Phong-cach-thiet-ke-dau-tien-la-nha-o-truyen-thong-.jpg"
-                                                    alt="Phong cach thiet ke dau tien la nha o truyen thong  - [ Chia Sẻ ] 99+ mẫu thiết kế nhà 2 tầng đẹp nhất 2020 - thu-vien-mau-nha">
+                                            <p class="MsoNormal" style="text-align: center;"></p><span style="line-height: 107%; font-family: Roboto;"><img class="lazyload" data-src="https://news.meeycdn.com/uploads/2020/06/Phong-cach-thiet-ke-dau-tien-la-nha-o-truyen-thong-.jpg" alt="Phong cach thiet ke dau tien la nha o truyen thong  - [ Chia Sẻ ] 99+ mẫu thiết kế nhà 2 tầng đẹp nhất 2020 - thu-vien-mau-nha">
                                                 <font size="3"></font><br>
                                             </span>
-                                            <p class="MsoNormal" style="text-align: center;"></p><span
-                                                style="line-height: 107%; font-family: Roboto;"><i></i><span
-                                                    style="font-size: medium; text-align: start;">Tại Việt Nam khi mà
+                                            <p class="MsoNormal" style="text-align: center;"></p><span style="line-height: 107%; font-family: Roboto;"><i></i><span style="font-size: medium; text-align: start;">Tại Việt Nam khi mà
                                                     nhà
                                                     đất
                                                     đang trở thành một trong những mối quan tâm hàng đầu của những nhà
                                                     đầu
                                                     tư
                                                     cũng như trở thành xu hướng mới của thời đại</span><br></span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Những lưu ý quan
                                                     trọng cần biết khi mua bán nhà đất<span style="mso-spacerun:yes">   
                                                     </span>
                                                 </font>
                                             </b>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Nghề môi giới nhà
                                                     đất</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Được coi là một trong những ngành nghề vô cùng hot
                                                 trong
                                                 thời điểm hiện
@@ -767,24 +675,21 @@
                                                 với
                                                 nhu cầu cũng như nhận về cho mình những khoản hoa hồng và lợi nhuận.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Để có thể trở thành một nhà môi giới nhà đất tài
                                                 năng
                                                 bạn
                                                 cần phải
                                                 trang bị cho mình rất nhiều những kỹ năng quan trọng.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Trang
                                                 bị
                                                 đầy đủ tất cả
                                                 mọi kiến thức kinh nghiệm về sản phẩm và dịch vụ.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Dựa
                                                 vào
@@ -794,8 +699,7 @@
                                                 hàng
                                                 tiềm năng.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Áp
                                                 dụng
@@ -805,8 +709,7 @@
                                                 thể
                                                 gia tăng thêm hiệu quả.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Cần
                                                 phải
@@ -816,35 +719,30 @@
                                                 phục
                                                 khách hàng.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Luôn
                                                 giữ
                                                 một thái độ
                                                 niềm nở với khách hàng.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Có
                                                 quy
                                                 trình chăm sóc
                                                 khách hàng sau gặp gỡ một cách tốt nhất để tạo ấn tượng.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Trang bị cho mình đầy đủ những kinh nghiệm và kiến
                                                 thức ở
                                                 trên chắc chắn
                                                 bạn sẽ trở thành một nhà môi giới nhà đất tốt nhất.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Đầu tư nhà đất</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Đầu tư nhà đất thành công đồng nghĩa với việc bạn
                                                 sẽ
                                                 có cơ
@@ -854,24 +752,21 @@
                                                 cầu
                                                 nhiều những kinh nghiệm và những lưu ý quan trọng:
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Tìm
                                                 hiểu
                                                 kỹ lưỡng về
                                                 chủ đầu tư và sản phẩm nhà đất.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Đặt
                                                 giá
                                                 trị pháp lý
                                                 lên hàng đầu tuyệt đối không được giao dịch viết tay.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Đánh
                                                 giá
@@ -881,8 +776,7 @@
                                                 bạn
                                                 có thể có được một vụ đầu tư thuận lợi
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Hãy
                                                 đảm
@@ -892,8 +786,7 @@
                                                 quá
                                                 40% nếu không có thể là yếu tố khiến cho bạn bị thua lỗ.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Tìm
                                                 bất
@@ -901,18 +794,15 @@
                                                 những người có nhu cầu bán gấp gáp sẽ giúp bạn mua được thuận lợi tiết
                                                 kiệm.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Pháp luật quy định
                                                     về nhà đất</font>
                                             </b>
-                                            <p class="MsoNormal"></p><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <p class="MsoNormal"></p><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Sổ Đỏ<span style="mso-spacerun:yes">    </span></font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Đối với các cuộc giao dịch mua bán nhà đất thì sổ
                                                 đỏ
                                                 là 1
@@ -928,13 +818,11 @@
                                                 sở
                                                 hữu.
                                             </span>
-                                            <p class="MsoNormal"></p><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <p class="MsoNormal"></p><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Sổ Hồng<span style="mso-spacerun:yes">       </span>
                                                 </font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Cũng tương tự như sổ đỏ, sổ hồng cũng là giấy
                                                 chứng
                                                 nhận
@@ -944,12 +832,10 @@
                                                 sở
                                                 hữu, sử dụng các tài sản gắn liền với đất.
                                             </span>
-                                            <p class="MsoNormal"></p><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <p class="MsoNormal"></p><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Sổ Xanh<span style="mso-spacerun:yes">    </span></font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>So xanh là giấy chứng nhận quyền sử dụng đất được
                                                 Lâm
                                                 trường cung cấp
@@ -959,12 +845,10 @@
                                                 bị thu hồi có một vài trường hợp số xanh sẽ không thể chuyển thành số
                                                 đỏ.
                                             </span>
-                                            <p class="MsoNormal"></p><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <p class="MsoNormal"></p><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Sổ Trắng</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Sổ trắng là giấy chứng nhận quyền sử dụng đất đã
                                                 được
                                                 cấp
@@ -973,14 +857,12 @@
                                                 với
                                                 nhà.
                                             </span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Toàn cảnh về thị
                                                     trường nhà đất tại Việt Nam</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Thị trường nhà đất Việt Nam có lúc thăng lúc trầm,
                                                 tuy
                                                 nhiên vào giai
@@ -989,8 +871,7 @@
                                                 phân
                                                 khúc đều có sự<span style="mso-spacerun:yes">  </span>phục hồi trở lại.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Thị trường nhà đất Việt Nam trong thời điểm hiện
                                                 tại
                                                 không
@@ -1003,26 +884,22 @@
                                                 đi riêng tạo nên một sự khởi sắc để mang về những khoản lợi nhuận tối ưu
                                                 nhất.
                                             </span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Ưu và nhược điểm của
                                                     mua bán nhà đất<span style="mso-spacerun:yes">    </span></font>
                                             </b>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Ưu điểm</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Có
                                                 rất
                                                 nhiều các sản
                                                 phẩm nhà đất với nhiều mức giá thành khác nhau để bạn có thể lựa chọn.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Thủ
                                                 tục
@@ -1030,8 +907,7 @@
                                                 nhượng trong thời điểm hiện tại được hỗ trợ vô cùng nhiệt tình và nhanh
                                                 chóng.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Có
                                                 nhiều
@@ -1041,24 +917,21 @@
                                             <h3></h3><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font><b>Nhược điểm    </b>
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Mua
                                                 bán
                                                 bất cập mất
                                                 nhiều thời gian.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Không
                                                 tìm
                                                 ra được những
                                                 cuộc giao dịch như ý chất lượng và an toàn.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Vẫn
                                                 thường xuyên gặp
@@ -1067,8 +940,7 @@
                                                 những
                                                 vấn đề rủi ro về tài chính.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Không
                                                 thể
@@ -1077,16 +949,14 @@
                                                 kinh
                                                 nghiệm.
                                             </span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Giá nhà đất thay đổi
                                                     liên tục từng ngày từng giờ<span style="mso-spacerun:yes">   
                                                     </span>
                                                 </font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Giá đất liên tục thay đổi từng ngày từng giờ, đó
                                                 cũng
                                                 là
@@ -1104,21 +974,18 @@
                                                 bị
                                                 lừa.
                                             </span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Những nguyên tắc
                                                     vàng khi lựa chọn vào đầu tư mua bán nhà đất</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Đầu tư mua bán nhà đất là một bài toán khó đòi hỏi
                                                 bạn
                                                 phải giải mã tất
                                                 cả những quy tắc.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Tính
                                                 pháp
@@ -1134,8 +1001,7 @@
                                                 viết
                                                 tay.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Nên
                                                 lựa
@@ -1147,8 +1013,7 @@
                                                 quả
                                                 cao giúp bạn có thể nhanh chóng mua bán.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Phải
                                                 kiểm
@@ -1161,8 +1026,7 @@
                                                 bạn
                                                 gặp phải sẽ gặp phải rủi ro tài chính thậm chí dẫn tới thua lỗ.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Hãy
                                                 để ý
@@ -1174,8 +1038,7 @@
                                                 trong diện quy hoạch hay không bằng cách đến các văn phòng địa chính địa
                                                 phương.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Ngoài
                                                 ra
@@ -1191,14 +1054,12 @@
                                                 bạn
                                                 trở nên dễ dàng nhất.
                                             </span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Xu hướng đầu tư
                                                     nhà đất mới nhất 2020.</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Từ những quy luật và sự nghiên cứu kỹ càng về thị
                                                 trường,
                                                 các chuyên
@@ -1206,26 +1067,18 @@
                                                 trở
                                                 thành điểm nóng.
                                             </span>
-                                            <p class="MsoNormal" style="text-align: center;"></p><span
-                                                style="line-height: 107%; font-family: Roboto;"><img class="lazyload"
-                                                    data-src="https://news.meeycdn.com/uploads/2020/07/Cac-chuyen-gia-dau-nganh-se-ho-tro-ban-khi-lam-hop-dong-dat-coc-dat.jpg"
-                                                    alt="Các chuyên gia đầu ngành sẽ hỗ trợ bạn khi làm hợp đồng đặt cọc mua đất"></span>
-                                            <p class="MsoNormal" style="text-align: center;"></p><span
-                                                style="line-height: 107%; font-family: Roboto;"><i></i><span
-                                                    style="font-size: medium;">Đầu tư mua bán nhà đất là một bài toán
+                                            <p class="MsoNormal" style="text-align: center;"></p><span style="line-height: 107%; font-family: Roboto;"><img class="lazyload" data-src="https://news.meeycdn.com/uploads/2020/07/Cac-chuyen-gia-dau-nganh-se-ho-tro-ban-khi-lam-hop-dong-dat-coc-dat.jpg" alt="Các chuyên gia đầu ngành sẽ hỗ trợ bạn khi làm hợp đồng đặt cọc mua đất"></span>
+                                            <p class="MsoNormal" style="text-align: center;"></p><span style="line-height: 107%; font-family: Roboto;"><i></i><span style="font-size: medium;">Đầu tư mua bán nhà đất là một bài toán
                                                     khó
                                                     đòi
                                                     hỏi bạn phải giải mã tất cả những quy tắc vàng.</span>
                                                 <font size="3"><br></font>
                                             </span>
-                                            <div></div><span style="line-height: 107%; font-family: Roboto;"><span
-                                                    style="font-size: medium;"></span><br></span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <div></div><span style="line-height: 107%; font-family: Roboto;"><span style="font-size: medium;"></span><br></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Đất nền</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Đất nền luôn luôn được coi là một trong những sản
                                                 phẩm
                                                 đầu
@@ -1238,12 +1091,10 @@
                                                 đoạn
                                                 2020.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">Nhà ở bình dân</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Đặc biệt cũng theo các chuyên gia nhận định thì
                                                 thị
                                                 trường
@@ -1258,14 +1109,12 @@
                                                 là 1
                                                 kênh mà chắc chắn rằng các chủ đầu tư sẽ không thể bỏ qua.
                                             </span>
-                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h3></h3><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Bất động sản
                                                     thương mại</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Hòa cùng sự phát triển của thời đại bất động sản
                                                 thương
                                                 mại đầu tư chắc
@@ -1274,17 +1123,14 @@
                                                 lại
                                                 cho bạn cơ hội sinh lợi nhuận đặc biệt phải kể đến các loại hình nhà đất
                                                 như
-                                                văn phòng cho thuê văn phòng dịch vụ., căn hộ du lịch...<span
-                                                    style="mso-spacerun:yes">    </span>
+                                                văn phòng cho thuê văn phòng dịch vụ., căn hộ du lịch...<span style="mso-spacerun:yes">    </span>
                                             </span>
-                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span
-                                                    style="line-height: 107%; font-family: Roboto;"></span>
+                                            <h2></h2><b style="mso-bidi-font-weight:normal"><span style="line-height: 107%; font-family: Roboto;"></span>
                                                 <font size="3">
                                                     Đầu tư mua bán nhà
                                                     đất tại Meey Land là hiệu quả nhất</font>
                                             </b>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Thấu hiểu được tất cả những bất cập của thị trường
                                                 mua
                                                 bán
@@ -1297,8 +1143,7 @@
                                                 cuộc
                                                 giao dịch chất lượng của mình.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Tích
                                                 hợp
@@ -1308,8 +1153,7 @@
                                                 cho
                                                 những cuộc giao dịch trở nên chất lượng an toàn và hiệu quả.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Số
                                                 lượng
@@ -1319,8 +1163,7 @@
                                                 kiếm
                                                 được các sản phẩm bất động sản tốt nhất.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Tất
                                                 cả
@@ -1328,8 +1171,7 @@
                                                 được kiểm duyệt một cách kỹ lưỡng hạn chế được thông tin rác, tin đăng
                                                 Spam.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Giao
                                                 diện
@@ -1342,21 +1184,18 @@
                                                 chất
                                                 lượng an toàn.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>•<span style="mso-tab-count:1">          
                                                 </span>Mua
                                                 bán
                                                 bất động sản dễ
-                                                dàng hơn nhiều với tính năng đăng tin VIP<span
-                                                    style="mso-spacerun:yes"></span>mọi thông tin của bạn sẽ được hiển
+                                                dàng hơn nhiều với tính năng đăng tin VIP<span style="mso-spacerun:yes"></span>mọi thông tin của bạn sẽ được hiển
                                                 thị ở
                                                 tại
                                                 trang chủ với một mức chi
                                                 phí hợp lý.
                                             </span>
-                                            <p class="MsoNormal"></p><span
-                                                style="line-height: 107%; font-family: Roboto;">
+                                            <p class="MsoNormal"></p><span style="line-height: 107%; font-family: Roboto;">
                                                 <font size="3"></font>Nhà đất vẫn luôn là mối quan tâm hàng đầu của
                                                 người
                                                 Việt,
@@ -1401,49 +1240,49 @@
 @section('footerScripts')
 <!-- Thêm script cho trang này ở đây -->
 <script type="text/javascript">
-$(document).ready(function() {
-    $('input[name="cate_child[]"]').click(function() {
-        if ($('input[name="cate_child[]"]:checked').length == 0) {
-            return false
-        }
-    })
-
-
-    $('#province').change(function() {
-        let province = $('#province option:selected').attr('province_id');
-        let url = '/get-district/' + province;
-        $.ajax({
-            url: url,
-            type: 'GET',
-            success: function(data, status) {
-                data = '<option value="0" selected>Chọn</option>' + data
-                $('#district').html(data)
-            }
-        })
-        $.ajax({
-            url: '/get-content-province/' + province,
-            type: 'GET',
-            success: function(data, status) {
-                $('#content-province').html(data)
+    $(document).ready(function() {
+        $('input[name="cate_child[]"]').click(function() {
+            if ($('input[name="cate_child[]"]:checked').length == 0) {
+                return false
             }
         })
 
-    })
-    $('#district').change(function() {
-        let district = $('#district option:selected').attr('district_id');
-        let url1 = '/get-ward/' + district;
-        $.ajax({
-            url: url1,
-            type: 'GET',
-            success: function(data, status) {
-                data = '<option value="0" selected>Chọn</option>' + data
-                $('#ward').html(data)
-            }
+
+        $('#province').change(function() {
+            let province = $('#province option:selected').attr('province_id');
+            let url = '/get-district/' + province;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data, status) {
+                    data = '<option value="0" selected>Chọn</option>' + data
+                    $('#district').html(data)
+                }
+            })
+            $.ajax({
+                url: '/get-content-province/' + province,
+                type: 'GET',
+                success: function(data, status) {
+                    $('#content-province').html(data)
+                }
+            })
+
         })
-    })
-    /*$('#filter').change(function(){
-        $(this).submit()
-    })*/
-});
+        $('#district').change(function() {
+            let district = $('#district option:selected').attr('district_id');
+            let url1 = '/get-ward/' + district;
+            $.ajax({
+                url: url1,
+                type: 'GET',
+                success: function(data, status) {
+                    data = '<option value="0" selected>Chọn</option>' + data
+                    $('#ward').html(data)
+                }
+            })
+        })
+        /*$('#filter').change(function(){
+            $(this).submit()
+        })*/
+    });
 </script>
 @endsection
