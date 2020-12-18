@@ -29,7 +29,7 @@
                                     <div class="col-4">
                                         <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img
                                                     class="lazyload"
-                                                    onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                    onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
                                                     data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                     alt=""></a>
                                             @if ($product->type == 4)
