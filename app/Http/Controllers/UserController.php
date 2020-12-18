@@ -14,6 +14,7 @@ use App\Models\Payment;
 use App\Models\Category;
 use Illuminate\Auth\EloquentUserProvider;
 use Hash;
+use DateTime;
 class UserController extends Controller
 {
     /**
@@ -281,10 +282,8 @@ class UserController extends Controller
     {
         //update hồ sơ cá nhân theo id
         $user = User::find($id);
-
-        $birthday = date('Y-m-d',strtotime($request->birthday));
-
-        $user->birthday = $birthday;
+        $newbirth = str_replace('/','-',$request->birthday);
+        $user->birthday = date('Y-m-d',strtotime($newbirth));
         // dd($user->birthday);
         $user->full_name = $request->fullname;
         $user->phone = $request->phone;

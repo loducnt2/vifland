@@ -294,7 +294,7 @@
                                                 <div class="mota-place-tt"><img class="lazyload"
                                                         data-src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
+                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach(
                                                         $product_cate as $prod_cate
                                                         ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
                                                 </div>
