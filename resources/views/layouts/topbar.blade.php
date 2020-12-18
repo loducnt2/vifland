@@ -20,7 +20,7 @@
             @if(auth()->check())
             <div class="bl-1"><img class="lazyload"
                     data-src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
-                    alt="">
+                    alt="" onerror="this.src='{{asset('assets/avatar/')}}/user.png' ">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
                     @if(Auth::check() && Auth::user()->user_type == "1")
 
@@ -266,7 +266,7 @@
                         <li class="nav-item">
                             @if(auth()->check())
                             <div class="avatar-user"><img class="lazyload"
-                                    data-src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                                    src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
                                     alt=""></div>
                             @else
                             <a href="/login" class="btn btn__header login1" style="line-height:36px">Đăng Nhập</a>

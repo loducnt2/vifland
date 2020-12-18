@@ -60,6 +60,9 @@ div#u_0_0 {
             <div class="row">
 
                 <div class="col-xl-9 col-md-9">
+                    {{-- Post liên quan cùng category --}}
+
+                   {{-- với {{$news->id_category}} --}}
                     <div class="article-container">
                         <div class="date">
                             <p>{{$news->datepost}}</p>
@@ -69,6 +72,15 @@ div#u_0_0 {
                             <h1 class="section-under-title">{{$news->title}}</h1>
                         </div>
 
+                        <br>
+                        @foreach ($news_related as $item)
+
+                        @if($item->id== $news->id)
+                        @else
+                        <a href="{{$item->slug}}"><li style="  list-style-type: square;
+                            font-size:12px;">{{$item->title}}</li></a>
+                        @endif
+                         @endforeach
                         <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}} <span
                                     class="badge badge-primary">Quản trị viên</span></h6></a></p>
                         <div class="content">

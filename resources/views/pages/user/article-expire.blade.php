@@ -14,7 +14,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th></th>
+                            <th class="text-secondary text-left">* Tin sẽ tự động xóa sau 7 ngày</th>
                             <th>Đơn giá </th>
                             <th>Mặt tiền (m)</th>
                             <th>Chiều sâu (m)</th>
@@ -29,7 +29,7 @@
                                     <div class="col-4">
                                         <div class="img"><a href="{{route('article-detail',$product->slug)}}"><img
                                                     class="lazyload"
-                                                    onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                    onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
                                                     data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                     alt=""></a>
                                             @if ($product->type == 4)
@@ -78,7 +78,7 @@
                             <td>{{$product->depth !=NULL ? round($product->depth,2) : ''}}</td>
                             <td>
                                 <a href="{{route('delete-article',$product->product_id)}}"
-                                    class="text-danger">Xóa</a><br><br>
+                                    class="text-danger" onclick="return confirm('Bạn có chắc muốn xóa không?')">Xóa</a><br><br>
                                 @if( $product->status!=2 )
                                 <a href="{{route('add-date-form',$product->product_id)}}" class="text-primary"> Gia
                                     hạn</a>

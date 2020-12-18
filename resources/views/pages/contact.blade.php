@@ -2,6 +2,7 @@
 @section('title','Liên hệ')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
+
 @stop
 @section('content')
 <main>
@@ -59,23 +60,43 @@
 
                                     {{csrf_field()}}
                                     <div class="row">
+
+                                          <label for="error"></label>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
                                             <input type="text" placeholder="Họ và Tên" id="name" name="name" required>
                                         </div>
+                                        <label for="text" class="error">
+                                            <?php echo $errors->first('email'); ?>
+                                        </label>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
                                             <input type="mail" placeholder="Email" id="email" name="email" required>
                                         </div>
+                                        <label for="text" class="error">
+                                            <?php echo $errors->first('email'); ?>
+                                        </label>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
                                             <input type="text" placeholder="Số điện thoại" id="sdt" name="phone"
                                                 required>
+                                                <label for="text" class="error">
+                                                    <?php echo $errors->first('email'); ?>
+                                                </label>
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
                                             <input type="text" placeholder="Địa chỉ" id="address " name="address"
                                                 required>
+                                                <label for="text" class="error">
+                                                    <?php echo $errors->first('email'); ?>
+                                                </label>
                                         </div>
+                                        <label for="text" class="error">
+                                            <?php echo $errors->first('email'); ?>
+                                        </label>
                                         <div class="col-xl-12 form-group">
                                             <input type="text" placeholder="Tiêu đề" id="title" name="title" required>
                                         </div>
+                                        <label for="text" class="error">
+                                            <?php echo $errors->first('email'); ?>
+                                        </label>
                                         <div class="col-xl-12 form-group">
                                             <textarea name="content" rows="5" placeholder="Nội dung..."
                                                 required></textarea>
@@ -94,7 +115,7 @@
                                 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
                                 </script>
                                 <script>
-                                $().ready(function() {
+
                                     $("#form-contact").validate({
                                         onfocusout: false,
                                         onkeyup: false,
@@ -113,17 +134,19 @@
                                         },
                                         messages: {
                                             "email": {
-                                                email: "Vui lòng nhập đúng mail",
+                                                required:"Không bỏ trống",
+                                                email: "Vui lòng nhập đúng mail"
 
                                             },
                                             "phone": {
-                                                number: "Vui lòng nhập đúng số điện thoại",
+                                                required:"Không bỏ trống",
+                                                number: "Vui lòng nhập đúng số điện thoại"
 
 
                                             },
 
                                         }
-                                    });
+
                                 });
                                 </script>
 

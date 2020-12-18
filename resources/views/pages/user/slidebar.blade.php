@@ -44,8 +44,8 @@
                         <div class="box-left-admin">
 
                             <div class="bl-1"><img class="lazyload"
-                                    data-src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
-                                    alt="">
+                                    src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                                    alt="" onerror="this.src='{{asset('assets/avatar/')}}/user.png' ">
                                 <p>{{auth()->user()->full_name}}</p>
                             </div>
                             <div class="bl-2">

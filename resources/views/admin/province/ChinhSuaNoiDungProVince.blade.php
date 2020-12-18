@@ -17,7 +17,7 @@ Quản lý tỉnh/ thành phố
                 @csrf
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Mô tả </label>
-                    <textarea class="form-control" name="content" id="editor1" rows="40" cols="30" aria-label="editor"
+                    <textarea class="form-control" name="content" id="editor2" rows="40" cols="30" aria-label="editor"
                         style="min-height: 350px;">
 				{!!$Pro->content!!}
     		</textarea>

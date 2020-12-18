@@ -26,6 +26,7 @@ class NewsCategoryController extends Controller
 
 
     public function deleteall(){
+        // không cần kiểm tra khoá ngoại
         Toastr::success('Xoá hết thành công','Thông báo');
         Schema::disableForeignKeyConstraints();
         DB::table('news_category')->truncate();
@@ -140,24 +141,23 @@ class NewsCategoryController extends Controller
         // đếm số lượng bài viết có trong danh mục
         $number = (News::where('id_category',$id)->count());
         if($number > 0 ){
-            return json_encode($number);
+            return json_decode($number);
             // return response()->json(['error'=>'False']);
         }
         else{
         //     // nếu không còn tin thì sẽ xoá thành công
-        //     $newsCategory = NewsCategory::find($id);
-        //      $newsCategory->delete();
-        //      return json
-        // }
-        // // $newsCategory = new NewsCategory();
+           $newsCategory = NewsCategory::find($id);
+              $newsCategory->delete();
+              return json_decode($number);
+
+
+         }
+       // // $newsCategory = new NewsCategory();
         // if(empty($province_info)){
         //     return false;
         // }else{
 
         //     $products = Product::where('province_id',$province_info->id)->get();
         //     return json_decode($products);
-        // }
+        }}
 
-
-    }}
-}

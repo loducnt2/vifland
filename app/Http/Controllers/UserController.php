@@ -14,6 +14,7 @@ use App\Models\Payment;
 use App\Models\Category;
 use Illuminate\Auth\EloquentUserProvider;
 use Hash;
+use DateTime;
 class UserController extends Controller
 {
     /**
@@ -42,7 +43,7 @@ class UserController extends Controller
         // huỷ quyền
         User::find($id)->update(['user_type'=>0]);
         Toastr::success('Huỷ quyền thành công','Thông báo');
-         return redirect('/login');
+        return redirect()->back();
     }
 
     // profile_user người dùng khác
@@ -281,25 +282,8 @@ class UserController extends Controller
     {
         //update hồ sơ cá nhân theo id
         $user = User::find($id);
-
-        if( $request->get('month') > 0 ){
-            $month= $request->get('month');
-        }else{
-            $month = 1;
-        }
-        if( $request->get('date') > 0 ){
-            $date= $request->get('date');
-        }else{
-            $date= 1;
-        }
-        if( $request->get('year') > 0 ){
-            $year= $request->get('year');
-        }else{
-            $year= 1970;
-        }
-
-        $dateOfBirth =$date.'-'.$month.'-'.$year;
-        $user->birthday = Carbon::parse($dateOfBirth);
+        $newbirth = str_replace('/','-',$request->birthday);
+        $user->birthday = date('Y-m-d',strtotime($newbirth));
         // dd($user->birthday);
         $user->full_name = $request->fullname;
         $user->phone = $request->phone;

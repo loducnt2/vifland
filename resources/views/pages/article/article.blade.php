@@ -225,7 +225,7 @@
                                         <div class="img-box">
                                             <a href="{{asset('assets/product/detail/')}}/{{$img->name}}" data-fancybox>
                                                 <img class="lazyload"
-                                                    onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                    onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
                                                     data-src="{{asset('assets/product/detail')}}/{{$img->name}}" alt="">
                                             </a>
                                         </div>
@@ -251,6 +251,9 @@
                             <h1 class="section-under-title text-uppercase vip3">{{$product->title}}</h1>
                             @else
                             <h1 class="section-under-title text-uppercase">{{$product->title}}</h1>
+                            @endif
+                            @if($product->soft_delete==1)
+                                <span class="text-danger">(Tin đã hết hạn)</span>
                             @endif
                             <div class="info">
                                 <div class="cover"> <span class="material-icons">calendar_today </span>
@@ -395,7 +398,7 @@
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
                                             href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
-                                                onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png'"
+                                                onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                                 data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         <div class="tag-thuongluong">

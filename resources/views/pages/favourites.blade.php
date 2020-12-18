@@ -47,7 +47,7 @@
                                 <div class="box-sp m-0">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
                                             href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
-                                                onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png'"
+                                                onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                                 data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         <div class="tag-thuongluong">
@@ -128,7 +128,7 @@
                         <div class="box-sp m-0">
                             <div class="box-sp-img"><a href="{{route('article-detail',$product->slug)}}"><img
                                         class="lazyload "
-                                        onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png'"
+                                        onerror="this.src='{{asset('assets/product/detail/')}}/logo.png'"
                                         data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                         alt=""></a>
                                 <div class="tag-thuongluong d-none d-xl-block">Thương lượng</div>

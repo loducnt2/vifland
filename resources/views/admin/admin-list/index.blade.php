@@ -46,7 +46,7 @@ Quản lý quản trị viên
                         @endif
                     </td>
                     <td>{{$ad->last_login}}</td>
-                    <td><a href="{{route('destroy-admin',$ad->id)}}" class="btn btn-danger">Hủy quyền</a></td>
+                    <td><a href="{{route('destroy-admin',$ad->id)}}" class="btn btn-danger" onclick="return confirm('Xác nhận hủy quyền admin')">Hủy quyền</a></td>
                 </tr>
                 @endforeach
             </tbody>

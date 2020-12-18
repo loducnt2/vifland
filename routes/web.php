@@ -34,6 +34,10 @@ Route::get('/about', function () {
 }); //giới thiệu
 Route::get('/article/{slug}', 'ProductController@show')->name('article-detail');               // Chi tiết tin đăng
 //Danh mục
+Route::get('/get-district/{id}', 'API\GetZone@getDistrictByProvince');
+Route::get('/get-content-province/{id}', 'API\GetZone@contentProvince');
+Route::get('/get-ward/{id}', 'API\GetZone@getWardByDistrict');
+
 
 Route::get('/mua-ban-nha-dat', 'SearchController@getByCate')->name('cate1'); // Danh mục 1
 Route::get('/cho-thue-nha-dat', 'SearchController@getByCate')->name('cate2'); // Danh mục 2
@@ -44,6 +48,9 @@ Route::get('/searchmobi', 'SearchController@searchMobile')->name('searchmob');  
 
 Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
 Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+
+
+Route::post('/contact/create','ContactController@store')->name('up-contact');
 
 Route::group(['middleware' => 'auth'], function () {
     //Nạp tiền
@@ -203,9 +210,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/admin/quan-li-tin-tuc/changestatus', 'NewsController@ChangeNewsStatus');
 
-    Route::get('/get-district/{id}', 'API\GetZone@getDistrictByProvince');
-    Route::get('/get-content-province/{id}', 'API\GetZone@contentProvince');
-    Route::get('/get-ward/{id}', 'API\GetZone@getWardByDistrict');
+
 
 
 
@@ -258,7 +263,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Quản lí contact
     Route::get('/admin/danh-sach-contact', 'ContactController@index');
-     Route::post('/contact/create','ContactController@store')->name('up-contact');
 });
 
 // Đăng kí
@@ -354,4 +358,4 @@ Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}', 'NewsLetterContr
 // Route::get()
 Route::post('/guithu','NewsLetterController@guithu');
 // gửi thư
-Route::get('/test','ContactController@index');
+Route::post('/admin/danh-sach-contact/phanhoi/{id}','ContactController@phanhoi');
