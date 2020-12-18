@@ -82,7 +82,7 @@ class ProductController extends Controller
             $fa = $request->facades;
         }
         $price = doubleval($pr) * intval($unit);
-        $filter_price = FilterPrice::where('min', '<s', $price)->where('max', '>=', $price)->value('id');
+        $filter_price = FilterPrice::where('min', '<=', $price)->where('max', '>=', $price)->value('id');
         $filter_facades = FilterFacades::where('min', '<', $fa)->where('max', '>=', $fa)->value('id');
         $product = new Product([
             'price_post'     => $request->pricePost,

@@ -22,8 +22,7 @@ $("#form-profile :input").prop("disabled", true);
                     <p class="text-f">Ảnh đại diện</p>
                 </div>
                 <div class="col-md-12 col-lg-10 form-group hinhdd">
-                    <div class="wrap-img"> <img class="lazyload img" data-src
-                            src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="" onerror="this.src='{{asset('assets/avatar/')}}/user.png' ">
+                    <div class="wrap-img"> <img class="lazyload img" data-src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="" onerror="this.src='{{asset('assets/avatar/')}}/user.png' ">
                         <label class="wrap-input" for="upload"> <em class="material-icons">add_a_photo</em>
                             <input id="upload" name="image" type="file" style="display:none">
                         </label>
