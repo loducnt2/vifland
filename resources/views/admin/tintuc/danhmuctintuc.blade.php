@@ -33,7 +33,7 @@ Quản lý tin tức > Danh mục tin tức
     flex: 0 0 136px;
 }
 </style>
-<form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="myform">
+<form action="{{url('/admin/danh-muc-tin-tuc/them-moi')}}" method="post" enctype="multipart/form-data" id="category_form">
     {{ csrf_field() }}
     <div class="row">
         <div class="col-md-12 mt-4 form-group">
@@ -78,7 +78,7 @@ Quản lý tin tức > Danh mục tin tức
             <td>{{$item->slug}}</td>
             <td>{{$item->category_name}}</td>
             <td>{{$item->status}}</td>
-            <td> <a href="" data-id="{{ $item->id }}" class="btn btn-danger btn-delete">Xoá</a>
+            <td> <a href="" data-id="{{ $item->id }}" data-category_name={{$item->category_name}} class="btn btn-danger btn-delete">Xoá</a>
                 <a href="" data-id="{{ $item->id }}" data-category_name={{$item->category_name}}
                     class="btn btn-danger btn-edit">Sửa</a>
             </td>

@@ -17,7 +17,7 @@ Quản lý banner
             <div class="">
                 <label for="">banner cũ</label>
                 <div>
-                    <img class="img-old" src="{{asset('assets/banner')}}/{{$banner->name}}" alt="">
+                    <img class="img-old lazyload" data-src="{{asset('assets/banner')}}/{{$banner->name}}" alt="">
                 </div>
 
             </div>

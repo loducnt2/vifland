@@ -57,7 +57,8 @@
                  <tr>
                      <td>{{$banner->id}}</td>
                      <td>{{$banner->name}}</td>
-                     <td> <img class="" style="width:200px" src="{{asset('assets/banner')}}/{{$banner->name}}" alt="">
+                     <td> <img class="lazyload" style="width:200px"
+                             data-src="{{asset('assets/banner')}}/{{$banner->name}}" alt="">
                      </td>
                      <td>{{$banner->position}}</td>
                      <td>{{$banner->status}}</td>

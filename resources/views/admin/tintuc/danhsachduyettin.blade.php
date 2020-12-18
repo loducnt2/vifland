@@ -3,6 +3,8 @@
 Quản lý tin đăng > Duyệt tin
 @endsection
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <div class="container-fluid box-n-big">
     <h2>Danh sách tin duyệt</h2>
     <!-- table -->
@@ -51,7 +53,7 @@ Quản lý tin đăng > Duyệt tin
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody id="myTable">
+        <tbody id="duyettinTable">
             @foreach($news as $new)
             <tr>
                 <td>{{$new->post_id}}</td>
@@ -75,7 +77,8 @@ Quản lý tin đăng > Duyệt tin
                     <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn button-color">
                             Detail</button></a>
                     @if($new->status == 1)
-                    <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger"> Xóa </button></a>
+                    <a href="" data-productid="{{ $new->product_id }}" data-id="{{$new->post_id}}" class="btn btn-danger btn-delete-duyettin">Xoá tin</a>
+                    {{-- <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger btn-delete-duyettin"> Xóa </button></a> --}}
                     @else
                     <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt </button>
                     </a>
@@ -107,14 +110,14 @@ $(document).ready(function() {
     });
     $("#status").on("change", function() {
         var value = $(this).val().toLowerCase();
-        $("#myTable tr td[id='valueStatus']").filter(function() {
+        $("#duyettinTable tr td[id='valueStatus']").filter(function() {
             $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
 
     $("#type").on("change", function() {
         var value = $(this).val().toLowerCase();
-        $("#myTable tr td[id='productType']").filter(function() {
+        $("#duyettinTable tr td[id='productType']").filter(function() {
             $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });

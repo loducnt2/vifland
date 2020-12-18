@@ -52,7 +52,7 @@ label {
             @csrf
 
             <div class="login-wrap">
-                <div class="logo"><img src="./assets/logo/logo-footer-300.png" alt=""></div>
+                <div class="logo"><img class="lazyload" data-src="./assets/logo/logo-footer-300.png" alt=""></div>
                 <div class="box-login">
                     <div class="title">
                         <a href="{{route('login')}}"><span class="material-icons">keyboard_backspace</span></a>
@@ -104,8 +104,7 @@ label {
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Chứng minh thư hoặc mã số thuế" name="card_id"
-                                value="{{ old('card_id') }}">
+                            <input type="text" placeholder="Chứng minh thư" name="card_id" value="{{ old('card_id') }}">
                             <label for="text" class="error"></label>
                         </div>
                     </div>

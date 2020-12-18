@@ -7,8 +7,8 @@
                 <div class="swiper-slide">
                     <div class="box-sp">
                         <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
-                                href="{{route('article-detail',$product->slug)}}"><img
-                                    src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
+                                href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
+                                    data-src="{{asset('assets/product/sanpham1.webp')}}" alt=""></a>
                             <div class="tag-thuongluong">{{$product->price}} {{$product->unit}}</div>
                             <div class="box-icon"><a href="" class="fav" productid="{{$product->product_id}}"><i
                                         class="ri-heart-line icons"></i></a><a href="" class="comp"
@@ -28,15 +28,17 @@
                             </div>
                             <div class="mota-place">
                                 <div class="mota-place-1">
-                                    <div class="mota-place-tt"><img src="{{asset('assets/icon/dientich.png')}}"
-                                            alt=""><span data-toggle="tooltip" data-placement="bottom"
+                                    <div class="mota-place-tt"><img class="lazyload"
+                                            data-src="{{asset('assets/icon/dientich.png')}}" alt=""><span
+                                            data-toggle="tooltip" data-placement="bottom"
                                             title="{{intval($product->depth)*intval($product->facades) }} m²">{{intval($product->depth)*intval($product->facades) }}
                                             m²</span></div>
-                                    <div class="mota-place-tt"><img src="{{asset('assets/icon/icon-road@3x.png')}}"
-                                            alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                            title="Tooltip on bottom">Mặt phố - mặt đường</span></div>
-                                    <div class="mota-place-tt"><img
-                                            src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
+                                    <div class="mota-place-tt"><img class="lazyload"
+                                            data-src="{{asset('assets/icon/icon-road@3x.png')}}" alt=""><span
+                                            data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">Mặt
+                                            phố - mặt đường</span></div>
+                                    <div class="mota-place-tt"><img class="lazyload"
+                                            data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}" alt=""><span
                                             data-toggle="tooltip" data-placement="bottom"
                                             title="{{$product->facades}}">{{$product->facades}} m</span></div>
                                 </div>
@@ -59,7 +61,8 @@
                 </div>
                 @endforeach
                 @else
-                <div class="article-none"> <img src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
+                <div class="article-none"> <img class="lazyload"
+                        data-src="{{asset('assets/san_pham/no-documents.png')}}" alt="">
                     <p>Không có bài đăng nào</p>
                 </div>
                 @endif

@@ -43,13 +43,16 @@
                     <div class="col-md-12 col-lg-3">
                         <div class="box-left-admin">
 
-                            <div class="bl-1"><img src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}" alt="">
+                            <div class="bl-1"><img class="lazyload"
+                                    data-src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                                    alt="">
                                 <p>{{auth()->user()->full_name}}</p>
                             </div>
                             <div class="bl-2">
                                 <div class="row">
                                     <div class="col-12">
-                                        <span class="vifPay"><img src="{{asset('assets/icon/card.png')}}"
+                                        <span class="vifPay"><img class="lazyload"
+                                                data-src="{{asset('assets/icon/card.png')}}"
                                                 alt="">{{number_format(auth()->user()->wallet)}} VNĐ</span>
                                     </div>
                                 </div>
@@ -100,33 +103,31 @@
 @section('footerScripts')
 
 <script>
-    
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#upload-image').click(function (e) {
-    $('#upload').click(function (e) e.preventDefault();
-            //    let formData = new FormData(this);
-            //    $('#image-input-error').text('');
-            $.ajax({
-                type: 'post',
-                url: 'google.com',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: (response) => {
-                    if (response) {
-                        this.reset();
-                        alert('Image has been uploaded successfully');
-                    }
-                },
-                error: function (response) {
-                    console.log(response);
-                    $('#image-input-error').text(response.responseJSON.errors.file);
-                }
-            });
-
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$('#upload-image').click(function(e) {
+            $('#upload').click(function(e) e.preventDefault();
+                    //    let formData = new FormData(this);
+                    //    $('#image-input-error').text('');
+                    $.ajax({
+                        type: 'post',
+                        url: 'google.com',
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: (response) => {
+                            if (response) {
+                                this.reset();
+                                alert('Image has been uploaded successfully');
+                            }
+                        },
+                        error: function(response) {
+                            console.log(response);
+                            $('#image-input-error').text(response.responseJSON.errors.file);
+                        }
+                    });
 </script>
 @endsection

@@ -31,7 +31,8 @@
                             <ul class="nav-list">
                                 @foreach ($news_cate as $item)
 
-                            <li class="nav-item "><a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->category_name}}</a></li>
+                                <li class="nav-item "><a
+                                        href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->category_name}}</a></li>
                                 @endforeach
                             </ul>
                         </nav>
@@ -39,93 +40,98 @@
                     <h1 class="section-title text-uppercase">tin tức mới nhất </h1>
                     <div class="row sec-1">
                         <div class="col-xl-6 col-md-6 col-12">
-                            @if($latest->count() < 3)
-                                <p> Không có tin mới nhất</p>
+                            @if($latest->count() < 3) <p> Không có tin mới nhất</p>
 
-                            @else
-                            <div class="article-big"><a class="bg" href="/news/{{$latest[0]->slug}}"><img src="{{asset('assets/news/' .$latest[0]->img)}}" alt="">
-                                <div class="content">
-                                        <h2 class="section-under-title">{{$latest[0]->title}}</h2></a>
+                                @else
+                                <div class="article-big"><a class="bg" href="/news/{{$latest[0]->slug}}"><img
+                                            class="lazyload" data-src="{{asset('assets/news/' .$latest[0]->img)}}"
+                                            alt="">
+                                        <div class="content">
+                                            <h2 class="section-under-title">{{$latest[0]->title}}</h2>
+                                    </a>
 
-                                        <?php
+                                    <?php
                                     // convert data từ ckeditor qua text bình thường
                                     $plaintext = strip_tags($latest[0]->content);
 
                                     ?>
                                     <p><?php echo ($plaintext); ?></p>
 
-                                </p>
+                                    </p>
                                 </div>
-                            </div>
-                        </a>
                         </div>
-                        <div class="col-xl-6 col-md-6 col-12 wrapper">
-                            <div class="article-wrapper">
-                                <div class="date">
-                                    <p>{{$latest[1]->datepost}}</p>
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-12 wrapper">
+                        <div class="article-wrapper">
+                            <div class="date">
+                                <p>{{$latest[1]->datepost}}</p>
+                            </div>
+                            <div class="article-small">
+                                <div class="img">
+                                    <a href="/news/{{$latest[1]->slug}}">
+                                        <img class="lazyload" data-src="{{asset('assets/news/'.$latest[1]->img)}}"
+                                            alt="">
+                                    </a>
                                 </div>
-                                <div class="article-small">
-                                    <div class="img">
-                                        <a href="/news/{{$latest[1]->slug}}">
-                                            <img src="{{asset('assets/news/'.$latest[1]->img)}}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="content"> <a href="">
-                                            <h2 class="section-under-title">{{$latest[1]->title}} </h2>
-                                        </a>
-                                        <p>{{$latest[1]->summary}}</p>
-                                    </div>
+                                <div class="content"> <a href="">
+                                        <h2 class="section-under-title">{{$latest[1]->title}} </h2>
+                                    </a>
+                                    <p>{{$latest[1]->summary}}</p>
                                 </div>
                             </div>
-                            <div class="article-wrapper">
-                                <div class="date">
-                                    <p>{{$latest[2]->datepost}}</p>
-                                </div>
-                                <div class="article-small">
-                                    <div class="img"><a href="/news/{{$latest[2]->slug}}"><img src="{{asset('assets/news/' .$latest[2]->img)}}" alt=""></a></div>
-                                    <div class="content"> <a href="">
-                                            <h2 class="section-under-title">{{$latest[2]->title}}</h2>
-                                        </a>
-                                        <p>{{$latest[2]->summary}}</p>
+                        </div>
+                        <div class="article-wrapper">
+                            <div class="date">
+                                <p>{{$latest[2]->datepost}}</p>
+                            </div>
+                            <div class="article-small">
+                                <div class="img"><a href="/news/{{$latest[2]->slug}}"><img class="lazyload"
+                                            data-src="{{asset('assets/news/' .$latest[2]->img)}}" alt=""></a></div>
+                                <div class="content"> <a href="">
+                                        <h2 class="section-under-title">{{$latest[2]->title}}</h2>
+                                    </a>
+                                    <p>{{$latest[2]->summary}}</p>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
                 @endif
                 <h1 class="section-title text-uppercase">Tất cả các tin </h1>
-                    <div class="row sec-2">
-                        {{-- foreach --}}
+                <div class="row sec-2">
+                    {{-- foreach --}}
 
-                        @foreach ($news as $posts)
-                        <div class="col-xl-4 col-md-4 col-sm-6 wrapper">
-                            <div class="article-wrapper">
-                                <div class="date">
-                                    <p>{{$posts->datepost}}</p>
-                                </div>
+                    @foreach ($news as $posts)
+                    <div class="col-xl-4 col-md-4 col-sm-6 wrapper">
+                        <div class="article-wrapper">
+                            <div class="date">
+                                <p>{{$posts->datepost}}</p>
+                            </div>
 
-                                <div class="article-small">
-                                    <div class="img"><a href="/tin-tuc/{{$posts->slug}}"><img src="{{asset('assets/news/' .$posts->img)}}" alt=""></a></div>
-                                    <div class="content"><a href="/tin-tuc/{{$posts->slug}}">
-                                            <h2 class="section-under-title">{{$posts->title}}</h2>
-                                        </a>
-
-                                    </div>
-
+                            <div class="article-small">
+                                <div class="img"><a href="/tin-tuc/{{$posts->slug}}"><img class="lazyload"
+                                            data-src="{{asset('assets/news/' .$posts->img)}}" alt=""></a></div>
+                                <div class="content"><a href="/tin-tuc/{{$posts->slug}}">
+                                        <h2 class="section-under-title">{{$posts->title}}</h2>
+                                    </a>
 
                                 </div>
+
+
                             </div>
                         </div>
-                        @endforeach
-
                     </div>
-                            <div class="paginationSP ">
-                                {{ $news->links() }}
+                    @endforeach
 
-                                {{-- phân trang --}}
-                            </div>
+                </div>
+                <div class="paginationSP ">
+                    {{ $news->links() }}
+
+                    {{-- phân trang --}}
+                </div>
 
                 </div>
             </section>

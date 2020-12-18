@@ -55,11 +55,11 @@
                                     @foreach($prod as $product)
                                     <div class="box-sp">
                                         <div class="box-sp-img"><a
-                                                href="{{route('article-detail',$product->slug)}}"><img
-                                                    onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' src="
-                                                    {{asset('assets/product/detail/')}}/ {{$product->thumbnail}}"
+                                                href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
+                                                    onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png"
+                                                    data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                     alt=""></a>
-                                            <!-- <div class="tag-thuongluong">Thương lượng</div> -->
+                                            <!-- <div class=" tag-thuongluong">Thương lượng</div> -->
                                             <div class="box-icon">
                                                 <i class="fav ri-heart-line icons"
                                                     productid="{{$product->product_id}}"></i>
