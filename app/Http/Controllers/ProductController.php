@@ -278,15 +278,15 @@ class ProductController extends Controller
         $image     = ProductImg::where('product_extend_id', $product->productex_id)->select('name')->get();
 
         //Lịch sử xem sản phẩm
-        if (auth()->check()) {
-            $histories = Favorited::where('user_id', auth()->user()->id)->where('product_extend_id', $product->product_id)->get();
-            if (count($histories) == 0) {
-                $history = Favorited::create([
-                    'user_id'       => auth()->user()->id,
-                    'product_extend_id' => $product->product_id,
-                    'type'       => 1,
-                ]);
-            }
+        if(auth()->check()){
+           $histories = Favorited::where('user_id',auth()->user()->id)->where('product_id',$product->product_id)->get();
+           if( count($histories) == 0 ){
+               $history = Favorited::create([
+                   'user_id'       => auth()->user()->id,
+                   'product_ids' => $product->product_id,
+                   'type'       => 1,
+               ]);
+           }
         }
         $product_related  = Category::where('category.parent_id', $product->parent_id)
             ->leftJoin('product', 'product.cate_id', 'category.id')
@@ -502,33 +502,32 @@ class ProductController extends Controller
 
 
 
-    public function productUserHistory()
-    {
-        $products = Favorited::where('favorited.type', 1)
-            ->where('user_id', auth()->user()->id)
-            ->leftJoin('product', 'favorited.product_extend_id', 'product.id')
-            ->leftJoin('product_extend', 'product.id', 'product_extend.product_id')
-            ->leftJoin('product_unit', 'product_extend.unit_id', 'product_unit.id')
-            ->leftJoin('province', 'product.province_id', 'province.id')
-            ->leftJoin('district', 'product.district_id', 'district.id')
-            ->where('product.soft_delete', 0)
-            ->orderBy('favorited.id', 'desc')
-            ->select(
-                'product.*',
-                'product.id as product_id',
-                'product.thumbnail',
-                'product_unit.name as unit',
-                'product.title as title',
-                'product_extend.price as price',
-                'product_extend.facades as facades',
-                'product_extend.depth as depth',
-                'province.name as province',
-                'district.name as district'
-            )
-            ->get();
+    public function productUserHistory(){
+        $products = Favorited::where('favorited.type',1)
+        ->where('user_id',auth()->user()->id)
+        ->leftJoin('product','favorited.product_id','product.id')
+        ->leftJoin('product_extend','product.id','product_extend.product_id')
+        ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
+        ->leftJoin('province','product.province_id','province.id')
+        ->leftJoin('district','product.district_id','district.id')
+        ->where('product.soft_delete',0)
+        ->orderBy('favorited.id','desc')
+        ->select(
+            'product.*',
+            'product.id as product_id',
+            'product.thumbnail',
+            'product_unit.name as unit',
+            'product.title as title',
+            'product_extend.price as price',
+            'product_extend.facades as facades',
+            'product_extend.depth as depth',
+            'province.name as province',
+            'district.name as district'
+        )
+        ->get();
 
 
-        return view('pages/history', compact('products'));
+        return view('pages/history',compact('products'));
     }
     public function Productbyprovince(Request $request, $id, $idcity)
     {
