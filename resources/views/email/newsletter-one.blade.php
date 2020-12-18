@@ -100,7 +100,7 @@
                     data-src="{{ $message->embed(public_path() . '{{asset('assets/news')}}/{{}}') }}" style="display:
                                         block; width: 100%;"> --}}
                                         <img class="lazyload"
-                                            data-src="{{ $message->embed(public_path() . '/assets/product/detail/'.$item->thumbnail) }} "
+                                            data-src="{{ $message->embed('/assets/product/detail/'.$item->thumbnail) }} "
                                             style="display: block; width: 100%;">
 
                                     </div>

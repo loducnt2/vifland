@@ -138,7 +138,7 @@ class NewsLetterController extends Controller
     }
 
     public function send_email(Request $request){
-
+// gửi tất cả
         $mails = Newsletters2::pluck('email')->toArray();
         $nguoinhan = User::pluck('full_name');
         $result = implode(",",$nguoinhan->all());
@@ -147,7 +147,6 @@ class NewsLetterController extends Controller
         $news = News::all();
         Mail::send('email.newsletter',
         ['contents' => $contents,
-
         'news'=>$news,
         'result'=>$result
         ],function ($message) use($request,$mails) {

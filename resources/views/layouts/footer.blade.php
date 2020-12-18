@@ -35,11 +35,13 @@
                         <div class="footer-box list">
                             <h4 class="title-footer">Tin bất động sản</h4>
                             <ul class="list-items">
-                                <li class="list-item"> <a href="">Tin doanh nghiệp </a></li>
-                                <li class="list-item"> <a href="">Tin dự án </a></li>
-                                <li class="list-item"> <a href="">Tin thị trường</a></li>
-                                <li class="list-item"> <a href="">Tin sự kiện</a></li>
-                                <li class="list-item"> <a href="">Tin cộng đồng</a></li>
+                                <?php
+                                $danhmuc = App\Models\NewsCategory::all();
+                                ?>
+                                @foreach ($danhmuc as $item)
+                                <li class="list-item"> <a href="/danh-muc/{{$item->slug}}">{{$item->category_name}} </a></li>
+                                @endforeach
+
                             </ul>
                         </div>
                     </div>

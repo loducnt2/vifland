@@ -37,6 +37,16 @@
         color:black;
         font-size:14px;
     }
+    .answered{
+        background-color: #F1F1F1 !important;
+        color:gray;
+        font-size:14px;
+    }
+    .not-answered{
+        background-color: #ffffff !important;
+        color:black;
+        font-size:14px;
+    }
 </style>
 
 {!! Toastr::message() !!}
@@ -83,8 +93,7 @@
 
   <!-- Danh mục -->
 
-  <script>
-   </script>
+
 
   <script>
       $(function () {
@@ -123,33 +132,12 @@
   </script>
   <!-- {{-- quản lý danh mục --}}
   {{-- 1.1 Xoá danh mục khi bấm vào nút xoá --}} -->
-  <script>
-      function deletePost(event) {
-          alert('Element ID');
-          var id = $(event).data("id");
-          let _url = `/category/${id}`;
-          let _token = $('meta[name="csrf-token"]').attr('content');
-
-          $.ajax({
-              url: _url,
-              type: 'DELETE',
-              data: {
-                  _token: _token
-              },
-              success: function (response) {
-                  $("#row_" + id).remove();
-              }
-          });
-      }
-
-  </script>
 
   <!-- {{-- 1.2 Thêm danh mục mới--}}
 
   {{-- Xoá Record --}} -->
-
   <script>
-      CKEDITOR.replaceAll();
+    //   CKEDITOR.replaceAll();
       $(document).on({
           'show.bs.modal': function () {
               $(this).removeAttr('tabindex');
@@ -158,15 +146,13 @@
 
   </script>
   <!-- {{-- select2 --}} -->
-
-
-
   <!-- {{-- 1 - Event khi user click vào nút model --}} -->
   <script>
       $("#myTable").on('click', '.btn-edit', function (e) {
+         e.preventDefault();
           var id = $(this).data('id');
-          var category_name = $(this).data('category_name');
-
+          var category_name = $(this).attr('data-category_name');
+        console.log(category_name);
           e.preventDefault();
 
           $('.modal').modal('show');
@@ -710,12 +696,19 @@ $('#productFilter').select2().on('select2:open', function() {
                 "id": id
             },
             success: function (response) {
-                 var number = JSON.stringify(response);
-                if(number.length > 0){
-                    toastr.warning("Bạn còn " + number + "bài viết chưa xoá");
-                    console.log('Không thể xoá được bài viết');
-                }else if(number.length = null ){
-                    alert("asdasdasdasd");
+                 var number = JSON.parse(response);
+                 console.log(typeof(number));
+                // typeof của number = number
+                if(number > 0){
+
+                    toastr.warning("Bạn còn " + number + " bài viết chưa xoá");
+                    console.log('Không thể xoá được danh mục');
+                }
+                // nếu không còn tin
+                else {
+                    $ele.fadeOut().remove();
+                    toastr.success("Xoá thành công!");
+                    console.log('Có thể xoá được danh mục');
                 }
 
             },
@@ -844,4 +837,52 @@ $('#productFilter').select2().on('select2:open', function() {
         })
     })
 
+</script>
+
+{{-- content --}}
+<script>
+    // get thông tin content
+    $("#myTable").on('click','.btn-contact-detail',function(e){
+        e.preventDefault();
+        var id = $(this).data('id');
+        var content = $(this).attr("data-content");
+        var name = $(this).data("name");
+        var email = $(this).data("email");
+        console.log(name);
+        $('#contact-detail').modal('show');
+        $('input[name=email]').val(email);
+        $('input[name=name]').val(name);
+        $('textarea[name=content]').val(content);
+    })
+</script>
+{{-- end content --}}
+{{-- email --}}
+<script>
+     $("#myTable").on('click','.btn-mail-contact',function(e){
+        //
+        // $("#contact-form").attr('action',$("#contact-form").attr('action')+ "/tests");
+
+        e.preventDefault();
+        var id = $(this).data('id');
+        var content = $(this).attr("data-content");
+        var name = $(this).data("name");
+        var email = $(this).data("email");
+        console.log(name);
+        $('#send-email-form').modal('show');
+        $('input[name=email]').val(email);
+        $('#myForm').attr('action', "/admin/danh-sach-contact/phanhoi/"+id);
+        // console.log($('#contactsForm').attr('action', "/admin/danh-sach-contact/phanhoi/"+id));
+        $('input[name=name]').val(name);
+        $('textarea[name=content]').val(content);
+    })
+</script>
+
+{{-- duyệt tin --}}
+<script>
+    $("#status").on("change", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr td[id='status']").filter(function() {
+            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 </script>

@@ -104,7 +104,7 @@ tin tức
                                     name="contents"
                                     id="contents"
                                     class="form-control"
-                                    rows="15"
+                                    rows="4"
                                     placeholder=""></textarea>
                                 <br>
                                 <button type="submit" class="btn btn-primary">Gửi thư</button>
