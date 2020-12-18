@@ -57,26 +57,25 @@
                                 tôi</p>
                             <div class="form-wrap">
                                 <form id="form-contact" action="{{route('up-contact')}}" method="POST">
-
                                     {{csrf_field()}}
                                     <div class="row">
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Họ và Tên" id="name" name="name" required>
+                                            <input type="text" placeholder="Họ và Tên" id="name" name="name" required >
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
                                             <input type="mail" placeholder="Email" id="email" name="email" required>
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Số điện thoại" id="sdt" name="phone" required>
+                                            <input type="text" placeholder="Số điện thoại" id="phone" name="phone" required>
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Địa chỉ" id="address " name="address" required>
+                                            <input type="text" placeholder="Địa chỉ" id="address" name="address"required >
                                         </div>
                                         <div class="col-xl-12 form-group">
                                             <input type="text" placeholder="Tiêu đề" id="title" name="title" required>
                                         </div>
                                         <div class="col-xl-12 form-group">
-                                            <textarea name="content" rows="5" placeholder="Nội dung..." required></textarea>
+                                            <textarea id="content" name="content" rows="5" required placeholder="Nội dung..." ></textarea>
                                         </div>
                                     </div>
                                     <div class="button">
@@ -86,34 +85,41 @@
                                 </form>
                                 <script>
                                     $(document).ready(function() {
-                                        $("#form-contact").validate({
-                                            onfocusout: false,
-                                            onkeyup: false,
-                                            onclick: false,
-                                            rules: {
-                                                "name": {
-                                                    required: true,
+                                        // $("#form-contact").validate({
+                                        //     rules: {
+                                        //         "name": {
+                                        //             required: true,
 
-                                                },
-                                                "email": {
-                                                    required: true,
-                                                    email:true,
+                                        //         },
+                                        //         "email": {
+                                        //             required: true,
+                                        //             email:true
+                                        //         },
+                                        //         // "content1": {
+                                        //         //     required: true,
+                                        //         // },
+                                        //         "title": {
+                                        //             required: true,
+                                        //         },
+                                        //         "address": {
+                                        //             required: true,
+                                        //         }, "phone": {
+                                        //             required: true,
+                                        //         },
 
-                                                },
+                                        //     },
+                                        //     // messages: {
+                                        //     //     "name": {
+                                        //     //         required: "Bắt buộc nhập tiêu đề",
 
-                                            },
-                                            messages: {
-                                                "name": {
-                                                    required: "Bắt buộc nhập tiêu đề",
+                                        //     //     },
+                                        //     //     "email": {
+                                        //     //         required: "Bắt buộc nhập nội dung",
+                                        //     //         email:"Vui lòng nhập đúng email"
+                                        //     //     },
 
-                                                },
-                                                "email": {
-                                                    required: "Bắt buộc nhập nội dung",
-                                                    email:"Vui lòng nhập đúng email"
-                                                },
-
-                                            }
-                                        });
+                                        //     // }
+                                        // });
                                     })
                                 </script>
                             </div>
