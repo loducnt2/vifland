@@ -280,11 +280,11 @@ class ProductController extends Controller
 
         //Lịch sử xem sản phẩm
         if(auth()->check()){
-           $histories = Favorited::where('user_id',auth()->user()->id)->where('product_extend_id',$product->product_id)->get();
+           $histories = Favorited::where('user_id',auth()->user()->id)->where('product_id',$product->product_id)->get();
            if( count($histories) == 0 ){
                $history = Favorited::create([
                    'user_id'       => auth()->user()->id,
-                   'product_extend_id' => $product->product_id,
+                   'product_ids' => $product->product_id,
                    'type'       => 1,
                ]);
            }
@@ -506,7 +506,7 @@ class ProductController extends Controller
     public function productUserHistory(){
         $products = Favorited::where('favorited.type',1)
         ->where('user_id',auth()->user()->id)
-        ->leftJoin('product','favorited.product_extend_id','product.id')
+        ->leftJoin('product','favorited.product_id','product.id')
         ->leftJoin('product_extend','product.id','product_extend.product_id')
         ->leftJoin('product_unit','product_extend.unit_id','product_unit.id')
         ->leftJoin('province','product.province_id','province.id')
