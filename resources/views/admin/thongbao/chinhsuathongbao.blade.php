@@ -36,7 +36,7 @@
               </select>
           </div>
           <div class="form-group">
-             <button type="submit" class="btn btn-primary">Update</button>
+             <button type="submit" class="btn btn-primary">Cập nhật</button>
           </div>
       </form>
   </div>

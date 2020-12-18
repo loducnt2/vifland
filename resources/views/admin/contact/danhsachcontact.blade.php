@@ -34,11 +34,7 @@
                     <th>Hành động</th>
                 </tr>
             </thead>
-            <div class="col-3">
-                <div class="form-group">
-                    <label for="">Loại</label>
 
-                </div>
 
             </div>
             <div class="col-4">

@@ -44,7 +44,7 @@ class NewsLetterController extends Controller
     public function subscribe(Request $request){
                 // user chọn nơi chốn
         $location = $request->input("location");
-        
+
         // hàm id là id sau khi người dùng chọn thành phố sẽ get ra
             $id = Province::where('name',$location)->value('id');
             $newsletters = new Newsletters2();
