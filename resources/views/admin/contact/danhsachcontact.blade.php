@@ -70,7 +70,8 @@
                 <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}" data-email="{{$cot->email}}"class="btn btn-primary btn-contact-detail" id="contact-{{$cot->id}}"><i class="ri-window-fill"></i>
                 </a></td>
 
-                <td id="status" > {{$cot->status==0 ?'Chưa trả lời':'Đã trả lời'}} </td>
+                <td id="status" > {{$cot->status==0  ?'Chưa trả lời':'Đã trả lời'}}
+
                 <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}" data-email="{{$cot->email}}"class="btn btn-primary btn-mail-contact" id="contact-{{$cot->id}}" ><i class="ri-mail-open-line"></i>
                 </a></td>
                </tr>
