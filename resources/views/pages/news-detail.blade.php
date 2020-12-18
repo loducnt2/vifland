@@ -11,7 +11,7 @@
 <title>{{$news->title}}</title>
 @endif
 @section('headerStyles')
-<div id="fb-root"></div>
+
 <script async defer crossorigin="anonymous"
     src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0&appId=1108629442905255&autoLogAppEvents=1"
     nonce="lpCr0s3t"></script>
@@ -87,18 +87,35 @@ div#u_0_0 {
                             {!!$news->content!!}
                         </div>
                     </div>
+                    <div class="binh-luan-facebook">
+                        <?php
+                        function getCurURL()
+                        {
+                            if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {
+                                $pageURL = "https://";
+                            } else {
+                                $pageURL = 'http://';
+                            }
+                            if (isset($_SERVER["SERVER_PORT"]) && $_SERVER["SERVER_PORT"] != "80") {
+                                $pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
+                            } else {
+                                $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+                            }
+                            return $pageURL;
+                        }
+
+                        ?>
+                        <div class="fb-comments" data-href="{{getCurURL()}}" data-width="100%" data-numposts="5">
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xl-3 col-md-3">
                     <div class="orther-news">
-                        <div class="title">
-                            <h2 class="section-des">Các tin khác</h2>
-                        </div>
                         @foreach ($posts as $news2)
                         @if($news->slug == $news2->slug)
                         {{-- ẩn tin --}}
                         @else
                         <div class="news-content">
-
                             <div class="img"> <img class="lazyload" data-src="{{asset('assets/news')}}/{{$news2->img}}"
                                     alt=""></div>
                             <div class="content">

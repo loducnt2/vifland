@@ -2,8 +2,9 @@
     @if(Auth::check() && Auth::user()->user_type == "1")
     <div class="top-bar-admin">
         <div class="max-width-container">
-            <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a></div>
-
+            <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a>
+                <a class="truycapadmin chathotro" href="https://vifland.zendesk.com/">Truy cập chat hỗ trợ</a>
+            </div>
             <div class="wrap-text-right">
                 <p>Xin chào mừng: <span>{{auth()->user()->username}}</span></p>
                 <div class="line"> </div><a class="dangxuat" href="/logout">Đăng xuất</a>
@@ -18,7 +19,7 @@
         <div class="wrap-2 user-admin">
             @if(auth()->check())
             <div class="bl-1"><img class="lazyload"
-                    src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
+                    data-src="{{asset('assets/avatar')}}/{{auth()->user()->img != NULL?auth()->user()->img:'user.png'}}"
                     alt="" onerror="this.src='{{asset('assets/avatar/')}}/user.png' ">
                 <div class="content"> <b>{{auth()->user()->username}}</b>
                     @if(Auth::check() && Auth::user()->user_type == "1")
@@ -65,7 +66,7 @@
         <nav>
             <div class="nav-desktop">
                 <div class="logo"><a href="{{route('home')}}"><img class="lazyload"
-                            src="{{asset('assets/logo/logo-s.png')}}" alt=""></a>
+                            data-src="{{asset('assets/logo/logo-s.png')}}" alt=""></a>
                 </div>
                 <div class="main-nav">
                     <ul class="nav-list">

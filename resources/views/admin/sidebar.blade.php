@@ -173,7 +173,7 @@
                         </div>
                         <div class="sb-sidenav-footer">
                             <div class="small">Tài khoản đăng nhập</div>
-                            Admin
+                            {{auth()->user()->username}}
                         </div>
                 </nav>
         </div>

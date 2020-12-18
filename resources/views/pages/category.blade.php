@@ -71,8 +71,19 @@
                 </div>
             </div> -->
             <div class="row main-danh-muc">
-                <div class="col-lg-3 col-md-12">
+                <div class="col-xl-3 col-md-12">
+                    <div class="button-mobile-filter">
+                        <div class="locSanPham">
+                            Lọc sản phẩm
+                        </div>
+                    </div>
                     <div class="box-left-form-muaban">
+                        <div class="close-tab-mb">
+                            <span class="material-icons close-mb">
+                                arrow_back
+                            </span>
+                            <p>Lọc tin</p>
+                        </div>
                         <form id="filter" method="get" action="{{route('search')}}">
                             <input type="hidden" name="cate" value="{{$cate}}">
                             <div class="mdm-1">
@@ -234,13 +245,13 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-12">
+                <div class="col-xl-9 col-md-12">
                     <div class="box-right">
                         <div id="products" class="row">
                             @if(count($products)>0)
                             @foreach($products as $product)
                             @php $acreage = intval($product->depth)*intval($product->facades); @endphp
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-sx-12 vass">
+                            <div class="col-xl-3 col-lg-4 col-sm-6 col-sx-12 vass">
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
                                             href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
@@ -291,19 +302,27 @@
                                                         data-toggle="tooltip" data-placement="bottom"
                                                         title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : round($acreage,2)}}
                                                         m²</span></div>
-                                                <div class="mota-place-tt"><img class="lazyload"
+                                                <<<<<<< HEAD <div class="mota-place-tt"><img class="lazyload"
                                                         data-src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach(
-                                                        $product_cate as $prod_cate
-                                                        ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
-                                                </div>
-                                                <div class="mota-place-tt"><img class="lazyload"
-                                                        data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
-                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
-                                                        title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}}
-                                                        m</span>
-                                                </div>
+                                                        title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
+                                                        =======
+                                                        <div class="mota-place-tt"><img class="lazyload"
+                                                                data-src="{{asset('assets/icon/icon-road@3x.png')}}"
+                                                                alt=""><span data-toggle="tooltip"
+                                                                data-placement="bottom"
+                                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach(
+                                                                >>>>>>> 3fe50a04ac217a08d7c6902f97a26b722bdc47da
+                                                                $product_cate as $prod_cate
+                                                                ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
+                                                        </div>
+                                                        <div class="mota-place-tt"><img class="lazyload"
+                                                                data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
+                                                                alt=""><span data-toggle="tooltip"
+                                                                data-placement="bottom"
+                                                                title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}}
+                                                                m</span>
+                                                        </div>
                                             </div>
                                             <div class="mota-place-1">
                                                 <div class="mota-place-tt"><img class="lazyload"

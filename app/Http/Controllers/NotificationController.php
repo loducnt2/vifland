@@ -14,9 +14,9 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        
-        $notis = Notification::orderBy('id','asc')->get();
-        return view('/admin/thongbao/danhsachthongbao',compact('notis'));
+
+        $notis = Notification::orderBy('id', 'asc')->get();
+        return view('/admin/thongbao/danhsachthongbao', compact('notis'));
     }
 
     /**
@@ -38,15 +38,15 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         $noti = new Notification([
-            'name'      => $request->get("name") ,
+            'name'      => $request->get("name"),
             'language'  => $request->get("lang"),
             'status'    => $request->get("status"),
-            'content'    => $request->get("content"),
+            'content'    => $request->get("noidung"),
             'due_date'    => $request->get("due_date"),
-            
+
         ]);
         $noti->save();
-        return redirect('/admin/danh-sach-thong-bao'); 
+        return redirect('/admin/danh-sach-thong-bao');
     }
 
     /**
@@ -69,7 +69,7 @@ class NotificationController extends Controller
     public function edit($id)
     {
         $noti = Notification::find($id);
-        return view('/admin/thongbao/chinhsuathongbao',compact('noti'));
+        return view('/admin/thongbao/chinhsuathongbao', compact('noti'));
     }
 
     /**
