@@ -115,7 +115,7 @@
                                 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
                                 </script>
                                 <script>
-                                $().ready(function() {
+
                                     $("#form-contact").validate({
                                         onfocusout: false,
                                         onkeyup: false,
@@ -134,17 +134,19 @@
                                         },
                                         messages: {
                                             "email": {
-                                                email: "Vui lòng nhập đúng mail",
+                                                required:"Không bỏ trống",
+                                                email: "Vui lòng nhập đúng mail"
 
                                             },
                                             "phone": {
-                                                number: "Vui lòng nhập đúng số điện thoại",
+                                                required:"Không bỏ trống",
+                                                number: "Vui lòng nhập đúng số điện thoại"
 
 
                                             },
 
                                         }
-                                    });
+
                                 });
                                 </script>
 

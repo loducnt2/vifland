@@ -42,30 +42,27 @@ class NewsLetterController extends Controller
 
 
     public function subscribe(Request $request){
-        // get thông tin thành phố thông qua IP
-        $ip = '113.172.249.204';
-        // hàm data ở đây là dùng để get thông tin nơi đăng nhập của người dùng
-        $data = \Location::get($ip)->regionName;
-        //hàm strpos để kiểm tra xem dữ liệu nhập vào có khoảng trắng hay không
-        if(strpos($data, " ") == false)
+                // user chọn nơi chốn
+        $data = $request->input("location");
+                if(strpos($data, " ") == false)
         {
-                // không có khoẳng trắng
+            // không có khoảng trắng
                 $location = Province::whereRaw("REPLACE(`name`, ' ' ,'') LIKE ?", ['%'.str_replace(' ', '', $data).'%'])->value("name");
             }
         else{
             // có khoảng trắng
             $location = Province::WhereRaw("MATCH(name) AGAINST('.$data.')")->value('name');
         }
-            // get thông tin location của thành phố của province ( mượn bảng Province )
+        // hàm id là id sau khi người dùng chọn thành phố sẽ get ra
             $id = Province::where('name',$location)->value('id');
             $newsletters = new Newsletters2();
-        if ( !Newsletter::isSubscribed($request->email) ) {
+        if ( !Newsletter::isSubscribed($request->input("email3") ) ) {
+            // nếu người dùng đã nhập vào ô input field, ta lưu user vào trong database
 
+            $newsletters->email = $request->input("email3");
             Newsletter::subscribeOrUpdate(filter_var($request->email, FILTER_VALIDATE_EMAIL));
-            $newsletters->email = $request->email;
+            // lưu bảng id_city
             $newsletters->ID_City = $id;
-            //  so sánh nếu trùng định danh IP( không khoảng trắng) , lấy tên đầy đủ của định danh ( có dấu);
-            // dd($Location_IP);
             $newsletters->IP_Location = $location;
             $newsletters->save();
             Toastr::success('Đăng kí thành công ','Thông báo');
@@ -164,6 +161,7 @@ class NewsLetterController extends Controller
         // $newsletter = new Newsletters2();
         $email = $request->email;
         // dd($email);
+
         Newsletter::unsubscribe($email);
         $newsletter = Newsletters2::where('email',$email)->first();
         $newsletter->delete();
