@@ -58,7 +58,7 @@ label.error {
                                 $danhmuc = App\Models\NewsCategory::all();
                                 ?>
                                 @foreach ($danhmuc as $item)
-                                <li class="list-item"> <a href="/danh-muc/{{$item->slug}}">{{$item->category_name}} </a></li>
+                                <li class="list-item"> <a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->category_name}} </a></li>
                                 @endforeach
 
                             </ul>

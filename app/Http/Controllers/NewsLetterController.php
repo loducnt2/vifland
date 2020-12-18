@@ -43,16 +43,8 @@ class NewsLetterController extends Controller
 
     public function subscribe(Request $request){
                 // user chọn nơi chốn
-        $data = $request->input("location");
-                if(strpos($data, " ") == false)
-        {
-            // không có khoảng trắng
-                $location = Province::whereRaw("REPLACE(`name`, ' ' ,'') LIKE ?", ['%'.str_replace(' ', '', $data).'%'])->value("name");
-            }
-        else{
-            // có khoảng trắng
-            $location = Province::WhereRaw("MATCH(name) AGAINST('.$data.')")->value('name');
-        }
+        $location = $request->input("location");
+        
         // hàm id là id sau khi người dùng chọn thành phố sẽ get ra
             $id = Province::where('name',$location)->value('id');
             $newsletters = new Newsletters2();
