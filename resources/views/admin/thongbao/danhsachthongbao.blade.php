@@ -14,11 +14,11 @@
 
             <div class="form-group">
                 <label for="">Tiêu đề</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" required >
             </div>
             <div class="form-group">
                 <label for="">Nội dung</label>
-                <input type="text" name="noidung" class="form-control">
+                <input type="text" name="noidung" class="form-control" required> 
             </div>
             <div class="form-group">
                 <label for="">Trạng thái</label>
@@ -96,17 +96,32 @@
         });
 
         $("#form-noti").validate({
-            name: {
-                required: true,
-                minlength: 3
-            },
-            content: {
-                required: true,
-                number: true,
-                min: 18
-            },
-            
-        })
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		rules: {
+			"name": {
+				required: true,
+			
+			},
+			"noidung": {
+				required: true,
+				
+			},
+			
+		},
+		messages: {
+			"name": {
+				required: "Bắt buộc nhập tiêu đề",
+				
+			},
+			"noidung": {
+				required: "Bắt buộc nhập nội dung",
+				
+			},
+			
+		}
+	});
     });
 </script>
 @endsection
