@@ -1,22 +1,24 @@
 @extends('admin.sidebar')
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
 <div class="container-fluid box-n-big">
     <h2 class="section-title-big">Danh sách thông báo</h2>
 
     <!-- table -->
     <button class="btn button-color btn-create-noti mb-3"> Tạo thông báo</button>
     <div class="form-create-noti d-none">
-        <form action="{{route('create-noti')}}" method="post">
+        <form id="form-noti" action="{{route('create-noti')}}" method="post">
             @csrf
 
             <div class="form-group">
                 <label for="">Tiêu đề</label>
-                <input type="text" class="form-control" name="name">
+                <input type="text" class="form-control" name="name" required >
             </div>
             <div class="form-group">
                 <label for="">Nội dung</label>
-                <input type="text" name="noidung" class="form-control">
+                <input type="text" name="noidung" class="form-control" required> 
             </div>
             <div class="form-group">
                 <label for="">Trạng thái</label>
@@ -81,17 +83,45 @@
 
 </div>
 <script>
-$(document).ready(function() {
-    $("#myInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#myTable tr").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    $(document).ready(function() {
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
         });
-    });
 
-    $(".btn-create-noti").click(function() {
-        $(".form-create-noti,.table-list-noti,#btn-create-noti").toggleClass("d-none");
+        $(".btn-create-noti").click(function() {
+            $(".form-create-noti,.table-list-noti,#btn-create-noti").toggleClass("d-none");
+        });
+
+        $("#form-noti").validate({
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		rules: {
+			"name": {
+				required: true,
+			
+			},
+			"noidung": {
+				required: true,
+				
+			},
+			
+		},
+		messages: {
+			"name": {
+				required: "Bắt buộc nhập tiêu đề",
+				
+			},
+			"noidung": {
+				required: "Bắt buộc nhập nội dung",
+				
+			},
+			
+		}
+	});
     });
-});
 </script>
 @endsection
