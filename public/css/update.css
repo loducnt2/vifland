@@ -392,3 +392,6 @@ div#u_0_0 {
 .mdtp__clock_holder {
     height: 100%;
 }
+.custom-file-label {
+    overflow: hidden;
+}
