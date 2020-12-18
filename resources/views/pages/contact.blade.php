@@ -2,7 +2,6 @@
 @section('title','Liên hệ')
 @section('headerStyles')
 <!-- Thêm styles cho trang này ở đây-->
-
 @stop
 @section('content')
 <main>
@@ -56,101 +55,34 @@
                             <p>Quý khách vui lòng điền thông tin vào mẫu bên dưới và gửi những góp ý, thắc mắc cho chúng
                                 tôi</p>
                             <div class="form-wrap">
-                                <form id="form-contact" action="{{route('up-contact')}}" method="POST">
-
-                                    {{csrf_field()}}
-                                    <div class="row">
-
-                                          <label for="error"></label>
-                                        <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Họ và Tên" id="name" name="name" required>
-                                        </div>
-                                        <label for="text" class="error">
-                                            <?php echo $errors->first('email'); ?>
-                                        </label>
-                                        <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="mail" placeholder="Email" id="email" name="email" required>
-                                        </div>
-                                        <label for="text" class="error">
-                                            <?php echo $errors->first('email'); ?>
-                                        </label>
-                                        <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Số điện thoại" id="sdt" name="phone"
-                                                required>
-                                                <label for="text" class="error">
-                                                    <?php echo $errors->first('email'); ?>
-                                                </label>
-                                        </div>
-                                        <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Địa chỉ" id="address " name="address"
-                                                required>
-                                                <label for="text" class="error">
-                                                    <?php echo $errors->first('email'); ?>
-                                                </label>
-                                        </div>
-                                        <label for="text" class="error">
-                                            <?php echo $errors->first('email'); ?>
-                                        </label>
-                                        <div class="col-xl-12 form-group">
-                                            <input type="text" placeholder="Tiêu đề" id="title" name="title" required>
-                                        </div>
-                                        <label for="text" class="error">
-                                            <?php echo $errors->first('email'); ?>
-                                        </label>
-                                        <div class="col-xl-12 form-group">
-                                            <textarea name="content" rows="5" placeholder="Nội dung..."
-                                                required></textarea>
-                                        </div>
+                            <form id="form-contact" action="{{route('up-contact')}}" method="POST">
+                            
+                            {{csrf_field()}}
+                            <div class="row">
+                                    <div class="col-xl-6 col-sm-6 col-12 form-group">
+                                        <input type="text" placeholder="Họ và Tên" id="name" name="name" required>
                                     </div>
-                                    <div class="button">
-                                        <!-- <input type="reset" class="btn btn-return" type="submit">Quay lại</button> -->
-                                        <button class="btn btn-submit" type="submit">Gửi</button>
+                                    <div class="col-xl-6 col-sm-6 col-12 form-group">
+                                        <input type="mail" placeholder="Email" id="email" name="email" required>
                                     </div>
-                                </form>
-                                <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-                                    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-                                    crossorigin="anonymous"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
-"></script>
-                                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
-                                </script>
-                                <script>
-
-                                    $("#form-contact").validate({
-                                        onfocusout: false,
-                                        onkeyup: false,
-                                        onclick: false,
-                                        rules: {
-                                            "email": {
-                                                required: true,
-                                                email: true
-                                            },
-                                            "phone": {
-                                                required: true,
-                                                number: true,
-                                                maxlength: 15
-                                            },
-
-                                        },
-                                        messages: {
-                                            "email": {
-                                                required:"Không bỏ trống",
-                                                email: "Vui lòng nhập đúng mail"
-
-                                            },
-                                            "phone": {
-                                                required:"Không bỏ trống",
-                                                number: "Vui lòng nhập đúng số điện thoại"
-
-
-                                            },
-
-                                        }
-
-                                });
-                                </script>
-
-
+                                    <div class="col-xl-6 col-sm-6 col-12 form-group">
+                                        <input type="text" placeholder="Số điện thoại" id="sdt" name="phone" required>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-6 col-12 form-group">
+                                        <input type="text" placeholder="Địa chỉ" id="address " name="address" required>
+                                    </div>
+                                    <div class="col-xl-12 form-group">
+                                        <input type="text" placeholder="Tiêu đề" id="title"  name="title" required>
+                                    </div>
+                                    <div class="col-xl-12 form-group">
+                                        <textarea name="content" rows="5" placeholder="Nội dung..." required></textarea>
+                                    </div>
+                                </div>
+                                <div class="button">
+                                    <!-- <input type="reset" class="btn btn-return" type="submit">Quay lại</button> -->
+                                    <button  class="btn btn-submit" type="submit">Gửi</button>
+                                </div>
+                            </form>  
                             </div>
                         </div>
                     </div>
