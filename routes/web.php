@@ -68,7 +68,7 @@ Route::post('/user/changepass/{id}', 'UserController@changePassword')->name('use
 Route::post('/contact/create','ContactController@store')->name('up-contact');
  //User
  Route::get('/user/profile', 'UserController@profileUser')->name('profile');          // thông tin user của người login1
- Route::get('/profile/{username}', 'UserController@profileDetail')->name('profile_username')->middleware('verified');                 //Thông tin userr khác
+ Route::get('/profile/{username}', 'UserController@profileDetail')->name('profile_username');   //Thông tin userr khác
  Route::get('/user/password', 'UserController@formpassword')->name('change-password');          // Thay đổi mật khẩu
  Route::get('/user/add-money', 'UserController@formaddmoney')->name('add-money');               //
  Route::get('/user/payment-history', 'UserController@paymentHistory')->name('payment-history'); // Lịch sử nạp tiền user

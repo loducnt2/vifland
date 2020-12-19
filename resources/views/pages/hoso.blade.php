@@ -5,7 +5,12 @@
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
 @section('content')
-
+@if(Auth::check() && Auth::user()->username != $profile->username)
+<script>
+$("#form-profile :input").prop("disabled", true);
+</script>
+@endif
+{!! Toastr::message() !!}
 {{-- trước khi đăng nhập --}}
 <main>
     <div class="global-breadcrumb">
@@ -119,7 +124,12 @@
                                                         <span>Nhà môi giới</span>
                                                         @endif
                                                     </div>
+                                                    @if(Auth::check() && Auth::user()->email_verified_at =="")
+                                                    <span class="badge badge-dark" style="margin-left:5px">Chưa kích hoạt </a></span>
+                                                     @else <span class="badge badge-primary" style="margin-left:5px"> Đã kích hoạt</span>
+                                                     @endif
                                                 </div>
+
                                             </div>
                                             <div class="row form-wrap">
                                                 <div class="col-md-12 col-lg-2 form-group">
@@ -132,7 +142,9 @@
                                                     <span>Nhà môi giới</span>
                                                     @endif
                                                 </div>
+
                                             </div>
+
                                             <div class="row form-wrap">
                                                 <div class="col-md-12 col-lg-2 form-group">
                                                     <p class="text-f">Giới tính</p>
@@ -357,5 +369,5 @@ $.ajaxSetup({
 //                             $('#image-input-error').text(response.responseJSON.errors.file);
 //                         }
 //                     });
-// 
+//
 </script>
