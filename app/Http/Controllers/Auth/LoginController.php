@@ -108,7 +108,8 @@ class LoginController extends Controller
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
         ]);
         if ($user->user_type == 1) {
-            return redirect ('/');
+            // nếu admin thì redirect qua trang admin
+            return redirect ('/admin/index');
         }
         else {
         return redirect('/');
