@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-// Auth::routes();
+Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/logout', 'Auth\LoginController@logout'); // Đăng xuất
@@ -50,28 +50,52 @@ Route::get('/searchmobi', 'SearchController@searchMobile')->name('searchmob');  
 
 Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
 Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+Route::post('/user/create-payment', 'PaymentController@create')->name('create-payment'); // Nạp tiền
+Route::get('/user/return-payment', 'PaymentController@return')->name('return-payment');  // Trả về kết quả nạp tiền
+
+// Đăng tin
+Route::get('/user/my-article/{id}', 'ProductController@getByUser')->name('user-article');  // Quản lý tin của user
+Route::get('/favourites', 'ProductController@productUserFavorite')->name('favorites');      // Yêu thích
+Route::get('/history', 'ProductController@productUserHistory')->name('history');              // Lịch sử xem tin
+
+//Profile
+//Update profile
+Route::post('/user/update/{id}', 'UserController@update')->name('user-update');   // cập nhật thông tin user
+Route::post('/user/changepass/{id}', 'UserController@changePassword')->name('user-changePassword');  // Thay đổi mật khẩu
+//Change password
 
 
 Route::post('/contact/create','ContactController@store')->name('up-contact');
+ //User
+ Route::get('/user/profile', 'UserController@profileUser')->name('profile');          // thông tin user của người login1
+ Route::get('/profile/{username}', 'UserController@profileDetail')->name('profile_username')->middleware('verified');                 //Thông tin userr khác
+ Route::get('/user/password', 'UserController@formpassword')->name('change-password');          // Thay đổi mật khẩu
+ Route::get('/user/add-money', 'UserController@formaddmoney')->name('add-money');               //
+ Route::get('/user/payment-history', 'UserController@paymentHistory')->name('payment-history'); // Lịch sử nạp tiền user
 
+
+
+
+//  route verfiy
+Route::middleware(['verified'])->group(function (){
+// route nào cần xác minh tài khoản thì mấy bố vui lòng bỏ hết vào đây
+Route::get('/article/new/{cate}', 'ProductController@create')->name('new');         // Form Đăng tin
+
+Route::get('/article/delete/{id}', 'ProductController@destroy')->name('delete-article');       // Xóa tin đăng
+Route::get('/article/edit/{id}', 'ProductController@edit')->name('edit-article');              // Form chỉnh sửa
+Route::get('/article/add-date/{id}', 'ProductController@addDateForm')->name('add-date-form');  // Form Gia hạn tin
+Route::post('/article/add-date', 'ProductController@addDate')->name('add-date-article');       // Gia hạn tin
+Route::get('/user/article-posted', 'UserController@articleposted')->name('article-posted');    // Danh sách tin đã đăng của user
+ Route::get('/user/article-wait', 'UserController@articlewait')->name('article-wait');          // Danh sách tin đang chờ của user
+ Route::get('/user/article-expire', 'UserController@articlexpire')->name('article-expire');     // Danh sách tin hết hạn
+Route::post('/article/new/store', 'ProductController@store')->name('article-store');           // User Đăng tin
+Route::post('/article/update/{id}', 'ProductController@update')->name('update-article');       // User chỉnh sửa tin đã đăng
+
+});
 Route::group(['middleware' => ['auth', 'admin.auth']], function() {
 
 
     //Nạp tiền
-    Route::post('/user/create-payment', 'PaymentController@create')->name('create-payment'); // Nạp tiền
-    Route::get('/user/return-payment', 'PaymentController@return')->name('return-payment');  // Trả về kết quả nạp tiền
-
-    Route::get('/article/new/{cate}', 'ProductController@create')->name('new');            // Form Đăng tin
-    // Đăng tin
-    Route::get('/user/my-article/{id}', 'ProductController@getByUser')->name('user-article');  // Quản lý tin của user
-    Route::get('/favourites', 'ProductController@productUserFavorite')->name('favorites');      // Yêu thích
-    Route::get('/history', 'ProductController@productUserHistory')->name('history');              // Lịch sử xem tin
-
-    //Profile
-    //Update profile
-    Route::post('/user/update/{id}', 'UserController@update')->name('user-update');   // cập nhật thông tin user
-    Route::post('/user/changepass/{id}', 'UserController@changePassword')->name('user-changePassword');  // Thay đổi mật khẩu
-    //Change password
 
     //danh sách admin
     Route::get('/admin/admin-list', 'UserController@admin_list')->name('admin-list');      // Danh sách Admin
@@ -91,23 +115,6 @@ Route::group(['middleware' => ['auth', 'admin.auth']], function() {
     Route::post('admin/wallet/add', 'WalletController@addWallet')->name('add-wallet');                 // Thêm tiền user
     Route::post('admin/wallet/sub', 'WalletController@subWallet')->name('sub-wallet');                 // Trừ tiiền user
 
-    //User
-    Route::get('/user/profile', 'UserController@profileUser')->name('profile');           // thông tin user của người login1
-    Route::get('/profile/{username}', 'UserController@profileDetail')->name('profile_username');                 //Thông tin userr khác
-    Route::get('/user/password', 'UserController@formpassword')->name('change-password');          // Thay đổi mật khẩu
-    Route::get('/user/add-money', 'UserController@formaddmoney')->name('add-money');               //
-    Route::get('/user/payment-history', 'UserController@paymentHistory')->name('payment-history'); // Lịch sử nạp tiền user
-    Route::get('/user/article-posted', 'UserController@articleposted')->name('article-posted');    // Danh sách tin đã đăng của user
-    Route::get('/user/article-wait', 'UserController@articlewait')->name('article-wait');          // Danh sách tin đang chờ của user
-    Route::get('/user/article-expire', 'UserController@articlexpire')->name('article-expire');     // Danh sách tin hết hạn
-
-    Route::post('/article/new/store', 'ProductController@store')->name('article-store');           // User Đăng tin
-    Route::post('/article/update/{id}', 'ProductController@update')->name('update-article');       // User chỉnh sửa tin đã đăng
-
-    Route::get('/article/delete/{id}', 'ProductController@destroy')->name('delete-article');       // Xóa tin đăng
-    Route::get('/article/edit/{id}', 'ProductController@edit')->name('edit-article');              // Form chỉnh sửa
-    Route::get('/article/add-date/{id}', 'ProductController@addDateForm')->name('add-date-form');  // Form Gia hạn tin
-    Route::post('/article/add-date', 'ProductController@addDate')->name('add-date-article');       // Gia hạn tin
 
     Route::post('/admin/danh-sach-danh-muc/create', 'CategoryController@store')->name('create-cate');        // Form tạo danh sách danh mục
     Route::post('/admin/danh-sach-danh-muc/update/{id}', 'CategoryController@update')->name('update-cate');  // Cập nhật danh mục
@@ -326,3 +333,6 @@ Route::post('/sub', 'NewsLetterController@subscribe')->name('newsletter.subscrib
 Route::post('/send-email', 'NewsLetterController@send_email');
 
 Route::post('/guithu','NewsLetterController@guithu');
+
+Route::get('/resend','Usercontroller@resendEmail');
+

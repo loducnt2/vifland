@@ -37,6 +37,12 @@ $("#form-profile :input").prop("disabled", true);
                         <span>Nhà môi giới</span>
                         @endif
                     </div>
+                    @if(Auth::check() && Auth::user()->email_verified_at =="")
+                        {{-- nếu user không kích hoạt --}}
+                        {{-- <a href=""></a> --}}
+
+                        <span class="badge badge-warning"><a href="/resend">Kích hoạt tài khoản</a></span>
+                    @endif
                 </div>
             </div>
             <div class="row form-wrap">
@@ -76,7 +82,7 @@ $("#form-profile :input").prop("disabled", true);
             <div class="row form-wrap thongtinform">
                 <div class="col-md-12 col-lg-2 form-group">
                     <p class="text-f">Ngày sinh</p>
-                    
+
                 </div>
                 <div class="col-sm-5 form-group">
                     <input class="calendar" type="datetime" id="borndate" value="{{date('d/m/Y',strtotime($profile->birthday))}}" name="birthday">
