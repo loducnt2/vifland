@@ -63,7 +63,13 @@
                                             <input type="text" placeholder="Họ và Tên" id="name" name="name" required >
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="mail" placeholder="Email" id="email" name="email" required>
+                                            <input type="
+                                            
+                                             
+                                            
+                                            
+                                                
+                                            " placeholder="Email" id="email" name="email" required>
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
                                             <input type="text" placeholder="Số điện thoại" id="phone" name="phone" required>
