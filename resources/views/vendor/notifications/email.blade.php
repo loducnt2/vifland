@@ -44,7 +44,7 @@
 {{ $salutation }}
 @else
 @lang('Thân mến'),<br>
-{{{{ config('app.name') }}}}
+{{ config('app.name') }}
 @endif
 
 {{-- Subcopy --}}
