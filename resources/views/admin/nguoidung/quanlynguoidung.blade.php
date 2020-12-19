@@ -41,7 +41,8 @@
                         <th>Hoạt động</th>
                         <th>Hành động</th>
                         {{-- <th>Chi tiết</th> --}}
-
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tr>
@@ -62,16 +63,13 @@
                     </td>
 
                     <td>
-                        {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}"
-                        {{ $user->status ? 'checked' : '' }}> --}}
+
                         <input data-id="{{$user->id}}" class="btn-user" type="checkbox" data-onstyle="success"
                             data-offstyle="danger" data-toggle="toggle" data-on="Mở" data-off="Khoá"
                             {{ $user->status ? 'checked' : '' }}>
 
-                        {{-- <input type="checkbox" checked data-toggle="toggle" data-id="{{$user->id}}" class="test">
-                        --}}
+
                         <div id="console-event-{{$user->id}}"></div>
-                        {{-- hồ sơ --}}
 
                     </td>
                     <td>
@@ -79,7 +77,6 @@
                             <a href="/admin/index/profile/{{$user->id}}">
                                 <i class="fa fa-search" style="font-size:12px;color:white"></i>
                             </a>
-                            {{-- Xoá --}}
 
                         </button>
 
