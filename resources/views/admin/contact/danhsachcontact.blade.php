@@ -34,57 +34,62 @@
                     <th>Hành động</th>
                 </tr>
             </thead>
-            <div class="form-group">
-                <label for="">Trạng thái</label>
-                <select class="form-control" name="" id="status">
-                    <option value=""> ---------</option>
-                    <option value="Đã trả lời"> Đã trả lời</option>
-                    <option value="Chưa trả lời"> Chưa trả lời </option>
-                </select>
-            </div>
-            <tbody id="myTable">
-                @foreach($contacts as $cot)
-                @if ($cot->status == '1')
-                {{-- đã trả lời --}}
-                <?php $class = "answered"; ?>
-                @else
-                {{-- chưa trả lời --}}
-                <?php $class = "not-answered"; ?>
-                @endif
-                <tr class="{{$class}}">
-                    <td>{{$test = $cot->id}}</td>
-                    <td>{{$cot->name}}</td>
-                    <td>{{$cot->email}}</td>
-                    <td>{{$cot->address}}</td>
-                    <td>{{$cot->phone}}</td>
-
-                    <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}"
-                            data-email="{{$cot->email}}" class="btn btn-primary btn-contact-detail"
-                            id="contact-{{$cot->id}}"><i class="ri-window-fill"></i>
-                        </a></td>
-
-                    <td id="status"> {{$cot->status==0 ?'Chưa trả lời':'Đã trả lời'}}
-
-                    <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}"
-                            data-email="{{$cot->email}}" class="btn btn-primary btn-mail-contact"
-                            id="contact-{{$cot->id}}"><i class="ri-mail-open-line"></i>
-                        </a></td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
 
 
-        <script>
-        $(document).ready(function() {
-            $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="">Trạng thái</label>
+            <select class="form-control" name="" id="status">
+                <option value=""> ---------</option>
+                <option value="Đã trả lời"> Đã trả lời</option>
+                <option value="Chưa trả lời"> Chưa trả lời </option>
+            </select>
+        </div>
+    </div>
+    <tbody id="myTable">
+        @foreach($contacts as $cot)
+        @if ($cot->status == '1')
+        {{-- đã trả lời --}}
+        <?php $class = "answered"; ?>
+        @else
+        {{-- chưa trả lời --}}
+        <?php $class = "not-answered"; ?>
+        @endif
+        <tr class="{{$class}}">
+            <td>{{$test = $cot->id}}</td>
+            <td>{{$cot->name}}</td>
+            <td>{{$cot->email}}</td>
+            <td>{{$cot->address}}</td>
+            <td>{{$cot->phone}}</td>
+
+            <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}"
+                    data-email="{{$cot->email}}" class="btn btn-primary btn-contact-detail" id="contact-{{$cot->id}}"><i
+                        class="ri-window-fill"></i>
+                </a></td>
+
+            <td id="status"> {{$cot->status==0 ?'Chưa trả lời':'Đã trả lời'}}
+
+            <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}"
+                    data-email="{{$cot->email}}" class="btn btn-primary btn-mail-contact" id="contact-{{$cot->id}}"><i
+                        class="ri-mail-open-line"></i>
+                </a></td>
+        </tr>
+        @endforeach
+    </tbody>
+    </table>
+
+
+    <script>
+    $(document).ready(function() {
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
-        </script>
+    });
+    </script>
 
 </body>
 @endsection

@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['verify' => true]);
+
 Route::get('/logout', 'Auth\LoginController@logout'); // Đăng xuất
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('home', 'HomeController@index');                                // Trang chủ
@@ -52,7 +54,9 @@ Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-fa
 
 Route::post('/contact/create','ContactController@store')->name('up-contact');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'admin.auth']], function() {
+
+
     //Nạp tiền
     Route::post('/user/create-payment', 'PaymentController@create')->name('create-payment'); // Nạp tiền
     Route::get('/user/return-payment', 'PaymentController@return')->name('return-payment');  // Trả về kết quả nạp tiền
@@ -75,6 +79,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin/destroy-admin/{id}', 'UserController@destroyAdmin')->name('destroy-admin');  // Hủy quyền admin
 
     //  admin
+
+
     Route::get('admin/index', 'AdminController@index')->middleware('admin.auth')->name('admin-dashboard'); // Trang chủ quản trị, thống kê
     //Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
 
@@ -196,7 +202,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/admin/index/danh-muc-tin-tuc/xoa-het', 'NewsCategoryController@deleteall')->name('newsletter_deleteall');
     Route::get('/admin/index/tin-tuc/xoa-het', 'NewsController@deleteall')->name('news_deleteall');
-    Route::get('/admin/index/quan-ly-thu-tin-tuc', 'NewsLetterController@index')->name('newsletter.admin.index');
+    Route::get('/admin/index/quan-ly-thu-tin-tuc', 'NewsLetterController@index')->name('newsletter.admin.index')->middleware('admin.auth');
     #export
     Route::get('/admin/index/quan-ly-thu-tin-tuc/export', 'NewsLetterController@export')->name('table.export');
     // import
@@ -263,6 +269,30 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Quản lí contact
     Route::get('/admin/danh-sach-contact', 'ContactController@index');
+    Route::get('admin/index/profiles', 'UserController@index');
+Route::get('admin/index/profile/{id}', 'UserController@getprofileDetail');
+// route admin- sản phẩm
+Route::get('/admin/list-product', function () {
+    return view('admin/sanpham/danhsachsanpham');
+});
+Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
+Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
+
+Route::get('/admin/danh-sach-tin-tuc/changestatus', 'NewsController@ChangeNewsStatus');
+// ẩn hiện tin tức
+Route::POST('/admin/index/news/insert', 'NewsController@store');
+
+
+Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
+// Route quản lí tin đã đăng của user
+// Route::get('/my-article/{id}','UserControllers@getPostbyID');
+// User: thay đổi trạng thái user
+Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
+Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}','ProductController@Productbyprovince');
+Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}', 'NewsLetterController@unsubscribe');
+
+Route::post('/admin/danh-sach-contact/phanhoi/{id}','ContactController@phanhoi');
+
 });
 
 // Đăng kí
@@ -281,81 +311,18 @@ Route::get('/forgot-password', function () {
 Route::get('/san-pham', function () {
     return view('pages/san-pham');
 });
-//API
 
-//Route::post('/add-compare','API\CompareController@addCompare')->name('add-compare');
-
-
-//CRUD danh mục
-
-// Quản lý tin đăng
-
-// ================= hồ sơ ==================
-// update thông tin hồ sơ cá nhân
-// Route admin - user
-Route::get('admin/index/profiles', 'UserController@index');
-Route::get('admin/index/profile/{id}', 'UserController@getprofileDetail');
-// route admin- sản phẩm
-Route::get('/admin/list-product', function () {
-    return view('admin/sanpham/danhsachsanpham');
-});
-// Route quản lí tin đã đăng của user
-// Route::get('/my-article/{id}','UserControllers@getPostbyID');
-// User: thay đổi trạng thái user
-Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
-// Tin tức theo danh mục
 Route::get('/tin-tuc/danh-muc/{slug}', 'NewsController@getNewsbyCate');
-Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
-// Route quản lí tin đã đăng của user
-// Route::get('/my-article/{id}','UserControllers@getPostbyID');
-// User: thay đổi trạng thái user
+
 
 Route::get('/news/{slug}', 'NewsController@show');
-// quản lý tin tứcf
 
-Route::get('/admin/danh-sach-tin-tuc/changestatus', 'NewsController@ChangeNewsStatus');
-// ẩn hiện tin tức
-Route::POST('/admin/index/news/insert', 'NewsController@store');
-// news list
-
-// route admin- danh muc
-// Route::get('/admin/danh-sach-danh-muc',function(){
-//     return view('/admin/danhmuc/danhsachdanhmuc');
-// });
-// Tin tức theo danh mục
-Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
-// Route quản lí tin đã đăng của user
-// Route::get('/my-article/{id}','UserControllers@getPostbyID');
-// User: thay đổi trạng thái user
-Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
 
 Route::get('/tin-tuc/{slug}', 'NewsController@show');
-// đăng tin tức
-// get tất cả các tin đang có
 Route::get('tin-tuc', 'NewsController@listnews');
 
-// quản lí tin tức
-
-// ===================danh mục tin tức======================
-
-
-// Newsletter
 Route::post('/sub', 'NewsLetterController@subscribe')->name('newsletter.subscribe');
 
-
-
-#Insert từ khoá
-// Email
 Route::post('/send-email', 'NewsLetterController@send_email');
 
-// ====== Danh mục tin tức====================
-
-// Route::post('/admin/danh-muc-tin-tuc/them-moi/','NewsController@store')->name('news_category.add');
-
-// Route::delete('/admin/index/danh-muc-tin-tuc/xoa-tin-muc/{id}','NewsCategoryController@destroy')->name('news_category.destroy');
-Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}','ProductController@Productbyprovince');
-Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}', 'NewsLetterController@unsubscribe');
-// Route::get()
 Route::post('/guithu','NewsLetterController@guithu');
-// gửi thư
-Route::post('/admin/danh-sach-contact/phanhoi/{id}','ContactController@phanhoi');
