@@ -12,7 +12,9 @@ return [
     | as required, but they're a perfect start for most applications.
     |
     */
-
+    'verification'=>['expire'=>5256000,
+    // 1 năm
+    ],
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',

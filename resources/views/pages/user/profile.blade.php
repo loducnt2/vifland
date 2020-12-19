@@ -43,6 +43,12 @@ $("#form-profile :input").prop("disabled", true);
                         <span>Nhà môi giới</span>
                         @endif
                     </div>
+                    @if(Auth::check() && Auth::user()->email_verified_at =="")
+                    {{-- nếu user không kích hoạt --}}
+                    {{-- <a href=""></a> --}}
+
+                    <span class="badge badge-warning"><a href="/resend">Kích hoạt tài khoản</a></span>
+                    @endif
                 </div>
             </div>
             <div class="row form-wrap">

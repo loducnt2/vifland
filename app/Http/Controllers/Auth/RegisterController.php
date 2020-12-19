@@ -85,6 +85,8 @@ class RegisterController extends Controller
                 'img'       => 'user.png',
             ]);
             $user->save();
+            $user->sendEmailVerificationNotification();
+
         } else {
             $user = new User([
                 'username'  => $data->username,
@@ -96,6 +98,8 @@ class RegisterController extends Controller
                 'img'       => 'user.png',
             ]);
             $user->save();
+            $user->sendEmailVerificationNotification();
+
         }
         Auth::login($user);
         return redirect('/')->with('status','Đăng kí thành công!');
