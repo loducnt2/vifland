@@ -14,11 +14,11 @@
 
             <div class="form-group">
                 <label for="">Tiêu đề</label>
-                <input type="text" class="form-control" name="name" required >
+                <input type="text" class="form-control" name="name" required>
             </div>
             <div class="form-group">
                 <label for="">Nội dung</label>
-                <input type="text" name="noidung" class="form-control" required> 
+                <input type="text" name="noidung" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="">Trạng thái</label>
@@ -83,45 +83,45 @@
 
 </div>
 <script>
-    $(document).ready(function() {
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
+$(document).ready(function() {
+    $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
-
-        $(".btn-create-noti").click(function() {
-            $(".form-create-noti,.table-list-noti,#btn-create-noti").toggleClass("d-none");
-        });
-
-        $("#form-noti").validate({
-		onfocusout: false,
-		onkeyup: false,
-		onclick: false,
-		rules: {
-			"name": {
-				required: true,
-			
-			},
-			"noidung": {
-				required: true,
-				
-			},
-			
-		},
-		messages: {
-			"name": {
-				required: "Bắt buộc nhập tiêu đề",
-				
-			},
-			"noidung": {
-				required: "Bắt buộc nhập nội dung",
-				
-			},
-			
-		}
-	});
     });
+
+    $(".btn-create-noti").click(function() {
+        $(".form-create-noti,.table-list-noti,#btn-create-noti").toggleClass("d-none");
+    });
+
+    $("#form-noti").validate({
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        rules: {
+            "name": {
+                required: true,
+
+            },
+            "noidung": {
+                required: true,
+
+            },
+
+        },
+        messages: {
+            "name": {
+                required: "Bắt buộc nhập tiêu đề",
+
+            },
+            "noidung": {
+                required: "Bắt buộc nhập nội dung",
+
+            },
+
+        }
+    });
+});
 </script>
 @endsection

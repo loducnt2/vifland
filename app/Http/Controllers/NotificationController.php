@@ -41,7 +41,7 @@ class NotificationController extends Controller
             'name'      => $request->get("name"),
             'language'  => $request->get("lang"),
             'status'    => $request->get("status"),
-            'content'    => $request->get("noidung"),
+            'content'    => $request->get("content"),
             'due_date'    => $request->get("due_date"),
 
         ]);
