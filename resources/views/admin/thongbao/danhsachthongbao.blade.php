@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label for="">Nội dung</label>
-                <input type="text" name="noidung" class="form-control">
+                <input type="text" name="content" class="form-control">
             </div>
             <div class="form-group">
                 <label for="">Trạng thái</label>
