@@ -10,12 +10,11 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="{{route('home')}}">
-                        <!--  <i class="ri-arrow-left-line icons-breadcrum"></i> -->Trang chủ
+                        Trang chủ
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{route('cate1')}}">
-                        <!-- <p>Mở bán dự án đô thị sinh thái thông minh Aqua City, phía Đông thành phố Hồ Chí Minh Bạn tìm
-                            gì hôm nay?</p> -->
+
                         @switch($cate)
                         @case(1)
                         <p>Mua/ Bán</p>@break
@@ -30,46 +29,6 @@
     </div>
     <section class="danhmuc">
         <div class="max-width-container">
-            <!-- <div class="row bo-loc-1">
-                <div class="col-sm-12 col-md-3">
-                    <div class="search">
-                        <form action="">
-                            <input type="text" placeholder="Bạn cần tìm hôm nay?">
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-sm-12 col-md-12">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-12">
-                            <div class="form-group-sl1 sl-1 select-many">
-                                <select class="select1 sluser" name="loainhadat[]" multiple="multiple">
-                                    <option value="AL">Alabama</option>
-                                    <option value="WY">Wyoming</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="form-group-sl1 sl-2 select-many">
-                                <select class="select1 sltinhinh" name="loainhadat[]" multiple="multiple">
-                                    <option value="AL">Alabama</option>
-                                    <option value="WY">Wyoming</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <div class="form-group-sl1 sl-3 select-many">
-                                <select class="select1 slbaidang" name="loainhadat[]" multiple="multiple">
-                                    <option value="AL">Alabama</option>
-                                    <option value="WY">Wyoming</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-1">
-                    <button><span>Xóa bộ lọc</span></button>
-                </div>
-            </div> -->
             <div class="row main-danh-muc">
                 <div class="col-xl-3 col-md-12">
                     <div class="button-mobile-filter">
@@ -255,7 +214,7 @@
                                 <div class="box-sp">
                                     <div class="box-sp-img"><a class="localstore" localstore="{{$product->product_id}}"
                                             href="{{route('article-detail',$product->slug)}}"><img class="lazyload"
-                                                onerror="this.src='{{asset('assets/product/detail/')}}/logo.png' "
+                                                onerror="this.data-src='{{asset('assets/product/detail/')}}/logo.png' "
                                                 data-src="{{asset('assets/product/detail/')}}/{{$product->thumbnail}}"
                                                 alt=""></a>
                                         <div class="tag-thuongluong">
@@ -302,27 +261,19 @@
                                                         data-toggle="tooltip" data-placement="bottom"
                                                         title="{{$acreage == 0 ? '' : $acreage}} m²">{{$acreage == 0 ? "" : round($acreage,2)}}
                                                         m²</span></div>
-                                                <<<<<<< HEAD <div class="mota-place-tt"><img class="lazyload"
+                                                <div class="mota-place-tt"><img class="lazyload"
                                                         data-src="{{asset('assets/icon/icon-road@3x.png')}}"
                                                         alt=""><span data-toggle="tooltip" data-placement="bottom"
                                                         title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach">@foreach(
-                                                        =======
-                                                        <div class="mota-place-tt"><img class="lazyload"
-                                                                data-src="{{asset('assets/icon/icon-road@3x.png')}}"
-                                                                alt=""><span data-toggle="tooltip"
-                                                                data-placement="bottom"
-                                                                title="@foreach( $product_cate as $prod_cate ){{$prod_cate->id == $product->product_cate?$prod_cate->name:''}}@endforeach">@foreach(
-                                                                >>>>>>> 3fe50a04ac217a08d7c6902f97a26b722bdc47da
-                                                                $product_cate as $prod_cate
-                                                                ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
-                                                        </div>
-                                                        <div class="mota-place-tt"><img class="lazyload"
-                                                                data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
-                                                                alt=""><span data-toggle="tooltip"
-                                                                data-placement="bottom"
-                                                                title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}}
-                                                                m</span>
-                                                        </div>
+                                                        $product_cate as $prod_cate
+                                                        ){{$prod_cate->id == $product->product_cate?$prod_cate->name:""}}@endforeach</span>
+                                                </div>
+                                                <div class="mota-place-tt"><img class="lazyload"
+                                                        data-src="{{asset('assets/icon/rectangle-copy-2@3x.png')}}"
+                                                        alt=""><span data-toggle="tooltip" data-placement="bottom"
+                                                        title=">{{$product->facades==0?"":round($product->facades,2)}}">{{$product->facades==0?"":round($product->facades,2)}}
+                                                        m</span>
+                                                </div>
                                             </div>
                                             <div class="mota-place-1">
                                                 <div class="mota-place-tt"><img class="lazyload"
@@ -382,6 +333,7 @@
                                     </div> -->
 
                                     {{ $products->appends(request()->input())->links()}}
+                                    {{ $products->links()}}
 
                                 </div>
                             </div>
