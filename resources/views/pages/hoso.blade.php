@@ -184,9 +184,9 @@
                                                             <select class="input-select" name="month" id="month">
                                                                 <option hidden="" disabled="" selected value="">
                                                                     <?php
-                                                                                                                    if (isset($date)) {
-                                                                                                                        echo 'Tháng ' . $date[1];
-                                                                                                                    } ?>
+                                                                    if (isset($date)) {
+                                                                        echo 'Tháng ' . $date[1];
+                                                                    } ?>
                                                                 </option>
                                                                 @for ($i = 1; $i <= 12; $i++)
                                                                     {{-- <option value="{{$i}}" name="" id="">Tháng
@@ -336,6 +336,7 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
 // $('#upload-image').click(function(e) {
 //             $('#upload').click(function(e) e.preventDefault();
 //                     //    let formData = new FormData(this);
@@ -357,5 +358,5 @@ $.ajaxSetup({
 //                             $('#image-input-error').text(response.responseJSON.errors.file);
 //                         }
 //                     });
-// 
+//
 </script>

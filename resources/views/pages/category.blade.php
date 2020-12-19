@@ -333,7 +333,7 @@
                                     </div> -->
 
                                     {{ $products->appends(request()->input())->links()}}
-                                    {{ $products->links()}}
+                                    <!-- {{ $products->links()}} -->
 
                                 </div>
                             </div>
