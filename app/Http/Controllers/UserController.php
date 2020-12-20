@@ -6,6 +6,7 @@ use App\Models\PostHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
+use App\Models\News;
 use Toastr;
 use App;
 use Auth;
@@ -16,6 +17,8 @@ use App\Models\Category;
 use Illuminate\Auth\EloquentUserProvider;
 use Hash;
 use DateTime;
+use Illuminate\Support\Facades\Redirect;
+
 class UserController extends Controller
 {
     /**
@@ -27,7 +30,8 @@ class UserController extends Controller
     {
         //get list all user
         // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
-        $users =User::where('user_type',0)->paginate(7);
+        $users =$users = User::where('user_type','0')->paginate(7);
+
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }
 
@@ -64,9 +68,7 @@ class UserController extends Controller
             if($profile) {
                 $profile = $profile->first();
                 $posts = PostHistory::where('user_id',$profile->id)
-                ->join('product', 'product.id', '=', 'product_id')
-
-                    ->get();
+                ->join('product', 'product.id', '=', 'product_id')->get();
 
                 return view('pages.hoso')->with(
                     [
@@ -83,11 +85,11 @@ class UserController extends Controller
     public function profileUser(){
         $id = auth()->user()->id;
         $profile = DB::table('user')->find($id);
-       //history post trong trang admin
+
         $posts = PostHistory::where('user_id',$profile->id)
         ->join('product', 'product.id', '=', 'product_id')
-
         ->get();
+
         // dd($posts);
         return view('/pages/user/profile')->with(
         [
@@ -218,16 +220,14 @@ class UserController extends Controller
         ->get();
         return  view('/pages/user/article-expire',compact('cate','product_expire'));
     }
-    // user admin
+    // user trong admin
     public function getprofileDetail($id){
         $profile = DB::table('user')->find($id);
-       //history post trong trang admin
-        $posts = PostHistory::where('user_id',$profile->id)
-        ->join('product', 'product.id', '=', 'product_id')
+    //    $profile = $profile->first();
+       $posts = PostHistory::where('user_id',$profile->id)
+       ->join('product', 'product.id', '=', 'product_id')->get();
 
-        ->get();
-        // dd($posts);
-        return view('admin/nguoidung/profile')->with(
+       return view('admin/nguoidung/profile')->with(
         [
             'profile'=>$profile,
             'posts'=>$posts
@@ -356,14 +356,19 @@ class UserController extends Controller
             return response()->json('Image uploaded successfully');
 
     }
-    public function destroy($id)
+    public function getBaiVietByID($id)
     {
-        //xoá tài khoản
+        // $posts = new News();
+        // get thông tin bài viết
+        // get thông tin bài viết từ admin (user_type =1 );
+
+        $posts_get = News::where('Id_user',$id)->get();
+        dd($posts_get);
         $user = User::find($id);
         $user->delete();
-        // // return redirect()->back();
-        // return redirect('/admin/index/profiles');
     }
+
+
     // khoá- mở khoá
     public function ChangeUserStatus(Request $request){
         $user = User::find($request->id);
@@ -373,11 +378,18 @@ class UserController extends Controller
 
 
     }
-
-
-
-
-
-
+    public function destroy(Request $request, $id){
+        $number = (News::where('Id_user',$id)->count());
+        if($number > 0 ){
+            return json_decode($number);
+            // return response()->json(['error'=>'False']);
+        }
+        else{
+        //     // nếu không còn tin thì sẽ xoá thành công
+           $user_delete = User::find($id);
+              $user_delete->delete();
+              return json_decode($number);
+         }
     }
+  }
 

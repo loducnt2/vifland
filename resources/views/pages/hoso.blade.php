@@ -125,9 +125,11 @@ $("#form-profile :input").prop("disabled", true);
                                                         @endif
                                                     </div>
                                                     @if(Auth::check() && Auth::user()->email_verified_at =="")
-                                                    <span class="badge badge-dark" style="margin-left:5px">Chưa kích hoạt </a></span>
-                                                     @else <span class="badge badge-primary" style="margin-left:5px"> Đã kích hoạt</span>
-                                                     @endif
+                                                    <span class="badge badge-dark" style="margin-left:5px">Chưa kích
+                                                        hoạt </a></span>
+                                                    @else <span class="badge badge-primary" style="margin-left:5px"> Đã
+                                                        kích hoạt</span>
+                                                    @endif
                                                 </div>
 
                                             </div>
@@ -196,9 +198,9 @@ $("#form-profile :input").prop("disabled", true);
                                                             <select class="input-select" name="month" id="month">
                                                                 <option hidden="" disabled="" selected value="">
                                                                     <?php
-                                                                                                                    if (isset($date)) {
-                                                                                                                        echo 'Tháng ' . $date[1];
-                                                                                                                    } ?>
+                                                                    if (isset($date)) {
+                                                                        echo 'Tháng ' . $date[1];
+                                                                    } ?>
                                                                 </option>
                                                                 @for ($i = 1; $i <= 12; $i++)
                                                                     {{-- <option value="{{$i}}" name="" id="">Tháng
@@ -280,7 +282,7 @@ $("#form-profile :input").prop("disabled", true);
                                                     <input type="text" placeholder="Nhập mật khẩu hiện tại" value=""
                                                         name="password">
                                                     <p class="notemk">Vì lý do an ninh, bạn phải xác minh mật khẩu hiện
-                                                        tại trước khi đặt mật khẩu mới.</p>
+                                                        tại trước khi đặt mật khẩu mới</p>
                                                 </div>
                                             </div>
                                             <div class="row form-wrap thongtinform">
@@ -348,6 +350,7 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+
 // $('#upload-image').click(function(e) {
 //             $('#upload').click(function(e) e.preventDefault();
 //                     //    let formData = new FormData(this);
