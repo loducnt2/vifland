@@ -105,7 +105,17 @@
                             @foreach ($products as $item)
                             <li style="list-style-type: none; padding-bottom: 15px; margin:0">
                                 <div style="flex-basis: 70%;" class="remove-flex-basis-mobile" id="img">
-                                    <img src="{{ $message->embed(public_path() . '/assets/product/detail/'.$item->thumbnail) }}"
+                                    @if(!empty($item->thumbnail))
+                                        {{-- nếu ảnh = null --}}
+                                        <?php $thumbnail = $item->thumbnail ?>
+                                    @else
+                                        <?php
+                                        //  <?php
+                                        $thumbnail = "default.jpg";
+                                        ?>
+
+                                    @endif
+                                    <img src="{{ $message->embed(public_path() . '/assets/product/detail/'.$thumbnail) }}"
                                         alt=""
                                         style="display:block;max-width:100%;width:100%;object-fit:cover;height:100%">
                                 </div>
@@ -115,7 +125,7 @@
                                     <h4 style="font-size: 16px;font-weight:bold; margin:10px 0px;" class="list-header">
                                         {{$item->title}}</h4>
 
-                                    <a href="google.com"
+                                    <a href="vifland.com/article/{{$item->slug}}"
                                         style="text-decoration: none; text-transform: capitalize; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 8px 15px; background:#124480; color: #FFFFFF; border-radius: 5px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Xem
                                         thêm
                                     </a>
