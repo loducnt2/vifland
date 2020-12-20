@@ -81,7 +81,7 @@ class RegisterController extends Controller
                 'user_type' => '0',
                 'email'     => $email,
                 'status'    => '1',
-                'card_id'   => $data->card_id,
+                'full_name'   => $data->full_name,
                 'img'       => 'user.png',
             ]);
             $user->save();
@@ -94,7 +94,7 @@ class RegisterController extends Controller
                 'user_type' => '0',
                 'email'     => $email,
                 'status'    => '1',
-                'card_id'   => $data->card_id,
+                'full_name'   => $data->full_name,
                 'img'       => 'user.png',
             ]);
             $user->save();
