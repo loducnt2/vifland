@@ -75,7 +75,7 @@ Quản lý tin tức > Danh mục tin tức
         @foreach ($news_cate as $item)
         <tr>
             <td>{{$item->id}}</td>
-            <td>{{$item->slug}}</td>
+            <td><a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->slug}}</a></td>
             <td>{{$item->category_name}}</td>
             <td>{{$item->status}}</td>
             <td>

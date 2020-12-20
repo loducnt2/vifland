@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\NewsLetterController;
 use App\Http\Controllers\ProductController;
@@ -19,11 +18,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-
-
     Auth::routes();
     Auth::routes(['verify' => true]);
-
     Route::get('/logout', 'Auth\LoginController@logout'); // Đăng xuất
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('home', 'HomeController@index');                                // Trang chủ
@@ -40,23 +36,19 @@ use Illuminate\Support\Facades\Auth;
     Route::get('/get-content-province/{id}', 'API\GetZone@contentProvince');
     Route::get('/get-ward/{id}', 'API\GetZone@getWardByDistrict');
 
-
     Route::get('/mua-ban-nha-dat', 'SearchController@getByCate')->name('cate1'); // Danh mục 1
     Route::get('/cho-thue-nha-dat', 'SearchController@getByCate')->name('cate2'); // Danh mục 2
     Route::get('/sang-nhuong-nha-dat', 'SearchController@getByCate')->name('cate3'); // Danh mục 3
     Route::get('/search/', 'SearchController@index')->name('search');                // Tìm kiếm, lọc tin
     Route::get('/searchmobi', 'SearchController@searchMobile')->name('searchmob');   // Tìm kiếm giao diện mobile
     //Route::get('/search/filter/','SearchController@filter')->name('filter');
-
     Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
     Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
-
 
     Route::get('/favourites', 'ProductController@productUserFavorite')->name('favorites');      // Yêu thích
     Route::get('/history', 'ProductController@productUserHistory')->name('history');
 Route::post('/contact/create','ContactController@store')->name('up-contact');
  //User
-
 //  auth = aka đăng nhập để xem
     Route::middleware(['auth'])->group(function(){
     Route::get('/user/profile', 'UserController@profileUser')->name('profile');          // thông tin user của người login1
@@ -64,24 +56,20 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::get('/user/password', 'UserController@formpassword')->name('change-password');          // Thay đổi mật khẩu
     Route::get('/user/add-money', 'UserController@formaddmoney')->name('add-money');               //
     Route::get('/user/payment-history', 'UserController@paymentHistory')->name('payment-history'); // Lịch sử nạp tiền user
-
 });
     Route::middleware(['verified'])->group(function (){
     // route nào cần xác minh tài khoản thì mấy bố vui lòng bỏ hết vào đây
     Route::post('/user/create-payment', 'PaymentController@create')->name('create-payment'); // Nạp tiền
     Route::get('/user/return-payment', 'PaymentController@return')->name('return-payment');  // Trả về kết quả nạp tiền
-
     // Đăng tin
     Route::get('/user/my-article/{id}', 'ProductController@getByUser')->name('user-article');  // Quản lý tin của user
         // Lịch sử xem tin
-
     //Profile
     //Update profile
     Route::post('/user/update/{id}', 'UserController@update')->name('user-update');   // cập nhật thông tin user
     Route::post('/user/changepass/{id}', 'UserController@changePassword')->name('user-changePassword');  // Thay đổi mật khẩu
     //Change password
     Route::get('/article/new/{cate}', 'ProductController@create')->name('new');         // Form Đăng tin
-
     Route::get('/article/delete/{id}', 'ProductController@destroy')->name('delete-article');       // Xóa tin đăng
     Route::get('/article/edit/{id}', 'ProductController@edit')->name('edit-article');              // Form chỉnh sửa
     Route::get('/article/add-date/{id}', 'ProductController@addDateForm')->name('add-date-form');  // Form Gia hạn tin
@@ -91,24 +79,18 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::get('/user/article-expire', 'UserController@articlexpire')->name('article-expire');     // Danh sách tin hết hạn
     Route::post('/article/new/store', 'ProductController@store')->name('article-store');           // User Đăng tin
     Route::post('/article/update/{id}', 'ProductController@update')->name('update-article');       // User chỉnh sửa tin đã đăng
-
     });
     Route::group(['middleware' => ['auth', 'admin.auth']], function() {
 
-
     //Nạp tiền
-
     //danh sách admin
     Route::get('/admin/admin-list', 'UserController@admin_list')->name('admin-list');      // Danh sách Admin
     Route::get('/admin/add-admin/{id}', 'UserController@addAdmin')->name('add-admin');     // Thêm quyền admin
     Route::get('/admin/destroy-admin/{id}', 'UserController@destroyAdmin')->name('destroy-admin');  // Hủy quyền admin
-
     //  admin
-
 
     Route::get('admin/index', 'AdminController@index')->middleware('admin.auth')->name('admin-dashboard'); // Trang chủ quản trị, thống kê
     //Route::get('/admin/dashboard','AdminController@dashboard')->name('dashboard');
-
 
     //Wallet
     Route::get('admin/wallet', 'WalletController@index')->name('wallet');                              // Nạp tiền thủ công
@@ -116,13 +98,11 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::post('admin/wallet/add', 'WalletController@addWallet')->name('add-wallet');                 // Thêm tiền user
     Route::post('admin/wallet/sub', 'WalletController@subWallet')->name('sub-wallet');                 // Trừ tiiền user
 
-
     Route::post('/admin/danh-sach-danh-muc/create', 'CategoryController@store')->name('create-cate');        // Form tạo danh sách danh mục
     Route::post('/admin/danh-sach-danh-muc/update/{id}', 'CategoryController@update')->name('update-cate');  // Cập nhật danh mục
     Route::get('/admin/danh-sach-danh-muc/delete/{id}', 'CategoryController@destroy')->name('delete-cate');  // Xóa danh mục
     Route::get('/admin/danh-sach-danh-muc/edit/{id}', 'CategoryController@edit')->name('edit-cate');         // Form chỉnh sửa danh mục
     Route::get('/admin/danh-sach-danh-muc', 'CategoryController@index');                                     //
-
     Route::get('/admin/danh-sach-tin-tuc/delete/{id}', 'NewsController@destroy')->name('delete-new');
     Route::get('/admin/danh-sach-tin-tuc/edit/{id}', 'NewsController@edit')->name('edit-new');
     Route::get('/admin/danh-sach-tin-tuc', 'NewsController@index')->name('newscate-index');
@@ -130,16 +110,13 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::post('/admin/danh-sach-province/update/{id}', 'ProvinceController@update')->name('update-province');
     Route::get('/admin/danh-sach-province/edit/{id}', 'ProvinceController@edit')->name('edit-province');
     Route::get('/admin/danh-sach-province', 'ProvinceController@index');
-
     //duyet tin
-
     Route::get('/admin/danh-sach-duyet-tin', 'HistoryPostController@index');
     //Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
     Route::get('/admin/danh-sach-duyet-tin/show/{id}', 'HistoryPostController@show')->name('show-tintuc');
     Route::get('/admin/danh-sach-duyet-tin/cancel/{id}', 'HistoryPostController@cancelPost')->name('cancel-post');
     Route::get('/admin/danh-sach-duyet-tin/delete/{id}', 'HistoryPostController@destroy')->name('del-post');
     Route::get('/admin/post-history/update/dsds/{id}', 'HistoryPostController@updatePost')->name('update-post');
-
 
     //Banner
     Route::post('/admin/danh-sach-banner/create', 'ImgController@store')->name('create-banner');
@@ -153,7 +130,6 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::post('/admin/danh-sach-thong-bao/create', 'NotificationController@store')->name('create-noti');
     Route::get('/admin/danh-sach-thong-bao/delete/{id}', 'NotificationController@destroy')->name('del-noti');
     Route::get('/admin/danh-sach-thong-bao', 'NotificationController@index');
-
     //Quản lí giá vip
     Route::post('admin/danh-sach-gia-vip/update/{id}', 'PriceTypePostController@update')->name('update-price');
     Route::get('/admin/danh-sach-gia-vip/edit/{id}', 'PriceTypePostController@edit')->name('edit-price');
@@ -162,9 +138,7 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::get('/admin/danh-sach-gia-vip', 'PriceTypePostController@index');
     // Quản lý tin đăng
 
-
     // ================= hồ sơ ==================
-
     // update thông tin hồ sơ cá nhân
     // Route admin - user
     Route::get('admin/index/profiles', 'UserController@index');
@@ -180,8 +154,7 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     // Tin tức theo danh mục
     Route::get('/tin-tuc/danh-muc/{slug}', 'NewsController@getNewsbyCate');
     // xoa nguoi dung
-    Route::get('/admin/index/profile/delete/{id}', 'UserController@destroy');
-
+    // Route::get('/admin/index/profile/delete/{id}', 'UserController@destroy');
     Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
     Route::POST('/admin/index/news/insert', 'NewsController@store'); // thêm tin tức
     Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
@@ -217,17 +190,13 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::get('/admin/danh-sach-province/edit/{id}', 'ProvinceController@edit')->name('edit-province');
     Route::get('/admin/danh-sach-province', 'ProvinceController@index');
 
-
-
     //duyet tin
-
     Route::get('/admin/danh-sach-duyet-tin', 'HistoryPostController@index');
     //Route::post('/admin/danh-sach-duyet-tin/update/{id}','HistoryPostController@update')->name('duyet-new');
     Route::get('/admin/danh-sach-duyet-tin/show/{id}', 'HistoryPostController@show')->name('show-tintuc');
     Route::get('/admin/danh-sach-duyet-tin/cancel/{id}', 'HistoryPostController@cancelPost')->name('cancel-post');
     Route::GET('/admin/danh-sach-duyet-tin/delete/{id}', 'HistoryPostController@destroy')->name('del-post');
     Route::get('/admin/post-history/update/dsds/{id}', 'HistoryPostController@updatePost')->name('update-post');
-
     //Banner
     Route::post('/admin/danh-sach-banner/create', 'ImgController@store')->name('create-banner');
     Route::post('/admin/danh-sach-banner/update/{id}', 'ImgController@update')->name('update-banner');
@@ -240,14 +209,12 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::post('/admin/danh-sach-thong-bao/create', 'NotificationController@store')->name('create-noti');
     Route::get('/admin/danh-sach-thong-bao/delete/{id}', 'NotificationController@destroy')->name('del-noti');
     Route::get('/admin/danh-sach-thong-bao', 'NotificationController@index');
-
     //Quản lí giá vip
     Route::post('admin/danh-sach-gia-vip/update/{id}', 'PriceTypePostController@update')->name('update-price');
     Route::get('/admin/danh-sach-gia-vip/edit/{id}', 'PriceTypePostController@edit')->name('edit-price');
     // Route::post('/admin/danh-sach-thong-bao/create','NotificationController@store')->name('create-noti');
     Route::get('/admin/danh-sach-gia-vip/delete/{id}', 'PriceTypePostController@destroy')->name('del-price');
     Route::get('/admin/danh-sach-gia-vip', 'PriceTypePostController@index');
-
     //Quản lí contact
     Route::get('/admin/danh-sach-contact', 'ContactController@index');
     Route::get('admin/index/profiles', 'UserController@index');
@@ -258,7 +225,6 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     });
     Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
     Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
-
     Route::get('/admin/danh-sach-tin-tuc/changestatus', 'NewsController@ChangeNewsStatus');
     // ẩn hiện tin tức
     Route::POST('/admin/index/news/insert', 'NewsController@store');
@@ -266,6 +232,7 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     // Route quản lí tin đã đăng của user
     // Route::get('/my-article/{id}','UserControllers@getPostbyID');
     // User: thay đổi trạng thái user
+    Route::get('/admin/quan-ly-danh-muc/postbyiduser/{id}','UserController@getBaiVietByID');
     Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
     Route::get('/admin/index/quan-ly-thu-tin-tuc/products/{id}/{idcity}','ProductController@Productbyprovince');
     Route::delete('/admin/index/quan-ly-thu-tin-tuc/unsub/{email}', 'NewsLetterController@unsubscribe');
@@ -273,7 +240,6 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     });
 // Đăng kí
     Route::post('/create-user', 'Auth\RegisterController@create')->name('createUser');
-
     Route::get('/new-detail', function () {
         return view('pages/new-detail');
     });

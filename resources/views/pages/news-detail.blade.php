@@ -81,8 +81,12 @@ div#u_0_0 {
                             font-size:12px;">{{$item->title}}</li></a>
                         @endif
                          @endforeach
-                        <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}} <span
-                                    class="badge badge-primary">Quản trị viên</span></h6></a></p>
+                        <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}}
+                        @if($id_nguoidang->user_type==1)
+                        <span class="badge badge-primary">Quản trị viên</span></h6></a></p>
+                        @else
+                        {{-- <span class="badge badge-primary">Quản trị viên</span></h6></a></p> --}}
+                        @endif
                         <div class="content">
                             {!!$news->content!!}
                         </div>
