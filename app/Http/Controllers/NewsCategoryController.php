@@ -137,4 +137,11 @@ class NewsCategoryController extends Controller
               return json_decode($number);
 
          }
+        }
+        public function ChangeNewsCategoryStatus(Request $request){
+            $user = NewsCategory::find($request->id);
+            $user->status = $request->status;
+            $user->save();
+
         }}
+

@@ -22,7 +22,16 @@ Quản lý tin tức > Danh mục tin tức
     font-size: 13px;
     font-weight: bold;
 }
-
+.disabled{
+        background-color: #F1F1F1 !important;
+        color:gray;
+        font-size:14px;
+    }
+    .enabled{
+        background-color: #ffffff !important;
+        color:black;
+        font-size:14px;
+    }
 .form-group-flex {
     display: flex;
     align-items: center;
@@ -69,21 +78,37 @@ Quản lý tin tức > Danh mục tin tức
             <th>Tên danh mục</th>
             <th>Tình trạng</th>
             <th>Thực thi</th>
+            <th></th>
+
         </tr>
     </thead>
-    <tbody id="myTable">
+    <tbody id="myTable" >
         @foreach ($news_cate as $item)
-        <tr>
+        @if ($item->status == '1')
+                   <?php $class="enabled" ?>
+                @else
+                    <?php $class="disabled"?>
+                @endif
+        <tr class="{{$class}} " id="newscategory-{{$item->id}}">
             <td>{{$item->id}}</td>
             <td><a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->slug}}</a></td>
             <td>{{$item->category_name}}</td>
-            <td>{{$item->status}}</td>
+           <td> <p id="status-{{$item->id}}">
+                @if ($item->status == '1')
+                   Hiện
+                @else
+                    Ẩn
+                @endif
+                </p>
+            </td>
             <td>
-                <a href="" data-id="{{ $item->id }}" data-category_name="{{$item->category_name}}" class="btn btn-danger btn-delete">Xoá</a>
-                <a href="" data-id="{{$item->id}}" data-category_name="{{$item->category_name}}" class="btn btn-danger btn-edit">Sửa</a>
+                <input data-id="{{$item->id}}"  class="danhmuc" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Hiện" data-off="Ẩn" {{ $item->status ? 'checked' : '' }}>
 
             </td>
-            </td>
+            <td>
+                <a href="" data-id="{{ $item->id }}" data-category_name="{{$item->category_name}}" class="btn btn-danger btn-delete">Xoá</a>
+                    <a href="" data-id="{{$item->id}}" data-category_name="{{$item->category_name}}" class="btn btn-danger btn-edit">Sửa</a>
+
         </tr>
         @endforeach
 

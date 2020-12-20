@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         //get list all user
         // DB::insert('insert into users (id, name) values (?, ?)', [1, 'Dayle'])
-        $users =$users = User::where('email_verified_at', '!=', "")->where('user_type','==','1')->paginate(7);
+        $users =$users = User::where('user_type','0')->paginate(7);
 
         return view('admin/nguoidung/quanlynguoidung',compact('users'));
     }

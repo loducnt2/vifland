@@ -226,6 +226,7 @@ Route::post('/contact/create','ContactController@store')->name('up-contact');
     Route::get('/admin/changestatus', 'UserController@ChangeUserStatus');
     Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
     Route::get('/admin/danh-sach-tin-tuc/changestatus', 'NewsController@ChangeNewsStatus');
+    Route::get('/admin/danh-muc-tin-tuc/changestatus', 'NewsCategoryController@ChangeNewsCategoryStatus');
     // ẩn hiện tin tức
     Route::POST('/admin/index/news/insert', 'NewsController@store');
     Route::get('admin/index/profile/delete/{id}', 'UserController@destroy');
