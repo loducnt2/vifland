@@ -43,7 +43,7 @@ class FavoriteController extends Controller
                 ->select('product.id')
                 ->get();
         } else {
-            $favorite = "chưa có đăng nhập";
+            $favorite = "Chưa có đăng nhập";
         }
         return $favorite;
     }
