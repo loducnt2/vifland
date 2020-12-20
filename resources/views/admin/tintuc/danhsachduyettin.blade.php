@@ -9,7 +9,12 @@ Quản lý tin đăng > Duyệt tin
 @section('content')
 
 <div class="container-fluid box-n-big">
-
+    <style>
+    .swal2-warning {
+        border-color: #e83535 !important;
+        color: #e83535 !important;
+    }
+    </style>
     <h2>Danh sách tin duyệt</h2>
 
     <!-- table -->
@@ -128,19 +133,14 @@ Quản lý tin đăng > Duyệt tin
                     <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn button-color">
                             Chi tiết </button></a>
                     @if($new->status == 1)
-                    <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger btn-xoa-tinduyet" data-id="{{$new->product_id}}"> Xóa </button></a>
+                    <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger btn-xoa-tinduyet"
+                            data-id="{{$new->product_id}}"> Xóa </button></a>
                     @else
                     <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt </button>
                     </a>
                     <a href="{{route('cancel-post',$new->product_id)}}"><button class="btn btn-danger"> Hủy
                         </button></a>
                     @endif
-
-
-
-
-
-
 
 
 
@@ -167,8 +167,6 @@ Quản lý tin đăng > Duyệt tin
 <script>
 $(document).ready(function() {
 
-
-
     $("#myInput").on("keyup", function() {
 
         var value = $(this).val().toLowerCase();
@@ -192,8 +190,6 @@ $(document).ready(function() {
         });
 
     });
-
-
 
     $("#type").on("change", function() {
 

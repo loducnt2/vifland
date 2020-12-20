@@ -560,7 +560,7 @@ $('#myTable').on("click", ".btn-unsub", function(e) {
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
-        cancelButtonText:"Huỷ",
+        cancelButtonText: "Huỷ",
         confirmButtonText: 'Huỷ đăng kí'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -583,7 +583,7 @@ $('#myTable').on("click", ".btn_news-delete", function(e) {
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
-        cancelButtonText:"Huỷ",
+        cancelButtonText: "Huỷ",
         confirmButtonText: 'Xoá bài'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -633,7 +633,7 @@ $('#myTable').on("click", ".btn-delete", function(e) {
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
-        cancelButtonText:"Huỷ",
+        cancelButtonText: "Huỷ",
         confirmButtonText: 'Xoá danh mục'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -731,7 +731,7 @@ $('#userTable').on("click", ".btn-user-delete", function(e) {
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
-        cancelButtonText:"Huỷ",
+        cancelButtonText: "Huỷ",
         confirmButtonText: 'Xoá người dùng'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -760,9 +760,9 @@ function deleteDuyettin(id, $ele) {
         success: function(response) {
             // success
 
-        $ele.fadeOut().remove();
-        toastr.success('Xoá tin duyệt thành công', 'Thông báo');
-         },
+            $ele.fadeOut().remove();
+            toastr.success('Xoá tin duyệt thành công', 'Thông báo');
+        },
         error: function(error) {
             console.log(error);
             // error.preventDefault();
@@ -875,10 +875,10 @@ $("#myTable").on('click', '.btn-xoa-tinduyet', function(e) {
         text: "Bạn chắc chắn muốn xoá tin số  " + id + "?",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#124480',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Xoá!',
-        cancelButtonText:'Huỷ'
+        cancelButtonText: 'Huỷ'
     }).then((result) => {
         if (result.isConfirmed) {
             deleteDuyettin(id, $ele);
