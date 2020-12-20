@@ -151,10 +151,10 @@
                         //Chưa đăng nhập
                         console.log(data)
                         if (data == 0) {
-                            /*$("#dangnhapModal").modal("show");
+                            $("#dangnhapModal").modal("show");
                             $('.fav').addClass("ri-heart-line");
                             $('.fav').removeClass("ri-heart-fill");
-                            $('.fav').removeClass("active")*/
+                            $('.fav').removeClass("active")
                         }
                         if (data == 1) {
                             //Thích sản phẩm,
