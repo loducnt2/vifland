@@ -88,17 +88,23 @@ Quản lý tin đăng > Duyệt tin
 
             <tr>
 
-                <th>Mã bài đăng</th>
+                <<<<<<< HEAD <th>Mã post</th>
+                    =======
+                    <th>Mã bài đăng</th>
+                    >>>>>>> 49fa6c0a12893552e20e7999348819f4973e4b2f
 
-                <th>Mã tin</th>
+                    <th>Mã tin</th>
 
-                <th>Tiêu đề</th>
+                    <th>Tiêu đề</th>
 
-                <th>Loại tin</th>
+                    <th>Loại tin</th>
 
-                <th>trạng thái</th>
+                    <<<<<<< HEAD <th>Trạng thái</th>
+                        =======
+                        <th>trạng thái</th>
+                        >>>>>>> 49fa6c0a12893552e20e7999348819f4973e4b2f
 
-                <th>Hành động</th>
+                        <th>Hành động</th>
 
             </tr>
 
@@ -138,43 +144,44 @@ Quản lý tin đăng > Duyệt tin
 
 
 
-                <td id="valueStatus" style="width:15%"> <button
+                <<<<<<< HEAD <td id="valueStatus" style="width:15%"> <button class="btn {{$new->status == 1 ? 'btn-success':'btn-warning'}}">{{$new->status == 1 ? 'Đã duyệt':'Chờ duyệt'}}</button>
+                    =======
+                    <td id="valueStatus" style="width:15%"> <button class="btn {{$new->status == 1 ? 'btn-success':'btn-warning'}}">{{$new->status == 1 ? 'Đã duyệt':'Chờ duyệt'}}</button>
+                        >>>>>>> 49fa6c0a12893552e20e7999348819f4973e4b2f
 
-                        class="btn {{$new->status == 1 ? 'btn-success':'btn-warning'}}">{{$new->status == 1 ? 'Đã duyệt':'Chờ duyệt'}}</button>
+                    </td>
 
-                </td>
+                    <td style="width:30%">
 
-                <td style="width:30%">
+                        <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn button-color">
 
-                    <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn button-color">
+                                <<<<<<< HEAD Chi tiết tin</button> </a>=======Chi tiết </button> </a>>>>>>>> 49fa6c0a12893552e20e7999348819f4973e4b2f @if($new->status == 1)
 
-                            Chi tiết </button></a>
+                                    <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger"> Xóa
+                                        </button></a>
 
-                    @if($new->status == 1)
+                                    @else
 
-                    <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger"> Xóa </button></a>
+                                    <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt
+                                        </button>
 
-                    @else
+                                    </a>
 
-                    <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt </button>
+                                    <a href="{{route('cancel-post',$new->product_id)}}"><button class="btn btn-danger"> Hủy
 
-                    </a>
+                                        </button></a>
 
-                    <a href="{{route('cancel-post',$new->product_id)}}"><button class="btn btn-danger"> Hủy
-
-                        </button></a>
-
-                    @endif
-
-
-
+                                    @endif
 
 
 
 
 
 
-                </td>
+
+
+
+                    </td>
 
             </tr>
 
@@ -186,7 +193,7 @@ Quản lý tin đăng > Duyệt tin
 
     </table>
 
- 
+    <<<<<<< HEAD {{ $news->links() }}=======>>>>>>> 49fa6c0a12893552e20e7999348819f4973e4b2f
 
 
 
@@ -195,69 +202,138 @@ Quản lý tin đăng > Duyệt tin
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-
-$(document).ready(function() {
-
-
-
-    $("#myInput").on("keyup", function() {
-
-        var value = $(this).val().toLowerCase();
-
-        $("#myTable tr").filter(function() {
-
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-
-        });
-
-    });
-
-    $("#status").on("change", function() {
-
-        var value = $(this).val().toLowerCase();
-
-        $("#myTable tr td[id='valueStatus']").filter(function() {
-
-            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
-
-        });
-
-    });
+    << << << < HEAD
+    $(document).ready(function() {
 
 
 
-    $("#type").on("change", function() {
+                $("#myInput").on("keyup", function() {
 
-        var value = $(this).val().toLowerCase();
+                    var value = $(this).val().toLowerCase();
 
-        $("#myTable tr td[id='productType']").filter(function() {
+                    $("#myTable tr").filter(function() {
 
-            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 
-        });
+                    });
 
-    });
+                });
+
+                $("#status").on("change", function() {
+
+                    var value = $(this).val().toLowerCase();
+
+                    $("#myTable tr td[id='valueStatus']").filter(function() {
+
+                        $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+                    });
+
+                });
+
+
+
+                $("#type").on("change", function() {
+
+                    var value = $(this).val().toLowerCase();
+
+                    $("#myTable tr td[id='productType']").filter(function() {
+
+                        $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+                    });
+
+                });
+
+                ===
+                ===
+                =
+
+                $(document).ready(function() {
+
+
+
+                    $("#myInput").on("keyup", function() {
+
+                        var value = $(this).val().toLowerCase();
+
+                        $("#myTable tr").filter(function() {
+
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+
+                        });
+
+                    });
+
+                    $("#status").on("change", function() {
+
+                        var value = $(this).val().toLowerCase();
+
+                        $("#myTable tr td[id='valueStatus']").filter(function() {
+
+                            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -
+                                1)
+
+                        });
+
+                    });
+
+
+
+                    $("#type").on("change", function() {
+
+                        var value = $(this).val().toLowerCase();
+
+                        $("#myTable tr td[id='productType']").filter(function() {
+
+                            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -
+                                1)
+
+                        });
+
+                    }); >>>
+                    >>>
+                    >
+                    49 fa6c0a12893552e20e7999348819f4973e4b2f
 
 
 
 
-
-});
-
+                        <<
+                        <<
+                        <<
+                        <
+                        HEAD
+                });
 </script>
 
 <style>
+    th,
 
-th,
+    tr {
 
-tr {
+        margin: 0 auto;
 
-    margin: 0 auto;
+        text-align: center;
 
-    text-align: center;
+    }
 
-}
+    =======
+    }
 
+    );
+
+    </script><style>th,
+
+    tr {
+
+        margin: 0 auto;
+
+        text-align: center;
+
+    }
+
+    >>>>>>>49fa6c0a12893552e20e7999348819f4973e4b2f
 </style>
 
 @endsection

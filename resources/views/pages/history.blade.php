@@ -58,6 +58,7 @@
                                             <i class="ri-equalizer-line icons comp"
                                                 productid="{{$product->product_id}}"></i>
                                         </div>
+                                        <div class="overlay"></div>
                                     </div>
                                     <div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
                                             <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
@@ -140,7 +141,7 @@
                             <div class="box-sp-text"> <a href="{{route('article-detail',$product->slug)}}">
                                     <h5 class="title-text lcl lcl-2">{{$product->title}}</h5>
                                 </a>
-                                
+
                                 <div class="location"> <span class="material-icons">location_on</span>
                                     <p class="lcl lcl-1" data-toggle="tooltip" data-placement="bottom"
                                         title="{{$product->district}}, {{$product->province}}">{{$product->district}},

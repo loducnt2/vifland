@@ -4,8 +4,11 @@
 <!-- Thêm styles cho trang này ở đây-->
 @stop
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<style>
+    label.error {
+        position: static !important;
+    }
+</style>
 <main>
     <section class="banner-top">
         <div class="img"> </div>
@@ -20,7 +23,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item"><a href="{{route('cate1')}}">
-                        <p>Liên hệ</p>
+                        <p>Liên hệ 123</p>
                     </a></li>
             </ol>
         </div>
@@ -82,6 +85,11 @@
                                         <button class="btn btn-submit" type="submit">Gửi</button>
                                     </div>
                                 </form>
+                                <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.js
+"></script>
+                                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+                                </script>
                                 <script>
                                     $(document).ready(function() {
                                         // $("#form-contact1").hide();
@@ -126,18 +134,18 @@
                                                 "phone": {
                                                     required: "Bắt buộc nhập số điện thoại",
                                                     number: "Vui lòng nhập đúng số điện thoại",
-                                                    minlength:"Vui lòng nhập đúng số điện thoại",
+                                                    minlength: "Vui lòng nhập đúng số điện thoại",
                                                 },
                                                 "address": {
                                                     required: "Bắt buộc nhập địa chỉ",
                                                 },
                                                 "title": {
                                                     required: "Bắt buộc nhập tiêu đề",
-                                                   
+
                                                 },
                                                 "content": {
                                                     required: "Bắt buộc nhập nội dung",
-                                                   
+
                                                 },
 
 
@@ -145,6 +153,8 @@
                                         });
                                     })
                                 </script>
+
+
                             </div>
                         </div>
                     </div>

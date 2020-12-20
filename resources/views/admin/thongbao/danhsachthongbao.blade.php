@@ -3,17 +3,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <style>
-   span.error {
-       color:red;
-       font-size:12px;
+span.error {
+    color: red;
+    font-size: 12px;
     /* margin-left: 6px; */
     /* height:17px; */
     /* background: url('http://i45.tinypic.com/f9ifz6.png') no-repeat left center; */
 }
+
 label.error {
     font-weight: bold;
-    color:red;
-    font-size:14px;
+    color: red;
+    font-size: 14px;
 }
 </style>
 <div class="container-fluid box-n-big">
@@ -27,7 +28,7 @@ label.error {
                 <label for="text" class="error4"></label>
 
                 <label for="">Tiêu đề</label>
-                <input type="text" class="form-control" name="name" id="name"  required>
+                <input type="text" class="form-control" name="name" id="name" required>
             </div>
             <div class="form-group">
                 <label for="text" class="error"></label>
@@ -54,9 +55,9 @@ label.error {
                     <option value="en">English</option>
                 </select>
             </div>
-           
+
             <div class="form-group">
-            <button type="submit" class="btn btn-primary">Tạo</button>
+                <button type="submit" class="btn btn-primary">Tạo</button>
             </div>
         </form>
 

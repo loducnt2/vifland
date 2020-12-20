@@ -16,7 +16,11 @@ $("#form-profile :input").prop("disabled", true);
 </div>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="thaydoithongtin" role="tabpanel" aria-labelledby="thaydoithongtin-tab">
-        <form action="{{route('user-update',$profile->id)}}" method="post" enctype="multipart/form-data"
+        <!-- <form id="form1" runat="server">
+            <input type='file' id="upload123" />
+            <img id="blah" src="#" alt="your image" />
+        </form> -->
+        <form action="{{route('user-update',$profile->id)}}" runat="server" method="post" enctype="multipart/form-data"
             id="form-profile">
             @csrf
             <div class="row form-wrap anhdaidien">
@@ -24,9 +28,11 @@ $("#form-profile :input").prop("disabled", true);
                     <p class="text-f">Ảnh đại diện</p>
                 </div>
                 <div class="col-md-12 col-lg-10 form-group hinhdd">
-                    <div class="wrap-img"> <img class="lazyload img" data-src="{{asset('assets/avatar')}}/{{$profile->img}}" alt="" onerror="this.src='{{asset('assets/avatar/')}}/user.png' ">
-                        <label class="wrap-input" for="upload"> <em class="material-icons">add_a_photo</em>
-                            <input id="upload" name="image" type="file" style="display:none">
+                    <div class="wrap-img"> <img class="lazyload img" id="blah"
+                            src="{{asset('assets/avatar')}}/{{$profile->img}}" alt=""
+                            onerror="this.src='{{asset('assets/avatar/')}}/user.png' ">
+                        <label class="wrap-input" for="upload123"> <em class="material-icons">add_a_photo</em>
+                            <input id="upload123" name="image" type="file" style="display:none">
                         </label>
                         <span class="text-danger" id="image-input-error"></span>
                     </div>
@@ -40,9 +46,10 @@ $("#form-profile :input").prop("disabled", true);
                         @endif
                     </div>
                     @if(Auth::check() && Auth::user()->email_verified_at =="")
-                     <span class="badge badge-warning" style="margin-left:5px"><a href="/resend">Kích hoạt tài khoản</a></span>
+                    <span class="badge badge-warning" style="margin-left:5px"><a href="/resend">Kích hoạt tài
+                            khoản</a></span>
                     @else <span class="badge badge-primary" style="margin-left:5px"> Đã kích hoạt</span>
-                     @endif
+                    @endif
                 </div>
             </div>
             <div class="row form-wrap">
@@ -85,7 +92,8 @@ $("#form-profile :input").prop("disabled", true);
 
                 </div>
                 <div class="col-sm-5 form-group">
-                    <input class="calendar" type="datetime" id="borndate" value="{{date('d/m/Y',strtotime($profile->birthday))}}" name="birthday">
+                    <input class="calendar" type="datetime" id="borndate"
+                        value="{{date('d/m/Y',strtotime($profile->birthday))}}" name="birthday">
                 </div>
             </div>
             <div class="row form-wrap thongtinform">
@@ -187,5 +195,22 @@ $("#borndate").datepicker({
 //     }
 
 // });
+</script>
+<script type="text/javascript">
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#blah').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#upload123").change(function() {
+    readURL(this);
+});
 </script>
 @endsection

@@ -36,68 +36,68 @@
             </thead>
 
 
-            </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <label for="">Trạng thái</label>
-                    <select class="form-control" name="" id="status">
-                        <option value=""> ---------</option>
-                        <option value="Đã trả lời"> Đã trả lời</option>
-                        <option value="Chưa trả lời"> Chưa trả lời </option>
-                    </select>
-                </div>
-            </div>
-            <tbody id="myTable">
-            @foreach($contacts as $cot)
-            @if ($cot->status == '1')
-            {{-- đã trả lời --}}
-                    <?php $class = "answered"; ?>
-                    @else
-                    {{-- chưa trả lời --}}
-                    <?php $class = "not-answered"; ?>
-                    @endif
-               <tr class="{{$class}}">
-                <td>{{$test = $cot->id}}</td>
-                <td>{{$cot->name}}</td>
-                <td>{{$cot->email}}</td>
-                <td>{{$cot->address}}</td>
-                <td>{{$cot->phone}}</td>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="">Trạng thái</label>
+            <select class="form-control" name="" id="status">
+                <option value=""> ---------</option>
+                <option value="Đã trả lời"> Đã trả lời</option>
+                <option value="Chưa trả lời"> Chưa trả lời </option>
+            </select>
+        </div>
+    </div>
+    <tbody id="myTable">
+        @foreach($contacts as $cot)
+        @if ($cot->status == '1')
+        {{-- đã trả lời --}}
+        <?php $class = "answered"; ?>
+        @else
+        {{-- chưa trả lời --}}
+        <?php $class = "not-answered"; ?>
+        @endif
+        <tr class="{{$class}}">
+            <td>{{$test = $cot->id}}</td>
+            <td>{{$cot->name}}</td>
+            <td>{{$cot->email}}</td>
+            <td>{{$cot->address}}</td>
+            <td>{{$cot->phone}}</td>
 
-                <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}" data-email="{{$cot->email}}"class="btn btn-primary btn-contact-detail" id="contact-{{$cot->id}}"><i class="ri-window-fill"></i>
+            <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}" data-email="{{$cot->email}}" class="btn btn-primary btn-contact-detail" id="contact-{{$cot->id}}"><i class="ri-window-fill"></i>
                 </a></td>
 
-                <td id="status" > {{$cot->status==0  ?'Chưa trả lời':'Đã trả lời'}}
+            <td id="status"> {{$cot->status==0 ?'Chưa trả lời':'Đã trả lời'}}
 
-                <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}" data-email="{{$cot->email}}"class="btn btn-primary btn-mail-contact" id="contact-{{$cot->id}}" ><i class="ri-mail-open-line"></i>
+            <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}" data-email="{{$cot->email}}" class="btn btn-primary btn-mail-contact" id="contact-{{$cot->id}}"><i class="ri-mail-open-line"></i>
                 </a></td>
-               </tr>
-            @endforeach
-            </tbody>
-        </table>
+        </tr>
+        @endforeach
+    </tbody>
+    </table>
 
 
     <script>
-    $(document).ready(function() {
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
             });
         });
-    });
     </script>
 
 </body>
 @endsection
 </body>
 <div class="email modal  fade" id="send-email-form" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document" id="email" >
+    <div class="modal-dialog modal-lg" role="document" id="email">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Thư phản hồi</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <form action="" method="POST" enctype="multipart/form-data" id="myForm">
@@ -107,78 +107,65 @@
 
                             <input type="text" class="form-control" readonly hidden name="name" id="name" aria-describedby="helpId" placeholder="">
                             <label for="">Tiêu đề thư</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                name="subject"
-                                id="subject"
-                                aria-describedby="helpId"
-                                placeholder="">
+                            <input type="text" class="form-control" name="subject" id="subject" aria-describedby="helpId" placeholder="">
 
                         </div>
-                        <input
-                            type="text"
-                            class="form-control"
-                            readonly=true
-                            name="email"
-                            id="email"
-                            aria-describedby="helpId"
-                            placeholder="">
+                        <input type="text" class="form-control" readonly=true name="email" id="email" aria-describedby="helpId" placeholder="">
                         {{-- người nhận :) --}}
 
-                        </div>
-                        <textarea class="mt-4 form-control " rows="3" name="content_send" id="content" value=""> </textarea>
-                        <br>
                     </div>
+                    <textarea class="mt-4 form-control " rows="3" name="content_send" id="content" value=""> </textarea>
+                    <br>
+            </div>
 
 
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary">Gửi thư</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-            </form>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 </html>
 {{-- Mail Hồi âm --}}
 <div class="modal fade" id="contact-detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form action="" enctype="multipart/form-data" method="POST" id="contact-form">
-            <div class="modal-header">
-                <h5 class="modal-title">Hòm thư góp ý</h5>
+                <div class="modal-header">
+                    <h5 class="modal-title">Hòm thư góp ý</h5>
 
                     {{ csrf_field() }}
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-            </div>
-            <div class="modal-body">
-             <div class="form-group">
-                  <input type="text" class="mt-4 form-control" name="email" id="email" readonly="true" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Email người gửi</small>
                 </div>
-                  <div class="form-group">
-                    <input type="text" class="mt-4 form-control" name="name" id="name" readonly aria-describedby="helpId" placeholder="">
-                    <small id="helpId" class="form-text text-muted">Họ và tên</small>
-                  </div>
-                  <div class="form-group">
-                  <textarea class="mt-4 form-control"rows="4" name="content" readonly></textarea>
-                  <small id="helpId" class="form-text text-muted">Nội dung</small>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="mt-4 form-control" name="email" id="email" readonly="true" placeholder="">
+                        <small id="helpId" class="form-text text-muted">Email người gửi</small>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="mt-4 form-control" name="name" id="name" readonly aria-describedby="helpId" placeholder="">
+                        <small id="helpId" class="form-text text-muted">Họ và tên</small>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="mt-4 form-control" rows="4" name="content" readonly></textarea>
+                        <small id="helpId" class="form-text text-muted">Nội dung</small>
+                    </div>
                 </div>
-                </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary">Lưu</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-primary">Lưu</button>
             </form>
-            </div>
         </div>
-
     </div>
+
+</div>
 </div>
 
 {{-- Email --}}
 <!-- Modal -->
-
