@@ -70,9 +70,12 @@
                     </select>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary mx-auto p-2" id="btnPopup">Tiến hành thanh
-                        toán</button>
-                    <button disabled hidden type="submit" class="btn btn-payment">Thanh toán Redirect</button>
+                    <button type="submit" class="btn btn-payment mx-auto p-2" id="btnPopup">
+                        Tiến hành thanh toán
+                    </button>
+                    <button disabled hidden type="submit" class="btn btn-payment">
+                        Thanh toán Redirect
+                    </button>
                 </div>
 
             </form>
