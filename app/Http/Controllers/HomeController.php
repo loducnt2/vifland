@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+            // $this->middleware('auth');
+            // $this->middleware('verified');
+
         /*$this->middleware('auth');*/
     }
 
@@ -31,6 +34,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index()
     {
         Product::where( 'datetime_start','<=', date('Y-m-d H:i',strtotime('now')) )->update(['status'=>1]);
@@ -162,8 +166,8 @@ class HomeController extends Controller
         ->limit(5)
         ->get();
 
-        
-        
+
+
         if( auth()->check() ){
             $Duedate = PostHistory::leftJoin('product','post_history.product_id','product.id')
            ->where('post_history.user_id',auth()->user()->id)
@@ -182,7 +186,7 @@ class HomeController extends Controller
         ->where('status',1)
         ->get();
         session()->flash('noti',$noti);
-        
+
         $count_cate1 = Category::where('parent_id',1)
         ->leftJoin('product','category.id','product.cate_id')
         ->leftJoin('post_history','product.id','post_history.product_id')
@@ -215,10 +219,10 @@ class HomeController extends Controller
         /*->where('datetime_start','<=',date('Y-m-d',strtotime('now')))
         ->where('datetime_end','>',date('Y-m-d',strtotime('now')))*/
         ->count();
-        
+
        //return $count_cate2;
-        
-       
+
+
         return view('/pages/home',compact(
             'categories',
             'province',
@@ -231,21 +235,21 @@ class HomeController extends Controller
             'count_cate2',
             'count_cate3'
         ));
-        
+
     }
     public function indexWithOneFolder($folderName,$fileName)
-    {   
+    {
         // Render perticular view file by foldername and filename
         if(view()->exists($folderName.".".$fileName)){
-            return view($folderName.".".$fileName); 
+            return view($folderName.".".$fileName);
         }
         return abort('404');
     }
     public function indexWithTwoFolder($folderName1,$folderName2,$fileName)
-    {   
+    {
         // Render perticular view file by foldername and filename
         if(view()->exists($folderName1.".".$folderName2.".".$fileName)){
-            return view($folderName1.".".$folderName2.".".$fileName); 
+            return view($folderName1.".".$folderName2.".".$fileName);
         }
         return abort('404');
     }

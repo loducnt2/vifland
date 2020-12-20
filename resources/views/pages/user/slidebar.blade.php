@@ -21,7 +21,7 @@
                         @elseif(isset($payment))
                         <p>Lịch sử giao dịch</p>
                         @elseif(isset($profile))
-                        <p>Thay đổi thông tin cá nhân</p>
+                        <p>Thay đổi thông tin cá nhân </p>
                         @elseif(isset($pass))
                         <p>Thay đổi mật khẩu</p>
                         @elseif(isset($money))

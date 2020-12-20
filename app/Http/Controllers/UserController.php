@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
 use Toastr;
 use App;
+use Auth;
 use Illuminate\Support\Carbon;
 use App\User;
 use App\Models\Payment;
@@ -45,14 +46,22 @@ class UserController extends Controller
         Toastr::success('Huỷ quyền thành công','Thông báo');
         return redirect()->back();
     }
+    // resend email
+    public function resendEmail(){
+        $user= User::find(Auth::id());
 
+        $user->sendEmailVerificationNotification();
+        Toastr::success('Gửi thư xác thực thành công','Thông báo');
+            return redirect()->back();
+
+    }
     // profile_user người dùng khác
     public function profileDetail($username){
         {
 
             $profile = User::where('username', '=' , $username);
-
-            if($profile->count()) {
+            // nếu profile có có trong database
+            if($profile) {
                 $profile = $profile->first();
                 $posts = PostHistory::where('user_id',$profile->id)
                 ->join('product', 'product.id', '=', 'product_id')

@@ -63,6 +63,7 @@ class LoginController extends Controller
     // $username =
     // Hệ thống tìm user kiểm tra mật khẩu - Thọ
     $username = $request->input('username');
+
     // tìm username và password trong database
     $query = DB::table('user')->where('username',$username)->first();
 
@@ -71,7 +72,11 @@ class LoginController extends Controller
         Toastr::error('Tài khoản không tồn tại,vui lòng kiểm tra lại','Thông báo');
         return redirect()->back();
     }
-
+    // elseif(($query->email_verified_at == "" )){
+    //     // dd("Chưa xác nhận");
+    //     Toastr::warning('Tài khoản chưa xác nhận ,cút','Thông báo');
+    //         return redirect()->back()->withErrors(['Tài khoản chưa xác nhận']);;
+    // }
     elseif(($query->status == 0 )){
         Toastr::warning('Tài khoản đã bị khoá,vui lòng kiểm tra lại','Thông báo');
             return redirect()->back()->withErrors(['Tài khoản đã bị khoá']);;
@@ -94,6 +99,7 @@ class LoginController extends Controller
         }
     }
 
+
 }
 
 
@@ -107,8 +113,11 @@ class LoginController extends Controller
         $user->update([
             'last_login' => date('y/m/d H:i:s',strtotime('now')),
         ]);
+        // check quyền kiểm tra xem có xác nhận tài khoản hay không, nếu không thì cút mẹ mày đi
+
         if ($user->user_type == 1) {
-            return redirect ('/');
+            // nếu admin thì redirect qua trang admin
+            return redirect ('/admin/index');
         }
         else {
         return redirect('/');

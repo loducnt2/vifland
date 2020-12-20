@@ -3,24 +3,44 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
+<style>
+<style>
+   span.error {
+       color:red;
+       font-size:12px;
+    /* margin-left: 6px; */
+    /* height:17px; */
+    /* background: url('http://i45.tinypic.com/f9ifz6.png') no-repeat left center; */
+}
+label.error {
+    font-weight: bold;
+    color:red;
+    font-size:14px;
+}
+</style>
 <div class="container-fluid box-n-big">
     <h2 class="section-title-big">Danh sách thông báo</h2>
 
     <!-- table -->
     <button class="btn button-color btn-create-noti mb-3"> Tạo thông báo</button>
     <div class="form-create-noti d-none">
-        <form id="form-noti" action="{{route('create-noti')}}" method="post">
+        <form id="thongbao" action="{{route('create-noti')}}" method="post">
             @csrf
 
             <div class="form-group">
+                <label for="text" class="error4"></label>
+
                 <label for="">Tiêu đề</label>
                 <input type="text" class="form-control" name="name" required>
             </div>
             <div class="form-group">
+                <label for="text" class="error"></label>
+
                 <label for="">Nội dung</label>
                 <input type="text" name="noidung" class="form-control" required>
             </div>
             <div class="form-group">
+                <label for="text" class="error"></label>
                 <label for="">Trạng thái</label>
                 <select class="form-control" name="status" id="">
                     <option value="0">Ẩn thông báo</option>

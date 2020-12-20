@@ -22,6 +22,7 @@
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.12.5/sweetalert2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.js"></script>
   {{-- thêm validate --}}
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"></script> --}}
   <script src="{{asset('js/ckeditor.js')}}"></script>
@@ -874,7 +875,47 @@ $("#status").on("change", function() {
   </script>
   {{-- <script>
     CKEDITOR.replaceAll();
+{{-- </script> --}}
+{{-- <script>
+    CKEDITOR.replace('content');
 </script> --}}
-  <script>
-CKEDITOR.replace('content');
-  </script>
+<script>
+
+    $("#thongbao").validate({
+        submitHandler: function(form) {
+        return false;
+        },
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		rules: {
+			"name": {
+				required: true,
+
+			},
+			"noidung": {
+				required: true,
+
+			},
+            "due_date":{
+                required: true,
+                
+
+            }
+		},
+		messages: {
+			"name": {
+				required: "Bắt buộc nhập tiêu đề",
+
+			},
+			"noidung": {
+				required: "Bắt buộc nhập nội dung",
+
+			},
+            "due_date":{
+                required: "Yêu cầu nhập ngày tháng năm",
+
+            }
+		}
+	});
+</script>

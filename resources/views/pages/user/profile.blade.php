@@ -7,6 +7,8 @@
 $("#form-profile :input").prop("disabled", true);
 </script>
 @endif
+{!! Toastr::message() !!}
+
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="active nav-link active" id="thaydoithongtin-tab" data-toggle="tab" href="#thaydoithongtin" role="tab"
         aria-controls="nav-home" aria-selected="true">Thay đổi thông tin cá nhân</a>
@@ -37,6 +39,10 @@ $("#form-profile :input").prop("disabled", true);
                         <span>Nhà môi giới</span>
                         @endif
                     </div>
+                    @if(Auth::check() && Auth::user()->email_verified_at =="")
+                     <span class="badge badge-warning" style="margin-left:5px"><a href="/resend">Kích hoạt tài khoản</a></span>
+                    @else <span class="badge badge-primary" style="margin-left:5px"> Đã kích hoạt</span>
+                     @endif
                 </div>
             </div>
             <div class="row form-wrap">
@@ -76,7 +82,7 @@ $("#form-profile :input").prop("disabled", true);
             <div class="row form-wrap thongtinform">
                 <div class="col-md-12 col-lg-2 form-group">
                     <p class="text-f">Ngày sinh</p>
-                    
+
                 </div>
                 <div class="col-sm-5 form-group">
                     <input class="calendar" type="datetime" id="borndate" value="{{date('d/m/Y',strtotime($profile->birthday))}}" name="birthday">
