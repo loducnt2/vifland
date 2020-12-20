@@ -108,61 +108,32 @@ Quản lý tin đăng > Duyệt tin
 
             @foreach($news as $new)
 
-            <tr>
-
+            <tr id="col-{{$new->post_id}}">
                 <td>{{$new->post_id}}</td>
-
                 <td>{{$new->product_id}}</td>
-
                 <td>{{$new->product_title}}</td>
-
-
-
                 @if($new->product_type==1)
-
                 <td id="productType"> <button class="btn bg-danger text-white">Vip1</button> </td>
-
                 @elseif($new->product_type==2)
-
                 <td id="productType"><button class="btn bg-warning text-white"> Vip2</button> </td>
-
                 @elseif($new->product_type==3)
-
                 <td id="productType"><button class="btn bg-success text-white">Vip3</button> </td>
-
                 @else
-
                 <td id="productType"> <button class="btn bg-secondary text-white">Thường</button> </td>
-
                 @endif
-
-
-
                 <td id="valueStatus" style="width:15%"> <button
                         class="btn {{$new->status == 1 ? 'btn-success':'btn-warning'}}">{{$new->status == 1 ? 'Đã duyệt':'Chờ duyệt'}}</button>
-
                 </td>
-
                 <td style="width:30%">
-
                     <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn button-color">
-
                             Chi tiết </button></a>
-
                     @if($new->status == 1)
-
-                    <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger"> Xóa </button></a>
-
+                    <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger btn-xoa-tinduyet" data-id="{{$new->product_id}}"> Xóa </button></a>
                     @else
-
                     <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt </button>
-
                     </a>
-
                     <a href="{{route('cancel-post',$new->product_id)}}"><button class="btn btn-danger"> Hủy
-
                         </button></a>
-
                     @endif
 
 
