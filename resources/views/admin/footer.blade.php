@@ -83,8 +83,44 @@
           document.getElementById('slug2').value = slug;
       }
   </script>
-  <!-- Danh mục -->
 
+    {{-- danh mục --}}
+
+  <!--user-->
+  <script>
+    $(function () {
+      $('#myTable').on("change", ".danhmuc", function (){
+          var id = $(this).data('id');
+          var status = $(this).prop('checked') == true ? 1 : 0;
+          $.ajax({
+          type: "GET",
+        url: '/admin/danh-muc-tin-tuc/changestatus',
+          data: {
+          'status': status,
+          'id': id
+          },
+          success: function (data) {
+              if (status === 1) {
+              toastr.success("Hiện");
+              $('#status-' + id).html("Hiện");
+              $('#newscategory-' + id).removeClass("disabled").addClass("enabled");
+
+               }
+               else {
+                  toastr.error("Ẩn");
+                  $("#status-" + id).html("Ẩn");
+                  $('#newscategory-' + id).removeClass("enabled").addClass("disabled");
+               }
+               },
+              //  báo lỗi
+              error: function(error){
+              console.log(error);
+              },
+                    });
+                  });
+            })
+  </script>
+  {{--  --}}
   <script>
       $(function () {
           $('.toggle-class').change(function () {
@@ -334,11 +370,14 @@
         success: function (data) {
             if (status === 1) {
             toastr.success("Người dùng có thể hoạt động");
+
             $('#status-' + id).html("Hoạt động");
+            $('#user2-' + id).removeClass("disabled").addClass("enabled");
              }
              else {
                 toastr.error("Người dùng bị dừng hoạt động");
                 $("#status-" + id).html("Bị ban");
+                $('#user2-' + id).removeClass("enabled").addClass("disabled");
              }
              },
             //  báo lỗi
