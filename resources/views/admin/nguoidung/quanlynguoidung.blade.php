@@ -45,7 +45,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>Họ và tên</th>
-                        <th>Username</th>
+                        <th>Tên đăng nhập</th>
                         <th>Email</th>
                         {{-- <th>Năm sinh </th> --}}
                         <th>Thời gian đăng kí</th>
