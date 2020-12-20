@@ -24,6 +24,8 @@ class NewsController extends Controller
     {
 
         $news = News::orderBy('id','asc')->get();
+
+        // dd($tacgia);
         // $newsHidden = News::select('select * from news where id = 1')->get();
         return view('/admin/tintuc/danhsachtintuc',compact('news'));
     }
@@ -212,10 +214,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        // nếu số tin tức của danh mục > 0 -> không dc xoá
-
-        // find theo id
-        $new = News::find($id);
+               $new = News::find($id);
         $new->delete();
 
     }

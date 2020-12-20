@@ -165,7 +165,7 @@ ul.timeline>li:before {
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Tên đẩy đủ</h6>
+                                <h6 class="mb-0">Tên đầy đủ</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 {{$profile->full_name}}
@@ -237,7 +237,7 @@ ul.timeline>li:before {
                                     <li>
                                         <?php
                                         \Carbon\Carbon::setLocale('vi');
-                                        $now = \Carbon\Carbon::now()->format('d-m-Y');
+                                        $now = \Carbon\Carbon::now();
                                         // $diff = $now->
                                         $end_date = \Carbon\Carbon::parse($posts2->datetime);
                                         $diff = $end_date->diffForHumans($now);
@@ -247,7 +247,7 @@ ul.timeline>li:before {
                                             <a href="#">
                                                 {{$profile->full_name}}
                                             </a>
-                                        </b> đã đăng bài viết
+                                        </b> đã đăng bài viết {{$posts2->title}}
 
                                         <a href="../../../article/{{$posts2->slug}}"><b>{{$posts2->title}}</b></a>
                                         {{-- <a href="#" class="float-right"><b></b></a> --}}
