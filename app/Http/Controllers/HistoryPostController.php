@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\TypeProduct;
 use App\Models\ProductImg;
+use App\Models\Favorited;
 use Illuminate\Support\Facades\DB;
 use App\User;
 class HistoryPostController extends Controller
@@ -121,7 +122,10 @@ class HistoryPostController extends Controller
     public function destroy($id)
     {
         $pro = Product::find($id);
+        $favor= Favorited:: where('product_extend_id',$id);
         $pro->delete();
+        $favor->delete();
+        
         return redirect('/admin/danh-sach-duyet-tin');
     }
     public function updatePost($id){

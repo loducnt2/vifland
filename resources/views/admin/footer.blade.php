@@ -320,6 +320,7 @@ $('#category_form').validate({
     }
 });
   </script>
+  {{-- Ban/unban user --}}
   <script>
 $(function() {
     $('#userTable').on("change", ".btn-user", function() {
@@ -475,6 +476,7 @@ $(document).on('change', '.custom-file-input', function(event) {
     $(this).next('.custom-file-label').html(event.target.files[0].name);
 })
   </script>
+  {{-- function Unsub --}}
   <script>
 function unsub(email, $ele) {
     // var $ele = $(this).parent.parent();
@@ -501,6 +503,7 @@ function unsub(email, $ele) {
     });
 }
   </script>
+  {{-- unsub --}}
   <script>
 $('#myTable').on("click", ".btn-unsub", function(e) {
     e.preventDefault();
@@ -527,6 +530,7 @@ $('#myTable').on("click", ".btn-unsub", function(e) {
     })
 })
   </script>
+  {{-- xoá tin tức --}}
   <script>
 $('#myTable').on("click", ".btn_news-delete", function(e) {
     e.preventDefault();
@@ -572,6 +576,7 @@ function delete_post(id, $ele) {
     });
 }
   </script>
+  {{-- danh mục --}}
   <script>
 $('#myTable').on("click", ".btn-delete", function(e) {
     e.preventDefault();
@@ -631,6 +636,7 @@ function delete_Category(id, $ele) {
     });
 }
   </script>
+  {{-- user  --}}
   <script>
 function deleteUser(id, $ele, username) {
     // var $ele = $(this).parent.parent();
@@ -692,6 +698,7 @@ $('#userTable').on("click", ".btn-user-delete", function(e) {
     })
 });
   </script>
+  {{-- xoá tin duyệt bằng tin --}}
   <script>
 function deleteDuyettin(postid, productid, $ele) {
     $.ajaxSetup({
@@ -744,6 +751,7 @@ $('#duyettinTable').on("click", ".btn-delete-duyettin", function(e) {
     })
 })
   </script>
+  {{-- content --}}
   <script>
 // get thông tin content
 $("#myTable").on('click', '.btn-contact-detail', function(e) {
@@ -759,6 +767,8 @@ $("#myTable").on('click', '.btn-contact-detail', function(e) {
     $('textarea[name=content]').val(content);
 })
   </script>
+  {{-- end content --}}
+  {{-- email --}}
   <script>
 $("#myTable").on('click', '.btn-mail-contact', function(e) {
     //
@@ -777,6 +787,7 @@ $("#myTable").on('click', '.btn-mail-contact', function(e) {
     $('textarea[name=content]').val(content);
 })
   </script>
+  {{-- duyệt tin --}}
   <script>
 $("#status").on("change", function() {
     var value = $(this).val().toLowerCase();
