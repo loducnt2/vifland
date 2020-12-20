@@ -61,18 +61,31 @@ div#u_0_0 {
 
                 <div class="col-xl-9 col-md-9">
                     <div class="article-container">
-                        <div class="date">
-                            <p>{{$news->datepost}}</p>
-                        </div>
-                        <div class="title">
+                        <div class="article-title">
+                            <div class="title">
+                                <h1 class="section-under-title">{{$news->title}}</h1>
+                            </div>
+                            <div class="wrapper">
+                                <div class="date">
+                                    <p>{{$news->datepost}}</p>
+                                </div>
+                                <div class="author">
+                                    <p>Tác giả: <a
+                                            href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}}
+                                            @if($id_nguoidang->user_type==1)
+                                            <span class="badge badge-primary">Quản trị viên</span></h6></a></p>
+                                    @else
+                                    {{-- <span class="badge badge-primary">Quản trị viên</span></h6></a></p> --}}
+                                    @endif
+                                </div>
 
-                            <h1 class="section-under-title">{{$news->title}}</h1>
+                            </div>
                         </div>
 
-                        <p>Tác giả: <a href="/profile/{{$id_nguoidang->username}}">{{$id_nguoidang->username}} <span
-                                    class="badge badge-primary">Quản trị viên</span></h6></a></p>
-                        <div class="content">
-                            {!!$news->content!!}
+                        <div class="article-content">
+                            <div class="content">
+                                {!!$news->content!!}
+                            </div>
                         </div>
                     </div>
                 </div>

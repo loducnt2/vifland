@@ -21,8 +21,10 @@
     @if(Auth::check() && Auth::user()->user_type == "1")
     <div class="top-bar-admin">
         <div class="max-width-container">
-            <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a>
-                <a class="truycapadmin chathotro" href="https://vifland.zendesk.com/">Truy cập chat hỗ trợ</a>
+            <div class="wrap-text-left">
+                <a class="truycapadmin" href="/admin/index">Truy cập Admin</a>
+                <a class="truycapadmin chathotro" href="https://vifland.zendesk.com/"><i
+                        class="far fa-comment-alt"></i></a>
             </div>
             <div class="wrap-text-right">
                 <p>Xin chào mừng: <span>{{auth()->user()->username}}</span></p>
@@ -194,7 +196,7 @@
                                     }
                                     ?>
                                     <div class="co-thong-bao">
-                                    @foreach($notis as $noti)
+                                        @foreach($notis as $noti)
                                         <div class="item">
                                             <div class="wrap-text">
                                                 <div class="thongbao thongbao-color">Thông báo</div><a
