@@ -18,7 +18,7 @@ Quản lý giá post
                     <th>Id</th>
                     <th>Loại giá trị</th>
                     <th>Giá</th>
-                    <th>Trạng thái</th>
+                    <!-- <th>Trạng thái</th> -->
                     <th>Hành động</th>
                 </tr>
             </thead>
@@ -27,8 +27,8 @@ Quản lý giá post
                 <tr>
                     <td>{{$price->id}}</td>
                     <td>{{$price->name}}</td>
-                    <td>{{$price->price}} VNĐ</td>
-                    <td>{{$price->status}}</td>
+                    <td>{{number_format($price->price)}} VNĐ</td>
+                    <!-- <td>{{$price->status}}</td> -->
                     <td>
                         <a href="{{route('edit-price',$price->id)}}"><button class="btn button-color text-white">Sửa
                             </button></a>
