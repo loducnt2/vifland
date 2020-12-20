@@ -126,7 +126,7 @@ $("#form-profile :input").prop("disabled", true);
                         </div>
                         <div class="col-sm-12 col-md-6 form-group">
 
-                            <input class="email" type="text" placeholder="{{$profile->email}}" readonly>
+                            <input class="email" type="text" placeholder="Email" value="{{$profile->email}}" readonly="">
                         </div>
                         <div class="col-sm-12 col-md-6 form-group">
                             <input class="facebook" type="text" placeholder="Facebook" value="{{$profile->facebook}}"

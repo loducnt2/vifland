@@ -245,11 +245,12 @@ class ProductController extends Controller
             ->leftJoin('ward', 'product.ward_id', 'ward.id')
             ->leftJoin('category', 'product.cate_id', 'category.id')
             ->leftJoin('post_history', 'product.id', 'post_history.product_id')
-            ->leftJoin('user', 'post_history.user_id', 'user_id')
+            ->leftJoin('user', 'post_history.user_id', 'user.id')
             ->select(
                 'user.*',
                 'product_extend.*',
                 'product.*',
+                'user.full_name as full_name',
                 'product_extend.id as productex_id',
                 'province.name as province',
                 'district.name as district',
