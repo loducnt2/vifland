@@ -873,12 +873,7 @@ $("#status").on("change", function() {
     });
 });
   </script>
-  {{-- <script>
-    CKEDITOR.replaceAll();
-{{-- </script> --}}
-  {{-- <script>
-    CKEDITOR.replace('content');
-</script> --}}
+
   <script>
 $("#thongbao").validate({
     submitHandler: function(form) {
@@ -917,4 +912,7 @@ $("#thongbao").validate({
         }
     }
 });
+  </script>
+  <script>
+CKEDITOR.replace('content');
   </script>
