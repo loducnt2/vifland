@@ -84,14 +84,14 @@
 
                     <div style="background-color: #124480; height: 30px;"></div>
                     <div
-                        style="background: url(https://images.pexels.com/photos/1662159/pexels-photo-1662159.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500) #F5F5F5 no-repeat; background-size: cover; width: 100%; padding: 15px; ">
+                        style="background: url(https://images.pexels.com/photos/1662159/pexels-photo-1662159.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500) #F5F5F5 no-repeat; background-size: cover; width: auto; padding: 15px; ">
 
                         <div style="text-align: center; border-radius: 10px;">
                             <h1
                                 style="font-size: 25px; color:#ab843a;font-weight:bold; margin:0; padding-bottom:10px;border-radius: 10px; text-transform: uppercase; ">
                                 TIN TỨC BẤT ĐỘNG SẢN </h1>
                             <p style="margin: 0;">Xin chào {{$nguoinhan}},</p>
-                            <h2 style="font-size: 24px; text-align: center; color:#124480;">Những thông
+                            <h2 style="font-size: 24px; text-align: center; color:#124480; padding:0px 15px">Những thông
                                 tin về bất động sản ngày <br>{{$date}}</h2>
                         </div>
 
@@ -105,7 +105,17 @@
                             @foreach ($products as $item)
                             <li style="list-style-type: none; padding-bottom: 15px; margin:0">
                                 <div style="flex-basis: 70%;" class="remove-flex-basis-mobile" id="img">
-                                    <img src="{{ $message->embed(public_path() . '/assets/product/detail/'.$item->thumbnail) }}"
+                                    @if(!empty($item->thumbnail))
+                                    {{-- nếu ảnh = null --}}
+                                    <?php $thumbnail = $item->thumbnail ?>
+                                    @else
+                                    <?php
+                                    //  <?php
+                                    $thumbnail = "default.png";
+                                    ?>
+
+                                    @endif
+                                    <img src="{{ $message->embed(public_path() . '/assets/product/detail/'.$thumbnail) }}"
                                         alt=""
                                         style="display:block;max-width:100%;width:100%;object-fit:cover;height:100%">
                                 </div>
@@ -115,7 +125,7 @@
                                     <h4 style="font-size: 16px;font-weight:bold; margin:10px 0px;" class="list-header">
                                         {{$item->title}}</h4>
 
-                                    <a href="google.com"
+                                    <a href="vifland.com/article/{{$item->slug}}"
                                         style="text-decoration: none; text-transform: capitalize; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 8px 15px; background:#124480; color: #FFFFFF; border-radius: 5px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Xem
                                         thêm
                                     </a>
@@ -125,9 +135,6 @@
                         </ul>
 
                     </div>
-                    </li>
-                    @endforeach
-                    </ul>
                 </div>
 
                 </div>

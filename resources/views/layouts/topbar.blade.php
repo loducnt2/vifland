@@ -21,8 +21,10 @@
     @if(Auth::check() && Auth::user()->user_type == "1")
     <div class="top-bar-admin">
         <div class="max-width-container">
-            <div class="wrap-text-left"><a class="truycapadmin" href="/admin/index">Truy cập admin dashboard</a>
-                <a class="truycapadmin chathotro" href="https://vifland.zendesk.com/">Truy cập chat hỗ trợ</a>
+            <div class="wrap-text-left">
+                <a class="truycapadmin" href="/admin/index">Truy cập Admin</a>
+                <a class="truycapadmin chathotro" href="https://vifland.zendesk.com/"><i
+                        class="far fa-comment-alt"></i></a>
             </div>
             <div class="wrap-text-right">
                 <p>Xin chào mừng: <span>{{auth()->user()->username}}</span></p>
@@ -177,8 +179,21 @@
                                         $noAccept = DB::table('post_history')
                                             ->leftJoin('product', 'post_history.product_id', 'product.id')
                                             ->where('post_history.user_id', auth()->user()->id)
+                                            ->where('product.created_at', '<=', date('Y-m-d', strtotime("+1 day")))
                                             ->where('product.soft_delete', 1)
                                             ->where('post_history.status', 2)
+                                            ->orderby('id', 'asc')
+                                            ->select(
+                                                'product.id as id',
+                                                'product.datetime_end as date',
+                                                'product.slug as slug'
+                                            )
+                                            ->get();
+                                            $AcceptPost = DB::table('post_history')
+                                            ->leftJoin('product', 'post_history.product_id', 'product.id')
+                                            ->where('post_history.user_id', auth()->user()->id)
+                                            ->where('product.created_at', '<=', date('Y-m-d', strtotime("+1 day")))
+                                            ->where('post_history.status', 1)
                                             ->orderby('id', 'asc')
                                             ->select(
                                                 'product.id as id',
@@ -191,10 +206,11 @@
                                         $duedate1 = [];
                                         $noAccept = [];
                                         $notiPayment = [];
+                                        $AcceptPost=[];
                                     }
                                     ?>
                                     <div class="co-thong-bao">
-                                    @foreach($notis as $noti)
+                                        @foreach($notis as $noti)
                                         <div class="item">
                                             <div class="wrap-text">
                                                 <div class="thongbao thongbao-color">Thông báo</div><a
@@ -250,15 +266,22 @@
                                             </div>
                                         </div>
                                         @endforeach
-
                                         @foreach($noAccept as $post)
                                         <div class="item">
                                             <div class="wrap-text products-duedate ">
                                                 <div class="thongbao post-due" style="background: red;">Thông báo</div>
                                                 <a href="{{route('article-detail',$post->slug)}}">Bài
                                                     viết của bạn không được duyệt </a>
-                                                <div class="date"> ngày hết hạn: {{$post->date}}</div>
+                                            </div>
+                                        </div>
+                                        @endforeach
 
+                                        @foreach($AcceptPost as $post)
+                                        <div class="item">
+                                            <div class="wrap-text products-duedate ">
+                                                <div class="thongbao post-due bg-success">Thông báo</div>
+                                                <a href="{{route('article-detail',$post->slug)}}">Bài
+                                                    viết của bạn đã được duyệt </a>
                                             </div>
                                         </div>
                                         @endforeach
@@ -481,7 +504,7 @@
         </div>
     </div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 var number_noti = 0;
 $(".item").each(function() {
