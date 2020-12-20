@@ -1,10 +1,18 @@
+<style>
+.verfiy-bar a{
+    color:white;
+}
+</style>
 <header>
     @if(Auth::check() && Auth::user()->email_verified_at =="")
     <nav>
         {{-- gửi email xác minh lại --}}
 
-        <nav class="navbar navbar-expand navbar-dar bg-dark mx-auto" style="color:white">
-            Tài khoản chưa xác minh. Xin vui Lòng kiểm tra hòm thư để kích hoạt tài khoản
+        <nav class="navbar navbar-expand navbar-dar bg-dark mx-auto verfiy-bar" style="color:white">
+            <a href="/email/verify">
+                Tài khoản chưa xác minh. Xin vui Lòng kiểm tra hòm thư để kích hoạt tài khoản
+
+            </a>
         </nav>
 
     </nav>
@@ -255,7 +263,7 @@
                                         </div>
                                         @endforeach
 
-                                       
+
 
 
 

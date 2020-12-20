@@ -104,7 +104,7 @@ label {
                     <div class="form-group-input">
                         <div class="box-left-se"><span class="material-icons">assignment_ind</span></div>
                         <div class="box-mid-se">
-                            <input type="text" placeholder="Chứng minh thư" name="card_id" value="{{ old('card_id') }}">
+                            <input type="text" placeholder="Tên đầy đủ" name="full_name" value="{{ old('full_name') }}">
                             <label for="text" class="error"></label>
                         </div>
                     </div>
@@ -143,14 +143,15 @@ $(document).ready(function() {
 
     // thêm validate end with email
 
-    jQuery.validator.addMethod("end_with", function(value, element) {
+      // validate email phải có đuôi @gmail đằng sau
+      jQuery.validator.addMethod("end_with", function(value, element) {
 
-        if (/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value)) {
-            return true;
-        } else {
-            return false;
-        }
-    }, "Email không đúng định dạng!.");
+if (/^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i.test(value)) {
+    return true;
+} else {
+    return false;
+}
+}, "Email không đúng định dạng!.");
 
     $('#dangki').validate({
 
@@ -175,9 +176,11 @@ $(document).ready(function() {
                 maxlength: 255,
                 minlength: 8,
             },
-            'card_id': {
+            'full_name': {
                 required: true,
-                digits: true
+                // digits: true
+                minlength:5,
+                maxlength:100
             },
         },
         messages: {
@@ -194,9 +197,11 @@ $(document).ready(function() {
 
             },
 
-            'card_id': {
-                required: "Số nhân dân không đươc để trống",
-                digits: "Chỉ được nhập số"
+            'full_name': {
+                required: "Tên đầy đủ không đươc để trống",
+                // digits: "Chỉ được nhập số"
+                minlength: "Ít nhất 5 kí tự",
+                maxlength: "Tối đa 100 kí tự",
             },
             'password': {
                 required: "Mật khẩu không được để trống",
