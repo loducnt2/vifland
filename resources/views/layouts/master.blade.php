@@ -120,6 +120,7 @@
                         },
                         success: function(data, status) {
                             //Chưa đăng nhập
+                            console.log(data)
                             if (data == 0) {
                                 $("#dangnhapModal").modal("show");
                                 $('.fav').addClass("ri-heart-line");
@@ -146,6 +147,22 @@
                             productId: productid,
                             _token: "{{ csrf_token() }}"
                         },
+                    success: function(data, status) {
+                        //Chưa đăng nhập
+                        console.log(data)
+                        if (data == 0) {
+                            /*$("#dangnhapModal").modal("show");
+                            $('.fav').addClass("ri-heart-line");
+                            $('.fav').removeClass("ri-heart-fill");
+                            $('.fav').removeClass("active")*/
+                        }
+                        if (data == 1) {
+                            //Thích sản phẩm,
+                        }
+                        if (data == 2) {
+                            //Bỏ thích sản phẩm
+                        }
+                    }
                     })
                 }
                 $.ajax({
