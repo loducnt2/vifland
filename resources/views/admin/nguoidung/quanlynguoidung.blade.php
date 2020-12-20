@@ -49,7 +49,7 @@
                         <th>Email</th>
                         {{-- <th>Năm sinh </th> --}}
                         <th>Thời gian đăng kí</th>
-                        {{-- <th>Salary</th> --}}
+                        <th>Hiện trạng</th>
                         <th>Hoạt động</th>
                         <th>Hành động</th>
                         <th>Chi tiết</th>
@@ -57,7 +57,12 @@
                     </tr>
                 </thead>
                  @foreach ($users as $user)
-                 <tr id="table-{{$user->id}}">
+                 @if ($user->status == '1')
+                        <?php $class="enabled"?>
+                    @else
+                    <?php $class="disabled"?>
+                    @endif
+                 <tr id="user2-{{$user->id}}" class="{{$class}}">
                  <td>{{$user->full_name}}</td>
                  <td>{{$user->username}}</td>
                  <td>{{$user->email}}</td>
@@ -72,7 +77,13 @@
                     @endif
                     </p>
                   </td>
-
+                  <td><p id="status3-{{$user->id}}">
+                    @if ($user->email_verified_at =="")
+                    <span class="badge badge-dark">Chưa xác thực</span>
+                    @else
+                    <span class="badge badge-primary">Đã xác thực</span>
+                    @endif
+                    </p></td>
                   <td>
                   {{-- <input type="checkbox" class="toggle-class" checked data-toggle="toggle" data-on="Ban" data-off="Unban" id-data="{{$user->id}}" {{ $user->status ? 'checked' : '' }}> --}}
                   <input data-id="{{$user->id}}"  class="btn-user" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Mở" data-off="Khoá" {{ $user->status ? 'checked' : '' }}>
