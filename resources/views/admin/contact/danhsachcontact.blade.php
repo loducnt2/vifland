@@ -16,7 +16,7 @@
     @section('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="container">
-        <h2>Danh sách Contact</h2>
+        <h2>Danh sách liên hệ</h2>
 
         <!-- table -->
         <input class="form-control" id="myInput" type="text" placeholder="Search..">

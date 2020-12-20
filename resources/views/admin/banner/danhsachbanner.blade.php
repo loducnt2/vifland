@@ -101,7 +101,7 @@ label.error {
                      <td>{{$banner->position}}</td>
                      <td>{{$banner->status==0?"Đang ẩn":"Đang hiện"}}</td>
                      <td>
-                         <a href="{{route('edit-banner',$banner->id)}}"><button class="btn btn-primary">sửa</button> </a>
+                         <a href="{{route('edit-banner',$banner->id)}}"><button class="btn btn-primary">chỉnh sửa</button> </a>
                          <a href="{{route('del-banner',$banner->id)}}"><button class="btn btn-danger">xóa</button> </a>
                      </td>
                  </tr>

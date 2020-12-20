@@ -88,7 +88,7 @@ Quản lý tin đăng > Duyệt tin
 
             <tr>
 
-                <th>Mã post</th>
+                <th>Mã bài đăng</th>
 
                 <th>Mã tin</th>
 
@@ -98,7 +98,7 @@ Quản lý tin đăng > Duyệt tin
 
                 <th>trạng thái</th>
 
-                <th>Action</th>
+                <th>Hành động</th>
 
             </tr>
 
@@ -148,7 +148,7 @@ Quản lý tin đăng > Duyệt tin
 
                     <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn button-color">
 
-                            Detail</button></a>
+                            Chi tiết </button></a>
 
                     @if($new->status == 1)
 
