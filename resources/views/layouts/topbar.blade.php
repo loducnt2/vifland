@@ -194,6 +194,15 @@
                                     }
                                     ?>
                                     <div class="co-thong-bao">
+                                    @foreach($notis as $noti)
+                                        <div class="item">
+                                            <div class="wrap-text">
+                                                <div class="thongbao thongbao-color">Thông báo</div><a
+                                                    href="#">{{$noti->content}}</a>
+                                                <div class="date"> {{$noti->created_at}}</div>
+                                            </div>
+                                        </div>
+                                        @endforeach
 
                                         @foreach($notiPayment as $ad)
                                         @if($ad->noti_payment == 1)
@@ -254,15 +263,7 @@
                                         </div>
                                         @endforeach
 
-                                        @foreach($notis as $noti)
-                                        <div class="item">
-                                            <div class="wrap-text">
-                                                <div class="thongbao thongbao-color">Thông báo</div><a
-                                                    href="#">{{$noti->content}}</a>
-                                                <div class="date"> {{$noti->created_at}}</div>
-                                            </div>
-                                        </div>
-                                        @endforeach
+                                       
 
 
 
