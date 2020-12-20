@@ -24,9 +24,6 @@
     Quản lý người dùng
     @endsection
     @section('content')
-
-
-
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered box-n" id="userTable" width="100%" cellspacing="0">
@@ -40,7 +37,8 @@
                         {{-- <th>Salary</th> --}}
                         <th>Hoạt động</th>
                         <th>Hành động</th>
-                        {{-- <th>Chi tiết</th> --}}
+                        <th>Chi tiết</th>
+                        <th>Xóa</th>
 
                     </tr>
                 </thead>
