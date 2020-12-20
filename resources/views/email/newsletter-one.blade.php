@@ -106,13 +106,13 @@
                             <li style="list-style-type: none; padding-bottom: 15px; margin:0">
                                 <div style="flex-basis: 70%;" class="remove-flex-basis-mobile" id="img">
                                     @if(!empty($item->thumbnail))
-                                        {{-- nếu ảnh = null --}}
-                                        <?php $thumbnail = $item->thumbnail ?>
+                                    {{-- nếu ảnh = null --}}
+                                    <?php $thumbnail = $item->thumbnail ?>
                                     @else
-                                        <?php
-                                        //  <?php
-                                        $thumbnail = "default.jpg";
-                                        ?>
+                                    <?php
+                                    //  <?php
+                                    $thumbnail = "default.png";
+                                    ?>
 
                                     @endif
                                     <img src="{{ $message->embed(public_path() . '/assets/product/detail/'.$thumbnail) }}"
