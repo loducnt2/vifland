@@ -35,20 +35,21 @@ class NewsLetterController extends Controller
         $province = new Province();
         $id_city = $request->input("ID_City");
         $newsletter = Newsletters2::all();
-        $products = DB::table('province')->where('id',$id_city)->pluck('id');
-        return view('admin.thutintuc.quanlythutintuc',compact('newsletter','products'));
+        $products = DB::table('province')->where('id', $id_city)->pluck('id');
+        return view('admin.thutintuc.quanlythutintuc', compact('newsletter', 'products'));
     }
 
 
 
-    public function subscribe(Request $request){
-                // user chọn nơi chốn
+    public function subscribe(Request $request)
+    {
+        // user chọn nơi chốn
         $location = $request->input("location");
 
         // hàm id là id sau khi người dùng chọn thành phố sẽ get ra
-            $id = Province::where('name',$location)->value('id');
-            $newsletters = new Newsletters2();
-        if ( !Newsletter::isSubscribed($request->input("email3") ) ) {
+        $id = Province::where('name', $location)->value('id');
+        $newsletters = new Newsletters2();
+        if (!Newsletter::isSubscribed($request->input("email3"))) {
             // nếu người dùng đã nhập vào ô input field, ta lưu user vào trong database
 
             $newsletters->email = $request->input("email3");
@@ -57,94 +58,96 @@ class NewsLetterController extends Controller
             $newsletters->ID_City = $id;
             $newsletters->IP_Location = $location;
             $newsletters->save();
-            Toastr::success('Đăng kí thành công ','Thông báo');
+            Toastr::success('Đăng kí thành công ', 'Thông báo');
             return redirect()->back();
-        }
-        else{
+        } else {
             // dd("False");
             Newsletter::getLastError();
-            Toastr::error('Email đã được đăng kí','Thông báo');
+            Toastr::error('Email đã được đăng kí', 'Thông báo');
             return redirect()->back();
         }
-
     }
-    public function export(){
+    public function export()
+    {
         return Excel::download(new NewsLettersExport, 'NewsLetters.xlsx');
-
     }
 
-    public function import(Request $request){
-	if ($request->file('import_file')) {
-       $test= \Excel::import(new NewsLettersImport, request()->file('import_file'));
-        Toastr::success('Cập nhật file excel thành công!  :)','Thông báo');
+    public function import(Request $request)
+    {
+        if ($request->file('import_file')) {
+            $test = \Excel::import(new NewsLettersImport, request()->file('import_file'));
+            Toastr::success('Cập nhật file excel thành công!  :)', 'Thông báo');
 
-        return redirect()->back()->with('success', 'Success!!!');
+            return redirect()->back()->with('success', 'Success!!!');
+        } else {
+            Toastr::error('Không có dữ liệu! Vui lòng kiểm tra lại !', 'Thông báo');
 
+            return redirect()->back();
+        }
     }
-    else{
-        Toastr::error('Không có dữ liệu! Vui lòng kiểm tra lại !','Thông báo');
-
-        return redirect()->back();
-    }
-}
     // mail_manager
-    public function guithu(Request $request){
+    public function guithu(Request $request)
+    {
 
-    // show các tin tức bất động sản theo vùng miền
-        $products = Product::whereIn('title',$request->input("productFilter"))->get();
-        $date =Carbon::now()->format('d-m-yy');
+        // show các tin tức bất động sản theo vùng miền
+        $products = Product::whereIn('title', $request->input("productFilter"))->get();
+        $date = Carbon::now()->format('d-m-yy');
         // khu vực
 
         $contents = $request->input("contents");
         $mails = $request->input("email");
         $news = News::all();
-        $user = User::where('email',$mails)->first();
+        $user = User::where('email', $mails)->first();
         // hàm query để hiện thị thông tin người đăng kí
-        $query = DB::table('user')->where('email',$mails)->first();
-        if(!$query){
+        $query = DB::table('user')->where('email', $mails)->first();
+        if (!$query) {
             // nếu user không có mặt trong database thì sẽ tên họ sẽ để rỗng"
-            $nguoinhan = "";
+            $nguoinhan = "Khách hàng";
+        } else {
+            $nguoinhan = $user->full_name;
         }
-       else{
-        $nguoinhan = $user->full_name;
-       }
-            Mail::send('email.newsletter-one', ['products'=>$products,
+        Mail::send('email.newsletter-one', [
+            'products' => $products,
             'contents' => $contents,
-            'date'=>$date,
-            'news'=>$news,
-            'nguoinhan' =>$nguoinhan],function ($message) use($request,$mails) {
+            'date' => $date,
+            'news' => $news,
+            'nguoinhan' => $nguoinhan
+        ], function ($message) use ($request, $mails) {
             // $subject = $request->input("subject");
             $message->from("vifland.fpt@gmail.com");
             $message->to($mails);
-            $date =Carbon::now()->format('d-m-yy');
+            $date = Carbon::now()->format('d-m-yy');
             $location = $request->input("city");
             // dd($location);
-           $message->subject("Tin bất động sản ngày ". $date ." Khu vực ".$location );
-
+            $message->subject("Tin bất động sản ngày " . $date . " Khu vực " . $location);
         });
-        toastr::success('Gửi thư thành công','Hệ thống');
+        toastr::success('Gửi thư thành công', 'Hệ thống');
         return redirect()->back();
     }
 
-    public function send_email(Request $request){
-// gửi tất cả
+    public function send_email(Request $request)
+    {
+        // gửi tất cả
         $mails = Newsletters2::pluck('email')->toArray();
         $nguoinhan = User::pluck('full_name');
-        $result = implode(",",$nguoinhan->all());
+        $result = implode(",", $nguoinhan->all());
         $contents = $request->input("contents");
 
         $news = News::all();
-        Mail::send('email.newsletter',
-        ['contents' => $contents,
-        'news'=>$news,
-        'result'=>$result
-        ],function ($message) use($request,$mails) {
-            $subject = $request->input("subject");
-            $message->from("vifland.fpt@gmail.com");
-            $message->to($mails)->subject($subject);
-
-        });
-        toastr::success('Gủi thư thành công','Hệ thống');
+        Mail::send(
+            'email.newsletter',
+            [
+                'contents' => $contents,
+                'news' => $news,
+                'result' => $result
+            ],
+            function ($message) use ($request, $mails) {
+                $subject = $request->input("subject");
+                $message->from("vifland.fpt@gmail.com");
+                $message->to($mails)->subject($subject);
+            }
+        );
+        toastr::success('Gủi thư thành công', 'Hệ thống');
         return redirect()->back();
     }
     // unsubscribe user theo Username
@@ -155,9 +158,7 @@ class NewsLetterController extends Controller
         // dd($email);
 
         Newsletter::unsubscribe($email);
-        $newsletter = Newsletters2::where('email',$email)->first();
+        $newsletter = Newsletters2::where('email', $email)->first();
         $newsletter->delete();
-
     }
 }
-
