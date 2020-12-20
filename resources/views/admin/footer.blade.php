@@ -738,26 +738,27 @@ $('#userTable').on("click", ".btn-user-delete", function(e) {
   </script>
   {{-- xoá tin duyệt bằng tin --}}
   <script>
-function deleteDuyettin(postid, productid, $ele) {
+function deleteDuyettin(id, $ele) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
     $.ajax({
-        url: "/admin/danh-sach-duyet-tin/delete/" + productid,
-        //    data: "data",
+        url: "/admin/danh-sach-duyet-tin/delete/" + id,
+
         type: 'get',
-        dataType: "Content-Type: application/javascript",
         data: {
             // "id" :id,
-            "productid": productid
+            "id": id
+            // "postid":postid,
         },
         success: function(response) {
             // success
-            $ele.fadeOut().remove();
-            toastr.success('Xoá tin duyệt thành công', 'Thông báo');
-        },
+
+        $ele.fadeOut().remove();
+        toastr.success('Xoá tin duyệt thành công', 'Thông báo');
+         },
         error: function(error) {
             console.log(error);
             // error.preventDefault();
@@ -766,28 +767,7 @@ function deleteDuyettin(postid, productid, $ele) {
 }
   </script>
   <script>
-$('#duyettinTable').on("click", ".btn-delete-duyettin", function(e) {
-    e.preventDefault();
-    var $ele = $(this).parent().parent();
-    var postid = $(this).data('postid');
-    var productid = $(this).data('productid');
-    console.log(productid);
-    console.log("PostID" + postid);
-    // then sweet alert fire
-    Swal.fire({
-        title: 'Thông báo?',
-        text: "Bạn muốn xoá tin này?>",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#8072EA',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Xoá tin duyệt'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            deleteDuyettin(postid, productid, $ele);
-        }
-    })
-})
+
   </script>
   {{-- content --}}
   <script>
@@ -873,7 +853,7 @@ $("#thongbao").validate({
                 required: "Yêu cầu nhập ngày tháng năm",
             }
         }
-    };
+    }
 });
   </script>
   <script>
@@ -881,22 +861,23 @@ CKEDITOR.replace('contents');
   </script>
   <script>
 $("#myTable").on('click', '.btn-xoa-tinduyet', function(e) {
+
     e.preventDefault();
+    var id = $(this).data('id');
+    var $ele = $(this).parent().parent().parent();
+
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: "Thông báo",
+        text: "Bạn chắc chắn muốn xoá tin số  " + id + "?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Xoá!',
+        cancelButtonText:'Huỷ'
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-            )
+            deleteDuyettin(id, $ele);
         }
     })
 })
