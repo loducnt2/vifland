@@ -305,7 +305,9 @@ class ProductController extends Controller
             ->leftJoin('ward', 'product.ward_id', 'ward.id')
             ->leftJoin('post_history', 'product.id', 'post_history.product_id')
             ->leftJoin('user', 'post_history.user_id', 'user_id')
+
             ->select(
+                'product.id as product_id',
                 'user.user_type as user_type',
                 'product_extend.*',
                 'product.thumbnail',
@@ -322,9 +324,14 @@ class ProductController extends Controller
                 'product_unit.name as unit',
                 'category.parent_id'
             )
-            ->orWhere('product.province_id', $product->province_id)
-            ->orWhere('product.district_id', $product->district_id)
-            ->orWhere('product_extend.product_cate', $product->product_cate)
+            
+            ->where('product.province_id', $product->province_id)
+
+            ->where('post_history.status',1)
+            ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
+            ->where('datetime_end','>',date('Y-m-d H:i',strtotime('now')))
+            ->where('product.soft_delete',0)
+
             ->distinct('product.id')
             ->inRandomOrder()
             ->orderBy('type', 'asc')
