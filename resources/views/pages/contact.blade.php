@@ -55,34 +55,29 @@
                             <p>Quý khách vui lòng điền thông tin vào mẫu bên dưới và gửi những góp ý, thắc mắc cho chúng
                                 tôi</p>
                             <div class="form-wrap">
-                                <form id="form-contact" action="{{route('up-contact')}}" method="POST">
-
+                                <form id="form-contact1" action="{{route('up-contact')}}" method="POST">
                                     {{csrf_field()}}
                                     <div class="row">
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Họ và Tên" id="name" name="name" required>
+                                            <input type="text" placeholder="Họ và Tên" id="name" name="name">
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="mail" placeholder="Email" id="email" name="email" required>
+                                            <input type="email " placeholder="Email" id="email" name="email">
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Số điện thoại" id="sdt" name="phone"
-                                                required>
+                                            <input type="text" placeholder="Số điện thoại" id="phone" name="phone">
                                         </div>
                                         <div class="col-xl-6 col-sm-6 col-12 form-group">
-                                            <input type="text" placeholder="Địa chỉ" id="address " name="address"
-                                                required>
+                                            <input type="text" placeholder="Địa chỉ" id="address" name="address">
                                         </div>
                                         <div class="col-xl-12 form-group">
-                                            <input type="text" placeholder="Tiêu đề" id="title" name="title" required>
+                                            <input type="text" placeholder="Tiêu đề" id="title" name="title">
                                         </div>
                                         <div class="col-xl-12 form-group">
-                                            <textarea name="content" rows="5" placeholder="Nội dung..."
-                                                required></textarea>
+                                            <input id="content" name="content" rows="5" placeholder="Nội dung...">
                                         </div>
                                     </div>
                                     <div class="button">
-                                        <!-- <input type="reset" class="btn btn-return" type="submit">Quay lại</button> -->
                                         <button class="btn btn-submit" type="submit">Gửi</button>
                                     </div>
                                 </form>
@@ -94,37 +89,67 @@
                                 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
                                 </script>
                                 <script>
-                                $().ready(function() {
-                                    $("#form-contact").validate({
+                                $(document).ready(function() {
+                                    // $("#form-contact1").hide();
+                                    $("#form-contact1").validate({
                                         onfocusout: false,
                                         onkeyup: false,
                                         onclick: false,
                                         rules: {
+                                            "name": {
+                                                required: true,
+
+                                            },
                                             "email": {
                                                 required: true,
                                                 email: true
                                             },
+                                            "title": {
+                                                required: true,
+                                            },
+                                            "address": {
+                                                required: true,
+                                            },
                                             "phone": {
                                                 required: true,
                                                 number: true,
-                                                maxlength: 15
+                                                minlength: 10
+                                            },
+                                            "content": {
+                                                required: true,
                                             },
 
                                         },
                                         messages: {
-                                            "email": {
-                                                email: "Vui lòng nhập đúng mail",
+                                            "name": {
+                                                required: "Bắt buộc nhập tên",
 
+                                            },
+                                            "email": {
+                                                required: "Bắt buộc nhập Email",
+                                                email: "Vui lòng nhập đúng email"
                                             },
                                             "phone": {
+                                                required: "Bắt buộc nhập số điện thoại",
                                                 number: "Vui lòng nhập đúng số điện thoại",
-
+                                                minlength: "Vui lòng nhập đúng số điện thoại",
+                                            },
+                                            "address": {
+                                                required: "Bắt buộc nhập địa chỉ",
+                                            },
+                                            "title": {
+                                                required: "Bắt buộc nhập tiêu đề",
 
                                             },
+                                            "content": {
+                                                required: "Bắt buộc nhập nội dung",
+
+                                            },
+
 
                                         }
                                     });
-                                });
+                                })
                                 </script>
 
 

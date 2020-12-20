@@ -49,16 +49,19 @@ class UserController extends Controller
     // resend email
     public function resendEmail(){
         $user= User::find(Auth::id());
+
         $user->sendEmailVerificationNotification();
-        return redirect()->back();
+        Toastr::success('Gửi thư xác thực thành công','Thông báo');
+            return redirect()->back();
+
     }
     // profile_user người dùng khác
     public function profileDetail($username){
         {
 
             $profile = User::where('username', '=' , $username);
-
-            if($profile->count()) {
+            // nếu profile có có trong database
+            if($profile) {
                 $profile = $profile->first();
                 $posts = PostHistory::where('user_id',$profile->id)
                 ->join('product', 'product.id', '=', 'product_id')

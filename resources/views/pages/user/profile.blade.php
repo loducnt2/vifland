@@ -7,6 +7,8 @@
 $("#form-profile :input").prop("disabled", true);
 </script>
 @endif
+{!! Toastr::message() !!}
+
 <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="active nav-link active" id="thaydoithongtin-tab" data-toggle="tab" href="#thaydoithongtin" role="tab"
         aria-controls="nav-home" aria-selected="true">Thay đổi thông tin cá nhân</a>
@@ -44,10 +46,9 @@ $("#form-profile :input").prop("disabled", true);
                         @endif
                     </div>
                     @if(Auth::check() && Auth::user()->email_verified_at =="")
-                    {{-- nếu user không kích hoạt --}}
-                    {{-- <a href=""></a> --}}
-
-                    <span class="badge badge-warning"><a href="/resend">Kích hoạt tài khoản</a></span>
+                    <span class="badge badge-warning" style="margin-left:5px"><a href="/resend">Kích hoạt tài
+                            khoản</a></span>
+                    @else <span class="badge badge-primary" style="margin-left:5px"> Đã kích hoạt</span>
                     @endif
                 </div>
             </div>
