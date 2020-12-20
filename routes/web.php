@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-
+Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
+Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
 Auth::routes();
 Auth::routes(['verify' => true]);
 
@@ -48,8 +49,7 @@ Route::get('/search/', 'SearchController@index')->name('search');               
 Route::get('/searchmobi', 'SearchController@searchMobile')->name('searchmob');   // Tìm kiếm giao diện mobile
 //Route::get('/search/filter/','SearchController@filter')->name('filter');
 
-Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
-Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+
 Route::post('/user/create-payment', 'PaymentController@create')->name('create-payment'); // Nạp tiền
 Route::get('/user/return-payment', 'PaymentController@return')->name('return-payment');  // Trả về kết quả nạp tiền
 
