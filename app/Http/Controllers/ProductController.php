@@ -379,7 +379,8 @@ class ProductController extends Controller
     public function addDateForm($id)
     {
         $product_id = $id;
-        return view('pages/article/article-form-add-date', compact('product_id'));
+        $prices = PriceTypePost::orderBy('id', 'asc')->get();
+        return view('pages/article/article-form-add-date', compact('product_id', 'prices'));
     }
     //gia hạn
     public function addDate(Request $request)

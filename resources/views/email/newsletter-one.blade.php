@@ -93,30 +93,27 @@
                             @foreach ($products as $item)
                             <li style="list-style-type: none; padding-bottom: 70px;">
                                 <div style="flex-basis: 70%;" class="remove-flex-basis-mobile">
-                                    <img src="{{ $message->embed(public_path() . '/assets/product/detail/'.$item->thumbnail) }}" alt="" style="display:block,width:100%">
-                                 </div>
-                                <div class="remove-flex-mobile" style="display:flex; justify-content:space-between;">
-                                   {{-- img --}}
-                               </div>
-
-                                    <div style="padding-left: 30px; flex-basis: 100%; width: 100%;"
-                                        class="remove-flex-basis-mobile">
-
-                                        <h4 style="font-size: 20px; margin-top: 0; margin-bottom: 10px;"
-                                            class="list-header">{{$item->title}}</h4>
-
-                                        <p style="padding-bottom: 20px; margin-top: 0;">
-                                        </p>
-
-                                        <a href="vifland.com/article/{{$item->slug}}"
-                                            style="text-decoration: none; text-transform: capitalize; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 12px; background: #0185D0; color: #FFFFFF; border-radius: 5px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Đọc
-                                            thêm</a>
-                                    </div>
+                                    <img src="{{ $message->embed(public_path() . '/assets/product/detail/'.$item->thumbnail) }}"
+                                        alt="" style="display:block,width:100%">
                                 </div>
-                            </li>
-                            @endforeach
-                        </ul>
+                                <div class="remove-flex-mobile" style="display:flex; justify-content:space-between;">
+                                    {{-- img --}}
+                                </div>
+
+                                <div style="padding-left: 30px; flex-basis: 100%; width: 100%;"
+                                    class="remove-flex-basis-mobile">
+
+                                    <h4 style="font-size: 20px; margin-top: 0; margin-bottom: 10px;"
+                                        class="list-header">{{$item->title}}</h4>
+                                    <a href="vifland.com/article/{{$item->slug}}"
+                                        style="text-decoration: none; text-transform: capitalize; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 12px; background: #0185D0; color: #FFFFFF; border-radius: 5px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Đọc
+                                        thêm</a>
+                                </div>
                     </div>
+                    </li>
+                    @endforeach
+                    </ul>
+                </div>
 
 
             </td>

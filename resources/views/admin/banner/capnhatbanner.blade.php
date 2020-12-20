@@ -5,12 +5,9 @@ Quản lý banner
 @endsection
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <div class="container">
     <h2>Update Banner</h2>
-
-
-
-
     <div class="form-create-banner">
         <form action="{{route('update-banner',$banner->id)}}" method="POST" enctype="multipart/form-data">
             {{csrf_field()}}
@@ -40,6 +37,29 @@ Quản lý banner
                 <button type="submit" class="btn btn-primary">Thêm banner</button>
             </div>
         </form>
+        <script>
+             $(document).ready(function(){
+                $("#form-banner").validate({
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        rules: {
+            "img": {
+                required: true,
+
+            },
+        },
+        messages: {
+            "img": {
+                required: "Bắt buộc nhập hình",
+
+            },
+           
+
+        }
+    });
+             })
+         </script>
     </div>
 </div>
 <style>

@@ -55,7 +55,7 @@ label.error {
                             <h4 class="title-footer">Tin bất động sản</h4>
                             <ul class="list-items">
                                 <?php
-                                $danhmuc = App\Models\NewsCategory::all();
+                                $danhmuc = App\Models\NewsCategory::where('status','1')->get();
                                 ?>
                                 @foreach ($danhmuc as $item)
                                 <li class="list-item"> <a href="/tin-tuc/danh-muc/{{$item->slug}}">{{$item->category_name}} </a></li>
