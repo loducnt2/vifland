@@ -3,8 +3,6 @@
 Quản lý tin đăng > Duyệt tin
 @endsection
 @section('content')
-<meta name="csrf-token" content="{{ csrf_token() }}" />
-
 <div class="container-fluid box-n-big">
     <h2>Danh sách tin duyệt</h2>
     <!-- table -->
@@ -26,7 +24,6 @@ Quản lý tin đăng > Duyệt tin
                     <option value="Tin thường">Tin thường</option>
                 </select>
             </div>
-
         </div>
         <div class="col-4">
             <div class="form-group">
@@ -39,9 +36,7 @@ Quản lý tin đăng > Duyệt tin
             </div>
         </div>
     </div>
-
     <br>
-
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -53,13 +48,12 @@ Quản lý tin đăng > Duyệt tin
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody id="duyettinTable">
+        <tbody id="myTable">
             @foreach($news as $new)
             <tr>
                 <td>{{$new->post_id}}</td>
                 <td>{{$new->product_id}}</td>
                 <td>{{$new->product_title}}</td>
-
                 @if($new->product_type==1)
                 <td id="productType"> <button class="btn bg-danger text-white">Vip1</button> </td>
                 @elseif($new->product_type==2)
@@ -69,7 +63,6 @@ Quản lý tin đăng > Duyệt tin
                 @else
                 <td id="productType"> <button class="btn bg-secondary text-white">Thường</button> </td>
                 @endif
-
                 <td id="valueStatus" style="width:15%"> <button
                         class="btn {{$new->status == 1 ? 'btn-success':'btn-warning'}}">{{$new->status == 1 ? 'Đã duyệt':'Chờ duyệt'}}</button>
                 </td>
@@ -77,8 +70,7 @@ Quản lý tin đăng > Duyệt tin
                     <a href="{{route('show-tintuc',$new->product_id)}}"><button class="btn button-color">
                             Detail</button></a>
                     @if($new->status == 1)
-                    <a href="" data-productid="{{ $new->product_id }}" data-id="{{$new->post_id}}" class="btn btn-danger btn-delete-duyettin">Xoá tin</a>
-                    {{-- <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger btn-delete-duyettin"> Xóa </button></a> --}}
+                    <a href="{{route('del-post',$new->product_id)}}"><button class="btn btn-danger btn-xoa-tinduyet"> Xóa </button></a>
                     @else
                     <a href="{{route('update-post',$new->post_id)}}"> <button class="btn btn-success"> Duyệt </button>
                     </a>
@@ -87,21 +79,16 @@ Quản lý tin đăng > Duyệt tin
                     @endif
 
 
-
-
                 </td>
             </tr>
             @endforeach
-
         </tbody>
     </table>
     {{ $news->links() }}
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
-
     $("#myInput").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#myTable tr").filter(function() {
@@ -110,18 +97,16 @@ $(document).ready(function() {
     });
     $("#status").on("change", function() {
         var value = $(this).val().toLowerCase();
-        $("#duyettinTable tr td[id='valueStatus']").filter(function() {
+        $("#myTable tr td[id='valueStatus']").filter(function() {
             $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
-
     $("#type").on("change", function() {
         var value = $(this).val().toLowerCase();
-        $("#duyettinTable tr td[id='productType']").filter(function() {
+        $("#myTable tr td[id='productType']").filter(function() {
             $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
     });
-
 
 });
 </script>

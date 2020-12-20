@@ -3,7 +3,6 @@
   </script>
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
       crossorigin="anonymous"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
   </script>
@@ -52,19 +51,15 @@
     font-size: 14px;
 }
   </style>
-
   {!! Toastr::message() !!}
   {{-- end style --}}
   <script>
 function ChangeToSlug() {
     var title, slug;
-
     //Lấy text từ thẻ input title
     title = document.getElementById("title").value;
-
     //Đổi chữ hoa thành chữ thường
     slug = title.toLowerCase();
-
     //Đổi ký tự có dấu thành không dấu
     slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
     slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -87,23 +82,17 @@ function ChangeToSlug() {
     slug = '@' + slug + '@';
     slug = slug.replace(/\@\-|\-\@|\@/gi, '');
     //In slug ra textbox có id “slug”
-
     document.getElementById('slug').innerHTML = slug;
     document.getElementById('slug2').value = slug;
-
 }
   </script>
-
   <!-- Danh mục -->
-
-
 
   <script>
 $(function() {
     $('.toggle-class').change(function() {
         var status = $(this).prop('checked') == true ? 1 : 0;
         var id = $(this).data('id');
-
         $.ajax({
             type: "GET",
             dataType: "json",
@@ -115,15 +104,12 @@ $(function() {
             success: function(data) {
                 console.log(data.success)
                 location.reload();
-
                 // console.log('thực thi');
-
             }
         });
     })
 })
   </script>
-
   <script type="text/javascript">
 $.ajaxSetup({
     headers: {
@@ -133,9 +119,7 @@ $.ajaxSetup({
   </script>
   <!-- {{-- quản lý danh mục --}}
   {{-- 1.1 Xoá danh mục khi bấm vào nút xoá --}} -->
-
   <!-- {{-- 1.2 Thêm danh mục mới--}}
-
   {{-- Xoá Record --}} -->
   <script>
 //   CKEDITOR.replaceAll();
@@ -154,24 +138,19 @@ $("#myTable").on('click', '.btn-edit', function(e) {
     var category_name = $(this).attr('data-category_name');
     console.log(category_name);
     e.preventDefault();
-
     $('.modal').modal('show');
-
     $('input[name=category_name]').val(category_name);
-
     $('input[name=category_id]').val(id);
     console.log(id);
     console.log(category_name);
 })
   </script>
-
   <!-- {{-- 1-2 Khi user click vào nút save để lưu thông tin --}} -->
   <script>
 $("body").on('click', '.btn-save', function(e) {
     e.preventDefault();
     var category_name = $('input[name=category_name]').val();
     var id = $('input[name=category_id]').val();
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -191,7 +170,6 @@ $("body").on('click', '.btn-save', function(e) {
             // setInterval('location.reload()', 100);
             $(this).fadeOut();
             var refInterval = window.setTimeout('location.reload()', 1);
-
         },
         error: function(error) {
             console.log(error);
@@ -202,7 +180,6 @@ $("body").on('click', '.btn-save', function(e) {
   <!--
   {{-- quản lý tin tức --}}
   {{-- 1 - Event khi user click vào nút model --}} -->
-
   <script>
 $("#myTable").on('click', '.btn-news-edit', function(e) {
     var id = $(this).data('id');
@@ -210,22 +187,18 @@ $("#myTable").on('click', '.btn-news-edit', function(e) {
     var title = $(this).data('title');
     var content = $(this).attr('data-content');
     e.preventDefault();
-
-    $('.modal').modal('show');
+    $('#modelId').modal('show');
     // truyền vào text input theo name
     $('input[name=title]').val(title);
     $('input[name=id]').val(id);
     CKEDITOR.instances.contents.setData("" + content);
 
-
     console.log("ID =" + id);
     console.log("Title =" + title);
     console.log("Content = " + content);
-
 })
   </script>
   <!-- {{-- 1-2 Khi user click vào nút save để lưu thông tin --}} -->
-
   <script>
 $("body").on('click', '.btn-news_save', function(e) {
     e.preventDefault();
@@ -233,7 +206,6 @@ $("body").on('click', '.btn-news_save', function(e) {
     var id = $('input[name=id]').val();
     // var content = $('input[name="content"]').val();
     var content = CKEDITOR.instances['contents'].getData();
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -244,7 +216,6 @@ $("body").on('click', '.btn-news_save', function(e) {
         type: 'PUT',
         dataType: "JSON",
         data: {
-
             "id": id,
             "title": title,
             "content": content,
@@ -254,9 +225,7 @@ $("body").on('click', '.btn-news_save', function(e) {
             console.log(response);
             $('.modal').modal('hide');
             $(this).fadeOut();
-
             var refInterval = window.setTimeout('location.reload()', 1);
-
         },
         error: function(error) {
             console.log(error);
@@ -264,7 +233,6 @@ $("body").on('click', '.btn-news_save', function(e) {
     });
 });
   </script>
-
   <script>
 $(document).ready(function() {
     $("#myInput").on("keyup", function() {
@@ -277,12 +245,9 @@ $(document).ready(function() {
   </script>
   {{-- delete record --}}
 
-
   <script>
 $(document).ready(function() {
-
     $.validator.addMethod("check",
-
         function(data, value) {
             var category_name = $('#myform input[name="category_name"]').val();
             $('input[name=category_name_hidden]').val(category_name);
@@ -296,7 +261,6 @@ $(document).ready(function() {
                 async: true,
                 url: "/admin/index/danh-muc-tin-tuc/checkunique=" +
                     input, // url check unique trong laravel
-
                 data: {
                     input: input
                 },
@@ -308,17 +272,14 @@ $(document).ready(function() {
                 },
             });
             return result;
-
         },
         "This username is already taken! Try another."
     );
 });
   </script>
-
   <script>
 $('#category_form').validate({
     rules: {
-
         'category_name': {
             required: true,
             check: false
@@ -330,11 +291,8 @@ $('#category_form').validate({
             check: "Tên danh mục đã bị trùng "
         },
     },
-
     submitHandler: function(e) {
-
         let formData = {
-
             category_name: $("#category_name").val(),
             slug: $("#slug2").val()
         };
@@ -349,14 +307,11 @@ $('#category_form').validate({
                 <td>` + data.slug + `</td>
                 <td>` + data.category_name + `</td>
                 <td>` + data.status + `</td>
-
                 <td>
                     <a href="" data-id="` + data.id + `" data-category_name="` + data.category_name + `"class="btn btn-danger btn-edit">Sửa</a>
                         <a href="" data-id="` + data.id + `" class="btn btn-danger btn-delete">Xoá</a> </td>
                 </tr>`
-
                     // edit record
-
                 );
             },
             error: function(error) {
@@ -364,14 +319,12 @@ $('#category_form').validate({
             },
         });
     }
-
 });
   </script>
-
   {{-- Ban/unban user --}}
   <script>
 $(function() {
-    $('#table').on("change", ".btn-user", function() {
+    $('#userTable').on("change", ".btn-user", function() {
         var id = $(this).data('id');
         var status = $(this).prop('checked') == true ? 1 : 0;
         $.ajax({
@@ -396,10 +349,8 @@ $(function() {
             },
         });
     });
-
 })
   </script>
-
 
   <script>
 $(function() {
@@ -422,7 +373,6 @@ $(function() {
                     toastr.error("Ẩn");
                     $("#status-" + id).html("Ẩn");
                     $('#table-' + id).removeClass("enabled").addClass("disabled");
-
                 }
             },
             //  báo lỗi
@@ -431,10 +381,8 @@ $(function() {
             },
         });
     });
-
 })
   </script>
-
   <script>
 function getDataSelect(id, id_city) {
     $.ajax({
@@ -476,15 +424,12 @@ $('#myTable').on("click", ".btn-sendmail-one", function(e) {
         theme: 'bootstrap4',
         maximumSelectionSize: '4'
     });
-
     getDataSelect(id, idcity);
-
 });
   </script>
   <script>
 $('#letter-form').on('submit', function() {
     var minimum = 1;
-
     if ($("#productFilter").select2('data').length >= minimum) {
         toastr.success('Hợp lệ! ', 'Thông báo');
         return true;
@@ -528,18 +473,15 @@ $("#productFilter").on({
 });
   </script>
 
-
   <script>
 $(document).on('change', '.custom-file-input', function(event) {
     $(this).next('.custom-file-label').html(event.target.files[0].name);
 })
   </script>
-
   {{-- function Unsub --}}
   <script>
 function unsub(email, $ele) {
     // var $ele = $(this).parent.parent();
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -549,12 +491,10 @@ function unsub(email, $ele) {
         url: "/admin/index/quan-ly-thu-tin-tuc/unsub/" + email,
         type: 'DELETE',
         data: {
-
             "email": email
         },
         success: function(response) {
             // success
-
             $ele.fadeOut().remove();
             toastr.success('Huỷ đăng kí thành công', 'Quản trị viên');
         },
@@ -587,7 +527,6 @@ $('#myTable').on("click", ".btn-unsub", function(e) {
         confirmButtonText: 'Huỷ đăng kí'
     }).then((result) => {
         if (result.isConfirmed) {
-
             unsub(email, $ele);
         }
     })
@@ -610,13 +549,11 @@ $('#myTable').on("click", ".btn_news-delete", function(e) {
         confirmButtonText: 'Xoá bài'
     }).then((result) => {
         if (result.isConfirmed) {
-
             delete_post(id, $ele);
         }
     })
 });
   </script>
-
   <script>
 function delete_post(id, $ele) {
     $.ajaxSetup({
@@ -632,13 +569,11 @@ function delete_post(id, $ele) {
             "id": id
         },
         success: function(response) {
-
             $ele.fadeOut().remove();
             toastr.success('Xoá thành công bài viết thành công', 'Quản trị viên');
         },
         error: function(error) {
             console.log(error);
-
         }
     });
 }
@@ -663,13 +598,11 @@ $('#myTable').on("click", ".btn-delete", function(e) {
         confirmButtonText: 'Xoá danh mục'
     }).then((result) => {
         if (result.isConfirmed) {
-
             delete_Category(id, $ele);
         }
     })
 });
   </script>
-
   <script>
 function delete_Category(id, $ele) {
     $.ajaxSetup({
@@ -689,7 +622,6 @@ function delete_Category(id, $ele) {
             console.log(typeof(number));
             // typeof của number = number
             if (number > 0) {
-
                 toastr.warning("Bạn còn " + number + " bài viết chưa xoá");
                 console.log('Không thể xoá được danh mục');
             }
@@ -699,39 +631,43 @@ function delete_Category(id, $ele) {
                 toastr.success("Xoá thành công!");
                 console.log('Có thể xoá được danh mục');
             }
-
         },
         error: function(error) {
             console.log(error);
-
         }
     });
 }
   </script>
-
   {{-- user  --}}
   <script>
 function deleteUser(id, $ele, username) {
     // var $ele = $(this).parent.parent();
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
     $.ajax({
-        url: "/admin/index/profile/delete/" + username,
-        type: 'DELETE',
+        url: "/admin/index/profile/delete/" + id,
+        type: 'get',
         data: {
             "id": id,
             "username": username
-
         },
         success: function(response) {
-            // success
-
-            $ele.fadeOut().remove();
-            toastr.success('Xoa user thành công', 'Quản trị viên');
+            var number = JSON.parse(response);
+            console.log(typeof(number));
+            // typeof của number = number
+            if (number >= 1) {
+                toastr.warning("Bạn không thể xoá được người dùng do còn bài viết");
+                console.log('Không thể xoá được danh mục');
+            }
+            // nếu user là user=0
+            else {
+                $ele.fadeOut().remove();
+                toastr.success("Xoá thành công!");
+                console.log('Có thể xoá được user');
+            }
         },
         error: function(error) {
             console.log(error);
@@ -740,54 +676,47 @@ function deleteUser(id, $ele, username) {
     });
 }
   </script>
-
   <script>
 $('#userTable').on("click", ".btn-user-delete", function(e) {
     e.preventDefault();
+    var id = $(this).data("id");
+    var username = $(this).data("username");
+    console.log(username);
     var $ele = $(this).parent().parent();
-    var username = $(this).data('username');
-    var id = $(this).data('id');
-    // var city = $(this).data('city');
     console.log(id);
-
-    // then sweet alert fire
+    // console.log(id);
     Swal.fire({
-        title: 'Thông báo?',
-        text: "Bạn muốn xoa' username ",
+        title: 'Thông báo',
+        text: "Bạn muốn xoá người dùng " + username,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Huỷ đăng kí'
+        confirmButtonText: 'Xoá người dùng'
     }).then((result) => {
         if (result.isConfirmed) {
-
-            deleteUser(username, id, $ele);
+            deleteUser(id, $ele, username);
         }
     })
-})
+});
   </script>
-
   {{-- xoá tin duyệt bằng tin --}}
   <script>
-function deleteDuyettin(productid, $ele) {
+function deleteDuyettin(postid, productid, $ele) {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
     $.ajax({
-
         url: "/admin/danh-sach-duyet-tin/delete/" + productid,
         //    data: "data",
-        type: 'DELETE',
+        type: 'get',
         dataType: "Content-Type: application/javascript",
         data: {
             // "id" :id,
             "productid": productid
-
         },
-
         success: function(response) {
             // success
             $ele.fadeOut().remove();
@@ -804,14 +733,14 @@ function deleteDuyettin(productid, $ele) {
 $('#duyettinTable').on("click", ".btn-delete-duyettin", function(e) {
     e.preventDefault();
     var $ele = $(this).parent().parent();
-    // var id = $(this).data('id');
+    var postid = $(this).data('postid');
     var productid = $(this).data('productid');
     console.log(productid);
-
+    console.log("PostID" + postid);
     // then sweet alert fire
     Swal.fire({
         title: 'Thông báo?',
-        text: "Bạn muốn xoá duyệt tin ",
+        text: "Bạn muốn xoá tin này?>",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
@@ -819,13 +748,11 @@ $('#duyettinTable').on("click", ".btn-delete-duyettin", function(e) {
         confirmButtonText: 'Xoá tin duyệt'
     }).then((result) => {
         if (result.isConfirmed) {
-
-            deleteDuyettin(productid, $ele);
+            deleteDuyettin(postid, productid, $ele);
         }
     })
 })
   </script>
-
   {{-- content --}}
   <script>
 // get thông tin content
@@ -848,7 +775,6 @@ $("#myTable").on('click', '.btn-contact-detail', function(e) {
 $("#myTable").on('click', '.btn-mail-contact', function(e) {
     //
     // $("#contact-form").attr('action',$("#contact-form").attr('action')+ "/tests");
-
     e.preventDefault();
     var id = $(this).data('id');
     var content = $(this).attr("data-content");
@@ -863,7 +789,6 @@ $("#myTable").on('click', '.btn-mail-contact', function(e) {
     $('textarea[name=content]').val(content);
 })
   </script>
-
   {{-- duyệt tin --}}
   <script>
 $("#status").on("change", function() {
@@ -873,54 +798,76 @@ $("#status").on("change", function() {
     });
 });
   </script>
-
+  {{-- <script>
+    CKEDITOR.replaceAll();
+{{-- </script> --}}
+  {{-- <script>
+    CKEDITOR.replace('content');
+</script> --}}
   <script>
 $("#thongbao").validate({
-    submitHandler: function(form) {
-        return false;
-    },
-    onfocusout: false,
-    onkeyup: false,
-    onclick: false,
-    rules: {
-        "name": {
-            required: true,
+            submitHandler: function(form) {
+                return false;
+            },
+            onfocusout: false,
+            onkeyup: false,
+            onclick: false,
+            rules: {
+                "name": {
+                    required: true,
 
-        },
-        "noidung": {
-            required: true,
+                },
+                onfocusout: false,
+                onkeyup: false,
+                onclick: false,
+                rules: {
+                    "name": {
+                        required: true,
+                    },
+                    "noidung": {
+                        required: true,
+                    },
+                    "due_date": {
+                        required: true,
 
-        },
-        "due_date": {
-            required: true,
-
-
-        }
-    },
-    messages: {
-        "name": {
-            required: "Bắt buộc nhập tiêu đề",
-
-        },
-        "noidung": {
-            required: "Bắt buộc nhập nội dung",
-
-        },
-        "due_date": {
-            required: "Yêu cầu nhập ngày tháng năm",
-
-        }
-    }
-});
+                    }
+                },
+                messages: {
+                    "name": {
+                        required: "Bắt buộc nhập tiêu đề",
+                    },
+                    "noidung": {
+                        required: "Bắt buộc nhập nội dung",
+                    },
+                    "due_date": {
+                        required: "Yêu cầu nhập ngày tháng năm",
+                    }
+                }
+            });
+  </script>
+  {{-- ckeditor --}}
+  <script>
+CKEDITOR.replace('contents');
   </script>
   <script>
-CKEDITOR.replace('content');
-  </script>
-  <script>
-var path = window.location.href; // because the 'href' property of the DOM element is the absolute path
-$(".user-admin a").each(function() {
-    if (this.href === path) {
-        $(this).addClass("active");
-    }
-});
+$("#myTable").on('click', '.btn-xoa-tinduyet', function(e) {
+    e.preventDefault();
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+            )
+        }
+    })
+})
   </script>

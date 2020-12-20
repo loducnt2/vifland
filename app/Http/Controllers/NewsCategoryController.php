@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use DB;
 use App\Models\NewsCategory;
@@ -23,8 +22,6 @@ class NewsCategoryController extends Controller
         return view('admin.tintuc.danhmuctintuc',compact('news_cate'));
     }
 
-
-
     public function deleteall(){
         // không cần kiểm tra khoá ngoại
         Toastr::success('Xoá hết thành công','Thông báo');
@@ -32,7 +29,6 @@ class NewsCategoryController extends Controller
         DB::table('news_category')->truncate();
         Schema::enableForeignKeyConstraints();
         return redirect()->back();
-
 
     }
     /**
@@ -44,7 +40,6 @@ class NewsCategoryController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -60,10 +55,8 @@ class NewsCategoryController extends Controller
         $news_cate->slug = Str::slug($request->category_name);
         $news_cate->status = "1";
         $news_cate->save();
-
         return response()->json(
             [
-
                 'status'=>$news_cate->status,
                 'id'=>$news_cate->id,
                 'category_name'=>$news_cate->category_name,
@@ -72,14 +65,12 @@ class NewsCategoryController extends Controller
             ]
         );
     }
-
     public function checkunique(Request $request){
         $check = DB::table('news_category')
         ->where('category_name', $request->input("category_name_input"))
         ->first();
 //     // Toastr::success('Hello','Thông báo');
     }
-
     /**
      * Display the specified resource.
      *
@@ -88,9 +79,7 @@ class NewsCategoryController extends Controller
      */
     public function show(NewsCategory $newsCategory)
     {
-
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -101,7 +90,6 @@ class NewsCategoryController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -119,7 +107,6 @@ class NewsCategoryController extends Controller
             $newsCategory->update();
             return response()->json(
                 [
-
                     // 'status'=>$newsCategory->status,
                     'id'=>$newsCategory->id,
                     'category_name'=>$newsCategory->category_name,
@@ -127,9 +114,7 @@ class NewsCategoryController extends Controller
                     // 'created_at'=>$news_cate->created_at
                 ]
             );
-
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -138,8 +123,9 @@ class NewsCategoryController extends Controller
      */
     public function destroy($id)
     {
-        // đếm số lượng bài viết có trong danh mục
-        $number = (News::where('id_category',$id)->count());
+        // đếm số lượng bài viết có trong từng id user
+        $number = (News::where('Id_user',$id)->count());
+        dd($number);
         if($number > 0 ){
             return json_decode($number);
             // return response()->json(['error'=>'False']);
@@ -150,14 +136,5 @@ class NewsCategoryController extends Controller
               $newsCategory->delete();
               return json_decode($number);
 
-
          }
-       // // $newsCategory = new NewsCategory();
-        // if(empty($province_info)){
-        //     return false;
-        // }else{
-
-        //     $products = Product::where('province_id',$province_info->id)->get();
-        //     return json_decode($products);
         }}
-
