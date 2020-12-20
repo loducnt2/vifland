@@ -18,35 +18,52 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
-    Auth::routes();
-    Auth::routes(['verify' => true]);
-    Route::get('/logout', 'Auth\LoginController@logout'); // Đăng xuất
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('home', 'HomeController@index');                                // Trang chủ
-    Route::get('/compares', 'API\CompareController@index')->name('compare');        // So sánh
-    Route::get('/contact', function () {
-        return view('pages/contact');
-    });        // liên hệ
-    Route::get('/about', function () {
-        return view('pages/about');
-    }); //giới thiệu
-    Route::get('/article/{slug}', 'ProductController@show')->name('article-detail');               // Chi tiết tin đăng
-    //Danh mục
-    Route::get('/get-district/{id}', 'API\GetZone@getDistrictByProvince');
-    Route::get('/get-content-province/{id}', 'API\GetZone@contentProvince');
-    Route::get('/get-ward/{id}', 'API\GetZone@getWardByDistrict');
 
-    Route::get('/mua-ban-nha-dat', 'SearchController@getByCate')->name('cate1'); // Danh mục 1
-    Route::get('/cho-thue-nha-dat', 'SearchController@getByCate')->name('cate2'); // Danh mục 2
-    Route::get('/sang-nhuong-nha-dat', 'SearchController@getByCate')->name('cate3'); // Danh mục 3
-    Route::get('/search/', 'SearchController@index')->name('search');                // Tìm kiếm, lọc tin
-    Route::get('/searchmobi', 'SearchController@searchMobile')->name('searchmob');   // Tìm kiếm giao diện mobile
-    //Route::get('/search/filter/','SearchController@filter')->name('filter');
-    Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
-    Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
+Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+Auth::routes();
+Auth::routes(['verify' => true]);
 
-    Route::get('/favourites', 'ProductController@productUserFavorite')->name('favorites');      // Yêu thích
-    Route::get('/history', 'ProductController@productUserHistory')->name('history');
+Route::get('/logout', 'Auth\LoginController@logout'); // Đăng xuất
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index');                                // Trang chủ
+Route::get('/compares', 'API\CompareController@index')->name('compare');        // So sánh
+Route::get('/contact', function () {
+    return view('pages/contact');
+});        // liên hệ
+Route::get('/about', function () {
+    return view('pages/about');
+}); //giới thiệu
+Route::get('/article/{slug}', 'ProductController@show')->name('article-detail');               // Chi tiết tin đăng
+//Danh mục
+Route::get('/get-district/{id}', 'API\GetZone@getDistrictByProvince');
+Route::get('/get-content-province/{id}', 'API\GetZone@contentProvince');
+Route::get('/get-ward/{id}', 'API\GetZone@getWardByDistrict');
+
+
+Route::get('/mua-ban-nha-dat', 'SearchController@getByCate')->name('cate1'); // Danh mục 1
+Route::get('/cho-thue-nha-dat', 'SearchController@getByCate')->name('cate2'); // Danh mục 2
+Route::get('/sang-nhuong-nha-dat', 'SearchController@getByCate')->name('cate3'); // Danh mục 3
+Route::get('/search/', 'SearchController@index')->name('search');                // Tìm kiếm, lọc tin
+Route::get('/searchmobi', 'SearchController@searchMobile')->name('searchmob');   // Tìm kiếm giao diện mobile
+//Route::get('/search/filter/','SearchController@filter')->name('filter');
+
+
+Route::post('/user/create-payment', 'PaymentController@create')->name('create-payment'); // Nạp tiền
+Route::get('/user/return-payment', 'PaymentController@return')->name('return-payment');  // Trả về kết quả nạp tiền
+
+// Đăng tin
+Route::get('/user/my-article/{id}', 'ProductController@getByUser')->name('user-article');  // Quản lý tin của user
+Route::get('/favourites', 'ProductController@productUserFavorite')->name('favorites');      // Yêu thích
+Route::get('/history', 'ProductController@productUserHistory')->name('history');              // Lịch sử xem tin
+
+//Profile
+//Update profile
+Route::post('/user/update/{id}', 'UserController@update')->name('user-update');   // cập nhật thông tin user
+Route::post('/user/changepass/{id}', 'UserController@changePassword')->name('user-changePassword');  // Thay đổi mật khẩu
+//Change password
+
+
 Route::post('/contact/create','ContactController@store')->name('up-contact');
  //User
 //  auth = aka đăng nhập để xem
