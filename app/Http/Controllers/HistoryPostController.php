@@ -31,7 +31,8 @@ class HistoryPostController extends Controller
                 'product.id as product_id',
                 'product.type as product_type',
             )
-            ->paginate(10);
+            // ->paginate(10);
+            ->get();
         return view('/admin/tintuc/danhsachduyettin', compact('news'));
     }
     /**

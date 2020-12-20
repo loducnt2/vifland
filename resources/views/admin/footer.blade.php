@@ -122,7 +122,7 @@ $(function() {
     });
 })
   </script>
-  {{--  --}}
+  {{-- --}}
   <script>
 $(function() {
     $('.toggle-class').change(function() {

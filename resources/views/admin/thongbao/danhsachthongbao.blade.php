@@ -90,7 +90,7 @@ label.error {
                     <td>{{$noti->status==0?'Đang ẩn':'Đang hiện'}}</td>
                     <td>
                         <a href="{{route('del-noti',$noti->id)}}"> <button class="btn btn-danger">Xóa</button> </a>
-                        <a href="{{route('edit-noti',$noti->id)}}"> <button class="btn btn-info">Update</button> </a>
+                        <a href="{{route('edit-noti',$noti->id)}}"> <button class="btn btn-info">Chỉnh sửa</button> </a>
                     </td>
                 </tr>
                 @endforeach

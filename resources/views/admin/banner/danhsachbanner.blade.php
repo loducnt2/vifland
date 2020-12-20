@@ -5,6 +5,21 @@
  @endsection
  @section('content')
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+ <style>
+        span.error {
+       color:red;
+       font-size:12px;
+    /* margin-left: 6px; */
+    /* height:17px; */
+    /* background: url('http://i45.tinypic.com/f9ifz6.png') no-repeat left center; */
+}
+label.error {
+    font-weight: bold;
+    color:red;
+    font-size:14px;
+}
+ </style>
  <div class="container-fluid box-n-big">
      <h2>Banner</h2>
      <button class="btn button-color mb-3 " id="btn-create-banner">Thêm banner</button>
@@ -12,7 +27,7 @@
 
 
      <div class="form-create-banner d-none">
-         <form action="{{route('create-banner')}}" method="POST" enctype="multipart/form-data">
+         <form id="form-banner" action="{{route('create-banner')}}" method="POST" enctype="multipart/form-data">
              {{csrf_field()}}
              <!-- <div class="form-group">
           <label for="">Tên Banner</label>
@@ -37,6 +52,29 @@
                  <button type="submit" class="btn button-color">Thêm Banner</button>
              </div>
          </form>
+         <script>
+             $(document).ready(function(){
+                $("#form-banner").validate({
+        onfocusout: false,
+        onkeyup: false,
+        onclick: false,
+        rules: {
+            "img": {
+                required: true,
+
+            },
+        },
+        messages: {
+            "img": {
+                required: "Bắt buộc nhập hình",
+
+            },
+           
+
+        }
+    });
+             })
+         </script>
      </div>
      <div class="table-list-banner">
          <input class="form-control" id="myInput" type="text" placeholder="Search..">
@@ -61,10 +99,10 @@
                              data-src="{{asset('assets/banner')}}/{{$banner->name}}" alt="">
                      </td>
                      <td>{{$banner->position}}</td>
-                     <td>{{$banner->status}}</td>
+                     <td>{{$banner->status==0?"Đang ẩn":"Đang hiện"}}</td>
                      <td>
-                         <a href="{{route('edit-banner',$banner->id)}}">sửa</a>
-                         <a href="{{route('del-banner',$banner->id)}}">xóa</a>
+                         <a href="{{route('edit-banner',$banner->id)}}"><button class="btn btn-primary">chỉnh sửa</button> </a>
+                         <a href="{{route('del-banner',$banner->id)}}"><button class="btn btn-danger">xóa</button> </a>
                      </td>
                  </tr>
                  @endforeach

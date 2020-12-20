@@ -15,8 +15,8 @@
     @extends('admin.sidebar')
     @section('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <div class="container-fluid">
-        <h2>Danh sách Contact</h2>
+    <div class="container">
+        <h2>Danh sách liên hệ</h2>
 
         <!-- table -->
         <input class="form-control" id="myInput" type="text" placeholder="Search..">
@@ -63,16 +63,12 @@
             <td>{{$cot->address}}</td>
             <td>{{$cot->phone}}</td>
 
-            <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}"
-                    data-email="{{$cot->email}}" class="btn btn-primary btn-contact-detail" id="contact-{{$cot->id}}"><i
-                        class="ri-window-fill"></i>
+            <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}" data-email="{{$cot->email}}" class="btn btn-primary btn-contact-detail" id="contact-{{$cot->id}}"><i class="ri-window-fill"></i>
                 </a></td>
 
             <td id="status"> {{$cot->status==0 ?'Chưa trả lời':'Đã trả lời'}}
 
-            <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}"
-                    data-email="{{$cot->email}}" class="btn btn-primary btn-mail-contact" id="contact-{{$cot->id}}"><i
-                        class="ri-mail-open-line"></i>
+            <td><a href="" data-id="{{$cot->id}}" data-content="{{$cot->content}}" data-name="{{$cot->name}}" data-email="{{$cot->email}}" class="btn btn-primary btn-mail-contact" id="contact-{{$cot->id}}"><i class="ri-mail-open-line"></i>
                 </a></td>
         </tr>
         @endforeach
@@ -81,21 +77,20 @@
 
 
     <script>
-    $(document).ready(function() {
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
             });
         });
-    });
     </script>
 
 </body>
 @endsection
 </body>
-<div class="email modal  fade" id="send-email-form" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-    aria-hidden="true">
+<div class="email modal  fade" id="send-email-form" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document" id="email">
         <div class="modal-content">
             <div class="modal-header">
@@ -110,15 +105,12 @@
                     <div class="col-md-12">
                         <div class="form-group">
 
-                            <input type="text" class="form-control" readonly hidden name="name" id="name"
-                                aria-describedby="helpId" placeholder="">
+                            <input type="text" class="form-control" readonly hidden name="name" id="name" aria-describedby="helpId" placeholder="">
                             <label for="">Tiêu đề thư</label>
-                            <input type="text" class="form-control" name="subject" id="subject"
-                                aria-describedby="helpId" placeholder="">
+                            <input type="text" class="form-control" name="subject" id="subject" aria-describedby="helpId" placeholder="">
 
                         </div>
-                        <input type="text" class="form-control" readonly=true name="email" id="email"
-                            aria-describedby="helpId" placeholder="">
+                        <input type="text" class="form-control" readonly=true name="email" id="email" aria-describedby="helpId" placeholder="">
                         {{-- người nhận :) --}}
 
                     </div>
@@ -138,8 +130,7 @@
 
 </html>
 {{-- Mail Hồi âm --}}
-<div class="modal fade" id="contact-detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-    aria-hidden="true">
+<div class="modal fade" id="contact-detail" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form action="" enctype="multipart/form-data" method="POST" id="contact-form">
@@ -154,13 +145,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="text" class="mt-4 form-control" name="email" id="email" readonly="true"
-                            placeholder="">
+                        <input type="text" class="mt-4 form-control" name="email" id="email" readonly="true" placeholder="">
                         <small id="helpId" class="form-text text-muted">Email người gửi</small>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="mt-4 form-control" name="name" id="name" readonly
-                            aria-describedby="helpId" placeholder="">
+                        <input type="text" class="mt-4 form-control" name="name" id="name" readonly aria-describedby="helpId" placeholder="">
                         <small id="helpId" class="form-text text-muted">Họ và tên</small>
                     </div>
                     <div class="form-group">
