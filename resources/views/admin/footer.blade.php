@@ -560,6 +560,7 @@ $('#myTable').on("click", ".btn-unsub", function(e) {
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
+        cancelButtonText:"Huỷ",
         confirmButtonText: 'Huỷ đăng kí'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -582,6 +583,7 @@ $('#myTable').on("click", ".btn_news-delete", function(e) {
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
+        cancelButtonText:"Huỷ",
         confirmButtonText: 'Xoá bài'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -631,6 +633,7 @@ $('#myTable').on("click", ".btn-delete", function(e) {
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
+        cancelButtonText:"Huỷ",
         confirmButtonText: 'Xoá danh mục'
     }).then((result) => {
         if (result.isConfirmed) {
@@ -728,6 +731,7 @@ $('#userTable').on("click", ".btn-user-delete", function(e) {
         showCancelButton: true,
         confirmButtonColor: '#8072EA',
         cancelButtonColor: '#d33',
+        cancelButtonText:"Huỷ",
         confirmButtonText: 'Xoá người dùng'
     }).then((result) => {
         if (result.isConfirmed) {
