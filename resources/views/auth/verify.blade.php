@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title','Thư xác nhận');
 @section('content')
 <!-- Hiện conflig -->
 <style>
