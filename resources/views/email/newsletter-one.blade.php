@@ -115,7 +115,7 @@
                                     <h4 style="font-size: 16px;font-weight:bold; margin:10px 0px;" class="list-header">
                                         {{$item->title}}</h4>
 
-                                    <a href="google.com"
+                                    <a href="vifland.com/article/{{$item->slug}}"
                                         style="text-decoration: none; text-transform: capitalize; cursor: pointer; line-height: 1.1em; letter-spacing: 0; padding: 8px 15px; background:#124480; color: #FFFFFF; border-radius: 5px; text-align: center; font-size: 16px; font-weight: bold; box-sizing: border-box;">Xem
                                         thêm
                                     </a>
@@ -125,9 +125,6 @@
                         </ul>
 
                     </div>
-                    </li>
-                    @endforeach
-                    </ul>
                 </div>
 
                 </div>
