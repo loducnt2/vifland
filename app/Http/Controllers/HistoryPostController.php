@@ -24,6 +24,7 @@ class HistoryPostController extends Controller
         $news = PostHistory::leftJoin('product', 'post_history.product_id', 'product.id')
             ->orderby('post_history.status', 'asc')
             ->orderby('product.type', 'asc')
+            ->orderby('product.created_at', 'desc')
             ->select(
                 'product.title as product_title',
                 'post_history.status as status',
