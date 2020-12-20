@@ -11,7 +11,7 @@ use App\Models\ProductImg;
 use App\Models\Favorited;
 use Illuminate\Support\Facades\DB;
 use App\User;
-
+use Toastr;
 class HistoryPostController extends Controller
 {
     /**
@@ -130,8 +130,8 @@ class HistoryPostController extends Controller
         $favor = Favorited::where('product_id', $id);
         $pro->delete();
         $favor->delete();
-
-        return redirect('/admin/danh-sach-duyet-tin');
+        Toastr::success("Xoá thành công",'Thông báo');
+        // return redirect('/admin/danh-sach-duyet-tin');
     }
     public function updatePost($id)
     {

@@ -72,7 +72,7 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary mx-auto p-2" id="btnPopup">Tiến hành thanh
                         toán</button>
-                    <button disabled hidden type="submit" class="btn btn-default">Thanh toán Redirect</button>
+                    <button disabled hidden type="submit" class="btn btn-payment">Thanh toán Redirect</button>
                 </div>
 
             </form>

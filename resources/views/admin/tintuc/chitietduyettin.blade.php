@@ -256,15 +256,18 @@
                 <div class="btn"><a href="#info">Thông tin </a></div>
                 <div class="btn"><a href="#contact">Liên hệ</a></div>
             </div>
+            <div class="admin_view_button">
+                @if($new->status==0)
+                <a href="{{route('update-post',$new->id)}}"> <button class="btn btn-success "> Duyệt tin </button> </a>
+                <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
+                <a href="{{ url('admin/danh-sach-duyet-tin') }}"><button class="btn btn-danger">Trở về</button></a>
+                @else
+                <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
+                <a href="{{ url('admin/danh-sach-duyet-tin') }}"><button class="btn btn-back">Trở về</button></a>
+                @endif
+            </div>
         </div>
-        <div class="">
-            @if($new->status==0)
-            <a href="{{route('update-post',$new->id)}}"> <button class="btn btn-success "> Duyệt tin </button> </a>
-            <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
-            @else
-            <a href="{{route('del-post',$product->id)}}"><button class="btn btn-danger">Xóa bài </button></a>
-            @endif
-        </div>
+
     </section>
     <div class="index-page" id="js-page-verify" hidden></div>
 </main>
