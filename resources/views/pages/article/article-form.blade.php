@@ -179,9 +179,9 @@
                                 <span>Ảnh tiêu đề : &nbsp;</span>
                                 <input type="file" name="thumbnail" disabled="">
                             </div> -->
-                            <div class="col-12 form-group">
+                            <!-- <div class="col-12 form-group">
                                 <input type="text" value="" data-role="tagsinput" placeholder="Add tags" name="tags">
-                            </div>
+                            </div> -->
                             <div class="col-12 form-group wrap-input-img form-upload">
                                 <div class="form-upload__preview"></div>
                                 <div class="form-upload__field">

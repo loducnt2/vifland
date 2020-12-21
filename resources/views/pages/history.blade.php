@@ -80,9 +80,12 @@
                                                         data-toggle="tooltip" data-placement="bottom"
                                                         title="Lượt xem: {{$product->view}}">{{$product->view}}</span>
                                                 </div>
-                                                <div class="end-box-tt"><span
-                                                        class="material-icons icons-15 chat">chat</span><span
-                                                        class="chat">chat ngay</span></div>
+                                                <div class="end-box-tt">
+                                                    <a href="{{route('article-detail',$product->slug)}}"><span
+                                                            class="material-icons icons-15 chat">input</span><span
+                                                            class="chat">Xem
+                                                            chi tiết</span></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

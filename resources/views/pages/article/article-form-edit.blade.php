@@ -207,7 +207,7 @@
                                 <span>Ảnh tiêu đề : &nbsp;</span>
                                 <input type="file" name="thumbnail" disabled="">
                             </div> -->
-                            <div class="col-12 form-group">
+                            <!-- <div class="col-12 form-group">
                                 <input type="text" value="" data-role="tagsinput" placeholder="Chỉnh sửa lại tag"
                                     name="tags" value="">
                                 @if($product->tags!=NULL)
@@ -222,7 +222,7 @@
                                 }
                                 ?>
                                 @endif
-                            </div>
+                            </div> -->
                             <div class="col-12 form-group wrap-input-img form-upload">
                                 <div class="form-upload__preview">
                                     <div class="mb-2" id="old-img">
@@ -563,7 +563,7 @@ $(document).ready(function() {
         $('#ward').load(url1);
     });
 
-    //Validate 
+    //Validate
     $('.formDangBaiViet').submit(function() {
 
         let wallet = {
