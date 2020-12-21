@@ -179,8 +179,21 @@
                                         $noAccept = DB::table('post_history')
                                             ->leftJoin('product', 'post_history.product_id', 'product.id')
                                             ->where('post_history.user_id', auth()->user()->id)
+                                            ->where('product.created_at', '<=', date('Y-m-d', strtotime("+1 day")))
                                             ->where('product.soft_delete', 1)
                                             ->where('post_history.status', 2)
+                                            ->orderby('id', 'asc')
+                                            ->select(
+                                                'product.id as id',
+                                                'product.datetime_end as date',
+                                                'product.slug as slug'
+                                            )
+                                            ->get();
+                                            $AcceptPost = DB::table('post_history')
+                                            ->leftJoin('product', 'post_history.product_id', 'product.id')
+                                            ->where('post_history.user_id', auth()->user()->id)
+                                            ->where('product.created_at', '<=', date('Y-m-d', strtotime("+1 day")))
+                                            ->where('post_history.status', 1)
                                             ->orderby('id', 'asc')
                                             ->select(
                                                 'product.id as id',
@@ -193,6 +206,7 @@
                                         $duedate1 = [];
                                         $noAccept = [];
                                         $notiPayment = [];
+                                        $AcceptPost=[];
                                     }
                                     ?>
                                     <div class="co-thong-bao">
@@ -252,15 +266,22 @@
                                             </div>
                                         </div>
                                         @endforeach
-
                                         @foreach($noAccept as $post)
                                         <div class="item">
                                             <div class="wrap-text products-duedate ">
                                                 <div class="thongbao post-due" style="background: red;">Thông báo</div>
                                                 <a href="{{route('article-detail',$post->slug)}}">Bài
                                                     viết của bạn không được duyệt </a>
-                                                <div class="date"> ngày hết hạn: {{$post->date}}</div>
+                                            </div>
+                                        </div>
+                                        @endforeach
 
+                                        @foreach($AcceptPost as $post)
+                                        <div class="item">
+                                            <div class="wrap-text products-duedate ">
+                                                <div class="thongbao post-due bg-success">Thông báo</div>
+                                                <a href="{{route('article-detail',$post->slug)}}">Bài
+                                                    viết của bạn đã được duyệt </a>
                                             </div>
                                         </div>
                                         @endforeach

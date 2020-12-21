@@ -117,12 +117,12 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group-sl1 sl-1 select-many">
-                                            <label for="thanhpho">Đơn giá </label>
-                                            <input type="text" name="price" id="price">
-                                            <!-- <em class="notedongia">Mặc
-                                                định 0 là thương lượng</em> -->
+                                        <div class="form-group-sl1 sl-1 select-many" id="dongia">
+                                            <label for="thanhpho">Đơn giá &nbsp; </label>
+                                            <input type="text" name="price" id="price" value="">
+                                             <em class="notedongia">Ví dụ đơn giá: 32 Triệu/m²</em>
                                         </div>
+
                                     </div>
                                     <div class="tab-pane fade" id="khac" role="tabpanel" aria-labelledby="khac-tab">
                                         <div class="form-group-sl1 sl-1 select-many">
@@ -790,9 +790,14 @@ $(document).ready(function() {
 
     $('#unit').change(function() {
         if ($(this).val() == 13) {
+            $('#price').attr('value','')
             $('#price').attr('disabled', true);
+            $('#dongia').attr('hidden',true);
+            
         } else {
             $('#price').attr('disabled', false);
+            $('#price').attr('value','');
+            $('#dongia').attr('hidden',false);
         }
     })
 
@@ -829,6 +834,12 @@ $(document).ready(function() {
         })
     })
 
+    
+    /*$('#price').keyup(function(){
+        let price = $(this).val()
+        $('#pr_price').text(price)
+    })*/
+
     //Validate
 
     $('.formDangBaiViet').on('submit', function(e) {
@@ -849,16 +860,20 @@ $(document).ready(function() {
             e.preventDefault();
             delay_submit();
         }
-        if ($('#price').val() == "" | $('#price').val() == 0) {
-            toastr.warning("Vui lòng nhập đơn giá");
-            e.preventDefault();
-            delay_submit();
-        }
-        if (isNaN($('#price').val())) {
-            toastr.warning("Đơn giá không xác định");
-            e.preventDefault();
-            delay_submit();
-        }
+       if ($('#unit').val() != 13){
+           if ($('#price').val() == "" | $('#price').val() == 0) {
+               toastr.warning("Vui lòng nhập đơn giá");
+               e.preventDefault();
+               delay_submit();
+           }
+           if (isNaN($('#price').val())) {
+               toastr.warning("Đơn giá không xác định");
+               e.preventDefault();
+               delay_submit();
+           }
+       } 
+        
+        
         if (isNaN($('#facades').val())) {
             toastr.warning("Mặt tiền không xác định");
             e.preventDefault();

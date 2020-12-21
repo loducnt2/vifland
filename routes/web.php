@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->name('add-favorite');
-Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->name('all-favorite');
+Route::post('/add-favorited', 'API\FavoriteController@addFavorite')->middleware(['auth'])->name('add-favorite');
+Route::get('/favorites/all', 'API\FavoriteController@allFavorite')->middleware(['auth'])->name('all-favorite');
 Auth::routes();
 Auth::routes(['verify' => true]);
 
@@ -54,8 +54,7 @@ Route::get('/user/return-payment', 'PaymentController@return')->name('return-pay
 
 // Đăng tin
 Route::get('/user/my-article/{id}', 'ProductController@getByUser')->name('user-article');  // Quản lý tin của user
-Route::get('/favourites', 'ProductController@productUserFavorite')->name('favorites');      // Yêu thích
-Route::get('/history', 'ProductController@productUserHistory')->name('history');              // Lịch sử xem tin
+
 
 //Profile
 //Update profile
@@ -67,7 +66,10 @@ Route::post('/user/changepass/{id}', 'UserController@changePassword')->name('use
 Route::post('/contact/create','ContactController@store')->name('up-contact');
  //User
 //  auth = aka đăng nhập để xem
-    Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function(){
+    Route::get('/favourites', 'ProductController@productUserFavorite')->name('favorites');      // Yêu thích
+    Route::get('/history', 'ProductController@productUserHistory')->name('history');              // Lịch sử xem tin
+    
     Route::get('/user/profile', 'UserController@profileUser')->name('profile');          // thông tin user của người login1
     Route::get('/profile/{username}', 'UserController@profileDetail')->name('profile_username');   //Thông tin userr khác
     Route::get('/user/password', 'UserController@formpassword')->name('change-password');          // Thay đổi mật khẩu

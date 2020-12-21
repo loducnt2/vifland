@@ -6,7 +6,6 @@
 @stop
 @section('content')
 <main>
-
     <div class="global-breadcrumb">
         <div class="max-width-container">
             <ol class="breadcrumb">
@@ -200,7 +199,7 @@
                                     value="{{$product->title}}">
                             </div>
                             <div class="col-12 form-group">
-                                <textarea class="form-control" id="summary-ckeditor"
+                                <textarea class="form-control admin_textarea" id="summary-ckeditor"
                                     name="content">{{$product->content}}</textarea>
                             </div>
                             <!-- <div class="col-12 form-group">

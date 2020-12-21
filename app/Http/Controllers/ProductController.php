@@ -250,13 +250,16 @@ class ProductController extends Controller
                 'user.*',
                 'product_extend.*',
                 'product.*',
+                'category.id as cate_id',
                 'user.full_name as full_name',
                 'product_extend.id as productex_id',
                 'province.name as province',
                 'district.name as district',
                 'ward.name as ward',
                 'product_unit.name as unit',
-                'category.parent_id'
+                'category.parent_id',
+                'post_history.user_id as user_id',
+                'post_history.status as post_status' 
             )
             ->first();
 
@@ -325,7 +328,7 @@ class ProductController extends Controller
                 'category.parent_id'
             )
             
-            ->where('product.province_id', $product->province_id)
+            ->where('category.id', $product->cate_id)
 
             ->where('post_history.status',1)
             ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
@@ -339,7 +342,22 @@ class ProductController extends Controller
             ->get();
         // return $product_related;
         $product_cate = ProductCate::orderBy('id', 'desc')->get();
-        return view('pages/article/article', compact('product', 'acreage', 'total', 'cate', 'cate_id', 'province', 'district', 'image', 'product_related', 'product_cate'));
+
+        if( $product->post_status == 0 ){
+            if( auth()->check()){
+                if(auth()->user()->id == $product->user_id || auth()->user()->user_type ==1 ){
+                    return view('pages/article/article', compact('product', 'acreage', 'total', 'cate', 'cate_id', 'province', 'district', 'image', 'product_related', 'product_cate'));
+                }else{
+                    return abort('404');
+                }
+            }else{
+                    return abort('404');
+                }
+        }else{
+            return view('pages/article/article', compact('product', 'acreage', 'total', 'cate', 'cate_id', 'province', 'district', 'image', 'product_related', 'product_cate'));
+        }
+
+        
     }
 
     /**
