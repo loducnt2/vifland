@@ -250,6 +250,7 @@ class ProductController extends Controller
                 'user.*',
                 'product_extend.*',
                 'product.*',
+                'category.id as cate_id',
                 'user.full_name as full_name',
                 'product_extend.id as productex_id',
                 'province.name as province',
@@ -327,7 +328,7 @@ class ProductController extends Controller
                 'category.parent_id'
             )
             
-            ->where('product.province_id', $product->province_id)
+            ->where('category.id', $product->cate_id)
 
             ->where('post_history.status',1)
             ->where('datetime_start','<=',date('Y-m-d H:i',strtotime('now')))
