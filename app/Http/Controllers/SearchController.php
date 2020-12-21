@@ -129,7 +129,8 @@ class SearchController extends Controller
                 $title = "Sang Nhượng Cửa Hàng " . $request->province . ", Mặt Bằng Giá Rẻ Mới Nhất 2020";
                 break;
         }
-        $cate_childs     = Category::where('parent_id', $cate)->get();
+        $cate1 = Category::where('slug',$cate)->value('id');
+        $cate_childs     = Category::where('parent_id', $cate1)->get();
         $provinces    = Province::orderBy('orders', 'desc')->orderBy('name', 'asc')->get(); // all province
         $content_province = Province::where('id', $province)->value('content'); // content province
         $districts = District::where('province_id', $province)->orderBy('name', 'asc')->get();
